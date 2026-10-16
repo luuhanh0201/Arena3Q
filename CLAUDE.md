@@ -6,13 +6,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Arena3Q is a freshly created Unity **6000.6.6f1** project from the Unity 2D URP template. There is no game code yet: the only script is the template's `Assets/Welcome/Welcome2DScript.cs` (Unity Learn welcome page, in the `Unity.2D.Welcome` asmdef), and the only scene in the build is `Assets/Scenes/SampleScene.unity`. Expect to create the gameplay architecture from scratch.
 
-The gameplay specification lives in `docs/GameplaySpecification-draft.md` (still a draft). Read it before designing or writing gameplay code; if it conflicts with the configuration below (e.g. 3D, legacy input, non-Android targets), flag the conflict instead of silently picking one.
+The gameplay specification lives in `docs/GameplaySpecification.md` and is the source of truth for gameplay. Read it before designing or writing gameplay code. Its markers: ✅ settled (implement exactly), 🟡 provisional default (must be a config option), ⏳ deferred (not in the prototype). If it conflicts with the configuration below (e.g. 3D, legacy input), flag the conflict instead of silently picking one.
 
 ## Key configuration
 
 - **Rendering:** URP with the 2D Renderer (`Assets/Settings/UniversalRP.asset`, `Renderer2D.asset`). Use 2D lights, `SpriteRenderer`, and URP 2D-compatible shaders/materials; built-in pipeline shaders will render pink.
 - **Input:** `activeInputHandler: 1` means the **new Input System only**. The legacy `UnityEngine.Input` API will throw at runtime; use `UnityEngine.InputSystem`. A default action asset exists at `Assets/Settings/InputSystem_Actions.inputactions` (`Player` map: Move, Look, Attack, Interact, Crouch, Jump, Previous, Next, Sprint; plus a `UI` map).
-- **Target platform:** an `Android Dev` build profile exists in `Assets/Settings/Build Profiles/`; Android uses the IL2CPP scripting backend.
+- **Target platforms:** Android, iOS and PC, landscape orientation (per the spec). Only an `Android Dev` build profile exists so far, in `Assets/Settings/Build Profiles/`; Android uses the IL2CPP scripting backend. Input must work with both touch and mouse.
 - **Packages** (`Packages/manifest.json`): 2D Animation, Aseprite and PSD importers, Tilemap + Tilemap Extras, SpriteShape, Timeline, uGUI, Visual Scripting, Test Framework.
 
 ## Working in this repo
