@@ -22,7 +22,9 @@ Bugs fixed so far, with root causes and how to avoid repeating them, are logged 
 ```
 docs/GameplaySpecification.md   gameplay spec (source of truth)
 docs/NhatKySuaLoi.md            bug-fix log (root cause + prevention per fix)
-docs/MapSpecification.md        map dimensions, layout, forbidden-zone and art rules (proposal)
+docs/MapSpecification.md        map dimensions, layout, forbidden-zone and art rules
+docs/ArtPrompts.md              how to brief artists / image generators for map art (prompts, sizes, post-processing)
+docs/art/blueprints/            map blueprints exported from stage data (Arena3Q > Export Map Blueprints)
 Assets/
   Arena3Q/                      everything this project owns
     Scripts/                    Core, Data, Gameplay (Battle, Camera, Heroes, Input, Stages, Troops, Units, Visuals), UI, Editor
@@ -45,7 +47,7 @@ All game code is under `Assets/Arena3Q/Scripts`, one asmdef per folder, dependen
   - **Logic vs view positions:** gameplay runs on a flat logic plane. `UnitBase.Position` is the logic position; `transform.position` is only its on-screen projection (`BattleController.ToView`, Y squashed by `cos(viewTiltDegrees)` for the 2.5D tilt). Never read `transform.position` for gameplay, and convert screen ↔ battlefield only through `BattleCameraController.ScreenToWorld` / `WorldToScreen` / `WorldToViewport`, which undo the tilt. Ground decorations go through `AddGroundVisual`.
   - **Forbidden zones** are `IObstacle`s (`RectObstacle`, `RiverObstacle`: centre line + width, passable only at crossings) and block movement: `UnitBase.MoveTowards` follows `BattlefieldLayout.NextWaypoint` (shortest route over a visibility graph of nodes precomputed around the zones) with `ResolveStep`/`PushOut` as a safety net. Stage data: `StageConfig.forbiddenZones` (rects) and `rivers`.
 - **UI** (`Arena3Q.UI`): `BattleHud` builds the uGUI HUD from code (cards, timer, edge icons, result screen).
-- **Editor** (`Arena3Q.Editor`): `PrototypeContentBuilder` creates the placeholder assets in `Assets/Arena3Q/Content` and the Battle scene (only missing ones; delete an asset to regenerate it) and adds the menu items `Arena3Q > Build Prototype Content / Validate Stages / Open Battle Scene`. `BuildScripts` has the build methods (`Arena3Q > Build`).
+- **Editor** (`Arena3Q.Editor`): `PrototypeContentBuilder` creates the placeholder assets in `Assets/Arena3Q/Content` and the Battle scene (only missing ones; delete an asset to regenerate it) and adds the menu items `Arena3Q > Build Prototype Content / Validate Stages / Open Battle Scene / Apply Standard River Layout`; `MapBlueprintExporter` (`Arena3Q > Export Map Blueprints`) rasterises each stage from its data into `docs/art/blueprints`. `BuildScripts` has the build methods (`Arena3Q > Build`).
 - **Tests**: `Assets/Arena3Q/Tests/EditMode` (Core/Data rules) and `Tests/PlayMode` (`BattleFlowTests` drives the real Battle scene with `BattleController.Simulate`; it uses `SerializedObject`, so the file is wrapped in `#if UNITY_EDITOR`). Do not make the PlayMode asmdef Editor-only: the runner would treat it as EditMode tests. The screenshot test writes `Logs/Screenshots/*.png`.
 
 ## Working in this repo

@@ -1,0 +1,145 @@
+# Arena3Q – Hướng dẫn gửi file và viết prompt để vẽ map
+
+Phiên bản: v0.1 · 2026-10-17. Dựa trên `docs/MapSpecification.md` v0.4 (cỡ M, PPU 128, góc 3/4 cố định tỉ lệ 🟡 0.75, vẽ tay màu mềm, Tilemap + SpriteShape + sprite PSD).
+
+> **Nguyên tắc quan trọng nhất:** *không* xin AI (hay họa sĩ) vẽ cả bản đồ thành **một tấm ảnh dùng trong game**. Ảnh toàn bản đồ chỉ để **chốt phong cách (concept)**. Thứ đưa vào game là **từng mảnh**: bộ ô nền, dải sông, cầu, thành, cây/đá – mỗi mảnh đúng kích thước pixel ở mục 4. Lý do: ảnh 6144 × 2496 px quá nặng cho điện thoại, AI không giữ đúng kích thước/tỉ lệ, và đổi bố cục là phải vẽ lại cả tấm (xem MapSpecification §8.4).
+
+---
+
+## 1. File cần gửi kèm
+
+Sinh tự động từ dữ liệu ải (luôn khớp game) bằng menu **Arena3Q > Export Map Blueprints** (hoặc batch `-executeMethod Arena3Q.Editor.MapBlueprintExporter.ExportAll`). Ảnh ở tỉ lệ 1/4 (32 px mỗi đơn vị ngang), đã nghiêng 3/4 (dọc × 0.75), **1536 × 624 px (tỉ lệ ≈ 2.46 : 1)**:
+
+| File | Dùng để |
+|---|---|
+| `docs/art/blueprints/attack_01_mask.png` | **Ảnh bố cục gửi cho AI / làm nền cho họa sĩ vẽ đè**: chỉ có mảng màu phẳng |
+| `docs/art/blueprints/attack_01_layout.png` | Ảnh **đọc** bố cục: lưới, vùng triệu hồi, điểm triệu hồi, quân phòng thủ, lề HUD (không gửi cho AI làm ảnh điều khiển – lưới và chấm sẽ bị vẽ vào tranh) |
+| `docs/art/blueprints/defense_01_*.png` | Như trên cho ải Thủ (cùng địa hình, khu bên phải là chỗ quân địch xuất hiện) |
+| `docs/MapSpecification.md` mục 8 | Gửi cho họa sĩ: kích thước, góc nhìn, pivot |
+
+**Bảng màu của ảnh mask** (ghi rõ trong prompt khi gửi ảnh):
+
+| Màu | Mã | Nghĩa |
+|---|---|---|
+| Xanh lá | `#5C8C4A` | đất cỏ – đi lại được |
+| Xanh nước | `#3A7BD5` | sông – vùng cấm, **không** được vẽ lấn ra ngoài |
+| Nâu | `#8B5A2B` | cầu – lối qua sông |
+| Xanh dương tròn | `#3D6FD9` | chỗ đặt **thành ta** (để trống, thành là sprite riêng) |
+| Đỏ tròn | `#C0392B` | chỗ đặt **thành địch** (để trống) |
+| Xám tối | `#4A4A58` | vùng cấm chữ nhật (hiện chưa có trong ải nào) |
+
+Kèm thêm **1–3 ảnh tham khảo phong cách** (ảnh game bạn thích) nếu công cụ cho phép – giúp các mảnh vẽ ra cùng một phong cách.
+
+---
+
+## 2. Khối mô tả phong cách dùng chung (dán vào đầu MỌI prompt)
+
+```
+Hand-painted 2D game art for a mobile strategy game, soft colours, gentle shading, Clash of Clans–like style.
+Fixed 3/4 top-down view: camera tilted about 41 degrees, the ground's vertical axis foreshortened to 0.75
+(a 1x1 ground square appears 4 wide by 3 tall). No perspective vanishing points, orthographic projection.
+Soft light from the top-left, short soft shadows towards the bottom-right.
+No text, no UI, no characters, no watermark. Clean readable shapes at small mobile size.
+```
+
+Vì sao: mọi mảnh phải cùng **góc nhìn** (0.75), cùng **hướng sáng** (trên-trái) và cùng **phong cách**, nếu không ghép lại sẽ lệch nhau.
+
+---
+
+## 3. Prompt cho từng phần
+
+### A. Concept toàn bản đồ (chỉ để chốt phong cách – KHÔNG dùng trong game)
+Gửi kèm `attack_01_mask.png`.
+```
+[khối phong cách ở mục 2]
+Use the attached image as the exact layout of a battlefield seen from the side-on 3/4 view.
+Keep every shape in place: green = grassy meadow, blue = a winding river (keep its exact path and width),
+brown = two wooden bridges across the river, blue circle on the left = empty stone plaza for the player's castle,
+red circle on the right = empty stone plaza for the enemy castle.
+Open field, a few trees and rocks only near the top and bottom edges, nothing blocking the meadow.
+Wide panoramic image, aspect ratio 2.46:1.
+```
+
+### B. Bộ ô nền (Tilemap) – vẽ từng ô, lặp liền không thấy mối nối
+Mỗi ô cuối cùng **128 × 96 px** (= 1 đơn vị ngang × 0.75). Nên tạo ảnh vuông lớn rồi cắt/thu nhỏ. Cần tối thiểu: cỏ (2–3 biến thể), đất, đường mòn, chuyển tiếp cỏ↔đất.
+```
+[khối phong cách ở mục 2]
+Seamless tileable ground texture: short lush grass with tiny flowers and subtle colour variation,
+evenly lit, no strong features that repeat visibly, no shadows from objects. Tiles perfectly on all four sides.
+```
+(Thay "short lush grass…" bằng "packed dirt path with small pebbles" / "sandy riverbank" cho các ô khác.)
+
+### C. Sông (SpriteShape) – dải nước và dải bờ, lặp liền theo chiều dài
+Dải nước cao **320 px** (= bề rộng sông 2.5 đơn vị × 128), dài 512 px, lặp liền **theo chiều ngang**; Unity sẽ uốn dải này theo đường tâm sông.
+```
+[khối phong cách ở mục 2]
+Seamless horizontal strip of a calm shallow river seen from above, water flowing left to right,
+soft ripples and light reflections, slightly darker in the middle. Tiles seamlessly left-to-right.
+Straight strip, no bends, no banks, transparent outside the water.
+```
+Dải bờ (đặt hai bên mép nước):
+```
+[khối phong cách ở mục 2]
+Seamless horizontal strip of a grassy riverbank edge: grass on top, a narrow band of wet sand and small stones
+along the bottom where it meets the water. Transparent background below the edge. Tiles left-to-right.
+```
+
+### D. Cầu (2 cây, có thể dùng chung 1 ảnh)
+Kích thước **512 × 448 px** (dài 4 đơn vị theo dòng chảy × rộng 3.5 đơn vị bắc qua sông), nền trong suốt.
+```
+[khối phong cách ở mục 2]
+A sturdy wooden plank bridge with rope railings, crossing a river from left to right,
+seen in the same 3/4 top-down view, walkable deck clearly visible, transparent background, centred.
+```
+Lưu ý: hai cầu trong bản đồ chuẩn đang xoay ≈ 29° so với phương ngang vì nằm trên đoạn sông chảy chéo; xoay một ảnh vẽ 3/4 sẽ hơi sai phối cảnh. Nếu thấy lệch, có thể dời cầu sang đoạn sông chảy gần thẳng đứng (sửa `StandardBridges`), hoặc vẽ riêng một cầu chéo.
+
+### E. Thành ta / thành địch
+Kích thước **448 × 576 px**, nền trong suốt, **chân thành ở giữa cạnh dưới** (pivot bottom-center), đáy thành chiếm một hình elip rộng ≈ 2.8 đơn vị (358 px).
+```
+[khối phong cách ở mục 2]
+A small fortified stone castle keep with a wooden gate and towers, blue banners and blue roofs (player side),
+standing on a round stone base, seen in the same 3/4 top-down view, transparent background,
+the base touching the bottom centre of the image.
+```
+Thành địch: thay "blue banners and blue roofs (player side)" bằng "red banners and dark red roofs, slightly more menacing (enemy side)".
+
+### F. Đồ trang trí (cây, bụi, đá) – đặt rìa bản đồ, không chặn đường
+```
+[khối phong cách ở mục 2]
+A set of 6 separate decorative props on a transparent background: two round leafy trees, one pine tree,
+a bush, a mossy boulder, a small cluster of stones. Each object standing upright, evenly spaced, not overlapping.
+```
+Kích thước tham khảo: cây 1.5 × 2.5 đơn vị (192 × 320 px).
+
+---
+
+## 4. Cách dùng theo từng công cụ
+
+| Công cụ | Gửi ảnh mask | Lặp liền (seamless) | Giữ phong cách giữa các lần |
+|---|---|---|---|
+| **ChatGPT / Gemini (vẽ ảnh)** | Đính kèm ảnh và nói "use the attached image as the exact layout" | Viết "seamless tileable" trong prompt, sau đó tự kiểm tra (mục 5) | Dùng cùng một cuộc trò chuyện, gửi lại ảnh đã ưng làm tham chiếu |
+| **Midjourney** | Dán link ảnh vào đầu prompt (image prompt), thêm `--iw 2` để bám bố cục | Thêm `--tile` cho ô nền / dải sông | `--sref <link ảnh đã ưng>` và giữ cùng `--seed`; concept toàn map dùng `--ar 32:13` |
+| **Stable Diffusion / ComfyUI** | ControlNet **Segmentation** hoặc **Canny** với ảnh mask, độ mạnh 0.8–1.0 | Bật "Tiling" / seamless | Cùng checkpoint + LoRA phong cách; negative prompt: `text, watermark, perspective distortion, vanishing point, characters, UI, blurry` |
+
+---
+
+## 5. Hậu kỳ trước khi đưa vào Unity (bắt buộc)
+1. **Đúng kích thước pixel** ở mục 3 (ô nền 128 × 96, dải sông cao 320, cầu 512 × 448, thành 448 × 576…). AI thường trả ảnh 1024 hay 1536 – thu nhỏ/cắt lại trong Krita/Photoshop.
+2. **Kiểm tra lặp liền**: dùng bộ lọc *Offset* (Photoshop: Filter > Other > Offset; Krita: Layer > Offset) dịch nửa ảnh – nếu thấy đường nối thì sửa bằng cọ clone.
+3. **Nền trong suốt** cho mọi thứ không phải ô nền; xoá viền trắng/viền mờ quanh vật.
+4. **Cùng góc nhìn và hướng sáng**: đặt các mảnh cạnh nhau trên một canvas để so trước khi xuất.
+5. **Xuất PNG** (hoặc PSD nhiều lớp cho vật có nhiều phần), đặt tên rõ: `ground_grass_01.png`, `river_water_strip.png`, `river_bank_strip.png`, `bridge_wood.png`, `castle_player.png`, `castle_enemy.png`, `prop_tree_01.png`…
+6. Gửi lại cho mình (hoặc đặt vào thư mục art khi khung đã sẵn) – mình sẽ cài PPU 128, pivot, Tilemap/SpriteShape.
+
+---
+
+## 6. Nếu gửi cho họa sĩ (mẫu brief)
+> Game chiến thuật 2D trên điện thoại, màn ngang, phong cách vẽ tay màu mềm kiểu Clash of Clans. Góc nhìn 3/4 cố định: mặt đất nén dọc còn 0.75 (một ô vuông 1 × 1 trên đất vẽ thành 128 × 96 px), không phối cảnh, sáng từ trên-trái.
+> Cần các mảnh riêng (danh sách + kích thước ở mục 3 của `docs/ArtPrompts.md`), nền trong suốt, PSD nhiều lớp hoặc PNG.
+> Bố cục bản đồ: `attack_01_mask.png` (màu: xanh lá = cỏ, xanh nước = sông, nâu = cầu, tròn xanh/đỏ = chỗ đặt thành ta/địch). Sông và cầu phải **đúng vị trí và bề rộng** trong ảnh này.
+
+---
+
+## 7. Lưu ý
+- Tỉ lệ góc 3/4 (**0.75**) vẫn là 🟡 chờ bạn xác nhận. Nếu đổi, sửa `MapBlueprintExporter.ArtVerticalScale`, xuất lại blueprint và đổi kích thước ô nền (128 × 128·tỉ lệ) **trước khi** vẽ ô nền.
+- Khi sửa bố cục ải (sông, cầu, thành…), chạy lại **Arena3Q > Export Map Blueprints** để ảnh gửi đi luôn khớp game.
