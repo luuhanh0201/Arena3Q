@@ -160,6 +160,29 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator RuntimeState_TracksEverySoldiersHealthAndDeath()
+        {
+            _battle.StartBattle(0);
+            var hero = SummonQuick(0);
+            yield return null;
+            var state = _battle.State;
+
+            Assert.That(state.CountAliveUnits(Team.Player, UnitKind.Troop), Is.EqualTo(hero.Definition.BaseSquadSize));
+            Assert.That(state.CountAliveUnits(Team.Enemy, UnitKind.Enemy), Is.EqualTo(Stage(0).Defenders.Count));
+            Assert.That(state.Units.Where(u => u.Kind == UnitKind.Troop).All(u => u.OwnerHero == hero.Id), Is.True);
+
+            var troop = hero.Squad.Members[0];
+            troop.TakeDamage(10f, null);
+            Assert.That(troop.Record.Health, Is.EqualTo(troop.MaxHealth - 10f));
+
+            var enemy = _battle.Registry.Units.OfType<EnemyUnit>().First();
+            var enemyId = enemy.Id;
+            enemy.TakeDamage(float.MaxValue, null);
+            Assert.That(state.TryGetUnit(enemyId, out var record) && !record.IsAlive, Is.True);
+            Assert.That(state.CountAliveUnits(Team.Enemy, UnitKind.Enemy), Is.EqualTo(Stage(0).Defenders.Count - 1));
+        }
+
+        [UnityTest]
         public IEnumerator DeadHero_CardGreysOut_CannotBeReused_SquadKeepsFighting()
         {
             _battle.StartBattle(0);

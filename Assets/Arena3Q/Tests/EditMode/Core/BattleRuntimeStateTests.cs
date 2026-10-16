@@ -143,6 +143,41 @@ namespace Arena3Q.Tests.EditMode
         }
 
         [Test]
+        public void Soldiers_AreRecordedWithOwnerHealthAndDeath()
+        {
+            var state = TestBattles.State();
+            var hero = TestBattles.Summon(state, 0);
+            var troop = state.RegisterUnit(state.AllocateUnitId(), Team.Player, UnitKind.Troop, hero.Id, 120f);
+            var enemy = state.RegisterUnit(state.AllocateUnitId(), Team.Enemy, UnitKind.Enemy, UnitId.None, 160f);
+
+            troop.Health = 70f;
+            state.MarkUnitDead(enemy.Id);
+            state.MarkUnitDead(enemy.Id);
+
+            Assert.That(state.Units, Has.Count.EqualTo(2));
+            Assert.That(state.TryGetUnit(troop.Id, out var stored) && stored.OwnerHero == hero.Id, Is.True);
+            Assert.That(stored.Health, Is.EqualTo(70f));
+            Assert.That(enemy.IsAlive, Is.False);
+            Assert.That(enemy.Health, Is.Zero);
+            Assert.That(state.CountAliveUnits(Team.Player, UnitKind.Troop), Is.EqualTo(1));
+            Assert.That(state.CountAliveUnits(Team.Enemy, UnitKind.Enemy), Is.Zero);
+        }
+
+        [Test]
+        public void Soldiers_InvalidRegistrations_Throw()
+        {
+            var state = TestBattles.State();
+            var hero = TestBattles.Summon(state, 0);
+
+            Assert.Throws<ArgumentException>(() =>
+                state.RegisterUnit(state.AllocateUnitId(), Team.Player, UnitKind.Troop, UnitId.None, 1f), "troop without hero");
+            Assert.Throws<ArgumentException>(() =>
+                state.RegisterUnit(state.AllocateUnitId(), Team.Enemy, UnitKind.Enemy, hero.Id, 1f), "enemy with owner");
+            Assert.Throws<ArgumentException>(() =>
+                state.RegisterUnit(hero.Id, Team.Player, UnitKind.Troop, hero.Id, 1f), "id already used by a hero");
+        }
+
+        [Test]
         public void Castle_DamageClampsAtZero()
         {
             var state = TestBattles.State();

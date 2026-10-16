@@ -287,6 +287,7 @@ namespace Arena3Q.Gameplay
                 {
                     var troop = CreateUnit<TroopUnit>("Troop");
                     troop.Init(this, State.AllocateUnitId(), definition.Troop, squad, i, troopSettings, tint);
+                    troop.Record = State.RegisterUnit(troop.Id, Team.Player, UnitKind.Troop, hero.Id, troop.MaxHealth);
                     Register(troop);
                 }
             }
@@ -416,6 +417,7 @@ namespace Arena3Q.Gameplay
         {
             var enemy = CreateUnit<EnemyUnit>("Enemy");
             enemy.Init(this, State.AllocateUnitId(), definition, role, position, guardRadius, waveIndex);
+            enemy.Record = State.RegisterUnit(enemy.Id, Team.Enemy, UnitKind.Enemy, UnitId.None, enemy.MaxHealth);
             Register(enemy);
             return enemy;
         }
@@ -441,7 +443,12 @@ namespace Arena3Q.Gameplay
             unit.Died += OnUnitDied;
         }
 
-        private void OnUnitDied(UnitBase unit) => Registry.Remove(unit);
+        private void OnUnitDied(UnitBase unit)
+        {
+            Registry.Remove(unit);
+            if (unit.Record != null)
+                State.MarkUnitDead(unit.Id);
+        }
 
         private bool IsQuickPointOccupied(Vector2 point) =>
             Registry.FindNearest(point, 0f, QuickPointOccupiedRadius - HeroUnit.BodyRadius, u => u is HeroUnit) != null;

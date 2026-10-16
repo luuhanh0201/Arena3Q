@@ -12,6 +12,8 @@ namespace Arena3Q.Core
         private readonly List<HeroCard> _cards = new List<HeroCard>();
         private readonly List<HeroRuntime> _heroes = new List<HeroRuntime>();
         private readonly Dictionary<UnitId, HeroRuntime> _heroesById = new Dictionary<UnitId, HeroRuntime>();
+        private readonly List<UnitRuntime> _units = new List<UnitRuntime>();
+        private readonly Dictionary<UnitId, UnitRuntime> _unitsById = new Dictionary<UnitId, UnitRuntime>();
         private int _lastUnitId;
 
         public BattleRuntimeState(BattleSetup setup)
@@ -107,6 +109,50 @@ namespace Arena3Q.Core
 
             if (SelectedHero == id)
                 SelectedHero = UnitId.None;
+        }
+
+        /// <summary>Squad soldiers and enemy soldiers ever spawned this battle (dead ones stay, with IsAlive false).</summary>
+        public IReadOnlyList<UnitRuntime> Units => _units;
+
+        public bool TryGetUnit(UnitId id, out UnitRuntime unit) => _unitsById.TryGetValue(id, out unit);
+
+        /// <summary>
+        /// Records a spawned soldier. Troops must name their living hero as owner (a squad belongs to exactly one hero,
+        /// spec §7); enemies have no owner.
+        /// </summary>
+        public UnitRuntime RegisterUnit(UnitId id, Team team, UnitKind kind, UnitId ownerHero, float maxHealth)
+        {
+            if (!id.IsValid || _unitsById.ContainsKey(id) || _heroesById.ContainsKey(id))
+                throw new ArgumentException($"Unit id {id} is invalid or already registered.", nameof(id));
+            if (kind == UnitKind.Troop && !_heroesById.ContainsKey(ownerHero))
+                throw new ArgumentException($"Troop {id} must belong to a registered hero.", nameof(ownerHero));
+            if (kind == UnitKind.Enemy && ownerHero.IsValid)
+                throw new ArgumentException("Enemy soldiers have no owner hero.", nameof(ownerHero));
+
+            var unit = new UnitRuntime(id, team, kind, ownerHero, maxHealth);
+            _units.Add(unit);
+            _unitsById.Add(id, unit);
+            return unit;
+        }
+
+        /// <summary>Marks a soldier dead. Idempotent; unknown ids are ignored.</summary>
+        public void MarkUnitDead(UnitId id)
+        {
+            if (!_unitsById.TryGetValue(id, out var unit) || !unit.IsAlive)
+                return;
+            unit.IsAlive = false;
+            unit.Health = 0f;
+        }
+
+        public int CountAliveUnits(Team team, UnitKind kind)
+        {
+            var count = 0;
+            foreach (var unit in _units)
+            {
+                if (unit.IsAlive && unit.Team == team && unit.Kind == kind)
+                    count++;
+            }
+            return count;
         }
 
         /// <summary>Only one living hero can be selected at a time (spec §5).</summary>

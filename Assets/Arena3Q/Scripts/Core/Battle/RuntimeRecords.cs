@@ -88,6 +88,37 @@ namespace Arena3Q.Core
         }
     }
 
+    public enum UnitKind
+    {
+        /// <summary>A soldier in one of the player's hero squads.</summary>
+        Troop,
+        /// <summary>An enemy soldier: Attack-stage defender or Defense-stage wave attacker.</summary>
+        Enemy
+    }
+
+    /// <summary>Per-soldier battle data (spec §10: state and health of every troop), for both sides.</summary>
+    public sealed class UnitRuntime
+    {
+        internal UnitRuntime(UnitId id, Team team, UnitKind kind, UnitId ownerHero, float maxHealth)
+        {
+            Id = id;
+            Team = team;
+            Kind = kind;
+            OwnerHero = ownerHero;
+            MaxHealth = maxHealth;
+            Health = maxHealth;
+        }
+
+        public UnitId Id { get; }
+        public Team Team { get; }
+        public UnitKind Kind { get; }
+        /// <summary>The hero whose squad this soldier belongs to (never changes, spec §7), or None for enemies.</summary>
+        public UnitId OwnerHero { get; }
+        public float MaxHealth { get; }
+        public float Health { get; set; }
+        public bool IsAlive { get; internal set; } = true;
+    }
+
     public sealed class CastleRuntime
     {
         internal CastleRuntime(UnitId id, Team team, float maxHealth)

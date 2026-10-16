@@ -47,6 +47,9 @@ namespace Arena3Q.Gameplay
 
         public event Action<UnitBase> Died;
 
+        /// <summary>Core record of a soldier (troops and enemies; heroes and castles have their own), kept in sync.</summary>
+        public UnitRuntime Record { get; internal set; }
+
         protected void InitUnit(BattleController battle, UnitId id, Team team, float maxHealth, float radius,
             Sprite sprite, Color color, bool withSelectionRing)
         {
@@ -93,6 +96,8 @@ namespace Arena3Q.Gameplay
                 return;
 
             Health = Mathf.Max(0f, Health - amount);
+            if (Record != null)
+                Record.Health = Health;
             Visual.Flash();
             Visual.SetHealth(Health / MaxHealth, Team == Team.Enemy);
 

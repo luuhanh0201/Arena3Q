@@ -74,3 +74,10 @@ Mỗi mục: **triệu chứng → nguyên nhân → cách sửa → cách trán
 - **Cách sửa:** dời 3 quân về vòng trong quanh thành: (12.5, ±1.5) và (22.5, 0) – trong `Stage_Attack_01.asset` và `PrototypeContentBuilder`. Giữ nguyên số quân nên độ khó gần như không đổi (cân bằng: thắng giây 62, mất 1 tướng).
 - **Tránh lặp lại:** nội dung placeholder cũng phải theo spec; luật ✅ về bố trí được khóa bằng test EditMode `ShippedAttackStages_DefendersStayAroundTheEnemyCastle` (mọi quân phòng thủ trong 8 đơn vị quanh thành). Khi sửa asset bằng tay, sửa luôn `PrototypeContentBuilder` để hai nơi khớp nhau.
 - **Kiểm chứng:** EditMode 131/131, PlayMode 27/27.
+
+### H – `BattleRuntimeState` thiếu trạng thái và máu của lính (spec §10)
+- **Triệu chứng:** máu/sống-chết của lính ta và quân địch chỉ nằm trong các MonoBehaviour (`TroopUnit`, `EnemyUnit`); trạng thái trận không đầy đủ như §10 yêu cầu.
+- **Nguyên nhân:** khi làm Bước 2 chỉ đưa tướng và thành vào `BattleRuntimeState`; lính thêm ở Bước 4 mà không đối chiếu lại §10.
+- **Cách sửa:** `UnitRuntime` (id, phe, loại `Troop`/`Enemy`, tướng chủ quản, máu, còn sống) và `RegisterUnit` / `MarkUnitDead` / `CountAliveUnits` trong `BattleRuntimeState`. `BattleController` đăng ký mỗi lính lúc sinh ra; `UnitBase.TakeDamage` cập nhật máu; khi chết thì đánh dấu. `RegisterUnit` từ chối lính không có tướng chủ quản và quân địch có chủ, giữ đúng ✅ "lính không bao giờ bị gán nhầm đội".
+- **Tránh lặp lại:** mỗi khi thêm một loại đối tượng vào trận, đối chiếu lại danh sách dữ liệu ở spec §10. Mọi trạng thái trận phải có bản ghi ở Core (để test và để sau này lưu/đồng bộ), MonoBehaviour chỉ là phần hiển thị và thực thi.
+- **Kiểm chứng:** EditMode 133/133 (2 test mới), PlayMode 28/28 (`RuntimeState_TracksEverySoldiersHealthAndDeath`).
