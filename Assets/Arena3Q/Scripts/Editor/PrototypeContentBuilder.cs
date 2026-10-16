@@ -124,8 +124,8 @@ namespace Arena3Q.Editor
                     (swordsman, new Vector2(19f, 4.5f)), (swordsman, new Vector2(19f, -4.5f)),
                     (archer, new Vector2(17.5f, 2.6f)), (archer, new Vector2(17.5f, -2.6f)),
                     (archer, new Vector2(21.5f, 2.5f)), (archer, new Vector2(21.5f, -2.5f)),
-                    // Forward outpost in the middle of the field.
-                    (swordsman, new Vector2(4f, -5f)), (swordsman, new Vector2(5f, -6.5f)), (archer, new Vector2(6.5f, -5.5f))
+                    // Inner ring in front of and behind the castle (spec §8: defenders concentrate around it).
+                    (swordsman, new Vector2(12.5f, -1.5f)), (swordsman, new Vector2(12.5f, 1.5f)), (archer, new Vector2(22.5f, 0f))
                 };
                 var list = so.FindProperty("defenders");
                 list.arraySize = defenders.Count;

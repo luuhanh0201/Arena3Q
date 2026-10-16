@@ -100,13 +100,13 @@ MonoBehaviour:
     position: {x: 21.5, y: -2.5}
     guardRadius: 4.5
   - unit: {fileID: 11400000, guid: b09f1c9356fb3e748a4e1568c18fcb7d, type: 2}
-    position: {x: 4, y: -5}
+    position: {x: 12.5, y: -1.5}
     guardRadius: 4.5
   - unit: {fileID: 11400000, guid: b09f1c9356fb3e748a4e1568c18fcb7d, type: 2}
-    position: {x: 5, y: -6.5}
+    position: {x: 12.5, y: 1.5}
     guardRadius: 4.5
   - unit: {fileID: 11400000, guid: c90877d7f432deb4c84ac2a4c111144a, type: 2}
-    position: {x: 6.5, y: -5.5}
+    position: {x: 22.5, y: 0}
     guardRadius: 4.5
   waves: []
   timeLimit: 180

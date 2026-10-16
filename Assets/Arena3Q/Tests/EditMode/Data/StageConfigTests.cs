@@ -148,6 +148,24 @@ namespace Arena3Q.Tests.EditMode
         }
 
         [Test]
+        public void ShippedAttackStages_DefendersStayAroundTheEnemyCastle()
+        {
+            // Spec §8 ✅: in Attack stages the defenders concentrate around the enemy castle.
+            const float maxDistance = 8f;
+            foreach (var guid in AssetDatabase.FindAssets("t:StageConfig", new[] { "Assets/Arena3Q/Content" }))
+            {
+                var stage = AssetDatabase.LoadAssetAtPath<StageConfig>(AssetDatabase.GUIDToAssetPath(guid));
+                if (stage.StageType != StageType.Attack)
+                    continue;
+                foreach (var defender in stage.Defenders)
+                {
+                    Assert.That(Vector2.Distance(defender.Position, stage.EnemyCastle.Position), Is.LessThanOrEqualTo(maxDistance),
+                        $"{stage.name}: defender at {defender.Position} is far from the castle");
+                }
+            }
+        }
+
+        [Test]
         public void CreateHeroBrainSettings_CombinesHeroAndStage()
         {
             var stage = CreateValidStage();
