@@ -28,12 +28,9 @@ Mạch truyện gợi ý: dẹp sơn tặc (người thường) → phản quân
 
 ---
 
-## 2. Gợi ý gameplay cho tinh anh và boss (⏳ cần bổ sung spec trước khi code)
-- **Cảnh báo trước**: kỹ năng vùng của tinh anh/boss hiện **vòng đỏ trên đất ~1 giây** rồi mới gây sát thương – người chơi kịp kéo tướng ra (hợp lối chơi ra lệnh di chuyển).
-- **Boss ở ải Công**: đứng gác trước thành địch, chỉ rời vị trí khi bị đánh (giống quân phòng thủ hiện có). **Boss ở ải Thủ**: xuất hiện ở **đợt cuối**.
-- **Đổi pha 50 % máu**: boss nổi giận (đổi màu mắt/hào quang), tăng tốc đánh, thêm một kỹ năng.
-- Dữ liệu cần thêm khi code: `EnemyDefinition` (cấp bậc, kỹ năng, kích thước, prefab hiển thị), kỹ năng dạng dữ liệu (vùng, sát thương, hồi chiêu, thời gian cảnh báo), thanh máu boss trên HUD.
+## 2. Luật kỹ năng địch
 
+Đã đưa vào spec (người dùng chốt 2026-10-17): **`docs/GameplaySpecification.md` §8 "Quân địch: cấp bậc và kỹ năng"** – cảnh báo vùng đỏ trước khi đánh, khống chế không xoá lệnh của người chơi, kéo/hất văng tuân theo vùng cấm, boss đổi pha ở 50 % máu, boss gác thành (ải Công) / đợt cuối (ải Thủ), dữ liệu `EnemyDefinition` / `EnemySkillDefinition`. Còn **2 xung đột chờ chốt** (spec §13): khiêu khích (Hộ Pháp Đồng Giáp) và đơn vị bay (Quỷ Hoả).
 ---
 
 ## 3. Hình ảnh

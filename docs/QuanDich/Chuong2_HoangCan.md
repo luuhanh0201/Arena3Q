@@ -64,7 +64,7 @@ Character: a cute animated straw scarecrow soldier, a burlap sack head with a fu
 
 ### Hộ Pháp Đồng Giáp – trâu, khiêu khích
 Vệ sĩ to lớn mặc **giáp đồng** cổ kiểu tượng hộ pháp, mặt nạ đồng hình mặt giận, **khiên tròn lớn** khắc bát quái và **chuỳ đồng**, khăn vàng quấn cổ.
-- Kỹ năng 🟡 **Kim Cương Hộ Thể**: hồi 12 s – giơ khiên 4 s, giảm 60 % sát thương nhận vào, **buộc** quân ta trong bán kính 2.5 đánh mình (khiêu khích).
+- Kỹ năng 🟡 **Kim Cương Hộ Thể**: hồi 12 s – giơ khiên 4 s, giảm 60 % sát thương nhận vào, **buộc** quân ta trong bán kính 2.5 đánh mình (khiêu khích). ⚠️ Phần khiêu khích xung đột với luật lệnh của tướng – chờ chốt (spec §13).
 
 ### Đại Phương Sư – khống chế
 Pháp sư trung niên, mũ cao vàng, áo bào vàng thêu mây đỏ, **phất trần** trắng và **kiếm gỗ đào** dán bùa, tà khí xanh lục quanh tay.

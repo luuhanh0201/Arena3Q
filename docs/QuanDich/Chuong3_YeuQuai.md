@@ -24,11 +24,11 @@ Quỷ nhỏ da xanh tím, một sừng ngắn, răng nanh nhỏ, mắt to vàng,
 
 ### Cương Thi
 Cương thi kiểu Á Đông: **mũ quan triều đình** và **quan phục xanh đen** cũ, **lá bùa vàng dán trán**, hai tay duỗi thẳng ra trước, **nhảy bật** hai chân. Da xanh nhạt, mặt ngộ ngộ.
-- 🟡 Đặc tính: chết thì **có 30 % đứng dậy một lần** với 30 % máu (bị đánh bằng lửa thì không).
+- 🟡 Đặc tính: chết thì **có 30 % đứng dậy một lần** với 30 % máu (spec §8: đặc tính bị động). Ý "bị đánh bằng lửa thì không" cần hệ loại sát thương – chưa có, để sau ⏳.
 
 ### Quỷ Hoả
 Ngọn **lửa ma xanh lam** lơ lửng có mặt cười tinh quái, đuôi lửa, quanh có vài đốm lửa nhỏ. Bắn cầu lửa ma.
-- 🟡 Đặc tính: **bay** – không bị sông chặn (cần luật mới cho đơn vị bay).
+- ⚠️ Đặc tính **bay** – không bị sông chặn: xung đột với luật vùng cấm chặn mọi unit, chờ chốt (spec §13).
 
 ### Thạch Tinh
 Yêu đá to: thân là khối **đá đen phủ rêu tím**, tinh thể tím mọc trên vai, mắt hai đốm sáng tím, tay đá to như búa.

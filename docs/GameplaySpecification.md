@@ -144,6 +144,21 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
   - Thắng, mất từ 2 tướng → 1 sao.
 - 🟡 Ngưỡng sao ở trên là mặc định, nằm trong `StageConfig` để chỉnh từng ải.
 
+### Quân địch: cấp bậc và kỹ năng (người dùng chốt 2026-10-17 · ⏳ code sau prototype)
+Thiết kế từng loại địch theo chương (hình ảnh, chỉ số gợi ý, kỹ năng cụ thể): `docs/QuanDich/`.
+- ✅ Ba cấp: **Thường** (không kỹ năng) · **Tinh anh** (1 kỹ năng, có dấu hiệu nhận biết – viền sáng) · **Boss** (2–3 kỹ năng, đổi pha, **thanh máu riêng trên HUD**). 🟡 Kích thước, bán kính thân và hệ số máu theo bảng `docs/QuanDich/README.md` §1.
+- ✅ Kỹ năng địch **tự dùng khi hồi chiêu xong và có mục tiêu hợp lệ trong tầm** (không phí chiêu). Quân địch **không có thanh nộ**.
+- ✅ **Cảnh báo trước**: kỹ năng đánh theo vùng (tròn / hình quạt / đường thẳng) hiện **vùng đỏ trên mặt đất** trong thời gian cảnh báo (🟡 1 giây, cấu hình theo kỹ năng) rồi mới có hiệu lực. Vùng **cố định vị trí** từ lúc bắt đầu cảnh báo: đơn vị ra khỏi vùng trước khi hết cảnh báo thì không trúng. Kỹ năng nhắm một mục tiêu (quăng xích, ném) có 🟡 0.5 giây ra tay báo hiệu.
+- ✅ **Khống chế** lên quân ta (choáng, trói, kéo, hất văng, đứng yên): trong lúc bị khống chế đơn vị không di chuyển và không đánh, nhưng **không mất lệnh** của người chơi – hết khống chế thì tiếp tục lệnh / trạng thái cũ (Moving đi tiếp tới điểm đích, Attacking đánh tiếp mục tiêu; luật mục 6 giữ nguyên). Người chơi vẫn ra lệnh mới được trong lúc đó; lệnh có hiệu lực khi hết khống chế. Khống chế **không bao giờ đổi phe** đơn vị.
+  - ✅ Kéo và hất văng **tuân theo vùng cấm và biên bản đồ**: không bị đẩy xuống sông hay ra ngoài; bị chặn thì dừng ở mép.
+  - 🟡 Chống khoá cứng: một tướng bị khống chế liên tục quá 2 giây thì được miễn khống chế 2 giây.
+- ✅ Kỹ năng **hỗ trợ** (hồi máu, tăng sức, khiên) chỉ tác dụng lên quân địch.
+- ✅ Kỹ năng **triệu hồi** (gọi lâu la, bù nhìn rơm, phân thân): quân được gọi là quân địch bình thường; 🟡 mỗi kỹ năng tối đa 8 quân đang sống. Không đổi điều kiện thắng/thua.
+- ✅ **Boss đổi pha** một lần khi máu xuống dưới 🟡 50 %: có hiệu ứng nhận biết, thay/thêm kỹ năng và chỉ số theo dữ liệu.
+- ✅ **Vị trí boss**: ải Công – đứng gác trước thành địch như quân phòng thủ (luật `guardRadius` ở trên); ải Thủ – xuất hiện ở **đợt cuối**. Điều kiện thắng/thua của ải **không đổi** (ải Công thắng khi phá thành dù boss còn sống; ải Thủ thắng khi trụ hết giờ / hết đợt).
+- 🟡 Đặc tính bị động (không phải kỹ năng), ví dụ **sống lại một lần** khi chết (xác suất và % máu cấu hình được – Cương Thi).
+- ⚠️ Chưa chốt vì xung đột với luật đã có: **khiêu khích** và **đơn vị bay** – xem mục 13.
+
 ## 9. Bản đồ và camera
 Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng cấm, quy cách art): `docs/MapSpecification.md` (🟡 đề xuất, chờ duyệt).
 
@@ -162,11 +177,13 @@ Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng
 - `FactionDefinition` ⏳ (tối thiểu): id, tên, màu.
 - `HeroDefinition`: heroId, tên, sprite/placeholder, máu, sát thương, tốc độ di chuyển, tầm đánh, **tốc đánh** (đòn/giây; hiện lưu dưới dạng `attackInterval` = 1 / tốc đánh), `reactionRange`, `aggroRange`, `idleBeforeAdvanceSeconds` (mặc định 5), `baseSquadSize`, `maxSquadSize`, `TroopDefinition` của đội lính, `leashRadius`.
 - `TroopDefinition`: máu, sát thương, tốc độ, tầm đánh, **tốc đánh** (đòn/giây; hiện lưu dưới dạng `attackInterval` = 1 / tốc đánh), `reactionRange`, `aggroRange`.
+- `EnemyDefinition` ⏳ (hiện quân địch dùng `TroopDefinition`): các trường của `TroopDefinition` + cấp bậc (Thường / Tinh anh / Boss), kích thước và bán kính thân, danh sách kỹ năng, pha 2 (ngưỡng máu, kỹ năng và chỉ số thay đổi), đặc tính bị động (sống lại…), prefab hiển thị.
+- `EnemySkillDefinition` ⏳: kiểu (vùng tròn / hình quạt / đường thẳng / một mục tiêu / hỗ trợ / triệu hồi), cách chọn chỗ đánh, kích thước vùng, số vùng, sát thương, khống chế + thời lượng, hồi chiêu, hồi chiêu đầu trận, thời gian cảnh báo, quân được gọi + giới hạn.
 - `StageConfig`: id ải, loại (`Attack` / `Defense`), kích thước và biên bản đồ, vùng cấm, thành ta và thành địch (máu, có bắn hay không), `summonZone`, `quickSummonPoints`, bố trí quân phòng thủ (ải Công), các đợt quân (ải Thủ), `timeLimit`, luật thua, ngưỡng sao, bộ thẻ thử nghiệm, `onHeroDeathTroopBehavior`, `allowResummonDeadHero`.
 - `BattleRuntimeState` (tạo mới mỗi trận): số tướng đã triệu hồi, tướng đang chọn, trạng thái và máu từng tướng/lính/thành, lệnh hiện tại và điểm đích đã lưu của từng tướng, đồng hồ, đợt hiện tại, kết quả và số sao.
 
 ## 11. Ngoài phạm vi prototype ⏳
-Màn chọn chủ tướng, kỹ năng chủ tướng, kiếm thẻ (nhiệm vụ, sự kiện, cửa hàng), nâng cấp, tài nguyên triệu hồi, PvP, tài khoản, backend, lưu tiến trình, animation và hiệu ứng thật.
+Màn chọn chủ tướng, kỹ năng chủ tướng, kỹ năng và cấp bậc quân địch (tinh anh, boss), kiếm thẻ (nhiệm vụ, sự kiện, cửa hàng), nâng cấp, tài nguyên triệu hồi, PvP, tài khoản, backend, lưu tiến trình, animation và hiệu ứng thật.
 
 ## 12. Tiêu chí nghiệm thu prototype
 - [ ] Mở scene Battle, chạy không lỗi compile.
@@ -185,4 +202,7 @@ Màn chọn chủ tướng, kỹ năng chủ tướng, kiếm thẻ (nhiệm v�
 
 ## 13. Câu hỏi còn mở
 - Không có câu hỏi chặn prototype. Các mục 🟡 là mặc định tạm, người dùng có thể đổi bất cứ lúc nào bằng cách sửa file này.
+- ⚠️ **Xung đột cần chốt (quân địch, 2026-10-17):**
+  1. **Khiêu khích** (Hộ Pháp Đồng Giáp, `docs/QuanDich/Chuong2_HoangCan.md`: "buộc quân ta trong bán kính 2.5 đánh mình") xung đột với ✅ **IgnoreUntilDestination** (Moving không đổi mục tiêu) và ✅ **Attacking** (đánh đúng mục tiêu được chỉ định). Đề xuất: chỉ tác dụng lên đơn vị **không đang thi hành lệnh** (Idle / Advancing / Combat và lính đang giao chiến tự do); tướng đang Moving / Attacking bỏ qua. Hoặc đổi kỹ năng thành chỉ giảm sát thương (bỏ khiêu khích).
+  2. **Đơn vị bay** (Quỷ Hoả, `docs/QuanDich/Chuong3_YeuQuai.md`: "không bị sông chặn") xung đột với mục 9 🟡 vùng cấm **chặn mọi unit**. Đề xuất: thêm cờ `flying` – đơn vị bay qua được **sông** nhưng vẫn bị **vùng cấm chữ nhật** và biên bản đồ chặn; quân ta cận chiến vẫn đánh được khi nó ở trên bờ. Hoặc bỏ đặc tính bay.
 - ⏳ **Cân bằng độ khó** (thông số tướng/lính/quân địch, đợt quân, thời gian, bề rộng và số cầu): để tới **giai đoạn sắp phát hành** (người dùng chốt 2026-10-16). Đã biết: sau khi có sông, ải Thủ suýt thua (mất cả 5 tướng, thành còn 173/3000) và ải Công dễ hơn (3 sao, không mất tướng) – xem test `Balance_*`.
