@@ -1,6 +1,6 @@
 # Arena3Q – Thông số bản đồ (đề xuất)
 
-Phiên bản: v0.2 · 2026-10-16 (thêm sông) · Trạng thái: **🟡 đề xuất, chờ duyệt**
+Phiên bản: v0.3 · 2026-10-16 (thêm sông; chốt cỡ M) · Trạng thái: **🟡 đề xuất, chờ duyệt** (đã chốt ✅: mục 3 – cỡ M)
 
 Tài liệu này đề xuất thông số để vẽ bản đồ cho ải Công và ải Thủ. Luật gameplay vẫn theo `docs/GameplaySpecification.md` (mục 8, 9); ở đây chỉ chốt **kích thước, toạ độ, bố cục, quy cách art**. Mọi con số dưới đây suy ra từ prototype đang chạy (kích thước unit, tầm đánh, tốc độ, camera, HUD) – mục 1 ghi lại các số gốc đó để khi đổi một số thì biết phải tính lại số nào.
 
@@ -33,15 +33,15 @@ Ký hiệu: 🟡 đề xuất (chờ người dùng duyệt, sau khi duyệt đ�
 - **Lưới 1 × 1 đơn vị**. Mọi vật thể gameplay (thành, điểm triệu hồi, vùng cấm, vị trí quân phòng thủ, điểm sinh quân) đặt trên **bước 0.5** để dễ căn với tile.
 - Bản đồ là **hình chữ nhật**, kích thước **số nguyên chẵn** để tâm rơi đúng giữa ô.
 
-## 3. Kích thước bản đồ 🟡
+## 3. Kích thước bản đồ ✅ (người dùng chốt 2026-10-16: dùng cỡ M)
 
-Ba cỡ chuẩn; mỗi ải chọn một cỡ (`StageConfig.mapBounds`):
+✅ **Mọi ải dùng cỡ M: 48 × 26, `mapBounds` = (−24, −13, 48, 26).** Cỡ S và L chỉ giữ lại để tham khảo, ⏳ chưa dùng (cân nhắc lại nếu sau này cần ải hướng dẫn nhỏ hoặc ải nhiều làn).
 
 | Cỡ | Rộng × Cao | Bounds | Dùng cho | Thời gian đi thành-tới-thành* |
 |---|---|---|---|---|
-| S | 40 × 22 | (−20, −11, 40, 22) | ải đầu/hướng dẫn | ~12 s |
-| **M (mặc định)** | **48 × 26** | **(−24, −13, 48, 26)** | ải thường (= hiện tại) | ~15 s |
-| L | 60 × 32 | (−30, −16, 60, 32) | ải lớn, nhiều làn | ~20 s |
+| S ⏳ | 40 × 22 | (−20, −11, 40, 22) | ải đầu/hướng dẫn | ~12 s |
+| **M ✅** | **48 × 26** | **(−24, −13, 48, 26)** | **mọi ải** (= hiện tại) | ~15 s |
+| L ⏳ | 60 × 32 | (−30, −16, 60, 32) | ải lớn, nhiều làn | ~20 s |
 
 \* tốc độ 2.6, thành cách mép 4–5 đơn vị.
 
@@ -167,7 +167,7 @@ Bản đồ M hiện tại: vùng triệu hồi y −9…9 → cách mép dướ
 ## 10. Kiểm tra khi nộp bản đồ (đề xuất, chưa làm)
 
 Những luật có thể tự động hoá (thêm vào `StageConfig.Validate` / test nội dung khi bạn duyệt):
-- [ ] Kích thước bản đồ là một trong S / M / L (hoặc được đánh dấu ngoại lệ).
+- [ ] Kích thước bản đồ đúng cỡ M (48 × 26, bounds (−24, −13, 48, 26)).
 - [ ] Vật thể gameplay nằm trên bước 0.5.
 - [ ] Không vật thể gameplay quan trọng nào trong lề HUD (mục 7).
 - [x] Không vùng cấm nào cắt đứt đường đi (đã có trong `Validate`: `HasPath` từ điểm triệu hồi nhanh / điểm sinh quân). Sông: đủ điểm, bề rộng ≥ 1, cầu rộng ≥ 2 và nằm trên lòng sông (đã có).
@@ -176,7 +176,7 @@ Những luật có thể tự động hoá (thêm vào `StageConfig.Validate` / 
 
 ## 11. Câu hỏi cần bạn chốt
 
-1. Giữ **3 cỡ S/M/L**, hay chỉ dùng một cỡ M cho prototype?
+1. ~~Giữ 3 cỡ S/M/L, hay chỉ dùng một cỡ M?~~ → **Đã chốt: chỉ dùng cỡ M** (mục 3).
 2. **PPU 128** cho art thật – đồng ý?
 3. Mặt đất **vẽ top-down + nghiêng lúc chạy** (đề xuất), hay muốn art **isometric vẽ sẵn** (khi đó phải bỏ thanh góc nghiêng hoặc khoá ở một góc)?
 4. Dùng **Tilemap** cho mặt đất (đề xuất), hay **một ảnh nền lớn** cho mỗi ải?
