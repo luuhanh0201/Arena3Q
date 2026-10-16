@@ -27,7 +27,7 @@ docs/ArtPrompts.md              how to brief artists / image generators for map 
 docs/art/blueprints/            map blueprints exported from stage data (Arena3Q > Export Map Blueprints)
 docs/LordHeroes.md              the 4 player lords (archer, swordsman, strategist, marshal): roles and draft skills
 docs/LordArtPrompts.md          lord image prompts, PSD parts sheet and animation list (skeletal animation)
-docs/StrategistArtGuide.md      strategist lord: detailed look spec + 3 style-test prompts (A chibi 3D / B hybrid / C hand-painted)
+docs/StrategistArtGuide.md      strategist lord (template for all lords): look spec, AI prompts (style A: chibi 3D render), Krita PSD layers, bone names, clips
 docs/art/concepts/              character concept images (chutuong1.png = style reference only)
 Assets/
   Arena3Q/                      everything this project owns

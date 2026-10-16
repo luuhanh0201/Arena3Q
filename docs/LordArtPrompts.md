@@ -1,10 +1,10 @@
 # Arena3Q – Prompt hình ảnh và danh sách animation cho 4 chủ tướng
 
-Phiên bản: v0.3 · 2026-10-17 (bỏ tên riêng – chủ tướng mang tên người chơi; thêm icon kỹ năng; đổi tên kỹ năng 2/3; animation đánh theo tốc đánh). Đi kèm `docs/LordHeroes.md` (thiết kế, kỹ năng) và cùng phong cách với bản đồ `map1.png` (`docs/ArtPrompts.md`).
+Phiên bản: v0.4 · 2026-10-17 (đổi phong cách sang chibi render 3D – phương án A; trước đó: bỏ tên riêng, icon kỹ năng, kỹ năng 2/3, animation theo tốc đánh). Đi kèm `docs/LordHeroes.md` (thiết kế, kỹ năng) và `docs/StrategistArtGuide.md` (mẫu chi tiết trên Mưu sĩ).
 
-> Đang thử lại phong cách nhân vật (A chibi render 3D / B lai / C vẽ tay) trên Mưu sĩ – xem `docs/StrategistArtGuide.md`. Khối phong cách ở mục 3 có thể thay đổi theo kết quả.
+> **Phong cách nhân vật đã đổi (người dùng chốt 2026-10-17): phương án A – chibi ~2.5 đầu, render 3D kiểu mô hình figure, theo ảnh mẫu `docs/art/concepts/chutuong1.png`.** Bản đồ vẫn vẽ tay (map spec §8.1). Hướng dẫn chi tiết làm mẫu trên Mưu sĩ: `docs/StrategistArtGuide.md`.
 
-Đã chốt ✅: Đông Á cổ trang · vẽ tay màu mềm, góc 3/4 · animation **skeletal** (Unity 2D Animation, đã có trong project) từ **PSD tách bộ phận** · **2 hướng** (trước-phải, sau-phải) + lật gương ra trái · 2 nam + 2 nữ.
+Đã chốt ✅: Đông Á cổ trang · **chibi render 3D (phương án A)**, góc 3/4 · animation **skeletal** (Unity 2D Animation, đã có trong project) từ **PSD tách bộ phận** · **2 hướng** (trước-phải, sau-phải) + lật gương ra trái · 2 nam + 2 nữ.
 
 > **Ý tưởng chính:** với skeletal, mỗi nhân vật chỉ cần vẽ **một lần cho mỗi hướng** nhưng **tách rời từng bộ phận** (đầu, thân, tay trên, tay dưới, bàn tay, đùi, ống chân, áo choàng, vũ khí…). Unity gắn xương vào các bộ phận và làm **mọi động tác** (đứng, đi, đánh, chết, kỹ năng…). Vì vậy ta **không** cần AI vẽ từng khung hình – việc mà AI làm rất kém (nhân vật đổi mặt, đổi áo giữa các khung).
 
@@ -42,16 +42,17 @@ Việc này cần 3 thứ: (1) **làm đúng chỉ dẫn** (đúng danh sách b�
 
 ---
 
-## 3. Khối phong cách nhân vật (dán vào đầu MỌI prompt)
+## 3. Khối phong cách nhân vật (dán vào đầu MỌI prompt, đính kèm `chutuong1.png`)
 
 ```
-Hand-painted 2D game character art for a mobile strategy game, ancient East Asian setting,
-soft colours, gentle painterly shading, Clash of Clans–like stylised proportions (about 3.5 heads tall,
-slightly oversized head, hands and weapon), clean bold silhouette that reads at small size.
-Fixed 3/4 top-down camera, about 41 degrees from above, orthographic, no perspective distortion.
-Soft light from the top-left, soft shadow side on the bottom-right. Thin dark outline.
+Match the rendering style, proportions and level of detail of the attached reference image
+(stylised 3D-rendered chibi figurine look), but NOT its character, outfit, colours or weapon.
+Chibi proportions about 2.5 heads tall, large head, big expressive eyes, small body, ancient East Asian setting.
+Soft studio lighting from the top-left, gentle rim light, smooth clean materials,
+subtle reflections (no strong shiny spots), no outline, clean bold silhouette that reads at small size.
 No text, no watermark, no background scenery.
 ```
+Góc nhìn ghi riêng trong từng prompt (bảng xoay: ngang tầm mắt; ảnh dùng trong game: trước-phải 3/4 nhìn xuống ~40°).
 
 Kích thước dùng trong game: chủ tướng cao ≈ **1.6 đơn vị** (map spec §8.5). Để gắn xương nét, vẽ **gấp đôi**: nhân vật cao **≈ 420 px** trong PSD và import với PPU 256 (mình cài khi nhận file).
 
@@ -243,10 +244,10 @@ dramatic lighting, swirling [màu chủ đạo] energy, vertical 2:3 composition
 1. Cắt từng bộ phận ra **lớp riêng**, xoá nền, giữ mép mềm (không viền trắng).
 2. Ghép lại nhân vật ở **tư thế đứng mặc định** (đúng vị trí, đúng thứ tự trước/sau) – mỗi bộ phận một lớp, các khớp chồng lên nhau một chút.
 3. Kích thước: nhân vật cao ≈ **420 px**; mọi bộ phận cùng tỉ lệ.
-4. **Đặt tên lớp** rõ ràng, tiếng Anh, theo hướng: `R_` (trước-phải) / `B_` (sau-phải), ví dụ `R_head`, `R_arm_upper_L`, `R_hand_grip_R`, `R_weapon`, `R_team_sash`, `R_face_shout`.
+4. **Đặt tên lớp** rõ ràng, tiếng Anh, theo hướng: `F_` (trước-phải) / `B_` (sau-phải), bên phải nhân vật = `near` (gần camera), bên trái = `far`; ví dụ `F_head`, `F_arm_near_upper`, `F_hand_near_grip`, `F_fan`, `F_sash_tail_near`, `F_face_shout`. Danh sách lớp và tên xương mẫu: `docs/StrategistArtGuide.md` §3–§4.
 5. Một file PSD cho mỗi hướng: `lord_archer_front.psd`, `lord_archer_back.psd` (tương tự `swordsman`, `strategist`, `marshal`).
 6. Hiệu ứng: PNG nền trong suốt, mỗi mảnh một file, tên `vfx_<chủ tướng>_<kỹ năng>_<mảnh>.png`.
 
 ## 10. Câu hỏi còn mở
-- ~~Tỉ lệ 3.5 đầu?~~ → **Giữ tạm 3.5 đầu** (🟡, người dùng chốt 2026-10-17).
+- ~~Tỉ lệ 3.5 đầu?~~ → **Đổi sang ~2.5 đầu, chibi render 3D (phương án A)** (người dùng chốt 2026-10-17, sau khi thử 3 phong cách).
 - ~~Skin?~~ → **Đã chốt: có, để sau (⏳)** – khi làm, giữ đúng cùng bộ khung bộ phận để dùng chung animation.
