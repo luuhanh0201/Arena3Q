@@ -23,6 +23,13 @@ namespace Arena3Q.Gameplay
         [SerializeField] private bool startOnAwake = true;
         [Tooltip("Off for tests that step the battle with Simulate().")]
         [SerializeField] private bool autoSimulate = true;
+        [Tooltip("2.5D view tilt: 0 = straight top-down, 45 = Clash of Clans-like. Only the display changes; the battle " +
+                 "runs on the flat logic plane. Also adjustable in game from the HUD slider.")]
+        [SerializeField, Range(0f, MaxViewTiltDegrees)] private float viewTiltDegrees;
+
+        public const float MaxViewTiltDegrees = 45f;
+
+        private readonly List<(Transform transform, Rect area)> _groundVisuals = new List<(Transform, Rect)>();
 
         private readonly List<UnitBase> _simulationScratch = new List<UnitBase>();
         private readonly List<Squad> _squads = new List<Squad>();
@@ -42,6 +49,42 @@ namespace Arena3Q.Gameplay
         public event Action<HeroUnit> HeroSummoned;
         public event Action<RejectReason> ActionRejected;
         public event Action<OutcomeDecision> Finished;
+        /// <summary>The 2.5D view tilt changed.</summary>
+        public event Action ViewChanged;
+
+        /// <summary>View tilt in degrees (0–45). Setting it re-projects every unit and the map at once.</summary>
+        public float ViewTiltDegrees
+        {
+            get => viewTiltDegrees;
+            set
+            {
+                var clamped = Mathf.Clamp(value, 0f, MaxViewTiltDegrees);
+                if (Mathf.Approximately(clamped, viewTiltDegrees))
+                    return;
+                viewTiltDegrees = clamped;
+                RefreshView();
+                ViewChanged?.Invoke();
+            }
+        }
+
+        /// <summary>How much the ground's Y axis is squashed on screen: cos(tilt), 1 when looking straight down.</summary>
+        public float ViewYScale => Mathf.Cos(viewTiltDegrees * Mathf.Deg2Rad);
+
+        /// <summary>Logic-plane point → world position shown on screen.</summary>
+        public Vector3 ToView(Vector2 logic) => new Vector3(logic.x, logic.y * ViewYScale, 0f);
+
+        /// <summary>World position on screen (e.g. under a pointer) → logic-plane point.</summary>
+        public Vector2 ToLogic(Vector2 view) => new Vector2(view.x, view.y / ViewYScale);
+
+        /// <summary>Map bounds as shown on screen, for camera limits.</summary>
+        public Rect ViewBounds
+        {
+            get
+            {
+                var b = Stage != null ? Stage.MapBounds : default;
+                return new Rect(b.xMin, b.yMin * ViewYScale, b.width, b.height * ViewYScale);
+            }
+        }
 
         public IReadOnlyList<StageConfig> Stages => stages;
         public int StageIndex { get; private set; }
@@ -162,6 +205,7 @@ namespace Arena3Q.Gameplay
         private void ClearWorld()
         {
             Registry.Clear();
+            _groundVisuals.Clear();
             _squads.Clear();
             _heroes.Clear();
             _playerCastle = null;
@@ -466,29 +510,49 @@ namespace Arena3Q.Gameplay
 
         private void BuildMapVisuals()
         {
-            var bounds = Stage.MapBounds;
-            var ground = PlaceholderArt.CreateRenderer("Ground", _worldRoot, PlaceholderArt.Square,
-                new Color(0.36f, 0.55f, 0.3f), bounds.size, -32000);
-            ground.transform.localPosition = bounds.center;
+            _groundVisuals.Clear();
+            AddGroundVisual("Ground", PlaceholderArt.Square, new Color(0.36f, 0.55f, 0.3f), Stage.MapBounds, -32000);
 
             foreach (var zone in Stage.ForbiddenZones)
-            {
-                var forbidden = PlaceholderArt.CreateRenderer("ForbiddenZone", _worldRoot, PlaceholderArt.Square,
-                    new Color(0.25f, 0.35f, 0.55f), zone.size, -31990);
-                forbidden.transform.localPosition = zone.center;
-            }
+                AddGroundVisual("ForbiddenZone", PlaceholderArt.Square, new Color(0.25f, 0.35f, 0.55f), zone, -31990);
 
-            var summonZone = Stage.SummonZone;
-            _summonZoneOverlay = PlaceholderArt.CreateRenderer("SummonZone", _worldRoot, PlaceholderArt.Square,
-                new Color(0.4f, 0.75f, 1f, 0.28f), summonZone.size, -31980);
-            _summonZoneOverlay.transform.localPosition = summonZone.center;
+            _summonZoneOverlay = AddGroundVisual("SummonZone", PlaceholderArt.Square, new Color(0.4f, 0.75f, 1f, 0.28f),
+                Stage.SummonZone, -31980);
             _summonZoneOverlay.enabled = false;
 
             foreach (var point in Stage.QuickSummonPoints)
             {
-                var marker = PlaceholderArt.CreateRenderer("QuickSummonPoint", _worldRoot, PlaceholderArt.Ring,
-                    new Color(1f, 1f, 1f, 0.35f), new Vector2(1.1f, 1.1f), -31970);
-                marker.transform.localPosition = point;
+                AddGroundVisual("QuickSummonPoint", PlaceholderArt.Ring, new Color(1f, 1f, 1f, 0.35f),
+                    new Rect(point - new Vector2(0.55f, 0.55f), new Vector2(1.1f, 1.1f)), -31970);
+            }
+        }
+
+        // A flat decoration lying on the ground: its position and height follow the 2.5D tilt.
+        private SpriteRenderer AddGroundVisual(string objectName, Sprite sprite, Color color, Rect area, int order)
+        {
+            var renderer = PlaceholderArt.CreateRenderer(objectName, _worldRoot, sprite, color, area.size, order);
+            _groundVisuals.Add((renderer.transform, area));
+            PlaceGroundVisual(renderer.transform, area);
+            return renderer;
+        }
+
+        private void PlaceGroundVisual(Transform target, Rect area)
+        {
+            target.localPosition = ToView(area.center);
+            target.localScale = new Vector3(area.width, area.height * ViewYScale, 1f);
+        }
+
+        private void RefreshView()
+        {
+            foreach (var (target, area) in _groundVisuals)
+            {
+                if (target != null)
+                    PlaceGroundVisual(target, area);
+            }
+            foreach (var unit in Registry.Units)
+            {
+                if (unit != null)
+                    unit.RefreshView();
             }
         }
 
@@ -497,8 +561,8 @@ namespace Arena3Q.Gameplay
             if (_worldRoot == null)
                 return;
             var marker = PlaceholderArt.CreateRenderer("CommandMarker", _worldRoot, PlaceholderArt.Ring, color,
-                new Vector2(0.8f, 0.8f), 30000);
-            marker.transform.localPosition = position;
+                new Vector2(0.8f, 0.8f * ViewYScale), 30000);
+            marker.transform.localPosition = ToView(position);
             marker.gameObject.AddComponent<FadeAndDestroy>();
         }
     }

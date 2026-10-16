@@ -88,3 +88,10 @@ Mỗi mục: **triệu chứng → nguyên nhân → cách sửa → cách trán
 - **Cách sửa:** `EdgeIndicatorMath.ClampToArea(viewport, vùng)` – kẹp theo tia từ tâm màn hình vào một vùng bất kỳ; HUD cung cấp `CardBarTopViewport`, vùng an toàn = màn hình trừ dải thanh thẻ và lề.
 - **Tránh lặp lại:** mọi phần tử UI đặt theo vị trí thế giới (icon, nhãn, marker) phải tính tới các vùng UI cố định có thể che nó; thêm test "nằm ngoài vùng bị che".
 - **Kiểm chứng:** EditMode `EdgeIcon_StaysInsideTheSafeArea_AboveTheCardBar`, PlayMode `EdgeIcon_ForHeroBelowTheScreen_IsAboveTheCardBar`; EditMode 134/134, PlayMode 29/29.
+
+### E – Chưa có góc nhìn nghiêng 2.5D (✅ §1, §9)
+- **Triệu chứng:** camera chỉ nhìn thẳng từ trên xuống, không có cảm giác nghiêng kiểu Clash of Clans.
+- **Nguyên nhân:** prototype đặt `transform.position` của unit bằng đúng vị trí logic, không có lớp chiếu hiển thị.
+- **Cách sửa:** tách vị trí logic (`UnitBase.Position`, field riêng) khỏi vị trí hiển thị (`BattleController.ToView`: `y × cos(góc)`); mặt đất, vùng cấm, vùng triệu hồi, điểm triệu hồi, marker và vòng chọn tướng được nén theo trục Y, thân unit đứng thẳng. Camera làm việc trong không gian hiển thị nhưng API công khai (`ScreenToWorld`, `WorldToViewport`, `WorldToScreen`, `FocusOn`) nhận/trả toạ độ logic; giữ nguyên điểm đang nhìn khi đổi góc. Thanh trượt "Góc nhìn" 0–45° trong HUD, mặc định 0° theo lựa chọn của người dùng.
+- **Tránh lặp lại:** **không bao giờ đọc `transform.position` làm vị trí gameplay** – dùng `UnitBase.Position`; mọi chuyển đổi màn hình ↔ chiến trường đi qua `BattleCameraController` (đã quy đổi tilt). Đồ hoạ nằm trên mặt đất phải đi qua `AddGroundVisual`/`ToView` để theo góc nghiêng. Khi thêm phép chiếu, grep `transform.position` / `WorldToScreenPoint` / `ScreenToWorldPoint` để không sót chỗ.
+- **Kiểm chứng:** PlayMode `ViewTilt_SquashesTheGround_PickingStillHitsLogicPositions` (kéo slider tới 45°, vị trí vẽ = logic × cos45°, quy đổi màn hình ↔ logic khớp, chạm vào địch trên màn hình vẫn ra lệnh tấn công, camera kẹp theo bản đồ đã nén) và ảnh `Logs/Screenshots/attack_tilt45.png`; EditMode 134/134, PlayMode 30/30.

@@ -672,6 +672,43 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator ViewTilt_SquashesTheGround_PickingStillHitsLogicPositions()
+        {
+            _battle.StartBattle(0);
+            var hero = SummonQuick(0);
+            yield return null;
+            Assert.That(_battle.ViewTiltDegrees, Is.Zero, "default: straight top-down");
+            Assert.That(_hud.TiltSlider.value, Is.Zero);
+
+            _hud.TiltSlider.value = 45f; // as if the player dragged the HUD slider
+            yield return null;
+            yield return null;
+
+            var scale = Mathf.Cos(45f * Mathf.Deg2Rad);
+            Assert.That(_battle.ViewTiltDegrees, Is.EqualTo(45f));
+            Assert.That(hero.transform.position.y, Is.EqualTo(hero.Position.y * scale).Within(1e-3f), "drawn on the tilted ground");
+            Assert.That(hero.transform.position.x, Is.EqualTo(hero.Position.x).Within(1e-3f));
+
+            // Screen → logic round trip, and a tap on an on-screen enemy still finds it.
+            var screen = _camera.WorldToScreen(hero.Position);
+            Assert.That(Vector2.Distance(_camera.ScreenToWorld(screen), hero.Position), Is.LessThan(0.01f));
+            var defender = _battle.Registry.Units.OfType<EnemyUnit>().First();
+            _battle.TrySelectHero(hero.Id);
+            Assert.That(_battle.TapAt(_camera.ScreenToWorld(_camera.WorldToScreen(defender.Position))),
+                Is.EqualTo(BattleController.TapResult.Attack));
+
+            // Gameplay is unchanged by the tilt: logic positions, not the drawing, drive the rules.
+            var cam = Camera.main;
+            var viewBounds = _battle.ViewBounds;
+            Assert.That(cam.transform.position.y + cam.orthographicSize, Is.LessThanOrEqualTo(viewBounds.yMax + 0.01f),
+                "camera limits follow the squashed map");
+
+            _hud.TiltSlider.value = 0f;
+            yield return null;
+            Assert.That(hero.transform.position.y, Is.EqualTo(hero.Position.y).Within(1e-3f));
+        }
+
+        [UnityTest]
         public IEnumerator CardViews_ReflectCardStates()
         {
             _battle.StartBattle(0);
@@ -719,7 +756,7 @@ namespace Arena3Q.Tests.PlayMode
             yield return null;
             var card = _hud.CardViews[1];
             var zoneCenter = Stage(0).SummonZone.center;
-            var zoneScreen = (Vector2)_camera.Camera.WorldToScreenPoint(zoneCenter);
+            var zoneScreen = _camera.WorldToScreen(zoneCenter);
             Assert.That(_hud.IsOverUi(zoneScreen), Is.False, "test setup: the zone centre is not under the HUD");
 
             ExecuteEvents.Execute(card.gameObject, Pointer(ScreenPositionOf(card)), ExecuteEvents.beginDragHandler);
@@ -757,6 +794,15 @@ namespace Arena3Q.Tests.PlayMode
             for (var i = 0; i < 30; i++)
                 yield return null;
             Capture("defense.png");
+
+            _battle.StartBattle(0);
+            SummonQuick(0);
+            SummonQuick(1);
+            Run(3f);
+            _battle.ViewTiltDegrees = 45f;
+            for (var i = 0; i < 30; i++)
+                yield return null;
+            Capture("attack_tilt45.png");
         }
 
         private void Capture(string fileName)

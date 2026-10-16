@@ -19,7 +19,8 @@ namespace Arena3Q.Gameplay
 
         private Camera _camera;
         private bool _followPaused;
-        private Vector2? _focusTarget;
+        private Vector2? _focusTarget; // in view space
+        private float _lastYScale = 1f;
 
         public Camera Camera => _camera != null ? _camera : _camera = GetComponent<Camera>();
         public bool IsFollowPaused => _followPaused;
@@ -67,7 +68,8 @@ namespace Arena3Q.Gameplay
             // Start looking at the player's side of the map.
             var stage = battle.Stage;
             var start = Vector2.Lerp(stage.PlayerCastle.Position, stage.MapBounds.center, 0.35f);
-            SetCenter(start);
+            _lastYScale = battle.ViewYScale;
+            SetCenter(battle.ToView(start));
         }
 
         private void OnSelectionChanged(UnitId heroId)
@@ -91,28 +93,52 @@ namespace Arena3Q.Gameplay
         {
             if (factor <= 0f || battle == null || battle.Stage == null)
                 return;
-            var before = ScreenToWorld(screenFocus);
-            var maxSize = Mathf.Min(maxOrthographicSize, CameraMath.MaxOrthographicSize(battle.Stage.MapBounds, Camera.aspect));
+            var before = ScreenToView(screenFocus);
+            var maxSize = Mathf.Min(maxOrthographicSize, CameraMath.MaxOrthographicSize(battle.ViewBounds, Camera.aspect));
             Camera.orthographicSize = Mathf.Clamp(Camera.orthographicSize * factor, Mathf.Min(minOrthographicSize, maxSize), maxSize);
-            var after = ScreenToWorld(screenFocus);
+            var after = ScreenToView(screenFocus);
             SetCenter((Vector2)transform.position + (before - after));
         }
 
-        /// <summary>Smoothly bring a world point into the centre of the view (edge icon tap).</summary>
+        /// <summary>Smoothly bring a logic-plane point into the centre of the view (edge icon tap).</summary>
         public void FocusOn(Vector2 worldPoint)
         {
-            _focusTarget = worldPoint;
+            _focusTarget = battle != null ? (Vector2)battle.ToView(worldPoint) : worldPoint;
             _followPaused = false;
         }
 
-        public Vector2 ScreenToWorld(Vector2 screenPoint) => Camera.ScreenToWorldPoint(new Vector3(screenPoint.x, screenPoint.y, 0f));
+        /// <summary>Screen pixel → logic-plane point (undoes the 2.5D tilt). Use this for all gameplay picking.</summary>
+        public Vector2 ScreenToWorld(Vector2 screenPoint)
+        {
+            var view = ScreenToView(screenPoint);
+            return battle != null ? battle.ToLogic(view) : view;
+        }
 
-        public Vector2 WorldToViewport(Vector2 worldPoint) => Camera.WorldToViewportPoint(worldPoint);
+        /// <summary>Logic-plane point → viewport (0..1 on screen).</summary>
+        public Vector2 WorldToViewport(Vector2 worldPoint) =>
+            Camera.WorldToViewportPoint(battle != null ? battle.ToView(worldPoint) : (Vector3)worldPoint);
+
+        /// <summary>Logic-plane point → screen pixel.</summary>
+        public Vector2 WorldToScreen(Vector2 worldPoint) =>
+            Camera.WorldToScreenPoint(battle != null ? battle.ToView(worldPoint) : (Vector3)worldPoint);
+
+        private Vector2 ScreenToView(Vector2 screenPoint) => Camera.ScreenToWorldPoint(new Vector3(screenPoint.x, screenPoint.y, 0f));
 
         private void LateUpdate()
         {
             if (battle == null || battle.Stage == null)
                 return;
+
+            // Tilt changed: keep looking at the same logic point.
+            var yScale = battle.ViewYScale;
+            if (!Mathf.Approximately(yScale, _lastYScale))
+            {
+                var p = transform.position;
+                transform.position = new Vector3(p.x, p.y / _lastYScale * yScale, p.z);
+                if (_focusTarget.HasValue)
+                    _focusTarget = new Vector2(_focusTarget.Value.x, _focusTarget.Value.y / _lastYScale * yScale);
+                _lastYScale = yScale;
+            }
 
             Vector2? goal = null;
             if (_focusTarget.HasValue)
@@ -125,7 +151,7 @@ namespace Arena3Q.Gameplay
             {
                 var hero = battle.SelectedHero;
                 if (hero != null && hero.State != HeroState.Idle)
-                    goal = hero.Position;
+                    goal = battle.ToView(hero.Position);
             }
 
             if (goal.HasValue)
@@ -143,7 +169,7 @@ namespace Arena3Q.Gameplay
         private void SetCenter(Vector2 center)
         {
             if (battle != null && battle.Stage != null)
-                center = CameraMath.ClampCenter(battle.Stage.MapBounds, center, Camera.orthographicSize, Camera.aspect);
+                center = CameraMath.ClampCenter(battle.ViewBounds, center, Camera.orthographicSize, Camera.aspect);
             transform.position = new Vector3(center.x, center.y, transform.position.z);
         }
     }

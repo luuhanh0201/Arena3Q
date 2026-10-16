@@ -16,6 +16,8 @@ namespace Arena3Q.Gameplay
         private readonly List<(UnitBase unit, float lastHit)> _attackers = new List<(UnitBase unit, float lastHit)>();
         private float _cooldown;
         private bool _dead;
+        // Position on the logic plane. The transform shows it through the battle's view projection (2.5D tilt).
+        private Vector2 _position;
 
         protected BattleController Battle { get; private set; }
         protected UnitVisual Visual { get; private set; }
@@ -27,7 +29,8 @@ namespace Arena3Q.Gameplay
         public bool IsAlive => Health > 0f;
         public float Radius { get; private set; }
         public virtual bool IsCastle => false;
-        public Vector2 Position => transform.position;
+        /// <summary>Logic-plane position (all gameplay uses this; the transform is only the on-screen projection).</summary>
+        public Vector2 Position => _position;
 
         public float Damage { get; private set; }
         public float AttackRange { get; private set; }
@@ -62,6 +65,7 @@ namespace Arena3Q.Gameplay
             Visual = new UnitVisual(transform, sprite != null ? sprite : PlaceholderArt.Circle, color, radius * 2f,
                 withSelectionRing);
             Visual.SetHealth(1f, team == Team.Enemy);
+            Visual.SetGroundScale(battle.ViewYScale);
         }
 
         protected void SetCombat(CombatStats stats) =>
@@ -239,8 +243,19 @@ namespace Arena3Q.Gameplay
                 position.x = Mathf.Clamp(position.x, b.xMin + Radius, b.xMax - Radius);
                 position.y = Mathf.Clamp(position.y, b.yMin + Radius, b.yMax - Radius);
             }
-            transform.position = new Vector3(position.x, position.y, 0f);
+            _position = position;
+            ApplyViewTransform();
         }
+
+        /// <summary>Re-applies the view projection after the camera tilt changed.</summary>
+        internal void RefreshView()
+        {
+            ApplyViewTransform();
+            Visual?.SetGroundScale(Battle != null ? Battle.ViewYScale : 1f);
+        }
+
+        private void ApplyViewTransform() =>
+            transform.position = Battle != null ? Battle.ToView(_position) : new Vector3(_position.x, _position.y, 0f);
 
         protected virtual void LateUpdate()
         {

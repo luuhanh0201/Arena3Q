@@ -57,6 +57,15 @@ namespace Arena3Q.Gameplay
 
         public void Flash() => _flash = FlashSeconds;
 
+        /// <summary>Ground-plane decorations (the selection ring) are squashed with the 2.5D tilt; the body stays upright.</summary>
+        public void SetGroundScale(float yScale)
+        {
+            if (_ring == null)
+                return;
+            var size = _ring.transform.localScale.x;
+            _ring.transform.localScale = new Vector3(size, size * yScale, 1f);
+        }
+
         /// <summary>Hit flash and Y-sorting for the top-down 2.5D look (lower on screen = drawn in front).</summary>
         public void Update(float deltaTime)
         {

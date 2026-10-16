@@ -189,11 +189,13 @@ namespace Arena3Q.Gameplay
                 _swipeLine = PlaceholderArt.CreateRenderer("AttackSwipe", transform, PlaceholderArt.Square, Color.white,
                     Vector2.one, 31000);
             }
-            var from = _swipeHero.Position;
-            var to = cameraController.ScreenToWorld(screen);
+            // Picking uses the logic plane; the line itself is drawn in view space (2.5D tilt).
+            var target = cameraController.ScreenToWorld(screen);
+            Vector2 from = battle.ToView(_swipeHero.Position);
+            Vector2 to = battle.ToView(target);
             var delta = to - from;
             _swipeLine.enabled = true;
-            _swipeLine.color = battle.FindEnemyAt(to) != null ? new Color(1f, 0.3f, 0.25f, 0.9f) : new Color(1f, 1f, 1f, 0.6f);
+            _swipeLine.color = battle.FindEnemyAt(target) != null ? new Color(1f, 0.3f, 0.25f, 0.9f) : new Color(1f, 1f, 1f, 0.6f);
             var t = _swipeLine.transform;
             t.position = (from + to) * 0.5f;
             t.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg);

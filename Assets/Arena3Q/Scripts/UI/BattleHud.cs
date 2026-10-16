@@ -33,12 +33,15 @@ namespace Arena3Q.UI
         private Text _resultReason;
         private Image[] _resultStars;
         private RectTransform _resultButtons;
+        private Slider _tiltSlider;
+        private Text _tiltLabel;
 
         public BattleController Battle => battle;
         public BattleCameraController Camera => cameraController;
         public RectTransform OverlayRoot { get; private set; }
         public bool IsResultVisible => _resultPanel != null && _resultPanel.activeSelf;
         public IReadOnlyList<HeroCardView> CardViews => _cards;
+        public Slider TiltSlider => _tiltSlider;
 
         public void Bind(BattleController controller, BattleCameraController cameraRig)
         {
@@ -72,6 +75,7 @@ namespace Arena3Q.UI
             battle.Changed += Refresh;
             battle.ActionRejected += OnActionRejected;
             battle.Finished += OnFinished;
+            battle.ViewChanged += SyncTiltSlider;
         }
 
         private void Unsubscribe()
@@ -82,6 +86,56 @@ namespace Arena3Q.UI
             battle.Changed -= Refresh;
             battle.ActionRejected -= OnActionRejected;
             battle.Finished -= OnFinished;
+            battle.ViewChanged -= SyncTiltSlider;
+        }
+
+        private void SyncTiltSlider()
+        {
+            if (_tiltSlider == null || battle == null)
+                return;
+            _tiltSlider.SetValueWithoutNotify(battle.ViewTiltDegrees);
+            _tiltLabel.text = $"Góc nhìn: {Mathf.RoundToInt(battle.ViewTiltDegrees)}°";
+        }
+
+        // 2.5D view tilt, 0° (top-down, default) to 45°. Session only.
+        private void BuildTiltSlider(RectTransform root)
+        {
+            var topLeft = new Vector2(0f, 1f);
+            _tiltLabel = UiFactory.CreateLabel("TiltLabel", root, topLeft, topLeft, new Vector2(30f, -74f),
+                new Vector2(320f, 40f), "Góc nhìn: 0°", 28, TextAnchor.MiddleLeft, Color.white);
+
+            var sliderRect = UiFactory.CreateRect("TiltSlider", root, topLeft, topLeft, topLeft, new Vector2(30f, -116f),
+                new Vector2(320f, 34f));
+            var background = UiFactory.CreateRect("Background", sliderRect, new Vector2(0f, 0.35f), new Vector2(1f, 0.65f),
+                new Vector2(0.5f, 0.5f), Vector2.zero, Vector2.zero);
+            UiFactory.AddImage(background, new Color(0f, 0f, 0f, 0.55f));
+
+            var fillArea = UiFactory.CreateRect("Fill Area", sliderRect, new Vector2(0f, 0.35f), new Vector2(1f, 0.65f),
+                new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(-34f, 0f));
+            var fill = UiFactory.CreateRect("Fill", fillArea, Vector2.zero, new Vector2(0f, 1f), new Vector2(0.5f, 0.5f),
+                Vector2.zero, Vector2.zero);
+            UiFactory.AddImage(fill, new Color(1f, 0.85f, 0.35f, 0.9f), null, false);
+
+            var handleArea = UiFactory.CreateRect("Handle Slide Area", sliderRect, Vector2.zero, Vector2.one,
+                new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(-34f, 0f));
+            var handle = UiFactory.CreateRect("Handle", handleArea, Vector2.zero, new Vector2(0f, 1f), new Vector2(0.5f, 0.5f),
+                Vector2.zero, new Vector2(34f, 0f));
+            var handleImage = UiFactory.AddImage(handle, Color.white, PlaceholderArt.Circle);
+
+            _tiltSlider = sliderRect.gameObject.AddComponent<Slider>();
+            _tiltSlider.fillRect = fill;
+            _tiltSlider.handleRect = handle;
+            _tiltSlider.targetGraphic = handleImage;
+            _tiltSlider.direction = Slider.Direction.LeftToRight;
+            _tiltSlider.minValue = 0f;
+            _tiltSlider.maxValue = BattleController.MaxViewTiltDegrees;
+            _tiltSlider.wholeNumbers = true;
+            _tiltSlider.onValueChanged.AddListener(value =>
+            {
+                if (battle != null)
+                    battle.ViewTiltDegrees = value;
+                _tiltLabel.text = $"Góc nhìn: {Mathf.RoundToInt(value)}°";
+            });
         }
 
         public void FocusSelectedHero()
@@ -147,6 +201,7 @@ namespace Arena3Q.UI
             layout.childForceExpandWidth = false;
             layout.childForceExpandHeight = false;
 
+            BuildTiltSlider(root);
             BuildResultPanel(root);
 
             OverlayRoot = UiFactory.Stretch("DragOverlay", root);
@@ -203,6 +258,7 @@ namespace Arena3Q.UI
 
             var stage = battle.Stage;
             _stageLabel.text = $"{(stage.StageType == StageType.Attack ? "Ải Công" : "Ải Thủ")} · {stage.StageId}";
+            SyncTiltSlider();
             Refresh();
         }
 
