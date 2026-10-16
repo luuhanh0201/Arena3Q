@@ -75,6 +75,17 @@ namespace Arena3Q.Core
             CurrentCommand = HeroCommandKind.None;
             AttackTarget = UnitId.None;
         }
+
+        /// <summary>Copies behaviour state from the hero's brain. Death is not copied; it goes through MarkHeroDead.</summary>
+        public void SyncFrom(HeroBrain brain)
+        {
+            if (!IsAlive || brain.IsDead)
+                return;
+            State = brain.State;
+            CurrentCommand = brain.CurrentCommand;
+            Destination = brain.Destination;
+            AttackTarget = brain.AttackTarget;
+        }
     }
 
     public sealed class CastleRuntime

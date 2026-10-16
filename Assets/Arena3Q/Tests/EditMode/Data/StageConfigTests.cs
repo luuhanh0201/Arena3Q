@@ -122,6 +122,23 @@ namespace Arena3Q.Tests.EditMode
             Assert.That(stage.GetIdleBeforeAdvanceSeconds(hero), Is.EqualTo(2f));
         }
 
+        [Test]
+        public void CreateHeroBrainSettings_CombinesHeroAndStage()
+        {
+            var stage = CreateValidStage();
+            var hero = stage.TestLoadout.LordHero;
+            var so = new SerializedObject(stage);
+            so.FindProperty("stageType").enumValueIndex = (int)StageType.Defense;
+            so.ApplyModifiedPropertiesWithoutUndo();
+
+            var settings = stage.CreateHeroBrainSettings(hero);
+
+            Assert.That(settings.StageType, Is.EqualTo(StageType.Defense));
+            Assert.That(settings.IdleBeforeAdvanceSeconds, Is.EqualTo(5f));
+            Assert.That(settings.IdleTimerResetsOnOutOfRangeDamage, Is.False);
+            Assert.That(settings.SelfDefendWhileAttacking, Is.True);
+        }
+
         private StageConfig CreateValidStage()
         {
             var troop = Create<TroopDefinition>("Troop");

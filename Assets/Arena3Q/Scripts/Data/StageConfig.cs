@@ -73,6 +73,14 @@ namespace Arena3Q.Data
         public float GetIdleBeforeAdvanceSeconds(HeroDefinition hero) =>
             overrideIdleBeforeAdvance ? idleBeforeAdvanceSeconds : hero.IdleBeforeAdvanceSeconds;
 
+        public HeroBrainSettings CreateHeroBrainSettings(HeroDefinition hero) => new HeroBrainSettings
+        {
+            StageType = stageType,
+            IdleBeforeAdvanceSeconds = GetIdleBeforeAdvanceSeconds(hero),
+            IdleTimerResetsOnOutOfRangeDamage = hero.IdleTimerResetsOnOutOfRangeDamage,
+            SelfDefendWhileAttacking = hero.SelfDefendWhileAttacking
+        };
+
         public BattlefieldLayout CreateLayout() => new BattlefieldLayout(mapBounds, summonZone, forbiddenZones);
 
         public SummonRules CreateSummonRules() => new SummonRules(CreateLayout(), quickSummonPoints, playerCastle.Position);

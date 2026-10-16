@@ -30,6 +30,8 @@ namespace Arena3Q.Data
         [SerializeField, Min(0f)] private float idleBeforeAdvanceSeconds = DefaultIdleBeforeAdvanceSeconds;
         [Tooltip("Provisional: if true, damage from an attacker outside attack range also resets the idle timer.")]
         [SerializeField] private bool idleTimerResetsOnOutOfRangeDamage;
+        [Tooltip("Provisional: while walking to an AttackCommand target, defend against close attackers like when Moving.")]
+        [SerializeField] private bool selfDefendWhileAttacking = true;
 
         [Header("Squad (spec §7)")]
         [SerializeField] private TroopDefinition troop;
@@ -50,6 +52,7 @@ namespace Arena3Q.Data
         public CombatStats Stats => stats;
         public float IdleBeforeAdvanceSeconds => idleBeforeAdvanceSeconds;
         public bool IdleTimerResetsOnOutOfRangeDamage => idleTimerResetsOnOutOfRangeDamage;
+        public bool SelfDefendWhileAttacking => selfDefendWhileAttacking;
         public TroopDefinition Troop => troop;
         public int BaseSquadSize => baseSquadSize;
         public int MaxSquadSize => maxSquadSize;
