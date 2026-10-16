@@ -23,12 +23,12 @@ Bugs fixed so far, with root causes and how to avoid repeating them, are logged 
 docs/GameplaySpecification.md   gameplay spec (source of truth)
 docs/NhatKySuaLoi.md            bug-fix log (root cause + prevention per fix)
 docs/MapSpecification.md        map dimensions, layout, forbidden-zone and art rules
-docs/ArtPrompts.md              how to brief artists / image generators for map art (prompts, sizes, post-processing)
+docs/ArtPrompts.md              how to brief artists / image generators for map art (files to attach, piece sizes, post-processing)
 docs/art/blueprints/            map blueprints exported from stage data (Arena3Q > Export Map Blueprints)
 docs/LordHeroes.md              the 4 player lords (archer, swordsman, strategist, marshal): roles and draft skills
 docs/LordArtPrompts.md          lord image prompts, PSD parts sheet and animation list (skeletal animation)
 docs/StrategistArtGuide.md      strategist lord (template for all lords): look spec, AI prompts (style A: chibi 3D render), Krita PSD layers, bone names, clips
-docs/art/concepts/              character concepts: chutuong1.png (style reference only), ready-to-paste prompts (MuuSi_Prompts.md), generated images
+docs/art/concepts/              all ready-to-paste image prompts (MuuSi_Prompts.md, BanDo_Prompts.md) + style reference chutuong1.png + generated images
 Assets/
   Arena3Q/                      everything this project owns
     Scripts/                    Core, Data, Gameplay (Battle, Camera, Heroes, Input, Stages, Troops, Units, Visuals), UI, Editor

@@ -77,7 +77,7 @@ Lý do chọn M làm chuẩn:
 | Vùng triệu hồi (`summonZone`) | x −17.5…−11, y −9…9 (6.5 × 18 = 117 đơn vị²; đủ cho 5 đội × ~9 đơn vị² cộng khoảng trống); cách mép thành ≥ 0.5 | (−17.5, −9, 6.5, 18) |
 | Điểm triệu hồi nhanh | 5 điểm, cách nhau ≥ 3 (một đội hình rộng ~3): (−15.5, 0), (−15.5, ±3.5), (−13, ±1.75) | khớp |
 | **Giữa bản đồ** | x −11…11 (rộng 22) – nơi giao tranh chính | khớp |
-| Vùng cấm | **1 con sông** cắt ngang từ mép trên xuống mép dưới, rộng 2.5, có **2 cầu** rộng 4 (mục 6.2); thêm 0–1 vùng chữ nhật nếu cần | sông "Sông" theo đúng thông số này |
+| Vùng cấm | **1 con sông** cắt ngang từ mép trên xuống mép dưới, rộng **2.3**, có **2 cầu** rộng **2.4** (đo từ `map1`, mục 6.2); thêm 0–1 vùng chữ nhật nếu cần | sông "Sông" theo đúng thông số này |
 | **Căn cứ địch** | x 11…24 (rộng 13) | khớp |
 | Thành địch | tâm (19.4, 0) – giữa bãi đá trong `map1` | (19.4, 0) |
 | Quân phòng thủ | mọi vị trí trong bán kính **8** quanh thành địch (✅ spec §8, có test `ShippedAttackStages_DefendersStayAroundTheEnemyCastle`); `guardRadius` 4.5 → vùng "lao ra đánh" phủ x ~7…24 | 18 quân, khớp |
