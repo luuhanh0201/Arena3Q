@@ -127,6 +127,7 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 
 ## 9. Bản đồ và camera
 - ✅ Bản đồ là **bãi trống**, không chướng ngại, không cần tìm đường (pathfinding). Có biên giới hạn và có thể có vùng cấm.
+- 🟡 Vùng cấm (hình chữ nhật) **chặn di chuyển**: unit không đi xuyên qua; nếu đường thẳng bị vùng cấm cắt thì đi vòng qua góc gần nhất của chính vùng đó (bỏ qua góc nằm ngoài bản đồ). Đây chỉ là né một vật cản, không phải tìm đường tổng quát.
 - ✅ Góc nhìn kiểu Clash of Clans; bản đồ **rộng hơn màn hình**.
 - ✅ Camera **kéo theo** (🟡: kéo theo tướng đang được chọn khi tướng di chuyển; người chơi kéo tay thì tạm ngưng theo cho tới khi chọn lại tướng).
 - 🟡 Người chơi kéo màn hình để di chuyển camera, hai ngón (hoặc con lăn chuột) để zoom; giới hạn camera trong biên bản đồ.

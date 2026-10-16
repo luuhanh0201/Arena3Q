@@ -207,15 +207,30 @@ namespace Arena3Q.Gameplay
             if (distance <= stopDistance || distance < 1e-5f)
                 return;
             var step = Mathf.Min(MoveSpeed * deltaTime, distance - stopDistance);
-            SetPosition(position + toTarget / distance * step);
+            var layout = Battle != null ? Battle.Layout : null;
+            if (layout == null)
+            {
+                SetPosition(position + toTarget / distance * step);
+                return;
+            }
+
+            // Forbidden zones block movement (spec §9): head for a corner of the zone in the way, if any.
+            var waypoint = layout.NextWaypoint(position, destination, Radius);
+            var toWaypoint = waypoint - position;
+            var waypointDistance = toWaypoint.magnitude;
+            var next = waypointDistance < 1e-5f
+                ? position
+                : position + toWaypoint / waypointDistance * Mathf.Min(step, waypointDistance);
+            SetPosition(layout.ResolveStep(position, next, Radius));
         }
 
-        /// <summary>Moves the unit, clamped to the battlefield bounds.</summary>
+        /// <summary>Moves the unit, clamped to the battlefield bounds and kept out of forbidden zones.</summary>
         public void SetPosition(Vector2 position)
         {
             if (Battle != null && Battle.Layout != null)
             {
                 var b = Battle.Layout.Bounds;
+                position = Battle.Layout.PushOut(position, Radius);
                 position.x = Mathf.Clamp(position.x, b.xMin + Radius, b.xMax - Radius);
                 position.y = Mathf.Clamp(position.y, b.yMin + Radius, b.yMax - Radius);
             }

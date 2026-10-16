@@ -236,6 +236,30 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator MoveCommand_PastForbiddenZone_WalksAroundIt()
+        {
+            _battle.StartBattle(Variant(0, so => so.FindProperty("defenders").arraySize = 0));
+            yield return null;
+            Assert.That(_battle.TrySummon(SummonRequest.Free(0, new Vector2(-12f, 8f))).Accepted, Is.True);
+            var hero = _battle.SelectedHero;
+            var zone = Stage(0).ForbiddenZones[0];
+            var destination = new Vector2(zone.xMax + 3f, zone.center.y);
+            Assert.That(_battle.MoveSelectedHero(destination).Accepted, Is.True);
+
+            var entered = false;
+            for (var t = 0f; t < 25f && hero.State == HeroState.Moving; t += Step)
+            {
+                _battle.Simulate(Step);
+                entered |= zone.Contains(hero.Position);
+                foreach (var troop in hero.Squad.Members)
+                    entered |= zone.Contains(troop.Position);
+            }
+
+            Assert.That(entered, Is.False, "nobody walked through the forbidden zone");
+            Assert.That(Vector2.Distance(hero.Position, destination), Is.LessThan(0.2f), "arrived on the other side");
+        }
+
+        [UnityTest]
         public IEnumerator MoveCommand_IntoForbiddenZoneOrOffMap_IsRejected()
         {
             _battle.StartBattle(0);
