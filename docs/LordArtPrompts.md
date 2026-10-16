@@ -2,6 +2,8 @@
 
 Phiên bản: v0.3 · 2026-10-17 (bỏ tên riêng – chủ tướng mang tên người chơi; thêm icon kỹ năng; đổi tên kỹ năng 2/3; animation đánh theo tốc đánh). Đi kèm `docs/LordHeroes.md` (thiết kế, kỹ năng) và cùng phong cách với bản đồ `map1.png` (`docs/ArtPrompts.md`).
 
+> Đang thử lại phong cách nhân vật (A chibi render 3D / B lai / C vẽ tay) trên Mưu sĩ – xem `docs/StrategistArtGuide.md`. Khối phong cách ở mục 3 có thể thay đổi theo kết quả.
+
 Đã chốt ✅: Đông Á cổ trang · vẽ tay màu mềm, góc 3/4 · animation **skeletal** (Unity 2D Animation, đã có trong project) từ **PSD tách bộ phận** · **2 hướng** (trước-phải, sau-phải) + lật gương ra trái · 2 nam + 2 nữ.
 
 > **Ý tưởng chính:** với skeletal, mỗi nhân vật chỉ cần vẽ **một lần cho mỗi hướng** nhưng **tách rời từng bộ phận** (đầu, thân, tay trên, tay dưới, bàn tay, đùi, ống chân, áo choàng, vũ khí…). Unity gắn xương vào các bộ phận và làm **mọi động tác** (đứng, đi, đánh, chết, kỹ năng…). Vì vậy ta **không** cần AI vẽ từng khung hình – việc mà AI làm rất kém (nhân vật đổi mặt, đổi áo giữa các khung).
