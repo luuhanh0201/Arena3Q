@@ -36,15 +36,25 @@ namespace Arena3Q.Core
         /// Projects a viewport point (0..1, may be outside) onto the screen border along the ray from the screen centre,
         /// inset by <paramref name="margin"/> (viewport units).
         /// </summary>
-        public static Vector2 ClampToEdge(Vector2 viewport, float margin)
+        public static Vector2 ClampToEdge(Vector2 viewport, float margin) =>
+            ClampToArea(viewport, new Rect(margin, margin, 1f - margin * 2f, 1f - margin * 2f));
+
+        /// <summary>
+        /// Like <see cref="ClampToEdge"/> but inside an arbitrary viewport area, e.g. the screen minus the card bar,
+        /// so icons never sit under other UI. The ray starts at the screen centre, which must lie inside the area.
+        /// </summary>
+        public static Vector2 ClampToArea(Vector2 viewport, Rect area)
         {
             var center = new Vector2(0.5f, 0.5f);
             var dir = viewport - center;
             if (dir.sqrMagnitude < 1e-8f)
                 return center;
-            var half = 0.5f - margin;
-            var scale = half / Mathf.Max(Mathf.Abs(dir.x), Mathf.Abs(dir.y));
-            return center + dir * Mathf.Min(1f, scale);
+            var scale = 1f;
+            if (dir.x > 0f) scale = Mathf.Min(scale, (area.xMax - center.x) / dir.x);
+            if (dir.x < 0f) scale = Mathf.Min(scale, (area.xMin - center.x) / dir.x);
+            if (dir.y > 0f) scale = Mathf.Min(scale, (area.yMax - center.y) / dir.y);
+            if (dir.y < 0f) scale = Mathf.Min(scale, (area.yMin - center.y) / dir.y);
+            return center + dir * Mathf.Max(0f, scale);
         }
     }
 

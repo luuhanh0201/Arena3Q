@@ -395,6 +395,22 @@ namespace Arena3Q.Tests.EditMode
         }
 
         [Test]
+        public void EdgeIcon_StaysInsideTheSafeArea_AboveTheCardBar()
+        {
+            var safe = new Rect(0.05f, 0.25f, 0.9f, 0.7f);
+
+            var below = EdgeIndicatorMath.ClampToArea(new Vector2(0.5f, -2f), safe);
+            Assert.That(below.y, Is.EqualTo(0.25f).Within(1e-4f), "pushed up to the top of the card bar");
+            Assert.That(below.x, Is.EqualTo(0.5f).Within(1e-4f));
+
+            var belowLeft = EdgeIndicatorMath.ClampToArea(new Vector2(-1f, -1f), safe);
+            Assert.That(belowLeft.y, Is.GreaterThanOrEqualTo(0.25f - 1e-4f));
+            Assert.That(belowLeft.x, Is.GreaterThanOrEqualTo(0.05f - 1e-4f));
+
+            Assert.That(EdgeIndicatorMath.ClampToArea(new Vector2(3f, 0.5f), safe).x, Is.EqualTo(0.95f).Within(1e-4f));
+        }
+
+        [Test]
         public void Formation_SlotsAreDistinct()
         {
             var slots = new HashSet<Vector2>();

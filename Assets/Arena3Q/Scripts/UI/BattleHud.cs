@@ -91,6 +91,19 @@ namespace Arena3Q.UI
                 cameraController.FocusOn(hero.Position);
         }
 
+        /// <summary>Top edge of the card bar as a viewport fraction (0 = bottom of the screen).</summary>
+        public float CardBarTopViewport
+        {
+            get
+            {
+                if (_cardBar == null || Screen.height <= 0)
+                    return 0f;
+                var corners = new Vector3[4];
+                _cardBar.GetWorldCorners(corners); // Screen Space Overlay: world corners are screen pixels.
+                return Mathf.Clamp01(corners[1].y / Screen.height);
+            }
+        }
+
         public bool IsOverUi(Vector2 screen)
         {
             var eventSystem = EventSystem.current;

@@ -653,6 +653,25 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator EdgeIcon_ForHeroBelowTheScreen_IsAboveTheCardBar()
+        {
+            _battle.StartBattle(0);
+            Assert.That(_battle.TrySummon(SummonRequest.Free(0, new Vector2(-12f, -8.5f))).Accepted, Is.True);
+            var hero = _battle.SelectedHero;
+            yield return null;
+
+            _camera.Pan(new Vector2(0f, -100000f)); // view moves up as far as the map allows
+            yield return null;
+            yield return null;
+
+            var viewport = _camera.WorldToViewport(hero.Position);
+            Assert.That(viewport.y, Is.LessThan(0f), "test setup: the hero is below the screen");
+            var indicators = Object.FindAnyObjectByType<OffscreenHeroIndicators>();
+            Assert.That(indicators.TryGetIndicatorViewport(hero.Id, out var edge), Is.True);
+            Assert.That(edge.y, Is.GreaterThanOrEqualTo(_hud.CardBarTopViewport), "not hidden behind the cards");
+        }
+
+        [UnityTest]
         public IEnumerator CardViews_ReflectCardStates()
         {
             _battle.StartBattle(0);

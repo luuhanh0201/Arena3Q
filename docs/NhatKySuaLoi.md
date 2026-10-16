@@ -81,3 +81,10 @@ Mỗi mục: **triệu chứng → nguyên nhân → cách sửa → cách trán
 - **Cách sửa:** `UnitRuntime` (id, phe, loại `Troop`/`Enemy`, tướng chủ quản, máu, còn sống) và `RegisterUnit` / `MarkUnitDead` / `CountAliveUnits` trong `BattleRuntimeState`. `BattleController` đăng ký mỗi lính lúc sinh ra; `UnitBase.TakeDamage` cập nhật máu; khi chết thì đánh dấu. `RegisterUnit` từ chối lính không có tướng chủ quản và quân địch có chủ, giữ đúng ✅ "lính không bao giờ bị gán nhầm đội".
 - **Tránh lặp lại:** mỗi khi thêm một loại đối tượng vào trận, đối chiếu lại danh sách dữ liệu ở spec §10. Mọi trạng thái trận phải có bản ghi ở Core (để test và để sau này lưu/đồng bộ), MonoBehaviour chỉ là phần hiển thị và thực thi.
 - **Kiểm chứng:** EditMode 133/133 (2 test mới), PlayMode 28/28 (`RuntimeState_TracksEverySoldiersHealthAndDeath`).
+
+### D – Icon tướng ở mép dưới bị thanh thẻ che, không bấm được
+- **Triệu chứng:** tướng nằm dưới màn hình thì icon mép hiện ở mép dưới, ngay dưới thanh thẻ (icon được vẽ dưới các thẻ) nên không thấy và không chạm được.
+- **Nguyên nhân:** `OffscreenHeroIndicators` kẹp icon vào toàn bộ màn hình (`ClampToEdge`), không biết tới các UI khác.
+- **Cách sửa:** `EdgeIndicatorMath.ClampToArea(viewport, vùng)` – kẹp theo tia từ tâm màn hình vào một vùng bất kỳ; HUD cung cấp `CardBarTopViewport`, vùng an toàn = màn hình trừ dải thanh thẻ và lề.
+- **Tránh lặp lại:** mọi phần tử UI đặt theo vị trí thế giới (icon, nhãn, marker) phải tính tới các vùng UI cố định có thể che nó; thêm test "nằm ngoài vùng bị che".
+- **Kiểm chứng:** EditMode `EdgeIcon_StaysInsideTheSafeArea_AboveTheCardBar`, PlayMode `EdgeIcon_ForHeroBelowTheScreen_IsAboveTheCardBar`; EditMode 134/134, PlayMode 29/29.

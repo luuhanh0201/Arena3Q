@@ -50,6 +50,9 @@ namespace Arena3Q.UI
 
             _seen.Clear();
             var selected = _hud.Battle.State?.SelectedHero ?? UnitId.None;
+            // Keep icons out of the card bar strip so they stay visible and tappable (they sit under the cards).
+            var bottom = Mathf.Min(0.45f, _hud.CardBarTopViewport + EdgeMargin);
+            var safeArea = new Rect(EdgeMargin, bottom, 1f - EdgeMargin * 2f, 1f - EdgeMargin - bottom);
             foreach (var hero in _hud.Battle.LivingHeroes)
             {
                 _seen.Add(hero.Id);
@@ -60,7 +63,7 @@ namespace Arena3Q.UI
                     indicator.Rect.gameObject.SetActive(false);
                     continue;
                 }
-                var edge = EdgeIndicatorMath.ClampToEdge(viewport, EdgeMargin);
+                var edge = EdgeIndicatorMath.ClampToArea(viewport, safeArea);
                 indicator.Rect.gameObject.SetActive(true);
                 indicator.Rect.anchorMin = edge;
                 indicator.Rect.anchorMax = edge;
