@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f021a19df210c22a16d1da70368c86f, type: 3}
+  m_Name: TestLoadout
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.TestLoadout
+  lordHero: {fileID: 11400000, guid: b3c93d4b8391fdf46aff128f00f98ec6, type: 2}
+  heroes:
+  - {fileID: 11400000, guid: a13e05ef605c52940b26fc1115bedec3, type: 2}
+  - {fileID: 11400000, guid: 58ee30e4589bf324684f9594e03a35ad, type: 2}
+  - {fileID: 11400000, guid: d4accd7038df2c54fb4d6a41a7fd078b, type: 2}
+  - {fileID: 11400000, guid: 7f85e9a8c0614b84694e9fa2d08885f7, type: 2}

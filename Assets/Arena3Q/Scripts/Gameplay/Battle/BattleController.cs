@@ -1,0 +1,461 @@
+using System;
+using System.Collections.Generic;
+using Arena3Q.Core;
+using Arena3Q.Data;
+using UnityEngine;
+
+namespace Arena3Q.Gameplay
+{
+    /// <summary>
+    /// Composition root of one battle. Owns the Core state and rules, spawns units, runs the simulation and is the
+    /// single entry point for player actions (summon, select, move, attack) coming from input and UI.
+    /// </summary>
+    public sealed class BattleController : MonoBehaviour
+    {
+        private const float HeroPickRadius = 0.6f;
+        private const float EnemyPickRadius = 0.5f;
+        private const float QuickPointOccupiedRadius = 0.9f;
+
+        [Tooltip("Stages this scene can play. The result screen can switch between them.")]
+        [SerializeField] private StageConfig[] stages = Array.Empty<StageConfig>();
+        [Tooltip("Material for generated sprites (URP 2D Sprite-Unlit-Default).")]
+        [SerializeField] private Material spriteMaterial;
+        [SerializeField] private bool startOnAwake = true;
+        [Tooltip("Off for tests that step the battle with Simulate().")]
+        [SerializeField] private bool autoSimulate = true;
+
+        private readonly List<UnitBase> _simulationScratch = new List<UnitBase>();
+        private readonly List<Squad> _squads = new List<Squad>();
+        private readonly Dictionary<UnitId, HeroUnit> _heroes = new Dictionary<UnitId, HeroUnit>();
+        private SummonRules _summonRules;
+        private StageRunner _stageRunner;
+        private Transform _worldRoot;
+        private SpriteRenderer _summonZoneOverlay;
+        private CastleUnit _playerCastle;
+        private CastleUnit _enemyCastle;
+
+        /// <summary>Battle (re)started: UI should rebuild cards and bindings.</summary>
+        public event Action BattleStarted;
+        /// <summary>Cards, selection or outcome changed.</summary>
+        public event Action Changed;
+        public event Action<UnitId> SelectionChanged;
+        public event Action<HeroUnit> HeroSummoned;
+        public event Action<RejectReason> ActionRejected;
+        public event Action<OutcomeDecision> Finished;
+
+        public IReadOnlyList<StageConfig> Stages => stages;
+        public int StageIndex { get; private set; }
+        public StageConfig Stage { get; private set; }
+        public BattleRuntimeState State { get; private set; }
+        public BattlefieldLayout Layout { get; private set; }
+        public UnitRegistry Registry { get; } = new UnitRegistry();
+        public IReadOnlyList<HeroDefinition> Cards { get; private set; } = Array.Empty<HeroDefinition>();
+        public OutcomeDecision LastOutcome { get; private set; }
+        public bool IsOver => State == null || State.IsOver;
+        public bool AutoSimulate { get => autoSimulate; set => autoSimulate = value; }
+        public int WaveCount => _stageRunner?.WaveCount ?? 0;
+
+        public UnitId PlayerCastleId => _playerCastle != null && _playerCastle.IsAlive ? _playerCastle.Id : UnitId.None;
+        public UnitId EnemyCastleId => _enemyCastle != null && _enemyCastle.IsAlive ? _enemyCastle.Id : UnitId.None;
+        public Vector2 PlayerCastleRetreatPoint =>
+            Stage != null ? Stage.PlayerCastle.Position + Vector2.right * (CastleUnit.BodyRadius + 1f) : Vector2.zero;
+
+        public IEnumerable<HeroUnit> LivingHeroes
+        {
+            get
+            {
+                foreach (var hero in _heroes.Values)
+                {
+                    if (hero != null && hero.IsAlive)
+                        yield return hero;
+                }
+            }
+        }
+
+        public HeroUnit SelectedHero => State != null ? GetHero(State.SelectedHero) : null;
+
+        /// <summary>Sets up a controller created from code (editor tooling and tests).</summary>
+        public void Configure(StageConfig[] stageList, Material material, bool startAutomatically, bool simulateAutomatically)
+        {
+            stages = stageList ?? Array.Empty<StageConfig>();
+            spriteMaterial = material;
+            startOnAwake = startAutomatically;
+            autoSimulate = simulateAutomatically;
+            if (spriteMaterial != null)
+                PlaceholderArt.SpriteMaterial = spriteMaterial;
+        }
+
+        private void Awake()
+        {
+            if (spriteMaterial != null)
+                PlaceholderArt.SpriteMaterial = spriteMaterial;
+        }
+
+        private void Start()
+        {
+            if (startOnAwake && stages.Length > 0)
+                StartBattle(Mathf.Clamp(_lastStageIndex, 0, stages.Length - 1));
+        }
+
+        // Last chosen stage, kept for this app session only (no saved progress in the prototype, spec §11).
+        private static int _lastStageIndex;
+
+        private void Update()
+        {
+            if (autoSimulate)
+                Simulate(Time.deltaTime);
+        }
+
+        // ---- Lifecycle ----
+
+        public void StartBattle(int stageIndex)
+        {
+            if (stages.Length == 0)
+                throw new InvalidOperationException("BattleController has no stages.");
+            StageIndex = Mathf.Clamp(stageIndex, 0, stages.Length - 1);
+            _lastStageIndex = StageIndex;
+            StartBattle(stages[StageIndex]);
+        }
+
+        /// <summary>Starts a fresh battle. Nothing from a previous battle is kept (spec §12 "chơi lại").</summary>
+        public void StartBattle(StageConfig stage)
+        {
+            if (stage == null)
+                throw new ArgumentNullException(nameof(stage));
+
+            var errors = new List<string>();
+            stage.Validate(errors);
+            foreach (var error in errors)
+                Debug.LogError($"[Arena3Q] {error}", stage);
+
+            if (spriteMaterial != null)
+                PlaceholderArt.SpriteMaterial = spriteMaterial;
+
+            ClearWorld();
+            Stage = stage;
+            State = new BattleRuntimeState(stage.CreateBattleSetup());
+            Layout = stage.CreateLayout();
+            _summonRules = stage.CreateSummonRules();
+            Cards = stage.TestLoadout.GetCards();
+            LastOutcome = OutcomeDecision.InProgress;
+
+            _worldRoot = new GameObject("World").transform;
+            _worldRoot.SetParent(transform, false);
+            BuildMapVisuals();
+
+            _playerCastle = SpawnCastle(State.PlayerCastle, stage.PlayerCastle);
+            // Defense stages have no enemy castle to attack (spec §8: enemies come in waves).
+            if (stage.StageType == StageType.Attack)
+                _enemyCastle = SpawnCastle(State.EnemyCastle, stage.EnemyCastle);
+
+            _stageRunner = new StageRunner(this, stage);
+            _stageRunner.Begin();
+
+            BattleStarted?.Invoke();
+            Changed?.Invoke();
+        }
+
+        public void Restart() => StartBattle(Stage);
+
+        private void ClearWorld()
+        {
+            Registry.Clear();
+            _squads.Clear();
+            _heroes.Clear();
+            _playerCastle = null;
+            _enemyCastle = null;
+            if (_worldRoot != null)
+            {
+                // Detach first so queries during this frame cannot see the old units.
+                _worldRoot.SetParent(null);
+                if (Application.isPlaying)
+                    Destroy(_worldRoot.gameObject);
+                else
+                    DestroyImmediate(_worldRoot.gameObject);
+            }
+            _worldRoot = null;
+        }
+
+        private void OnDestroy() => ClearWorld();
+
+        // ---- Simulation ----
+
+        /// <summary>Advances the battle by one step.</summary>
+        public void Simulate(float deltaTime)
+        {
+            if (State == null || State.IsOver || deltaTime <= 0f)
+                return;
+
+            State.Tick(deltaTime);
+            _stageRunner.Tick(State);
+
+            foreach (var squad in _squads)
+                squad.Refresh();
+
+            _simulationScratch.Clear();
+            _simulationScratch.AddRange(Registry.Units);
+            foreach (var unit in _simulationScratch)
+            {
+                if (unit != null && unit.IsAlive)
+                    unit.Simulate(deltaTime);
+            }
+
+            SeparateUnits();
+
+            var decision = BattleOutcomeRules.EvaluateAndApply(State);
+            if (decision.IsFinal)
+            {
+                LastOutcome = decision;
+                SetSelectionVisual(UnitId.None);
+                Finished?.Invoke(decision);
+                Changed?.Invoke();
+            }
+        }
+
+        // Keeps units from stacking on one point. Castles do not move.
+        private void SeparateUnits()
+        {
+            var units = Registry.Units;
+            for (var i = 0; i < units.Count; i++)
+            {
+                var a = units[i];
+                if (a == null || !a.IsAlive)
+                    continue;
+                for (var j = i + 1; j < units.Count; j++)
+                {
+                    var b = units[j];
+                    if (b == null || !b.IsAlive || (a.IsCastle && b.IsCastle))
+                        continue;
+                    var delta = b.Position - a.Position;
+                    var minDistance = (a.Radius + b.Radius) * 0.9f;
+                    var sqr = delta.sqrMagnitude;
+                    if (sqr >= minDistance * minDistance)
+                        continue;
+                    var distance = Mathf.Sqrt(sqr);
+                    var normal = distance > 1e-4f ? delta / distance : new Vector2(((i + j) & 1) == 0 ? 1f : -1f, 0.3f).normalized;
+                    var push = (minDistance - distance);
+                    if (a.IsCastle)
+                        b.SetPosition(b.Position + normal * push);
+                    else if (b.IsCastle)
+                        a.SetPosition(a.Position - normal * push);
+                    else
+                    {
+                        a.SetPosition(a.Position - normal * push * 0.5f);
+                        b.SetPosition(b.Position + normal * push * 0.5f);
+                    }
+                }
+            }
+        }
+
+        // ---- Player actions ----
+
+        public SummonDecision TrySummon(SummonRequest request)
+        {
+            if (State == null)
+                return SummonDecision.Reject(RejectReason.BattleOver);
+
+            var decision = _summonRules.Evaluate(request, State, IsQuickPointOccupied);
+            if (!decision.Accepted)
+            {
+                ActionRejected?.Invoke(decision.Result.Reason);
+                return decision;
+            }
+
+            var definition = Cards[request.CardIndex];
+            var runtime = State.RegisterSummon(request.CardIndex, definition.Stats.MaxHealth);
+            var hero = CreateUnit<HeroUnit>("Hero");
+            hero.Init(this, runtime, definition, Stage.CreateHeroBrainSettings(definition), decision.Position);
+            Register(hero);
+            _heroes[hero.Id] = hero;
+
+            var squad = new Squad(hero, Stage.OnHeroDeathTroopBehavior);
+            hero.Squad = squad;
+            _squads.Add(squad);
+            if (definition.Troop != null)
+            {
+                var troopSettings = new TroopBrainSettings { StageType = Stage.StageType, LeashRadius = definition.LeashRadius };
+                var tint = Color.Lerp(definition.PlaceholderColor, Color.white, 0.35f);
+                for (var i = 0; i < definition.BaseSquadSize; i++)
+                {
+                    var troop = CreateUnit<TroopUnit>("Troop");
+                    troop.Init(this, State.AllocateUnitId(), definition.Troop, squad, i, troopSettings, tint);
+                    Register(troop);
+                }
+            }
+
+            // Provisional: a freshly summoned hero becomes the selected one.
+            TrySelectHero(hero.Id);
+            HeroSummoned?.Invoke(hero);
+            Changed?.Invoke();
+            return decision;
+        }
+
+        /// <summary>Selects a living hero (spec §5: one selected hero at a time).</summary>
+        public bool TrySelectHero(UnitId heroId)
+        {
+            if (State == null || !State.TrySelectHero(heroId))
+                return false;
+            SetSelectionVisual(heroId);
+            SelectionChanged?.Invoke(heroId);
+            Changed?.Invoke();
+            return true;
+        }
+
+        /// <summary>Tapping the card of a deployed hero selects that hero (spec §3).</summary>
+        public bool TrySelectCard(int cardIndex)
+        {
+            if (State == null || cardIndex < 0 || cardIndex >= State.Cards.Count)
+                return false;
+            var card = State.Cards[cardIndex];
+            return card.State == CardState.Deployed && TrySelectHero(card.Hero);
+        }
+
+        public CommandResult MoveSelectedHero(Vector2 destination)
+        {
+            var hero = SelectedHero;
+            if (hero == null)
+                return Reject(RejectReason.HeroNotAvailable);
+            var command = new MoveCommand(hero.Id, destination);
+            var result = CommandRules.ValidateMove(command, State, Layout);
+            if (!result.Accepted)
+                return Reject(result.Reason);
+            hero.Brain.Issue(command);
+            hero.Runtime.SyncFrom(hero.Brain);
+            SpawnMarker(destination, new Color(1f, 1f, 1f, 0.8f));
+            return result;
+        }
+
+        public CommandResult AttackWithHero(UnitId heroId, UnitBase target)
+        {
+            if (State == null)
+                return Reject(RejectReason.BattleOver);
+            if (target == null)
+                return Reject(RejectReason.InvalidTarget);
+            var command = new AttackCommand(heroId, target.Id);
+            var result = CommandRules.ValidateAttack(command, State, target.Team, target.IsAlive);
+            if (!result.Accepted)
+                return Reject(result.Reason);
+            var hero = GetHero(heroId);
+            hero.Brain.Issue(command);
+            hero.Runtime.SyncFrom(hero.Brain);
+            TrySelectHero(heroId);
+            SpawnMarker(target.Position, new Color(1f, 0.3f, 0.25f, 0.9f));
+            return result;
+        }
+
+        private CommandResult Reject(RejectReason reason)
+        {
+            ActionRejected?.Invoke(reason);
+            return CommandResult.Reject(reason);
+        }
+
+        public HeroUnit GetHero(UnitId id) =>
+            id.IsValid && _heroes.TryGetValue(id, out var hero) && hero != null && hero.IsAlive ? hero : null;
+
+        public HeroUnit FindHeroAt(Vector2 worldPoint) =>
+            Registry.FindNearest(worldPoint, 0f, HeroPickRadius, u => u is HeroUnit) as HeroUnit;
+
+        /// <summary>Enemy unit or castle under a world point, for attack swipes.</summary>
+        public UnitBase FindEnemyAt(Vector2 worldPoint) =>
+            Registry.FindNearest(worldPoint, 0f, EnemyPickRadius, u => u.Team == Team.Enemy);
+
+        public void ShowSummonZone(bool visible)
+        {
+            if (_summonZoneOverlay != null)
+                _summonZoneOverlay.enabled = visible;
+        }
+
+        // ---- Spawning ----
+
+        internal void NotifyHeroDied(HeroUnit hero)
+        {
+            State.MarkHeroDead(hero.Id);
+            SelectionChanged?.Invoke(State.SelectedHero);
+            Changed?.Invoke();
+        }
+
+        internal EnemyUnit SpawnEnemy(TroopDefinition definition, EnemyRole role, Vector2 position, float guardRadius,
+            int waveIndex)
+        {
+            var enemy = CreateUnit<EnemyUnit>("Enemy");
+            enemy.Init(this, State.AllocateUnitId(), definition, role, position, guardRadius, waveIndex);
+            Register(enemy);
+            return enemy;
+        }
+
+        private CastleUnit SpawnCastle(CastleRuntime runtime, CastleConfig config)
+        {
+            var castle = CreateUnit<CastleUnit>("Castle");
+            castle.Init(this, runtime, config);
+            Register(castle);
+            return castle;
+        }
+
+        private T CreateUnit<T>(string objectName) where T : UnitBase
+        {
+            var go = new GameObject(objectName);
+            go.transform.SetParent(_worldRoot, false);
+            return go.AddComponent<T>();
+        }
+
+        private void Register(UnitBase unit)
+        {
+            Registry.Add(unit);
+            unit.Died += OnUnitDied;
+        }
+
+        private void OnUnitDied(UnitBase unit) => Registry.Remove(unit);
+
+        private bool IsQuickPointOccupied(Vector2 point) =>
+            Registry.FindNearest(point, 0f, QuickPointOccupiedRadius - HeroUnit.BodyRadius, u => u is HeroUnit) != null;
+
+        private void SetSelectionVisual(UnitId selected)
+        {
+            foreach (var hero in _heroes.Values)
+            {
+                if (hero != null)
+                    hero.SetSelected(hero.Id == selected);
+            }
+        }
+
+        // ---- Map visuals ----
+
+        private void BuildMapVisuals()
+        {
+            var bounds = Stage.MapBounds;
+            var ground = PlaceholderArt.CreateRenderer("Ground", _worldRoot, PlaceholderArt.Square,
+                new Color(0.36f, 0.55f, 0.3f), bounds.size, -32000);
+            ground.transform.localPosition = bounds.center;
+
+            foreach (var zone in Stage.ForbiddenZones)
+            {
+                var forbidden = PlaceholderArt.CreateRenderer("ForbiddenZone", _worldRoot, PlaceholderArt.Square,
+                    new Color(0.25f, 0.35f, 0.55f), zone.size, -31990);
+                forbidden.transform.localPosition = zone.center;
+            }
+
+            var summonZone = Stage.SummonZone;
+            _summonZoneOverlay = PlaceholderArt.CreateRenderer("SummonZone", _worldRoot, PlaceholderArt.Square,
+                new Color(0.4f, 0.75f, 1f, 0.28f), summonZone.size, -31980);
+            _summonZoneOverlay.transform.localPosition = summonZone.center;
+            _summonZoneOverlay.enabled = false;
+
+            foreach (var point in Stage.QuickSummonPoints)
+            {
+                var marker = PlaceholderArt.CreateRenderer("QuickSummonPoint", _worldRoot, PlaceholderArt.Ring,
+                    new Color(1f, 1f, 1f, 0.35f), new Vector2(1.1f, 1.1f), -31970);
+                marker.transform.localPosition = point;
+            }
+        }
+
+        private void SpawnMarker(Vector2 position, Color color)
+        {
+            if (_worldRoot == null)
+                return;
+            var marker = PlaceholderArt.CreateRenderer("CommandMarker", _worldRoot, PlaceholderArt.Ring, color,
+                new Vector2(0.8f, 0.8f), 30000);
+            marker.transform.localPosition = position;
+            marker.gameObject.AddComponent<FadeAndDestroy>();
+        }
+    }
+}

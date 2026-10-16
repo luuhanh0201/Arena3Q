@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project state
 
-Arena3Q is a freshly created Unity **6000.6.6f1** project from the Unity 2D URP template. There is no game code yet: the only script is the template's `Assets/Welcome/Welcome2DScript.cs` (Unity Learn welcome page, in the `Unity.2D.Welcome` asmdef), and the only scene in the build is `Assets/Scenes/SampleScene.unity`. Expect to create the gameplay architecture from scratch.
+Arena3Q is a Unity **6000.6.6f1** project (2D URP template) with a playable PvE prototype: Attack and Defense stages, hero summoning, squads, commands, camera and HUD with placeholder art. The startup scene is `Assets/Arena3Q/Scenes/Battle.unity`; the template's `Assets/Welcome/` and `Assets/Scenes/SampleScene.unity` are untouched leftovers.
 
 The gameplay specification lives in `docs/GameplaySpecification.md` and is the source of truth for gameplay. Read it before designing or writing gameplay code. Its markers: ✅ settled (implement exactly), 🟡 provisional default (must be a config option), ⏳ deferred (not in the prototype). If it conflicts with the configuration below (e.g. 3D, legacy input), flag the conflict instead of silently picking one.
 
@@ -15,6 +15,17 @@ The gameplay specification lives in `docs/GameplaySpecification.md` and is the s
 - **Target platforms:** Android, iOS and PC, landscape orientation (per the spec). Only an `Android Dev` build profile exists so far, in `Assets/Settings/Build Profiles/`; Android uses the IL2CPP scripting backend. Input must work with both touch and mouse.
 - **Packages** (`Packages/manifest.json`): 2D Animation, Aseprite and PSD importers, Tilemap + Tilemap Extras, SpriteShape, Timeline, uGUI, Visual Scripting, Test Framework.
 
+## Code layout
+
+All game code is under `Assets/Arena3Q/Scripts`, one asmdef per folder, dependencies flowing one way: Core ← Data ← Gameplay ← UI, with Editor on top.
+
+- **Core** (`Arena3Q.Core`): pure C# rules, no MonoBehaviours. `BattleRuntimeState` (all per-battle state, new instance per battle), commands (`SummonRequest`, `MoveCommand`, `AttackCommand`) validated by `SummonRules` / `CommandRules`, `BattleOutcomeRules` + `StarRating`, and the brains: `HeroBrain` (the spec §6 state machine), `TroopBrain`, `EnemyBrain`. Brains read the world through sensor interfaces (`IHeroSensor`, ...) and return a `HeroIntent` (Hold / MoveTo / Engage), which keeps them unit-testable.
+- **Data** (`Arena3Q.Data`): ScriptableObjects (`HeroDefinition`, `TroopDefinition`, `StageConfig`, `TestLoadout`, `FactionDefinition`) with `Validate()` and converters to Core settings (`StageConfig.CreateBattleSetup`, `CreateHeroBrainSettings`). Every 🟡 rule is a field here.
+- **Gameplay** (`Arena3Q.Gameplay`): `BattleController` is the composition root and the only entry point for player actions; `UnitBase` subclasses (`HeroUnit`, `TroopUnit`, `EnemyUnit`, `CastleUnit`) implement the sensors and execute intents; `UnitRegistry` does spatial queries; `BattleInputController` (mouse + touch gestures) and `BattleCameraController`. Sprites are generated at runtime by `PlaceholderArt`.
+- **UI** (`Arena3Q.UI`): `BattleHud` builds the uGUI HUD from code (cards, timer, edge icons, result screen).
+- **Editor** (`Arena3Q.Editor`): `PrototypeContentBuilder` creates the placeholder assets in `Assets/Arena3Q/Content` and the Battle scene (only missing ones; delete an asset to regenerate it). `BuildScripts` has the build methods.
+- **Tests**: `Assets/Arena3Q/Tests/EditMode` (Core/Data rules) and `Tests/PlayMode` (`BattleFlowTests` drives the real Battle scene with `BattleController.Simulate`; it uses `SerializedObject`, so the file is wrapped in `#if UNITY_EDITOR`). Do not make the PlayMode asmdef Editor-only: the runner would treat it as EditMode tests. The screenshot test writes `Logs/Screenshots/*.png`.
+
 ## Working in this repo
 
 - Unity generates `.csproj`/`.slnx` files and everything under `Library/`, `Temp/`, `Logs/`, and `UserSettings/`. Don't edit these by hand; they're gitignored or regenerated.
@@ -24,7 +35,7 @@ The gameplay specification lives in `docs/GameplaySpecification.md` and is the s
 
 ## Command-line build and test
 
-There are no build scripts yet; everything runs through the Unity Editor executable (normally installed via Unity Hub at `C:\Program Files\Unity\Hub\Editor\6000.6.6f1\Editor\Unity.exe`). The project must not be open in another Editor instance while these run.
+Everything runs through the Unity Editor executable (normally installed via Unity Hub at `C:\Program Files\Unity\Hub\Editor\6000.6.6f1\Editor\Unity.exe`). The project must not be open in another Editor instance while these run.
 
 ```powershell
 $unity = "C:\Program Files\Unity\Hub\Editor\6000.6.6f1\Editor\Unity.exe"
@@ -37,6 +48,13 @@ $unity = "C:\Program Files\Unity\Hub\Editor\6000.6.6f1\Editor\Unity.exe"
 
 # Compile-check scripts without building
 & $unity -batchmode -quit -projectPath . -logFile -
+
+# (Re)create missing placeholder content and the Battle scene
+& $unity -batchmode -quit -projectPath . -executeMethod Arena3Q.Editor.PrototypeContentBuilder.BuildAll -logFile -
+
+# Builds (output under Builds/, gitignored)
+& $unity -batchmode -quit -projectPath . -executeMethod Arena3Q.Editor.BuildScripts.BuildAndroidDev -logFile -
+& $unity -batchmode -quit -projectPath . -executeMethod Arena3Q.Editor.BuildScripts.BuildWindowsDev -logFile -
 ```
 
-Builds need an editor method invoked with `-executeMethod` (e.g. a static method that calls `BuildPipeline.BuildPlayer` or builds from the build profile). None exists yet.
+In batch mode, `-logFile -` output is easy to lose; writing to `Logs/<name>.log` and grepping for `error CS` works better.

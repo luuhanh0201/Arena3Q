@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ef0170a6bf8cef31f2e9229cd2ff9a, type: 3}
+  m_Name: Hero_Guardian
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.HeroDefinition
+  heroId: guardian
+  displayName: "Gi\xE1p S\u0129"
+  sprite: {fileID: 0}
+  placeholderColor: {r: 0.3, g: 0.8, b: 0.95, a: 1}
+  faction: {fileID: 11400000, guid: a7b7622782c3e3a42ac800217ff9a057, type: 2}
+  stats:
+    maxHealth: 1200
+    damage: 25
+    moveSpeed: 2.2
+    attackRange: 0.6
+    attackInterval: 1.2
+    reactionRange: 1
+    aggroRange: 5
+  idleBeforeAdvanceSeconds: 5
+  idleTimerResetsOnOutOfRangeDamage: 0
+  selfDefendWhileAttacking: 1
+  troop: {fileID: 11400000, guid: 4ca3c59e0709d5b47bdf3962b2282f04, type: 2}
+  baseSquadSize: 4
+  maxSquadSize: 8
+  leashRadius: 4
+  summonCost: 0
+  summonCooldown: 0

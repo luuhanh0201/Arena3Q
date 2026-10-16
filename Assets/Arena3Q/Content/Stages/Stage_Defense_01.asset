@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce45f94f20c9772016e916a1d0bf4f2, type: 3}
+  m_Name: Stage_Defense_01
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.StageConfig
+  stageId: defense_01
+  stageType: 1
+  mapBounds:
+    serializedVersion: 2
+    x: -24
+    y: -13
+    width: 48
+    height: 26
+  forbiddenZones:
+  - serializedVersion: 2
+    x: -2
+    y: 5
+    width: 5
+    height: 8
+  playerCastle:
+    position: {x: -20, y: 0}
+    maxHealth: 3000
+    canAttack: 1
+    attackRange: 6
+    damage: 30
+    attackInterval: 1.5
+  enemyCastle:
+    position: {x: 19, y: 0}
+    maxHealth: 4000
+    canAttack: 0
+    attackRange: 6
+    damage: 30
+    attackInterval: 1.5
+  summonZone:
+    serializedVersion: 2
+    x: -18
+    y: -9
+    width: 7
+    height: 18
+  quickSummonPoints:
+  - {x: -15.5, y: 0}
+  - {x: -15.5, y: 3.5}
+  - {x: -15.5, y: -3.5}
+  - {x: -13, y: 1.75}
+  - {x: -13, y: -1.75}
+  allowResummonDeadHero: 0
+  defenders: []
+  waves:
+  - startTime: 5
+    spawns:
+    - unit: {fileID: 11400000, guid: b09f1c9356fb3e748a4e1568c18fcb7d, type: 2}
+      count: 6
+      spawnPoint: {x: 22, y: 2}
+  - startTime: 30
+    spawns:
+    - unit: {fileID: 11400000, guid: b09f1c9356fb3e748a4e1568c18fcb7d, type: 2}
+      count: 6
+      spawnPoint: {x: 22, y: 4}
+    - unit: {fileID: 11400000, guid: c90877d7f432deb4c84ac2a4c111144a, type: 2}
+      count: 4
+      spawnPoint: {x: 22.5, y: -3}
+  - startTime: 60
+    spawns:
+    - unit: {fileID: 11400000, guid: b09f1c9356fb3e748a4e1568c18fcb7d, type: 2}
+      count: 8
+      spawnPoint: {x: 22, y: -5}
+    - unit: {fileID: 11400000, guid: c90877d7f432deb4c84ac2a4c111144a, type: 2}
+      count: 4
+      spawnPoint: {x: 22.5, y: 5}
+    - unit: {fileID: 11400000, guid: 076bced46f9cb444181789fc697106cf, type: 2}
+      count: 2
+      spawnPoint: {x: 21, y: 0}
+  - startTime: 90
+    spawns:
+    - unit: {fileID: 11400000, guid: b09f1c9356fb3e748a4e1568c18fcb7d, type: 2}
+      count: 10
+      spawnPoint: {x: 22, y: 6}
+    - unit: {fileID: 11400000, guid: c90877d7f432deb4c84ac2a4c111144a, type: 2}
+      count: 6
+      spawnPoint: {x: 22.5, y: 0}
+    - unit: {fileID: 11400000, guid: 076bced46f9cb444181789fc697106cf, type: 2}
+      count: 3
+      spawnPoint: {x: 21, y: -6}
+  timeLimit: 150
+  lossRules:
+    loseWhenAllHeroesDeadAndNoCards: 1
+    loseWhenPlayerCastleDestroyed: 1
+  starThresholds:
+    maxHeroesLostForThreeStars: 0
+    maxHeroesLostForTwoStars: 1
+  onHeroDeathTroopBehavior: 0
+  overrideIdleBeforeAdvance: 0
+  idleBeforeAdvanceSeconds: 5
+  testLoadout: {fileID: 11400000, guid: b2f945168d130164bb9b5d776e2b5475, type: 2}
