@@ -49,7 +49,7 @@ namespace Arena3Q.Gameplay
         Vector2 ITroopSensor.SlotPosition => Squad.SlotPosition(SlotIndex);
         Vector2 ITroopSensor.HeroPosition => Squad.LastHeroPosition;
         UnitId ITroopSensor.HeroTarget => Squad.HeroTarget;
-        UnitId ITroopSensor.EnemyInAttackRange => Battle.Registry.FindNearestHostile(this, AttackRange);
+        UnitId ITroopSensor.EnemyInAttackRange => Battle.Registry.FindNearestHostilePreferUnits(this, AttackRange);
         UnitId ITroopSensor.EnemyInAggroRange => Battle.Registry.FindNearestHostile(this, AggroRange);
         UnitId ITroopSensor.NearestEnemy => Battle.Registry.FindNearestHostile(this, float.PositiveInfinity);
         UnitId ITroopSensor.EnemyCastle => Battle.EnemyCastleId;

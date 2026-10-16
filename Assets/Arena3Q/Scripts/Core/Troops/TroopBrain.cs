@@ -44,7 +44,10 @@ namespace Arena3Q.Core
         }
     }
 
-    /// <summary>What a squad soldier perceives. Enemy queries return living enemy units (not castles).</summary>
+    /// <summary>
+    /// What a squad soldier perceives. Enemy queries return living enemy units (not castles), except
+    /// <see cref="EnemyInAttackRange"/>, which falls back to an enemy castle in reach when no unit is.
+    /// </summary>
     public interface ITroopSensor
     {
         Vector2 Position { get; }

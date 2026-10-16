@@ -4,13 +4,17 @@ namespace Arena3Q.Core
 {
     /// <summary>
     /// What a hero perceives this tick. Implemented by the gameplay layer over the live units; tests use a fake.
-    /// "Enemy" queries return living enemy units (not castles) or <see cref="UnitId.None"/>.
+    /// "Enemy" queries return living enemy units (not castles) or <see cref="UnitId.None"/>, except
+    /// <see cref="EnemyInAttackRange"/>.
     /// </summary>
     public interface IHeroSensor
     {
         Vector2 Position { get; }
 
-        /// <summary>Nearest enemy within the hero's attack range.</summary>
+        /// <summary>
+        /// Nearest enemy unit within attack range; if there is none, an enemy castle within attack range (units come
+        /// first, the castle only when nothing else is in reach).
+        /// </summary>
         UnitId EnemyInAttackRange { get; }
 
         /// <summary>Nearest enemy within the hero's aggro range.</summary>

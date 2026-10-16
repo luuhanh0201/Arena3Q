@@ -73,6 +73,20 @@ namespace Arena3Q.Gameplay
             return found != null ? found.Id : UnitId.None;
         }
 
+        /// <summary>
+        /// Nearest hostile unit within range, or a hostile castle within range if no unit is: soldiers and heroes
+        /// come first, the castle is hit only when nothing else is in reach.
+        /// </summary>
+        public UnitId FindNearestHostilePreferUnits(UnitBase self, float edgeRange)
+        {
+            var unit = FindNearestHostile(self, edgeRange);
+            if (unit.IsValid)
+                return unit;
+            var team = self.Team;
+            var castle = FindNearest(self.Position, self.Radius, edgeRange, u => u.Team != team && u.IsCastle);
+            return castle != null ? castle.Id : UnitId.None;
+        }
+
         public int Count(Func<UnitBase, bool> filter)
         {
             var count = 0;

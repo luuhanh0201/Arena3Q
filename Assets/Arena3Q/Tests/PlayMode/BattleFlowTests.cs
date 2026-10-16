@@ -260,6 +260,36 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator Idle_NextToEnemyCastle_HitsUnitsFirstThenTheCastle()
+        {
+            _battle.StartBattle(Variant(0, so =>
+            {
+                so.FindProperty("defenders").arraySize = 0;
+                so.FindProperty("enemyCastle.canAttack").boolValue = false;
+            }));
+            var hero = SummonQuick(0);
+            yield return null;
+            var castle = _battle.Registry.Get(_battle.EnemyCastleId);
+            var spot = castle.Position + new Vector2(-(CastleUnit.BodyRadius + HeroUnit.BodyRadius + 0.3f), 0f);
+            Assert.That(_battle.MoveSelectedHero(spot).Accepted, Is.True);
+            for (var t = 0f; t < 30f && hero.State != HeroState.Idle; t += Step)
+                _battle.Simulate(Step);
+            Assert.That(hero.State, Is.EqualTo(HeroState.Idle));
+
+            // An enemy soldier in reach at the same time as the castle: the soldier comes first.
+            var enemy = _battle.SpawnEnemy(Stage(0).Defenders[1].Unit, EnemyRole.Guard, hero.Position + new Vector2(0f, 0.9f), 0f, -1);
+            Run(Step);
+            Assert.That(hero.EngagedTarget, Is.EqualTo(enemy.Id));
+
+            enemy.Die();
+            var castleHealth = castle.Health;
+            Run(2f);
+            Assert.That(hero.EngagedTarget, Is.EqualTo(castle.Id));
+            Assert.That(castle.Health, Is.LessThan(castleHealth), "the idle hero hits the castle in reach");
+            Assert.That(hero.State, Is.EqualTo(HeroState.Idle), "still idle: a target in reach keeps resetting the timer");
+        }
+
+        [UnityTest]
         public IEnumerator MoveCommand_IntoForbiddenZoneOrOffMap_IsRejected()
         {
             _battle.StartBattle(0);

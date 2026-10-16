@@ -49,7 +49,7 @@ namespace Arena3Q.Gameplay
 
         // ---- IHeroSensor ----
 
-        UnitId IHeroSensor.EnemyInAttackRange => Battle.Registry.FindNearestHostile(this, AttackRange);
+        UnitId IHeroSensor.EnemyInAttackRange => Battle.Registry.FindNearestHostilePreferUnits(this, AttackRange);
         UnitId IHeroSensor.EnemyInAggroRange => Battle.Registry.FindNearestHostile(this, AggroRange);
         UnitId IHeroSensor.NearestEnemy => Battle.Registry.FindNearestHostile(this, float.PositiveInfinity);
         UnitId IHeroSensor.EnemyCastle => Battle.EnemyCastleId;

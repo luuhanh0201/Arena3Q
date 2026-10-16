@@ -74,6 +74,7 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 
 ### Idle và luật chờ 5 giây ✅
 - Tướng đứng tại chỗ, **đánh địch đi vào tầm đánh** nhưng **không đuổi theo**.
+- 🟡 "Địch trong tầm" gồm cả **thành địch**, nhưng **quân địch được ưu tiên**: chỉ đánh thành khi trong tầm không còn quân nào. Áp dụng cho cả lính khi giữ đội hình / giao chiến tự do.
 - Nếu **trong 5 giây liên tục không có mục tiêu** (không có địch trong tầm) và không có lệnh mới → chuyển sang **Advancing**.
 - Mỗi khi có mục tiêu hoặc có giao chiến, bộ đếm 5 giây **đặt lại từ đầu** và chỉ chạy tiếp khi không còn mục tiêu.
 - 🟡 "Có mục tiêu / có giao chiến" = có địch **trong tầm đánh** hoặc tướng **đang ra đòn**. Nhận sát thương từ địch **ngoài tầm đánh** (ví dụ cung thủ bắn từ xa) **không** đặt lại bộ đếm, để tướng không bị giữ đứng yên mãi; sau 5 giây tướng chuyển Advancing và tìm mục tiêu trong `aggroRange`. Cờ cấu hình `idleTimerResetsOnOutOfRangeDamage = false`.
