@@ -17,14 +17,16 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 - Người chơi triệu hồi **tối đa 5 tướng mỗi trận**. Mỗi tướng dẫn một đội lính riêng.
 - Góc nhìn nghiêng từ trên xuống kiểu Clash of Clans (2.5D); logic chạy trên mặt phẳng 2D.
 
-## 2. Phe và chủ tướng
-- ✅ Khi bắt đầu chơi game, người chơi chọn **phe**. Mỗi phe có **một chủ tướng** với nhân vật và bộ kỹ năng riêng.
-- ⏳ Chọn phe, kỹ năng chủ tướng, giao diện phe: chưa làm ở prototype. Chỉ tạo `FactionDefinition` tối thiểu (id, tên, màu) để dữ liệu không phải sửa lại sau.
-- 🟡 Prototype dùng **một phe placeholder**.
+## 2. Chủ tướng
+- ✅ (người dùng chốt 2026-10-17, thay luật "chọn phe" cũ) Khi bắt đầu chơi game, người chơi **chọn 1 trong 4 chủ tướng** – **Cung thủ**, **Kiếm sĩ**, **Mưu sĩ**, **Thống soái**. Chủ tướng là **nhân vật cố định** của người chơi suốt game.
+- ✅ **Không còn chọn phe.** Các tướng còn lại người chơi **tự xây dựng đội hình** theo ý thích trong quá trình chơi, để lối chơi đa dạng.
+- ✅ Bối cảnh **Đông Á cổ trang**. Mỗi chủ tướng có bộ kỹ năng riêng gồm **1 nội tại + 2 chủ động + 1 tuyệt kỹ**; thiết kế nháp (🟡) ở `docs/LordHeroes.md`.
+- ⏳ Màn chọn chủ tướng, kỹ năng chủ tướng (code): chưa làm ở prototype. `FactionDefinition` tối thiểu vẫn giữ trong dữ liệu nhưng chưa dùng (có thể bỏ sau).
+- 🟡 Prototype dùng **một chủ tướng placeholder** (`Hero_Lord`).
 
 ## 3. Thẻ tướng
 - ✅ Thẻ **chỉ là giao diện**. Dùng thẻ để triệu hồi; nhân vật tướng kèm đội lính xuất hiện trên chiến trường. Thẻ không có logic chiến đấu, dữ liệu lấy từ `HeroDefinition`.
-- ✅ Khi vào trận, người chơi luôn nhận **thẻ chủ tướng** của phe mình. Các thẻ tướng khác đến từ thẻ người chơi sở hữu (kiếm qua nhiệm vụ, sự kiện, cửa hàng – ⏳ để sau).
+- ✅ Khi vào trận, người chơi luôn nhận **thẻ chủ tướng** mà mình đã chọn. Các thẻ tướng khác đến từ thẻ người chơi sở hữu (kiếm qua nhiệm vụ, sự kiện, cửa hàng – ⏳ để sau).
 - ✅ Chủ tướng **tính vào giới hạn 5 tướng**.
 - 🟡 Chủ tướng **không có sẵn trên sân**; được triệu hồi bằng thẻ như các tướng khác.
 - 🟡 Prototype: trận cấp sẵn bộ thẻ thử nghiệm gồm **1 thẻ chủ tướng + 4 thẻ tướng placeholder** (cấu hình trong `StageConfig` hoặc một `TestLoadout`), để kiểm tra được giới hạn 5 tướng.
@@ -149,7 +151,7 @@ Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng
 - `BattleRuntimeState` (tạo mới mỗi trận): số tướng đã triệu hồi, tướng đang chọn, trạng thái và máu từng tướng/lính/thành, lệnh hiện tại và điểm đích đã lưu của từng tướng, đồng hồ, đợt hiện tại, kết quả và số sao.
 
 ## 11. Ngoài phạm vi prototype ⏳
-Chọn phe, kỹ năng chủ tướng, kiếm thẻ (nhiệm vụ, sự kiện, cửa hàng), nâng cấp, tài nguyên triệu hồi, PvP, tài khoản, backend, lưu tiến trình, animation và hiệu ứng thật.
+Màn chọn chủ tướng, kỹ năng chủ tướng, kiếm thẻ (nhiệm vụ, sự kiện, cửa hàng), nâng cấp, tài nguyên triệu hồi, PvP, tài khoản, backend, lưu tiến trình, animation và hiệu ứng thật.
 
 ## 12. Tiêu chí nghiệm thu prototype
 - [ ] Mở scene Battle, chạy không lỗi compile.
