@@ -25,6 +25,8 @@ docs/NhatKySuaLoi.md            bug-fix log (root cause + prevention per fix)
 docs/MapSpecification.md        map dimensions, layout, forbidden-zone and art rules
 docs/ArtPrompts.md              how to brief artists / image generators for map art (prompts, sizes, post-processing)
 docs/art/blueprints/            map blueprints exported from stage data (Arena3Q > Export Map Blueprints)
+docs/LordHeroes.md              the 4 player lords (archer, swordsman, strategist, marshal): roles and draft skills
+docs/LordArtPrompts.md          lord image prompts, PSD parts sheet and animation list (skeletal animation)
 Assets/
   Arena3Q/                      everything this project owns
     Scripts/                    Core, Data, Gameplay (Battle, Camera, Heroes, Input, Stages, Troops, Units, Visuals), UI, Editor
