@@ -43,6 +43,14 @@ namespace Arena3Q.Editor
             }
         }
 
+        /// <summary>Opens the Battle scene (also usable as -executeMethod when launching the Editor).</summary>
+        [MenuItem("Arena3Q/Open Battle Scene")]
+        public static void OpenBattleScene()
+        {
+            if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
+                EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
+        }
+
         [MenuItem("Arena3Q/Validate Stages")]
         public static void ValidateStages()
         {
