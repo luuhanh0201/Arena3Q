@@ -76,6 +76,7 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 - Tướng đứng tại chỗ, **đánh địch đi vào tầm đánh** nhưng **không đuổi theo**.
 - Nếu **trong 5 giây liên tục không có mục tiêu** (không có địch trong tầm) và không có lệnh mới → chuyển sang **Advancing**.
 - Mỗi khi có mục tiêu hoặc có giao chiến, bộ đếm 5 giây **đặt lại từ đầu** và chỉ chạy tiếp khi không còn mục tiêu.
+- 🟡 "Có mục tiêu / có giao chiến" = có địch **trong tầm đánh** hoặc tướng **đang ra đòn**. Nhận sát thương từ địch **ngoài tầm đánh** (ví dụ cung thủ bắn từ xa) **không** đặt lại bộ đếm, để tướng không bị giữ đứng yên mãi; sau 5 giây tướng chuyển Advancing và tìm mục tiêu trong `aggroRange`. Cờ cấu hình `idleTimerResetsOnOutOfRangeDamage = false`.
 - Có lệnh mới (di chuyển/tấn công) thì hủy bộ đếm.
 - 5 giây là tham số cấu hình `idleBeforeAdvanceSeconds = 5` (trong `HeroDefinition`, 🟡 có thể ghi đè theo ải).
 

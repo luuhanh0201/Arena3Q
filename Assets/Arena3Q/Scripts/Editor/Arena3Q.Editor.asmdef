@@ -1,0 +1,14 @@
+{
+    "name": "Arena3Q.Editor",
+    "rootNamespace": "Arena3Q.Editor",
+    "references": ["Arena3Q.Core", "Arena3Q.Data", "Arena3Q.Gameplay"],
+    "includePlatforms": ["Editor"],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

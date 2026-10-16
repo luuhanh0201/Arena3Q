@@ -1,0 +1,14 @@
+{
+    "name": "Arena3Q.Data",
+    "rootNamespace": "Arena3Q.Data",
+    "references": ["Arena3Q.Core"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

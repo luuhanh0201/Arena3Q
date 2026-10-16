@@ -1,0 +1,14 @@
+{
+    "name": "Arena3Q.Tests.PlayMode",
+    "rootNamespace": "Arena3Q.Tests.PlayMode",
+    "references": ["Arena3Q.Core", "Arena3Q.Data", "Arena3Q.Gameplay", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": ["nunit.framework.dll"],
+    "autoReferenced": false,
+    "defineConstraints": ["UNITY_INCLUDE_TESTS"],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

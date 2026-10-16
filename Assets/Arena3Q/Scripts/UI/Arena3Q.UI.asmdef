@@ -1,0 +1,14 @@
+{
+    "name": "Arena3Q.UI",
+    "rootNamespace": "Arena3Q.UI",
+    "references": ["Arena3Q.Core", "Arena3Q.Data", "Arena3Q.Gameplay", "Unity.InputSystem", "UnityEngine.UI"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
