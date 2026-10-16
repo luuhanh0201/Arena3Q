@@ -105,54 +105,11 @@ Mục 4 (tấm bộ phận tách rời do AI vẽ) là cách cũ – nay ưu ti�
 
 ## 6. Hiệu ứng kỹ năng (VFX)
 
-Hiệu ứng **không** cần vẽ từng khung: mình dựng bằng **hệ thống hạt (particle) của Unity** từ vài **mảnh hiệu ứng** nền trong suốt. Mỗi prompt:
-```
-[khối phong cách ở mục 3]
-A set of separate VFX texture elements for a mobile game skill, on a transparent background, evenly spaced,
-glowing, soft painterly style: [danh sách mảnh]
-```
-Hình nằm trên mặt đất (vòng trận, vùng lửa) vẽ **nhìn thẳng từ trên xuống, hình tròn** – game tự nghiêng theo góc 3/4.
-
-| Chủ tướng | Kỹ năng | Danh sách mảnh `[...]` |
-|---|---|---|
-| Cung thủ | Liên Châu Tiễn | glowing green arrow, short motion trail, small hit spark |
-| | Tiễn Vũ | falling arrow seen from above-front, arrow stuck in ground, circular dust ring (top-down) |
-| | Phá Thành Hỏa Tiễn | huge flaming arrow, fire trail, big fire explosion burst, embers |
-| Kiếm sĩ | Phi Ảnh Đột Kích | blue afterimage silhouette smear, dash streak lines, impact star |
-| | Toàn Phong Trảm | circular blue sword-slash ring (top-down), wind swirl |
-| | Vạn Kiếm Quy Tông | single glowing spirit sword pointing down, light pillar, ground crack decal (top-down) |
-| Mưu sĩ | Hỏa Kế | circular fire field decal (top-down), single flame, smoke puff |
-| | Bát Quái Trận | glowing bagua trigram circle decal (top-down, purple light), floating rune symbol |
-| | Đông Phong | horizontal wind gust streaks, swirling leaves, feather |
-| Thống soái | Hiệu Triệu | golden rally banner glow, light beam, small soldier silhouette appearing in light |
-| | Trống Trận | war drum shockwave ring (top-down, orange), musical drum beat burst |
-| | Thiết Kỵ Xung Phong | armoured cavalry rider charging (side 3/4 view, ghostly golden), dust cloud trail, hoof-print decal |
-
----
+Prompt dán sẵn: **`docs/art/concepts/VFX_Prompts.md`** (17 tấm: hiệu ứng chung, đánh thường của 4 chủ tướng, 12 kỹ năng). Hiệu ứng **không** vẽ từng khung: mình dựng bằng hệ thống hạt của Unity từ các mảnh nền trong suốt (hoặc nền đen, dùng chế độ cộng sáng); hình nằm trên mặt đất vẽ nhìn thẳng từ trên xuống, game tự nghiêng theo góc 3/4. Tên file `vfx_<chủ tướng>_<kỹ năng>_<mảnh>.png`.
 
 ## 6b. Icon kỹ năng (hiện trên thẻ tướng)
 
-Thẻ của tướng đã ra sân hiển thị (spec §3 "Kỹ năng trên thẻ"): **icon kỹ năng 2 và 3** kèm **đếm ngược hồi chiêu** (game tự phủ lớp tối + số giây lên icon), và **thanh nộ** cho tuyệt kỹ (game tự vẽ thanh; icon tuyệt kỹ sáng lên khi đầy). Vì vậy chỉ cần vẽ **icon tĩnh**:
-
-- Kích thước vẽ **256 × 256 px**, nền trong suốt, hình **tròn** (game cắt và thu nhỏ ≈ 44 px trên thẻ – phải đọc được ở cỡ rất nhỏ: một hình chính, ít chi tiết, tương phản mạnh).
-- Mỗi chủ tướng **3 icon**: kỹ năng 2, kỹ năng 3, tuyệt kỹ (+ 1 icon nội tại – kỹ năng 1 – nếu muốn hiện trong màn chọn chủ tướng).
-- Cùng một bộ khung viền cho cả 4 chủ tướng; màu nền icon theo màu chủ đạo của chủ tướng; **icon tuyệt kỹ có viền vàng** để phân biệt.
-
-```
-[khối phong cách ở mục 3, bỏ câu về camera 3/4]
-A round skill icon for a mobile strategy game, 256x256, transparent outside the circle,
-single bold central symbol: [mô tả icon], background disc in [màu chủ đạo] with a soft radial glow,
-thin [bronze / gold for ultimate] ring frame, high contrast, readable at 44 pixels, no text.
-```
-
-| Chủ tướng | Kỹ năng 2 | Kỹ năng 3 | Tuyệt kỹ (viền vàng) |
-|---|---|---|---|
-| Cung thủ | three arrows in a row (Liên Châu Tiễn) | arrows raining down from a cloud (Tiễn Vũ) | one huge flaming arrow (Phá Thành Hỏa Tiễn) |
-| Kiếm sĩ | sword with speed streak (Phi Ảnh Đột Kích) | two crossed swords in a spinning circle (Toàn Phong Trảm) | many swords falling from the sky (Vạn Kiếm Quy Tông) |
-| Mưu sĩ | flame on a scroll (Hỏa Kế) | glowing bagua symbol (Bát Quái Trận) | feather fan with wind swirl (Đông Phong) |
-| Thống soái | raised war banner (Hiệu Triệu) | war drum with shockwave (Trống Trận) | charging armoured horse head (Thiết Kỵ Xung Phong) |
-
-Tên file: `icon_<class>_<skill>.png`, ví dụ `icon_archer_passive.png`, `icon_archer_skill2.png`, `icon_archer_skill3.png`, `icon_archer_ultimate.png`. Tướng thường (không phải chủ tướng) cũng có tuyệt kỹ (spec §3) – icon của họ làm theo cùng mẫu khi thiết kế xong bộ kỹ năng.
+Prompt dán sẵn: **`docs/art/concepts/Icon_Prompts.md`** (16 icon: nội tại, kỹ năng 2, kỹ năng 3, tuyệt kỹ × 4 chủ tướng). Icon tĩnh 256 × 256, tròn, đọc được ở ≈ 44 px; cùng khung viền đồng, **tuyệt kỹ viền vàng**; nền đĩa theo màu chủ đạo. Đếm ngược hồi chiêu và thanh nộ do game vẽ (spec §3). Tên file `icon_<chủ tướng>_<passive|skill2|skill3|ultimate>.png`. Tướng thường cũng có tuyệt kỹ – icon của họ làm theo cùng mẫu khi thiết kế xong bộ kỹ năng.
 
 ## 7. Danh sách animation (mình làm trong Unity bằng skeletal)
 
@@ -183,19 +140,7 @@ Nội tại không cần động tác riêng (chỉ có hiệu ứng nhẹ nếu
 
 ## 8. Chân dung và ảnh màn chọn
 
-**Chân dung thẻ (ảnh F)** – dùng trên thẻ tướng (thẻ 160 × 210 trong HUD, vẽ gấp đôi):
-```
-[khối phong cách ở mục 3, bỏ câu về camera 3/4]
-Bust portrait of the attached character, head and shoulders, three-quarter face turned right, confident expression,
-soft vignette background in the character's main colour, vertical card composition 320x420.
-```
-
-**Ảnh màn chọn chủ tướng (ảnh G)**:
-```
-[khối phong cách ở mục 3, bỏ câu về camera 3/4]
-Full-body splash art of the attached character in a dynamic signature pose using [kỹ năng tuyệt kỹ],
-dramatic lighting, swirling [màu chủ đạo] energy, vertical 2:3 composition, transparent or simple gradient background.
-```
+Prompt dán sẵn: **`docs/art/concepts/ChanDung_Prompts.md`** – chân dung thẻ `portrait_<chủ tướng>.png` (320 × 420, mặt 3/4 sang phải) và ảnh màn chọn `splash_<chủ tướng>.png` (dọc 2 : 3, tư thế tuyệt kỹ) cho cả 4 chủ tướng. Làm sau khi đã chốt bảng xoay của chủ tướng.
 
 ---
 
