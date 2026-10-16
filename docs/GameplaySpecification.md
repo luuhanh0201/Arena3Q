@@ -166,4 +166,5 @@ Chọn phe, kỹ năng chủ tướng, kiếm thẻ (nhiệm vụ, sự kiện, 
 - [ ] Chơi lại không giữ trạng thái trận trước.
 
 ## 13. Câu hỏi còn mở
-- Không có câu hỏi chặn prototype. Các mục 🟡 là mặc định tạm, người dùng có thể đổi bất cứ lúc nào bằng cách sửa file này.- ⏳ **Cân bằng độ khó** (thông số tướng/lính/quân địch, đợt quân, thời gian, bề rộng và số cầu): để tới **giai đoạn sắp phát hành** (người dùng chốt 2026-10-16). Đã biết: sau khi có sông, ải Thủ suýt thua (mất cả 5 tướng, thành còn 173/3000) và ải Công dễ hơn (3 sao, không mất tướng) – xem test `Balance_*`.
+- Không có câu hỏi chặn prototype. Các mục 🟡 là mặc định tạm, người dùng có thể đổi bất cứ lúc nào bằng cách sửa file này.
+- ⏳ **Cân bằng độ khó** (thông số tướng/lính/quân địch, đợt quân, thời gian, bề rộng và số cầu): để tới **giai đoạn sắp phát hành** (người dùng chốt 2026-10-16). Đã biết: sau khi có sông, ải Thủ suýt thua (mất cả 5 tướng, thành còn 173/3000) và ải Công dễ hơn (3 sao, không mất tướng) – xem test `Balance_*`.
