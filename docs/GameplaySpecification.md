@@ -87,7 +87,7 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 
 ### Attacking ✅
 - Đi tới mục tiêu được chỉ định và đánh tới khi mục tiêu chết hoặc có lệnh mới.
-- 🟡 Trên đường tới mục tiêu áp dụng luật tự vệ giống Moving (không đuổi địch khác, chỉ tự vệ khi bị đánh ở gần).
+- 🟡 ~~Trên đường tới mục tiêu áp dụng luật tự vệ giống Moving~~ → **Lệnh được ưu tiên** (người dùng chốt 2026-10-16): khi đang thực hiện `AttackCommand` (thành hay quân), tướng và lính bám đúng mục tiêu, **không tự vệ** khi bị đánh ở gần. Vẫn là tùy chọn `selfDefendWhileAttacking` (mặc định `false`) trong `HeroDefinition`. Lính vẫn áp dụng luật "không với tới" ở mục 7.
 - Mục tiêu chết/bị hủy → chuyển sang **Idle** (áp dụng luật chờ 5 giây).
 
 ### Chung ✅

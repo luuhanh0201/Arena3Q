@@ -30,8 +30,8 @@ namespace Arena3Q.Data
         [SerializeField, Min(0f)] private float idleBeforeAdvanceSeconds = DefaultIdleBeforeAdvanceSeconds;
         [Tooltip("Provisional: if true, damage from an attacker outside attack range also resets the idle timer.")]
         [SerializeField] private bool idleTimerResetsOnOutOfRangeDamage;
-        [Tooltip("Provisional: while walking to an AttackCommand target, defend against close attackers like when Moving.")]
-        [SerializeField] private bool selfDefendWhileAttacking = true;
+        [Tooltip("Provisional: while carrying out an AttackCommand, defend against close attackers like when Moving. Off by default: the order takes priority.")]
+        [SerializeField] private bool selfDefendWhileAttacking;
 
         [Header("Squad (spec §7)")]
         [SerializeField] private TroopDefinition troop;

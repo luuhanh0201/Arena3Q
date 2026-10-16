@@ -27,7 +27,7 @@ MonoBehaviour:
     aggroRange: 6
   idleBeforeAdvanceSeconds: 5
   idleTimerResetsOnOutOfRangeDamage: 0
-  selfDefendWhileAttacking: 1
+  selfDefendWhileAttacking: 0
   troop: {fileID: 11400000, guid: 4ca3c59e0709d5b47bdf3962b2282f04, type: 2}
   baseSquadSize: 4
   maxSquadSize: 8

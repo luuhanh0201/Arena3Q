@@ -11,8 +11,11 @@ namespace Arena3Q.Core
         /// <summary>Provisional: whether damage from outside attack range also resets the idle timer (default false).</summary>
         public bool IdleTimerResetsOnOutOfRangeDamage { get; set; }
 
-        /// <summary>Provisional: apply the Moving self-defence rule while walking to an AttackCommand target (default true).</summary>
-        public bool SelfDefendWhileAttacking { get; set; } = true;
+        /// <summary>
+        /// Provisional: apply the Moving self-defence rule while carrying out an AttackCommand. Default false: an attack
+        /// order takes priority, the hero keeps on its target even when hit up close.
+        /// </summary>
+        public bool SelfDefendWhileAttacking { get; set; }
 
         /// <summary>Distance at which a MoveCommand destination counts as reached.</summary>
         public float ArrivalTolerance { get; set; } = 0.1f;

@@ -161,7 +161,7 @@ namespace Arena3Q.Tests.EditMode
             Assert.That(settings.StageType, Is.EqualTo(StageType.Defense));
             Assert.That(settings.IdleBeforeAdvanceSeconds, Is.EqualTo(5f));
             Assert.That(settings.IdleTimerResetsOnOutOfRangeDamage, Is.False);
-            Assert.That(settings.SelfDefendWhileAttacking, Is.True);
+            Assert.That(settings.SelfDefendWhileAttacking, Is.False, "attack orders take priority by default");
         }
 
         private StageConfig CreateValidStage()

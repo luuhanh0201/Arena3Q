@@ -398,6 +398,38 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator AttackOrder_OnCastle_TakesPriorityOverCloseAttackers()
+        {
+            _battle.StartBattle(Variant(0, so =>
+            {
+                so.FindProperty("defenders").arraySize = 0;
+                so.FindProperty("enemyCastle.canAttack").boolValue = false;
+            }));
+            var hero = SummonQuick(0);
+            foreach (var troop in hero.Squad.Members.ToArray())
+                troop.Die();
+            yield return null;
+            var castle = _battle.Registry.Get(_battle.EnemyCastleId);
+            Assert.That(_battle.AttackWithHero(hero.Id, castle).Accepted, Is.True);
+            for (var t = 0f; t < 30f && !hero.IsInAttackRange(castle); t += Step)
+                _battle.Simulate(Step);
+
+            // A close enemy (on the side away from the castle) hits the hero every half second.
+            var enemy = _battle.SpawnEnemy(Stage(0).Defenders[1].Unit, EnemyRole.Guard, hero.Position + new Vector2(-0.9f, 0f), 0f, -1);
+            var castleHealth = castle.Health;
+            for (var i = 0; i < 6; i++)
+            {
+                hero.TakeDamage(1f, enemy);
+                Run(0.5f);
+                Assert.That(hero.EdgeDistance(enemy), Is.LessThanOrEqualTo(hero.ReactionRange), "the attacker is close");
+            }
+
+            Assert.That(hero.State, Is.EqualTo(HeroState.Attacking), "no switch to Combat");
+            Assert.That(hero.EngagedTarget, Is.EqualTo(castle.Id));
+            Assert.That(castle.Health, Is.LessThan(castleHealth));
+        }
+
+        [UnityTest]
         public IEnumerator AttackStage_TimeUp_IsDefeatWithZeroStars()
         {
             _battle.StartBattle(Variant(0, so => so.FindProperty("timeLimit").floatValue = 3f));
@@ -493,13 +525,14 @@ namespace Arena3Q.Tests.PlayMode
         // ---- Balance smoke tests: the placeholder stages are winnable with a full army ----
 
         [UnityTest]
-        public IEnumerator Balance_AttackStage_FiveHeroesOnTheCastle_Win()
+        public IEnumerator Balance_AttackStage_FiveHeroesAdvancing_Win()
         {
+            // No orders: heroes wait 5 s, then advance and fight their way to the castle. (Ordering a straight
+            // attack on the castle ignores the defenders by design, so it is not the winning strategy.)
             _battle.StartBattle(0);
             yield return null;
-            var castle = _battle.Registry.Get(_battle.EnemyCastleId);
             for (var i = 0; i < SummonRules.MaxHeroesPerBattle; i++)
-                _battle.AttackWithHero(SummonQuick(i).Id, castle);
+                SummonQuick(i);
 
             Run(Stage(0).TimeLimit + 1f);
 

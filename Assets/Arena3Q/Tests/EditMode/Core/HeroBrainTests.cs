@@ -22,7 +22,7 @@ namespace Arena3Q.Tests.EditMode
         }
 
         private static HeroBrain Brain(StageType stageType = StageType.Attack, float idleSeconds = 5f,
-            bool resetOnOutOfRangeDamage = false, bool selfDefendWhileAttacking = true) =>
+            bool resetOnOutOfRangeDamage = false, bool selfDefendWhileAttacking = false) =>
             new HeroBrain(new HeroBrainSettings
             {
                 StageType = stageType,
@@ -290,9 +290,9 @@ namespace Arena3Q.Tests.EditMode
         }
 
         [Test]
-        public void Attacking_CloseAttacker_DefendsThenResumesAttack()
+        public void Attacking_SelfDefenceOption_DefendsThenResumesAttack()
         {
-            var brain = Brain();
+            var brain = Brain(selfDefendWhileAttacking: true);
             brain.Issue(new AttackCommand(Hero, Castle));
 
             _sensor.CloseAttacker = EnemyA;
@@ -318,9 +318,9 @@ namespace Arena3Q.Tests.EditMode
         }
 
         [Test]
-        public void Attacking_SelfDefenceCanBeDisabled()
+        public void Attacking_ByDefault_OrderTakesPriorityOverCloseAttacker()
         {
-            var brain = Brain(selfDefendWhileAttacking: false);
+            var brain = Brain();
             brain.Issue(new AttackCommand(Hero, Castle));
             _sensor.CloseAttacker = EnemyA;
 
