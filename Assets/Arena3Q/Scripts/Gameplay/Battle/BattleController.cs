@@ -29,7 +29,6 @@ namespace Arena3Q.Gameplay
 
         public const float MaxViewTiltDegrees = 45f;
 
-        private readonly List<(Transform transform, Rect area)> _groundVisuals = new List<(Transform, Rect)>();
 
         private readonly List<UnitBase> _simulationScratch = new List<UnitBase>();
         private readonly List<Squad> _squads = new List<Squad>();
@@ -37,6 +36,7 @@ namespace Arena3Q.Gameplay
         private SummonRules _summonRules;
         private StageRunner _stageRunner;
         private Transform _worldRoot;
+        private Transform _groundRoot;
         private SpriteRenderer _summonZoneOverlay;
         private CastleUnit _playerCastle;
         private CastleUnit _enemyCastle;
@@ -205,7 +205,6 @@ namespace Arena3Q.Gameplay
         private void ClearWorld()
         {
             Registry.Clear();
-            _groundVisuals.Clear();
             _squads.Clear();
             _heroes.Clear();
             _playerCastle = null;
@@ -220,6 +219,7 @@ namespace Arena3Q.Gameplay
                     DestroyImmediate(_worldRoot.gameObject);
             }
             _worldRoot = null;
+            _groundRoot = null;
         }
 
         private void OnDestroy() => ClearWorld();
@@ -508,13 +508,29 @@ namespace Arena3Q.Gameplay
 
         // ---- Map visuals ----
 
+        private static readonly Color GroundColor = new Color(0.36f, 0.55f, 0.3f);
+        private static readonly Color ZoneColor = new Color(0.25f, 0.35f, 0.55f);
+        private static readonly Color WaterColor = new Color(0.22f, 0.48f, 0.82f);
+        private static readonly Color BridgeColor = new Color(0.58f, 0.4f, 0.22f);
+
         private void BuildMapVisuals()
         {
-            _groundVisuals.Clear();
-            AddGroundVisual("Ground", PlaceholderArt.Square, new Color(0.36f, 0.55f, 0.3f), Stage.MapBounds, -32000);
+            // Everything lying flat on the ground lives under one root in logic coordinates; squashing that root's Y
+            // gives the 2.5D tilt, including for rotated pieces such as river segments.
+            _groundRoot = new GameObject("Ground").transform;
+            _groundRoot.SetParent(_worldRoot, false);
+            ApplyGroundTilt();
+
+            AddGroundVisual("Ground", PlaceholderArt.Square, GroundColor, Stage.MapBounds, -32000);
 
             foreach (var zone in Stage.ForbiddenZones)
-                AddGroundVisual("ForbiddenZone", PlaceholderArt.Square, new Color(0.25f, 0.35f, 0.55f), zone, -31990);
+                AddGroundVisual("ForbiddenZone", PlaceholderArt.Square, ZoneColor, zone, -31990);
+
+            foreach (var obstacle in Layout.Obstacles)
+            {
+                if (obstacle is RiverObstacle river)
+                    BuildRiverVisual(river);
+            }
 
             _summonZoneOverlay = AddGroundVisual("SummonZone", PlaceholderArt.Square, new Color(0.4f, 0.75f, 1f, 0.28f),
                 Stage.SummonZone, -31980);
@@ -527,28 +543,53 @@ namespace Arena3Q.Gameplay
             }
         }
 
-        // A flat decoration lying on the ground: its position and height follow the 2.5D tilt.
+        // The water is drawn along the whole centre line (under the bridges too); bridges are drawn on top.
+        private void BuildRiverVisual(RiverObstacle river)
+        {
+            var root = new GameObject($"River {river.Name}").transform;
+            root.SetParent(_groundRoot, false);
+            var path = river.Path;
+            for (var i = 0; i < path.Count; i++)
+            {
+                var joint = PlaceholderArt.CreateRenderer("Bend", root, PlaceholderArt.Circle, WaterColor,
+                    new Vector2(river.Width, river.Width), -31995);
+                joint.transform.localPosition = path[i];
+                if (i == path.Count - 1)
+                    break;
+                var delta = path[i + 1] - path[i];
+                var segment = PlaceholderArt.CreateRenderer("Water", root, PlaceholderArt.Square, WaterColor,
+                    new Vector2(delta.magnitude, river.Width), -31995);
+                segment.transform.localPosition = (path[i] + path[i + 1]) * 0.5f;
+                segment.transform.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg);
+            }
+
+            foreach (var crossing in river.Crossings)
+            {
+                var bridge = PlaceholderArt.CreateRenderer("Bridge", root, PlaceholderArt.Square, BridgeColor,
+                    new Vector2(crossing.Width, river.Width + 1f), -31993);
+                bridge.transform.localPosition = crossing.Center;
+                bridge.transform.localRotation =
+                    Quaternion.Euler(0f, 0f, Mathf.Atan2(crossing.Along.y, crossing.Along.x) * Mathf.Rad2Deg);
+            }
+        }
+
+        // A flat decoration lying on the ground, placed in logic coordinates under the ground root.
         private SpriteRenderer AddGroundVisual(string objectName, Sprite sprite, Color color, Rect area, int order)
         {
-            var renderer = PlaceholderArt.CreateRenderer(objectName, _worldRoot, sprite, color, area.size, order);
-            _groundVisuals.Add((renderer.transform, area));
-            PlaceGroundVisual(renderer.transform, area);
+            var renderer = PlaceholderArt.CreateRenderer(objectName, _groundRoot, sprite, color, area.size, order);
+            renderer.transform.localPosition = area.center;
             return renderer;
         }
 
-        private void PlaceGroundVisual(Transform target, Rect area)
+        private void ApplyGroundTilt()
         {
-            target.localPosition = ToView(area.center);
-            target.localScale = new Vector3(area.width, area.height * ViewYScale, 1f);
+            if (_groundRoot != null)
+                _groundRoot.localScale = new Vector3(1f, ViewYScale, 1f);
         }
 
         private void RefreshView()
         {
-            foreach (var (target, area) in _groundVisuals)
-            {
-                if (target != null)
-                    PlaceGroundVisual(target, area);
-            }
+            ApplyGroundTilt();
             foreach (var unit in Registry.Units)
             {
                 if (unit != null)
@@ -558,11 +599,11 @@ namespace Arena3Q.Gameplay
 
         private void SpawnMarker(Vector2 position, Color color)
         {
-            if (_worldRoot == null)
+            if (_groundRoot == null)
                 return;
-            var marker = PlaceholderArt.CreateRenderer("CommandMarker", _worldRoot, PlaceholderArt.Ring, color,
-                new Vector2(0.8f, 0.8f * ViewYScale), 30000);
-            marker.transform.localPosition = ToView(position);
+            var marker = PlaceholderArt.CreateRenderer("CommandMarker", _groundRoot, PlaceholderArt.Ring, color,
+                new Vector2(0.8f, 0.8f), 30000);
+            marker.transform.localPosition = position;
             marker.gameObject.AddComponent<FadeAndDestroy>();
         }
     }

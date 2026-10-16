@@ -1,6 +1,6 @@
 # Arena3Q – Thông số bản đồ (đề xuất)
 
-Phiên bản: v0.1 · 2026-10-16 · Trạng thái: **🟡 đề xuất, chờ duyệt**
+Phiên bản: v0.2 · 2026-10-16 (thêm sông) · Trạng thái: **🟡 đề xuất, chờ duyệt**
 
 Tài liệu này đề xuất thông số để vẽ bản đồ cho ải Công và ải Thủ. Luật gameplay vẫn theo `docs/GameplaySpecification.md` (mục 8, 9); ở đây chỉ chốt **kích thước, toạ độ, bố cục, quy cách art**. Mọi con số dưới đây suy ra từ prototype đang chạy (kích thước unit, tầm đánh, tốc độ, camera, HUD) – mục 1 ghi lại các số gốc đó để khi đổi một số thì biết phải tính lại số nào.
 
@@ -58,9 +58,9 @@ Lý do chọn M làm chuẩn:
        │ lề 2 (dưới dải HUD trên)                                      │
        │ ┌──────────┐                                    ┌─────────┐  │
        │ │ VÙNG     │          GIỮA BẢN ĐỒ               │ VÙNG    │  │
-       │ │ TRIỆU    │   (0–2 vùng cấm, giữ hành lang     │ PHÒNG   │  │
-       │ │ HỒI      │    rộng ≥ 4 ở mỗi lối đi)          │ THỦ     │  │
-   y=0 │ [T]  ◎ ◎ │                                    │   [Đ]   │  │
+       │ │ TRIỆU    │   SÔNG uốn khúc cắt ngang x≈0      │ PHÒNG   │  │
+       │ │ HỒI      │   cầu Bắc (0.67, 6.5), cầu Nam     │ THỦ     │  │
+   y=0 │ [T]  ◎ ◎ │   (−0.67, −6.5) → 2 làn đường      │   [Đ]   │  │
        │ │   ◎ ◎ ◎  │                                    │ ≤ 8 quanh│  │
        │ │ x −18…−11│                                    │ thành   │  │
        │ └──────────┘                                    └─────────┘  │
@@ -77,7 +77,7 @@ Lý do chọn M làm chuẩn:
 | Vùng triệu hồi (`summonZone`) | x −18…−11, y −9…9 (7 × 18 = 126 đơn vị²; đủ cho 5 đội × ~9 đơn vị² cộng khoảng trống); cách mép thành ≥ 0.5 | (−18, −9, 7, 18) |
 | Điểm triệu hồi nhanh | 5 điểm, cách nhau ≥ 3 (một đội hình rộng ~3): (−15.5, 0), (−15.5, ±3.5), (−13, ±1.75) | khớp |
 | **Giữa bản đồ** | x −11…11 (rộng 22) – nơi giao tranh chính | khớp |
-| Vùng cấm | 0–2 vùng, theo quy tắc mục 6 | 1 vùng (−2, 5, 5, 8) – **chạm mép trên**, hợp lệ |
+| Vùng cấm | **1 con sông** cắt ngang từ mép trên xuống mép dưới, rộng 2.5, có **2 cầu** rộng 4 (mục 6.2); thêm 0–1 vùng chữ nhật nếu cần | sông "Sông" theo đúng thông số này |
 | **Căn cứ địch** | x 11…24 (rộng 13) | khớp |
 | Thành địch | tâm (19, 0) | (19, 0) |
 | Quân phòng thủ | mọi vị trí trong bán kính **8** quanh thành địch (✅ spec §8, có test `ShippedAttackStages_DefendersStayAroundTheEnemyCastle`); `guardRadius` 4.5 → vùng "lao ra đánh" phủ x ~7…24 | 18 quân, khớp |
@@ -87,19 +87,35 @@ Lý do chọn M làm chuẩn:
 - Căn cứ ta, thành ta, vùng triệu hồi, điểm triệu hồi nhanh: **giống ải Công** (người chơi quen một bố cục).
 - **Không có thành địch** trên bản đồ (prototype hiện tại); khu x 11…24 là **khu sinh quân**.
 - **Điểm sinh quân (`waves[].spawns[].spawnPoint`)**: x 21–22.5, y trải −6…6, cách mép bản đồ ≥ 1.5 để cả cụm quân (vòng xếp 0.8) không bị kẹp vào mép.
-- Đường quân địch đi: thẳng về thành ta, ~40 đơn vị ÷ 2.2 ≈ **18 giây** nếu không bị chặn → đợt đầu nên đến ở giây ~5 để người chơi có ~20 s triệu hồi và bố trí.
+- Đường quân địch đi: về thành ta **qua một trong hai cầu**, ~43–45 đơn vị ÷ 2.2 ≈ **20 giây** → đợt đầu nên đến ở giây ~5 để người chơi có ~20 s triệu hồi và bố trí.
 - Thành ta bắn (🟡 spec §8): tầm 6 (tính từ mép thành tới mép quân) → bắn tới tâm quân địch cách tâm thành ~7.7, tức x tới ~−12.3 phủ gần hết vùng triệu hồi: quân địch lọt vào căn cứ là bị thành bắn.
 
 ## 6. Quy tắc vùng cấm 🟡
 
-Vùng cấm **chặn di chuyển** (unit đi vòng qua góc gần nhất, `BattlefieldLayout.NextWaypoint`), không phải chỉ là chỗ không được ra lệnh tới.
+Vùng cấm **chặn di chuyển**: unit đi theo đường ngắn nhất vòng qua các vùng cấm (`BattlefieldLayout.NextWaypoint`, đồ thị điểm nút dựng sẵn quanh vùng cấm), không phải chỉ là chỗ không được ra lệnh tới. Có **hai loại** (người dùng chốt 2026-10-16); loại khác (hồ tròn, vực đa giác…) → ⏳.
 
-1. Chỉ **hình chữ nhật thẳng trục** (đúng với code hiện tại). Hình khác (tròn, đa giác) → ⏳.
-2. Kích thước tối thiểu **2 × 2**; tối đa khuyến nghị **8 × 10** ở cỡ M.
-3. **Không được chạm cả mép trên lẫn mép dưới** (chặn kín bản đồ). Chạm **một** mép thì được – unit vòng qua phía còn lại.
-4. **Hành lang ≥ 4 đơn vị** giữa hai vùng cấm, hoặc giữa vùng cấm và mép bản đồ ở mỗi lối đi (một đội hình rộng ~3 + lề).
-5. Cách **≥ 3 đơn vị** so với: thành, vùng triệu hồi, điểm triệu hồi nhanh, vị trí quân phòng thủ, điểm sinh quân.
-6. Hình vẽ vùng cấm (hồ, vách đá…) phải **trùng đúng hình chữ nhật logic**: unit đi sát mép cách ~0.05 + bán kính thân, nên viền art lấn vào trong ≤ 0.2 là đẹp; lấn ra ngoài sẽ làm unit trông như đi xuyên vật cản.
+### 6.1 Quy tắc chung
+1. **Không được cắt đứt** đường từ căn cứ ta tới thành địch / từ điểm sinh quân tới thành ta – `StageConfig.Validate` đã kiểm tra bằng cách tìm đường thật (`HasPath`) từ mọi điểm triệu hồi nhanh (ải Công) và mọi điểm sinh quân (ải Thủ).
+2. **Lối đi rộng ≥ 4 đơn vị** (một đội hình rộng ~3 + lề): giữa hai vùng cấm, giữa vùng cấm và mép bản đồ, và bề rộng cầu.
+3. Cách **≥ 3 đơn vị** so với: thành, vùng triệu hồi, điểm triệu hồi nhanh, vị trí quân phòng thủ, điểm sinh quân.
+4. Hình vẽ phải **trùng hình logic**: unit đi cách mép ~0.1 + bán kính thân; viền art lấn vào trong ≤ 0.2 là đẹp, lấn ra ngoài sẽ làm unit trông như lội qua vật cản.
+
+### 6.2 Sông (`StageConfig.rivers`)
+| Thông số | Đề xuất | Ghi chú |
+|---|---|---|
+| `path` (đường tâm) | 5–9 điểm, mỗi đoạn dài 4–6, góc lệch giữa hai đoạn liền kề ≤ 45° | uốn khúc mềm; **kéo dài quá mép bản đồ ≥ 1** nếu sông cắt ngang hết bản đồ |
+| `width` | **2.5** (tối thiểu 1, `Validate` kiểm tra) | rộng hơn 3 thì hai bờ cách nhau quá xa, cầu trông ngắn |
+| `crossings[].position` | điểm nằm **trên lòng sông** (`Validate` báo lỗi nếu lệch ra ngoài), nên đặt trên **đoạn thẳng**, cách khúc quanh ≥ 2 | đặt trên khúc quanh vẫn chạy được nhưng lối qua bị hẹp lại ở phía trong khúc quanh |
+| `crossings[].width` | **4** (tối thiểu 2) | là **bề rộng đi lại thật**; logic cắt lòng sông một đoạn dài `width cầu + width sông` để bờ nước không lấn vào lối qua |
+| Số cầu | **2** cho sông cắt ngang bản đồ cỡ M (2 làn), cách nhau ≥ 10 theo trục y | 1 cầu → điểm nghẽn quá chặt; 3 cầu → sông gần như không còn tác dụng |
+| Bố cục chuẩn cỡ M | path (1, 14) (−1, 9.5) (1.5, 5) (0.5, 0) (−1.5, −5) (1, −9.5) (−0.5, −14); cầu (0.67, 6.5) và (−0.67, −6.5) | = `PrototypeContentBuilder.StandardRiverPath` / `StandardBridges` |
+
+Art: nước vẽ liền theo cả đường tâm (kể cả dưới cầu), cầu vẽ đè lên, hướng cầu vuông góc dòng chảy. Placeholder: sông xanh nước, cầu nâu.
+
+### 6.3 Hình chữ nhật (`StageConfig.forbiddenZones`)
+1. Hình chữ nhật thẳng trục; tối thiểu **2 × 2**, tối đa khuyến nghị **8 × 10** ở cỡ M.
+2. **Không chạm cả mép trên lẫn mép dưới**; chạm **một** mép thì được – unit vòng phía còn lại.
+3. Dùng cho vật cản khối (hồ vuông, khu nhà đổ, vách đá).
 
 ## 7. Lề an toàn quanh HUD 🟡
 
@@ -142,7 +158,8 @@ Bản đồ M hiện tại: vùng triệu hồi y −9…9 → cách mép dướ
 | `enemyCastle.position` | (19, 0) | (19, 0) – không sinh ra |
 | `summonZone` | (−18, −9, 7, 18) | (−18, −9, 7, 18) |
 | `quickSummonPoints` | (−15.5, 0), (−15.5, ±3.5), (−13, ±1.75) | như ải Công |
-| `forbiddenZones` | 0–2 vùng, theo mục 6 | 0–2 vùng, theo mục 6 |
+| `rivers` | 1 sông chuẩn (mục 6.2) | 1 sông chuẩn (mục 6.2) |
+| `forbiddenZones` | 0–1 vùng chữ nhật, theo mục 6.3 | 0–1 vùng chữ nhật, theo mục 6.3 |
 | `defenders` | trong bán kính 8 quanh (19, 0), `guardRadius` 4.5 | – |
 | `waves[].spawns[].spawnPoint` | – | x 21–22.5, y −6…6 |
 | `timeLimit` | 180 | 150 |
@@ -153,9 +170,9 @@ Những luật có thể tự động hoá (thêm vào `StageConfig.Validate` / 
 - [ ] Kích thước bản đồ là một trong S / M / L (hoặc được đánh dấu ngoại lệ).
 - [ ] Vật thể gameplay nằm trên bước 0.5.
 - [ ] Không vật thể gameplay quan trọng nào trong lề HUD (mục 7).
-- [ ] Vùng cấm theo mục 6 (kích thước, hành lang ≥ 4, cách ≥ 3, không chặn kín).
-- [ ] Từ mọi điểm triệu hồi nhanh tới thành địch / mọi điểm sinh quân tới thành ta đều **đi tới được** (dùng `NextWaypoint` đi thử).
-- [ ] Tilemap `Obstacles` phủ đúng các hình chữ nhật vùng cấm (sai lệch ≤ 0.2).
+- [x] Không vùng cấm nào cắt đứt đường đi (đã có trong `Validate`: `HasPath` từ điểm triệu hồi nhanh / điểm sinh quân). Sông: đủ điểm, bề rộng ≥ 1, cầu rộng ≥ 2 và nằm trên lòng sông (đã có).
+- [ ] Vùng cấm theo mục 6 (kích thước, lối đi ≥ 4, cách ≥ 3; sông: số cầu, cầu cách khúc quanh ≥ 2).
+- [ ] Tilemap `Obstacles` (nước, cầu, vật cản) phủ đúng hình logic của vùng cấm (sai lệch ≤ 0.2).
 
 ## 11. Câu hỏi cần bạn chốt
 

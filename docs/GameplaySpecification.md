@@ -131,7 +131,8 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng cấm, quy cách art): `docs/MapSpecification.md` (🟡 đề xuất, chờ duyệt).
 
 - ✅ Bản đồ là **bãi trống**, không chướng ngại, không cần tìm đường (pathfinding). Có biên giới hạn và có thể có vùng cấm.
-- 🟡 Vùng cấm (hình chữ nhật) **chặn di chuyển**: unit không đi xuyên qua; nếu đường thẳng bị vùng cấm cắt thì đi vòng qua góc gần nhất của chính vùng đó (bỏ qua góc nằm ngoài bản đồ). Đây chỉ là né một vật cản, không phải tìm đường tổng quát.
+- 🟡 Vùng cấm **chặn di chuyển**: unit không đi xuyên qua; nếu đường thẳng bị chặn thì đi theo đường ngắn nhất vòng qua các vùng cấm (đồ thị điểm nút dựng sẵn quanh chúng). Đây là né vài vật cản cố định, không phải tìm đường tổng quát trên lưới.
+- 🟡 Có hai loại vùng cấm (người dùng chốt 2026-10-16): **hình chữ nhật** và **sông**. Sông = đường tâm uốn khúc + bề rộng, chỉ qua được ở **chỗ qua sông (cầu)**; một dòng sông có thể cắt ngang cả bản đồ, miễn là còn cầu để đi. Bản đồ chuẩn: một con sông cắt ngang giữa bản đồ từ mép trên xuống mép dưới, có 2 cầu → 2 làn đường. Thông số chi tiết ở `docs/MapSpecification.md`.
 - ✅ Góc nhìn kiểu Clash of Clans; bản đồ **rộng hơn màn hình**.
 - 🟡 Góc nghiêng 2.5D **điều chỉnh được từ 0° (nhìn thẳng từ trên xuống) tới 45°** bằng thanh trượt trong HUD (và `viewTiltDegrees` trên `BattleController`); **mặc định 0°** (người dùng chốt 2026-10-16). Chỉ phần hiển thị đổi (mặt đất nén theo `cos(góc)`, unit vẫn đứng thẳng); luật trận chạy trên mặt phẳng logic không đổi.
 - ✅ Camera **kéo theo** (🟡: kéo theo tướng đang được chọn khi tướng di chuyển; người chơi kéo tay thì tạm ngưng theo cho tới khi chọn lại tướng).

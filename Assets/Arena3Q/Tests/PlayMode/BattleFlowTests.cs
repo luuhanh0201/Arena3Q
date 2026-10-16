@@ -259,27 +259,34 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator MoveCommand_PastForbiddenZone_WalksAroundIt()
+        public IEnumerator MoveCommand_AcrossTheRiver_GoesOverABridge()
         {
             _battle.StartBattle(Variant(0, so => so.FindProperty("defenders").arraySize = 0));
             yield return null;
-            Assert.That(_battle.TrySummon(SummonRequest.Free(0, new Vector2(-12f, 8f))).Accepted, Is.True);
+            var river = _battle.Layout.Obstacles.OfType<RiverObstacle>().Single();
+            Assert.That(river.Name, Is.EqualTo("Sông"));
+            Assert.That(river.Crossings, Has.Count.EqualTo(2));
+
+            Assert.That(_battle.TrySummon(SummonRequest.Free(0, new Vector2(-12f, 0f))).Accepted, Is.True);
             var hero = _battle.SelectedHero;
-            var zone = Stage(0).ForbiddenZones[0];
-            var destination = new Vector2(zone.xMax + 3f, zone.center.y);
+            var destination = new Vector2(8f, 0f);
             Assert.That(_battle.MoveSelectedHero(destination).Accepted, Is.True);
 
-            var entered = false;
-            for (var t = 0f; t < 25f && hero.State == HeroState.Moving; t += Step)
+            var wet = false;
+            var closestToBridge = float.PositiveInfinity;
+            for (var t = 0f; t < 30f && hero.State == HeroState.Moving; t += Step)
             {
                 _battle.Simulate(Step);
-                entered |= zone.Contains(hero.Position);
+                wet |= river.Contains(hero.Position, 0f);
                 foreach (var troop in hero.Squad.Members)
-                    entered |= zone.Contains(troop.Position);
+                    wet |= river.Contains(troop.Position, 0f);
+                foreach (var crossing in river.Crossings)
+                    closestToBridge = Mathf.Min(closestToBridge, Vector2.Distance(hero.Position, crossing.Center));
             }
 
-            Assert.That(entered, Is.False, "nobody walked through the forbidden zone");
-            Assert.That(Vector2.Distance(hero.Position, destination), Is.LessThan(0.2f), "arrived on the other side");
+            Assert.That(wet, Is.False, "nobody waded through the river");
+            Assert.That(closestToBridge, Is.LessThan(1.5f), "the hero crossed on a bridge");
+            Assert.That(Vector2.Distance(hero.Position, destination), Is.LessThan(0.2f), "arrived on the far bank");
         }
 
         [UnityTest]
@@ -344,8 +351,12 @@ namespace Arena3Q.Tests.PlayMode
             SummonQuick(0);
             yield return null;
 
-            var forbidden = Stage(0).ForbiddenZones[0].center;
-            Assert.That(_battle.MoveSelectedHero(forbidden).Reason, Is.EqualTo(RejectReason.InForbiddenZone));
+            var inTheRiver = Stage(0).Rivers[0].Path[3]; // a centre-line point away from the bridges
+            Assert.That(_battle.MoveSelectedHero(inTheRiver).Reason, Is.EqualTo(RejectReason.InForbiddenZone));
+            var bridge = Stage(0).Rivers[0].Crossings[0].Position;
+            Assert.That(_battle.MoveSelectedHero(bridge).Accepted, Is.True, "the bridge itself is walkable");
+            _battle.SelectedHero.Brain.Issue(new MoveCommand(_battle.SelectedHero.Id, _battle.SelectedHero.Position));
+            Run(Step);
             Assert.That(_battle.MoveSelectedHero(new Vector2(500f, 0f)).Reason, Is.EqualTo(RejectReason.OutsideBattlefield));
             Assert.That(_battle.SelectedHero.State, Is.EqualTo(HeroState.Idle));
         }
@@ -386,7 +397,8 @@ namespace Arena3Q.Tests.PlayMode
             var slowTroop = Object.Instantiate(Stage(0).TestLoadout.LordHero.Troop);
             _created.Add(slowTroop);
             var troopSo = new SerializedObject(slowTroop);
-            troopSo.FindProperty("stats.moveSpeed").floatValue = 0.01f;
+            // 0.001 units/s: far below the progress threshold (0.05 per 1.5 s), so only real shoves count as progress.
+            troopSo.FindProperty("stats.moveSpeed").floatValue = 0.001f;
             troopSo.ApplyModifiedPropertiesWithoutUndo();
 
             var archer = Object.Instantiate(Stage(0).TestLoadout.GetCards()[2]);
@@ -432,7 +444,7 @@ namespace Arena3Q.Tests.PlayMode
             // The soldier standing in the hero's path gets shoved forward by the hero, which is real progress
             // towards the castle, so it rightly keeps the ordered target. The others are stuck and must switch.
             var start = hero.Squad.Members.ToDictionary(m => m, m => m.Position);
-            Run(1f);
+            Run(2f); // longer than the 1.5 s timeout, measured from when the hero has walked off
             Assert.That(hero.Squad.Mode, Is.EqualTo(SquadMode.FocusTarget));
             Assert.That(hero.Squad.Members, Has.Count.EqualTo(archer.BaseSquadSize));
             var stationary = hero.Squad.Members.Where(m => Vector2.Distance(start[m], m.Position) < 0.05f).ToList();

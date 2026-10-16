@@ -17,7 +17,10 @@ namespace Arena3Q.Data
 
         [Header("Map (spec §9)")]
         [SerializeField] private Rect mapBounds = new Rect(-20f, -12f, 40f, 24f);
+        [Tooltip("Rectangular forbidden zones.")]
         [SerializeField] private Rect[] forbiddenZones = Array.Empty<Rect>();
+        [Tooltip("River forbidden zones: crossable only at their crossings (bridges/fords).")]
+        [SerializeField] private RiverConfig[] rivers = Array.Empty<RiverConfig>();
 
         [Header("Castles")]
         [Tooltip("Provisional: in Defense stages the player castle shoots by default.")]
@@ -57,6 +60,7 @@ namespace Arena3Q.Data
         public StageType StageType => stageType;
         public Rect MapBounds => mapBounds;
         public IReadOnlyList<Rect> ForbiddenZones => forbiddenZones;
+        public IReadOnlyList<RiverConfig> Rivers => rivers;
         public CastleConfig PlayerCastle => playerCastle;
         public CastleConfig EnemyCastle => enemyCastle;
         public Rect SummonZone => summonZone;
@@ -81,7 +85,32 @@ namespace Arena3Q.Data
             SelfDefendWhileAttacking = hero.SelfDefendWhileAttacking
         };
 
-        public BattlefieldLayout CreateLayout() => new BattlefieldLayout(mapBounds, summonZone, forbiddenZones);
+        public BattlefieldLayout CreateLayout() =>
+            new BattlefieldLayout(mapBounds, summonZone, forbiddenZones, CreateRiverObstacles());
+
+        /// <summary>Core shapes of the valid rivers (invalid ones are skipped here and reported by Validate).</summary>
+        public List<IObstacle> CreateRiverObstacles()
+        {
+            var result = new List<IObstacle>();
+            if (rivers == null)
+                return result;
+            foreach (var river in rivers)
+            {
+                if (river?.Path == null || river.Path.Length < 2 || river.Width <= 0f)
+                    continue;
+                var crossings = new List<(Vector2, float)>();
+                if (river.Crossings != null)
+                {
+                    foreach (var crossing in river.Crossings)
+                    {
+                        if (crossing != null)
+                            crossings.Add((crossing.Position, crossing.Width));
+                    }
+                }
+                result.Add(new RiverObstacle(river.Path, river.Width, crossings, river.Name));
+            }
+            return result;
+        }
 
         public SummonRules CreateSummonRules() => new SummonRules(CreateLayout(), quickSummonPoints, playerCastle.Position);
 
@@ -159,6 +188,9 @@ namespace Arena3Q.Data
                 ValidateWaves(owner, errors);
             }
 
+            ValidateRivers(owner, errors);
+            ValidateReachability(owner, layout, errors);
+
             if (starThresholds == null)
                 errors.Add($"{owner}: starThresholds are missing.");
             else if (starThresholds.maxHeroesLostForTwoStars < starThresholds.maxHeroesLostForThreeStars)
@@ -183,6 +215,74 @@ namespace Arena3Q.Data
                 errors.Add($"{owner}: {label}.maxHealth must be > 0.");
             if (!mapBounds.Contains(castle.Position))
                 errors.Add($"{owner}: {label} is outside mapBounds.");
+        }
+
+        private void ValidateRivers(string owner, List<string> errors)
+        {
+            if (rivers == null)
+                return;
+            for (var r = 0; r < rivers.Length; r++)
+            {
+                var river = rivers[r];
+                var label = $"{owner}: rivers[{r}]";
+                if (river?.Path == null || river.Path.Length < 2)
+                {
+                    errors.Add($"{label} needs at least two centre-line points.");
+                    continue;
+                }
+                if (river.Width < 1f)
+                    errors.Add($"{label}.width must be >= 1.");
+                if (river.Crossings == null)
+                    continue;
+                var shape = new RiverObstacle(river.Path, Mathf.Max(0.5f, river.Width), Array.Empty<(Vector2, float)>());
+                for (var c = 0; c < river.Crossings.Length; c++)
+                {
+                    var crossing = river.Crossings[c];
+                    if (crossing == null)
+                        continue;
+                    // A hero (diameter 0.9) plus some room must fit through.
+                    if (crossing.Width < 2f)
+                        errors.Add($"{label}.crossings[{c}].width must be >= 2.");
+                    if (!shape.Contains(crossing.Position, 0f))
+                        errors.Add($"{label}.crossings[{c}] is not on the river.");
+                }
+            }
+        }
+
+        // Forbidden zones must not cut the player off from the fight (spec §9: the map stays an open field).
+        private void ValidateReachability(string owner, BattlefieldLayout layout, List<string> errors)
+        {
+            const float heroRadius = BattlefieldLayout.DefaultMaxUnitRadius;
+            if (playerCastle != null && layout.IsInForbiddenZone(playerCastle.Position))
+                errors.Add($"{owner}: playerCastle is inside a forbidden zone.");
+            if (enemyCastle != null && layout.IsInForbiddenZone(enemyCastle.Position))
+                errors.Add($"{owner}: enemyCastle is inside a forbidden zone.");
+            if (quickSummonPoints == null || playerCastle == null || enemyCastle == null)
+                return;
+
+            if (stageType == StageType.Attack)
+            {
+                for (var i = 0; i < quickSummonPoints.Length; i++)
+                {
+                    if (layout.IsWalkable(quickSummonPoints[i])
+                        && !layout.HasPath(quickSummonPoints[i], enemyCastle.Position, heroRadius))
+                        errors.Add($"{owner}: no walking route from quickSummonPoints[{i}] to the enemy castle.");
+                }
+            }
+            else if (waves != null)
+            {
+                for (var w = 0; w < waves.Length; w++)
+                {
+                    var spawns = waves[w]?.Spawns;
+                    if (spawns == null)
+                        continue;
+                    for (var s = 0; s < spawns.Length; s++)
+                    {
+                        if (spawns[s] != null && !layout.HasPath(spawns[s].SpawnPoint, playerCastle.Position, heroRadius))
+                            errors.Add($"{owner}: no walking route from waves[{w}].spawns[{s}] to the player castle.");
+                    }
+                }
+            }
         }
 
         private void ValidateWaves(string owner, List<string> errors)

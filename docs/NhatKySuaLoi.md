@@ -108,3 +108,10 @@ Mỗi mục: **triệu chứng → nguyên nhân → cách sửa → cách trán
 - **Triệu chứng:** bản trong git có `allowedAutorotateToPortrait: 1` và `allowedAutorotateToPortraitUpsideDown: 1`; bản sửa chỉ nằm trong thay đổi chưa commit ở máy người dùng.
 - **Cách sửa:** commit `a0f997e` chỉ gồm 2 dòng đó (đưa vào staging một bản dựng từ HEAD), các thay đổi khác trong `ProjectSettings.asset` (`companyName`, `androidResizeableActivity`, `preloadedAssets`) vẫn chưa commit, chờ người dùng quyết.
 - **Tránh lặp lại:** khi nghiệm thu, đối chiếu cài đặt nền tảng với **bản đã commit** (`git show HEAD:...`), không chỉ với file trên đĩa. Muốn commit một phần file Unity YAML mà không có `git add -p`, dựng bản từ `git show HEAD:file`, sửa đúng dòng cần, rồi `git hash-object -w` + `git update-index --cacheinfo`.
+
+## Đổi vùng cấm chữ nhật thành sông (2026-10-16)
+
+Không phải sửa lỗi, nhưng có 3 chỗ suýt sai trong lúc làm – ghi lại để lần sau không lặp:
+1. **Lối qua cầu hẹp hơn cầu nếu cắt sông đúng bằng bề rộng cầu.** Đầu khúc sông bị cắt là nửa hình tròn bán kính `nửa bề rộng sông + bán kính unit`, nên khoảng hở trên đường tâm phải dài `bề rộng cầu + bề rộng sông` thì lối đi thật mới bằng bề rộng cầu (`RiverObstacle.BuildWetPieces`).
+2. **Test hình học trên sông uốn khúc dễ sai vì khúc quanh gần cầu.** Đường thử vuông góc với cầu có thể chạm khúc sông sau chỗ quanh. Test về bề rộng/lối qua dùng sông thẳng; test trên sông chuẩn chỉ kiểm tra hành vi tổng thể (không lội nước, tới được bờ bên kia, đi qua cầu – ngưỡng theo bề rộng cầu, không theo tâm cầu, vì đường ngắn nhất men sát mép cầu).
+3. **Test "lính không tiến được" phải để lính thật sự đứng yên.** Bò 0.01 đơn vị/s cộng với bị tướng đẩy dần đủ vượt ngưỡng tiến độ 0.05/1.5 s → bộ đếm bị đặt lại đúng luật. Hạ xuống 0.001 và quan sát 2 s. Bài học: tham số "gần như 0" trong test phải nhỏ hơn ngưỡng của luật ít nhất một bậc; khi không giải thích được, log biến trạng thái bên trong (`TroopUnit.StuckSeconds`) thay vì đoán.

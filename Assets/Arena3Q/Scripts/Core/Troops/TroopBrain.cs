@@ -117,6 +117,9 @@ namespace Arena3Q.Core
         /// <summary>The substitute target chosen because the ordered target was unreachable, or None.</summary>
         public UnitId FallbackTarget => _fallbackTarget;
 
+        /// <summary>Seconds without progress towards the ordered target (diagnostics).</summary>
+        public float StuckSeconds => _stuckTimer;
+
         public HeroIntent Tick(SquadMode mode, ITroopSensor sensor, float deltaTime = 0f)
         {
             if (mode != SquadMode.FocusTarget)

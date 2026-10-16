@@ -16,6 +16,9 @@ namespace Arena3Q.Gameplay
 
         /// <summary>Substitute target picked because the hero's ordered target was unreachable, or None.</summary>
         public UnitId FallbackTarget => _brain.FallbackTarget;
+
+        /// <summary>Seconds without progress towards the hero's ordered target (diagnostics).</summary>
+        public float StuckSeconds => _brain.StuckSeconds;
         public int SlotIndex { get; private set; }
         public TroopDefinition Definition { get; private set; }
 

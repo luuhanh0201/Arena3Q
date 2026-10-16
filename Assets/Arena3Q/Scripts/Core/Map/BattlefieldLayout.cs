@@ -5,35 +5,59 @@ using UnityEngine;
 namespace Arena3Q.Core
 {
     /// <summary>
-    /// Battlefield geometry on the logic plane (spec §9): an open field with bounds, optional
-    /// forbidden zones and the summon zone in front of the player's castle. No pathfinding.
+    /// Battlefield geometry on the logic plane (spec §9): an open field with bounds, forbidden zones (rectangles,
+    /// rivers, ...) and the summon zone in front of the player's castle. Forbidden zones block movement; units steer
+    /// round them over a small precomputed visibility graph of nodes placed just outside the zones. This is obstacle
+    /// avoidance around a handful of static shapes, not grid pathfinding.
     /// </summary>
     public sealed class BattlefieldLayout
     {
-        private readonly Rect[] _forbiddenZones;
+        /// <summary>Largest moving unit radius (hero). Path nodes keep this clearance, so they suit every unit.</summary>
+        public const float DefaultMaxUnitRadius = 0.45f;
 
-        public BattlefieldLayout(Rect bounds, Rect summonZone, IReadOnlyList<Rect> forbiddenZones = null)
+        // Nodes sit slightly further out than the largest unit needs, so a unit standing on one is clear of the zone.
+        private const float NodeMargin = 0.1f;
+
+        private readonly IObstacle[] _obstacles;
+        private readonly Rect[] _rectZones;
+        private readonly Vector2[] _nodes;
+        private readonly bool[,] _visible;
+        private readonly float _maxUnitRadius;
+
+        public BattlefieldLayout(Rect bounds, Rect summonZone, IReadOnlyList<Rect> forbiddenZones = null,
+            IReadOnlyList<IObstacle> obstacles = null, float maxUnitRadius = DefaultMaxUnitRadius)
         {
             Bounds = bounds;
             SummonZone = summonZone;
-            _forbiddenZones = forbiddenZones == null ? Array.Empty<Rect>() : new List<Rect>(forbiddenZones).ToArray();
+            _maxUnitRadius = maxUnitRadius;
+            _rectZones = forbiddenZones == null ? Array.Empty<Rect>() : new List<Rect>(forbiddenZones).ToArray();
+
+            var all = new List<IObstacle>();
+            foreach (var rect in _rectZones)
+                all.Add(new RectObstacle(rect));
+            if (obstacles != null)
+                all.AddRange(obstacles);
+            _obstacles = all.ToArray();
+
+            _nodes = BuildNodes();
+            _visible = BuildVisibility(_nodes);
         }
 
         public Rect Bounds { get; }
         public Rect SummonZone { get; }
-        public IReadOnlyList<Rect> ForbiddenZones => _forbiddenZones;
+
+        /// <summary>Rectangular forbidden zones only (rivers and other shapes are in <see cref="Obstacles"/>).</summary>
+        public IReadOnlyList<Rect> ForbiddenZones => _rectZones;
+
+        /// <summary>Every forbidden zone, whatever its shape.</summary>
+        public IReadOnlyList<IObstacle> Obstacles => _obstacles;
+
+        /// <summary>Path nodes around the forbidden zones (exposed for debugging and map tooling).</summary>
+        public IReadOnlyList<Vector2> PathNodes => _nodes;
 
         public bool IsInsideBounds(Vector2 point) => Bounds.Contains(point);
 
-        public bool IsInForbiddenZone(Vector2 point)
-        {
-            foreach (var zone in _forbiddenZones)
-            {
-                if (zone.Contains(point))
-                    return true;
-            }
-            return false;
-        }
+        public bool IsInForbiddenZone(Vector2 point) => IsBlocked(point, 0f);
 
         /// <summary>A valid destination for a <see cref="MoveCommand"/>.</summary>
         public bool IsWalkable(Vector2 point) => IsInsideBounds(point) && !IsInForbiddenZone(point);
@@ -41,43 +65,129 @@ namespace Arena3Q.Core
         /// <summary>A valid drop position for a free summon.</summary>
         public bool IsValidSummonPosition(Vector2 point) => SummonZone.Contains(point) && IsWalkable(point);
 
-        // Corners are aimed at slightly outside the grown zone so a unit standing on one has a clear view onwards.
-        private const float CornerClearance = 0.05f;
+        /// <summary>True if a unit of this radius centred here overlaps a forbidden zone.</summary>
+        public bool IsBlocked(Vector2 point, float radius)
+        {
+            foreach (var obstacle in _obstacles)
+            {
+                if (obstacle.Contains(point, radius))
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>True if a unit of this radius walking straight from a to b would touch a forbidden zone.</summary>
+        public bool IsSegmentBlocked(Vector2 a, Vector2 b, float radius)
+        {
+            foreach (var obstacle in _obstacles)
+            {
+                if (obstacle.BlocksSegment(a, b, radius))
+                    return true;
+            }
+            return false;
+        }
 
         /// <summary>
-        /// Where to head next on the way to <paramref name="destination"/> (spec §9: forbidden zones block movement; no
-        /// general pathfinding). If a zone blocks the straight line, this finds the shortest way round that zone over
-        /// its corners (corners outside the map are skipped) and returns the first point of it; otherwise the
-        /// destination itself. Stateless and exact for one rectangle, so re-evaluating it every step never makes the
-        /// unit change its mind about which way to go round.
+        /// Where to head next on the way to <paramref name="destination"/>: the destination itself if the straight line
+        /// is clear, otherwise the next node of the shortest route round the forbidden zones (over a river: via a
+        /// crossing). Stateless and a true shortest path, so re-evaluating it every step is stable. Returns the
+        /// destination if no route exists.
         /// </summary>
         public Vector2 NextWaypoint(Vector2 from, Vector2 destination, float radius)
         {
-            foreach (var raw in _forbiddenZones)
-            {
-                var zone = Expand(raw, radius);
-                if (SegmentCrossesInterior(from, destination, zone))
-                    return FirstHopAround(zone, from, destination, radius);
-            }
-            return destination;
+            if (!IsSegmentBlocked(from, destination, radius))
+                return destination;
+            return TryFindRoute(from, destination, radius, out var firstHop, out _) ? firstHop : destination;
         }
 
-        // Shortest path from -> destination on the visibility graph {from, zone corners, destination} (Dijkstra on at
-        // most 6 nodes). Returns the node after 'from', or the destination if no way round exists.
-        private Vector2 FirstHopAround(Rect zone, Vector2 from, Vector2 destination, float radius)
-        {
-            var walkable = new Rect(Bounds.xMin + radius, Bounds.yMin + radius, Bounds.width - radius * 2f,
-                Bounds.height - radius * 2f);
-            var nodes = new List<Vector2>(6) { from };
-            foreach (var corner in Corners(Expand(zone, CornerClearance)))
-            {
-                if (walkable.Contains(corner) && (corner - from).sqrMagnitude > 1e-4f)
-                    nodes.Add(corner);
-            }
-            nodes.Add(destination);
-            var target = nodes.Count - 1;
+        /// <summary>Whether a unit of this radius can walk from a to b at all (map validation).</summary>
+        public bool HasPath(Vector2 from, Vector2 to, float radius) =>
+            !IsSegmentBlocked(from, to, radius) || TryFindRoute(from, to, radius, out _, out _);
 
-            var count = nodes.Count;
+        /// <summary>Length of the walking route from a to b, or +infinity if there is none.</summary>
+        public float RouteLength(Vector2 from, Vector2 to, float radius)
+        {
+            if (!IsSegmentBlocked(from, to, radius))
+                return Vector2.Distance(from, to);
+            return TryFindRoute(from, to, radius, out _, out var length) ? length : float.PositiveInfinity;
+        }
+
+        /// <summary>
+        /// Safety net for one movement step: a step that would still touch a zone (separation pushes, rounding) keeps
+        /// whichever single-axis part stays clear, else is pushed out to the nearest free point.
+        /// </summary>
+        public Vector2 ResolveStep(Vector2 from, Vector2 to, float radius)
+        {
+            if (!IsBlocked(to, radius))
+                return to;
+            var xOnly = new Vector2(to.x, from.y);
+            var yOnly = new Vector2(from.x, to.y);
+            var xGain = IsBlocked(xOnly, radius) ? -1f : Mathf.Abs(to.x - from.x);
+            var yGain = IsBlocked(yOnly, radius) ? -1f : Mathf.Abs(to.y - from.y);
+            if (xGain < 0f && yGain < 0f)
+                return PushOut(to, radius);
+            return xGain >= yGain ? xOnly : yOnly;
+        }
+
+        /// <summary>Moves a point out of every forbidden zone (grown by <paramref name="radius"/>).</summary>
+        public Vector2 PushOut(Vector2 point, float radius)
+        {
+            for (var pass = 0; pass < 2; pass++)
+            {
+                foreach (var obstacle in _obstacles)
+                    point = obstacle.PushOut(point, radius);
+            }
+            return point;
+        }
+
+        // ---- Route search ----
+
+        private Vector2[] BuildNodes()
+        {
+            var raw = new List<Vector2>();
+            foreach (var obstacle in _obstacles)
+                obstacle.AddWaypoints(raw, _maxUnitRadius + NodeMargin);
+
+            var walkable = new Rect(Bounds.xMin + _maxUnitRadius, Bounds.yMin + _maxUnitRadius,
+                Bounds.width - _maxUnitRadius * 2f, Bounds.height - _maxUnitRadius * 2f);
+            var nodes = new List<Vector2>(raw.Count);
+            foreach (var node in raw)
+            {
+                // Nodes inside another zone, or off the map, can never be reached.
+                if (walkable.Contains(node) && !IsBlocked(node, _maxUnitRadius))
+                    nodes.Add(node);
+            }
+            return nodes.ToArray();
+        }
+
+        private bool[,] BuildVisibility(Vector2[] nodes)
+        {
+            var visible = new bool[nodes.Length, nodes.Length];
+            for (var i = 0; i < nodes.Length; i++)
+            {
+                for (var j = i + 1; j < nodes.Length; j++)
+                {
+                    var clear = !IsSegmentBlocked(nodes[i], nodes[j], _maxUnitRadius);
+                    visible[i, j] = clear;
+                    visible[j, i] = clear;
+                }
+            }
+            return visible;
+        }
+
+        // Dijkstra over {from, nodes..., to}. Node-to-node visibility is precomputed for the largest unit radius,
+        // which is conservative for smaller units; the start and end links are tested with the actual radius.
+        private bool TryFindRoute(Vector2 from, Vector2 to, float radius, out Vector2 firstHop, out float length)
+        {
+            firstHop = to;
+            length = float.PositiveInfinity;
+            var n = _nodes.Length;
+            if (n == 0)
+                return false;
+
+            var start = n;
+            var goal = n + 1;
+            var count = n + 2;
             var cost = new float[count];
             var previous = new int[count];
             var done = new bool[count];
@@ -86,7 +196,8 @@ namespace Arena3Q.Core
                 cost[i] = float.PositiveInfinity;
                 previous[i] = -1;
             }
-            cost[0] = 0f;
+            cost[start] = 0f;
+
             for (var iteration = 0; iteration < count; iteration++)
             {
                 var current = -1;
@@ -95,14 +206,21 @@ namespace Arena3Q.Core
                     if (!done[i] && (current < 0 || cost[i] < cost[current]))
                         current = i;
                 }
-                if (current < 0 || float.IsPositiveInfinity(cost[current]) || current == target)
+                if (current < 0 || float.IsPositiveInfinity(cost[current]))
+                    break;
+                if (current == goal)
                     break;
                 done[current] = true;
+                var currentPoint = current == start ? from : _nodes[current];
+
                 for (var next = 0; next < count; next++)
                 {
-                    if (done[next] || SegmentCrossesInterior(nodes[current], nodes[next], zone))
+                    if (done[next] || next == start)
                         continue;
-                    var candidate = cost[current] + Vector2.Distance(nodes[current], nodes[next]);
+                    var nextPoint = next == goal ? to : _nodes[next];
+                    if (!Linked(current, next, currentPoint, nextPoint, start, goal, radius))
+                        continue;
+                    var candidate = cost[current] + Vector2.Distance(currentPoint, nextPoint);
                     if (candidate < cost[next])
                     {
                         cost[next] = candidate;
@@ -111,127 +229,23 @@ namespace Arena3Q.Core
                 }
             }
 
-            if (previous[target] < 0)
-                return destination;
-            var hop = target;
-            while (previous[hop] != 0)
+            if (previous[goal] < 0)
+                return false;
+            length = cost[goal];
+            var hop = goal;
+            while (previous[hop] != start)
                 hop = previous[hop];
-            return nodes[hop];
-        }
-
-        /// <summary>
-        /// Safety net for one movement step: a step that would still enter a zone (separation pushes, rounding) keeps
-        /// whichever single-axis part stays outside, else is pushed out to the nearest edge.
-        /// </summary>
-        public Vector2 ResolveStep(Vector2 from, Vector2 to, float radius)
-        {
-            if (!TryFindZone(to, radius, out _))
-                return to;
-            var xOnly = new Vector2(to.x, from.y);
-            var yOnly = new Vector2(from.x, to.y);
-            var xGain = TryFindZone(xOnly, radius, out _) ? -1f : Mathf.Abs(to.x - from.x);
-            var yGain = TryFindZone(yOnly, radius, out _) ? -1f : Mathf.Abs(to.y - from.y);
-            if (xGain < 0f && yGain < 0f)
-                return PushOut(to, radius);
-            return xGain >= yGain ? xOnly : yOnly;
-        }
-
-        private static Vector2[] Corners(Rect rect) => new[]
-        {
-            new Vector2(rect.xMin, rect.yMin), new Vector2(rect.xMax, rect.yMin),
-            new Vector2(rect.xMax, rect.yMax), new Vector2(rect.xMin, rect.yMax)
-        };
-
-        // Liang–Barsky clip against the open rectangle (a segment running along an edge does not count).
-        private static bool SegmentCrossesInterior(Vector2 a, Vector2 b, Rect rect)
-        {
-            const float inset = 1e-3f;
-            var xMin = rect.xMin + inset;
-            var xMax = rect.xMax - inset;
-            var yMin = rect.yMin + inset;
-            var yMax = rect.yMax - inset;
-            var d = b - a;
-            var t0 = 0f;
-            var t1 = 1f;
-            return Clip(-d.x, a.x - xMin, ref t0, ref t1) && Clip(d.x, xMax - a.x, ref t0, ref t1)
-                   && Clip(-d.y, a.y - yMin, ref t0, ref t1) && Clip(d.y, yMax - a.y, ref t0, ref t1)
-                   && t0 < t1;
-        }
-
-        private static bool Clip(float p, float q, ref float t0, ref float t1)
-        {
-            if (Mathf.Approximately(p, 0f))
-                return q > 0f;
-            var t = q / p;
-            if (p < 0f)
-            {
-                if (t > t1) return false;
-                if (t > t0) t0 = t;
-            }
-            else
-            {
-                if (t < t0) return false;
-                if (t < t1) t1 = t;
-            }
+            firstHop = hop == goal ? to : _nodes[hop];
             return true;
         }
 
-        private bool TryFindZone(Vector2 point, float radius, out Rect grownZone)
+        private bool Linked(int a, int b, Vector2 pa, Vector2 pb, int start, int goal, float radius)
         {
-            foreach (var raw in _forbiddenZones)
-            {
-                grownZone = Expand(raw, radius);
-                if (grownZone.Contains(point))
-                    return true;
-            }
-            grownZone = default;
-            return false;
-        }
-
-        /// <summary>Moves a point out of any forbidden zone (grown by <paramref name="radius"/>) to the nearest edge.</summary>
-        public Vector2 PushOut(Vector2 point, float radius)
-        {
-            foreach (var raw in _forbiddenZones)
-            {
-                var zone = Expand(raw, radius);
-                if (!zone.Contains(point))
-                    continue;
-                switch (NearestFace(zone, point))
-                {
-                    case Face.Left: point.x = zone.xMin - 1e-3f; break;
-                    case Face.Right: point.x = zone.xMax + 1e-3f; break;
-                    case Face.Bottom: point.y = zone.yMin - 1e-3f; break;
-                    default: point.y = zone.yMax + 1e-3f; break;
-                }
-            }
-            return point;
-        }
-
-        private enum Face
-        {
-            Left,
-            Right,
-            Bottom,
-            Top
-        }
-
-        private static Rect Expand(Rect rect, float amount) =>
-            new Rect(rect.xMin - amount, rect.yMin - amount, rect.width + amount * 2f, rect.height + amount * 2f);
-
-        // Face of the rectangle closest to the point (signed distance outward, so an outside point picks the face it
-        // is beyond).
-        private static Face NearestFace(Rect zone, Vector2 point)
-        {
-            var left = point.x - zone.xMin;
-            var right = zone.xMax - point.x;
-            var bottom = point.y - zone.yMin;
-            var top = zone.yMax - point.y;
-            var best = Face.Left;
-            var min = left;
-            if (right < min) { min = right; best = Face.Right; }
-            if (bottom < min) { min = bottom; best = Face.Bottom; }
-            if (top < min) best = Face.Top;
-            return best;
+            if (a < _nodes.Length && b < _nodes.Length)
+                return _visible[a, b];
+            if (a == start && b < _nodes.Length && (pb - pa).sqrMagnitude < 1e-4f)
+                return false; // standing on this node already: it is not a step forward
+            return !IsSegmentBlocked(pa, pb, radius);
         }
     }
 }

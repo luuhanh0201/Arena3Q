@@ -32,6 +32,45 @@ namespace Arena3Q.Data
         public float AttackInterval => attackInterval;
     }
 
+    /// <summary>Where a river can be crossed (bridge or ford).</summary>
+    [Serializable]
+    public sealed class RiverCrossingConfig
+    {
+        [Tooltip("A point on (or next to) the river's centre line where the crossing is.")]
+        [SerializeField] private Vector2 position;
+        [Tooltip("Clear walking width of the crossing, measured along the river.")]
+        [SerializeField, Min(1f)] private float width = 4f;
+
+        public RiverCrossingConfig()
+        {
+        }
+
+        public RiverCrossingConfig(Vector2 position, float width)
+        {
+            this.position = position;
+            this.width = width;
+        }
+
+        public Vector2 Position => position;
+        public float Width => width;
+    }
+
+    /// <summary>A river forbidden zone (spec §9, provisional): centre line + width, crossable only at its crossings.</summary>
+    [Serializable]
+    public sealed class RiverConfig
+    {
+        [SerializeField] private string name = "Sông";
+        [Tooltip("Centre line, in order. Extend it past the map edge to cut the map completely.")]
+        [SerializeField] private Vector2[] path = Array.Empty<Vector2>();
+        [SerializeField, Min(0.5f)] private float width = 2.5f;
+        [SerializeField] private RiverCrossingConfig[] crossings = Array.Empty<RiverCrossingConfig>();
+
+        public string Name => name;
+        public Vector2[] Path => path;
+        public float Width => width;
+        public RiverCrossingConfig[] Crossings => crossings;
+    }
+
     /// <summary>An enemy defender placed around the enemy castle in an Attack stage (spec §8).</summary>
     [Serializable]
     public sealed class DefenderPlacement

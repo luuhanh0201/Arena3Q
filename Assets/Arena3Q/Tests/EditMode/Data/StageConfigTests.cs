@@ -82,6 +82,54 @@ namespace Arena3Q.Tests.EditMode
         }
 
         [Test]
+        public void River_WithoutBridgeAcrossTheMap_ReportsNoRoute()
+        {
+            var stage = CreateValidStage();
+            SetRiver(stage, new[] { new Vector2(0f, -14f), new Vector2(0f, 14f) });
+
+            var errors = new List<string>();
+            stage.Validate(errors);
+
+            Assert.That(errors, Has.Some.Contains("no walking route"));
+        }
+
+        [Test]
+        public void River_WithBridge_IsValid_AndBridgeOffTheRiverIsReported()
+        {
+            var stage = CreateValidStage();
+            SetRiver(stage, new[] { new Vector2(0f, -14f), new Vector2(0f, 14f) }, (Vector2.zero, 4f));
+            var errors = new List<string>();
+            stage.Validate(errors);
+            Assert.That(errors, Is.Empty);
+
+            SetRiver(stage, new[] { new Vector2(0f, -14f), new Vector2(0f, 14f) }, (new Vector2(6f, 0f), 4f));
+            errors.Clear();
+            stage.Validate(errors);
+            Assert.That(errors, Has.Some.Contains("is not on the river"));
+        }
+
+        private static void SetRiver(StageConfig stage, Vector2[] path, params (Vector2 position, float width)[] bridges)
+        {
+            var so = new SerializedObject(stage);
+            var rivers = so.FindProperty("rivers");
+            rivers.arraySize = 1;
+            var river = rivers.GetArrayElementAtIndex(0);
+            river.FindPropertyRelative("width").floatValue = 2.5f;
+            var points = river.FindPropertyRelative("path");
+            points.arraySize = path.Length;
+            for (var i = 0; i < path.Length; i++)
+                points.GetArrayElementAtIndex(i).vector2Value = path[i];
+            var crossings = river.FindPropertyRelative("crossings");
+            crossings.arraySize = bridges.Length;
+            for (var i = 0; i < bridges.Length; i++)
+            {
+                crossings.GetArrayElementAtIndex(i).FindPropertyRelative("position").vector2Value = bridges[i].position;
+                crossings.GetArrayElementAtIndex(i).FindPropertyRelative("width").floatValue = bridges[i].width;
+            }
+            so.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        [Test]
         public void Loadout_WithEmptySlot_ReportsError()
         {
             var loadout = Create<TestLoadout>("Loadout");

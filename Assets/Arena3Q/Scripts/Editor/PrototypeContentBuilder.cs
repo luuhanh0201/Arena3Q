@@ -174,14 +174,65 @@ namespace Arena3Q.Editor
             return new[] { attack, defense };
         }
 
+        // Standard size-M layout (docs/MapSpecification.md): one winding river crossing the map from top to bottom
+        // through the middle, with two bridges, which makes two lanes.
+        public static readonly Vector2[] StandardRiverPath =
+        {
+            new Vector2(1f, 14f), new Vector2(-1f, 9.5f), new Vector2(1.5f, 5f), new Vector2(0.5f, 0f),
+            new Vector2(-1.5f, -5f), new Vector2(1f, -9.5f), new Vector2(-0.5f, -14f)
+        };
+        public const float StandardRiverWidth = 2.5f;
+        public static readonly Vector2[] StandardBridges = { new Vector2(0.67f, 6.5f), new Vector2(-0.67f, -6.5f) };
+        public const float StandardBridgeWidth = 4f;
+
+        /// <summary>
+        /// Replaces the forbidden zones of the shipped stages with the standard river, keeping each asset (and its
+        /// GUID, so the Battle scene keeps its references). Batch mode:
+        /// -executeMethod Arena3Q.Editor.PrototypeContentBuilder.ApplyStandardRiverLayout
+        /// </summary>
+        [MenuItem("Arena3Q/Apply Standard River Layout")]
+        public static void ApplyStandardRiverLayout()
+        {
+            foreach (var guid in AssetDatabase.FindAssets("t:StageConfig", new[] { ContentRoot }))
+            {
+                var stage = AssetDatabase.LoadAssetAtPath<StageConfig>(AssetDatabase.GUIDToAssetPath(guid));
+                var so = new SerializedObject(stage);
+                ApplyStandardRiver(so);
+                so.ApplyModifiedPropertiesWithoutUndo();
+                EditorUtility.SetDirty(stage);
+                Debug.Log($"[Arena3Q] Standard river applied to {stage.name}.");
+            }
+            AssetDatabase.SaveAssets();
+        }
+
+        private static void ApplyStandardRiver(SerializedObject so)
+        {
+            so.FindProperty("forbiddenZones").arraySize = 0;
+            var rivers = so.FindProperty("rivers");
+            rivers.arraySize = 1;
+            var river = rivers.GetArrayElementAtIndex(0);
+            river.FindPropertyRelative("name").stringValue = "Sông";
+            river.FindPropertyRelative("width").floatValue = StandardRiverWidth;
+            var path = river.FindPropertyRelative("path");
+            path.arraySize = StandardRiverPath.Length;
+            for (var i = 0; i < StandardRiverPath.Length; i++)
+                path.GetArrayElementAtIndex(i).vector2Value = StandardRiverPath[i];
+            var crossings = river.FindPropertyRelative("crossings");
+            crossings.arraySize = StandardBridges.Length;
+            for (var i = 0; i < StandardBridges.Length; i++)
+            {
+                var crossing = crossings.GetArrayElementAtIndex(i);
+                crossing.FindPropertyRelative("position").vector2Value = StandardBridges[i];
+                crossing.FindPropertyRelative("width").floatValue = StandardBridgeWidth;
+            }
+        }
+
         private static void CommonStage(SerializedObject so, string stageId, StageType type, TestLoadout loadout)
         {
             so.FindProperty("stageId").stringValue = stageId;
             so.FindProperty("stageType").enumValueIndex = (int)type;
             so.FindProperty("mapBounds").rectValue = new Rect(-24f, -13f, 48f, 26f);
-            var forbidden = so.FindProperty("forbiddenZones");
-            forbidden.arraySize = 1;
-            forbidden.GetArrayElementAtIndex(0).rectValue = new Rect(-2f, 5f, 5f, 8f);
+            ApplyStandardRiver(so);
             so.FindProperty("summonZone").rectValue = new Rect(-18f, -9f, 7f, 18f);
             var points = new[]
             {
