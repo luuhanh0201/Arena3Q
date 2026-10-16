@@ -290,6 +290,31 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator Tap_SelectsHero_AttacksTappedEnemyOrCastle_MovesOnGround()
+        {
+            _battle.StartBattle(0);
+            var first = SummonQuick(0);
+            var second = SummonQuick(1);
+            yield return null;
+            var castle = _battle.Registry.Get(_battle.EnemyCastleId);
+            var defender = _battle.Registry.Units.OfType<EnemyUnit>().First();
+
+            Assert.That(_battle.TapAt(first.Position), Is.EqualTo(BattleController.TapResult.Selected));
+            Assert.That(_battle.SelectedHero, Is.EqualTo(first));
+
+            Assert.That(_battle.TapAt(defender.Position), Is.EqualTo(BattleController.TapResult.Attack));
+            Assert.That(first.Brain.AttackTarget, Is.EqualTo(defender.Id));
+
+            Assert.That(_battle.TapAt(castle.Position + new Vector2(0.5f, 0.5f)), Is.EqualTo(BattleController.TapResult.Attack),
+                "anywhere on the castle counts");
+            Assert.That(first.Brain.AttackTarget, Is.EqualTo(castle.Id));
+
+            Assert.That(_battle.TapAt(new Vector2(-8f, -6f)), Is.EqualTo(BattleController.TapResult.Move));
+            Assert.That(first.State, Is.EqualTo(HeroState.Moving));
+            Assert.That(second.State, Is.EqualTo(HeroState.Idle), "only the selected hero gets the order");
+        }
+
+        [UnityTest]
         public IEnumerator MoveCommand_IntoForbiddenZoneOrOffMap_IsRejected()
         {
             _battle.StartBattle(0);

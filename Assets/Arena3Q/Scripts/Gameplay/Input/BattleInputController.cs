@@ -160,17 +160,7 @@ namespace Arena3Q.Gameplay
             Cancel();
         }
 
-        private void Tap(Vector2 world)
-        {
-            var hero = battle.FindHeroAt(world);
-            if (hero != null)
-            {
-                battle.TrySelectHero(hero.Id);
-                return;
-            }
-            if (battle.SelectedHero != null)
-                battle.MoveSelectedHero(world);
-        }
+        private void Tap(Vector2 world) => battle.TapAt(world);
 
         private void Pinch(Vector2 a, Vector2 b)
         {

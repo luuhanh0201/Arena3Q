@@ -44,6 +44,7 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 - Chỉ **một tướng được chọn** tại một thời điểm; tướng được chọn có vòng sáng.
 - **Chọn tướng**: chạm trực tiếp vào tướng, chạm thẻ của tướng đã ra sân, hoặc chạm icon tướng ở mép màn hình (mục 9).
 - **Lệnh di chuyển (`MoveCommand`)**: khi đã chọn tướng, chạm vào mặt đất hợp lệ.
+- 🟡 Khi đã chọn tướng, **chạm vào quân địch hoặc thành địch** = `AttackCommand` tới mục tiêu đó (cùng tác dụng với vuốt từ tướng).
 - **Lệnh tấn công (`AttackCommand`)**: **vuốt bắt đầu từ tướng** tới thành địch hoặc một đơn vị địch → tướng (và đội lính) tiến tới đánh mục tiêu đó. 🟡 Vuốt bắt đầu từ thẻ của tướng đã ra sân cũng được tính.
 - Lệnh mới **thay thế** lệnh cũ.
 - Không phát lệnh khi ngón tay/con trỏ đang ở trên UI.

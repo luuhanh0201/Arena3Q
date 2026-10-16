@@ -318,6 +318,35 @@ namespace Arena3Q.Gameplay
             return card.State == CardState.Deployed && TrySelectHero(card.Hero);
         }
 
+        public enum TapResult
+        {
+            Nothing,
+            Selected,
+            Attack,
+            Move,
+            Rejected
+        }
+
+        /// <summary>
+        /// A tap on the battlefield (spec §5): on a hero = select it; with a hero selected, on an enemy unit or castle =
+        /// AttackCommand (provisional), on ground = MoveCommand.
+        /// </summary>
+        public TapResult TapAt(Vector2 worldPoint)
+        {
+            var hero = FindHeroAt(worldPoint);
+            if (hero != null)
+                return TrySelectHero(hero.Id) ? TapResult.Selected : TapResult.Rejected;
+
+            var selected = SelectedHero;
+            if (selected == null)
+                return TapResult.Nothing;
+
+            var enemy = FindEnemyAt(worldPoint);
+            if (enemy != null)
+                return AttackWithHero(selected.Id, enemy).Accepted ? TapResult.Attack : TapResult.Rejected;
+            return MoveSelectedHero(worldPoint).Accepted ? TapResult.Move : TapResult.Rejected;
+        }
+
         public CommandResult MoveSelectedHero(Vector2 destination)
         {
             var hero = SelectedHero;
