@@ -1,6 +1,6 @@
 # Arena3Q – Thông số bản đồ (đề xuất)
 
-Phiên bản: v0.3 · 2026-10-16 (thêm sông; chốt cỡ M) · Trạng thái: **🟡 đề xuất, chờ duyệt** (đã chốt ✅: mục 3 – cỡ M)
+Phiên bản: v0.4 · 2026-10-17 · Trạng thái: **phần lớn đã chốt ✅** (cỡ M, PPU 128, góc 3/4 vẽ sẵn, Tilemap + SpriteShape + PSD, 2 làn, kiểm tra tự động, vẽ tay); còn 🟡: tỉ lệ góc 3/4, Sorting Layer, các con số bố cục
 
 Tài liệu này đề xuất thông số để vẽ bản đồ cho ải Công và ải Thủ. Luật gameplay vẫn theo `docs/GameplaySpecification.md` (mục 8, 9); ở đây chỉ chốt **kích thước, toạ độ, bố cục, quy cách art**. Mọi con số dưới đây suy ra từ prototype đang chạy (kích thước unit, tầm đánh, tốc độ, camera, HUD) – mục 1 ghi lại các số gốc đó để khi đổi một số thì biết phải tính lại số nào.
 
@@ -22,7 +22,7 @@ Ký hiệu: 🟡 đề xuất (chờ người dùng duyệt, sau khi duyệt đ�
 | Camera | orthographic, khởi đầu 7, zoom 3.5–11 (bị kẹp bởi bản đồ) | `BattleCameraController` |
 | Vùng nhìn thấy ở zoom 7 | cao 14; rộng 24.9 (màn 16:9) – 31.1 (màn 20:9) | tính |
 | HUD (tham chiếu 1920×1080) | thanh thẻ dưới ~226 px ≈ 21 % chiều cao ≈ **2.9 đơn vị** ở zoom 7; dải trên (tên ải, đồng hồ, thanh góc nhìn) ~150 px ≈ **1.9 đơn vị** | `BattleHud` |
-| Góc nghiêng 2.5D | 0–45°, mặt đất nén trục Y theo `cos(góc)` (45° → ×0.71) | `BattleController.ViewTiltDegrees` |
+| Góc nghiêng 2.5D | hiện 0–45° chỉnh bằng thanh trượt, mặc định 0°; **sẽ khoá ở góc của art (tỉ lệ 0.75 ≈ 41.4°, mục 8.3)** khi có art thật | `BattleController.ViewTiltDegrees` |
 | Thời gian đi thành-tới-thành | 39 đơn vị ÷ 2.6 ≈ **15 giây** | tính |
 
 ---
@@ -107,7 +107,7 @@ Vùng cấm **chặn di chuyển**: unit đi theo đường ngắn nhất vòng 
 | `width` | **2.5** (tối thiểu 1, `Validate` kiểm tra) | rộng hơn 3 thì hai bờ cách nhau quá xa, cầu trông ngắn |
 | `crossings[].position` | điểm nằm **trên lòng sông** (`Validate` báo lỗi nếu lệch ra ngoài), nên đặt trên **đoạn thẳng**, cách khúc quanh ≥ 2 | đặt trên khúc quanh vẫn chạy được nhưng lối qua bị hẹp lại ở phía trong khúc quanh |
 | `crossings[].width` | **4** (tối thiểu 2) | là **bề rộng đi lại thật**; logic cắt lòng sông một đoạn dài `width cầu + width sông` để bờ nước không lấn vào lối qua |
-| Số cầu | **2** cho sông cắt ngang bản đồ cỡ M (2 làn), cách nhau ≥ 10 theo trục y | 1 cầu → điểm nghẽn quá chặt; 3 cầu → sông gần như không còn tác dụng |
+| Số cầu | ✅ **2** cho sông cắt ngang bản đồ cỡ M (2 làn, người dùng chốt 2026-10-17), cách nhau ≥ 10 theo trục y | 1 cầu → điểm nghẽn quá chặt; 3 cầu → sông gần như không còn tác dụng |
 | Bố cục chuẩn cỡ M | path (1, 14) (−1, 9.5) (1.5, 5) (0.5, 0) (−1.5, −5) (1, −9.5) (−0.5, −14); cầu (0.67, 6.5) và (−0.67, −6.5) | = `PrototypeContentBuilder.StandardRiverPath` / `StandardBridges` |
 
 Art: nước vẽ liền theo cả đường tâm (kể cả dưới cầu), cầu vẽ đè lên, hướng cầu vuông góc dòng chảy. Placeholder: sông xanh nước, cầu nâu.
@@ -124,30 +124,45 @@ Camera không cuộn ra ngoài bản đồ, nên vật thể sát mép dưới/t
 | Dải | Bề rộng đề xuất | Không đặt ở đây |
 |---|---|---|
 | Mép trái/phải/trên/dưới | 1 đơn vị | bất cứ vật thể gameplay nào (unit bị kẹp theo bán kính) |
-| Mép **dưới** | **3** đơn vị (≈ thanh thẻ ở zoom 7) | điểm triệu hồi nhanh, thành, điểm sinh quân, quân phòng thủ quan trọng |
-| Mép **trên** | **2** đơn vị (≈ dải tên ải / đồng hồ / thanh góc nhìn) | như trên |
+| Mép **dưới** | **4** đơn vị logic (thanh thẻ ≈ 2.9 đơn vị màn hình ở zoom 7 ÷ 0.75 nén trục dọc ≈ 3.9) | điểm triệu hồi nhanh, thành, điểm sinh quân, quân phòng thủ quan trọng |
+| Mép **trên** | **2.5** đơn vị logic (≈ 1.9 ÷ 0.75) | như trên |
 
-Bản đồ M hiện tại: vùng triệu hồi y −9…9 → cách mép dưới 4, mép trên 4 ✅.
+Số đo theo **toạ độ logic** (toạ độ trong `StageConfig`); vì góc 3/4 nén trục dọc còn 0.75 (mục 8.3), một dải HUD trên màn hình che nhiều đơn vị logic hơn khi nhìn thẳng. Bản đồ M hiện tại: vùng triệu hồi y −9…9 → cách mép dưới 4, mép trên 4 ✅.
 
-## 8. Quy cách art 🟡
+## 8. Quy cách art (người dùng chốt 2026-10-17)
 
-### 8.1 Độ phân giải
-- Ở zoom gần nhất (3.5) mỗi đơn vị chiếm 1080 ÷ 7 ≈ **154 px** trên màn 1080p; ở zoom mặc định ≈ 77 px.
-- Đề xuất **PPU (Pixels Per Unit) = 128** cho art thật: sắc nét ở zoom mặc định, chỉ phóng nhẹ ×1.2 ở zoom gần nhất. (Placeholder hiện dùng 64 – sinh bằng code, không ảnh hưởng.)
+### 8.1 Phong cách và phần mềm ✅
+- ✅ **Vẽ tay, màu mềm** (kiểu Clash of Clans). Phần mềm: **Krita** (miễn phí) hoặc **Photoshop** / **Procreate**; lưu **PSD nhiều lớp** – Unity đọc thẳng bằng PSD Importer (đã có trong project). Không dùng pixel art (không cần Aseprite).
+- Import vào Unity: lọc **Bilinear**, nén theo nền tảng (ASTC trên Android/iOS), bật mipmap cho mặt đất.
 
-### 8.2 Mặt đất
-- Vẽ **nhìn thẳng từ trên xuống (top-down, không phối cảnh)**. Lý do: góc nghiêng 2.5D được tạo lúc chạy bằng cách nén trục Y (0–45°); nếu vẽ sẵn phối cảnh isometric thì khi nén thêm sẽ bị dẹt sai.
-- Dùng **Unity Tilemap** (đã có package Tilemap + Tilemap Extras), ô **1 × 1 đơn vị = 128 × 128 px**. Bản đồ M = 48 × 26 ô.
-- Lớp tilemap đề xuất: `Ground` (cỏ/đất), `GroundDetail` (đường mòn, vết, hoa – chỉ trang trí), `Obstacles` (hình vùng cấm: hồ, vực, vách).
-- Tilemap chỉ là **hình**; dữ liệu gameplay (biên, vùng cấm, vùng triệu hồi…) vẫn nằm trong `StageConfig`. Khi vẽ xong cần một bước kiểm tra hình ↔ dữ liệu (mục 10).
+### 8.2 Độ phân giải ✅
+- ✅ **PPU (Pixels Per Unit) = 128** cho mọi art thật. (Placeholder hiện dùng 64, sinh bằng code, không ảnh hưởng.)
+- Lý do: ở zoom gần nhất (3.5) mỗi đơn vị chiếm 1080 ÷ 7 ≈ 154 px trên màn 1080p, ở zoom mặc định ≈ 77 px → 128 nét ở zoom mặc định, chỉ phóng nhẹ ×1.2 khi zoom gần nhất.
 
-### 8.3 Vật thể đứng (thành, cây, đá, nhà)
-- Sprite **đứng thẳng**, **pivot ở chân (bottom-center)**, đặt theo vị trí logic; sắp lớp theo Y (đang có: thấp hơn trên màn hình = vẽ đè lên).
-- Kích thước đề xuất (rộng × cao, đơn vị): thành **3.5 × 4.5** (thân logic tròn bán kính 1.4) · tướng **1.2 × 1.6** · lính/quân địch **0.8 × 1.1** · cây trang trí 1.5 × 2.5.
-- Vật thể đứng **chỉ để trang trí** thì đặt ngoài hành lang chính, hoặc ở mép bản đồ; chúng **không chặn đường** (chỉ vùng cấm chặn).
+### 8.3 Góc nhìn: nghiêng 3/4 cố định, art vẽ sẵn ✅ (tỉ lệ 🟡)
+- ✅ **Không phải isometric hình thoi**: trục bản đồ giữ nguyên như hiện tại (ta bên trái, địch bên phải, x nằm ngang). Mặt đất **vẽ sẵn ở góc nghiêng 3/4 cố định**: chiều dọc bản đồ trên màn hình bị nén lại so với chiều ngang.
+- 🟡 **Tỉ lệ nén trục dọc = 0.75** (tương đương nghiêng ≈ 41.4°): một ô logic 1 × 1 vẽ thành **128 × 96 px** (số nguyên, dễ vẽ; 45° đúng sẽ là 128 × 90.5 px). Cả bản đồ M trên màn hình: 48 × 19.5 đơn vị ≈ **6144 × 2496 px** (chỉ để tham khảo – không vẽ thành một tấm, xem 8.4).
+- ✅ **Thanh "Góc nhìn" giữ lại để debug**: khi có art thật, góc mặc định của game = góc của art (0.75 ≈ 41.4°); thanh trượt **chỉ hiện trong Editor / bản Development**, bản phát hành ẩn đi và khoá góc. *(Thay đổi code này chưa làm – sẽ làm cùng khung art.)*
+- Vì art đã vẽ sẵn ở góc nghiêng, **không vẽ phối cảnh khác** cho từng vật (mọi thứ dùng chung một góc nhìn).
 
-### 8.4 Thứ tự lớp (Sorting Layer) đề xuất
-`Ground` → `GroundDetail` → `Obstacles` → `GroundUI` (vùng triệu hồi, điểm triệu hồi, marker lệnh, vòng chọn) → `Units` (sắp theo Y) → `Effects` → (uGUI HUD luôn trên cùng).
+### 8.4 Cách lắp bản đồ ✅ (theo đề xuất)
+- ✅ **Mặt đất: Unity Tilemap**, ô logic 1 × 1 = **ảnh 128 × 96 px** (cell size Tilemap 1 × 0.75 trong không gian hiển thị). Bản đồ M = 48 × 26 ô. Vẽ một **bộ ô lặp lại** (cỏ, đất, đường mòn, chuyển tiếp) khoảng 20–40 ô; dùng Rule Tile (Tilemap Extras) cho viền chuyển tiếp tự động.
+- ✅ **Sông: SpriteShape** bám theo đường tâm `rivers[].path` (đã chiếu theo góc 3/4), nên hình luôn khớp logic. Cần vẽ: một **dải nước** nối liền được, **dải bờ** hai bên, ảnh **cây cầu** (đặt vuông góc dòng chảy, rộng 4 đơn vị theo dòng chảy).
+- ✅ **Vật thể đứng: sprite riêng từ PSD**, pivot ở chân (bottom-center), sắp lớp theo Y (thấp hơn trên màn hình = vẽ đè lên).
+- Lớp tilemap: `Ground` (cỏ/đất), `GroundDetail` (đường mòn, vết, hoa – chỉ trang trí), `Obstacles` (nước, vách – trùng vùng cấm).
+- Tilemap / SpriteShape chỉ là **hình**; dữ liệu gameplay (biên, vùng cấm, vùng triệu hồi…) vẫn nằm trong `StageConfig`. Mục 10 kiểm tra hình ↔ dữ liệu.
+
+### 8.5 Kích thước vật thể đứng (rộng × cao trên màn hình, đơn vị; × 128 = px)
+| Vật thể | Kích thước | Ghi chú |
+|---|---|---|
+| Thành | **3.5 × 4.5** (448 × 576 px) | thân logic tròn bán kính 1.4 |
+| Tướng | **1.2 × 1.6** (154 × 205 px) | thân logic bán kính 0.45 |
+| Lính / quân địch | **0.8 × 1.1** (102 × 141 px) | thân logic bán kính 0.30–0.32 |
+| Cây trang trí | 1.5 × 2.5 | không chặn đường |
+- Vật thể **chỉ để trang trí** đặt ngoài lối đi chính hoặc ở mép bản đồ; chúng **không chặn đường** (chỉ vùng cấm chặn).
+
+### 8.6 Thứ tự lớp (Sorting Layer) đề xuất 🟡
+`Ground` → `GroundDetail` → `Obstacles` (nước) → `Bridges` → `GroundUI` (vùng triệu hồi, điểm triệu hồi, marker lệnh, vòng chọn) → `Units` (sắp theo Y) → `Effects` → (uGUI HUD luôn trên cùng).
 
 ## 9. Bảng thông số tổng hợp cho một ải mới (copy khi tạo ải) 🟡
 
@@ -164,9 +179,9 @@ Bản đồ M hiện tại: vùng triệu hồi y −9…9 → cách mép dướ
 | `waves[].spawns[].spawnPoint` | – | x 21–22.5, y −6…6 |
 | `timeLimit` | 180 | 150 |
 
-## 10. Kiểm tra khi nộp bản đồ (đề xuất, chưa làm)
+## 10. Kiểm tra tự động khi nộp bản đồ ✅ (người dùng chốt làm; code chưa viết)
 
-Những luật có thể tự động hoá (thêm vào `StageConfig.Validate` / test nội dung khi bạn duyệt):
+Các luật dưới đây sẽ được thêm vào `StageConfig.Validate` / test nội dung (✅ quyết định 2026-10-17). `[x]` = đã có, `[ ]` = sẽ làm cùng khung art:
 - [ ] Kích thước bản đồ đúng cỡ M (48 × 26, bounds (−24, −13, 48, 26)).
 - [ ] Vật thể gameplay nằm trên bước 0.5.
 - [ ] Không vật thể gameplay quan trọng nào trong lề HUD (mục 7).
@@ -177,8 +192,13 @@ Những luật có thể tự động hoá (thêm vào `StageConfig.Validate` / 
 ## 11. Câu hỏi cần bạn chốt
 
 1. ~~Giữ 3 cỡ S/M/L, hay chỉ dùng một cỡ M?~~ → **Đã chốt: chỉ dùng cỡ M** (mục 3).
-2. **PPU 128** cho art thật – đồng ý?
-3. Mặt đất **vẽ top-down + nghiêng lúc chạy** (đề xuất), hay muốn art **isometric vẽ sẵn** (khi đó phải bỏ thanh góc nghiêng hoặc khoá ở một góc)?
-4. Dùng **Tilemap** cho mặt đất (đề xuất), hay **một ảnh nền lớn** cho mỗi ải?
-5. Có cần **nhiều làn đường** (2–3 lối do vùng cấm tạo ra) ngay ở ải 01, hay một khoảng trống như hiện tại?
-6. Có muốn mình bổ sung các luật mục 10 vào `Validate` ngay sau khi bạn duyệt không?
+2. ~~PPU 128?~~ → **Đã chốt: 128** (mục 8.2).
+3. ~~Top-down nghiêng lúc chạy hay isometric vẽ sẵn?~~ → **Đã chốt: góc nghiêng 3/4 cố định, art vẽ sẵn** (không phải hình thoi); thanh "Góc nhìn" giữ để debug (mục 8.3).
+4. ~~Tilemap hay một ảnh nền lớn?~~ → **Đã chốt: Tilemap + SpriteShape (sông) + sprite PSD** (mục 8.4).
+5. ~~Số làn?~~ → **Đã chốt: 2 làn** (sông có 2 cầu, mục 6.2).
+6. ~~Thêm luật kiểm tra tự động?~~ → **Đã chốt: có** (mục 10).
+7. Phong cách → **Đã chốt: vẽ tay, màu mềm** (mục 8.1).
+
+**Còn cần xác nhận:**
+- 🟡 Tỉ lệ nén trục dọc của góc 3/4: **0.75** (ô 128 × 96 px, ≈ 41.4°) – hay muốn góc khác (ví dụ 0.7 ≈ 45.6°, 0.8 ≈ 36.9°)? Phải chốt **trước khi họa sĩ vẽ ô nền**.
+- 🟡 Thứ tự Sorting Layer (mục 8.6).
