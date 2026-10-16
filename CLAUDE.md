@@ -30,6 +30,7 @@ Assets/
     Scripts/                    Core, Data, Gameplay (Battle, Camera, Heroes, Input, Stages, Troops, Units, Visuals), UI, Editor
     Tests/                      EditMode (Core, Data), PlayMode
     Content/                    generated placeholder assets: Factions, Heroes, Troops, Stages, TestLoadout.asset
+    Art/Maps/map1.png           painted map: temporary background of both stages; the logic layout is measured from it
     Scenes/Battle.unity         startup scene (first in Build Settings)
   Settings/                     URP / 2D renderer, input actions, scene template, Build Profiles/ (Android Dev)
   Scenes/SampleScene.unity      template leftover, still in Build Settings after Battle
