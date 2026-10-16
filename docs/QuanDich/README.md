@@ -31,6 +31,7 @@ Mạch truyện gợi ý: dẹp sơn tặc (người thường) → phản quân
 ## 2. Luật kỹ năng địch
 
 Đã đưa vào spec (người dùng chốt 2026-10-17): **`docs/GameplaySpecification.md` §8 "Quân địch: cấp bậc và kỹ năng"** – cảnh báo vùng đỏ trước khi đánh, khống chế không xoá lệnh của người chơi, kéo/hất văng tuân theo vùng cấm, boss đổi pha ở 50 % máu, boss gác thành (ải Công) / đợt cuối (ải Thủ), dữ liệu `EnemyDefinition` / `EnemySkillDefinition`. Còn **2 xung đột chờ chốt** (spec §13): khiêu khích (Hộ Pháp Đồng Giáp) và đơn vị bay (Quỷ Hoả).
+
 ---
 
 ## 3. Hình ảnh

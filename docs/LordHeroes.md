@@ -70,6 +70,9 @@ Cách dùng (✅ spec §3 "Kỹ năng trên thẻ"): **kỹ năng 2 và 3 tự d
 - Nội tại tác động lên **đội lính** dùng đúng đội của từng tướng (spec §7 ✅ "lính không bao giờ bị gán nhầm").
 - Kéo thẻ để nhắm tuyệt kỹ dùng cùng luật vùng hợp lệ như lệnh (không thả ngoài chiến trường; được phép thả lên sông; thả trên UI = huỷ).
 - Thanh nộ: 🟡 (người dùng xác nhận tạm thời) chỉ tính sát thương **do chính tướng** gây ra (không tính đội lính, không tính khi bị đánh), tỉ lệ với sát thương; mỗi tướng cấu hình `rageMax` và tốc độ tích trong `HeroDefinition`; không tự giảm. ✅ Dùng xong về 0; tướng chết mất nộ; không mang sang trận sau.
+- 🟡 Gợi ý `rageMax`: đầy sau khoảng 15–20 đòn đánh thường trúng mục tiêu (spec §3).
+- 🟡 Vận chiêu: hiệu lực ở mốc `Cast` của animation; bị khống chế / chết trước mốc đó thì kỹ năng không bị tính (spec §3). Mốc và clip từng kỹ năng: `docs/LordAnimations.md`.
+- 🟡 Kỹ năng đẩy / hất văng quân địch (Đông Phong, Thiết Kỵ Xung Phong) tuân theo vùng cấm và biên bản đồ (spec §3, §8).
 - ✅ Mọi tướng (cả tướng thường) có cùng cấu trúc: nội tại + kỹ năng 2, 3 + tuyệt kỹ; bộ kỹ năng cụ thể của tướng thường chờ thiết kế.
 - ✅ **Tốc đánh** (spec §6): quyết định nhịp đánh và tốc độ ra đòn; animation đánh tua theo tốc đánh. Các hiệu ứng "+% tốc đánh" (Kiếm Tâm, Trống Trận) nhân vào tốc đánh này.
 - Cân bằng con số để giai đoạn sắp phát hành (spec §13 ⏳).
@@ -77,5 +80,6 @@ Cách dùng (✅ spec §3 "Kỹ năng trên thẻ"): **kỹ năng 2 và 3 tự d
 ## 4. Câu hỏi còn mở
 1. Có muốn bộ kỹ năng nào thay đổi (ví dụ Mưu sĩ thiên về hồi máu thay vì khống chế)?
 2. Tốc đánh gợi ý ở bảng §1 (0.9 / 1.4 / 0.8 / 1.0 đòn/giây) – để chơi thử, cân bằng sau (spec §13 ⏳).
+3. ⚠️ **Phi Ảnh Đột Kích** (Kiếm sĩ, kỹ năng 2 tự dùng, lướt tới mục tiêu) xung đột với ✅ IgnoreUntilDestination khi tướng đang Moving – đề xuất: kỹ năng làm tướng dịch chuyển không tự dùng khi đang Moving (spec §13 mục 3).
 
 Đã trả lời (2026-10-17): nộ chỉ tính sát thương do tướng gây ra (tạm thời); không giữ nộ khi chết / sang trận sau; chạm thẻ khi chưa đủ nộ hiện "kỹ năng chưa thể sử dụng"; kỹ năng 1 là nội tại, kỹ năng 2 → 3 tự dùng theo thứ tự ưu tiên.

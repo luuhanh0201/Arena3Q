@@ -112,6 +112,7 @@ A pose reference sheet of the attached character, FRONT-RIGHT three-quarter view
 ---
 
 ## Khác với Mưu sĩ khi tách bộ phận và gắn xương
+Danh sách lớp đầy đủ, cây xương, bảng clip và VFX theo sự kiện: `docs/LordAnimations.md`.
 - **Không** có tay áo rộng; thay bằng `F_shoulder_guard_near`, `F_shoulder_guard_far` (con của `arm_*_upper`). Váy giáp `F_skirt_front`, `F_skirt_back` (xương `skirt_*` 2 đoạn); chân đầy đủ.
 - **Áo choàng** 2 mảnh: `F_cape_1`, `F_cape_2` (xương `cape_1 → cape_2` con của `chest`), nằm **dưới** thân ở hướng trước, **trên** thân ở hướng sau.
 - Vũ khí và đồ sau lưng: `F_spear` (con của `hand_near`), `F_banner_pole` (con của `chest`), `F_banner_cloth` (xương `banner_1 → banner_2` để vải bay).

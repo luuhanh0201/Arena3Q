@@ -110,6 +110,7 @@ A pose reference sheet of the attached character, FRONT-RIGHT three-quarter view
 ---
 
 ## Khác với Mưu sĩ khi tách bộ phận và gắn xương
+Danh sách lớp đầy đủ, cây xương, bảng clip và VFX theo sự kiện: `docs/LordAnimations.md`.
 - **Không** có tay áo rộng; tay áo bó theo cánh tay (vẽ luôn trên `arm_*`). Vạt áo bào xẻ hai bên → `F_robe_front`, `F_robe_back`, `F_robe_side_near` (xương `robe_*` 2 đoạn); chân đầy đủ (`leg_*_upper`, `leg_*_lower`, `foot_*`).
 - Vũ khí: `F_sword_long` (con của `hand_near`), `F_sword_short` + `F_scabbard_short`, `F_scabbard_long` (con của `hip`). Tuyệt kỹ có thể rút đoản kiếm: thêm lớp `F_sword_short_drawn` (ẩn), con của `hand_far`.
 - Tóc: `F_ponytail_1`, `F_ponytail_2` (xương `ponytail_1 → ponytail_2` con của `head`).

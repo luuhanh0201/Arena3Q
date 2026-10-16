@@ -13,12 +13,13 @@ Hiệu ứng **không** vẽ từng khung: mình dựng bằng **hệ thống h�
 
 | # | Chủ tướng | Kỹ năng | Tên kỹ năng trong file |
 |---|---|---|---|
-| 0 | Chung | Trúng đòn, xuất trận, thanh nộ đầy | `common` |
+| 0 | Chung | Trúng đòn, xuất trận, thanh nộ đầy, choáng | `common` |
 | 1–4 | Mỗi chủ tướng | Đánh thường | `basic` |
 | 5–7 | Cung thủ | Liên Châu Tiễn · Tiễn Vũ · Phá Thành Hỏa Tiễn | `multishot` · `arrowrain` · `firearrow` |
 | 8–10 | Kiếm sĩ | Phi Ảnh Đột Kích · Toàn Phong Trảm · Vạn Kiếm Quy Tông | `dash` · `whirlwind` · `swordrain` |
 | 11–13 | Mưu sĩ | Hỏa Kế · Bát Quái Trận · Đông Phong | `firefield` · `bagua` · `eastwind` |
 | 14–16 | Thống soái | Hiệu Triệu · Trống Trận · Thiết Kỵ Xung Phong | `rally` · `wardrum` · `cavalry` |
+| 17–19 | Cung thủ, Kiếm sĩ, Mưu sĩ | Nội tại: Ưng Nhãn · Kiếm Tâm · Thao Lược | `passive` |
 
 ---
 
@@ -27,7 +28,7 @@ Hiệu ứng **không** vẽ từng khung: mình dựng bằng **hệ thống h�
 ```
 Stylised 3D-rendered game visual effects matching the look of the attached reference image (soft, clean, glossy, mobile game quality), glowing, high contrast, no characters, no text, no watermark.
 A set of separate VFX texture elements for a mobile strategy game, evenly spaced on a transparent background, nothing overlapping:
-1) small white-gold hit spark star burst, 2) circular impact shockwave ring seen from directly above (thin, white), 3) soft round glow orb (white, fading edges), 4) a vertical pillar of soft golden light (summon effect), 5) small sparkle particle (four-pointed star), 6) a circular golden glow ring seen from directly above (ultimate ready).
+1) small white-gold hit spark star burst, 2) circular impact shockwave ring seen from directly above (thin, white), 3) soft round glow orb (white, fading edges), 4) a vertical pillar of soft golden light (summon effect), 5) small sparkle particle (four-pointed star), 6) a circular golden glow ring seen from directly above (ultimate ready), 7) a small ring of three cute spinning yellow stars (stun indicator above a head).
 ```
 
 ---
@@ -166,4 +167,30 @@ A set of separate VFX texture elements for a war drum buff skill, evenly spaced 
 Stylised 3D-rendered game visual effects matching the look of the attached images (soft, clean, mobile game quality), glowing, dramatic, no text, no watermark.
 A set of separate VFX texture elements for an ultimate cavalry charge skill, evenly spaced on a transparent background, nothing overlapping:
 1) a ghostly translucent golden armoured cavalry rider on a horse charging to the right, three-quarter view from about 40 degrees above, 2) a long horizontal dust cloud trail, 3) a hoof-print ground decal seen from directly above, 4) a small golden impact burst.
+```
+
+---
+
+## 17. Cung thủ – nội tại Ưng Nhãn (mỗi đòn thứ 4 bắn xuyên)
+Đính kèm: `chutuong1.png` + `archer_turnaround.png` · Lưu: `vfx_archer_passive_sheet.png`
+```
+Stylised 3D-rendered game visual effects matching the look of the attached images (soft, clean, mobile game quality), glowing, no characters, no text, no watermark.
+A set of separate VFX texture elements for a piercing arrow passive, evenly spaced on a transparent background, nothing overlapping:
+1) a bright golden glowing arrow pointing right with a sharp tip, 2) a long thin golden piercing trail streak, 3) a small golden ring burst where the arrow passes through a target.
+```
+
+## 18. Kiếm sĩ – nội tại Kiếm Tâm (hút máu; dưới 30 % máu tăng tốc đánh)
+Đính kèm: `chutuong1.png` + `swordsman_turnaround.png` · Lưu: `vfx_swordsman_passive_sheet.png`
+```
+Stylised 3D-rendered game visual effects matching the look of the attached images (soft, clean, mobile game quality), glowing, no characters, no text, no watermark.
+A set of separate VFX texture elements for a sword-heart passive, evenly spaced on a transparent background, nothing overlapping:
+1) a small soft green healing orb with a short tail, 2) a tiny green plus-shaped sparkle, 3) a flickering red battle aura flame seen from the front (to wrap around a character), 4) a circular red aura ring seen from directly above.
+```
+
+## 19. Mưu sĩ – nội tại Thao Lược (đội lính quanh Mưu sĩ +10 % sát thương)
+Đính kèm: `chutuong1.png` + `strategist_turnaround.png` · Lưu: `vfx_strategist_passive_sheet.png`
+```
+Stylised 3D-rendered game visual effects matching the look of the attached images (soft, clean, mobile game quality), soft glow, no characters, no text, no watermark.
+A set of separate VFX texture elements for a strategist aura passive, evenly spaced on a transparent background, nothing overlapping:
+1) a very faint wide lavender aura ring seen from directly above, thin and subtle (it will cover a large area under many units), 2) a tiny lavender upward-arrow glow (buff marker above a soldier), 3) a small floating bamboo-slip symbol glowing lavender.
 ```

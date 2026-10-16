@@ -123,3 +123,9 @@ Không phải lỗi code; ghi lại cách làm và chỗ suýt sai:
 - **Cầu vẽ nằm ngang ⇒ đường tâm sông dưới cầu phải thẳng đứng**, vì lối qua logic vuông góc với đoạn sông tại cầu.
 - **Ảnh vẽ sẵn ở một góc ⇒ khi ải có ảnh nền, góc nhìn phải bằng góc của ảnh** (0.75 → 41.4°), nếu không ảnh bị kéo dãn sai tỉ lệ.
 - **Test PlayMode dùng toạ độ cố định có thể va với bố cục mới** (vị trí gác (0, −6) rơi sát bờ cầu Nam). Test hành vi nên đặt ở vùng chắc chắn trống, hoặc tính vị trí từ dữ liệu ải (ví dụ điểm sông xa cầu nhất).
+
+## Luật "tốc đánh" báo đã ghi vào spec nhưng thực tế không có (2026-10-17)
+- **Triệu chứng:** commit `e7c0df2` ghi là đã thêm luật "tốc đánh" vào spec §6 "Chung", nhưng dòng đó không có trong file; chỉ phần dữ liệu §10 được sửa. Phát hiện khi rà spec để viết `docs/LordAnimations.md`.
+- **Nguyên nhân:** sửa bằng `perl -pe 's/...đòn\.$/.../'` trên file xuống dòng **CRLF**: `$` khớp trước `\n` nhưng sau `\r`, nên mẫu kết thúc bằng `\.$` không bao giờ khớp. Perl không báo gì khi không thay được, và lần đó mình chỉ in lại các dòng khác để kiểm tra, không kiểm tra đúng dòng này.
+- **Cách sửa:** thêm lại luật bằng công cụ Edit (khớp chuỗi chính xác), kèm 🟡 luật đạn tầm xa.
+- **Tránh lặp lại:** với file tài liệu (CRLF hoặc lẫn LF/CRLF), sửa bằng Edit; nếu dùng perl thì không neo `$` (hoặc dùng `\r?$`). **Sau mỗi lệnh thay thế hàng loạt, grep đúng từng chuỗi mới** để chắc đã vào file trước khi báo xong.

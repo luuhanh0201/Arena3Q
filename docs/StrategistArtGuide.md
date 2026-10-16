@@ -190,24 +190,7 @@ Hướng sau dùng **cùng tên xương** (để một bộ clip gần như dùn
 
 ## 5. Clip animation của Mưu sĩ
 
-Mọi clip dựng cho hướng trước; hướng sau dùng cùng tên clip. Lật trái bằng `scale.x = -1` ở gốc.
-
-| Clip | Độ dài | Lặp | Mô tả | Sự kiện |
-|---|---|---|---|---|
-| `idle` | 2.0 s | có | thở nhẹ (ngực lên xuống), quạt phẩy chậm, tay áo và dải lụa lay | – |
-| `run` | 0.6 s | có | bước nhỏ nhanh, vạt áo đung đưa, thân hơi nghiêng trước, quạt giữ sát người | – |
-| `attack` | **1.0 s** (nhịp chuẩn) | – | 0–0.4 s: vung quạt ra sau vai (**vung**) · 0.4 s: phẩy mạnh tới trước (**trúng**) · 0.4–1.0 s: thu về | `Hit` @ 0.4 s |
-| `hit` | 0.3 s | – | giật lùi, mặt `hurt` | – |
-| `die` | 1.0 s | – | lảo đảo, quạt rơi, ngã nghiêng, mặt `ko`, giữ khung cuối | – |
-| `spawn` | 0.8 s | – | bước ra, xoè quạt trước ngực rồi hạ xuống | – |
-| `command` | 0.6 s | – | chỉ quạt về phía trước, mặt `shout` | – |
-| `victory` | 1.5 s | có | xoè quạt che nửa dưới mặt, cười, xoay nhẹ | – |
-| `select` | 3.0 s | có | tư thế đẹp ở màn chọn chủ tướng, chậm | – |
-| `skill2` Hỏa Kế | 0.5 s | – | quạt quét xuống chỉ đất | `Cast` @ 0.3 s |
-| `skill3` Bát Quái Trận | 0.6 s | – | quạt vẽ vòng tròn trước người | `Cast` @ 0.4 s |
-| `ultimate` Đông Phong | 1.0 s | – | dang hai tay (bàn tay gần đổi `open`), tay áo bay phần phật, phẩy quạt quét ngang thật mạnh, mặt `shout` | `Cast` @ 0.7 s |
-
-**Tốc đánh** (spec §6): Animator chạy `attack` với tốc độ = **tốc đánh** của tướng (Mưu sĩ gợi ý 0.8 đòn/giây → clip dài 1.25 s). Khoảng vung (40 % clip) khớp với "thời gian vung" trong spec – phần gây sát thương đúng lúc `Hit` làm cùng đợt này (⏳ trong spec).
+Bảng clip (độ dài, động tác, sự kiện `Hit` / `Cast`, VFX gắn theo sự kiện) của **cả 4 chủ tướng** nằm chung ở **`docs/LordAnimations.md`** (Mưu sĩ: mục 1; quy ước chung: mục 0). Tóm tắt: `attack` dài 1.0 s ở nhịp chuẩn, `Hit` @ 0.4 s, chạy với tốc độ = tốc đánh (Mưu sĩ 0.8 → 1.25 s); kỹ năng có hiệu lực ở `Cast`.
 
 ---
 

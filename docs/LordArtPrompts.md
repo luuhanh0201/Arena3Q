@@ -32,13 +32,11 @@ Việc này cần 3 thứ: (1) **làm đúng chỉ dẫn** (đúng danh sách b�
 
 ## 2. Quy trình cho mỗi chủ tướng
 
-1. **Concept** (ảnh A): xin ảnh nhân vật toàn thân, 2 hướng trên cùng một tấm → chọn và chỉnh tới khi ưng. **Đây là ảnh gốc** cho mọi bước sau.
-2. **Bộ phận hướng trước-phải** (ảnh B) và **hướng sau-phải** (ảnh C): từ ảnh A, xin tấm "bộ phận tách rời" (mục 4).
-3. **Biểu cảm** (ảnh D): các khuôn mặt thay đổi được (bình thường, hô lệnh, đau, gục).
-4. **Hiệu ứng kỹ năng** (ảnh E): các mảnh hiệu ứng nền trong suốt (mục 6).
-5. **Chân dung thẻ + ảnh màn chọn chủ tướng** (ảnh F, G).
-6. **Hậu kỳ trong Krita/Photoshop** (mục 8): cắt từng bộ phận, xoá nền, ghép lại thành **PSD nhiều lớp** ở tư thế đứng mặc định.
-7. Gửi PSD cho mình (hoặc đặt vào `Assets/Arena3Q/Art/Heroes/`): mình gắn xương trong Unity 2D Animation và làm các động tác ở mục 7.
+1. **Ảnh** theo `docs/art/concepts/<ChuTuong>_Prompts.md`: bảng xoay 4 hướng (ảnh gốc) → tư thế chuẩn trước-phải và sau-phải → 4 biểu cảm → (vá phần bị che khi cắt) → tư thế tham khảo.
+2. **Tách bộ phận và ghép PSD** trong Krita – làm theo mẫu `docs/StrategistArtGuide.md` §3; danh sách lớp riêng từng chủ tướng: `docs/LordAnimations.md`.
+3. **Gắn xương** trong Unity Skinning Editor – `StrategistArtGuide.md` §4; tên xương riêng: `LordAnimations.md`.
+4. Mình dựng prefab, Animator, clip, VFX và code (`LordAnimations.md`, `StrategistArtGuide.md` §6).
+5. **VFX, icon, chân dung**: `VFX_Prompts.md`, `Icon_Prompts.md`, `ChanDung_Prompts.md` (cùng thư mục prompt) – làm sau khi đã chốt bảng xoay.
 
 ---
 
@@ -113,29 +111,7 @@ Prompt dán sẵn: **`docs/art/concepts/Icon_Prompts.md`** (16 icon: nội tại
 
 ## 7. Danh sách animation (mình làm trong Unity bằng skeletal)
 
-Bạn chỉ cần cung cấp PSD bộ phận + biểu cảm; các động tác sau mình dựng. Nếu muốn định hướng tư thế, có thể xin AI thêm một **tấm tư thế tham khảo** (không dùng trong game):
-```
-[khối phong cách ở mục 3]
-A pose reference sheet of the attached character, front-right 3/4 view, 6 key poses in a row on white:
-[liệt kê tư thế, ví dụ: idle, mid-stride walk, attack wind-up, attack strike, hurt recoil, fallen]
-```
-
-| Động tác | Mô tả chung | Riêng từng chủ tướng |
-|---|---|---|
-| **Đứng chờ** (lặp) | thở nhẹ, áo choàng lay | Cung thủ xoay tên trong tay · Kiếm sĩ cầm kiếm hờ · Mưu sĩ phẩy quạt chậm · Thống soái chống thương |
-| **Đi / chạy** (lặp) | 6–8 tư thế chính | Thống soái bước nặng; Kiếm sĩ chạy nhanh nghiêng người |
-| **Đánh thường** | có khung "trúng đòn"; **vẽ ở nhịp chuẩn 1 đòn/giây**, game tua nhanh / chậm theo **tốc đánh** của tướng (spec §6) – nên phần vung chiếm khoảng 40 % clip, khung trúng đòn rõ ràng | kéo cung–bắn · chém chéo · phẩy quạt phóng luồng khí · đâm thương |
-| **Bị đánh** | giật lùi ngắn + mặt "đau" | |
-| **Chết** | ngã, mặt "gục", mờ dần | Thống soái quỳ chống thương rồi gục |
-| **Xuất trận** (khi triệu hồi) | bước ra từ ánh sáng, đứng tư thế | Thống soái cắm cờ lệnh |
-| **Ra lệnh** (khi nhận lệnh tấn công) | chỉ vũ khí về phía trước, mặt "hô lệnh" | |
-| **Chiến thắng** (lặp) | giơ vũ khí ăn mừng | |
-| **Màn chọn chủ tướng** (lặp) | tư thế đẹp nhất, chậm | |
-| **Kỹ năng 2, 3** | vận chiêu 0.3–0.6 s, có khung phát chiêu | theo bảng kỹ năng `LordHeroes.md` §2 |
-| **Tuyệt kỹ** | vận chiêu dài hơn (0.8–1.2 s), tư thế mạnh | |
-
-Nội tại không cần động tác riêng (chỉ có hiệu ứng nhẹ nếu cần).
-
+Bộ clip, độ dài, mốc `Hit` / `Cast`, xương, lớp PSD và VFX gắn theo sự kiện của **cả 4 chủ tướng**: **`docs/LordAnimations.md`**. Prompt tư thế tham khảo: ảnh 6 trong từng file `<ChuTuong>_Prompts.md`.
 ---
 
 ## 8. Chân dung và ảnh màn chọn

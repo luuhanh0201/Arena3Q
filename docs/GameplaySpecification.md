@@ -47,6 +47,9 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
   - **Giữ** thẻ **1.5 giây** = **chọn** tướng đó (đổi chọn tướng nhanh).
   - Thẻ chưa dùng (chạm = triệu hồi nhanh, kéo = triệu hồi tự do) và thẻ tướng đã chết: không đổi.
 - 🟡 Tướng đã chết: thẻ **xám lại**, không chọn và không dùng lại được.
+- 🟡 **Vận chiêu**: kỹ năng có hiệu lực ở mốc phát chiêu trong animation (`Cast`, `docs/LordAnimations.md`); trong lúc vận chiêu tướng đứng yên, xong thì về lệnh / trạng thái cũ. Bị khống chế hoặc chết **trước** mốc phát chiêu → kỹ năng không bị tính (không vào hồi chiêu, không mất nộ).
+- 🟡 Kỹ năng của ta **đẩy / hất văng / kéo** quân địch (Đông Phong, Thiết Kỵ Xung Phong…) dùng cùng luật với khống chế của địch ở mục 8: tuân theo vùng cấm và biên bản đồ.
+- 🟡 Gợi ý `rageMax`: thanh nộ đầy sau khoảng **15–20 đòn đánh thường** trúng mục tiêu (cân bằng sau, mục 13).
 
 ## 4. Triệu hồi
 - ✅ Tối đa **5 tướng đã triệu hồi** mỗi trận. Tướng chết **không** trả lại lượt.
@@ -110,6 +113,8 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 
 ### Chung ✅
 - Mỗi đòn đánh tuân theo tầm đánh, sát thương, thời gian hồi đòn.
+- ✅ (người dùng chốt 2026-10-17) **Mọi tướng có thuộc tính "tốc đánh"** (số đòn mỗi giây; = 1 / thời gian giữa hai đòn). Tốc đánh quyết định **cả nhịp đánh lẫn tốc độ ra đòn**: mỗi đòn có **thời gian vung** trước khi trúng (🟡 = 40 % chu kỳ đòn), animation đánh **tua nhanh / chậm theo tốc đánh** để khung trúng đòn khớp với lúc gây sát thương (`docs/LordAnimations.md` §0.2). ⏳ Phần "thời gian vung" làm cùng animation; prototype hiện gây sát thương ngay khi hết thời gian hồi đòn.
+- 🟡 Đánh **tầm xa** (khi có animation): tới lúc trúng đòn thì sinh **đạn** bay tới mục tiêu, **sát thương khi đạn tới**; mục tiêu chết trước thì đạn tan. Tốc độ đạn cấu hình theo tướng / lính (gợi ý: mũi tên 15, luồng khí 10 đơn vị/giây).
 - Không gây sát thương khi đã chết hoặc trận đã kết thúc.
 
 ## 7. Đội lính
@@ -205,4 +210,5 @@ Màn chọn chủ tướng, kỹ năng chủ tướng, kỹ năng và cấp bậ
 - ⚠️ **Xung đột cần chốt (quân địch, 2026-10-17):**
   1. **Khiêu khích** (Hộ Pháp Đồng Giáp, `docs/QuanDich/Chuong2_HoangCan.md`: "buộc quân ta trong bán kính 2.5 đánh mình") xung đột với ✅ **IgnoreUntilDestination** (Moving không đổi mục tiêu) và ✅ **Attacking** (đánh đúng mục tiêu được chỉ định). Đề xuất: chỉ tác dụng lên đơn vị **không đang thi hành lệnh** (Idle / Advancing / Combat và lính đang giao chiến tự do); tướng đang Moving / Attacking bỏ qua. Hoặc đổi kỹ năng thành chỉ giảm sát thương (bỏ khiêu khích).
   2. **Đơn vị bay** (Quỷ Hoả, `docs/QuanDich/Chuong3_YeuQuai.md`: "không bị sông chặn") xung đột với mục 9 🟡 vùng cấm **chặn mọi unit**. Đề xuất: thêm cờ `flying` – đơn vị bay qua được **sông** nhưng vẫn bị **vùng cấm chữ nhật** và biên bản đồ chặn; quân ta cận chiến vẫn đánh được khi nó ở trên bờ. Hoặc bỏ đặc tính bay.
+  3. **Kỹ năng di chuyển tướng tự dùng** (Kiếm sĩ – Phi Ảnh Đột Kích: "lướt tới mục tiêu trong bán kính 6", `docs/LordHeroes.md` §2.2) xung đột với ✅ **IgnoreUntilDestination** (đang Moving thì không đổi hướng, không lao vào địch): kỹ năng 2/3 tự dùng sẽ kéo tướng khỏi đường đi. Đề xuất: kỹ năng làm tướng **dịch chuyển** không tự dùng khi tướng đang **Moving** (chờ tới đích); các kỹ năng đứng tại chỗ vẫn dùng khi đang đi. Hoặc đổi Phi Ảnh Đột Kích thành đòn đứng tại chỗ.
 - ⏳ **Cân bằng độ khó** (thông số tướng/lính/quân địch, đợt quân, thời gian, bề rộng và số cầu): để tới **giai đoạn sắp phát hành** (người dùng chốt 2026-10-16). Đã biết: sau khi có sông, ải Thủ suýt thua (mất cả 5 tướng, thành còn 173/3000) và ải Công dễ hơn (3 sao, không mất tướng) – xem test `Balance_*`.
