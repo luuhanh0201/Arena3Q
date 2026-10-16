@@ -190,6 +190,7 @@ namespace Arena3Q.Tests.EditMode
             var defend = brain.Tick(0.1f, _sensor);
             Assert.That(brain.State, Is.EqualTo(HeroState.Combat));
             Assert.That(defend.Target, Is.EqualTo(EnemyA));
+            Assert.That(defend.MayChase, Is.False, "self-defence fights in place (spec §6 rule 5)");
 
             _sensor.Kill(EnemyA);
             var resume = brain.Tick(0.1f, _sensor);

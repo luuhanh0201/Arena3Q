@@ -23,7 +23,7 @@ MonoBehaviour:
     moveSpeed: 2.8
     attackRange: 0.6
     attackInterval: 0.9
-    reactionRange: 1
+    reactionRange: 0.6
     aggroRange: 6
   idleBeforeAdvanceSeconds: 5
   idleTimerResetsOnOutOfRangeDamage: 0

@@ -22,8 +22,8 @@ namespace Arena3Q.Data
 
         [Header("Combat")]
         [SerializeField] private CombatStats stats = new CombatStats(
-            maxHealth: 500f, damage: 40f, moveSpeed: 2.5f, attackRange: 1.2f, attackInterval: 1f,
-            reactionRange: 1.5f, aggroRange: 6f);
+            maxHealth: 500f, damage: 40f, moveSpeed: 2.5f, attackRange: 0.7f, attackInterval: 1f,
+            reactionRange: 0.7f, aggroRange: 6f);
 
         [Header("Idle rule (spec §6)")]
         [Tooltip("Seconds with no target and no new command before an Idle hero starts Advancing.")]

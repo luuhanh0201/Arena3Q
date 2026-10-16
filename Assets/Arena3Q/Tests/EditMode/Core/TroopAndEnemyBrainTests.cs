@@ -93,6 +93,7 @@ namespace Arena3Q.Tests.EditMode
             var intent = _brain.Tick(SquadMode.MarchFormation, _sensor);
 
             Assert.That(intent.Target, Is.EqualTo(Enemy));
+            Assert.That(intent.MayChase, Is.False, "fights back in place, like the hero");
         }
 
         [Test]

@@ -22,5 +22,5 @@ MonoBehaviour:
     moveSpeed: 1.6
     attackRange: 0.7
     attackInterval: 1.5
-    reactionRange: 1
+    reactionRange: 0.7
     aggroRange: 5

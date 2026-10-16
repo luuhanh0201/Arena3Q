@@ -16,7 +16,7 @@ namespace Arena3Q.Data
         [Tooltip("Seconds between two attacks (attack speed / cooldown).")]
         [SerializeField, Min(0.05f)] private float attackInterval;
 
-        [Tooltip("Self-defence radius while Moving: only attackers within this distance trigger Combat (spec §6). Default is about melee range.")]
+        [Tooltip("Self-defence radius while Moving: only attackers within this distance trigger Combat (spec §6). About melee range, and never above attackRange because Combat fights in place.")]
         [SerializeField, Min(0f)] private float reactionRange;
 
         [Tooltip("Radius used to find targets while Advancing.")]
@@ -54,6 +54,8 @@ namespace Arena3Q.Data
             if (attackRange <= 0f) errors.Add($"{owner}: attackRange must be > 0.");
             if (attackInterval <= 0f) errors.Add($"{owner}: attackInterval must be > 0.");
             if (reactionRange < 0f) errors.Add($"{owner}: reactionRange must be >= 0.");
+            // Self-defence fights in place (spec §6 rule 5): an attacker inside reactionRange must also be in reach.
+            if (reactionRange > attackRange) errors.Add($"{owner}: reactionRange must be <= attackRange (self-defence does not chase).");
             if (aggroRange < attackRange) errors.Add($"{owner}: aggroRange must be >= attackRange.");
         }
     }

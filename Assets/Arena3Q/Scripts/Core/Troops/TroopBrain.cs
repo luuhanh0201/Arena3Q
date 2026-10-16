@@ -122,9 +122,9 @@ namespace Arena3Q.Core
             switch (mode)
             {
                 case SquadMode.MarchFormation:
-                    // Provisional self-defence with the same reactionRange rule as the hero.
+                    // Provisional self-defence with the same rule as the hero: fight back in place.
                     return sensor.CloseAttacker.IsValid
-                        ? HeroIntent.Engage(sensor.CloseAttacker, mayChase: true)
+                        ? HeroIntent.Engage(sensor.CloseAttacker, mayChase: false)
                         : HeroIntent.MoveTo(sensor.SlotPosition);
 
                 case SquadMode.FocusTarget:
@@ -211,7 +211,7 @@ namespace Arena3Q.Core
             if (sensor.EnemyInAttackRange.IsValid)
                 return HeroIntent.Engage(sensor.EnemyInAttackRange, mayChase: false);
             if (sensor.CloseAttacker.IsValid)
-                return HeroIntent.Engage(sensor.CloseAttacker, mayChase: true);
+                return HeroIntent.Engage(sensor.CloseAttacker, mayChase: false);
             return ToSlot(sensor);
         }
 

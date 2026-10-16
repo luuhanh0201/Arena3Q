@@ -14,8 +14,8 @@ namespace Arena3Q.Data
         [SerializeField] private Color placeholderColor = Color.white;
 
         [SerializeField] private CombatStats stats = new CombatStats(
-            maxHealth: 100f, damage: 10f, moveSpeed: 2.8f, attackRange: 1f, attackInterval: 1f,
-            reactionRange: 1.5f, aggroRange: 5f);
+            maxHealth: 100f, damage: 10f, moveSpeed: 2.8f, attackRange: 0.6f, attackInterval: 1f,
+            reactionRange: 0.6f, aggroRange: 5f);
 
         public string TroopId => troopId;
         public string DisplayName => displayName;

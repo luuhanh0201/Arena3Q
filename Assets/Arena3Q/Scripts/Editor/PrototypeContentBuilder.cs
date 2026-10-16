@@ -77,26 +77,26 @@ namespace Arena3Q.Editor
             var faction = GetOrCreate<FactionDefinition>(ContentRoot + "/Factions/Faction_Placeholder.asset", _ => { });
 
             var soldier = Troop("Troop_Soldier", "soldier", "Lính", new Color(0.85f, 0.85f, 0.9f),
-                120f, 12f, 2.7f, 0.6f, 1.0f, 1.0f, 4.5f);
+                120f, 12f, 2.7f, 0.6f, 1.0f, 0.6f, 4.5f);
             var swordsman = Troop("Enemy_Swordsman", "enemy_swordsman", "Kiếm binh địch", new Color(0.6f, 0.12f, 0.15f),
-                160f, 16f, 2.2f, 0.6f, 1.0f, 1.0f, 5f);
+                160f, 16f, 2.2f, 0.6f, 1.0f, 0.6f, 5f);
             var archer = Troop("Enemy_Archer", "enemy_archer", "Cung thủ địch", new Color(0.9f, 0.45f, 0.15f),
-                90f, 13f, 2.2f, 4.5f, 1.3f, 1.0f, 6f);
+                90f, 13f, 2.2f, 4.5f, 1.3f, 0.7f, 6f);
             var brute = Troop("Enemy_Brute", "enemy_brute", "Lực sĩ địch", new Color(0.45f, 0.15f, 0.45f),
-                600f, 35f, 1.6f, 0.7f, 1.5f, 1.0f, 5f);
+                600f, 35f, 1.6f, 0.7f, 1.5f, 0.7f, 5f);
 
             var lord = Hero("Hero_Lord", "lord", "Chủ Tướng", new Color(1f, 0.8f, 0.2f), faction, soldier,
-                900f, 45f, 2.6f, 0.7f, 1.0f, 1.0f, 6f);
+                900f, 45f, 2.6f, 0.7f, 1.0f, 0.7f, 6f);
             var heroes = new[]
             {
                 Hero("Hero_Swordsman", "swordsman", "Kiếm Sĩ", new Color(0.95f, 0.35f, 0.3f), faction, soldier,
-                    700f, 40f, 2.8f, 0.6f, 0.9f, 1.0f, 6f),
+                    700f, 40f, 2.8f, 0.6f, 0.9f, 0.6f, 6f),
                 Hero("Hero_Archer", "archer", "Cung Thủ", new Color(0.35f, 0.85f, 0.4f), faction, soldier,
-                    450f, 30f, 2.6f, 4.5f, 1.1f, 1.0f, 7f),
+                    450f, 30f, 2.6f, 4.5f, 1.1f, 0.7f, 7f),
                 Hero("Hero_Cavalry", "cavalry", "Kỵ Binh", new Color(0.6f, 0.45f, 1f), faction, soldier,
-                    650f, 35f, 3.6f, 0.6f, 1.0f, 1.0f, 6f),
+                    650f, 35f, 3.6f, 0.6f, 1.0f, 0.6f, 6f),
                 Hero("Hero_Guardian", "guardian", "Giáp Sĩ", new Color(0.3f, 0.8f, 0.95f), faction, soldier,
-                    1200f, 25f, 2.2f, 0.6f, 1.2f, 1.0f, 5f)
+                    1200f, 25f, 2.2f, 0.6f, 1.2f, 0.6f, 5f)
             };
 
             var loadout = GetOrCreate<TestLoadout>(ContentRoot + "/TestLoadout.asset", so =>

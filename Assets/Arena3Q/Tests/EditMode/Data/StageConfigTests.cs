@@ -123,6 +123,31 @@ namespace Arena3Q.Tests.EditMode
         }
 
         [Test]
+        public void Hero_ReactionRangeAboveAttackRange_ReportsError()
+        {
+            var hero = CreateHero("hero", Create<TroopDefinition>("Troop"));
+            var so = new SerializedObject(hero);
+            so.FindProperty("stats.attackRange").floatValue = 0.6f;
+            so.FindProperty("stats.reactionRange").floatValue = 1f;
+            so.ApplyModifiedPropertiesWithoutUndo();
+
+            var errors = new List<string>();
+            hero.Validate(errors);
+
+            Assert.That(errors, Has.Some.Contains("reactionRange must be <= attackRange"));
+        }
+
+        [Test]
+        public void ShippedContent_PassesValidation()
+        {
+            var errors = new List<string>();
+            foreach (var guid in AssetDatabase.FindAssets("t:StageConfig", new[] { "Assets/Arena3Q/Content" }))
+                AssetDatabase.LoadAssetAtPath<StageConfig>(AssetDatabase.GUIDToAssetPath(guid)).Validate(errors);
+
+            Assert.That(errors, Is.Empty);
+        }
+
+        [Test]
         public void CreateHeroBrainSettings_CombinesHeroAndStage()
         {
             var stage = CreateValidStage();

@@ -148,12 +148,14 @@ namespace Arena3Q.Core
             return HeroIntent.Engage(AttackTarget, mayChase: true);
         }
 
-        // Combat: fight the close attacker; once no close threat remains, resume the interrupted order.
+        // Combat: fight the close attacker in place (spec §6 rule 5, no chasing); once no close threat remains,
+        // resume the interrupted order. reactionRange must not exceed attack range, or the hero would stand still
+        // against an attacker it cannot hit (HeroDefinition.Validate enforces this).
         private HeroIntent TickCombat(IHeroSensor sensor)
         {
             var attacker = sensor.CloseAttacker;
             if (attacker.IsValid)
-                return HeroIntent.Engage(attacker, mayChase: true);
+                return HeroIntent.Engage(attacker, mayChase: false);
 
             var resume = _resumeState;
             _resumeState = HeroState.Idle;
@@ -184,7 +186,7 @@ namespace Arena3Q.Core
         {
             _resumeState = resumeState;
             SetState(HeroState.Combat);
-            return HeroIntent.Engage(attacker, mayChase: true);
+            return HeroIntent.Engage(attacker, mayChase: false);
         }
 
         private void EnterIdle()
