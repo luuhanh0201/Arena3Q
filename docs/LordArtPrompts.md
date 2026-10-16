@@ -1,6 +1,6 @@
 # Arena3Q – Prompt hình ảnh và danh sách animation cho 4 chủ tướng
 
-Phiên bản: v0.2 · 2026-10-17 (bỏ tên riêng – chủ tướng mang tên người chơi; thêm icon kỹ năng). Đi kèm `docs/LordHeroes.md` (thiết kế, kỹ năng) và cùng phong cách với bản đồ `map1.png` (`docs/ArtPrompts.md`).
+Phiên bản: v0.3 · 2026-10-17 (bỏ tên riêng – chủ tướng mang tên người chơi; thêm icon kỹ năng; đổi tên kỹ năng 2/3; animation đánh theo tốc đánh). Đi kèm `docs/LordHeroes.md` (thiết kế, kỹ năng) và cùng phong cách với bản đồ `map1.png` (`docs/ArtPrompts.md`).
 
 Đã chốt ✅: Đông Á cổ trang · vẽ tay màu mềm, góc 3/4 · animation **skeletal** (Unity 2D Animation, đã có trong project) từ **PSD tách bộ phận** · **2 hướng** (trước-phải, sau-phải) + lật gương ra trái · 2 nam + 2 nữ.
 
@@ -170,10 +170,10 @@ Hình nằm trên mặt đất (vòng trận, vùng lửa) vẽ **nhìn thẳng 
 
 ## 6b. Icon kỹ năng (hiện trên thẻ tướng)
 
-Thẻ của tướng đã ra sân hiển thị (spec §3 "Kỹ năng trên thẻ"): **icon 2 kỹ năng chủ động** kèm **đếm ngược hồi chiêu** (game tự phủ lớp tối + số giây lên icon), và **thanh nộ** cho tuyệt kỹ (game tự vẽ thanh; icon tuyệt kỹ sáng lên khi đầy). Vì vậy chỉ cần vẽ **icon tĩnh**:
+Thẻ của tướng đã ra sân hiển thị (spec §3 "Kỹ năng trên thẻ"): **icon kỹ năng 2 và 3** kèm **đếm ngược hồi chiêu** (game tự phủ lớp tối + số giây lên icon), và **thanh nộ** cho tuyệt kỹ (game tự vẽ thanh; icon tuyệt kỹ sáng lên khi đầy). Vì vậy chỉ cần vẽ **icon tĩnh**:
 
 - Kích thước vẽ **256 × 256 px**, nền trong suốt, hình **tròn** (game cắt và thu nhỏ ≈ 44 px trên thẻ – phải đọc được ở cỡ rất nhỏ: một hình chính, ít chi tiết, tương phản mạnh).
-- Mỗi chủ tướng **3 icon**: chủ động 1, chủ động 2, tuyệt kỹ (+ 1 icon nội tại nếu muốn hiện trong màn chọn chủ tướng).
+- Mỗi chủ tướng **3 icon**: kỹ năng 2, kỹ năng 3, tuyệt kỹ (+ 1 icon nội tại – kỹ năng 1 – nếu muốn hiện trong màn chọn chủ tướng).
 - Cùng một bộ khung viền cho cả 4 chủ tướng; màu nền icon theo màu chủ đạo của chủ tướng; **icon tuyệt kỹ có viền vàng** để phân biệt.
 
 ```
@@ -183,14 +183,14 @@ single bold central symbol: [mô tả icon], background disc in [màu chủ đ�
 thin [bronze / gold for ultimate] ring frame, high contrast, readable at 44 pixels, no text.
 ```
 
-| Chủ tướng | Chủ động 1 | Chủ động 2 | Tuyệt kỹ (viền vàng) |
+| Chủ tướng | Kỹ năng 2 | Kỹ năng 3 | Tuyệt kỹ (viền vàng) |
 |---|---|---|---|
 | Cung thủ | three arrows in a row (Liên Châu Tiễn) | arrows raining down from a cloud (Tiễn Vũ) | one huge flaming arrow (Phá Thành Hỏa Tiễn) |
 | Kiếm sĩ | sword with speed streak (Phi Ảnh Đột Kích) | two crossed swords in a spinning circle (Toàn Phong Trảm) | many swords falling from the sky (Vạn Kiếm Quy Tông) |
 | Mưu sĩ | flame on a scroll (Hỏa Kế) | glowing bagua symbol (Bát Quái Trận) | feather fan with wind swirl (Đông Phong) |
 | Thống soái | raised war banner (Hiệu Triệu) | war drum with shockwave (Trống Trận) | charging armoured horse head (Thiết Kỵ Xung Phong) |
 
-Tên file: `icon_<class>_<skill>.png`, ví dụ `icon_archer_active1.png`, `icon_archer_ultimate.png`. Tướng thường (không phải chủ tướng) cũng có tuyệt kỹ (spec §3) – icon của họ làm theo cùng mẫu khi thiết kế xong bộ kỹ năng.
+Tên file: `icon_<class>_<skill>.png`, ví dụ `icon_archer_passive.png`, `icon_archer_skill2.png`, `icon_archer_skill3.png`, `icon_archer_ultimate.png`. Tướng thường (không phải chủ tướng) cũng có tuyệt kỹ (spec §3) – icon của họ làm theo cùng mẫu khi thiết kế xong bộ kỹ năng.
 
 ## 7. Danh sách animation (mình làm trong Unity bằng skeletal)
 
@@ -205,14 +205,14 @@ A pose reference sheet of the attached character, front-right 3/4 view, 6 key po
 |---|---|---|
 | **Đứng chờ** (lặp) | thở nhẹ, áo choàng lay | Cung thủ xoay tên trong tay · Kiếm sĩ cầm kiếm hờ · Mưu sĩ phẩy quạt chậm · Thống soái chống thương |
 | **Đi / chạy** (lặp) | 6–8 tư thế chính | Thống soái bước nặng; Kiếm sĩ chạy nhanh nghiêng người |
-| **Đánh thường** | có khung "trúng đòn" | kéo cung–bắn · chém chéo · phẩy quạt phóng luồng khí · đâm thương |
+| **Đánh thường** | có khung "trúng đòn"; **vẽ ở nhịp chuẩn 1 đòn/giây**, game tua nhanh / chậm theo **tốc đánh** của tướng (spec §6) – nên phần vung chiếm khoảng 40 % clip, khung trúng đòn rõ ràng | kéo cung–bắn · chém chéo · phẩy quạt phóng luồng khí · đâm thương |
 | **Bị đánh** | giật lùi ngắn + mặt "đau" | |
 | **Chết** | ngã, mặt "gục", mờ dần | Thống soái quỳ chống thương rồi gục |
 | **Xuất trận** (khi triệu hồi) | bước ra từ ánh sáng, đứng tư thế | Thống soái cắm cờ lệnh |
 | **Ra lệnh** (khi nhận lệnh tấn công) | chỉ vũ khí về phía trước, mặt "hô lệnh" | |
 | **Chiến thắng** (lặp) | giơ vũ khí ăn mừng | |
 | **Màn chọn chủ tướng** (lặp) | tư thế đẹp nhất, chậm | |
-| **Kỹ năng chủ động 1, 2** | vận chiêu 0.3–0.6 s, có khung phát chiêu | theo bảng kỹ năng `LordHeroes.md` §2 |
+| **Kỹ năng 2, 3** | vận chiêu 0.3–0.6 s, có khung phát chiêu | theo bảng kỹ năng `LordHeroes.md` §2 |
 | **Tuyệt kỹ** | vận chiêu dài hơn (0.8–1.2 s), tư thế mạnh | |
 
 Nội tại không cần động tác riêng (chỉ có hiệu ứng nhẹ nếu cần).

@@ -20,7 +20,7 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 ## 2. Chủ tướng
 - ✅ (người dùng chốt 2026-10-17, thay luật "chọn phe" cũ) Khi bắt đầu chơi game, người chơi **chọn 1 trong 4 chủ tướng** – **Cung thủ**, **Kiếm sĩ**, **Mưu sĩ**, **Thống soái**. Chủ tướng là **nhân vật cố định** của người chơi suốt game.
 - ✅ **Không còn chọn phe.** Các tướng còn lại người chơi **tự xây dựng đội hình** theo ý thích trong quá trình chơi, để lối chơi đa dạng.
-- ✅ Bối cảnh **Đông Á cổ trang**. Mỗi chủ tướng có bộ kỹ năng riêng gồm **1 nội tại + 2 chủ động + 1 tuyệt kỹ**; thiết kế nháp (🟡) ở `docs/LordHeroes.md`. Cách dùng kỹ năng: mục 3 "Kỹ năng trên thẻ".
+- ✅ Bối cảnh **Đông Á cổ trang**. Mỗi chủ tướng có bộ kỹ năng riêng gồm **kỹ năng 1 (nội tại) + kỹ năng 2, 3 (tự dùng) + tuyệt kỹ**; thiết kế nháp (🟡) ở `docs/LordHeroes.md`. Cách dùng kỹ năng: mục 3 "Kỹ năng trên thẻ".
 - ✅ Chủ tướng **không có tên riêng**: mang **tên người chơi đặt khi đăng nhập** (chỉ phân biệt theo class).
 - ⏳ **Trang phục (skin)** cho chủ tướng: có, nhưng để sau (dùng chung bộ khung bộ phận để không phải làm lại animation).
 - ⏳ Màn chọn chủ tướng, kỹ năng chủ tướng (code): chưa làm ở prototype. `FactionDefinition` tối thiểu vẫn giữ trong dữ liệu nhưng chưa dùng (có thể bỏ sau).
@@ -35,13 +35,14 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 - ✅ Sau khi tướng đã ra sân, **chạm thẻ = chọn tướng đó** (không triệu hồi lần nữa). *(Luật hiện tại của prototype; được thay bằng mục "Kỹ năng trên thẻ" bên dưới khi làm kỹ năng.)*
 
 ### Kỹ năng trên thẻ (người dùng chốt 2026-10-17 · ⏳ code làm cùng kỹ năng)
-- ✅ **Mọi tướng đều có tuyệt kỹ** (không chỉ chủ tướng). Bộ kỹ năng của chủ tướng: 1 nội tại + 2 chủ động + 1 tuyệt kỹ (`docs/LordHeroes.md`); bộ kỹ năng tướng thường: 🟡 chờ thiết kế (ít nhất 1 tuyệt kỹ).
-- ✅ **Kỹ năng chủ động tự dùng** ngay khi hồi chiêu xong, **tự nhắm** (🟡 thứ tự: mục tiêu tướng đang đánh → cụm quân địch đông nhất trong tầm → thành địch; không có mục tiêu trong tầm thì chờ, không phí chiêu).
+- ✅ **Mọi tướng (chủ tướng và tướng thường) có cùng cấu trúc 4 kỹ năng**: **kỹ năng 1 = nội tại** (bị động, luôn có tác dụng) · **kỹ năng 2 và 3 = kỹ năng phụ** (tự dùng) · **tuyệt kỹ** (thanh nộ, dùng bằng thẻ). Thiết kế cụ thể của chủ tướng: `docs/LordHeroes.md`; tướng thường: chờ thiết kế.
+- ✅ **Kỹ năng 2 và 3 tự dùng** ngay khi hồi chiêu xong; nếu cả hai cùng sẵn sàng thì **dùng kỹ năng 2 trước, rồi đến kỹ năng 3**. **Tự nhắm** (🟡 thứ tự: mục tiêu tướng đang đánh → cụm quân địch đông nhất trong tầm → thành địch; không có mục tiêu trong tầm thì chờ, không phí chiêu).
 - ✅ **Tuyệt kỹ dùng thanh nộ, không có thời gian hồi**: thanh nộ **tăng mỗi lần tướng gây sát thương**; đầy thì dùng được.
-  - 🟡 Chỉ tính sát thương **do chính tướng** gây ra (không tính đội lính); lượng nộ tỉ lệ với sát thương, mỗi tướng cấu hình `rageMax` và tốc độ tích (`HeroDefinition`). Thanh nộ không tự giảm; dùng xong về 0; tướng chết thì mất nộ.
-- ✅ **Thẻ của tướng đã ra sân hiển thị**: icon của từng **kỹ năng chủ động** kèm **đếm ngược hồi chiêu**, và **thanh nộ** của tuyệt kỹ (sáng lên khi đầy).
+  - 🟡 (người dùng xác nhận tạm thời) **Chỉ tính sát thương do chính tướng gây ra** (không tính đội lính, không tính khi bị đánh); lượng nộ tỉ lệ với sát thương, mỗi tướng cấu hình `rageMax` và tốc độ tích (`HeroDefinition`). Thanh nộ không tự giảm.
+  - ✅ Dùng tuyệt kỹ xong thanh nộ **về 0**; tướng chết thì **mất nộ**; **không** mang sang trận sau.
+- ✅ **Thẻ của tướng đã ra sân hiển thị**: icon của **kỹ năng 2 và 3** kèm **đếm ngược hồi chiêu**, và **thanh nộ** của tuyệt kỹ (sáng lên khi đầy).
 - ✅ **Thao tác trên thẻ của tướng đã ra sân**:
-  - **Chạm** thẻ = dùng **tuyệt kỹ**, tự nhắm (chỉ khi thanh nộ đầy; 🟡 chưa đầy thì không làm gì).
+  - **Chạm** thẻ = dùng **tuyệt kỹ**, tự nhắm (khi thanh nộ đầy). ✅ **Chưa đầy nộ** thì hiển thị thông báo **"kỹ năng chưa thể sử dụng"** (không chọn tướng, không làm gì khác).
   - **Kéo** thẻ ra chiến trường = dùng tuyệt kỹ và **tự chọn điểm / hướng** (thả trên UI = huỷ; 🟡 chỉ khi nộ đầy).
   - **Giữ** thẻ **1.5 giây** = **chọn** tướng đó (đổi chọn tướng nhanh).
   - Thẻ chưa dùng (chạm = triệu hồi nhanh, kéo = triệu hồi tự do) và thẻ tướng đã chết: không đổi.
@@ -159,8 +160,8 @@ Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng
 
 ## 10. Dữ liệu
 - `FactionDefinition` ⏳ (tối thiểu): id, tên, màu.
-- `HeroDefinition`: heroId, tên, sprite/placeholder, máu, sát thương, tốc độ di chuyển, tầm đánh, tốc độ đánh, `reactionRange`, `aggroRange`, `idleBeforeAdvanceSeconds` (mặc định 5), `baseSquadSize`, `maxSquadSize`, `TroopDefinition` của đội lính, `leashRadius`.
-- `TroopDefinition`: máu, sát thương, tốc độ, tầm đánh, tốc độ đánh, `reactionRange`, `aggroRange`.
+- `HeroDefinition`: heroId, tên, sprite/placeholder, máu, sát thương, tốc độ di chuyển, tầm đánh, **tốc đánh** (đòn/giây; hiện lưu dưới dạng `attackInterval` = 1 / tốc đánh), `reactionRange`, `aggroRange`, `idleBeforeAdvanceSeconds` (mặc định 5), `baseSquadSize`, `maxSquadSize`, `TroopDefinition` của đội lính, `leashRadius`.
+- `TroopDefinition`: máu, sát thương, tốc độ, tầm đánh, **tốc đánh** (đòn/giây; hiện lưu dưới dạng `attackInterval` = 1 / tốc đánh), `reactionRange`, `aggroRange`.
 - `StageConfig`: id ải, loại (`Attack` / `Defense`), kích thước và biên bản đồ, vùng cấm, thành ta và thành địch (máu, có bắn hay không), `summonZone`, `quickSummonPoints`, bố trí quân phòng thủ (ải Công), các đợt quân (ải Thủ), `timeLimit`, luật thua, ngưỡng sao, bộ thẻ thử nghiệm, `onHeroDeathTroopBehavior`, `allowResummonDeadHero`.
 - `BattleRuntimeState` (tạo mới mỗi trận): số tướng đã triệu hồi, tướng đang chọn, trạng thái và máu từng tướng/lính/thành, lệnh hiện tại và điểm đích đã lưu của từng tướng, đồng hồ, đợt hiện tại, kết quả và số sao.
 
