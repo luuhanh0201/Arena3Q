@@ -39,6 +39,10 @@ namespace Arena3Q.Data
         [SerializeField, Min(0)] private int maxSquadSize = 8;
         [Tooltip("Provisional: troops never stray further than this from their hero while fighting on their own.")]
         [SerializeField, Min(0f)] private float leashRadius = 4f;
+        [Tooltip("Provisional: seconds without getting closer to the ordered target before a soldier calls it unreachable.")]
+        [SerializeField, Min(0.1f)] private float troopUnreachableSeconds = 1.5f;
+        [Tooltip("Provisional: an unreachable target is replaced by the enemy nearest to it, within this radius.")]
+        [SerializeField, Min(0f)] private float troopAssistRadius = 3f;
 
         [Header("Summon (provisional, unused while 0)")]
         [SerializeField, Min(0f)] private float summonCost;
@@ -57,6 +61,8 @@ namespace Arena3Q.Data
         public int BaseSquadSize => baseSquadSize;
         public int MaxSquadSize => maxSquadSize;
         public float LeashRadius => leashRadius;
+        public float TroopUnreachableSeconds => troopUnreachableSeconds;
+        public float TroopAssistRadius => troopAssistRadius;
         public float SummonCost => summonCost;
         public float SummonCooldown => summonCooldown;
 

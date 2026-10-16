@@ -273,7 +273,13 @@ namespace Arena3Q.Gameplay
             _squads.Add(squad);
             if (definition.Troop != null)
             {
-                var troopSettings = new TroopBrainSettings { StageType = Stage.StageType, LeashRadius = definition.LeashRadius };
+                var troopSettings = new TroopBrainSettings
+                {
+                    StageType = Stage.StageType,
+                    LeashRadius = definition.LeashRadius,
+                    UnreachableSeconds = definition.TroopUnreachableSeconds,
+                    AssistRadius = definition.TroopAssistRadius
+                };
                 var tint = Color.Lerp(definition.PlaceholderColor, Color.white, 0.35f);
                 for (var i = 0; i < definition.BaseSquadSize; i++)
                 {

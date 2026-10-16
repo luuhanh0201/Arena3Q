@@ -98,6 +98,7 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 - ✅ Lính **luôn theo lệnh của tướng mình**:
   - Tướng Moving → lính đi theo đội hình, cũng **không đuổi địch**; 🟡 lính tự vệ theo cùng luật `reactionRange`.
   - Tướng Attacking → lính cùng đánh mục tiêu được chỉ định; 🟡 nếu không với tới thì đánh địch gần mục tiêu nhất.
+    - 🟡 "Không với tới" = lính đang đuổi mục tiêu mà khoảng cách không giảm trong `troopUnreachableSeconds` (mặc định 1.5 giây), ví dụ mục tiêu bị vây kín. Khi đó lính đánh địch gần mục tiêu nhất trong bán kính `troopAssistRadius` (mặc định 3) quanh mục tiêu; địch đó chết thì quay lại thử mục tiêu chính. Không có địch nào trong bán kính thì vẫn bám mục tiêu chính. Hai tham số nằm trong `HeroDefinition`.
   - Tướng Advancing/Combat → lính tự tìm và đánh địch, nhưng không rời tướng quá `leashRadius` 🟡; vượt quá thì quay về đội hình.
 - ✅ Lính không bao giờ bị gán nhầm sang đội tướng khác.
 - 🟡 Tướng chết: lính **tiếp tục chiến đấu ở chế độ Advancing** cho tới khi chết (cấu hình theo ải `onHeroDeathTroopBehavior`: `KeepFighting` / `Retreat` / `Disband`).

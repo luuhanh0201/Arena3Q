@@ -10,8 +10,12 @@ namespace Arena3Q.Gameplay
         public const float BodyRadius = 0.3f;
 
         private TroopBrain _brain;
+        private TroopBrainSettings _settings;
 
         public Squad Squad { get; private set; }
+
+        /// <summary>Substitute target picked because the hero's ordered target was unreachable, or None.</summary>
+        public UnitId FallbackTarget => _brain.FallbackTarget;
         public int SlotIndex { get; private set; }
         public TroopDefinition Definition { get; private set; }
 
@@ -21,6 +25,7 @@ namespace Arena3Q.Gameplay
             Definition = definition;
             Squad = squad;
             SlotIndex = slotIndex;
+            _settings = settings;
             _brain = new TroopBrain(settings);
             name = $"Troop {definition.DisplayName} ({id}) of {squad.HeroId}";
             InitUnit(battle, id, Team.Player, definition.Stats.MaxHealth, BodyRadius, definition.Sprite, tint,
@@ -32,7 +37,7 @@ namespace Arena3Q.Gameplay
 
         public override void Simulate(float deltaTime)
         {
-            var intent = _brain.Tick(Squad.Mode, this);
+            var intent = _brain.Tick(Squad.Mode, this, deltaTime);
             ConsumeDamageFlags();
             Execute(intent, deltaTime);
         }
@@ -50,6 +55,39 @@ namespace Arena3Q.Gameplay
         UnitId ITroopSensor.EnemyCastle => Battle.EnemyCastleId;
         UnitId ITroopSensor.CloseAttacker => FindCloseAttacker();
         Vector2 ITroopSensor.RetreatPoint => Battle.PlayerCastleRetreatPoint;
+
+        bool ITroopSensor.HeroTargetInAttackRange
+        {
+            get
+            {
+                var target = Battle.Registry.Get(Squad.HeroTarget);
+                return target != null && IsInAttackRange(target);
+            }
+        }
+
+        float ITroopSensor.DistanceToHeroTarget
+        {
+            get
+            {
+                var target = Battle.Registry.Get(Squad.HeroTarget);
+                return target != null ? EdgeDistance(target) : float.PositiveInfinity;
+            }
+        }
+
+        UnitId ITroopSensor.EnemyNearestToHeroTarget
+        {
+            get
+            {
+                var target = Battle.Registry.Get(Squad.HeroTarget);
+                if (target == null)
+                    return UnitId.None;
+                var team = Team;
+                var substitute = Battle.Registry.FindNearest(target.Position, target.Radius, _settings.AssistRadius,
+                    u => u.Team != team && !u.IsCastle && u != target);
+                return substitute != null ? substitute.Id : UnitId.None;
+            }
+        }
+
         bool ITroopSensor.IsAlive(UnitId unit) => Battle.Registry.IsAlive(unit);
         Vector2 ITroopSensor.GetPosition(UnitId unit) => Battle.Registry.GetPosition(unit);
     }

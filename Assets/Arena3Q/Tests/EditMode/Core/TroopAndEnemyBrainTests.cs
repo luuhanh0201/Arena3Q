@@ -18,6 +18,9 @@ namespace Arena3Q.Tests.EditMode
         public UnitId EnemyCastle { get; set; }
         public UnitId CloseAttacker { get; set; }
         public Vector2 RetreatPoint { get; set; }
+        public bool HeroTargetInAttackRange { get; set; }
+        public float DistanceToHeroTarget { get; set; } = float.PositiveInfinity;
+        public UnitId EnemyNearestToHeroTarget { get; set; }
         public bool IsAlive(UnitId unit) => Positions.ContainsKey(unit);
         public Vector2 GetPosition(UnitId unit) => Positions.TryGetValue(unit, out var p) ? p : Vector2.zero;
     }
@@ -103,6 +106,101 @@ namespace Arena3Q.Tests.EditMode
 
             Assert.That(intent.Target, Is.EqualTo(Target));
             Assert.That(intent.MayChase, Is.True);
+        }
+
+        // ---- FocusTarget: unreachable ordered target (spec §7, provisional) ----
+
+        private HeroIntent TickFocus(float seconds, float distance)
+        {
+            _sensor.DistanceToHeroTarget = distance;
+            var intent = HeroIntent.Hold;
+            for (var t = 0f; t < seconds - 1e-4f; t += 0.1f)
+                intent = _brain.Tick(SquadMode.FocusTarget, _sensor, 0.1f);
+            return intent;
+        }
+
+        private void OrderTargetWithNeighbour()
+        {
+            _sensor.HeroTarget = Target;
+            _sensor.Positions[Target] = new Vector2(5f, 0f);
+            _sensor.EnemyNearestToHeroTarget = Enemy;
+            _sensor.Positions[Enemy] = new Vector2(6f, 0f);
+        }
+
+        [Test]
+        public void Focus_NoProgressTowardsTarget_AttacksEnemyNearestToIt()
+        {
+            OrderTargetWithNeighbour();
+
+            Assert.That(TickFocus(1.4f, 3f).Target, Is.EqualTo(Target), "still trying before the timeout");
+            var intent = TickFocus(0.3f, 3f);
+
+            Assert.That(intent.Target, Is.EqualTo(Enemy));
+            Assert.That(_brain.FallbackTarget, Is.EqualTo(Enemy));
+        }
+
+        [Test]
+        public void Focus_StillApproaching_KeepsOrderedTarget()
+        {
+            OrderTargetWithNeighbour();
+
+            var intent = HeroIntent.Hold;
+            for (var distance = 6f; distance > 1f; distance -= 0.1f)
+            {
+                _sensor.DistanceToHeroTarget = distance;
+                intent = _brain.Tick(SquadMode.FocusTarget, _sensor, 0.1f);
+            }
+
+            Assert.That(intent.Target, Is.EqualTo(Target));
+            Assert.That(_brain.FallbackTarget, Is.EqualTo(UnitId.None));
+        }
+
+        [Test]
+        public void Focus_TargetInRange_NeverFallsBack()
+        {
+            OrderTargetWithNeighbour();
+            _sensor.HeroTargetInAttackRange = true;
+
+            Assert.That(TickFocus(5f, 0.2f).Target, Is.EqualTo(Target));
+        }
+
+        [Test]
+        public void Focus_SubstituteDies_RetriesOrderedTarget()
+        {
+            OrderTargetWithNeighbour();
+            TickFocus(2f, 3f);
+            Assert.That(_brain.FallbackTarget, Is.EqualTo(Enemy));
+
+            _sensor.Positions.Remove(Enemy);
+            _sensor.EnemyNearestToHeroTarget = UnitId.None;
+            var intent = _brain.Tick(SquadMode.FocusTarget, _sensor, 0.1f);
+
+            Assert.That(intent.Target, Is.EqualTo(Target));
+            Assert.That(_brain.FallbackTarget, Is.EqualTo(UnitId.None));
+        }
+
+        [Test]
+        public void Focus_NoEnemyNearTarget_KeepsOrderedTarget()
+        {
+            _sensor.HeroTarget = Target;
+            _sensor.Positions[Target] = new Vector2(5f, 0f);
+
+            Assert.That(TickFocus(3f, 3f).Target, Is.EqualTo(Target));
+        }
+
+        [Test]
+        public void Focus_NewOrder_ResetsFallback()
+        {
+            OrderTargetWithNeighbour();
+            TickFocus(2f, 3f);
+
+            var other = new UnitId(12);
+            _sensor.HeroTarget = other;
+            _sensor.Positions[other] = new Vector2(-5f, 0f);
+            var intent = _brain.Tick(SquadMode.FocusTarget, _sensor, 0.1f);
+
+            Assert.That(intent.Target, Is.EqualTo(other));
+            Assert.That(_brain.FallbackTarget, Is.EqualTo(UnitId.None));
         }
 
         [Test]

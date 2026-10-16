@@ -245,6 +245,73 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator AttackCommand_SoldiersMakingNoProgress_AttackEnemyNearestToTarget()
+        {
+            // Soldiers that crawl (speed ~0) can never close in on the ordered target, a deterministic stand-in for
+            // a target that is surrounded. A harmless defender stands next to the target.
+            var slowTroop = Object.Instantiate(Stage(0).TestLoadout.LordHero.Troop);
+            _created.Add(slowTroop);
+            var troopSo = new SerializedObject(slowTroop);
+            troopSo.FindProperty("stats.moveSpeed").floatValue = 0.01f;
+            troopSo.ApplyModifiedPropertiesWithoutUndo();
+
+            var archer = Object.Instantiate(Stage(0).TestLoadout.GetCards()[2]);
+            _created.Add(archer);
+            var heroSo = new SerializedObject(archer);
+            heroSo.FindProperty("troop").objectReferenceValue = slowTroop;
+            heroSo.ApplyModifiedPropertiesWithoutUndo();
+
+            var loadout = Object.Instantiate(Stage(0).TestLoadout);
+            _created.Add(loadout);
+            var loadoutSo = new SerializedObject(loadout);
+            loadoutSo.FindProperty("heroes").GetArrayElementAtIndex(1).objectReferenceValue = archer;
+            loadoutSo.ApplyModifiedPropertiesWithoutUndo();
+
+            var harmless = Object.Instantiate(Stage(0).Defenders[1].Unit);
+            _created.Add(harmless);
+            var harmlessSo = new SerializedObject(harmless);
+            harmlessSo.FindProperty("stats.damage").floatValue = 0f;
+            harmlessSo.ApplyModifiedPropertiesWithoutUndo();
+
+            var castlePosition = Stage(0).EnemyCastle.Position;
+            _battle.StartBattle(Variant(0, so =>
+            {
+                so.FindProperty("testLoadout").objectReferenceValue = loadout;
+                so.FindProperty("enemyCastle.canAttack").boolValue = false;
+                var defenders = so.FindProperty("defenders");
+                defenders.arraySize = 1;
+                var element = defenders.GetArrayElementAtIndex(0);
+                element.FindPropertyRelative("unit").objectReferenceValue = harmless;
+                element.FindPropertyRelative("guardRadius").floatValue = 0f;
+                element.FindPropertyRelative("position").vector2Value = castlePosition + new Vector2(-2.2f, 0f);
+            }));
+            yield return null;
+            var castle = _battle.Registry.Get(_battle.EnemyCastleId);
+            var defender = _battle.Registry.Units.OfType<EnemyUnit>().Single();
+            var hero = SummonQuick(2);
+            Assert.That(hero.Definition, Is.SameAs(archer));
+            Assert.That(_battle.AttackWithHero(hero.Id, castle).Accepted, Is.True);
+
+            Run(1.2f);
+            Assert.That(hero.Squad.Members.All(m => !m.FallbackTarget.IsValid), Is.True, "not before the 1.5 s timeout");
+
+            // The soldier standing in the hero's path gets shoved forward by the hero, which is real progress
+            // towards the castle, so it rightly keeps the ordered target. The others are stuck and must switch.
+            var start = hero.Squad.Members.ToDictionary(m => m, m => m.Position);
+            Run(1f);
+            Assert.That(hero.Squad.Mode, Is.EqualTo(SquadMode.FocusTarget));
+            Assert.That(hero.Squad.Members, Has.Count.EqualTo(archer.BaseSquadSize));
+            var stationary = hero.Squad.Members.Where(m => Vector2.Distance(start[m], m.Position) < 0.05f).ToList();
+            Assert.That(stationary, Has.Count.GreaterThanOrEqualTo(archer.BaseSquadSize - 1));
+            foreach (var troop in stationary)
+            {
+                Assert.That(troop.FallbackTarget, Is.EqualTo(defender.Id), "the enemy nearest to the castle");
+                Assert.That(troop.EngagedTarget, Is.EqualTo(defender.Id));
+            }
+            Assert.That(hero.Brain.AttackTarget, Is.EqualTo(castle.Id), "the hero's own order is unchanged");
+        }
+
+        [UnityTest]
         public IEnumerator AttackStage_TimeUp_IsDefeatWithZeroStars()
         {
             _battle.StartBattle(Variant(0, so => so.FindProperty("timeLimit").floatValue = 3f));
