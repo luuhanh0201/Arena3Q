@@ -351,7 +351,12 @@ namespace Arena3Q.Tests.PlayMode
             SummonQuick(0);
             yield return null;
 
-            var inTheRiver = Stage(0).Rivers[0].Path[3]; // a centre-line point away from the bridges
+            // The centre-line point furthest from every bridge is surely water.
+            var river = Stage(0).Rivers[0];
+            var inTheRiver = river.Path
+                .Where(p => Stage(0).MapBounds.Contains(p))
+                .OrderByDescending(p => river.Crossings.Min(c => Vector2.Distance(p, c.Position)))
+                .First();
             Assert.That(_battle.MoveSelectedHero(inTheRiver).Reason, Is.EqualTo(RejectReason.InForbiddenZone));
             var bridge = Stage(0).Rivers[0].Crossings[0].Position;
             Assert.That(_battle.MoveSelectedHero(bridge).Accepted, Is.True, "the bridge itself is walkable");
@@ -506,7 +511,7 @@ namespace Arena3Q.Tests.PlayMode
         [UnityTest]
         public IEnumerator Defenders_ChargeIntruders_ThenReturnToPost()
         {
-            var post = new Vector2(0f, -6f);
+            var post = new Vector2(-6f, -6f); // open meadow on the player side, clear of the river
             _battle.StartBattle(Variant(0, so =>
             {
                 // A single sturdy defender (the brute) moved to the middle of the map.
@@ -689,8 +694,10 @@ namespace Arena3Q.Tests.PlayMode
             _battle.StartBattle(0);
             var hero = SummonQuick(0);
             yield return null;
-            Assert.That(_battle.ViewTiltDegrees, Is.Zero, "default: straight top-down");
-            Assert.That(_hud.TiltSlider.value, Is.Zero);
+            // A stage with painted map art starts at the art's fixed 3/4 angle; without art it starts top-down.
+            var expectedStart = Stage(0).BackgroundArt != null ? Stage(0).BackgroundArtTiltDegrees : 0f;
+            Assert.That(_battle.ViewTiltDegrees, Is.EqualTo(expectedStart).Within(0.01f));
+            Assert.That(_hud.TiltSlider.value, Is.EqualTo(Mathf.Round(expectedStart)).Within(1f), "slider shows the angle");
 
             _hud.TiltSlider.value = 45f; // as if the player dragged the HUD slider
             yield return null;
@@ -718,6 +725,23 @@ namespace Arena3Q.Tests.PlayMode
             _hud.TiltSlider.value = 0f;
             yield return null;
             Assert.That(hero.transform.position.y, Is.EqualTo(hero.Position.y).Within(1e-3f));
+        }
+
+        [UnityTest]
+        public IEnumerator MapArt_CoversTheMap_AndHidesPlaceholderTerrain()
+        {
+            _battle.StartBattle(0);
+            yield return null;
+            Assert.That(Stage(0).BackgroundArt, Is.Not.Null, "the shipped stages use map1 as background art");
+
+            var art = _battle.GetComponentsInChildren<SpriteRenderer>().Single(r => r.name == "MapArt");
+            var bounds = Stage(0).MapBounds;
+            var scale = _battle.ViewYScale;
+            Assert.That(art.bounds.size.x, Is.EqualTo(bounds.width).Within(0.01f), "art spans the map width");
+            Assert.That(art.bounds.size.y, Is.EqualTo(bounds.height * scale).Within(0.01f), "and the tilted map height");
+            Assert.That(scale, Is.EqualTo(Stage(0).BackgroundArtVerticalScale).Within(1e-3f), "at the art's own angle");
+            Assert.That(_battle.GetComponentsInChildren<SpriteRenderer>().Any(r => r.name == "Water" || r.name == "Ground"),
+                Is.False, "no placeholder water/ground over the painting");
         }
 
         [UnityTest]

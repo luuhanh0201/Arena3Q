@@ -115,3 +115,11 @@ Không phải sửa lỗi, nhưng có 3 chỗ suýt sai trong lúc làm – ghi 
 1. **Lối qua cầu hẹp hơn cầu nếu cắt sông đúng bằng bề rộng cầu.** Đầu khúc sông bị cắt là nửa hình tròn bán kính `nửa bề rộng sông + bán kính unit`, nên khoảng hở trên đường tâm phải dài `bề rộng cầu + bề rộng sông` thì lối đi thật mới bằng bề rộng cầu (`RiverObstacle.BuildWetPieces`).
 2. **Test hình học trên sông uốn khúc dễ sai vì khúc quanh gần cầu.** Đường thử vuông góc với cầu có thể chạm khúc sông sau chỗ quanh. Test về bề rộng/lối qua dùng sông thẳng; test trên sông chuẩn chỉ kiểm tra hành vi tổng thể (không lội nước, tới được bờ bên kia, đi qua cầu – ngưỡng theo bề rộng cầu, không theo tâm cầu, vì đường ngắn nhất men sát mép cầu).
 3. **Test "lính không tiến được" phải để lính thật sự đứng yên.** Bò 0.01 đơn vị/s cộng với bị tướng đẩy dần đủ vượt ngưỡng tiến độ 0.05/1.5 s → bộ đếm bị đặt lại đúng luật. Hạ xuống 0.001 và quan sát 2 s. Bài học: tham số "gần như 0" trong test phải nhỏ hơn ngưỡng của luật ít nhất một bậc; khi không giải thích được, log biến trạng thái bên trong (`TroopUnit.StuckSeconds`) thay vì đoán.
+
+## Khớp dữ liệu ải với ảnh `map1.png` (2026-10-17)
+
+Không phải lỗi code; ghi lại cách làm và chỗ suýt sai:
+- **Đo trước, đừng ước lượng bằng mắt:** chồng viền ảnh `*_mask.png` (xuất từ dữ liệu) lên ảnh art để thấy độ lệch, rồi đo màu theo từng hàng pixel (tâm nước, mặt cầu). Lần đầu `map1` lệch tới 1.2 đơn vị ở cầu Nam và 0.6–1 đơn vị ở đoạn sông trên. Bộ lọc màu đá (bãi đặt thành) cho quá ít pixel → kết quả không tin được; khi đó dùng ảnh chồng viền để ước lượng và **kiểm tra lại bằng ảnh chồng sau khi sửa**.
+- **Cầu vẽ nằm ngang ⇒ đường tâm sông dưới cầu phải thẳng đứng**, vì lối qua logic vuông góc với đoạn sông tại cầu.
+- **Ảnh vẽ sẵn ở một góc ⇒ khi ải có ảnh nền, góc nhìn phải bằng góc của ảnh** (0.75 → 41.4°), nếu không ảnh bị kéo dãn sai tỉ lệ.
+- **Test PlayMode dùng toạ độ cố định có thể va với bố cục mới** (vị trí gác (0, −6) rơi sát bờ cầu Nam). Test hành vi nên đặt ở vùng chắc chắn trống, hoặc tính vị trí từ dữ liệu ải (ví dụ điểm sông xa cầu nhất).

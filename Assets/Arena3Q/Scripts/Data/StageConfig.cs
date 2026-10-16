@@ -21,6 +21,12 @@ namespace Arena3Q.Data
         [SerializeField] private Rect[] forbiddenZones = Array.Empty<Rect>();
         [Tooltip("River forbidden zones: crossable only at their crossings (bridges/fords).")]
         [SerializeField] private RiverConfig[] rivers = Array.Empty<RiverConfig>();
+        [Tooltip("Provisional: one painted image covering the whole map (concept art used as a temporary background). " +
+                 "Final art uses Tilemap + SpriteShape (map spec §8.4). Leave empty for placeholder visuals.")]
+        [SerializeField] private Sprite backgroundArt;
+        [Tooltip("Vertical scale of the 3/4 view the background art is painted in (map spec §8.3). The camera tilt is " +
+                 "set to match it when the stage starts.")]
+        [SerializeField, Range(0.5f, 1f)] private float backgroundArtVerticalScale = 0.75f;
 
         [Header("Castles")]
         [Tooltip("Provisional: in Defense stages the player castle shoots by default.")]
@@ -61,6 +67,11 @@ namespace Arena3Q.Data
         public Rect MapBounds => mapBounds;
         public IReadOnlyList<Rect> ForbiddenZones => forbiddenZones;
         public IReadOnlyList<RiverConfig> Rivers => rivers;
+        public Sprite BackgroundArt => backgroundArt;
+        public float BackgroundArtVerticalScale => backgroundArtVerticalScale;
+
+        /// <summary>The view tilt (degrees) that makes the flat logic map line up with the painted background.</summary>
+        public float BackgroundArtTiltDegrees => Mathf.Acos(Mathf.Clamp01(backgroundArtVerticalScale)) * Mathf.Rad2Deg;
         public CastleConfig PlayerCastle => playerCastle;
         public CastleConfig EnemyCastle => enemyCastle;
         public Rect SummonZone => summonZone;

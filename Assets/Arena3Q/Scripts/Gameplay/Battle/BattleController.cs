@@ -184,6 +184,14 @@ namespace Arena3Q.Gameplay
             Cards = stage.TestLoadout.GetCards();
             LastOutcome = OutcomeDecision.InProgress;
 
+            // Painted art is drawn at one fixed 3/4 angle: start at that angle so logic and picture line up
+            // (the HUD slider can still change it for debugging).
+            if (stage.BackgroundArt != null)
+            {
+                viewTiltDegrees = Mathf.Clamp(stage.BackgroundArtTiltDegrees, 0f, MaxViewTiltDegrees);
+                ViewChanged?.Invoke();
+            }
+
             _worldRoot = new GameObject("World").transform;
             _worldRoot.SetParent(transform, false);
             BuildMapVisuals();
@@ -521,15 +529,29 @@ namespace Arena3Q.Gameplay
             _groundRoot.SetParent(_worldRoot, false);
             ApplyGroundTilt();
 
-            AddGroundVisual("Ground", PlaceholderArt.Square, GroundColor, Stage.MapBounds, -32000);
-
-            foreach (var zone in Stage.ForbiddenZones)
-                AddGroundVisual("ForbiddenZone", PlaceholderArt.Square, ZoneColor, zone, -31990);
-
-            foreach (var obstacle in Layout.Obstacles)
+            if (Stage.BackgroundArt != null)
             {
-                if (obstacle is RiverObstacle river)
-                    BuildRiverVisual(river);
+                // The painting already shows grass, river and bridges; it is stretched over the map bounds in logic
+                // space, and the ground root's tilt (set to the art's angle) brings it back to its painted proportions.
+                var art = PlaceholderArt.CreateRenderer("MapArt", _groundRoot, Stage.BackgroundArt, Color.white,
+                    Vector2.one, -32000);
+                var artSize = Stage.BackgroundArt.bounds.size;
+                var bounds = Stage.MapBounds;
+                art.transform.localPosition = bounds.center;
+                art.transform.localScale = new Vector3(bounds.width / artSize.x, bounds.height / artSize.y, 1f);
+            }
+            else
+            {
+                AddGroundVisual("Ground", PlaceholderArt.Square, GroundColor, Stage.MapBounds, -32000);
+
+                foreach (var zone in Stage.ForbiddenZones)
+                    AddGroundVisual("ForbiddenZone", PlaceholderArt.Square, ZoneColor, zone, -31990);
+
+                foreach (var obstacle in Layout.Obstacles)
+                {
+                    if (obstacle is RiverObstacle river)
+                        BuildRiverVisual(river);
+                }
             }
 
             _summonZoneOverlay = AddGroundVisual("SummonZone", PlaceholderArt.Square, new Color(0.4f, 0.75f, 1f, 0.28f),

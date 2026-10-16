@@ -6,6 +6,14 @@ Phiên bản: v0.1 · 2026-10-17. Dựa trên `docs/MapSpecification.md` v0.4 (c
 
 ---
 
+## 0. Ảnh bản đồ hiện có: `map1.png`
+
+- Nằm ở `Assets/Arena3Q/Art/Maps/map1.png` (1971 × 798 px, vẽ tay, góc 3/4). Đã được **dùng tạm làm ảnh nền** cho cả hai ải (`StageConfig.backgroundArt`, menu **Arena3Q > Import Map Art (map1)**); khi ải có ảnh nền, game tự đặt góc nhìn bằng góc của ảnh (tỉ lệ 0.75 ≈ 41°) và ẩn hình placeholder của mặt đất/sông/cầu.
+- Bố cục logic (sông, 2 cầu, 2 thành, vùng triệu hồi) đã được **đo từ ảnh này và chỉnh cho khớp** – `map1` hiện là ảnh chuẩn về phong cách và bố cục.
+- Hạn chế: độ phân giải ≈ 41 px/đơn vị (cần 128) nên hơi mờ khi zoom gần; là một tấm liền (bản chính cần tách mảnh – mục 3). Cầu vẽ chỉ rộng ≈ 2.4 đơn vị → là điểm nghẽn.
+
+**Khi có một ảnh bản đồ mới** (tạo bằng AI hoặc họa sĩ): (1) đo vị trí sông/cầu/thành trên ảnh, (2) hoặc sửa dữ liệu ải cho khớp ảnh (`PrototypeContentBuilder.StandardRiverPath`, `StandardBridges`, vị trí thành) rồi chạy **Apply Standard River Layout**, hoặc sửa ảnh cho khớp `*_mask.png`, (3) xuất lại blueprint và **chồng viền mask lên ảnh** để kiểm tra lệch ≤ 0.2 đơn vị.
+
 ## 1. File cần gửi kèm
 
 Sinh tự động từ dữ liệu ải (luôn khớp game) bằng menu **Arena3Q > Export Map Blueprints** (hoặc batch `-executeMethod Arena3Q.Editor.MapBlueprintExporter.ExportAll`). Ảnh ở tỉ lệ 1/4 (32 px mỗi đơn vị ngang), đã nghiêng 3/4 (dọc × 0.75), **1536 × 624 px (tỉ lệ ≈ 2.46 : 1)**:

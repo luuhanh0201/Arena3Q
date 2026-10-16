@@ -111,8 +111,8 @@ namespace Arena3Q.Editor
             var attack = GetOrCreate<StageConfig>(ContentRoot + "/Stages/Stage_Attack_01.asset", so =>
             {
                 CommonStage(so, "attack_01", StageType.Attack, loadout);
-                SetCastle(so.FindProperty("playerCastle"), new Vector2(-20f, 0f), 3000f, false);
-                SetCastle(so.FindProperty("enemyCastle"), new Vector2(19f, 0f), 10000f, true);
+                SetCastle(so.FindProperty("playerCastle"), new Vector2(-19.4f, 0f), 3000f, false);
+                SetCastle(so.FindProperty("enemyCastle"), new Vector2(19.4f, 0f), 10000f, true);
                 so.FindProperty("timeLimit").floatValue = 180f;
 
                 var defenders = new List<(TroopDefinition unit, Vector2 position)>
@@ -141,8 +141,8 @@ namespace Arena3Q.Editor
             var defense = GetOrCreate<StageConfig>(ContentRoot + "/Stages/Stage_Defense_01.asset", so =>
             {
                 CommonStage(so, "defense_01", StageType.Defense, loadout);
-                SetCastle(so.FindProperty("playerCastle"), new Vector2(-20f, 0f), 3000f, true);
-                SetCastle(so.FindProperty("enemyCastle"), new Vector2(19f, 0f), 4000f, false);
+                SetCastle(so.FindProperty("playerCastle"), new Vector2(-19.4f, 0f), 3000f, true);
+                SetCastle(so.FindProperty("enemyCastle"), new Vector2(19.4f, 0f), 4000f, false);
                 so.FindProperty("timeLimit").floatValue = 150f;
 
                 var waves = new[]
@@ -174,16 +174,61 @@ namespace Arena3Q.Editor
             return new[] { attack, defense };
         }
 
-        // Standard size-M layout (docs/MapSpecification.md): one winding river crossing the map from top to bottom
-        // through the middle, with two bridges, which makes two lanes.
+        // Standard size-M layout (docs/MapSpecification.md), measured from the map art map1.png so logic and art match:
+        // one winding river crossing the map from top to bottom through the middle, with two bridges (two lanes).
+        // The centre line runs straight down under each bridge because the bridges are drawn spanning left-right.
         public static readonly Vector2[] StandardRiverPath =
         {
-            new Vector2(1f, 14f), new Vector2(-1f, 9.5f), new Vector2(1.5f, 5f), new Vector2(0.5f, 0f),
-            new Vector2(-1.5f, -5f), new Vector2(1f, -9.5f), new Vector2(-0.5f, -14f)
+            new Vector2(1.5f, 14f), new Vector2(0.4f, 11.8f), new Vector2(-0.4f, 9.3f), new Vector2(-0.2f, 8.6f),
+            new Vector2(0.85f, 8f), new Vector2(0.85f, 5.4f), new Vector2(1.9f, 4.6f), new Vector2(1.5f, 3.5f),
+            new Vector2(1.1f, 1.6f), new Vector2(0.8f, 0.2f), new Vector2(0.3f, -1.2f), new Vector2(-0.4f, -2.5f),
+            new Vector2(-0.2f, -3.6f), new Vector2(-0.2f, -6.1f), new Vector2(1.1f, -7f), new Vector2(1.25f, -8.3f),
+            new Vector2(0.7f, -9.6f), new Vector2(0.4f, -10.6f), new Vector2(0.1f, -11.7f), new Vector2(-0.2f, -14f)
         };
-        public const float StandardRiverWidth = 2.5f;
-        public static readonly Vector2[] StandardBridges = { new Vector2(0.67f, 6.5f), new Vector2(-0.67f, -6.5f) };
-        public const float StandardBridgeWidth = 4f;
+        // Bright water in the art is ~2.0 wide plus stony banks; 2.3 keeps units on the bank, never on the water.
+        public const float StandardRiverWidth = 2.3f;
+        public static readonly Vector2[] StandardBridges = { new Vector2(0.85f, 6.7f), new Vector2(-0.2f, -4.85f) };
+        // The painted bridge decks are ~2.4 long along the river (narrower than the 4 proposed in the map spec).
+        public const float StandardBridgeWidth = 2.4f;
+
+        public const string StandardMapArtPath = "Assets/Arena3Q/Art/Maps/map1.png";
+        /// <summary>The map art is painted in the fixed 3/4 view with this vertical scale (map spec §8.3).</summary>
+        public const float StandardMapArtVerticalScale = 0.75f;
+
+        /// <summary>
+        /// Imports the map art as a sprite sized to cover the whole size-M map and assigns it as the temporary
+        /// background of the shipped stages. Batch: -executeMethod Arena3Q.Editor.PrototypeContentBuilder.ImportMapArt
+        /// </summary>
+        [MenuItem("Arena3Q/Import Map Art (map1)")]
+        public static void ImportMapArt()
+        {
+            AssetDatabase.ImportAsset(StandardMapArtPath, ImportAssetOptions.ForceSynchronousImport);
+            var importer = (TextureImporter)AssetImporter.GetAtPath(StandardMapArtPath)
+                           ?? throw new InvalidOperationException($"{StandardMapArtPath} not found.");
+            var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(StandardMapArtPath);
+            const float mapWidthUnits = 48f;
+            importer.textureType = TextureImporterType.Sprite;
+            importer.spriteImportMode = SpriteImportMode.Single;
+            importer.spritePixelsPerUnit = texture.width / mapWidthUnits;
+            importer.filterMode = FilterMode.Bilinear;
+            importer.mipmapEnabled = false;
+            importer.maxTextureSize = 2048;
+            importer.textureCompression = TextureImporterCompression.Compressed;
+            importer.SaveAndReimport();
+
+            var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(StandardMapArtPath);
+            foreach (var guid in AssetDatabase.FindAssets("t:StageConfig", new[] { ContentRoot }))
+            {
+                var stage = AssetDatabase.LoadAssetAtPath<StageConfig>(AssetDatabase.GUIDToAssetPath(guid));
+                var so = new SerializedObject(stage);
+                so.FindProperty("backgroundArt").objectReferenceValue = sprite;
+                so.FindProperty("backgroundArtVerticalScale").floatValue = StandardMapArtVerticalScale;
+                so.ApplyModifiedPropertiesWithoutUndo();
+                EditorUtility.SetDirty(stage);
+                Debug.Log($"[Arena3Q] Map art assigned to {stage.name}.");
+            }
+            AssetDatabase.SaveAssets();
+        }
 
         /// <summary>
         /// Replaces the forbidden zones of the shipped stages with the standard river, keeping each asset (and its
@@ -233,7 +278,7 @@ namespace Arena3Q.Editor
             so.FindProperty("stageType").enumValueIndex = (int)type;
             so.FindProperty("mapBounds").rectValue = new Rect(-24f, -13f, 48f, 26f);
             ApplyStandardRiver(so);
-            so.FindProperty("summonZone").rectValue = new Rect(-18f, -9f, 7f, 18f);
+            so.FindProperty("summonZone").rectValue = new Rect(-17.5f, -9f, 6.5f, 18f);
             var points = new[]
             {
                 new Vector2(-15.5f, 0f), new Vector2(-15.5f, 3.5f), new Vector2(-15.5f, -3.5f),

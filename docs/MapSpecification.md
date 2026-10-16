@@ -59,27 +59,27 @@ Lý do chọn M làm chuẩn:
        │ ┌──────────┐                                    ┌─────────┐  │
        │ │ VÙNG     │          GIỮA BẢN ĐỒ               │ VÙNG    │  │
        │ │ TRIỆU    │   SÔNG uốn khúc cắt ngang x≈0      │ PHÒNG   │  │
-       │ │ HỒI      │   cầu Bắc (0.67, 6.5), cầu Nam     │ THỦ     │  │
-   y=0 │ [T]  ◎ ◎ │   (−0.67, −6.5) → 2 làn đường      │   [Đ]   │  │
+       │ │ HỒI      │   cầu Bắc (0.85, 6.7), cầu Nam      │ THỦ     │  │
+   y=0 │ [T]  ◎ ◎ │   (−0.2, −4.85) → 2 làn đường       │   [Đ]   │  │
        │ │   ◎ ◎ ◎  │                                    │ ≤ 8 quanh│  │
-       │ │ x −18…−11│                                    │ thành   │  │
+       │ │x −17.5…−11│                                    │ thành   │  │
        │ └──────────┘                                    └─────────┘  │
        │ lề 3 (trên thanh thẻ)                                        │
  y=−13 └──────────────────────────────────────────────────────────────┘
       x=−24       −11                                   11          +24
-   [T] thành ta (−20, 0)   [Đ] thành địch (19, 0)   ◎ điểm triệu hồi nhanh
+   [T] thành ta (−19.4, 0)   [Đ] thành địch (19.4, 0)   ◎ điểm triệu hồi nhanh
 ```
 
 | Khu | Thông số đề xuất | Hiện tại trong `Stage_Attack_01` |
 |---|---|---|
 | **Căn cứ ta** | x −24…−11 (rộng 13) | khớp |
-| Thành ta | tâm (−20, 0); mép thành cách mép bản đồ ≥ 2.5 | (−20, 0) |
-| Vùng triệu hồi (`summonZone`) | x −18…−11, y −9…9 (7 × 18 = 126 đơn vị²; đủ cho 5 đội × ~9 đơn vị² cộng khoảng trống); cách mép thành ≥ 0.5 | (−18, −9, 7, 18) |
+| Thành ta | tâm (−19.4, 0) – giữa bãi đá trong `map1`; mép thành cách mép bản đồ ≥ 2.5 | (−19.4, 0) |
+| Vùng triệu hồi (`summonZone`) | x −17.5…−11, y −9…9 (6.5 × 18 = 117 đơn vị²; đủ cho 5 đội × ~9 đơn vị² cộng khoảng trống); cách mép thành ≥ 0.5 | (−17.5, −9, 6.5, 18) |
 | Điểm triệu hồi nhanh | 5 điểm, cách nhau ≥ 3 (một đội hình rộng ~3): (−15.5, 0), (−15.5, ±3.5), (−13, ±1.75) | khớp |
 | **Giữa bản đồ** | x −11…11 (rộng 22) – nơi giao tranh chính | khớp |
 | Vùng cấm | **1 con sông** cắt ngang từ mép trên xuống mép dưới, rộng 2.5, có **2 cầu** rộng 4 (mục 6.2); thêm 0–1 vùng chữ nhật nếu cần | sông "Sông" theo đúng thông số này |
 | **Căn cứ địch** | x 11…24 (rộng 13) | khớp |
-| Thành địch | tâm (19, 0) | (19, 0) |
+| Thành địch | tâm (19.4, 0) – giữa bãi đá trong `map1` | (19.4, 0) |
 | Quân phòng thủ | mọi vị trí trong bán kính **8** quanh thành địch (✅ spec §8, có test `ShippedAttackStages_DefendersStayAroundTheEnemyCastle`); `guardRadius` 4.5 → vùng "lao ra đánh" phủ x ~7…24 | 18 quân, khớp |
 
 ## 5. Bố cục chuẩn – ải Thủ (cỡ M) 🟡
@@ -104,11 +104,11 @@ Vùng cấm **chặn di chuyển**: unit đi theo đường ngắn nhất vòng 
 | Thông số | Đề xuất | Ghi chú |
 |---|---|---|
 | `path` (đường tâm) | 5–9 điểm, mỗi đoạn dài 4–6, góc lệch giữa hai đoạn liền kề ≤ 45° | uốn khúc mềm; **kéo dài quá mép bản đồ ≥ 1** nếu sông cắt ngang hết bản đồ |
-| `width` | **2.5** (tối thiểu 1, `Validate` kiểm tra) | rộng hơn 3 thì hai bờ cách nhau quá xa, cầu trông ngắn |
+| `width` | **2.3** theo `map1` (nước sáng ≈ 2.0 + bờ đá; tối thiểu 1, `Validate` kiểm tra) | rộng hơn 3 thì hai bờ cách nhau quá xa, cầu trông ngắn |
 | `crossings[].position` | điểm nằm **trên lòng sông** (`Validate` báo lỗi nếu lệch ra ngoài), nên đặt trên **đoạn thẳng**, cách khúc quanh ≥ 2 | đặt trên khúc quanh vẫn chạy được nhưng lối qua bị hẹp lại ở phía trong khúc quanh |
-| `crossings[].width` | **4** (tối thiểu 2) | là **bề rộng đi lại thật**; logic cắt lòng sông một đoạn dài `width cầu + width sông` để bờ nước không lấn vào lối qua |
+| `crossings[].width` | **2.4** theo mặt cầu trong `map1` (tối thiểu 2; ⚠️ hẹp hơn mức lối đi ≥ 4 ở mục 6.1 – cầu là điểm nghẽn, đội hình dồn lại khi qua) | là **bề rộng đi lại thật**; logic cắt lòng sông một đoạn dài `width cầu + width sông` để bờ nước không lấn vào lối qua |
 | Số cầu | ✅ **2** cho sông cắt ngang bản đồ cỡ M (2 làn, người dùng chốt 2026-10-17), cách nhau ≥ 10 theo trục y | 1 cầu → điểm nghẽn quá chặt; 3 cầu → sông gần như không còn tác dụng |
-| Bố cục chuẩn cỡ M | path (1, 14) (−1, 9.5) (1.5, 5) (0.5, 0) (−1.5, −5) (1, −9.5) (−0.5, −14); cầu (0.67, 6.5) và (−0.67, −6.5) | = `PrototypeContentBuilder.StandardRiverPath` / `StandardBridges` |
+| Bố cục chuẩn cỡ M | **đo từ `map1.png`**: 20 điểm đường tâm (xem `PrototypeContentBuilder.StandardRiverPath`), chạy **thẳng đứng dưới mỗi cầu** để lối qua nằm ngang đúng hình cầu; cầu (0.85, 6.7) và (−0.2, −4.85) | = `StandardRiverPath` / `StandardBridges` |
 
 Art: nước vẽ liền theo cả đường tâm (kể cả dưới cầu), cầu vẽ đè lên, hướng cầu vuông góc dòng chảy. Placeholder: sông xanh nước, cầu nâu.
 
@@ -169,13 +169,13 @@ Số đo theo **toạ độ logic** (toạ độ trong `StageConfig`); vì góc 
 | Trường `StageConfig` | Cỡ M – ải Công | Cỡ M – ải Thủ |
 |---|---|---|
 | `mapBounds` | (−24, −13, 48, 26) | (−24, −13, 48, 26) |
-| `playerCastle.position` | (−20, 0) | (−20, 0) |
-| `enemyCastle.position` | (19, 0) | (19, 0) – không sinh ra |
-| `summonZone` | (−18, −9, 7, 18) | (−18, −9, 7, 18) |
+| `playerCastle.position` | (−19.4, 0) | (−19.4, 0) |
+| `enemyCastle.position` | (19.4, 0) | (19.4, 0) – không sinh ra |
+| `summonZone` | (−17.5, −9, 6.5, 18) | (−17.5, −9, 6.5, 18) |
 | `quickSummonPoints` | (−15.5, 0), (−15.5, ±3.5), (−13, ±1.75) | như ải Công |
 | `rivers` | 1 sông chuẩn (mục 6.2) | 1 sông chuẩn (mục 6.2) |
 | `forbiddenZones` | 0–1 vùng chữ nhật, theo mục 6.3 | 0–1 vùng chữ nhật, theo mục 6.3 |
-| `defenders` | trong bán kính 8 quanh (19, 0), `guardRadius` 4.5 | – |
+| `defenders` | trong bán kính 8 quanh (19.4, 0), `guardRadius` 4.5 | – |
 | `waves[].spawns[].spawnPoint` | – | x 21–22.5, y −6…6 |
 | `timeLimit` | 180 | 150 |
 

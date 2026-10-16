@@ -97,9 +97,13 @@ namespace Arena3Q.UI
             _tiltLabel.text = $"Góc nhìn: {Mathf.RoundToInt(battle.ViewTiltDegrees)}°";
         }
 
-        // 2.5D view tilt, 0° (top-down, default) to 45°. Session only.
+        // 2.5D view tilt, 0° (top-down) to 45°, for debugging only (map spec §8.3): shown in the Editor and in
+        // Development builds, hidden in release builds where the angle stays at the art's angle. Session only.
         private void BuildTiltSlider(RectTransform root)
         {
+            if (!Application.isEditor && !Debug.isDebugBuild)
+                return;
+
             var topLeft = new Vector2(0f, 1f);
             _tiltLabel = UiFactory.CreateLabel("TiltLabel", root, topLeft, topLeft, new Vector2(30f, -74f),
                 new Vector2(320f, 40f), "Góc nhìn: 0°", 28, TextAnchor.MiddleLeft, Color.white);
