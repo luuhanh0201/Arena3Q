@@ -20,7 +20,9 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 ## 2. Chủ tướng
 - ✅ (người dùng chốt 2026-10-17, thay luật "chọn phe" cũ) Khi bắt đầu chơi game, người chơi **chọn 1 trong 4 chủ tướng** – **Cung thủ**, **Kiếm sĩ**, **Mưu sĩ**, **Thống soái**. Chủ tướng là **nhân vật cố định** của người chơi suốt game.
 - ✅ **Không còn chọn phe.** Các tướng còn lại người chơi **tự xây dựng đội hình** theo ý thích trong quá trình chơi, để lối chơi đa dạng.
-- ✅ Bối cảnh **Đông Á cổ trang**. Mỗi chủ tướng có bộ kỹ năng riêng gồm **1 nội tại + 2 chủ động + 1 tuyệt kỹ**; thiết kế nháp (🟡) ở `docs/LordHeroes.md`.
+- ✅ Bối cảnh **Đông Á cổ trang**. Mỗi chủ tướng có bộ kỹ năng riêng gồm **1 nội tại + 2 chủ động + 1 tuyệt kỹ**; thiết kế nháp (🟡) ở `docs/LordHeroes.md`. Cách dùng kỹ năng: mục 3 "Kỹ năng trên thẻ".
+- ✅ Chủ tướng **không có tên riêng**: mang **tên người chơi đặt khi đăng nhập** (chỉ phân biệt theo class).
+- ⏳ **Trang phục (skin)** cho chủ tướng: có, nhưng để sau (dùng chung bộ khung bộ phận để không phải làm lại animation).
 - ⏳ Màn chọn chủ tướng, kỹ năng chủ tướng (code): chưa làm ở prototype. `FactionDefinition` tối thiểu vẫn giữ trong dữ liệu nhưng chưa dùng (có thể bỏ sau).
 - 🟡 Prototype dùng **một chủ tướng placeholder** (`Hero_Lord`).
 
@@ -30,7 +32,19 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 - ✅ Chủ tướng **tính vào giới hạn 5 tướng**.
 - 🟡 Chủ tướng **không có sẵn trên sân**; được triệu hồi bằng thẻ như các tướng khác.
 - 🟡 Prototype: trận cấp sẵn bộ thẻ thử nghiệm gồm **1 thẻ chủ tướng + 4 thẻ tướng placeholder** (cấu hình trong `StageConfig` hoặc một `TestLoadout`), để kiểm tra được giới hạn 5 tướng.
-- ✅ Sau khi tướng đã ra sân, **chạm thẻ = chọn tướng đó** (không triệu hồi lần nữa).
+- ✅ Sau khi tướng đã ra sân, **chạm thẻ = chọn tướng đó** (không triệu hồi lần nữa). *(Luật hiện tại của prototype; được thay bằng mục "Kỹ năng trên thẻ" bên dưới khi làm kỹ năng.)*
+
+### Kỹ năng trên thẻ (người dùng chốt 2026-10-17 · ⏳ code làm cùng kỹ năng)
+- ✅ **Mọi tướng đều có tuyệt kỹ** (không chỉ chủ tướng). Bộ kỹ năng của chủ tướng: 1 nội tại + 2 chủ động + 1 tuyệt kỹ (`docs/LordHeroes.md`); bộ kỹ năng tướng thường: 🟡 chờ thiết kế (ít nhất 1 tuyệt kỹ).
+- ✅ **Kỹ năng chủ động tự dùng** ngay khi hồi chiêu xong, **tự nhắm** (🟡 thứ tự: mục tiêu tướng đang đánh → cụm quân địch đông nhất trong tầm → thành địch; không có mục tiêu trong tầm thì chờ, không phí chiêu).
+- ✅ **Tuyệt kỹ dùng thanh nộ, không có thời gian hồi**: thanh nộ **tăng mỗi lần tướng gây sát thương**; đầy thì dùng được.
+  - 🟡 Chỉ tính sát thương **do chính tướng** gây ra (không tính đội lính); lượng nộ tỉ lệ với sát thương, mỗi tướng cấu hình `rageMax` và tốc độ tích (`HeroDefinition`). Thanh nộ không tự giảm; dùng xong về 0; tướng chết thì mất nộ.
+- ✅ **Thẻ của tướng đã ra sân hiển thị**: icon của từng **kỹ năng chủ động** kèm **đếm ngược hồi chiêu**, và **thanh nộ** của tuyệt kỹ (sáng lên khi đầy).
+- ✅ **Thao tác trên thẻ của tướng đã ra sân**:
+  - **Chạm** thẻ = dùng **tuyệt kỹ**, tự nhắm (chỉ khi thanh nộ đầy; 🟡 chưa đầy thì không làm gì).
+  - **Kéo** thẻ ra chiến trường = dùng tuyệt kỹ và **tự chọn điểm / hướng** (thả trên UI = huỷ; 🟡 chỉ khi nộ đầy).
+  - **Giữ** thẻ **1.5 giây** = **chọn** tướng đó (đổi chọn tướng nhanh).
+  - Thẻ chưa dùng (chạm = triệu hồi nhanh, kéo = triệu hồi tự do) và thẻ tướng đã chết: không đổi.
 - 🟡 Tướng đã chết: thẻ **xám lại**, không chọn và không dùng lại được.
 
 ## 4. Triệu hồi
@@ -44,10 +58,10 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 
 ## 5. Điều khiển ✅
 - Chỉ **một tướng được chọn** tại một thời điểm; tướng được chọn có vòng sáng.
-- **Chọn tướng**: chạm trực tiếp vào tướng, chạm thẻ của tướng đã ra sân, hoặc chạm icon tướng ở mép màn hình (mục 9).
+- **Chọn tướng**: chạm trực tiếp vào tướng, chạm thẻ của tướng đã ra sân (⏳ khi có kỹ năng: **giữ thẻ 1.5 giây**, mục 3 "Kỹ năng trên thẻ"), hoặc chạm icon tướng ở mép màn hình (mục 9).
 - **Lệnh di chuyển (`MoveCommand`)**: khi đã chọn tướng, chạm vào mặt đất hợp lệ.
 - 🟡 Khi đã chọn tướng, **chạm vào quân địch hoặc thành địch** = `AttackCommand` tới mục tiêu đó (cùng tác dụng với vuốt từ tướng).
-- **Lệnh tấn công (`AttackCommand`)**: **vuốt bắt đầu từ tướng** tới thành địch hoặc một đơn vị địch → tướng (và đội lính) tiến tới đánh mục tiêu đó. 🟡 Vuốt bắt đầu từ thẻ của tướng đã ra sân cũng được tính.
+- **Lệnh tấn công (`AttackCommand`)**: **vuốt bắt đầu từ tướng** tới thành địch hoặc một đơn vị địch → tướng (và đội lính) tiến tới đánh mục tiêu đó. 🟡 Vuốt bắt đầu từ thẻ của tướng đã ra sân cũng được tính *(⏳ khi có kỹ năng: kéo thẻ dùng để nhắm tuyệt kỹ, luật này bỏ)*.
 - Lệnh mới **thay thế** lệnh cũ.
 - Không phát lệnh khi ngón tay/con trỏ đang ở trên UI.
 - Không nhận lệnh tới vị trí ngoài chiến trường hoặc vùng cấm.

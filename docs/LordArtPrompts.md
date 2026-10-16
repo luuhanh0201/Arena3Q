@@ -1,6 +1,6 @@
 # Arena3Q – Prompt hình ảnh và danh sách animation cho 4 chủ tướng
 
-Phiên bản: v0.1 · 2026-10-17. Đi kèm `docs/LordHeroes.md` (thiết kế, kỹ năng) và cùng phong cách với bản đồ `map1.png` (`docs/ArtPrompts.md`).
+Phiên bản: v0.2 · 2026-10-17 (bỏ tên riêng – chủ tướng mang tên người chơi; thêm icon kỹ năng). Đi kèm `docs/LordHeroes.md` (thiết kế, kỹ năng) và cùng phong cách với bản đồ `map1.png` (`docs/ArtPrompts.md`).
 
 Đã chốt ✅: Đông Á cổ trang · vẽ tay màu mềm, góc 3/4 · animation **skeletal** (Unity 2D Animation, đã có trong project) từ **PSD tách bộ phận** · **2 hướng** (trước-phải, sau-phải) + lật gương ra trái · 2 nam + 2 nữ.
 
@@ -89,7 +89,7 @@ Identical size and angle for all four.
 
 Thay các phần trong `[...]` ở mục 4 bằng chi tiết dưới đây.
 
-### 5.1 Lạc Nhạn – Cung thủ (nữ)
+### 5.1 Cung thủ (nữ)
 Concept:
 ```
 [khối phong cách ở mục 3]
@@ -102,7 +102,7 @@ a light hooded half-cape, calm sharp eyes, agile build.
 - Phụ kiện riêng: `quiver with arrows, bowstring (separate thin line)` · dải màu đội: `ribbon tied on the ponytail and bow`.
 - Lưu ý gắn xương: **dây cung tách riêng** để kéo căng khi bắn.
 
-### 5.2 Vân Phong – Kiếm sĩ (nam)
+### 5.2 Kiếm sĩ (nam)
 Concept:
 ```
 [khối phong cách ở mục 3]
@@ -114,7 +114,7 @@ determined expression, lean athletic build.
 ```
 - Phụ kiện riêng: `short sword with sheath, scabbard of the long sword` · dải màu đội: `long headband tails`.
 
-### 5.3 Minh Nguyệt – Mưu sĩ (nữ)
+### 5.3 Mưu sĩ (nữ)
 Concept:
 ```
 [khối phong cách ở mục 3]
@@ -127,7 +127,7 @@ hair in an elegant bun with a crescent-moon hairpin, wise confident expression, 
 - Phụ kiện riêng: `bamboo strategy book, jade bagua pendant, wide sleeves as separate pieces` · dải màu đội: `sash belt tails`.
 - Lưu ý: **tay áo rộng tách riêng** khỏi cánh tay để lay động khi phẩy quạt.
 
-### 5.4 Trấn Quốc – Thống soái (nam)
+### 5.4 Thống soái (nam)
 Concept:
 ```
 [khối phong cách ở mục 3]
@@ -153,20 +153,44 @@ Hình nằm trên mặt đất (vòng trận, vùng lửa) vẽ **nhìn thẳng 
 
 | Chủ tướng | Kỹ năng | Danh sách mảnh `[...]` |
 |---|---|---|
-| Lạc Nhạn | Liên Châu Tiễn | glowing green arrow, short motion trail, small hit spark |
+| Cung thủ | Liên Châu Tiễn | glowing green arrow, short motion trail, small hit spark |
 | | Tiễn Vũ | falling arrow seen from above-front, arrow stuck in ground, circular dust ring (top-down) |
 | | Phá Thành Hỏa Tiễn | huge flaming arrow, fire trail, big fire explosion burst, embers |
-| Vân Phong | Phi Ảnh Đột Kích | blue afterimage silhouette smear, dash streak lines, impact star |
+| Kiếm sĩ | Phi Ảnh Đột Kích | blue afterimage silhouette smear, dash streak lines, impact star |
 | | Toàn Phong Trảm | circular blue sword-slash ring (top-down), wind swirl |
 | | Vạn Kiếm Quy Tông | single glowing spirit sword pointing down, light pillar, ground crack decal (top-down) |
-| Minh Nguyệt | Hỏa Kế | circular fire field decal (top-down), single flame, smoke puff |
+| Mưu sĩ | Hỏa Kế | circular fire field decal (top-down), single flame, smoke puff |
 | | Bát Quái Trận | glowing bagua trigram circle decal (top-down, purple light), floating rune symbol |
 | | Đông Phong | horizontal wind gust streaks, swirling leaves, feather |
-| Trấn Quốc | Hiệu Triệu | golden rally banner glow, light beam, small soldier silhouette appearing in light |
+| Thống soái | Hiệu Triệu | golden rally banner glow, light beam, small soldier silhouette appearing in light |
 | | Trống Trận | war drum shockwave ring (top-down, orange), musical drum beat burst |
 | | Thiết Kỵ Xung Phong | armoured cavalry rider charging (side 3/4 view, ghostly golden), dust cloud trail, hoof-print decal |
 
 ---
+
+## 6b. Icon kỹ năng (hiện trên thẻ tướng)
+
+Thẻ của tướng đã ra sân hiển thị (spec §3 "Kỹ năng trên thẻ"): **icon 2 kỹ năng chủ động** kèm **đếm ngược hồi chiêu** (game tự phủ lớp tối + số giây lên icon), và **thanh nộ** cho tuyệt kỹ (game tự vẽ thanh; icon tuyệt kỹ sáng lên khi đầy). Vì vậy chỉ cần vẽ **icon tĩnh**:
+
+- Kích thước vẽ **256 × 256 px**, nền trong suốt, hình **tròn** (game cắt và thu nhỏ ≈ 44 px trên thẻ – phải đọc được ở cỡ rất nhỏ: một hình chính, ít chi tiết, tương phản mạnh).
+- Mỗi chủ tướng **3 icon**: chủ động 1, chủ động 2, tuyệt kỹ (+ 1 icon nội tại nếu muốn hiện trong màn chọn chủ tướng).
+- Cùng một bộ khung viền cho cả 4 chủ tướng; màu nền icon theo màu chủ đạo của chủ tướng; **icon tuyệt kỹ có viền vàng** để phân biệt.
+
+```
+[khối phong cách ở mục 3, bỏ câu về camera 3/4]
+A round skill icon for a mobile strategy game, 256x256, transparent outside the circle,
+single bold central symbol: [mô tả icon], background disc in [màu chủ đạo] with a soft radial glow,
+thin [bronze / gold for ultimate] ring frame, high contrast, readable at 44 pixels, no text.
+```
+
+| Chủ tướng | Chủ động 1 | Chủ động 2 | Tuyệt kỹ (viền vàng) |
+|---|---|---|---|
+| Cung thủ | three arrows in a row (Liên Châu Tiễn) | arrows raining down from a cloud (Tiễn Vũ) | one huge flaming arrow (Phá Thành Hỏa Tiễn) |
+| Kiếm sĩ | sword with speed streak (Phi Ảnh Đột Kích) | two crossed swords in a spinning circle (Toàn Phong Trảm) | many swords falling from the sky (Vạn Kiếm Quy Tông) |
+| Mưu sĩ | flame on a scroll (Hỏa Kế) | glowing bagua symbol (Bát Quái Trận) | feather fan with wind swirl (Đông Phong) |
+| Thống soái | raised war banner (Hiệu Triệu) | war drum with shockwave (Trống Trận) | charging armoured horse head (Thiết Kỵ Xung Phong) |
+
+Tên file: `icon_<class>_<skill>.png`, ví dụ `icon_archer_active1.png`, `icon_archer_ultimate.png`. Tướng thường (không phải chủ tướng) cũng có tuyệt kỹ (spec §3) – icon của họ làm theo cùng mẫu khi thiết kế xong bộ kỹ năng.
 
 ## 7. Danh sách animation (mình làm trong Unity bằng skeletal)
 
@@ -222,5 +246,5 @@ dramatic lighting, swirling [màu chủ đạo] energy, vertical 2:3 composition
 6. Hiệu ứng: PNG nền trong suốt, mỗi mảnh một file, tên `vfx_<chủ tướng>_<kỹ năng>_<mảnh>.png`.
 
 ## 10. Câu hỏi còn mở
-- Chiều cao "3.5 đầu" (hơi chibi, kiểu Clash of Clans) có đúng ý không, hay muốn tỉ lệ người thật hơn?
-- Có cần thêm **trang phục thay thế** (skin) không – nếu có, cần giữ đúng cùng bộ khung bộ phận để dùng chung animation.
+- ~~Tỉ lệ 3.5 đầu?~~ → **Giữ tạm 3.5 đầu** (🟡, người dùng chốt 2026-10-17).
+- ~~Skin?~~ → **Đã chốt: có, để sau (⏳)** – khi làm, giữ đúng cùng bộ khung bộ phận để dùng chung animation.
