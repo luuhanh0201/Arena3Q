@@ -22,6 +22,7 @@ Bugs fixed so far, with root causes and how to avoid repeating them, are logged 
 ```
 docs/GameplaySpecification.md   gameplay spec (source of truth)
 docs/NhatKySuaLoi.md            bug-fix log (root cause + prevention per fix)
+docs/MapSpecification.md        map dimensions, layout, forbidden-zone and art rules (proposal)
 Assets/
   Arena3Q/                      everything this project owns
     Scripts/                    Core, Data, Gameplay (Battle, Camera, Heroes, Input, Stages, Troops, Units, Visuals), UI, Editor

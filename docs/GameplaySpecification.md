@@ -128,6 +128,8 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 - 🟡 Ngưỡng sao ở trên là mặc định, nằm trong `StageConfig` để chỉnh từng ải.
 
 ## 9. Bản đồ và camera
+Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng cấm, quy cách art): `docs/MapSpecification.md` (🟡 đề xuất, chờ duyệt).
+
 - ✅ Bản đồ là **bãi trống**, không chướng ngại, không cần tìm đường (pathfinding). Có biên giới hạn và có thể có vùng cấm.
 - 🟡 Vùng cấm (hình chữ nhật) **chặn di chuyển**: unit không đi xuyên qua; nếu đường thẳng bị vùng cấm cắt thì đi vòng qua góc gần nhất của chính vùng đó (bỏ qua góc nằm ngoài bản đồ). Đây chỉ là né một vật cản, không phải tìm đường tổng quát.
 - ✅ Góc nhìn kiểu Clash of Clans; bản đồ **rộng hơn màn hình**.
