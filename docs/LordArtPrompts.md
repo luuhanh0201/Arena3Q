@@ -88,59 +88,18 @@ Identical size and angle for all four.
 
 ---
 
-## 5. Từng chủ tướng – concept và chi tiết riêng
+## 5. Từng chủ tướng – prompt dán sẵn
 
-Thay các phần trong `[...]` ở mục 4 bằng chi tiết dưới đây.
+Prompt đầy đủ (phong cách A, đã ghép sẵn, dán nguyên văn) cho từng chủ tướng nằm cạnh ảnh mẫu trong `docs/art/concepts/`. Mỗi file gồm: tóm tắt + bảng màu, 6 prompt (bảng xoay, tư thế chuẩn trước-phải, sau-phải, biểu cảm, vá phần bị che, tư thế tham khảo) và **khác biệt khi tách bộ phận / gắn xương** so với mẫu Mưu sĩ (`docs/StrategistArtGuide.md`).
 
-### 5.1 Cung thủ (nữ)
-Concept:
-```
-[khối phong cách ở mục 3]
-Character design turnaround, two views side by side on a plain white background: FRONT-RIGHT 3/4 view and
-BACK-RIGHT 3/4 view, full body, standing relaxed.
-A young female archer heroine, ancient East Asian ranger: jade-green and tan leather light armour,
-high ponytail with a hairpin, bracers, a tall recurve horn bow in the left hand, a quiver of feathered arrows on her back,
-a light hooded half-cape, calm sharp eyes, agile build.
-```
-- Phụ kiện riêng: `quiver with arrows, bowstring (separate thin line)` · dải màu đội: `ribbon tied on the ponytail and bow`.
-- Lưu ý gắn xương: **dây cung tách riêng** để kéo căng khi bắn.
+| Chủ tướng | File prompt | Tiền tố ảnh | Dải màu đội |
+|---|---|---|---|
+| Cung thủ (nữ) | `CungThu_Prompts.md` | `archer_` | ruy băng tóc + ruy băng buộc cung |
+| Kiếm sĩ (nam) | `KiemSi_Prompts.md` | `swordsman_` | băng trán + 2 đuôi |
+| Mưu sĩ (nữ) | `MuuSi_Prompts.md` | `strategist_` | 2 đuôi dải lụa thắt lưng |
+| Thống soái (nam) | `ThongSoai_Prompts.md` | `marshal_` | chùm lông mũ + vải cờ lệnh |
 
-### 5.2 Kiếm sĩ (nam)
-Concept:
-```
-[khối phong cách ở mục 3]
-Character design turnaround, two views side by side on a plain white background: FRONT-RIGHT 3/4 view and
-BACK-RIGHT 3/4 view, full body, standing ready.
-A young male swordsman hero, wandering sword saint: silver-white robe with deep blue trim over light lamellar armour,
-long hair tied back with a headband, a long straight sword in the right hand and a short sword on the left hip,
-determined expression, lean athletic build.
-```
-- Phụ kiện riêng: `short sword with sheath, scabbard of the long sword` · dải màu đội: `long headband tails`.
-
-### 5.3 Mưu sĩ (nữ)
-Concept:
-```
-[khối phong cách ở mục 3]
-Character design turnaround, two views side by side on a plain white background: FRONT-RIGHT 3/4 view and
-BACK-RIGHT 3/4 view, full body, standing elegantly.
-A female military strategist heroine: flowing lavender and ivory scholar robes with wide sleeves, a crane-feather fan in
-the right hand, a bamboo book of war strategy hanging at the waist, a small jade bagua pendant,
-hair in an elegant bun with a crescent-moon hairpin, wise confident expression, slender build.
-```
-- Phụ kiện riêng: `bamboo strategy book, jade bagua pendant, wide sleeves as separate pieces` · dải màu đội: `sash belt tails`.
-- Lưu ý: **tay áo rộng tách riêng** khỏi cánh tay để lay động khi phẩy quạt.
-
-### 5.4 Thống soái (nam)
-Concept:
-```
-[khối phong cách ở mục 3]
-Character design turnaround, two views side by side on a plain white background: FRONT-RIGHT 3/4 view and
-BACK-RIGHT 3/4 view, full body, standing commanding.
-A middle-aged male grand marshal: heavy crimson and bronze lamellar armour, a helmet with a tall plume,
-a long red war cape, a long spear (guandao-style blade optional) in the right hand,
-a command banner pole strapped on his back, a full beard, stern powerful expression, broad sturdy build.
-```
-- Phụ kiện riêng: `command banner on a pole (cloth as a separate piece), helmet plume` · dải màu đội: `helmet plume and banner cloth`.
+Mục 4 (tấm bộ phận tách rời do AI vẽ) là cách cũ – nay ưu tiên **ảnh tư thế chuẩn rồi tự cắt trong Krita** (`StrategistArtGuide.md` §3), dùng tấm bộ phận chỉ khi cần tham khảo.
 
 ---
 
