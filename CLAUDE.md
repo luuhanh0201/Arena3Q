@@ -28,7 +28,7 @@ docs/art/blueprints/            map blueprints exported from stage data (Arena3Q
 docs/LordHeroes.md              the 4 player lords (archer, swordsman, strategist, marshal): roles and draft skills
 docs/LordArtPrompts.md          lord image prompts, PSD parts sheet and animation list (skeletal animation)
 docs/StrategistArtGuide.md      strategist lord (template for all lords): look spec, AI prompts (style A: chibi 3D render), Krita PSD layers, bone names, clips
-docs/art/concepts/              character concept images (chutuong1.png = style reference only)
+docs/art/concepts/              character concepts: chutuong1.png (style reference only), ready-to-paste prompts (MuuSi_Prompts.md), generated images
 Assets/
   Arena3Q/                      everything this project owns
     Scripts/                    Core, Data, Gameplay (Battle, Camera, Heroes, Input, Stages, Troops, Units, Visuals), UI, Editor

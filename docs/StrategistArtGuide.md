@@ -60,71 +60,20 @@ Phiên bản: v0.2 · 2026-10-17 · **Phong cách đã chốt: phương án A �
 
 ---
 
-## 2. Prompt tạo ảnh (ChatGPT; một cuộc trò chuyện cho cả Mưu sĩ)
+## 2. Prompt tạo ảnh
 
-Luôn **gửi kèm `chutuong1.png`** ở ảnh 1; từ ảnh 2 trở đi gửi kèm **ảnh 1 đã chốt** (và `chutuong1.png` nếu phong cách bị trôi).
+**Toàn bộ prompt (đã ghép sẵn, dán nguyên văn) nằm cạnh ảnh mẫu: `docs/art/concepts/MuuSi_Prompts.md`.** Ảnh tạo ra cũng lưu vào `docs/art/concepts/`.
 
-**Khối nhân vật** (dán vào mọi prompt, chỗ `[CHARACTER]`):
-```
-Character: a young female military strategist heroine from ancient East Asia (about 25 years old), calm, clever and confident, gentle slight smile, sharp intelligent eyes, slender elegant build, NO armour. Ivory inner robe with a crossed Hanfu collar; long lavender outer robe (#B9A3D6) reaching the ankles with wide sleeves hanging to the hips, both hands visible; deep violet trim (#6B4E8C) with a pale-gold cloud pattern; the front of the robe split so the legs can step; ivory cloth shoes with cloud-shaped toes. A wide cloth sash with two long hanging tails in front, painted neutral light grey (#BDBDBD); a round jade bagua pendant on the sash; a small rolled bamboo-slip strategy book tied at the left hip. Dark brown-black hair in a tall neat bun with a silver crescent-moon hairpin, two long locks framing the face. A white crane-feather fan with grey feather tips, jade-green handle and small violet tassel, held in the right hand, about the size of her head. Nothing covers the face, no cape, no hat.
-```
+| # | Ảnh | Dùng để |
+|---|---|---|
+| 1 | Bảng xoay 4 hướng | ảnh gốc – mọi ảnh sau phải giống nhân vật này |
+| 2 | Tư thế chuẩn trước-phải | tách bộ phận PSD hướng trước (§3.1) |
+| 3 | Tư thế chuẩn sau-phải | tách bộ phận PSD hướng sau (§3.2) |
+| 4 | 4 biểu cảm | nhóm lớp `F_face` (đổi mặt trong game) |
+| 5 | Vá phần bị che | hoàn thiện bộ phận bị che khi cắt trong Krita (§3.3 bước 4) |
+| 6 | Tư thế tham khảo (tuỳ chọn) | mình dựa vào để dựng clip (§5) |
 
-**Khối phong cách** (chỗ `[STYLE]`):
-```
-Match the rendering style, proportions and level of detail of the attached reference image (stylised 3D-rendered chibi figurine look), but NOT its character, outfit, colours or weapon. Chibi proportions about 2.5 heads tall, large head, big expressive eyes, small body. Soft studio lighting from the top-left, gentle rim light, smooth clean materials, subtle reflections (no strong shiny spots), no outline. No text, no watermark.
-```
-
-### Ảnh 1 – Bảng xoay (ảnh gốc của nhân vật)
-```
-[STYLE]
-[CHARACTER]
-Character turnaround sheet: four full-body views of the SAME character in a row on a plain white background, evenly spaced, same size in every view, orthographic camera at eye level: 1) front view, 2) side view facing right, 3) back view, 4) A-pose front view with arms slightly away from the body and the fan held upright not overlapping the body.
-```
-Tạo 2–3 lần, chọn tấm đẹp nhất → lưu `docs/art/concepts/strategist_turnaround.png`.
-
-### Ảnh 2 – Tư thế chuẩn hướng TRƯỚC-PHẢI (dùng để tách bộ phận)
-```
-[STYLE]
-Using the attached turnaround sheet, draw exactly the same character (same face, outfit, colours, fan, proportions).
-One full-body image, FRONT-RIGHT three-quarter view (body turned 45 degrees to the right of the viewer), camera looking DOWN from above at about 40 degrees, orthographic, no perspective distortion.
-Neutral rig pose: standing straight, both arms held slightly away from the body (about 25 degrees) so nothing overlaps the torso, hands clearly outside the sleeves, right hand holding the fan upright beside the body (not in front of the face or torso), left hand open and relaxed, feet slightly apart, sash tails hanging straight, calm face.
-Plain flat white background, no ground shadow, high resolution, the character fills about 85 % of the image height.
-```
-→ `strategist_rig_front.png`.
-
-### Ảnh 3 – Tư thế chuẩn hướng SAU-PHẢI
-```
-[STYLE]
-Using the attached images, draw exactly the same character in the SAME neutral rig pose, but seen from BEHIND: BACK-RIGHT three-quarter view (her back towards the viewer, body turned 45 degrees to the right, walking away up-right), camera looking DOWN from above at about 40 degrees, orthographic. The bun, hairpin, sash knot at the back, the back of the wide sleeves and the fan (held in the right hand, partly visible) must match the turnaround sheet.
-Plain flat white background, no ground shadow, high resolution, same scale as the attached rig pose.
-```
-→ `strategist_rig_back.png`.
-
-### Ảnh 4 – Biểu cảm (đổi mặt trong game)
-```
-[STYLE]
-Using the attached front-right rig pose, an expression sheet of the SAME head only (face, hair and hairpin included), FRONT-RIGHT three-quarter view from about 40 degrees above, identical size, angle and position for all heads, 4 heads in a row on plain white:
-1) calm with a slight smile, 2) shouting a command (mouth open, eyebrows down), 3) hurt (wincing, one eye shut), 4) knocked out (eyes closed, small dizzy look).
-```
-→ `strategist_faces.png`. Chỉ dùng **phần mặt** (mắt, mày, miệng) – tóc và đầu lấy từ ảnh 2.
-
-### Ảnh 5 – Vá phần bị che (dùng khi tách trong Krita, mỗi bộ phận một lần)
-Khi cắt một bộ phận ra (ví dụ thân bị tay áo che một góc), xuất bộ phận đó ra PNG rồi gửi:
-```
-[STYLE]
-This is an isolated body part cut from the attached character: [torso / upper arm / robe front piece / ...].
-Complete the missing or hidden area so the part is whole, keep EXACTLY the same style, colours, size and outline of the visible area, do not change the visible pixels, plain white background, nothing else in the image.
-```
-Vẽ thêm phần **thừa ở khớp** (đầu tròn chồng dưới bộ phận kế bên) – xem §3.3.
-
-### Ảnh 6 (tuỳ chọn) – Tư thế tham khảo cho animation
-```
-[STYLE]
-A pose reference sheet of the attached character, front-right three-quarter view from about 40 degrees above, 6 key poses in a row on white: idle holding the fan, mid-stride walk, fan raised behind the shoulder (attack wind-up), fan swept forward releasing a gust (attack strike), both arms raised with sleeves billowing (ultimate), fallen to the ground.
-```
-Không dùng trong game; mình dựa vào đó để dựng clip.
-
-VFX, icon kỹ năng, chân dung thẻ, ảnh màn chọn: dùng prompt ở `LordArtPrompts.md` §6, §6b, §8 – thay khối phong cách bằng `[STYLE]` ở trên.
+VFX, icon kỹ năng, chân dung thẻ, ảnh màn chọn: prompt mẫu ở `LordArtPrompts.md` §6, §6b, §8 – dùng khối phong cách A (`LordArtPrompts.md` §3).
 
 ---
 
@@ -274,6 +223,6 @@ Mọi clip dựng cho hướng trước; hướng sau dùng cùng tên clip. L�
 ---
 
 ## 7. Gửi mình
-- [ ] `docs/art/concepts/strategist_turnaround.png`, `strategist_rig_front.png`, `strategist_rig_back.png`, `strategist_faces.png` – gửi ngay khi có, mình xem trước khi bạn tách.
+- [ ] Ảnh theo `docs/art/concepts/MuuSi_Prompts.md`: `docs/art/concepts/strategist_turnaround.png`, `strategist_rig_front.png`, `strategist_rig_back.png`, `strategist_faces.png` – gửi ngay khi có, mình xem trước khi bạn tách.
 - [ ] `Assets/Arena3Q/Art/Heroes/Strategist/lord_strategist_front.psd`, `lord_strategist_back.psd` (qua kiểm tra §3.4).
 - [ ] Sau khi gắn xương (§4.2): báo mình để dựng prefab, Animator, clip và code.

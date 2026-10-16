@@ -2,7 +2,7 @@
 
 Phiên bản: v0.4 · 2026-10-17 (đổi phong cách sang chibi render 3D – phương án A; trước đó: bỏ tên riêng, icon kỹ năng, kỹ năng 2/3, animation theo tốc đánh). Đi kèm `docs/LordHeroes.md` (thiết kế, kỹ năng) và `docs/StrategistArtGuide.md` (mẫu chi tiết trên Mưu sĩ).
 
-> **Phong cách nhân vật đã đổi (người dùng chốt 2026-10-17): phương án A – chibi ~2.5 đầu, render 3D kiểu mô hình figure, theo ảnh mẫu `docs/art/concepts/chutuong1.png`.** Bản đồ vẫn vẽ tay (map spec §8.1). Hướng dẫn chi tiết làm mẫu trên Mưu sĩ: `docs/StrategistArtGuide.md`.
+> **Phong cách nhân vật đã đổi (người dùng chốt 2026-10-17): phương án A – chibi ~2.5 đầu, render 3D kiểu mô hình figure, theo ảnh mẫu `docs/art/concepts/chutuong1.png`.** Bản đồ vẫn vẽ tay (map spec §8.1). Hướng dẫn chi tiết làm mẫu trên Mưu sĩ: `docs/StrategistArtGuide.md`; prompt dán sẵn để cạnh ảnh mẫu trong `docs/art/concepts/` (`MuuSi_Prompts.md`, các chủ tướng sau đặt tên tương tự).
 
 Đã chốt ✅: Đông Á cổ trang · **chibi render 3D (phương án A)**, góc 3/4 · animation **skeletal** (Unity 2D Animation, đã có trong project) từ **PSD tách bộ phận** · **2 hướng** (trước-phải, sau-phải) + lật gương ra trái · 2 nam + 2 nữ.
 
