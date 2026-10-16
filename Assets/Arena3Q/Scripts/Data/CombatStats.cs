@@ -22,6 +22,11 @@ namespace Arena3Q.Data
         [Tooltip("Radius used to find targets while Advancing.")]
         [SerializeField, Min(0f)] private float aggroRange;
 
+        [Tooltip("Provisional: 'just took damage' (spec §6). An attacker stops counting as a threat this many seconds after its last hit.")]
+        [SerializeField, Min(0.1f)] private float attackerMemorySeconds = DefaultAttackerMemorySeconds;
+
+        public const float DefaultAttackerMemorySeconds = 2f;
+
         public CombatStats()
         {
         }
@@ -45,6 +50,7 @@ namespace Arena3Q.Data
         public float AttackInterval => attackInterval;
         public float ReactionRange => reactionRange;
         public float AggroRange => aggroRange;
+        public float AttackerMemorySeconds => attackerMemorySeconds;
 
         public void Validate(string owner, List<string> errors)
         {
@@ -57,6 +63,7 @@ namespace Arena3Q.Data
             // Self-defence fights in place (spec §6 rule 5): an attacker inside reactionRange must also be in reach.
             if (reactionRange > attackRange) errors.Add($"{owner}: reactionRange must be <= attackRange (self-defence does not chase).");
             if (aggroRange < attackRange) errors.Add($"{owner}: aggroRange must be >= attackRange.");
+            if (attackerMemorySeconds < attackInterval) errors.Add($"{owner}: attackerMemorySeconds should be >= attackInterval.");
         }
     }
 }

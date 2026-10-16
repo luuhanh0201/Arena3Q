@@ -12,7 +12,8 @@ namespace Arena3Q.Gameplay
     /// </summary>
     public abstract class UnitBase : MonoBehaviour
     {
-        private readonly List<UnitBase> _attackers = new List<UnitBase>();
+        // Who damaged us and when (battle time), for the "just took damage" rule (spec §6 rule 2).
+        private readonly List<(UnitBase unit, float lastHit)> _attackers = new List<(UnitBase unit, float lastHit)>();
         private float _cooldown;
         private bool _dead;
 
@@ -34,6 +35,9 @@ namespace Arena3Q.Gameplay
         public float MoveSpeed { get; private set; }
         public float ReactionRange { get; private set; }
         public float AggroRange { get; private set; }
+
+        /// <summary>An attacker counts as a threat only this long after its last hit (provisional, default 2 s).</summary>
+        public float AttackerMemorySeconds { get; private set; } = CombatStats.DefaultAttackerMemorySeconds;
 
         /// <summary>Damage from an attacker outside our attack range since the last brain tick.</summary>
         public bool TookDamageFromOutOfRange { get; private set; }
@@ -59,10 +63,10 @@ namespace Arena3Q.Gameplay
 
         protected void SetCombat(CombatStats stats) =>
             SetCombat(stats.Damage, stats.AttackRange, stats.AttackInterval, stats.MoveSpeed, stats.ReactionRange,
-                stats.AggroRange);
+                stats.AggroRange, stats.AttackerMemorySeconds);
 
         protected void SetCombat(float damage, float attackRange, float attackInterval, float moveSpeed,
-            float reactionRange, float aggroRange)
+            float reactionRange, float aggroRange, float attackerMemorySeconds = CombatStats.DefaultAttackerMemorySeconds)
         {
             Damage = damage;
             AttackRange = attackRange;
@@ -70,6 +74,7 @@ namespace Arena3Q.Gameplay
             MoveSpeed = moveSpeed;
             ReactionRange = reactionRange;
             AggroRange = aggroRange;
+            AttackerMemorySeconds = Mathf.Max(0.05f, attackerMemorySeconds);
         }
 
         /// <summary>One simulation step. Called by <see cref="BattleController"/> only while the battle runs.</summary>
@@ -93,8 +98,11 @@ namespace Arena3Q.Gameplay
 
             if (source != null && source.IsAlive)
             {
-                if (!_attackers.Contains(source))
-                    _attackers.Add(source);
+                var index = _attackers.FindIndex(a => a.unit == source);
+                if (index >= 0)
+                    _attackers[index] = (source, Battle.BattleTime);
+                else
+                    _attackers.Add((source, Battle.BattleTime));
                 if (EdgeDistance(source) > AttackRange)
                     TookDamageFromOutOfRange = true;
             }
@@ -124,15 +132,19 @@ namespace Arena3Q.Gameplay
         {
         }
 
-        /// <summary>Nearest living attacker within reaction range; forgets attackers that died or moved away (spec §6).</summary>
+        /// <summary>
+        /// Nearest living attacker within reaction range that hit us within the last <see cref="AttackerMemorySeconds"/>;
+        /// forgets attackers that died, moved away or stopped attacking (spec §6 rules 2–3).
+        /// </summary>
         protected UnitId FindCloseAttacker()
         {
             UnitBase best = null;
             var bestDistance = float.MaxValue;
+            var now = Battle.BattleTime;
             for (var i = _attackers.Count - 1; i >= 0; i--)
             {
-                var attacker = _attackers[i];
-                if (attacker == null || !attacker.IsAlive)
+                var (attacker, lastHit) = _attackers[i];
+                if (attacker == null || !attacker.IsAlive || now - lastHit > AttackerMemorySeconds)
                 {
                     _attackers.RemoveAt(i);
                     continue;

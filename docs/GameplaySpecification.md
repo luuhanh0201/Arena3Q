@@ -66,7 +66,7 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 
 ### Luật IgnoreUntilDestination (khi Moving) ✅
 1. Tướng đi tới điểm đích dù thấy địch, không đổi hướng, không đuổi theo địch.
-2. **Bị tấn công** = vừa **nhận sát thương**.
+2. **Bị tấn công** = vừa **nhận sát thương**. 🟡 "Vừa" = trong `attackerMemorySeconds` (mặc định 2 giây, trong `CombatStats`) tính từ đòn gần nhất của kẻ đó; quá thời gian mà không bị đánh tiếp thì kẻ đó không còn là mối đe dọa.
 3. Chỉ tự vệ khi bị tấn công **và** kẻ tấn công ở **gần** (khoảng cách ≤ `reactionRange` của tướng, 🟡 mặc định xấp xỉ tầm đánh cận chiến; prototype dùng `min(tầm đánh, 0.7)` và luôn giữ `reactionRange ≤ tầm đánh`, vì tự vệ đánh tại chỗ nên kẻ tấn công ở gần phải nằm trong tầm với). Áp dụng như nhau cho địch cận chiến và địch tầm xa đứng quá gần.
 4. Bị cung thủ bắn **từ xa** (ngoài `reactionRange`) thì **vẫn đi tiếp** theo lệnh.
 5. Tự vệ đánh tại chỗ; hết mối đe dọa gần thì tiếp tục đi tới điểm đích đã lưu.

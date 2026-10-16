@@ -204,6 +204,38 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator Moving_HitOnceByCloseEnemy_DefendsInPlace_ThenWalksOnAfterTwoSeconds()
+        {
+            _battle.StartBattle(Variant(0, so => so.FindProperty("defenders").arraySize = 0));
+            var hero = SummonQuick(0);
+            // No squad: soldiers rushing the enemy would shove the hero and blur "fights in place".
+            foreach (var troop in hero.Squad.Members.ToArray())
+                troop.Die();
+            yield return null;
+            // A harmless enemy right next to the hero: it never hurts the hero by itself.
+            var harmless = Object.Instantiate(Stage(0).Defenders[1].Unit);
+            _created.Add(harmless);
+            var harmlessSo = new SerializedObject(harmless);
+            harmlessSo.FindProperty("stats.damage").floatValue = 0f;
+            harmlessSo.ApplyModifiedPropertiesWithoutUndo();
+            var enemy = _battle.SpawnEnemy(harmless, EnemyRole.Guard, hero.Position + new Vector2(0.9f, 0f), 0f, -1);
+
+            Assert.That(_battle.MoveSelectedHero(hero.Position + new Vector2(0f, 8f)).Accepted, Is.True);
+            hero.TakeDamage(1f, enemy);
+            Run(Step);
+            Assert.That(hero.State, Is.EqualTo(HeroState.Combat));
+            var standing = hero.Position;
+
+            Run(1.5f);
+            Assert.That(hero.State, Is.EqualTo(HeroState.Combat), "still a fresh threat");
+            Assert.That(Vector2.Distance(hero.Position, standing), Is.LessThan(0.15f), "fights in place");
+
+            Run(1f);
+            Assert.That(hero.State, Is.EqualTo(HeroState.Moving), "no hit for over 2 s: back to the move order");
+            Assert.That(enemy.IsAlive, Is.True);
+        }
+
+        [UnityTest]
         public IEnumerator MoveCommand_IntoForbiddenZoneOrOffMap_IsRejected()
         {
             _battle.StartBattle(0);

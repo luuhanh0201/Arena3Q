@@ -52,6 +52,8 @@ namespace Arena3Q.Gameplay
         public IReadOnlyList<HeroDefinition> Cards { get; private set; } = Array.Empty<HeroDefinition>();
         public OutcomeDecision LastOutcome { get; private set; }
         public bool IsOver => State == null || State.IsOver;
+        /// <summary>Seconds since the battle started (simulation time, not wall clock).</summary>
+        public float BattleTime => State?.ElapsedTime ?? 0f;
         public bool AutoSimulate { get => autoSimulate; set => autoSimulate = value; }
         public int WaveCount => _stageRunner?.WaveCount ?? 0;
 
