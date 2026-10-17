@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f7749fb6899b154b883375d9edc4d69, type: 3}
+  m_Name: LordNameConfig
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.LordNameConfig
+  minLength: 2
+  maxLength: 12
+  bannedWords:
+  - admin
+  - gm
+  - "h\u1EC7 th\u1ED1ng"
+  - "qu\u1EA3n tr\u1ECB"
+  - moderator
+  familyNames:
+  - "L\xE2m"
+  - "T\xF4"
+  - "H\u1EA1"
+  - "L\xFD"
+  - "Tr\u1EA7n"
+  - "\u0110\u01B0\u1EDDng"
+  - "V\xE2n"
+  - "C\u1ED1"
+  - "Di\u1EC7p"
+  - "Ti\xEAu"
+  - "L\u1EA1c"
+  - "B\u1EA1ch"
+  - "M\u1EA1c"
+  - "T\u1EA1"
+  - "H\xE0n"
+  - Phong
+  givenNames:
+  - "T\u1EED Y\xEAn"
+  - "M\u1EA1c Phong"
+  - "Thanh V\xE2n"
+  - "Thi\xEAn H\xE0nh"
+  - "Nh\u01B0\u1EE3c Th\u1EE7y"
+  - "V\xE2n Hi"
+  - "H\xE0n S\u01A1n"
+  - "D\u1EA1 Minh"
+  - "C\u1EA9m T\xFA"
+  - "Kinh H\u1ED3ng"
+  - "L\u0103ng V\xE2n"
+  - "Minh Nguy\u1EC7t"
+  - "Thi\u1EBFu Khanh"
+  - "T\u1ECBch Dao"
+  - "Lam Ng\u1ECDc"
+  reservedNames:
+  - "L\u1EEF B\u1ED1"
+  - "Quan V\u0169"
+  - "Tr\u01B0\u01A1ng Phi"
+  - "Tri\u1EC7u V\xE2n"
+  - "T\xE0o Th\xE1o"
+  - "L\u01B0u B\u1ECB"
+  - "T\xF4n Quy\u1EC1n"
+  - "Gia C\xE1t L\u01B0\u1EE3ng"
+  - Chu Du
+  - "T\u01B0 M\xE3 \xDD"
+  - "M\xE3 Si\xEAu"
+  - "Ho\xE0ng Trung"
+  - "\u0110i\xEAu Thuy\u1EC1n"
+  - "\u0110\u1ED5ng Tr\xE1c"
+  - "Vi\xEAn Thi\u1EC7u"
+  - "T\xF4n S\xE1ch"
+  - "H\u1EA1 H\u1EA7u \u0110\xF4n"
+  - "\u0110i\u1EC3n Vi"
+  - Cam Ninh
+  - "L\u1EE5c T\u1ED1n"

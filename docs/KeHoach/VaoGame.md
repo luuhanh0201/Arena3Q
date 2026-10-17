@@ -1,6 +1,6 @@
 # Vào game: từ lúc chạm biểu tượng tới cốt truyện mở đầu – kế hoạch và prompt
 
-Phiên bản: v0.1 · 2026-10-17 · Trạng thái: **🟡 kế hoạch chờ duyệt** · code ⏳ (spec §11: đăng nhập, máy chủ, màn chọn chủ tướng, cấp / kỹ năng chưa làm ở prototype).
+Phiên bản: v0.2 · 2026-10-17 · Trạng thái: **🟡 kế hoạch chờ duyệt** · **đã có khung code** (bản thử, hình tạm): scene `Frontend`, mọi màn ở §0, ải hướng dẫn, hồ sơ trên máy – chi tiết ở spec §2. Còn chờ: art / video / nhạc theo prompt dưới đây, đăng nhập thật (backend).
 **Plan tạm** trong `docs/KeHoach/` để bạn duyệt: plan và prompt nằm chung một file. Duyệt xong, phần prompt chuyển vào `docs/art/concepts/` (quy ước: mọi prompt nằm cạnh ảnh mẫu), phần luật vào spec.
 Phong cách: **A – chibi ~2.5 đầu, render 3D** theo ảnh mẫu `docs/art/concepts/chutuong1.png` – mọi chỗ "đính kèm `chutuong1.png`" là file này. Công cụ: **ChatGPT** (ảnh), **Kling / Veo / Sora** (video), **ElevenLabs Sound Effects** (tiếng), **Suno / Udio** (nhạc). Kết quả lưu **vào `docs/art/concepts/`** (cùng chỗ với ảnh mẫu và ảnh nhân vật) với tên ghi dưới mỗi prompt.
 

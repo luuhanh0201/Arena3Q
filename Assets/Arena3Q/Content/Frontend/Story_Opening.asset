@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099558eabc3b186448d999fd39c3d1ad, type: 3}
+  m_Name: Story_Opening
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.StoryScript
+  speakers:
+  - speakerId: narrator
+    displayName: 
+    hero: {fileID: 0}
+    isPlayerLord: 0
+    isNarrator: 1
+    rightSide: 0
+    portrait: {fileID: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+  - speakerId: lord
+    displayName: 
+    hero: {fileID: 0}
+    isPlayerLord: 1
+    isNarrator: 0
+    rightSide: 0
+    portrait: {fileID: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+  - speakerId: elder
+    displayName: "L\xE3o tr\u01B0\u1EDFng tr\u1EA5n"
+    hero: {fileID: 0}
+    isPlayerLord: 0
+    isNarrator: 0
+    rightSide: 0
+    portrait: {fileID: 0}
+    color: {r: 0.62, g: 0.48, b: 0.32, a: 1}
+  - speakerId: guardian
+    displayName: 
+    hero: {fileID: 11400000, guid: 7f85e9a8c0614b84694e9fa2d08885f7, type: 2}
+    isPlayerLord: 0
+    isNarrator: 0
+    rightSide: 0
+    portrait: {fileID: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+  - speakerId: hunter
+    displayName: 
+    hero: {fileID: 11400000, guid: 58ee30e4589bf324684f9594e03a35ad, type: 2}
+    isPlayerLord: 0
+    isNarrator: 0
+    rightSide: 0
+    portrait: {fileID: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+  - speakerId: bandit_king
+    displayName: "H\u1EAFc Phong Tr\u1EA1i Ch\u1EE7"
+    hero: {fileID: 0}
+    isPlayerLord: 0
+    isNarrator: 0
+    rightSide: 1
+    portrait: {fileID: 0}
+    color: {r: 0.3, g: 0.25, b: 0.25, a: 1}
+  panels:
+  - panelId: chaos
+    image: {fileID: 0}
+    lordImages: []
+    placeholderColor: {r: 0.33, g: 0.2, b: 0.13, a: 1}
+    placeholderCaption: "Cu\u1ED1i th\u1EDDi \u0110\xF4ng H\xE1n \u2013 thi\xEAn h\u1EA1 \u0111\u1EA1i lo\u1EA1n"
+    lines:
+    - speakerId: narrator
+      text: "Cu\u1ED1i th\u1EDDi \u0110\xF4ng H\xE1n, tri\u1EC1u \u0111\xECnh suy y\u1EBFu. Gi\u1EB7c c\u01B0\u1EDBp n\u1ED5i l\xEAn kh\u1EAFp n\u01A1i, d\xE2n l\xE0nh kh\xF4ng c\xF2n ch\u1ED1n n\u01B0\u01A1ng th\xE2n."
+  - panelId: raid
+    image: {fileID: 0}
+    lordImages: []
+    placeholderColor: {r: 0.12, g: 0.1, b: 0.18, a: 1}
+    placeholderCaption: "Tr\u1EA5n Thanh Th\u1EA1ch b\u1ECB s\u01A1n t\u1EB7c c\u01B0\u1EDBp ph\xE1"
+    lines:
+    - speakerId: narrator
+      text: "D\u01B0\u1EDBi ch\xE2n n\xFAi H\u1EAFc Phong, tr\u1EA5n Thanh Th\u1EA1ch \u0111\xEAm n\xE0o c\u0169ng b\u1ECB s\u01A1n t\u1EB7c c\u01B0\u1EDBp ph\xE1."
+    - speakerId: elder
+      text: "L\u0169 H\u1EAFc Phong Tr\u1EA1i l\u1EA1i xu\u1ED1ng n\xFAi r\u1ED3i\u2026 Tr\u1EDDi cao \u01A1i, ai c\u1EE9u l\u1EA5y tr\u1EA5n n\xE0y!"
+  - panelId: arrival
+    image: {fileID: 0}
+    lordImages:
+    - lordHeroId: lord_archer
+      image: {fileID: 0}
+    - lordHeroId: lord_swordsman
+      image: {fileID: 0}
+    - lordHeroId: lord_strategist
+      image: {fileID: 0}
+    - lordHeroId: lord_marshal
+      image: {fileID: 0}
+    placeholderColor: {r: 0.55, g: 0.4, b: 0.2, a: 1}
+    placeholderCaption: "B\xECnh minh \u1EDF c\u1ED5ng tr\u1EA5n Thanh Th\u1EA1ch"
+    lines:
+    - speakerId: lord
+      text: "Ta l\xE0 {T\xEAn}, ph\u1EE5ng m\u1EC7nh d\u1EB9p lo\u1EA1n v\xF9ng n\xE0y. Ai c\u1EA7n gi\xFAp, c\u1EE9 n\xF3i!"
+  - panelId: allies
+    image: {fileID: 0}
+    lordImages: []
+    placeholderColor: {r: 0.3, g: 0.4, b: 0.25, a: 1}
+    placeholderCaption: "Qu\u1EA3ng tr\u01B0\u1EDDng tr\u1EA5n Thanh Th\u1EA1ch"
+    lines:
+    - speakerId: elder
+      text: "T\u01B0\u1EDBng qu\xE2n! Xin c\u1EE9u l\u1EA5y d\xE2n tr\u1EA5n Thanh Th\u1EA1ch!"
+    - speakerId: guardian
+      text: "T\u1EA1i h\u1EA1 l\xE0 v\u1EC7 binh c\u1EE7a tr\u1EA5n. T\u1EA5m khi\xEAn n\xE0y xin che ch\u1EAFn cho t\u01B0\u1EDBng qu\xE2n!"
+    - speakerId: hunter
+      text: "R\u1EEBng n\xFAi quanh \u0111\xE2y ta thu\u1ED9c nh\u01B0 l\xF2ng b\xE0n tay. Cho ta \u0111i c\xF9ng."
+  - panelId: bandit_king
+    image: {fileID: 0}
+    lordImages: []
+    placeholderColor: {r: 0.3, g: 0.08, b: 0.08, a: 1}
+    placeholderCaption: "H\u1EAFc Phong Tr\u1EA1i Ch\u1EE7 tr\xEAn v\xE1ch n\xFAi"
+    lines:
+    - speakerId: bandit_king
+      text: "Ha ha ha! K\u1EBB n\xE0o d\xE1m c\u1EA3n \u0111\u01B0\u1EDDng H\u1EAFc Phong Tr\u1EA1i? C\xE1c con, x\xF4ng l\xEAn! C\u01B0\u1EDBp s\u1EA1ch tr\u1EA5n Thanh Th\u1EA1ch!"
+  - panelId: charge
+    image: {fileID: 0}
+    lordImages: []
+    placeholderColor: {r: 0.45, g: 0.3, b: 0.15, a: 1}
+    placeholderCaption: "Xu\u1EA5t tr\u1EADn!"
+    lines:
+    - speakerId: lord
+      text: "To\xE0n qu\xE2n, theo ta! Gi\u1EEF v\u1EEFng tr\u1EA5n Thanh Th\u1EA1ch!"

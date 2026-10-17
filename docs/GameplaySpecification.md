@@ -25,6 +25,7 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 - ⏳ **Trang phục (skin)** cho chủ tướng: có, nhưng để sau (dùng chung bộ khung bộ phận để không phải làm lại animation).
 - ✅ (người dùng chốt 2026-10-17) Chủ tướng **bắt đầu chưa có kỹ năng**: lên cấp thì học dần (🟡 nội tại Lv2, kỹ năng 2 Lv5, kỹ năng 3 Lv10, tuyệt kỹ Lv15), rồi nâng cấp từng kỹ năng bằng **điểm kỹ năng nhận khi lên cấp**. Chi tiết: `docs/KeHoach/HeroProgression.md` §6.
 - ✅ (2026-10-17) Luồng vào game: intro → đăng nhập (Google, tài khoản + mật khẩu, **Chơi ngay** không cần đăng nhập) → chọn máy chủ → chọn chủ tướng → cốt truyện mở đầu. Kế hoạch màn hình và prompt: `docs/KeHoach/VaoGame.md` (🟡).
+  - **Đã có trong code (bản thử, hình tạm):** scene `Frontend` chạy đủ các màn theo thứ tự trong `FrontendConfig`; người chơi cũ bỏ qua chọn tướng / đặt tên / cốt truyện; ải hướng dẫn với Giáp Sĩ 3★, thắng thì chủ tướng lên Lv2; hồ sơ lưu trên máy. ⏳ Chưa có: đăng nhập Google / Apple / tài khoản (cần backend – nút báo "chưa hỗ trợ"), danh sách máy chủ thật, video intro và hình (dùng hình tạm cho tới khi có art).
 - ⏳ Màn chọn chủ tướng, kỹ năng chủ tướng, cấp và tiến trình (code): chưa làm ở prototype. `FactionDefinition` dùng cho **phe của danh tướng** (mục "Cấp, sao và phe" dưới đây).
 - 🟡 Prototype dùng **một chủ tướng placeholder** (`Hero_Lord`).
 
@@ -204,7 +205,7 @@ Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng
 - `BattleRuntimeState` (tạo mới mỗi trận): số tướng đã triệu hồi, tướng đang chọn, trạng thái và máu từng tướng/lính/thành, lệnh hiện tại và điểm đích đã lưu của từng tướng, đồng hồ, đợt hiện tại, kết quả và số sao.
 
 ## 11. Ngoài phạm vi prototype ⏳
-Màn chọn chủ tướng, kỹ năng chủ tướng, kỹ năng và cấp bậc quân địch (tinh anh, boss), kiếm thẻ (nhiệm vụ, sự kiện, cửa hàng), nâng cấp (cấp, sao, đột phá, cộng hưởng phe), tài nguyên triệu hồi, PvP, tài khoản (đăng nhập, Chơi ngay, chọn máy chủ), intro và cốt truyện mở đầu, backend, lưu tiến trình, animation và hiệu ứng thật.
+Màn chọn chủ tướng, kỹ năng chủ tướng, kỹ năng và cấp bậc quân địch (tinh anh, boss), kiếm thẻ (nhiệm vụ, sự kiện, cửa hàng), kinh nghiệm, mảnh tướng và giao diện nâng cấp, tài nguyên triệu hồi, PvP, đăng nhập thật (Google / Apple / tài khoản), backend, lưu tiến trình trên máy chủ, sảnh chính và bản đồ chương, animation và hiệu ứng thật. *(Đã làm ở bản thử: chỉ số theo cấp / sao / phe, luồng vào game với "Chơi ngay" và hồ sơ trên máy – mục 2.)*
 
 ## 12. Tiêu chí nghiệm thu prototype
 - [ ] Mở scene Battle, chạy không lỗi compile.

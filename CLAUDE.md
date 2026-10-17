@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project state
 
-Arena3Q is a Unity **6000.6.6f1** project (2D URP template) with a playable PvE prototype: Attack and Defense stages, hero summoning, squads, commands, camera and HUD with placeholder art. The startup scene is `Assets/Arena3Q/Scenes/Battle.unity`; the template's `Assets/Welcome/` and `Assets/Scenes/SampleScene.unity` are untouched leftovers.
+Arena3Q is a Unity **6000.6.6f1** project (2D URP template) with a playable PvE prototype: Attack and Defense stages, hero summoning, squads, commands, camera and HUD with placeholder art, hero levels / stars / factions, and the game flow (intro → login → server → lord select → name → opening story → tutorial battle). The startup scene is `Assets/Arena3Q/Scenes/Frontend.unity` (the game flow), which hands the battle to `Assets/Arena3Q/Scenes/Battle.unity`; Battle can still be played on its own in the Editor (it then uses the stage's test loadout). The template's `Assets/Welcome/` and `Assets/Scenes/SampleScene.unity` are untouched leftovers.
+
+**Code must stay easy to change later** (user request): numbers, lists and content live in ScriptableObjects (never hard-coded), pure rules in Core, and anything that will be replaced (accounts, server list, profile storage, intro video) sits behind an interface with a prototype implementation.
 
 The gameplay specification lives in `docs/GameplaySpecification.md` (tracked in git as lowercase `docs/`; on Windows `Docs/` is the same folder, so never create a second copy with different casing) and is the source of truth for gameplay. Read it before designing or writing gameplay code. Its markers: ✅ settled (implement exactly), 🟡 provisional default (must be a config option), ⏳ deferred (not in the prototype). If it conflicts with the configuration below (e.g. 3D, legacy input), flag the conflict instead of silently picking one.
 
@@ -41,11 +43,12 @@ docs/                           keep the root small: only README.md (index), the
   art/concepts/                 all ready-to-paste image prompts (*_Prompts.md: lords, starter heroes, map, VFX, icons, portraits) + style reference chutuong1.png + generated images
 Assets/
   Arena3Q/                      everything this project owns
-    Scripts/                    Core, Data, Gameplay (Battle, Camera, Heroes, Input, Stages, Troops, Units, Visuals), UI, Editor
+    Scripts/                    Core, Data, Gameplay (Battle, Camera, Heroes, Input, Stages, Troops, Units, Visuals), UI, Frontend, Editor
     Tests/                      EditMode (Core, Data), PlayMode
     Content/                    generated placeholder assets: Factions, Heroes (starters + placeholder lord), Lords (the 4 lords), Progression, Troops, Stages, TestLoadout.asset
     Art/Maps/map1.png           painted map: temporary background of both stages; the logic layout is measured from it
-    Scenes/Battle.unity         startup scene (first in Build Settings)
+    Scenes/Frontend.unity       startup scene (first in Build Settings): the game flow
+    Scenes/Battle.unity         the battle (second in Build Settings; also playable on its own)
   Settings/                     URP / 2D renderer, input actions, scene template, Build Profiles/ (Android Dev)
   Scenes/SampleScene.unity      template leftover, still in Build Settings after Battle
   Welcome/                      template Unity Learn welcome page (Unity.2D.Welcome asmdef)
@@ -54,7 +57,7 @@ Packages/, ProjectSettings/     Unity-managed
 
 ## Code layout
 
-All game code is under `Assets/Arena3Q/Scripts`, one asmdef per folder, dependencies flowing one way: Core ← Data ← Gameplay ← UI, with Editor on top.
+All game code is under `Assets/Arena3Q/Scripts`, one asmdef per folder, dependencies flowing one way: Core ← Data ← Gameplay ← UI ← Frontend, with Editor on top.
 
 - **Core** (`Arena3Q.Core`): pure C# rules, no MonoBehaviours. `BattleRuntimeState` (all per-battle state, new instance per battle), commands (`SummonRequest`, `MoveCommand`, `AttackCommand`) validated by `SummonRules` / `CommandRules`, `BattleOutcomeRules` + `StarRating`, and the brains: `HeroBrain` (the spec §6 state machine), `TroopBrain`, `EnemyBrain`. Brains read the world through sensor interfaces (`IHeroSensor`, ...) and return a `HeroIntent` (Hold / MoveTo / Engage), which keeps them unit-testable.
 - **Data** (`Arena3Q.Data`): ScriptableObjects (`HeroDefinition`, `TroopDefinition`, `StageConfig`, `TestLoadout`, `FactionDefinition`) with `Validate()` and converters to Core settings (`StageConfig.CreateBattleSetup`, `CreateHeroBrainSettings`). Every 🟡 rule is a field here.
@@ -62,9 +65,10 @@ All game code is under `Assets/Arena3Q/Scripts`, one asmdef per folder, dependen
 - **Gameplay** (`Arena3Q.Gameplay`): `BattleController` is the composition root and the only entry point for player actions; `UnitBase` subclasses (`HeroUnit`, `TroopUnit`, `EnemyUnit`, `CastleUnit`) implement the sensors and execute intents; `UnitRegistry` does spatial queries; `BattleInputController` (mouse + touch gestures, tap interpretation in `BattleController.TapAt`) and `BattleCameraController`. Sprites are generated at runtime by `PlaceholderArt`.
   - **Logic vs view positions:** gameplay runs on a flat logic plane. `UnitBase.Position` is the logic position; `transform.position` is only its on-screen projection (`BattleController.ToView`, Y squashed by `cos(viewTiltDegrees)` for the 2.5D tilt). Never read `transform.position` for gameplay, and convert screen ↔ battlefield only through `BattleCameraController.ScreenToWorld` / `WorldToScreen` / `WorldToViewport`, which undo the tilt. Ground decorations go through `AddGroundVisual`.
   - **Forbidden zones** are `IObstacle`s (`RectObstacle`, `RiverObstacle`: centre line + width, passable only at crossings) and block movement: `UnitBase.MoveTowards` follows `BattlefieldLayout.NextWaypoint` (shortest route over a visibility graph of nodes precomputed around the zones) with `ResolveStep`/`PushOut` as a safety net. Stage data: `StageConfig.forbiddenZones` (rects) and `rivers`.
-- **UI** (`Arena3Q.UI`): `BattleHud` builds the uGUI HUD from code (cards, timer, edge icons, result screen).
-- **Editor** (`Arena3Q.Editor`): `PrototypeContentBuilder` creates the placeholder assets in `Assets/Arena3Q/Content` and the Battle scene (only missing ones; delete an asset to regenerate it) and adds the menu items `Arena3Q > Build Prototype Content / Validate Stages / Open Battle Scene / Apply Standard River Layout / Import Map Art (map1)`; `MapBlueprintExporter` (`Arena3Q > Export Map Blueprints`) rasterises each stage from its data into `docs/art/blueprints`. `BuildScripts` has the build methods (`Arena3Q > Build`).
-- **Tests**: `Assets/Arena3Q/Tests/EditMode` (Core/Data rules) and `Tests/PlayMode` (`BattleFlowTests` drives the real Battle scene with `BattleController.Simulate`; it uses `SerializedObject`, so the file is wrapped in `#if UNITY_EDITOR`). Do not make the PlayMode asmdef Editor-only: the runner would treat it as EditMode tests. The screenshot test writes `Logs/Screenshots/*.png`.
+- **UI** (`Arena3Q.UI`): `BattleHud` builds the uGUI HUD from code (cards, timer, edge icons, result screen); `UiFactory` (public) holds the shared uGUI helpers.
+- **Frontend** (`Arena3Q.Frontend`, the game flow of docs/KeHoach/VaoGame.md): `FrontendController` (Frontend scene) shows one screen at a time (`Screens/`: intro, login, server, lord select, name, story) in the order of `FrontendConfig.steps`; `FrontendFlowPlanner` (Core) skips screens a returning player does not need. Services sit behind Core interfaces in `FrontendServiceLocator`: `IPlayerProfileStore` (prototype: `JsonFileProfileStore`, tests: `InMemoryProfileStore`), `IAccountService` (prototype: `OfflineAccountService`, guest only), `IServerDirectory` (prototype: the `ServerList` asset). Content assets in `Data/Frontend` (`FrontendConfig`, `LordRoster`, `ServerList`, `LordNameConfig`, `StoryScript`). The battle is handed over with `BattleLaunch` (Gameplay): stage + lineup + result callback; `BattleController` picks it up in `Start`, otherwise it plays its own stages with the test loadout.
+- **Editor** (`Arena3Q.Editor`): `PrototypeContentBuilder` (+ `FrontendContentBuilder`) creates the placeholder assets in `Assets/Arena3Q/Content`, the Battle and Frontend scenes and the build scene order (only missing assets; empty scene references are filled; delete an asset to regenerate it) and adds the menu items `Arena3Q > Build Prototype Content / Validate Stages / Open Battle Scene / Apply Standard River Layout / Import Map Art (map1)`; `MapBlueprintExporter` (`Arena3Q > Export Map Blueprints`) rasterises each stage from its data into `docs/art/blueprints`. `BuildScripts` has the build methods (`Arena3Q > Build`).
+- **Tests**: `Assets/Arena3Q/Tests/EditMode` (Core/Data rules) and `Tests/PlayMode` (`BattleFlowTests` drives the real Battle scene with `BattleController.Simulate`; it uses `SerializedObject`, so the file is wrapped in `#if UNITY_EDITOR`). Do not make the PlayMode asmdef Editor-only: the runner would treat it as EditMode tests. The screenshot tests write `Logs/Screenshots/*.png` (battle and `frontend_*.png`). `FrontendFlowTests` drives the Frontend scene with an in-memory profile (tests never write files) and resets `FrontendServiceLocator` / `BattleLaunch` in teardown.
 
 ## Working in this repo
 

@@ -160,8 +160,36 @@ namespace Arena3Q.Gameplay
 
         private void Start()
         {
-            if (startOnAwake && stages.Length > 0)
+            // A battle requested by the game flow wins over the scene's own stages.
+            var launch = BattleLaunch.Take();
+            if (launch?.Stage != null)
+                Launch(launch);
+            else if (startOnAwake && stages.Length > 0)
                 StartBattle(Mathf.Clamp(_lastStageIndex, 0, stages.Length - 1));
+        }
+
+        private BattleLaunchRequest _launch;
+
+        /// <summary>Scene the result screen can go back to (set by the game flow), or empty.</summary>
+        public string ReturnSceneName => _launch?.ReturnScene ?? "";
+
+        /// <summary>Note of the last result (rewards from the game flow), or empty.</summary>
+        public string LastResultNote { get; private set; } = "";
+
+        /// <summary>Starts a battle requested by another scene; its lineup is kept for replays.</summary>
+        public void Launch(BattleLaunchRequest request)
+        {
+            _launch = request ?? throw new ArgumentNullException(nameof(request));
+            StartBattle(request.Stage, request.Lineup);
+        }
+
+        /// <summary>Leaves the battle for the scene that requested it (no-op when played directly).</summary>
+        public void ReturnToMenu()
+        {
+            if (string.IsNullOrEmpty(ReturnSceneName))
+                return;
+            _launch.OnReturn?.Invoke();
+            UnityEngine.SceneManagement.SceneManager.LoadScene(ReturnSceneName);
         }
 
         // Last chosen stage, kept for this app session only (no saved progress in the prototype, spec §11).
@@ -224,6 +252,7 @@ namespace Arena3Q.Gameplay
             Layout = stage.CreateLayout();
             _summonRules = stage.CreateSummonRules();
             LastOutcome = OutcomeDecision.InProgress;
+            LastResultNote = "";
 
             // Painted art is drawn at one fixed 3/4 angle: start at that angle so logic and picture line up
             // (the HUD slider can still change it for debugging).
@@ -301,6 +330,7 @@ namespace Arena3Q.Gameplay
             if (decision.IsFinal)
             {
                 LastOutcome = decision;
+                LastResultNote = _launch?.OnFinished?.Invoke(Stage, decision) ?? "";
                 SetSelectionVisual(UnitId.None);
                 Finished?.Invoke(decision);
                 Changed?.Invoke();

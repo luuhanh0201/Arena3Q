@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace Arena3Q.UI
 {
     /// <summary>Small helpers to build placeholder uGUI from code.</summary>
-    internal static class UiFactory
+    public static class UiFactory
     {
         private static Font _font;
 

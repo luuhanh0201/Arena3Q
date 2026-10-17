@@ -20,7 +20,7 @@ namespace Arena3Q.Editor
     {
         public const string ContentRoot = "Assets/Arena3Q/Content";
         public const string ScenePath = "Assets/Arena3Q/Scenes/Battle.unity";
-        private const string SceneTemplatePath = "Assets/Settings/Scenes/URP2DSceneTemplate.unity";
+        internal const string SceneTemplatePath = "Assets/Settings/Scenes/URP2DSceneTemplate.unity";
         private const string SpriteMaterialPath = "Packages/com.unity.render-pipelines.universal/Runtime/Materials/Sprite-Unlit-Default.mat";
 
         [MenuItem("Arena3Q/Build Prototype Content")]
@@ -31,7 +31,11 @@ namespace Arena3Q.Editor
                 var stages = BuildAssets(out var progression);
                 BuildScene(stages, progression);
                 EnsureBattleSceneReferences(progression);
-                AddSceneToBuildSettings();
+                AssetDatabase.SaveAssets();
+                var frontend = FrontendContentBuilder.Build(progression, stages[0], stages[1]);
+                AssetDatabase.SaveAssets();
+                FrontendContentBuilder.BuildScene(frontend);
+                AddScenesToBuildSettings();
                 AssetDatabase.SaveAssets();
                 Debug.Log("[Arena3Q] Prototype content is ready.");
             }
@@ -300,7 +304,7 @@ namespace Arena3Q.Editor
             }
         }
 
-        private static void CommonStage(SerializedObject so, string stageId, StageType type, TestLoadout loadout)
+        internal static void CommonStage(SerializedObject so, string stageId, StageType type, TestLoadout loadout)
         {
             so.FindProperty("stageId").stringValue = stageId;
             so.FindProperty("stageType").enumValueIndex = (int)type;
@@ -319,7 +323,7 @@ namespace Arena3Q.Editor
             so.FindProperty("testLoadout").objectReferenceValue = loadout;
         }
 
-        private static void SetCastle(SerializedProperty castle, Vector2 position, float health, bool canAttack)
+        internal static void SetCastle(SerializedProperty castle, Vector2 position, float health, bool canAttack)
         {
             castle.FindPropertyRelative("position").vector2Value = position;
             castle.FindPropertyRelative("maxHealth").floatValue = health;
@@ -449,7 +453,7 @@ namespace Arena3Q.Editor
             stats.FindPropertyRelative("aggroRange").floatValue = aggro;
         }
 
-        private static T GetOrCreate<T>(string path, Action<SerializedObject> fill) where T : ScriptableObject
+        internal static T GetOrCreate<T>(string path, Action<SerializedObject> fill) where T : ScriptableObject
         {
             var existing = AssetDatabase.LoadAssetAtPath<T>(path);
             if (existing != null)
@@ -464,7 +468,7 @@ namespace Arena3Q.Editor
             return asset;
         }
 
-        private static void EnsureFolder(string path)
+        internal static void EnsureFolder(string path)
         {
             if (AssetDatabase.IsValidFolder(path))
                 return;
@@ -479,7 +483,10 @@ namespace Arena3Q.Editor
         /// <summary>Wires assets added after the Battle scene was created (fills empty references only).</summary>
         private static void EnsureBattleSceneReferences(ProgressionConfig progression)
         {
+            // OpenScene(Single) can unload saved assets nothing references: reload by path afterwards.
+            var progressionPath = AssetDatabase.GetAssetPath(progression);
             var scene = EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
+            progression = AssetDatabase.LoadAssetAtPath<ProgressionConfig>(progressionPath);
             var battle = UnityEngine.Object.FindAnyObjectByType<BattleController>();
             if (battle == null)
                 throw new InvalidOperationException($"{ScenePath} has no BattleController.");
@@ -539,7 +546,7 @@ namespace Arena3Q.Editor
                 throw new InvalidOperationException($"Could not save {ScenePath}.");
         }
 
-        private static void SetReference(UnityEngine.Object target, string field, UnityEngine.Object value)
+        internal static void SetReference(UnityEngine.Object target, string field, UnityEngine.Object value)
         {
             var so = new SerializedObject(target);
             var property = so.FindProperty(field) ?? throw new InvalidOperationException($"{target.GetType().Name}.{field} not found.");
@@ -547,12 +554,13 @@ namespace Arena3Q.Editor
             so.ApplyModifiedPropertiesWithoutUndo();
         }
 
-        private static void AddSceneToBuildSettings()
+        private static void AddScenesToBuildSettings()
         {
-            // Re-add (refreshing the GUID if the scene was recreated) as the first, startup scene.
+            // Re-add (refreshing the GUIDs if a scene was recreated): the game flow starts the app, then the battle.
             var scenes = new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes);
-            scenes.RemoveAll(s => s.path == ScenePath);
-            scenes.Insert(0, new EditorBuildSettingsScene(ScenePath, true));
+            scenes.RemoveAll(s => s.path == ScenePath || s.path == FrontendContentBuilder.FrontendScenePath);
+            scenes.Insert(0, new EditorBuildSettingsScene(FrontendContentBuilder.FrontendScenePath, true));
+            scenes.Insert(1, new EditorBuildSettingsScene(ScenePath, true));
             EditorBuildSettings.scenes = scenes.ToArray();
         }
     }

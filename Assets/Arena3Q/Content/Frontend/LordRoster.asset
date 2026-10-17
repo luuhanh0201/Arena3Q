@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbae165708a046a4ab9555306e0a8901, type: 3}
+  m_Name: LordRoster
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.LordRoster
+  lords:
+  - lord: {fileID: 11400000, guid: ae986a53191f51746a05adf1eead65d5, type: 2}
+    role: "S\xE1t th\u01B0\u01A1ng t\u1EA7m xa, ph\xE1 th\xE0nh. N\u1EEF cung th\u1EE7 du hi\u1EC7p c\xF3 t\u1EA7m \u0111\xE1nh xa nh\u1EA5t."
+    difficulty: 1
+    skillNames:
+    - "\u01AFng Nh\xE3n"
+    - "Li\xEAn Ch\xE2u Ti\u1EC5n"
+    - "Ti\u1EC5n V\u0169"
+    - "Ph\xE1 Th\xE0nh H\u1ECFa Ti\u1EC5n"
+    skillSummaries:
+    - "+15 % t\u1EA7m; m\u1ED7i \u0111\xF2n th\u1EE9 4 b\u1EAFn xuy\xEAn"
+    - "B\u1EAFn li\xEAn ti\u1EBFp 3 m\u0169i t\xEAn"
+    - "M\u01B0a t\xEAn xu\u1ED1ng m\u1ED9t v\xF9ng trong 3 gi\xE2y"
+    - "M\u0169i t\xEAn l\u1EEDa xuy\xEAn qu\xE2n, tr\xFAng th\xE0nh \xD73"
+    portrait: {fileID: 0}
+    splash: {fileID: 0}
+  - lord: {fileID: 11400000, guid: 558f95132485fc842831443af3d8d35a, type: 2}
+    role: "\u0110\u1ED9t ph\xE1 c\u1EADn chi\u1EBFn, t\u1EF1 h\u1ED3i m\xE1u. Nam ki\u1EBFm kh\xE1ch song ki\u1EBFm."
+    difficulty: 2
+    skillNames:
+    - "Ki\u1EBFm T\xE2m"
+    - "Phi \u1EA2nh \u0110\u1ED9t K\xEDch"
+    - "To\xE0n Phong Tr\u1EA3m"
+    - "V\u1EA1n Ki\u1EBFm Quy T\xF4ng"
+    skillSummaries:
+    - "H\xFAt m\xE1u; d\u01B0\u1EDBi 30 % m\xE1u \u0111\xE1nh nhanh h\u01A1n"
+    - "L\u01B0\u1EDBt t\u1EDBi m\u1EE5c ti\xEAu, cho\xE1ng 1 gi\xE2y"
+    - "Xoay song ki\u1EBFm ch\xE9m xung quanh"
+    - "Ki\u1EBFm kh\xED r\u01A1i xu\u1ED1ng v\xF9ng h\xECnh qu\u1EA1t"
+    portrait: {fileID: 0}
+    splash: {fileID: 0}
+  - lord: {fileID: 11400000, guid: 1c6bf5fd52527d44d9269892dcb3d3fb, type: 2}
+    role: "Kh\u1ED1ng ch\u1EBF v\xF9ng, t\u0103ng s\u1EE9c \u0111\u1ED9i l\xEDnh. N\u1EEF m\u01B0u s\u0129 v\u1EDBi qu\u1EA1t l\xF4ng h\u1EA1c."
+    difficulty: 3
+    skillNames:
+    - "Thao L\u01B0\u1EE3c"
+    - "H\u1ECFa K\u1EBF"
+    - "B\xE1t Qu\xE1i Tr\u1EADn"
+    - "\u0110\xF4ng Phong"
+    skillSummaries:
+    - "L\xEDnh quanh M\u01B0u s\u0129 +10 % s\xE1t th\u01B0\u01A1ng"
+    - "Tr\u1EADn l\u1EEDa \u0111\u1ED1t qu\xE2n \u0111\u1ECBch 5 gi\xE2y"
+    - "Tr\u1EADn \u0111\u1ED3 l\xE0m ch\u1EADm v\xE0 l\xE0m y\u1EBFu qu\xE2n \u0111\u1ECBch"
+    - "Gi\xF3 l\u1EDBn \u0111\u1EA9y l\xF9i qu\xE2n \u0111\u1ECBch kh\u1EAFp chi\u1EBFn tr\u01B0\u1EDDng"
+    portrait: {fileID: 0}
+    splash: {fileID: 0}
+  - lord: {fileID: 11400000, guid: b9aa5293f28087a44bc9bc394a790eb7, type: 2}
+    role: "Ch\u1EC9 huy: t\u0103ng s\u1EE9c to\xE0n qu\xE2n, th\xEAm l\xEDnh. \u0110\u1EA1i t\u01B0\u1EDBng c\u1EA7m th\u01B0\u01A1ng, c\u1EDD l\u1EC7nh sau l\u01B0ng."
+    difficulty: 1
+    skillNames:
+    - "Qu\xE2n L\u1EC7nh Nh\u01B0 S\u01A1n"
+    - "Hi\u1EC7u Tri\u1EC7u"
+    - "Tr\u1ED1ng Tr\u1EADn"
+    - "Thi\u1EBFt K\u1EF5 Xung Phong"
+    skillSummaries:
+    - "\u0110\u1ED9i l\xEDnh +2; to\xE0n qu\xE2n +5 % m\xE1u"
+    - "B\u1ED5 sung l\xEDnh \u0111\xE3 ch\u1EBFt"
+    - "Qu\xE2n ta \u0111\xE1nh nhanh, ch\u1EA1y nhanh h\u01A1n"
+    - "G\u1ECDi h\xE0ng k\u1EF5 binh lao qua chi\u1EBFn tr\u01B0\u1EDDng"
+    portrait: {fileID: 0}
+    splash: {fileID: 0}

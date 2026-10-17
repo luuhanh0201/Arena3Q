@@ -137,3 +137,18 @@ Không phải lỗi đã phát hành; ghi lại các chỗ suýt sai và số li
 2. **`IReadOnlyList` trỏ vào mảng làm hỏng `Has.Count` của NUnit** (`Property Count was not found`): NUnit đọc thuộc tính `Count` của kiểu thật, mảng chỉ có `Length`. Danh sách công khai mà test đếm thì dùng `List<T>`.
 3. **Chí mạng cơ bản 5 % của tướng làm ải Thủ dễ hơn rõ** dù cấp 1 / 1★ giữ nguyên Máu và Công: trước – trụ tới giây 150, mất 5 tướng, thành 2055/3000; sau – quét sạch các đợt ở giây 134, mất 3 tướng, thành 2300/3000. Ải Công gần như không đổi (giây 61 → 62, mất 1 tướng, 2 sao). Chưa chỉnh lại (cân bằng để giai đoạn sắp phát hành); muốn giữ độ khó cũ thì đặt `heroBaseCritChance = 0` trong `ProgressionConfig`.
 - **Kiểm chứng:** EditMode 174/174 (thêm `ProgressionRulesTests`, `SynergyRulesTests`, `ProgressionContentTests`), PlayMode 36/36 (thêm `ProgressionBattleTests`).
+
+## Luồng vào game trong code (2026-10-17)
+
+### Scene Frontend lưu tham chiếu `config` rỗng
+- **Triệu chứng:** cả 5 test PlayMode của luồng vào game báo "FrontendController has no FrontendConfig"; trong `Frontend.unity` có `config: {fileID: 0}` dù builder đã gán.
+- **Nguyên nhân:** builder tạo `FrontendConfig`, gọi `AssetDatabase.SaveAssets()`, rồi `EditorSceneManager.OpenScene(..., Single)`. Mở scene kiểu Single làm Unity giải phóng các asset **đã lưu mà không scene nào tham chiếu** → biến C# giữ asset đó thành "null giả" và gán vào scene thành rỗng. (`ProgressionConfig` ở bước trước không bị vì lúc đó chưa lưu, còn "bẩn" nên không bị giải phóng.)
+- **Cách sửa:** nhớ đường dẫn asset trước khi mở scene, mở xong thì `AssetDatabase.LoadAssetAtPath` lại (cả `FrontendContentBuilder.BuildScene` lẫn `EnsureBattleSceneReferences`); builder giờ điền tham chiếu còn trống ở scene đã có, không chỉ lúc tạo scene.
+- **Tránh lặp lại:** trong code Editor, **không giữ tham chiếu asset qua `OpenScene`** – nạp lại theo đường dẫn; sau khi builder chạy, grep scene xem tham chiếu có GUID chưa.
+
+### Bài học khác
+1. **Build Settings lưu GUID cũ của scene Battle** (`956276…` thay vì `df7048…` của file `.meta`). Unity vẫn tìm theo đường dẫn nên chưa từng lỗi; builder giờ xoá và thêm lại cả hai scene nên GUID đúng.
+2. **Mỗi lớp ScriptableObject một file trùng tên** (`LordRoster.cs`, `ServerList.cs`…): để nhiều lớp trong một file thì asset tạo ra mất liên kết script.
+3. **`Object.Destroy` chỉ xoá ở cuối khung hình:** test đổi giao diện rồi tìm nút theo tên trong cùng khung hình sẽ thấy cả nút cũ lẫn nút mới. Chờ một khung (`yield return null`) trước khi tìm.
+4. **Kiểm tra bằng mắt không cần màn hình:** `FrontendFlowTests.Screenshot_FrontendScreens` ghi `Logs/Screenshots/frontend_*.png`; lần đầu xem ảnh phát hiện 4 lỗi bố cục (hộp xác nhận bị bảng phía sau lộ qua, tiêu đề đè danh sách máy chủ, ô nhập tên chồng nút, khung thừa chỗ) – đã sửa, thêm `FrontendUi.Modal` (lớp tối phủ màn hình + khung đặc).
+- **Kiểm chứng:** EditMode 198/198, PlayMode 42/42 (thêm `FrontendRulesTests`, `FrontendContentTests`, `FrontendFlowTests`).

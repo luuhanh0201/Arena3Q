@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c9268a4be69f2c4292026d0442393d3, type: 3}
+  m_Name: FrontendConfig
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.FrontendConfig
+  steps: 00000000010000000200000003000000040000000500000006000000i
+  gameTitle: Arena3Q
+  introSeconds: 3
+  introVideo: {fileID: 0}
+  logo: {fileID: 0}
+  banner: {fileID: 0}
+  theme:
+    background: {r: 0.07, g: 0.06, b: 0.06, a: 1}
+    panel: {r: 0.16, g: 0.12, b: 0.1, a: 0.95}
+    primaryButton: {r: 0.7, g: 0.17, b: 0.12, a: 1}
+    secondaryButton: {r: 0.36, g: 0.26, b: 0.17, a: 1}
+    disabledButton: {r: 0.32, g: 0.32, b: 0.32, a: 1}
+    text: {r: 0.98, g: 0.94, b: 0.86, a: 1}
+    accent: {r: 1, g: 0.82, b: 0.35, a: 1}
+    error: {r: 1, g: 0.5, b: 0.45, a: 1}
+    buttonSprite: {fileID: 0}
+    panelSprite: {fileID: 0}
+    font: {fileID: 0}
+  minUsernameLength: 6
+  maxUsernameLength: 20
+  minPasswordLength: 8
+  termsUrl: 
+  privacyUrl: 
+  lordRoster: {fileID: 11400000, guid: 976a4a025d1237c4d962e98dac178bff, type: 2}
+  serverList: {fileID: 11400000, guid: 15e345ea16cd8084088ae0c0fd1c10f0, type: 2}
+  names: {fileID: 11400000, guid: 5378f887ca57e1f418fff80af34df9d5, type: 2}
+  openingStory: {fileID: 11400000, guid: 25912c7fae56c4f46ae69923ff312a24, type: 2}
+  heroCatalog:
+  - {fileID: 11400000, guid: a13e05ef605c52940b26fc1115bedec3, type: 2}
+  - {fileID: 11400000, guid: 58ee30e4589bf324684f9594e03a35ad, type: 2}
+  - {fileID: 11400000, guid: d4accd7038df2c54fb4d6a41a7fd078b, type: 2}
+  - {fileID: 11400000, guid: 7f85e9a8c0614b84694e9fa2d08885f7, type: 2}
+  progression: {fileID: 11400000, guid: 0fb10bd7ba8baae4082f63f5008d19eb, type: 2}
+  tutorialStage: {fileID: 11400000, guid: 8312ed9470000604db64a1540d49dab5, type: 2}
+  starterGifts:
+  - hero: {fileID: 11400000, guid: 7f85e9a8c0614b84694e9fa2d08885f7, type: 2}
+    level: 1
+    stars: 3
+  - hero: {fileID: 11400000, guid: 58ee30e4589bf324684f9594e03a35ad, type: 2}
+    level: 1
+    stars: 1
+  tutorialRewardLevel: 2
+  defaultStage: {fileID: 11400000, guid: 8a7039988c475614984e3c7114bd74f8, type: 2}
+  battleSceneName: Battle
+  frontendSceneName: Frontend

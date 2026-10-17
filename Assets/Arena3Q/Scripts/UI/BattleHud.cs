@@ -322,13 +322,17 @@ namespace Arena3Q.UI
             _resultTitle.text = victory ? "CHIẾN THẮNG" : "THẤT BẠI";
             _resultTitle.color = victory ? new Color(1f, 0.85f, 0.3f) : new Color(1f, 0.4f, 0.35f);
             _resultReason.text = DescribeOutcome(decision.Reason) + $" · Mất {battle.State.HeroesLost} tướng";
+            // Rewards from the game flow (e.g. the lord's level-up after the tutorial).
+            if (!string.IsNullOrEmpty(battle.LastResultNote))
+                _resultReason.text += "\n" + battle.LastResultNote;
             for (var i = 0; i < _resultStars.Length; i++)
                 _resultStars[i].color = i < battle.State.Stars ? new Color(1f, 0.82f, 0.2f) : new Color(0.3f, 0.3f, 0.35f);
 
             foreach (Transform child in _resultButtons)
                 Destroy(child.gameObject);
             var stages = battle.Stages;
-            var count = 1 + stages.Count;
+            var canReturn = !string.IsNullOrEmpty(battle.ReturnSceneName);
+            var count = 1 + stages.Count + (canReturn ? 1 : 0);
             var width = 860f / count - 16f;
             var replay = UiFactory.CreateButton("Replay", _resultButtons, new Vector2(0f, 0.5f),
                 new Vector2(width * 0.5f + 8f, 0f), new Vector2(width, 100f), "Chơi lại", new Color(0.2f, 0.55f, 0.3f));
@@ -343,6 +347,14 @@ namespace Arena3Q.UI
                     $"{label}: {stage.StageId}", new Color(0.25f, 0.35f, 0.6f));
                 button.GetComponentInChildren<Text>().fontSize = 26;
                 button.onClick.AddListener(() => battle.StartBattle(index));
+            }
+            if (canReturn)
+            {
+                var back = UiFactory.CreateButton("ReturnToMenu", _resultButtons, new Vector2(0f, 0.5f),
+                    new Vector2((count - 1) * (width + 16f) + width * 0.5f + 8f, 0f), new Vector2(width, 100f),
+                    "Về màn chính", new Color(0.45f, 0.3f, 0.15f));
+                back.GetComponentInChildren<Text>().fontSize = 26;
+                back.onClick.AddListener(() => battle.ReturnToMenu());
             }
             _resultPanel.SetActive(true);
             Refresh();

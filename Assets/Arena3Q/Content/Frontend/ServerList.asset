@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff37b8f9f1316c44bb1c6dcc7cf7f944, type: 3}
+  m_Name: ServerList
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.ServerList
+  servers:
+  - serverId: s1
+    displayName: "S1 H\u1ED5 Lao"
+    status: 2
+    recommended: 0
+  - serverId: s2
+    displayName: "S2 X\xEDch B\xEDch"
+    status: 1
+    recommended: 0
+  - serverId: s3
+    displayName: "S3 Tr\u01B0\u1EDDng B\u1EA3n"
+    status: 0
+    recommended: 1
