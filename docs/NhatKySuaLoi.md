@@ -129,3 +129,11 @@ Không phải lỗi code; ghi lại cách làm và chỗ suýt sai:
 - **Nguyên nhân:** sửa bằng `perl -pe 's/...đòn\.$/.../'` trên file xuống dòng **CRLF**: `$` khớp trước `\n` nhưng sau `\r`, nên mẫu kết thúc bằng `\.$` không bao giờ khớp. Perl không báo gì khi không thay được, và lần đó mình chỉ in lại các dòng khác để kiểm tra, không kiểm tra đúng dòng này.
 - **Cách sửa:** thêm lại luật bằng công cụ Edit (khớp chuỗi chính xác), kèm 🟡 luật đạn tầm xa.
 - **Tránh lặp lại:** với file tài liệu (CRLF hoặc lẫn LF/CRLF), sửa bằng Edit; nếu dùng perl thì không neo `$` (hoặc dùng `\r?$`). **Sau mỗi lệnh thay thế hàng loạt, grep đúng từng chuỗi mới** để chắc đã vào file trước khi báo xong.
+
+## Hệ cấp / sao / phe trong code (2026-10-17)
+
+Không phải lỗi đã phát hành; ghi lại các chỗ suýt sai và số liệu cần nhớ:
+1. **Đổi tên biến bằng regex làm đổi luôn chuỗi trong code.** Đổi `offense` → `growthOffense` trong `PrototypeContentBuilder` bằng `\boffense\b` làm id hệ tăng trưởng `"offense"` thành `"growthOffense"`. Phát hiện nhờ grep lại kết quả. Tránh lặp lại: đổi tên định danh bằng công cụ hiểu code (hoặc Edit từng chỗ); nếu bắt buộc dùng regex thì loại chuỗi trong ngoặc kép và **grep lại đúng các dòng vừa đổi** trước khi build.
+2. **`IReadOnlyList` trỏ vào mảng làm hỏng `Has.Count` của NUnit** (`Property Count was not found`): NUnit đọc thuộc tính `Count` của kiểu thật, mảng chỉ có `Length`. Danh sách công khai mà test đếm thì dùng `List<T>`.
+3. **Chí mạng cơ bản 5 % của tướng làm ải Thủ dễ hơn rõ** dù cấp 1 / 1★ giữ nguyên Máu và Công: trước – trụ tới giây 150, mất 5 tướng, thành 2055/3000; sau – quét sạch các đợt ở giây 134, mất 3 tướng, thành 2300/3000. Ải Công gần như không đổi (giây 61 → 62, mất 1 tướng, 2 sao). Chưa chỉnh lại (cân bằng để giai đoạn sắp phát hành); muốn giữ độ khó cũ thì đặt `heroBaseCritChance = 0` trong `ProgressionConfig`.
+- **Kiểm chứng:** EditMode 174/174 (thêm `ProgressionRulesTests`, `SynergyRulesTests`, `ProgressionContentTests`), PlayMode 36/36 (thêm `ProgressionBattleTests`).

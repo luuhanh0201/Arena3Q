@@ -1,10 +1,13 @@
 using System.Collections.Generic;
+using Arena3Q.Core;
 using UnityEngine;
 
 namespace Arena3Q.Data
 {
     /// <summary>
     /// A hero and its squad (spec §10). Hero cards are UI only and read their display data from here (spec §3).
+    /// Combat stats are the level-1, 1-star values; level, stars and breakthroughs scale them in battle
+    /// (<see cref="CombatNumbersFactory"/>, docs/KeHoach/HeroProgression.md).
     /// </summary>
     [CreateAssetMenu(menuName = "Arena3Q/Hero Definition", fileName = "Hero")]
     public sealed class HeroDefinition : ScriptableObject
@@ -17,13 +20,29 @@ namespace Arena3Q.Data
         [SerializeField] private Sprite sprite;
         [Tooltip("Tint used when no sprite is assigned.")]
         [SerializeField] private Color placeholderColor = Color.white;
-        [Tooltip("Optional. Faction data is deferred in the prototype.")]
+        [Tooltip("Lord = the player's character (skills by level, breakthroughs); Starter = no faction, cheap stars; " +
+                 "Named = a general of a faction (Thục, Ngụy, Ngô, Quần).")]
+        [SerializeField] private HeroKind kind = HeroKind.Starter;
+        [Tooltip("Named heroes only: lords and starter heroes have no faction (spec §2).")]
         [SerializeField] private FactionDefinition faction;
 
-        [Header("Combat")]
+        [Header("Combat (level 1, 1 star)")]
         [SerializeField] private CombatStats stats = new CombatStats(
             maxHealth: 500f, damage: 40f, moveSpeed: 2.5f, attackRange: 0.7f, attackInterval: 1f,
             reactionRange: 0.7f, aggroRange: 6f);
+        [Tooltip("Share of incoming damage blocked: 0.1 = 10 % (capped by the progression config).")]
+        [SerializeField, Range(0f, 0.9f)] private float damageReduction;
+        [Tooltip("Added to the progression config's base crit chance.")]
+        [SerializeField, Range(-1f, 1f)] private float critChanceBonus;
+
+        [Header("Progression (docs/KeHoach/HeroProgression.md)")]
+        [Tooltip("How Công and Máu grow per level. Empty = no growth.")]
+        [SerializeField] private GrowthProfile growthProfile;
+        [Tooltip("Thống suất: the squad's soldiers get Máu and Công × leadership / 100.")]
+        [SerializeField, Min(0f)] private float leadership = 100f;
+        [Tooltip("Strength not visible in the numbers (range, crowd control, extra soldiers, shielding allies): " +
+                 "used by balance checks and combat power. 0.18 = worth +18 %.")]
+        [SerializeField, Min(0f)] private float roleBonus;
 
         [Header("Idle rule (spec §6)")]
         [Tooltip("Seconds with no target and no new command before an Idle hero starts Advancing.")]
@@ -52,8 +71,15 @@ namespace Arena3Q.Data
         public string DisplayName => displayName;
         public Sprite Sprite => sprite;
         public Color PlaceholderColor => placeholderColor;
+        public HeroKind Kind => kind;
         public FactionDefinition Faction => faction;
         public CombatStats Stats => stats;
+        public float DamageReduction => damageReduction;
+        public float CritChanceBonus => critChanceBonus;
+        public GrowthProfile GrowthProfile => growthProfile;
+        public GrowthRates GrowthRates => growthProfile != null ? growthProfile.Rates : GrowthRates.None;
+        public float Leadership => leadership;
+        public float RoleBonus => roleBonus;
         public float IdleBeforeAdvanceSeconds => idleBeforeAdvanceSeconds;
         public bool IdleTimerResetsOnOutOfRangeDamage => idleTimerResetsOnOutOfRangeDamage;
         public bool SelfDefendWhileAttacking => selfDefendWhileAttacking;
@@ -77,6 +103,10 @@ namespace Arena3Q.Data
             if (maxSquadSize < baseSquadSize) errors.Add($"{owner}: maxSquadSize must be >= baseSquadSize.");
             if (baseSquadSize > 0 && troop == null) errors.Add($"{owner}: has a squad but no troop definition.");
             if (leashRadius <= 0f) errors.Add($"{owner}: leashRadius must be > 0.");
+            // Spec §2: only named heroes belong to a faction; lords and starter heroes never do.
+            if (kind == HeroKind.Named && faction == null) errors.Add($"{owner}: a named hero needs a faction.");
+            if (kind != HeroKind.Named && faction != null) errors.Add($"{owner}: only named heroes have a faction.");
+            if (leadership < 0f) errors.Add($"{owner}: leadership must be >= 0.");
         }
     }
 }

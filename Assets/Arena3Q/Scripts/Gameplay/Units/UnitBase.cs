@@ -39,6 +39,11 @@ namespace Arena3Q.Gameplay
         public float ReactionRange { get; private set; }
         public float AggroRange { get; private set; }
 
+        /// <summary>Share of incoming damage blocked (already capped by the progression rules).</summary>
+        public float DamageReduction { get; private set; }
+        public float CritChance { get; private set; }
+        public float CritMultiplier { get; private set; } = 1f;
+
         /// <summary>An attacker counts as a threat only this long after its last hit (provisional, default 2 s).</summary>
         public float AttackerMemorySeconds { get; private set; } = CombatStats.DefaultAttackerMemorySeconds;
 
@@ -72,6 +77,16 @@ namespace Arena3Q.Gameplay
             SetCombat(stats.Damage, stats.AttackRange, stats.AttackInterval, stats.MoveSpeed, stats.ReactionRange,
                 stats.AggroRange, stats.AttackerMemorySeconds);
 
+        /// <summary>Final numbers after level, stars and bonuses (built by <c>CombatNumbersFactory</c>).</summary>
+        protected void SetCombat(CombatNumbers numbers)
+        {
+            SetCombat(numbers.Damage, numbers.AttackRange, numbers.AttackInterval, numbers.MoveSpeed, numbers.ReactionRange,
+                numbers.AggroRange, numbers.AttackerMemorySeconds);
+            DamageReduction = Mathf.Clamp(numbers.DamageReduction, 0f, 0.95f);
+            CritChance = Mathf.Clamp01(numbers.CritChance);
+            CritMultiplier = Mathf.Max(1f, numbers.CritMultiplier);
+        }
+
         protected void SetCombat(float damage, float attackRange, float attackInterval, float moveSpeed,
             float reactionRange, float aggroRange, float attackerMemorySeconds = CombatStats.DefaultAttackerMemorySeconds)
         {
@@ -99,6 +114,7 @@ namespace Arena3Q.Gameplay
             if (!IsAlive || amount <= 0f || Battle == null || Battle.IsOver)
                 return;
 
+            amount *= 1f - DamageReduction;
             Health = Mathf.Max(0f, Health - amount);
             if (Record != null)
                 Record.Health = Health;
@@ -197,7 +213,8 @@ namespace Arena3Q.Gameplay
                         if (_cooldown <= 0f)
                         {
                             _cooldown = AttackInterval;
-                            target.TakeDamage(Damage, this);
+                            var damage = CritChance > 0f && Battle.RollCritical(CritChance) ? Damage * CritMultiplier : Damage;
+                            target.TakeDamage(damage, this);
                         }
                     }
                     else if (intent.MayChase)

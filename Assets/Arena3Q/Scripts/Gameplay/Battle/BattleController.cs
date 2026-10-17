@@ -26,11 +26,17 @@ namespace Arena3Q.Gameplay
         [Tooltip("2.5D view tilt: 0 = straight top-down, 45 = Clash of Clans-like. Only the display changes; the battle " +
                  "runs on the flat logic plane. Also adjustable in game from the HUD slider.")]
         [SerializeField, Range(0f, MaxViewTiltDegrees)] private float viewTiltDegrees;
+        [Tooltip("Levels, stars, breakthroughs, crits and damage reduction (docs/KeHoach/HeroProgression.md). " +
+                 "Empty = the design defaults.")]
+        [SerializeField] private ProgressionConfig progression;
+        [Tooltip("Seed of the battle's random numbers (crits): the same seed replays the same battle.")]
+        [SerializeField] private int randomSeed = 1;
 
         public const float MaxViewTiltDegrees = 45f;
 
-
         private readonly List<UnitBase> _simulationScratch = new List<UnitBase>();
+        private IReadOnlyList<LineupEntry> _lineupOverride;
+        private System.Random _random = new System.Random(1);
         private readonly List<Squad> _squads = new List<Squad>();
         private readonly Dictionary<UnitId, HeroUnit> _heroes = new Dictionary<UnitId, HeroUnit>();
         private SummonRules _summonRules;
@@ -92,7 +98,20 @@ namespace Arena3Q.Gameplay
         public BattleRuntimeState State { get; private set; }
         public BattlefieldLayout Layout { get; private set; }
         public UnitRegistry Registry { get; } = new UnitRegistry();
+
+        /// <summary>The cards of this battle with their level and stars; card index = position in this list.</summary>
+        public IReadOnlyList<LineupEntry> Lineup { get; private set; } = Array.Empty<LineupEntry>();
+
+        /// <summary>Hero definitions of <see cref="Lineup"/>, same indices.</summary>
         public IReadOnlyList<HeroDefinition> Cards { get; private set; } = Array.Empty<HeroDefinition>();
+
+        public ProgressionConfig Progression => progression;
+
+        /// <summary>Progression rules of the running battle (from <see cref="Progression"/>, or the design defaults).</summary>
+        public ProgressionRules Rules { get; private set; } = new ProgressionRules(new HeroProgressionSettings());
+
+        /// <summary>Faction synergy of the lineup, applied to every hero and soldier of the player.</summary>
+        public CombatModifiers PlayerModifiers { get; private set; }
         public OutcomeDecision LastOutcome { get; private set; }
         public bool IsOver => State == null || State.IsOver;
         /// <summary>Seconds since the battle started (simulation time, not wall clock).</summary>
@@ -130,6 +149,9 @@ namespace Arena3Q.Gameplay
                 PlaceholderArt.SpriteMaterial = spriteMaterial;
         }
 
+        /// <summary>Replaces the progression config (tools and tests); takes effect at the next battle start.</summary>
+        public void UseProgression(ProgressionConfig config) => progression = config;
+
         private void Awake()
         {
             if (spriteMaterial != null)
@@ -159,17 +181,27 @@ namespace Arena3Q.Gameplay
                 throw new InvalidOperationException("BattleController has no stages.");
             StageIndex = Mathf.Clamp(stageIndex, 0, stages.Length - 1);
             _lastStageIndex = StageIndex;
-            StartBattle(stages[StageIndex]);
+            StartBattle(stages[StageIndex], _lineupOverride);
         }
 
-        /// <summary>Starts a fresh battle. Nothing from a previous battle is kept (spec §12 "chơi lại").</summary>
-        public void StartBattle(StageConfig stage)
+        /// <summary>Starts a fresh battle with the stage's test loadout. Nothing from a previous battle is kept (spec §12).</summary>
+        public void StartBattle(StageConfig stage) => StartBattle(stage, null);
+
+        /// <summary>
+        /// Starts a fresh battle with the given lineup (lord first), e.g. the player's own heroes from the game flow.
+        /// Null = the stage's test loadout. The lineup is kept for replays and stage switches.
+        /// </summary>
+        public void StartBattle(StageConfig stage, IReadOnlyList<LineupEntry> lineup)
         {
             if (stage == null)
                 throw new ArgumentNullException(nameof(stage));
 
             var errors = new List<string>();
             stage.Validate(errors);
+            if (lineup != null)
+                LineupValidation.Validate(lineup, $"Lineup for '{stage.name}'", errors);
+            if (progression != null)
+                progression.Validate(errors);
             foreach (var error in errors)
                 Debug.LogError($"[Arena3Q] {error}", stage);
 
@@ -177,11 +209,20 @@ namespace Arena3Q.Gameplay
                 PlaceholderArt.SpriteMaterial = spriteMaterial;
 
             ClearWorld();
+            _lineupOverride = lineup;
+            Lineup = lineup ?? stage.TestLoadout.GetLineup();
+            var cards = new List<HeroDefinition>(Lineup.Count);
+            foreach (var card in Lineup)
+                cards.Add(card.Hero);
+            Cards = cards;
+            Rules = progression != null ? progression.CreateRules() : new ProgressionRules(new HeroProgressionSettings());
+            PlayerModifiers = CombatNumbersFactory.SynergyOf(Lineup);
+            _random = new System.Random(randomSeed);
+
             Stage = stage;
-            State = new BattleRuntimeState(stage.CreateBattleSetup());
+            State = new BattleRuntimeState(stage.CreateBattleSetup(Lineup));
             Layout = stage.CreateLayout();
             _summonRules = stage.CreateSummonRules();
-            Cards = stage.TestLoadout.GetCards();
             LastOutcome = OutcomeDecision.InProgress;
 
             // Painted art is drawn at one fixed 3/4 angle: start at that angle so logic and picture line up
@@ -208,7 +249,7 @@ namespace Arena3Q.Gameplay
             Changed?.Invoke();
         }
 
-        public void Restart() => StartBattle(Stage);
+        public void Restart() => StartBattle(Stage, _lineupOverride);
 
         private void ClearWorld()
         {
@@ -315,10 +356,12 @@ namespace Arena3Q.Gameplay
                 return decision;
             }
 
-            var definition = Cards[request.CardIndex];
-            var runtime = State.RegisterSummon(request.CardIndex, definition.Stats.MaxHealth);
+            var card = Lineup[request.CardIndex];
+            var definition = card.Hero;
+            var numbers = CombatNumbersFactory.ForHero(card, Rules, PlayerModifiers);
+            var runtime = State.RegisterSummon(request.CardIndex, numbers.MaxHealth);
             var hero = CreateUnit<HeroUnit>("Hero");
-            hero.Init(this, runtime, definition, Stage.CreateHeroBrainSettings(definition), decision.Position);
+            hero.Init(this, runtime, card, numbers, Stage.CreateHeroBrainSettings(definition), decision.Position);
             Register(hero);
             _heroes[hero.Id] = hero;
 
@@ -335,10 +378,12 @@ namespace Arena3Q.Gameplay
                     AssistRadius = definition.TroopAssistRadius
                 };
                 var tint = Color.Lerp(definition.PlaceholderColor, Color.white, 0.35f);
+                var troopNumbers = CombatNumbersFactory.ForTroop(definition.Troop, card.Level, definition.Leadership, Rules,
+                    PlayerModifiers);
                 for (var i = 0; i < definition.BaseSquadSize; i++)
                 {
                     var troop = CreateUnit<TroopUnit>("Troop");
-                    troop.Init(this, State.AllocateUnitId(), definition.Troop, squad, i, troopSettings, tint);
+                    troop.Init(this, State.AllocateUnitId(), definition.Troop, troopNumbers, squad, i, troopSettings, tint);
                     troop.Record = State.RegisterUnit(troop.Id, Team.Player, UnitKind.Troop, hero.Id, troop.MaxHealth);
                     Register(troop);
                 }
@@ -468,7 +513,8 @@ namespace Arena3Q.Gameplay
             int waveIndex)
         {
             var enemy = CreateUnit<EnemyUnit>("Enemy");
-            enemy.Init(this, State.AllocateUnitId(), definition, role, position, guardRadius, waveIndex);
+            var numbers = CombatNumbersFactory.ForEnemy(definition, Stage.EnemyLevel, Rules);
+            enemy.Init(this, State.AllocateUnitId(), definition, numbers, role, position, guardRadius, waveIndex);
             enemy.Record = State.RegisterUnit(enemy.Id, Team.Enemy, UnitKind.Enemy, UnitId.None, enemy.MaxHealth);
             Register(enemy);
             return enemy;
@@ -501,6 +547,9 @@ namespace Arena3Q.Gameplay
             if (unit.Record != null)
                 State.MarkUnitDead(unit.Id);
         }
+
+        /// <summary>One crit roll from the battle's seeded random numbers (deterministic for a given seed).</summary>
+        internal bool RollCritical(float chance) => chance >= 1f || (chance > 0f && _random.NextDouble() < chance);
 
         private bool IsQuickPointOccupied(Vector2 point) =>
             Registry.FindNearest(point, 0f, QuickPointOccupiedRadius - HeroUnit.BodyRadius, u => u is HeroUnit) != null;

@@ -16,7 +16,8 @@ MonoBehaviour:
   displayName: "Ki\u1EBFm S\u0129"
   sprite: {fileID: 0}
   placeholderColor: {r: 0.95, g: 0.35, b: 0.3, a: 1}
-  faction: {fileID: 11400000, guid: a7b7622782c3e3a42ac800217ff9a057, type: 2}
+  kind: 0
+  faction: {fileID: 0}
   stats:
     maxHealth: 700
     damage: 40
@@ -25,6 +26,12 @@ MonoBehaviour:
     attackInterval: 0.9
     reactionRange: 0.6
     aggroRange: 6
+    attackerMemorySeconds: 2
+  damageReduction: 0
+  critChanceBonus: 0
+  growthProfile: {fileID: 11400000, guid: ddec60e283738234ca3c82819ed12d0c, type: 2}
+  leadership: 100
+  roleBonus: 0
   idleBeforeAdvanceSeconds: 5
   idleTimerResetsOnOutOfRangeDamage: 0
   selfDefendWhileAttacking: 0
@@ -32,5 +39,7 @@ MonoBehaviour:
   baseSquadSize: 4
   maxSquadSize: 8
   leashRadius: 4
+  troopUnreachableSeconds: 1.5
+  troopAssistRadius: 3
   summonCost: 0
   summonCooldown: 0

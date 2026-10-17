@@ -41,6 +41,9 @@ namespace Arena3Q.Data
         [SerializeField] private bool allowResummonDeadHero;
 
         [Header("Enemies")]
+        [Tooltip("Enemy level: every enemy's Máu and Công grow with it like heroes do (docs/KeHoach/HeroProgression.md " +
+                 "§10). The unit stats are the level-1 values; chapter N starts at level 1 + 9 × (N − 1).")]
+        [SerializeField, Min(1)] private int enemyLevel = 1;
         [Tooltip("Attack stages: defenders around the enemy castle.")]
         [SerializeField] private DefenderPlacement[] defenders = Array.Empty<DefenderPlacement>();
         [Tooltip("Defense stages: attacking waves.")]
@@ -77,6 +80,7 @@ namespace Arena3Q.Data
         public Rect SummonZone => summonZone;
         public IReadOnlyList<Vector2> QuickSummonPoints => quickSummonPoints;
         public bool AllowResummonDeadHero => allowResummonDeadHero;
+        public int EnemyLevel => Mathf.Max(1, enemyLevel);
         public IReadOnlyList<DefenderPlacement> Defenders => defenders;
         public IReadOnlyList<WaveConfig> Waves => waves;
         public float TimeLimit => timeLimit;
@@ -130,11 +134,17 @@ namespace Arena3Q.Data
         {
             if (testLoadout == null)
                 throw new InvalidOperationException($"Stage '{name}' has no test loadout.");
+            return CreateBattleSetup(testLoadout.GetLineup());
+        }
 
-            var cards = testLoadout.GetCards();
-            var heroIds = new string[cards.Count];
-            for (var i = 0; i < cards.Count; i++)
-                heroIds[i] = cards[i].HeroId;
+        /// <summary>Builds the Core battle settings for a given lineup (card index = position in the lineup).</summary>
+        public BattleSetup CreateBattleSetup(IReadOnlyList<LineupEntry> lineup)
+        {
+            if (lineup == null)
+                throw new ArgumentNullException(nameof(lineup));
+            var heroIds = new string[lineup.Count];
+            for (var i = 0; i < lineup.Count; i++)
+                heroIds[i] = lineup[i].Hero.HeroId;
 
             return new BattleSetup
             {
@@ -158,6 +168,8 @@ namespace Arena3Q.Data
 
             if (string.IsNullOrWhiteSpace(stageId))
                 errors.Add($"{owner}: stageId is empty.");
+            if (enemyLevel < 1)
+                errors.Add($"{owner}: enemyLevel must be >= 1.");
             if (mapBounds.width <= 0f || mapBounds.height <= 0f)
                 errors.Add($"{owner}: mapBounds must have a positive size.");
 

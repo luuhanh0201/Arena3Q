@@ -22,8 +22,8 @@ namespace Arena3Q.Gameplay
         public int SlotIndex { get; private set; }
         public TroopDefinition Definition { get; private set; }
 
-        internal void Init(BattleController battle, UnitId id, TroopDefinition definition, Squad squad, int slotIndex,
-            TroopBrainSettings settings, Color tint)
+        internal void Init(BattleController battle, UnitId id, TroopDefinition definition, CombatNumbers numbers, Squad squad,
+            int slotIndex, TroopBrainSettings settings, Color tint)
         {
             Definition = definition;
             Squad = squad;
@@ -31,9 +31,9 @@ namespace Arena3Q.Gameplay
             _settings = settings;
             _brain = new TroopBrain(settings);
             name = $"Troop {definition.DisplayName} ({id}) of {squad.HeroId}";
-            InitUnit(battle, id, Team.Player, definition.Stats.MaxHealth, BodyRadius, definition.Sprite, tint,
+            InitUnit(battle, id, Team.Player, numbers.MaxHealth, BodyRadius, definition.Sprite, tint,
                 withSelectionRing: false);
-            SetCombat(definition.Stats);
+            SetCombat(numbers);
             SetPosition(squad.SlotPosition(slotIndex));
             squad.Add(this);
         }

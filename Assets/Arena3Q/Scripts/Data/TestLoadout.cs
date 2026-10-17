@@ -1,35 +1,49 @@
 using System.Collections.Generic;
+using Arena3Q.Core;
 using UnityEngine;
 
 namespace Arena3Q.Data
 {
     /// <summary>
-    /// Prototype card set handed out at battle start (spec §3, provisional): the faction lord card first, then the other
-    /// heroes. Defaults to 1 lord + 4 heroes; add a sixth card to exercise the 5-hero limit.
+    /// Prototype card set handed out when the Battle scene is played directly (spec §3, provisional): the lord card first,
+    /// then the other heroes, each with a level and stars. Defaults to 1 lord + 4 heroes; add a sixth card to exercise
+    /// the 5-hero limit. A game flow launch (lineup from the player's profile) replaces it.
     /// </summary>
     [CreateAssetMenu(menuName = "Arena3Q/Test Loadout", fileName = "TestLoadout")]
     public sealed class TestLoadout : ScriptableObject
     {
-        [Tooltip("The faction lord. Always dealt, and counts toward the 5-hero limit.")]
+        [Tooltip("The lord. Always dealt, and counts toward the 5-hero limit.")]
         [SerializeField] private HeroDefinition lordHero;
-        [SerializeField] private HeroDefinition[] heroes = new HeroDefinition[4];
+        [SerializeField, Min(1)] private int lordLevel = 1;
+        [SerializeField] private LineupEntry[] heroes = new LineupEntry[4];
 
         public HeroDefinition LordHero => lordHero;
+        public int LordLevel => Mathf.Max(1, lordLevel);
 
         /// <summary>Cards in deal order: lord first. Card index in battle = index in this list.</summary>
-        public IReadOnlyList<HeroDefinition> GetCards()
+        public IReadOnlyList<LineupEntry> GetLineup()
         {
-            var cards = new List<HeroDefinition>(1 + (heroes?.Length ?? 0));
+            var lineup = new List<LineupEntry>(1 + (heroes?.Length ?? 0));
             if (lordHero != null)
-                cards.Add(lordHero);
+                lineup.Add(new LineupEntry(lordHero, LordLevel));
             if (heroes != null)
             {
-                foreach (var hero in heroes)
+                foreach (var entry in heroes)
                 {
-                    if (hero != null)
-                        cards.Add(hero);
+                    if (entry?.Hero != null)
+                        lineup.Add(entry);
                 }
             }
+            return lineup;
+        }
+
+        /// <summary>Hero definitions in deal order (same indices as <see cref="GetLineup"/>).</summary>
+        public IReadOnlyList<HeroDefinition> GetCards()
+        {
+            var lineup = GetLineup();
+            var cards = new List<HeroDefinition>(lineup.Count);
+            foreach (var entry in lineup)
+                cards.Add(entry.Hero);
             return cards;
         }
 
@@ -42,19 +56,12 @@ namespace Arena3Q.Data
             {
                 for (var i = 0; i < heroes.Length; i++)
                 {
-                    if (heroes[i] == null)
+                    if (heroes[i]?.Hero == null)
                         errors.Add($"{owner}: heroes[{i}] is empty.");
                 }
             }
-
-            var seen = new HashSet<HeroDefinition>();
-            foreach (var hero in GetCards())
-            {
-                if (!seen.Add(hero))
-                    errors.Add($"{owner}: hero '{hero.name}' appears more than once.");
-                else
-                    hero.Validate(errors);
-            }
+            if (lordHero != null)
+                LineupValidation.Validate(GetLineup(), owner, errors);
         }
     }
 }

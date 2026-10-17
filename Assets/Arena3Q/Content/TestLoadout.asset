@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: TestLoadout
   m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.TestLoadout
   lordHero: {fileID: 11400000, guid: b3c93d4b8391fdf46aff128f00f98ec6, type: 2}
+  lordLevel: 1
   heroes:
-  - {fileID: 11400000, guid: a13e05ef605c52940b26fc1115bedec3, type: 2}
-  - {fileID: 11400000, guid: 58ee30e4589bf324684f9594e03a35ad, type: 2}
-  - {fileID: 11400000, guid: d4accd7038df2c54fb4d6a41a7fd078b, type: 2}
-  - {fileID: 11400000, guid: 7f85e9a8c0614b84694e9fa2d08885f7, type: 2}
+  - hero: {fileID: 11400000, guid: a13e05ef605c52940b26fc1115bedec3, type: 2}
+    level: 1
+    stars: 1
+  - hero: {fileID: 11400000, guid: 58ee30e4589bf324684f9594e03a35ad, type: 2}
+    level: 1
+    stars: 1
+  - hero: {fileID: 11400000, guid: d4accd7038df2c54fb4d6a41a7fd078b, type: 2}
+    level: 1
+    stars: 1
+  - hero: {fileID: 11400000, guid: 7f85e9a8c0614b84694e9fa2d08885f7, type: 2}
+    level: 1
+    stars: 1

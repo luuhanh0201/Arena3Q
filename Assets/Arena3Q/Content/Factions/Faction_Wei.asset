@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0590f1bbcf9979dfe3a47e27d73e52c, type: 3}
+  m_Name: Faction_Wei
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.FactionDefinition
+  factionId: wei
+  displayName: "Ng\u1EE5y"
+  color: {r: 0.27, g: 0.42, b: 0.78, a: 1}
+  strength: "Ph\xF2ng th\u1EE7"
+  synergyTiers:
+  - minHeroes: 2
+    attackBonus: 0
+    healthBonus: 0.03
+    damageReduction: 0.03
+    attackSpeedBonus: 0
+    rageGainBonus: 0
+    cooldownReduction: 0
+    critChance: 0
+    critMultiplier: 0
+  - minHeroes: 3
+    attackBonus: 0
+    healthBonus: 0.06
+    damageReduction: 0.06
+    attackSpeedBonus: 0
+    rageGainBonus: 0
+    cooldownReduction: 0
+    critChance: 0
+    critMultiplier: 0
+  - minHeroes: 4
+    attackBonus: 0
+    healthBonus: 0.1
+    damageReduction: 0.1
+    attackSpeedBonus: 0
+    rageGainBonus: 0
+    cooldownReduction: 0
+    critChance: 0
+    critMultiplier: 0

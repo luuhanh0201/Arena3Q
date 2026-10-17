@@ -35,8 +35,9 @@ namespace Arena3Q.UI
 
         public int CardIndex { get; private set; }
 
-        internal void Build(BattleHud hud, int cardIndex, HeroDefinition hero, bool isLord)
+        internal void Build(BattleHud hud, int cardIndex, LineupEntry card, bool isLord)
         {
+            var hero = card.Hero;
             _hud = hud;
             CardIndex = cardIndex;
             _heroColor = hero.PlaceholderColor;
@@ -53,6 +54,12 @@ namespace Arena3Q.UI
             var nameRect = UiFactory.CreateRect("Name", rect, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f),
                 new Vector2(0.5f, 0f), new Vector2(0f, 46f), new Vector2(150f, 40f));
             UiFactory.AddText(nameRect, hero.DisplayName, 26, TextAnchor.MiddleCenter, Color.white);
+
+            // Level, and stars for heroes that have them (lords break through by level instead).
+            var levelRect = UiFactory.CreateRect("Level", rect, new Vector2(0f, 1f), new Vector2(0f, 1f),
+                new Vector2(0f, 1f), new Vector2(8f, -4f), new Vector2(144f, 30f));
+            var levelText = isLord ? $"Lv{card.Level}" : $"Lv{card.Level} {new string('★', card.Stars)}";
+            UiFactory.AddText(levelRect, levelText, 20, TextAnchor.UpperLeft, new Color(1f, 0.9f, 0.55f));
 
             var statusRect = UiFactory.CreateRect("Status", rect, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f),
                 new Vector2(0.5f, 0f), new Vector2(0f, 10f), new Vector2(150f, 34f));

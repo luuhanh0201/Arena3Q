@@ -16,16 +16,27 @@ namespace Arena3Q.Gameplay
         public int CardIndex => Runtime.CardIndex;
         public HeroState State => Brain.State;
 
-        internal void Init(BattleController battle, HeroRuntime runtime, HeroDefinition definition,
+        /// <summary>Level and stars of the card this hero was summoned from.</summary>
+        public int Level { get; private set; } = 1;
+        public int Stars { get; private set; } = 1;
+
+        /// <summary>Combat numbers after level, stars, breakthroughs and faction synergy.</summary>
+        public CombatNumbers Numbers { get; private set; }
+
+        internal void Init(BattleController battle, HeroRuntime runtime, LineupEntry card, CombatNumbers numbers,
             HeroBrainSettings settings, Vector2 position)
         {
+            var definition = card.Hero;
             Definition = definition;
+            Level = card.Level;
+            Stars = card.Stars;
+            Numbers = numbers;
             Runtime = runtime;
             Brain = new HeroBrain(settings);
-            name = $"Hero {definition.DisplayName} ({runtime.Id})";
-            InitUnit(battle, runtime.Id, Team.Player, definition.Stats.MaxHealth, BodyRadius, definition.Sprite,
+            name = $"Hero {definition.DisplayName} Lv{Level} ({runtime.Id})";
+            InitUnit(battle, runtime.Id, Team.Player, numbers.MaxHealth, BodyRadius, definition.Sprite,
                 definition.PlaceholderColor, withSelectionRing: true);
-            SetCombat(definition.Stats);
+            SetCombat(numbers);
             SetPosition(position);
         }
 

@@ -16,7 +16,8 @@ MonoBehaviour:
   displayName: "Cung Th\u1EE7"
   sprite: {fileID: 0}
   placeholderColor: {r: 0.35, g: 0.85, b: 0.4, a: 1}
-  faction: {fileID: 11400000, guid: a7b7622782c3e3a42ac800217ff9a057, type: 2}
+  kind: 0
+  faction: {fileID: 0}
   stats:
     maxHealth: 450
     damage: 30
@@ -25,6 +26,12 @@ MonoBehaviour:
     attackInterval: 1.1
     reactionRange: 0.7
     aggroRange: 7
+    attackerMemorySeconds: 2
+  damageReduction: 0
+  critChanceBonus: 0
+  growthProfile: {fileID: 11400000, guid: 7e0c8b9487db5664ba0fb11e984660d1, type: 2}
+  leadership: 100
+  roleBonus: 0.18
   idleBeforeAdvanceSeconds: 5
   idleTimerResetsOnOutOfRangeDamage: 0
   selfDefendWhileAttacking: 0
@@ -32,5 +39,7 @@ MonoBehaviour:
   baseSquadSize: 4
   maxSquadSize: 8
   leashRadius: 4
+  troopUnreachableSeconds: 1.5
+  troopAssistRadius: 3
   summonCost: 0
   summonCooldown: 0

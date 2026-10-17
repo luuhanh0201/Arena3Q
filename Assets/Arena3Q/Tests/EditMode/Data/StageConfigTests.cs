@@ -234,7 +234,7 @@ namespace Arena3Q.Tests.EditMode
         {
             var troop = Create<TroopDefinition>("Troop");
 
-            var lord = CreateHero("lord", troop);
+            var lord = CreateHero("lord", troop, HeroKind.Lord);
             var heroes = new HeroDefinition[4];
             for (var i = 0; i < heroes.Length; i++)
                 heroes[i] = CreateHero($"hero{i}", troop);
@@ -245,7 +245,7 @@ namespace Arena3Q.Tests.EditMode
             var heroesProp = loadoutSo.FindProperty("heroes");
             heroesProp.arraySize = heroes.Length;
             for (var i = 0; i < heroes.Length; i++)
-                heroesProp.GetArrayElementAtIndex(i).objectReferenceValue = heroes[i];
+                heroesProp.GetArrayElementAtIndex(i).FindPropertyRelative("hero").objectReferenceValue = heroes[i];
             loadoutSo.ApplyModifiedPropertiesWithoutUndo();
 
             var stage = Create<StageConfig>("Stage");
@@ -255,11 +255,12 @@ namespace Arena3Q.Tests.EditMode
             return stage;
         }
 
-        private HeroDefinition CreateHero(string heroId, TroopDefinition troop)
+        private HeroDefinition CreateHero(string heroId, TroopDefinition troop, HeroKind kind = HeroKind.Starter)
         {
             var hero = Create<HeroDefinition>(heroId);
             var so = new SerializedObject(hero);
             so.FindProperty("heroId").stringValue = heroId;
+            so.FindProperty("kind").enumValueIndex = (int)kind;
             so.FindProperty("troop").objectReferenceValue = troop;
             so.ApplyModifiedPropertiesWithoutUndo();
             return hero;

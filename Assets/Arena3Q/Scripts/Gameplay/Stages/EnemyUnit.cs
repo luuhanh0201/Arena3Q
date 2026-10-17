@@ -18,8 +18,8 @@ namespace Arena3Q.Gameplay
         /// <summary>Defense-stage wave this enemy belongs to, or -1 for defenders.</summary>
         public int WaveIndex { get; private set; } = -1;
 
-        internal void Init(BattleController battle, UnitId id, TroopDefinition definition, EnemyRole role, Vector2 position,
-            float guardRadius, int waveIndex)
+        internal void Init(BattleController battle, UnitId id, TroopDefinition definition, CombatNumbers numbers,
+            EnemyRole role, Vector2 position, float guardRadius, int waveIndex)
         {
             Role = role;
             WaveIndex = waveIndex;
@@ -27,9 +27,9 @@ namespace Arena3Q.Gameplay
             _guardRadius = guardRadius;
             _brain = new EnemyBrain(new EnemyBrainSettings { Role = role, Post = position, GuardRadius = guardRadius });
             name = $"Enemy {definition.DisplayName} ({id})";
-            InitUnit(battle, id, Team.Enemy, definition.Stats.MaxHealth, BodyRadius, definition.Sprite,
+            InitUnit(battle, id, Team.Enemy, numbers.MaxHealth, BodyRadius, definition.Sprite,
                 definition.PlaceholderColor, withSelectionRing: false);
-            SetCombat(definition.Stats);
+            SetCombat(numbers);
             SetPosition(position);
         }
 

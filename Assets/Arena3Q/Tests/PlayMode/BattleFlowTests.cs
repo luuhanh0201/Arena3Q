@@ -138,14 +138,15 @@ namespace Arena3Q.Tests.PlayMode
         [UnityTest]
         public IEnumerator SixthHero_IsRejected()
         {
-            var lord = Stage(0).TestLoadout.LordHero;
+            // A sixth card: a copy of a starter hero (a lineup has exactly one lord).
+            var extra = Object.Instantiate(Stage(0).TestLoadout.GetCards()[1]);
+            _created.Add(extra);
             var loadout = Object.Instantiate(Stage(0).TestLoadout);
             _created.Add(loadout);
             var loadoutSo = new SerializedObject(loadout);
             var heroes = loadoutSo.FindProperty("heroes");
             heroes.arraySize = 5;
-            heroes.GetArrayElementAtIndex(4).objectReferenceValue = Object.Instantiate(lord);
-            _created.Add(heroes.GetArrayElementAtIndex(4).objectReferenceValue);
+            heroes.GetArrayElementAtIndex(4).FindPropertyRelative("hero").objectReferenceValue = extra;
             loadoutSo.ApplyModifiedPropertiesWithoutUndo();
             _battle.StartBattle(Variant(0, so => so.FindProperty("testLoadout").objectReferenceValue = loadout));
             yield return null;
@@ -415,7 +416,7 @@ namespace Arena3Q.Tests.PlayMode
             var loadout = Object.Instantiate(Stage(0).TestLoadout);
             _created.Add(loadout);
             var loadoutSo = new SerializedObject(loadout);
-            loadoutSo.FindProperty("heroes").GetArrayElementAtIndex(1).objectReferenceValue = archer;
+            loadoutSo.FindProperty("heroes").GetArrayElementAtIndex(1).FindPropertyRelative("hero").objectReferenceValue = archer;
             loadoutSo.ApplyModifiedPropertiesWithoutUndo();
 
             var harmless = Object.Instantiate(Stage(0).Defenders[1].Unit);

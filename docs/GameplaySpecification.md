@@ -190,7 +190,12 @@ Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng
 
 ## 10. Dữ liệu
 - `FactionDefinition` ⏳ (tối thiểu): id, tên, màu; dùng cho phe danh tướng (Thục, Ngụy, Ngô, Quần) và bảng cộng hưởng.
-- Cấp / sao / phe ⏳ (`docs/KeHoach/HeroProgression.md` §12): `HeroDefinition` thêm loại tướng, phe, hệ tăng trưởng, giảm sát thương, chí mạng, Thống suất, cấp mở kỹ năng; `ProgressionConfig` mới chứa tỉ lệ tăng theo cấp, bảng sao, đột phá chủ tướng, điểm kỹ năng, cộng hưởng phe.
+- Cấp / sao / phe (`docs/KeHoach/HeroProgression.md` §12) – **đã có trong code** (2026-10-17), mọi con số là 🟡 trong asset:
+  - `HeroDefinition`: loại tướng (`Lord` / `Starter` / `Named`), phe (chỉ danh tướng), `GrowthProfile` (hệ tăng trưởng), giảm sát thương, chí mạng cộng thêm, Thống suất, hệ số vai trò.
+  - `ProgressionConfig` (một asset): cấp tối đa, tăng trưởng của lính và quân địch, bảng sao, mốc mở kỹ năng chủ tướng, điểm kỹ năng và giới hạn, đột phá (tự động / cần mở), giới hạn giảm sát thương, chí mạng cơ bản, lực chiến, "tướng chuẩn" để kiểm tra cân bằng.
+  - `FactionDefinition`: bảng cộng hưởng theo số tướng cùng phe. `StageConfig.enemyLevel`: cấp quân địch của ải.
+  - Đội hình (`TestLoadout`, sau này hồ sơ người chơi): mỗi thẻ có **cấp** và **sao**. `CombatNumbersFactory` là nơi duy nhất tính chỉ số trận đấu; quy tắc thuần ở `ProgressionRules` (Core).
+  - ⏳ Chưa có: hiệu ứng kỹ năng (nên mở kỹ năng theo cấp / sao mới chỉ là quy tắc), kinh nghiệm, mảnh tướng, lưu tiến trình.
 - `HeroDefinition`: heroId, tên, sprite/placeholder, máu, sát thương, tốc độ di chuyển, tầm đánh, **tốc đánh** (đòn/giây; hiện lưu dưới dạng `attackInterval` = 1 / tốc đánh), `reactionRange`, `aggroRange`, `idleBeforeAdvanceSeconds` (mặc định 5), `baseSquadSize`, `maxSquadSize`, `TroopDefinition` của đội lính, `leashRadius`.
 - `TroopDefinition`: máu, sát thương, tốc độ, tầm đánh, **tốc đánh** (đòn/giây; hiện lưu dưới dạng `attackInterval` = 1 / tốc đánh), `reactionRange`, `aggroRange`.
 - `EnemyDefinition` ⏳ (hiện quân địch dùng `TroopDefinition`): các trường của `TroopDefinition` + cấp bậc (Thường / Tinh anh / Boss), kích thước và bán kính thân, danh sách kỹ năng, pha 2 (ngưỡng máu, kỹ năng và chỉ số thay đổi), đặc tính bị động (sống lại…), prefab hiển thị.

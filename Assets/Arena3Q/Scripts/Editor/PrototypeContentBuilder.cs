@@ -28,8 +28,9 @@ namespace Arena3Q.Editor
         {
             try
             {
-                var stages = BuildAssets();
-                BuildScene(stages);
+                var stages = BuildAssets(out var progression);
+                BuildScene(stages, progression);
+                EnsureBattleSceneReferences(progression);
                 AddSceneToBuildSettings();
                 AssetDatabase.SaveAssets();
                 Debug.Log("[Arena3Q] Prototype content is ready.");
@@ -66,15 +67,23 @@ namespace Arena3Q.Editor
 
         // ---- Assets ----
 
-        private static StageConfig[] BuildAssets()
+        private static StageConfig[] BuildAssets(out ProgressionConfig progression)
         {
             EnsureFolder(ContentRoot);
             EnsureFolder(ContentRoot + "/Troops");
             EnsureFolder(ContentRoot + "/Heroes");
+            EnsureFolder(ContentRoot + "/Lords");
             EnsureFolder(ContentRoot + "/Stages");
             EnsureFolder(ContentRoot + "/Factions");
+            EnsureFolder(ContentRoot + "/Progression");
 
-            var faction = GetOrCreate<FactionDefinition>(ContentRoot + "/Factions/Faction_Placeholder.asset", _ => { });
+            // Levels, stars, breakthroughs: the field defaults are the design numbers (docs/KeHoach/HeroProgression.md).
+            progression = GetOrCreate<ProgressionConfig>(ContentRoot + "/Progression/ProgressionConfig.asset", _ => { });
+            // Class growth (§4): strength grows faster, (1 + Công) × (1 + Máu) per level is the same for every class.
+            var growthOffense = Growth("Growth_Offense", "offense", "Công kích", 0.036f, 0.024f);
+            var growthBalanced = Growth("Growth_Balanced", "balanced", "Cân bằng", 0.033f, 0.027f);
+            var growthDefense = Growth("Growth_Defense", "defense", "Phòng thủ", 0.024f, 0.036f);
+            BuildFactions();
 
             var soldier = Troop("Troop_Soldier", "soldier", "Lính", new Color(0.85f, 0.85f, 0.9f),
                 120f, 12f, 2.7f, 0.6f, 1.0f, 0.6f, 4.5f);
@@ -85,27 +94,46 @@ namespace Arena3Q.Editor
             var brute = Troop("Enemy_Brute", "enemy_brute", "Lực sĩ địch", new Color(0.45f, 0.15f, 0.45f),
                 600f, 35f, 1.6f, 0.7f, 1.5f, 0.7f, 5f);
 
-            var lord = Hero("Hero_Lord", "lord", "Chủ Tướng", new Color(1f, 0.8f, 0.2f), faction, soldier,
+            // The prototype's placeholder lord (spec §2: "Prototype dùng một chủ tướng placeholder").
+            var lord = Hero("Hero_Lord", "lord", "Chủ Tướng", new Color(1f, 0.8f, 0.2f), HeroKind.Lord, growthBalanced, soldier,
                 900f, 45f, 2.6f, 0.7f, 1.0f, 0.7f, 6f);
+            // Starter heroes (docs/Tuong/NormalHeroes.md): prototype stats kept as they are (balance comes later).
             var heroes = new[]
             {
-                Hero("Hero_Swordsman", "swordsman", "Kiếm Sĩ", new Color(0.95f, 0.35f, 0.3f), faction, soldier,
-                    700f, 40f, 2.8f, 0.6f, 0.9f, 0.6f, 6f),
-                Hero("Hero_Archer", "archer", "Cung Thủ", new Color(0.35f, 0.85f, 0.4f), faction, soldier,
-                    450f, 30f, 2.6f, 4.5f, 1.1f, 0.7f, 7f),
-                Hero("Hero_Cavalry", "cavalry", "Kỵ Binh", new Color(0.6f, 0.45f, 1f), faction, soldier,
-                    650f, 35f, 3.6f, 0.6f, 1.0f, 0.6f, 6f),
-                Hero("Hero_Guardian", "guardian", "Giáp Sĩ", new Color(0.3f, 0.8f, 0.95f), faction, soldier,
-                    1200f, 25f, 2.2f, 0.6f, 1.2f, 0.6f, 5f)
+                Hero("Hero_Swordsman", "swordsman", "Kiếm Sĩ", new Color(0.95f, 0.35f, 0.3f), HeroKind.Starter, growthBalanced,
+                    soldier, 700f, 40f, 2.8f, 0.6f, 0.9f, 0.6f, 6f),
+                Hero("Hero_Archer", "archer", "Cung Thủ", new Color(0.35f, 0.85f, 0.4f), HeroKind.Starter, growthOffense,
+                    soldier, 450f, 30f, 2.6f, 4.5f, 1.1f, 0.7f, 7f, roleBonus: 0.18f),
+                Hero("Hero_Cavalry", "cavalry", "Kỵ Binh", new Color(0.6f, 0.45f, 1f), HeroKind.Starter, growthBalanced,
+                    soldier, 650f, 35f, 3.6f, 0.6f, 1.0f, 0.6f, 6f, roleBonus: 0.10f),
+                Hero("Hero_Guardian", "guardian", "Giáp Sĩ", new Color(0.3f, 0.8f, 0.95f), HeroKind.Starter, growthDefense,
+                    soldier, 1200f, 25f, 2.2f, 0.6f, 1.2f, 0.6f, 5f, roleBonus: 0.15f)
             };
+
+            // The four lords the player picks from (docs/KeHoach/HeroProgression.md §5.1, level-1 numbers).
+            Hero("Lord_Archer", "lord_archer", "Cung thủ", new Color(0.36f, 0.67f, 0.54f), HeroKind.Lord, growthOffense, soldier,
+                560f, 58f, 2.9f, 4.5f, 1f / 0.9f, 0.7f, 7f, roleBonus: 0.18f, folder: "Lords");
+            Hero("Lord_Swordsman", "lord_swordsman", "Kiếm sĩ", new Color(0.62f, 0.72f, 0.9f), HeroKind.Lord, growthBalanced, soldier,
+                760f, 36f, 3.0f, 0.6f, 1f / 1.4f, 0.6f, 6f, damageReduction: 0.05f, folder: "Lords");
+            Hero("Lord_Strategist", "lord_strategist", "Mưu sĩ", new Color(0.73f, 0.64f, 0.84f), HeroKind.Lord, growthOffense, soldier,
+                600f, 32f, 2.6f, 3.0f, 1f / 0.8f, 0.7f, 6.5f, roleBonus: 0.62f, folder: "Lords");
+            Hero("Lord_Marshal", "lord_marshal", "Thống soái", new Color(0.85f, 0.32f, 0.27f), HeroKind.Lord, growthDefense, soldier,
+                950f, 26f, 2.3f, 0.9f, 1f, 0.7f, 6f, damageReduction: 0.10f, leadership: 110f, roleBonus: 0.22f,
+                folder: "Lords");
 
             var loadout = GetOrCreate<TestLoadout>(ContentRoot + "/TestLoadout.asset", so =>
             {
                 so.FindProperty("lordHero").objectReferenceValue = lord;
+                so.FindProperty("lordLevel").intValue = 1;
                 var list = so.FindProperty("heroes");
                 list.arraySize = heroes.Length;
                 for (var i = 0; i < heroes.Length; i++)
-                    list.GetArrayElementAtIndex(i).objectReferenceValue = heroes[i];
+                {
+                    var entry = list.GetArrayElementAtIndex(i);
+                    entry.FindPropertyRelative("hero").objectReferenceValue = heroes[i];
+                    entry.FindPropertyRelative("level").intValue = 1;
+                    entry.FindPropertyRelative("stars").intValue = 1;
+                }
             });
 
             var attack = GetOrCreate<StageConfig>(ContentRoot + "/Stages/Stage_Attack_01.asset", so =>
@@ -311,20 +339,102 @@ namespace Arena3Q.Editor
                 SetStats(so.FindProperty("stats"), health, damage, speed, range, interval, reaction, aggro);
             });
 
-        private static HeroDefinition Hero(string file, string id, string displayName, Color color, FactionDefinition faction,
-            TroopDefinition troop, float health, float damage, float speed, float range, float interval, float reaction,
-            float aggro) =>
-            GetOrCreate<HeroDefinition>($"{ContentRoot}/Heroes/{file}.asset", so =>
+        private static HeroDefinition Hero(string file, string id, string displayName, Color color, HeroKind kind,
+            GrowthProfile growth, TroopDefinition troop, float health, float damage, float speed, float range, float interval,
+            float reaction, float aggro, float damageReduction = 0f, float leadership = 100f, float roleBonus = 0f,
+            string folder = "Heroes")
+        {
+            var hero = GetOrCreate<HeroDefinition>($"{ContentRoot}/{folder}/{file}.asset", so =>
             {
                 so.FindProperty("heroId").stringValue = id;
                 so.FindProperty("displayName").stringValue = displayName;
                 so.FindProperty("placeholderColor").colorValue = color;
-                so.FindProperty("faction").objectReferenceValue = faction;
                 so.FindProperty("troop").objectReferenceValue = troop;
                 so.FindProperty("baseSquadSize").intValue = 4;
                 so.FindProperty("maxSquadSize").intValue = 8;
                 so.FindProperty("leashRadius").floatValue = 4f;
                 SetStats(so.FindProperty("stats"), health, damage, speed, range, interval, reaction, aggro);
+                SetProgressionFields(so, kind, growth, damageReduction, leadership, roleBonus);
+            });
+
+            // Heroes created before progression existed: add the progression fields once, keep their tuned stats.
+            if (hero.GrowthProfile == null)
+            {
+                var so = new SerializedObject(hero);
+                SetProgressionFields(so, kind, growth, damageReduction, leadership, roleBonus);
+                so.ApplyModifiedPropertiesWithoutUndo();
+                EditorUtility.SetDirty(hero);
+                Debug.Log($"[Arena3Q] {hero.name}: progression fields added ({kind}, {growth.name}).");
+            }
+            return hero;
+        }
+
+        private static void SetProgressionFields(SerializedObject so, HeroKind kind, GrowthProfile growth,
+            float damageReduction, float leadership, float roleBonus)
+        {
+            so.FindProperty("kind").enumValueIndex = (int)kind;
+            // Spec §2: lords and starter heroes never belong to a faction.
+            so.FindProperty("faction").objectReferenceValue = null;
+            so.FindProperty("growthProfile").objectReferenceValue = growth;
+            so.FindProperty("damageReduction").floatValue = damageReduction;
+            so.FindProperty("leadership").floatValue = leadership;
+            so.FindProperty("roleBonus").floatValue = roleBonus;
+        }
+
+        private static GrowthProfile Growth(string file, string id, string displayName, float attack, float health) =>
+            GetOrCreate<GrowthProfile>($"{ContentRoot}/Progression/{file}.asset", so =>
+            {
+                so.FindProperty("profileId").stringValue = id;
+                so.FindProperty("displayName").stringValue = displayName;
+                so.FindProperty("attackGrowthPerLevel").floatValue = attack;
+                so.FindProperty("healthGrowthPerLevel").floatValue = health;
+            });
+
+        // Faction synergy (docs/KeHoach/HeroProgression.md §9): each tier is worth about the same for every faction.
+        private static void BuildFactions()
+        {
+            Faction("Faction_Shu", "shu", "Thục", new Color(0.25f, 0.62f, 0.35f), "Tấn công",
+                new FactionDefinition.Tier { minHeroes = 2, attackBonus = 0.06f },
+                new FactionDefinition.Tier { minHeroes = 3, attackBonus = 0.12f },
+                new FactionDefinition.Tier { minHeroes = 4, attackBonus = 0.20f });
+            Faction("Faction_Wei", "wei", "Ngụy", new Color(0.27f, 0.42f, 0.78f), "Phòng thủ",
+                new FactionDefinition.Tier { minHeroes = 2, healthBonus = 0.03f, damageReduction = 0.03f },
+                new FactionDefinition.Tier { minHeroes = 3, healthBonus = 0.06f, damageReduction = 0.06f },
+                new FactionDefinition.Tier { minHeroes = 4, healthBonus = 0.10f, damageReduction = 0.10f });
+            Faction("Faction_Wu", "wu", "Ngô", new Color(0.82f, 0.27f, 0.22f), "Tốc độ và kỹ năng",
+                new FactionDefinition.Tier { minHeroes = 2, attackSpeedBonus = 0.04f, rageGainBonus = 0.10f },
+                new FactionDefinition.Tier { minHeroes = 3, attackSpeedBonus = 0.08f, rageGainBonus = 0.20f },
+                new FactionDefinition.Tier { minHeroes = 4, attackSpeedBonus = 0.12f, rageGainBonus = 0.30f, cooldownReduction = 0.10f });
+            Faction("Faction_Qun", "qun", "Quần", new Color(0.8f, 0.66f, 0.22f), "Chí mạng",
+                new FactionDefinition.Tier { minHeroes = 2, attackBonus = 0.03f, critChance = 0.06f },
+                new FactionDefinition.Tier { minHeroes = 3, attackBonus = 0.06f, critChance = 0.12f },
+                new FactionDefinition.Tier { minHeroes = 4, attackBonus = 0.08f, critChance = 0.15f, critMultiplier = 1.75f });
+        }
+
+        private static FactionDefinition Faction(string file, string id, string displayName, Color color, string strength,
+            params FactionDefinition.Tier[] tiers) =>
+            GetOrCreate<FactionDefinition>($"{ContentRoot}/Factions/{file}.asset", so =>
+            {
+                so.FindProperty("factionId").stringValue = id;
+                so.FindProperty("displayName").stringValue = displayName;
+                so.FindProperty("color").colorValue = color;
+                so.FindProperty("strength").stringValue = strength;
+                var list = so.FindProperty("synergyTiers");
+                list.arraySize = tiers.Length;
+                for (var i = 0; i < tiers.Length; i++)
+                {
+                    var element = list.GetArrayElementAtIndex(i);
+                    var tier = tiers[i];
+                    element.FindPropertyRelative("minHeroes").intValue = tier.minHeroes;
+                    element.FindPropertyRelative("attackBonus").floatValue = tier.attackBonus;
+                    element.FindPropertyRelative("healthBonus").floatValue = tier.healthBonus;
+                    element.FindPropertyRelative("damageReduction").floatValue = tier.damageReduction;
+                    element.FindPropertyRelative("attackSpeedBonus").floatValue = tier.attackSpeedBonus;
+                    element.FindPropertyRelative("rageGainBonus").floatValue = tier.rageGainBonus;
+                    element.FindPropertyRelative("cooldownReduction").floatValue = tier.cooldownReduction;
+                    element.FindPropertyRelative("critChance").floatValue = tier.critChance;
+                    element.FindPropertyRelative("critMultiplier").floatValue = tier.critMultiplier;
+                }
             });
 
         private static void SetStats(SerializedProperty stats, float health, float damage, float speed, float range,
@@ -366,7 +476,26 @@ namespace Arena3Q.Editor
 
         // ---- Scene ----
 
-        private static void BuildScene(StageConfig[] stages)
+        /// <summary>Wires assets added after the Battle scene was created (fills empty references only).</summary>
+        private static void EnsureBattleSceneReferences(ProgressionConfig progression)
+        {
+            var scene = EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
+            var battle = UnityEngine.Object.FindAnyObjectByType<BattleController>();
+            if (battle == null)
+                throw new InvalidOperationException($"{ScenePath} has no BattleController.");
+            var so = new SerializedObject(battle);
+            var property = so.FindProperty("progression");
+            if (property.objectReferenceValue != null)
+                return;
+            property.objectReferenceValue = progression;
+            so.ApplyModifiedPropertiesWithoutUndo();
+            EditorSceneManager.MarkSceneDirty(scene);
+            if (!EditorSceneManager.SaveScene(scene))
+                throw new InvalidOperationException($"Could not save {ScenePath}.");
+            Debug.Log($"[Arena3Q] {ScenePath}: progression config assigned.");
+        }
+
+        private static void BuildScene(StageConfig[] stages, ProgressionConfig progression)
         {
             if (AssetDatabase.LoadAssetAtPath<SceneAsset>(ScenePath) != null)
             {
@@ -393,6 +522,7 @@ namespace Arena3Q.Editor
             var battleObject = new GameObject("Battle");
             var battle = battleObject.AddComponent<BattleController>();
             battle.Configure(stages, material, startAutomatically: true, simulateAutomatically: true);
+            battle.UseProgression(progression);
             var input = battleObject.AddComponent<BattleInputController>();
             SetReference(input, "battle", battle);
             SetReference(input, "cameraController", cameraController);

@@ -249,14 +249,14 @@ namespace Arena3Q.UI
             _indicators.ClearAll();
             _resultPanel.SetActive(false);
 
-            var heroes = battle.Cards;
-            _cardBar.sizeDelta = new Vector2(heroes.Count * (HeroCardView.CardSize.x + 18f), HeroCardView.CardSize.y);
-            for (var i = 0; i < heroes.Count; i++)
+            var lineup = battle.Lineup;
+            _cardBar.sizeDelta = new Vector2(lineup.Count * (HeroCardView.CardSize.x + 18f), HeroCardView.CardSize.y);
+            for (var i = 0; i < lineup.Count; i++)
             {
                 var rect = UiFactory.CreateRect($"Card {i}", _cardBar, Vector2.zero, Vector2.zero, new Vector2(0.5f, 0f),
                     Vector2.zero, HeroCardView.CardSize);
                 var view = rect.gameObject.AddComponent<HeroCardView>();
-                view.Build(this, i, heroes[i], IsLord(i));
+                view.Build(this, i, lineup[i], IsLord(i));
                 _cards.Add(view);
             }
 
@@ -266,7 +266,8 @@ namespace Arena3Q.UI
             Refresh();
         }
 
-        private bool IsLord(int cardIndex) => cardIndex == 0 && battle.Stage.TestLoadout.LordHero != null;
+        private bool IsLord(int cardIndex) =>
+            cardIndex >= 0 && cardIndex < battle.Lineup.Count && battle.Lineup[cardIndex].Hero.Kind == HeroKind.Lord;
 
         private void Refresh()
         {
