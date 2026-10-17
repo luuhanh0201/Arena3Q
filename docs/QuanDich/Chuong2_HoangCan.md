@@ -4,6 +4,7 @@ Vùng: **đồng bằng hoang khô, ruộng nứt nẻ, làng bỏ hoang**, gió
 Màu phe: **vàng đất + nâu + đỏ chu sa** (màu bùa), tà khí màu **xanh lục nhạt**. Biểu tượng: **khăn vàng** và **lá bùa vàng chữ đỏ** (chữ chỉ là nét trang trí, không đọc được).
 
 Chỉ số: 🟡 gợi ý, cân bằng sau (spec §13 ⏳). Mạnh hơn chương 1 khoảng 30 %.
+Animation (khung xương, clip, mốc cảnh báo / ra đòn): `Animation.md` · VFX: `VFX_Prompts.md` mục "Chương 2".
 
 | Loại | Cấp | Vai trò | Máu | Sát thương | Tốc đánh | Tầm | Tốc chạy |
 |---|---|---|---|---|---|---|---|

@@ -73,7 +73,7 @@ Cách dùng (✅ spec §3 "Kỹ năng trên thẻ"): **kỹ năng 2 và 3 tự d
 - 🟡 Gợi ý `rageMax`: đầy sau khoảng 15–20 đòn đánh thường trúng mục tiêu (spec §3).
 - 🟡 Vận chiêu: hiệu lực ở mốc `Cast` của animation; bị khống chế / chết trước mốc đó thì kỹ năng không bị tính (spec §3). Mốc và clip từng kỹ năng: `docs/LordAnimations.md`.
 - 🟡 Kỹ năng đẩy / hất văng quân địch (Đông Phong, Thiết Kỵ Xung Phong) tuân theo vùng cấm và biên bản đồ (spec §3, §8).
-- ✅ Mọi tướng (cả tướng thường) có cùng cấu trúc: nội tại + kỹ năng 2, 3 + tuyệt kỹ; bộ kỹ năng cụ thể của tướng thường chờ thiết kế.
+- ✅ Mọi tướng (cả tướng thường) có cùng cấu trúc: nội tại + kỹ năng 2, 3 + tuyệt kỹ; bộ kỹ năng tướng thường (🟡 nháp): `docs/NormalHeroes.md`.
 - ✅ **Tốc đánh** (spec §6): quyết định nhịp đánh và tốc độ ra đòn; animation đánh tua theo tốc đánh. Các hiệu ứng "+% tốc đánh" (Kiếm Tâm, Trống Trận) nhân vào tốc đánh này.
 - Cân bằng con số để giai đoạn sắp phát hành (spec §13 ⏳).
 

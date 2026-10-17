@@ -28,9 +28,10 @@ docs/art/blueprints/            map blueprints exported from stage data (Arena3Q
 docs/LordHeroes.md              the 4 player lords (archer, swordsman, strategist, marshal): roles and draft skills
 docs/LordArtPrompts.md          lord image prompts, PSD parts sheet and animation list (skeletal animation)
 docs/LordAnimations.md          per-lord PSD layers, bone trees, clip list with Hit/Cast timings and VFX hooks
+docs/NormalHeroes.md            the 4 normal heroes (hunter, cavalry, guardian, blade): draft skills, PSD layers, bones, clips
 docs/StrategistArtGuide.md      strategist lord (template for all lords): look spec, AI prompts (style A: chibi 3D render), Krita PSD layers, bone names, clips
-docs/art/concepts/              all ready-to-paste image prompts (*_Prompts.md: 4 lords, map, VFX, icons, portraits) + style reference chutuong1.png + generated images
-docs/QuanDich/                  stage enemies by chapter (bandits, yellow-turban cult, yokai): tiers, suggested stats, elite/boss skills, prompts; images in docs/QuanDich/art/
+docs/art/concepts/              all ready-to-paste image prompts (*_Prompts.md: 4 lords, normal heroes, map, VFX, icons, portraits) + style reference chutuong1.png + generated images
+docs/QuanDich/                  stage enemies by chapter (bandits, yellow-turban cult, yokai): tiers, suggested stats, elite/boss skills, prompts, Animation.md (rigs, clips, Telegraph/Cast), VFX_Prompts.md; images in docs/QuanDich/art/
 Assets/
   Arena3Q/                      everything this project owns
     Scripts/                    Core, Data, Gameplay (Battle, Camera, Heroes, Input, Stages, Troops, Units, Visuals), UI, Editor

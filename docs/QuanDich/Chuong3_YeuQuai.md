@@ -4,6 +4,7 @@ Vùng: **Âm Sơn** – núi đá đen phủ sương tím, rừng cây trụi l�
 Màu phe: **tím đêm + xanh lửa ma + đỏ bỉ ngạn**. Yêu quái **dễ thương – hơi rùng rợn** (kiểu yêu quái hoạt hình), không ghê rợn, không máu me.
 
 Chỉ số: 🟡 gợi ý, cân bằng sau (spec §13 ⏳). Mạnh hơn chương 2 khoảng 30 %; nhiều cơ chế lạ hơn.
+Animation (khung xương, clip, mốc cảnh báo / ra đòn): `Animation.md` · VFX: `VFX_Prompts.md` mục "Chương 3".
 
 | Loại | Cấp | Vai trò | Máu | Sát thương | Tốc đánh | Tầm | Tốc chạy |
 |---|---|---|---|---|---|---|---|

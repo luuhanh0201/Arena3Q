@@ -8,7 +8,7 @@ Thẻ tướng đã ra sân hiển thị **icon kỹ năng 2 và 3** kèm đếm
 - Mỗi chủ tướng **4 icon**: nội tại (kỹ năng 1 – hiện ở màn chọn chủ tướng), kỹ năng 2, kỹ năng 3, tuyệt kỹ.
 - **Cùng một khung viền** cho mọi icon: vòng đồng mảnh; **tuyệt kỹ viền vàng** dày hơn. Nền đĩa theo **màu chủ đạo** của chủ tướng.
 - Tạo icon của **một chủ tướng trong cùng cuộc trò chuyện** để 4 icon đồng bộ; icon đầu tiên ưng ý thì gửi kèm cho các icon sau.
-- Tên file: `icon_<chủ tướng>_<passive|skill2|skill3|ultimate>.png`, chủ tướng = `archer`, `swordsman`, `strategist`, `marshal`. Lưu vào thư mục này trước, mình chuyển vào `Assets/Arena3Q/Art/Icons/`.
+- Tên file: `icon_<chủ tướng>_<passive|skill2|skill3|ultimate>.png`, chủ tướng = `archer`, `swordsman`, `strategist`, `marshal`; tướng thường (cuối file) = `hunter`, `cavalry`, `guardian`, `blade`. Lưu vào thư mục này trước, mình chuyển vào `Assets/Arena3Q/Art/Icons/`.
 - Đính kèm: `chutuong1.png` (phong cách) + ảnh bảng xoay của chủ tướng (màu, vũ khí).
 
 **Prompt mẫu** – mỗi icon dưới đây đã ghép sẵn, chỉ cần dán:
@@ -122,4 +122,108 @@ A single bold central symbol: a red-and-gold war drum with orange shockwave ring
 ```
 Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
 A single bold central symbol: the head of a charging armoured war horse facing right, golden armour plates, dust behind, on a background disc in crimson (#A3262A) with a soft radial glow, framed by a thick gold ring with small ornaments. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
+```
+
+---
+
+# Tướng thường
+Kỹ năng: `docs/NormalHeroes.md` §2. Cùng quy tắc như trên; mã tên file `hunter` (Xạ Thủ), `cavalry` (Kỵ Binh), `guardian` (Giáp Sĩ), `blade` (Đao Khách). Đính kèm `chutuong1.png` + `<mã>_turnaround.png`.
+
+| Tướng | Màu nền đĩa |
+|---|---|
+| Xạ Thủ | chestnut brown (#8A5A3B) |
+| Kỵ Binh | dark teal (#2F6F73) |
+| Giáp Sĩ | steel grey (#6C7480) |
+| Đao Khách | vermilion orange (#D2512E) |
+
+## Xạ Thủ
+
+**`icon_hunter_passive.png` – Liệp Sát** (+30 % sát thương lên mục tiêu dưới 40 % máu)
+```
+Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
+A single bold central symbol: a red-orange crosshair target mark over a cracked half-empty heart, on a background disc in chestnut brown (#8A5A3B) with a soft radial glow, framed by a thin bronze ring. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
+```
+**`icon_hunter_skill2.png` – Độc Tiễn**
+```
+Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
+A single bold central symbol: an arrow pointing diagonally up-right with a glowing toxic green arrowhead dripping green drops, on a background disc in chestnut brown (#8A5A3B) with a soft radial glow, framed by a thin bronze ring. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
+```
+**`icon_hunter_skill3.png` – Ưng Kích**
+```
+Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
+A single bold central symbol: a brown hunting hawk diving with talons forward, on a background disc in chestnut brown (#8A5A3B) with a soft radial glow, framed by a thin bronze ring. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
+```
+**`icon_hunter_ultimate.png` – Xuyên Dương Tiễn**
+```
+Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
+A single bold central symbol: one glowing golden arrow piercing straight through the centre of a small leaf, a long golden light streak behind it, on a background disc in chestnut brown (#8A5A3B) with a soft radial glow, framed by a thick gold ring with small ornaments. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
+```
+
+## Kỵ Binh
+
+**`icon_cavalry_passive.png` – Xung Phong** (chạy đủ 2 giây, đòn đầu ×2)
+```
+Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
+A single bold central symbol: a white horseshoe with teal speed lines trailing behind it, on a background disc in dark teal (#2F6F73) with a soft radial glow, framed by a thin bronze ring. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
+```
+**`icon_cavalry_skill2.png` – Mã Đạp**
+```
+Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
+A single bold central symbol: a white horse's front hooves stamping down onto cracked ground with a dust shockwave ring, on a background disc in dark teal (#2F6F73) with a soft radial glow, framed by a thin bronze ring. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
+```
+**`icon_cavalry_skill3.png` – Phong Mã**
+```
+Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
+A single bold central symbol: a white horse head with flowing silver mane wrapped in a swirling teal wind, on a background disc in dark teal (#2F6F73) with a soft radial glow, framed by a thin bronze ring. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
+```
+**`icon_cavalry_ultimate.png` – Thiên Quân Đột Kích**
+```
+Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
+A single bold central symbol: a crescent-moon guandao blade thrusting diagonally up-right with a galloping horse silhouette and dust behind it, on a background disc in dark teal (#2F6F73) with a soft radial glow, framed by a thick gold ring with small ornaments. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
+```
+
+## Giáp Sĩ
+
+**`icon_guardian_passive.png` – Kiên Thủ** (giảm sát thương nhận vào)
+```
+Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
+A single bold central symbol: a solid steel tower shield standing on a small rock, a few arrows bouncing off it, on a background disc in steel grey (#6C7480) with a soft radial glow, framed by a thin bronze ring. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
+```
+**`icon_guardian_skill2.png` – Thuẫn Kích**
+```
+Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
+A single bold central symbol: a copper-orange tower shield with a lion face slamming forward with a white impact star and three small stun stars, on a background disc in steel grey (#6C7480) with a soft radial glow, framed by a thin bronze ring. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
+```
+**`icon_guardian_skill3.png` – Hộ Vệ Trận**
+```
+Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
+A single bold central symbol: a golden translucent dome bubble covering three small soldier helmets, on a background disc in steel grey (#6C7480) with a soft radial glow, framed by a thin bronze ring. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
+```
+**`icon_guardian_ultimate.png` – Kim Thành Thiết Bích**
+```
+Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
+A single bold central symbol: a curved wall of glowing golden tower shields standing side by side like a fortress gate, on a background disc in steel grey (#6C7480) with a soft radial glow, framed by a thick gold ring with small ornaments. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
+```
+
+## Đao Khách
+
+**`icon_blade_passive.png` – Liên Trảm** (đánh liên tiếp một mục tiêu, cộng dồn sát thương)
+```
+Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
+A single bold central symbol: three parallel diagonal slash marks growing larger from left to right, glowing vermilion, on a background disc in vermilion orange (#D2512E) with a soft radial glow, framed by a thin bronze ring. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
+```
+**`icon_blade_skill2.png` – Bạt Đao Trảm**
+```
+Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
+A single bold central symbol: a huge single-edged great saber with a glowing edge cutting upward in a bright white-orange arc, on a background disc in vermilion orange (#D2512E) with a soft radial glow, framed by a thin bronze ring. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
+```
+**`icon_blade_skill3.png` – Đao Khí**
+```
+Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
+A single bold central symbol: a crescent wave of orange energy flying to the right with speed lines, on a background disc in vermilion orange (#D2512E) with a soft radial glow, framed by a thin bronze ring. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
+```
+**`icon_blade_ultimate.png` – Cuồng Đao Lục Trảm**
+```
+Stylised 3D-rendered mobile game skill icon matching the look of the attached reference image (soft, clean, glossy, slightly chibi), 256x256, perfectly round, transparent outside the circle.
+A single bold central symbol: a great saber at the centre of a spinning ring of six fiery slash arcs, on a background disc in vermilion orange (#D2512E) with a soft radial glow, framed by a thick gold ring with small ornaments. High contrast, very simple shapes, readable at 44 pixels, no text, no letters, no watermark.
 ```

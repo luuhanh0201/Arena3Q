@@ -7,7 +7,7 @@ Phong cách: **A – chibi ~2.5 đầu, render 3D** theo ảnh mẫu `chutuong1.
 | **Chân dung thẻ** | Thẻ tướng trong trận (HUD 160 × 210, vẽ gấp đôi) | **320 × 420 px** | `portrait_<chủ tướng>.png` |
 | **Ảnh màn chọn** | Màn chọn chủ tướng khi vào game | dọc **2 : 3** (ví dụ 1024 × 1536) | `splash_<chủ tướng>.png` |
 
-- Chủ tướng: `archer`, `swordsman`, `strategist`, `marshal`. Lưu vào thư mục này trước, mình chuyển vào `Assets/Arena3Q/Art/Portraits/`.
+- Chủ tướng: `archer`, `swordsman`, `strategist`, `marshal`; tướng thường (chỉ chân dung thẻ, cuối file): `hunter`, `cavalry`, `guardian`, `blade`. Lưu vào thư mục này trước, mình chuyển vào `Assets/Arena3Q/Art/Portraits/`.
 - Đính kèm: ảnh bảng xoay của chủ tướng (+ `chutuong1.png` nếu phong cách bị trôi).
 - Chân dung thẻ: **mặt quay 3/4 sang phải** (giống hướng nhân vật trong trận), đầu và vai chiếm phần lớn khung – game cắt vừa thẻ và có thể làm xám khi tướng chết.
 - Ảnh màn chọn: dùng **tư thế tuyệt kỹ** để người chơi thấy ngay chất của chủ tướng; nền đơn giản để chữ và nút đặt lên được.
@@ -70,4 +70,30 @@ Bust portrait of the attached character (the bearded middle-aged grand marshal w
 ```
 Keep exactly the rendering style of the attached image: stylised 3D-rendered chibi figurine look, big expressive eyes, soft studio lighting from the top-left, gentle rim light, subtle reflections, no outline. No text, no watermark.
 Full-body splash art of the attached character in a dynamic signature pose: planting the spear and pointing forward while roaring a command, ghostly golden armoured cavalry charging past behind him (his ultimate skill), crimson cape and command banner blown by the wind, dust clouds, dramatic lighting, crimson and gold energy, vertical 2:3 composition, simple soft gradient background (crimson to dark red-brown), the character centred with free space at the top and bottom.
+```
+
+---
+
+# Tướng thường – chỉ chân dung thẻ
+Tướng thường **không có** màn chọn nên **không cần ảnh splash**. Mã tên file `hunter`, `cavalry`, `guardian`, `blade` (`docs/NormalHeroes.md`). Đính kèm `<mã>_turnaround.png`.
+
+**`portrait_hunter.png`** (Xạ Thủ)
+```
+Keep exactly the rendering style of the attached image: stylised 3D-rendered chibi figurine look, big expressive eyes, soft studio lighting from the top-left, gentle rim light, subtle reflections, no outline. No text, no watermark.
+Bust portrait of the attached character (the male mountain hunter with the fur hat with a tail, fur mantle and grey scarf), head and shoulders, face turned three-quarters to the right, calm watchful sharp-eyed expression, the top of the short curved bow visible beside his shoulder, soft vignette background in chestnut brown (#8A5A3B), vertical card composition 320x420.
+```
+**`portrait_cavalry.png`** (Kỵ Binh)
+```
+Keep exactly the rendering style of the attached image: stylised 3D-rendered chibi figurine look, big expressive eyes, soft studio lighting from the top-left, gentle rim light, subtle reflections, no outline. No text, no watermark.
+Bust portrait of the attached rider (the young female cavalry general with the silver helmet and two grey ribbons, dark teal robe and silver armour), head and shoulders, face turned three-quarters to the right, bold confident grin, the crescent blade of the guandao visible behind her shoulder and the white horse's head with silver mane partly visible beside her, soft vignette background in dark teal (#2F6F73), vertical card composition 320x420.
+```
+**`portrait_guardian.png`** (Giáp Sĩ)
+```
+Keep exactly the rendering style of the attached image: stylised 3D-rendered chibi figurine look, big expressive eyes, soft studio lighting from the top-left, gentle rim light, subtle reflections, no outline. No text, no watermark.
+Bust portrait of the attached character (the big gentle shield guardian with the steel helmet and grey tassel, steel-grey armour with copper trim), head and shoulders, face turned three-quarters to the right, calm kind and steady expression, the top edge of the copper lion-face tower shield raised beside him, soft vignette background in steel grey (#6C7480), vertical card composition 320x420.
+```
+**`portrait_blade.png`** (Đao Khách)
+```
+Keep exactly the rendering style of the attached image: stylised 3D-rendered chibi figurine look, big expressive eyes, soft studio lighting from the top-left, gentle rim light, subtle reflections, no outline. No text, no watermark.
+Bust portrait of the attached character (the young female blade fighter with short bangs, a long braid and the vermilion cropped jacket), head and shoulders, face turned three-quarters to the right, playful confident smile, the great saber resting on her shoulder with its bright blade visible, soft vignette background in vermilion orange (#D2512E), vertical card composition 320x420.
 ```

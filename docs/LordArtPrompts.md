@@ -97,6 +97,8 @@ Prompt đầy đủ (phong cách A, đã ghép sẵn, dán nguyên văn) cho t�
 | Mưu sĩ (nữ) | `MuuSi_Prompts.md` | `strategist_` | 2 đuôi dải lụa thắt lưng |
 | Thống soái (nam) | `ThongSoai_Prompts.md` | `marshal_` | chùm lông mũ + vải cờ lệnh |
 
+Tướng thường (Xạ Thủ `hunter_`, Kỵ Binh `cavalry_`, Giáp Sĩ `guardian_`, Đao Khách `blade_`): cùng quy trình, prompt gộp trong `TuongThuong_Prompts.md`; lớp PSD, xương, clip ở `docs/NormalHeroes.md` §4.
+
 Mục 4 (tấm bộ phận tách rời do AI vẽ) là cách cũ – nay ưu tiên **ảnh tư thế chuẩn rồi tự cắt trong Krita** (`StrategistArtGuide.md` §3), dùng tấm bộ phận chỉ khi cần tham khảo.
 
 ---

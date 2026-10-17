@@ -35,7 +35,7 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 - ✅ Sau khi tướng đã ra sân, **chạm thẻ = chọn tướng đó** (không triệu hồi lần nữa). *(Luật hiện tại của prototype; được thay bằng mục "Kỹ năng trên thẻ" bên dưới khi làm kỹ năng.)*
 
 ### Kỹ năng trên thẻ (người dùng chốt 2026-10-17 · ⏳ code làm cùng kỹ năng)
-- ✅ **Mọi tướng (chủ tướng và tướng thường) có cùng cấu trúc 4 kỹ năng**: **kỹ năng 1 = nội tại** (bị động, luôn có tác dụng) · **kỹ năng 2 và 3 = kỹ năng phụ** (tự dùng) · **tuyệt kỹ** (thanh nộ, dùng bằng thẻ). Thiết kế cụ thể của chủ tướng: `docs/LordHeroes.md`; tướng thường: chờ thiết kế.
+- ✅ **Mọi tướng (chủ tướng và tướng thường) có cùng cấu trúc 4 kỹ năng**: **kỹ năng 1 = nội tại** (bị động, luôn có tác dụng) · **kỹ năng 2 và 3 = kỹ năng phụ** (tự dùng) · **tuyệt kỹ** (thanh nộ, dùng bằng thẻ). Thiết kế cụ thể của chủ tướng: `docs/LordHeroes.md`; tướng thường: `docs/NormalHeroes.md` (🟡 bản nháp chờ duyệt).
 - ✅ **Kỹ năng 2 và 3 tự dùng** ngay khi hồi chiêu xong; nếu cả hai cùng sẵn sàng thì **dùng kỹ năng 2 trước, rồi đến kỹ năng 3**. **Tự nhắm** (🟡 thứ tự: mục tiêu tướng đang đánh → cụm quân địch đông nhất trong tầm → thành địch; không có mục tiêu trong tầm thì chờ, không phí chiêu).
 - ✅ **Tuyệt kỹ dùng thanh nộ, không có thời gian hồi**: thanh nộ **tăng mỗi lần tướng gây sát thương**; đầy thì dùng được.
   - 🟡 (người dùng xác nhận tạm thời) **Chỉ tính sát thương do chính tướng gây ra** (không tính đội lính, không tính khi bị đánh); lượng nộ tỉ lệ với sát thương, mỗi tướng cấu hình `rageMax` và tốc độ tích (`HeroDefinition`). Thanh nộ không tự giảm.
@@ -207,8 +207,10 @@ Màn chọn chủ tướng, kỹ năng chủ tướng, kỹ năng và cấp bậ
 
 ## 13. Câu hỏi còn mở
 - Không có câu hỏi chặn prototype. Các mục 🟡 là mặc định tạm, người dùng có thể đổi bất cứ lúc nào bằng cách sửa file này.
-- ⚠️ **Xung đột cần chốt (quân địch, 2026-10-17):**
+- ⚠️ **Xung đột cần chốt (2026-10-17):**
   1. **Khiêu khích** (Hộ Pháp Đồng Giáp, `docs/QuanDich/Chuong2_HoangCan.md`: "buộc quân ta trong bán kính 2.5 đánh mình") xung đột với ✅ **IgnoreUntilDestination** (Moving không đổi mục tiêu) và ✅ **Attacking** (đánh đúng mục tiêu được chỉ định). Đề xuất: chỉ tác dụng lên đơn vị **không đang thi hành lệnh** (Idle / Advancing / Combat và lính đang giao chiến tự do); tướng đang Moving / Attacking bỏ qua. Hoặc đổi kỹ năng thành chỉ giảm sát thương (bỏ khiêu khích).
   2. **Đơn vị bay** (Quỷ Hoả, `docs/QuanDich/Chuong3_YeuQuai.md`: "không bị sông chặn") xung đột với mục 9 🟡 vùng cấm **chặn mọi unit**. Đề xuất: thêm cờ `flying` – đơn vị bay qua được **sông** nhưng vẫn bị **vùng cấm chữ nhật** và biên bản đồ chặn; quân ta cận chiến vẫn đánh được khi nó ở trên bờ. Hoặc bỏ đặc tính bay.
   3. **Kỹ năng di chuyển tướng tự dùng** (Kiếm sĩ – Phi Ảnh Đột Kích: "lướt tới mục tiêu trong bán kính 6", `docs/LordHeroes.md` §2.2) xung đột với ✅ **IgnoreUntilDestination** (đang Moving thì không đổi hướng, không lao vào địch): kỹ năng 2/3 tự dùng sẽ kéo tướng khỏi đường đi. Đề xuất: kỹ năng làm tướng **dịch chuyển** không tự dùng khi tướng đang **Moving** (chờ tới đích); các kỹ năng đứng tại chỗ vẫn dùng khi đang đi. Hoặc đổi Phi Ảnh Đột Kích thành đòn đứng tại chỗ.
+  4. **Tên tướng thường trùng tên chủ tướng** (2026-10-17): asset `Hero_Archer` tên "Cung Thủ" và `Hero_Swordsman` tên "Kiếm Sĩ" trùng với hai class chủ tướng ✅ (mục 2) → thẻ và giao diện dễ nhầm. Đề xuất: đổi tên tướng thường thành **Xạ Thủ** và **Đao Khách** (`docs/NormalHeroes.md` đang tạm dùng hai tên này; `displayName` trong asset chưa đổi). Hoặc đặt tên khác.
+- **Câu hỏi thiết kế (không chặn prototype):** khống chế của quân ta lên **boss** (choáng, hất văng) – đề xuất 🟡 boss không bị hất văng / đẩy lùi, thời lượng choáng giảm 50 % (`docs/NormalHeroes.md` §5 mục 3).
 - ⏳ **Cân bằng độ khó** (thông số tướng/lính/quân địch, đợt quân, thời gian, bề rộng và số cầu): để tới **giai đoạn sắp phát hành** (người dùng chốt 2026-10-16). Đã biết: sau khi có sông, ải Thủ suýt thua (mất cả 5 tướng, thành còn 173/3000) và ải Công dễ hơn (3 sao, không mất tướng) – xem test `Balance_*`.

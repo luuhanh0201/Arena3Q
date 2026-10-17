@@ -4,6 +4,7 @@ Vùng: **rừng trúc và đèo núi**, suối nhỏ, trại gỗ rào cọc nh�
 Màu phe: **đen than + đỏ sẫm + nâu da**, khăn trùm đầu đỏ sẫm là dấu hiệu chung. Biểu tượng: **đầu sói đen**.
 
 Chỉ số: 🟡 gợi ý, cân bằng sau (spec §13 ⏳). Tốc đánh tính bằng đòn/giây.
+Animation (khung xương, clip, mốc cảnh báo / ra đòn): `Animation.md` · VFX: `VFX_Prompts.md` mục "Chương 1".
 
 | Loại | Cấp | Vai trò | Máu | Sát thương | Tốc đánh | Tầm | Tốc chạy | Asset hiện có tương ứng |
 |---|---|---|---|---|---|---|---|---|

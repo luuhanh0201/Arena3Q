@@ -10,6 +10,8 @@ Phiên bản: v0.1 · 2026-10-17 · Trạng thái: **🟡 ý tưởng chờ duy�
 | 2 | Đồng bằng hoang – làng bỏ hoang | **Hoàng Cân Tà Đạo** – phản quân khăn vàng dùng tà thuật | `Chuong2_HoangCan.md` |
 | 3 | Âm Sơn – núi sương, đầm lầy ma | **Yêu quái Âm Sơn** | `Chuong3_YeuQuai.md` |
 
+Dùng chung cả 3 chương: `Animation.md` (xương, clip, mốc kỹ năng) · `VFX_Prompts.md` (prompt hiệu ứng).
+
 Mạch truyện gợi ý: dẹp sơn tặc (người thường) → phản quân dùng bùa chú gọi tà khí (nửa người nửa huyền bí) → lần theo tà khí tới Âm Sơn, nơi yêu quái thật sự thức tỉnh. Độ "huyền huyễn" tăng dần qua từng chương.
 
 ---
@@ -39,9 +41,10 @@ Mạch truyện gợi ý: dẹp sơn tặc (người thường) → phản quân
 - **Phong cách A** (giống chủ tướng): chibi ~2.5 đầu, render 3D kiểu mô hình figure, theo `docs/art/concepts/chutuong1.png`. Yêu quái vẫn **dễ thương – hơi đáng sợ** (không máu me, không ghê rợn) để hợp game mobile mọi lứa tuổi.
 - **Phân biệt với quân ta**: quân ta mang màu đội **xanh**; quân địch mỗi chương có **màu phe riêng** (đen–đỏ, vàng đất, tím–xanh ma) và tông **tối hơn**.
 - **Góc nhìn**: như chủ tướng – **trước-phải 3/4** và **sau-phải 3/4**, nhìn xuống ~40°, lật gương ra trái.
-- **Animation**: lính thường dùng **bộ xương đơn giản** (~10 mảnh: đầu, thân, 2 tay, 2 chân, vũ khí, phụ kiện) và **dùng chung bộ clip** giữa các lính cùng dáng; tinh anh và boss có bộ xương riêng đầy đủ như chủ tướng (`docs/StrategistArtGuide.md`).
+- **Animation**: lính thường dùng **bộ xương đơn giản** (~10 mảnh: đầu, thân, 2 tay, 2 chân, vũ khí, phụ kiện) và **dùng chung bộ clip** giữa các lính cùng dáng; tinh anh và boss có bộ xương riêng đầy đủ như chủ tướng (`docs/StrategistArtGuide.md`). Chi tiết khung xương, bộ clip, mốc `Telegraph` / `Cast` của từng kỹ năng: **`Animation.md`**.
+- **VFX**: vùng cảnh báo đỏ, chết / xuất hiện, kỹ năng tinh anh và boss – prompt dán sẵn ở **`VFX_Prompts.md`**.
 - **Prompt**: mỗi file chương có prompt **dán sẵn** cho từng loại + một prompt **xếp hàng cả chương** để kiểm tra đồng bộ. Công cụ: ChatGPT, đính kèm `chutuong1.png`.
-- **Lưu ảnh**: `docs/QuanDich/art/` – tên `<chương>_<loại>_<kiểu ảnh>.png`, ví dụ `c1_bandit_saber_sheet.png`, `c1_boss_sheet.png`.
+- **Lưu ảnh**: `docs/QuanDich/art/` – tên `<chương>_<loại>_<kiểu ảnh>.png`, ví dụ `c1_saber_sheet.png`, `c1_boss_turnaround.png`, `vfx_c1_boss_sheet.png`.
 
 | Kiểu ảnh | Dùng cho | Nội dung |
 |---|---|---|
