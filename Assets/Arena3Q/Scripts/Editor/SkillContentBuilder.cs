@@ -67,7 +67,7 @@ namespace Arena3Q.Editor
             Assign($"{root}/Lords/Lord_Marshal.asset", lordMarshal);
             // The prototype's placeholder lord borrows the swordsman lord's set.
             Assign($"{root}/Heroes/Hero_Lord.asset", lordSwordsman);
-            // Starter heroes ↔ docs/Tuong/NormalHeroes.md (names: spec §13 conflict 4, still open).
+            // Starter heroes (docs/Tuong/NormalHeroes.md): Xạ Thủ, Kỵ Binh, Giáp Sĩ, Đao Khách.
             Assign($"{root}/Heroes/Hero_Archer.asset", marksman);
             Assign($"{root}/Heroes/Hero_Cavalry.asset", cavalry);
             Assign($"{root}/Heroes/Hero_Guardian.asset", guardian);

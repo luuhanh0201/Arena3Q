@@ -8,7 +8,7 @@ Phiên bản: v0.1 · 2026-10-17 · Trạng thái: **🟡 bản nháp chờ duy�
 
 Đi kèm: prompt ảnh `docs/art/concepts/TuongThuong_Prompts.md` · VFX `docs/art/concepts/VFX_Prompts.md` §20–41 · icon `Icon_Prompts.md` · chân dung thẻ `ChanDung_Prompts.md` · quy ước animation chung `docs/Tuong/LordAnimations.md` §0.
 
-> ⚠️ **Tên trùng chủ tướng** (spec §13 mục 4): asset hiện có tên tướng thường **"Cung Thủ"** và **"Kiếm Sĩ"** trùng tên hai class chủ tướng ✅. Tài liệu này tạm dùng tên đề xuất **Xạ Thủ** (`archer`) và **Đao Khách** (`swordsman`); `displayName` trong asset **chưa đổi** cho tới khi bạn chốt. Ngoại hình và kỹ năng cũng được làm **khác hẳn** chủ tướng cùng loại.
+> ✅ **Tên đã chốt 2026-10-17** (spec §13 mục 4): tướng thường **Xạ Thủ** (id `archer`, asset `Hero_Archer`) và **Đao Khách** (id `swordsman`, asset `Hero_Swordsman`), thay tên cũ "Cung Thủ" / "Kiếm Sĩ" vốn trùng hai class chủ tướng. Id và tên file giữ nguyên để không hỏng hồ sơ đã lưu. Ngoại hình và kỹ năng cũng được làm **khác hẳn** chủ tướng cùng loại.
 
 ---
 
@@ -254,7 +254,7 @@ Tên VFX dùng tiền tố riêng (`hunter`, `blade`) để **không trùng** v�
 ---
 
 ## 5. Câu hỏi còn mở
-1. ⚠️ **Tên trùng** (spec §13 mục 4): đổi tướng thường "Cung Thủ" → **Xạ Thủ**, "Kiếm Sĩ" → **Đao Khách**? Hoặc bạn đặt tên khác.
+1. ~~Tên trùng~~ – **đã chốt 2026-10-17**: Xạ Thủ và Đao Khách (spec §13 mục 4).
 2. **Kỵ Binh** to hơn tướng thường (hình 🟡 1.7 × 1.7 thay vì 1.2 × 1.6): giữ thân logic bán kính 0.45 như mọi tướng, hay tăng lên 0.6?
 3. ~~Khống chế của quân ta lên boss~~ – **đã chốt 2026-10-17**: boss chịu **đủ** choáng, hất văng / đẩy lùi và mọi hiệu ứng như quân địch khác (spec §8).
 4. Chỉ số ở bảng §1 giữ nguyên theo asset; cân bằng để giai đoạn sắp phát hành (spec §13 ⏳).

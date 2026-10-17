@@ -104,9 +104,9 @@ namespace Arena3Q.Editor
             // Starter heroes (docs/Tuong/NormalHeroes.md): prototype stats kept as they are (balance comes later).
             var heroes = new[]
             {
-                Hero("Hero_Swordsman", "swordsman", "Kiếm Sĩ", new Color(0.95f, 0.35f, 0.3f), HeroKind.Starter, growthBalanced,
+                Hero("Hero_Swordsman", "swordsman", "Đao Khách", new Color(0.95f, 0.35f, 0.3f), HeroKind.Starter, growthBalanced,
                     soldier, 700f, 40f, 2.8f, 0.6f, 0.9f, 0.6f, 6f),
-                Hero("Hero_Archer", "archer", "Cung Thủ", new Color(0.35f, 0.85f, 0.4f), HeroKind.Starter, growthOffense,
+                Hero("Hero_Archer", "archer", "Xạ Thủ", new Color(0.35f, 0.85f, 0.4f), HeroKind.Starter, growthOffense,
                     soldier, 450f, 30f, 2.6f, 4.5f, 1.1f, 0.7f, 7f, roleBonus: 0.18f),
                 Hero("Hero_Cavalry", "cavalry", "Kỵ Binh", new Color(0.6f, 0.45f, 1f), HeroKind.Starter, growthBalanced,
                     soldier, 650f, 35f, 3.6f, 0.6f, 1.0f, 0.6f, 6f, roleBonus: 0.10f),

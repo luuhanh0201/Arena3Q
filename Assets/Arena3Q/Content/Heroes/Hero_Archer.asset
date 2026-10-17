@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hero_Archer
   m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.HeroDefinition
   heroId: archer
-  displayName: "Cung Th\u1EE7"
+  displayName: "X\u1EA1 Th\u1EE7"
   sprite: {fileID: 0}
   placeholderColor: {r: 0.35, g: 0.85, b: 0.4, a: 1}
   kind: 0

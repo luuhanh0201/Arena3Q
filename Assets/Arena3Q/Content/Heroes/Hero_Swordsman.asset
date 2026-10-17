@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hero_Swordsman
   m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.HeroDefinition
   heroId: swordsman
-  displayName: "Ki\u1EBFm S\u0129"
+  displayName: "\u0110ao Kh\xE1ch"
   sprite: {fileID: 0}
   placeholderColor: {r: 0.95, g: 0.35, b: 0.3, a: 1}
   kind: 0
