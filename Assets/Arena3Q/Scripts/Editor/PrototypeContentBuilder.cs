@@ -124,6 +124,8 @@ namespace Arena3Q.Editor
             Hero("Lord_Marshal", "lord_marshal", "Thống soái", new Color(0.85f, 0.32f, 0.27f), HeroKind.Lord, growthDefense, soldier,
                 950f, 26f, 2.3f, 0.9f, 1f, 0.7f, 6f, damageReduction: 0.10f, leadership: 110f, roleBonus: 0.22f,
                 folder: "Lords");
+            // Passive + skills 2, 3 + ultimate of every lord and starter hero (spec §3).
+            SkillContentBuilder.Build();
 
             var loadout = GetOrCreate<TestLoadout>(ContentRoot + "/TestLoadout.asset", so =>
             {

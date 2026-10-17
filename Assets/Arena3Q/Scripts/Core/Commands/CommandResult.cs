@@ -14,7 +14,11 @@ namespace Arena3Q.Core
         OutsideBattlefield,
         InForbiddenZone,
         InvalidTarget,
-        TargetNotHostile
+        TargetNotHostile,
+        /// <summary>Ultimate not learned, rage not full, or the hero is stunned (spec §3: "kỹ năng chưa thể sử dụng").</summary>
+        SkillNotReady,
+        /// <summary>Nothing to aim the skill at.</summary>
+        NoSkillTarget
     }
 
     public readonly struct CommandResult

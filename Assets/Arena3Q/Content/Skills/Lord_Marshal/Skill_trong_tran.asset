@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ec58f6e5744074497e527e64bdaefe, type: 3}
+  m_Name: Skill_trong_tran
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.SkillDefinition
+  skillId: trong_tran
+  displayName: "Tr\u1ED1ng Tr\u1EADn"
+  slot: 2
+  description: "Qu\xE2n ta b\xE1n k\xEDnh 6: +20 % t\u1ED1c \u0111\xE1nh v\xE0 t\u1ED1c ch\u1EA1y 6 gi\xE2y."
+  icon: {fileID: 0}
+  iconColor: {r: 0.89500004, g: 0.524, b: 0.48900002, a: 1}
+  cooldown: 14
+  castTime: 0.3
+  targeting: 3
+  range: 0
+  condition: 2
+  casterMove: 0
+  moveDistance: 0
+  autoCastWhileMoving: 0
+  shape: 1
+  radius: 6
+  length: 5
+  width: 1
+  angle: 60
+  firstHitOnly: 0
+  castleMultiplier: 1
+  zoneDuration: 0
+  tickInterval: 0.5
+  followCaster: 0
+  repeatCount: 1
+  repeatInterval: 0.25
+  finalHitMultiplier: 1
+  effects:
+  - kind: 8
+    affects: 1
+    value: 0.2
+    duration: 6
+  - kind: 9
+    affects: 1
+    value: 0.2
+    duration: 6
+  passives: []

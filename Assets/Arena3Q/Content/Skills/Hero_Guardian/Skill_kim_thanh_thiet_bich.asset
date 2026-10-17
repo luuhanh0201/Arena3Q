@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ec58f6e5744074497e527e64bdaefe, type: 3}
+  m_Name: Skill_kim_thanh_thiet_bich
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.SkillDefinition
+  skillId: kim_thanh_thiet_bich
+  displayName: "Kim Th\xE0nh Thi\u1EBFt B\xEDch"
+  slot: 3
+  description: "V\xF9ng b\u1EA3o v\u1EC7 b\xE1n k\xEDnh 3.5 trong 6 gi\xE2y: qu\xE2n ta \u221250 % s\xE1t th\u01B0\u01A1ng nh\u1EADn v\xE0o, mi\u1EC5n kh\u1ED1ng ch\u1EBF."
+  icon: {fileID: 0}
+  iconColor: {r: 0.615, g: 0.89, b: 0.97249997, a: 1}
+  cooldown: 0
+  castTime: 0.4
+  targeting: 3
+  range: 4
+  condition: 0
+  casterMove: 0
+  moveDistance: 0
+  autoCastWhileMoving: 0
+  shape: 1
+  radius: 3.5
+  length: 5
+  width: 1
+  angle: 60
+  firstHitOnly: 0
+  castleMultiplier: 1
+  zoneDuration: 6
+  tickInterval: 0.5
+  followCaster: 0
+  repeatCount: 1
+  repeatInterval: 0.25
+  finalHitMultiplier: 1
+  effects:
+  - kind: 11
+    affects: 1
+    value: 0.5
+    duration: 0
+  - kind: 12
+    affects: 1
+    value: 1
+    duration: 0
+  passives: []

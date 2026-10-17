@@ -32,6 +32,13 @@ MonoBehaviour:
   growthProfile: {fileID: 11400000, guid: 7e0c8b9487db5664ba0fb11e984660d1, type: 2}
   leadership: 100
   roleBonus: 0.18
+  skills:
+  - {fileID: 11400000, guid: 01a3fdef917ee754cac60104f3aeba32, type: 2}
+  - {fileID: 11400000, guid: 7b1e9978e6d64d8488d1d880fef572ba, type: 2}
+  - {fileID: 11400000, guid: 3aae7f33d4356014bb1b5ab220f0476d, type: 2}
+  - {fileID: 11400000, guid: 0464fa7adf5b93b4890c1fe8bd886723, type: 2}
+  rageMax: 100
+  rageHitsToFill: 18
   idleBeforeAdvanceSeconds: 5
   idleTimerResetsOnOutOfRangeDamage: 0
   selfDefendWhileAttacking: 0

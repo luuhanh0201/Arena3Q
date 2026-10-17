@@ -8,22 +8,37 @@ using UnityEngine.UI;
 namespace Arena3Q.UI
 {
     /// <summary>
-    /// A hero card (spec §3, §4). UI only: tap an unused card = quick summon, drag it onto the summon zone = free summon,
-    /// tap a deployed card = select its hero, drag a deployed card onto an enemy = attack (provisional),
-    /// dead card = greyed out and inert.
+    /// A hero card (spec §3 "Kỹ năng trên thẻ", §4). UI only.
+    /// Unused card: tap = quick summon, drag onto the summon zone = free summon.
+    /// Deployed card: tap = ultimate (auto-aim), drag onto the battlefield = ultimate aimed there (released over UI =
+    /// cancel), hold 1.5 s = select the hero. It shows the skill 2 / 3 icons with their cooldowns and the rage bar.
+    /// Dead card: greyed out and inert.
     /// </summary>
-    public sealed class HeroCardView : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+    public sealed class HeroCardView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler,
+        IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         private enum DragMode
         {
             None,
             Summon,
-            Attack
+            Ultimate
+        }
+
+        private sealed class SkillIcon
+        {
+            public SkillSlot Slot;
+            public GameObject Root;
+            public Image Cooldown;
+            public Text Label;
         }
 
         public static readonly Vector2 CardSize = new Vector2(160f, 210f);
 
+        /// <summary>Hold a deployed card this long to select its hero (spec §3 ✅).</summary>
+        public const float HoldToSelectSeconds = 1.5f;
+
         private BattleHud _hud;
+        private LineupEntry _card;
         private Image _background;
         private Image _portrait;
         private Image _selectedFrame;
@@ -32,13 +47,20 @@ namespace Arena3Q.UI
         private Image _ghostImage;
         private Color _heroColor;
         private DragMode _dragMode;
+        private SkillIcon[] _skillIcons;
+        private RectTransform _rageBar;
+        private Image _rageFill;
+        private float _pressTime = -1f;
+        private bool _holdUsed;
 
         public int CardIndex { get; private set; }
+        public float RageShown => _rageFill != null && _rageBar.gameObject.activeSelf ? _rageFill.fillAmount : 0f;
 
         internal void Build(BattleHud hud, int cardIndex, LineupEntry card, bool isLord)
         {
             var hero = card.Hero;
             _hud = hud;
+            _card = card;
             CardIndex = cardIndex;
             _heroColor = hero.PlaceholderColor;
             var rect = (RectTransform)transform;
@@ -48,7 +70,7 @@ namespace Arena3Q.UI
             _background = UiFactory.AddImage(UiFactory.Stretch("Background", rect), new Color(0.12f, 0.14f, 0.2f, 0.95f));
 
             var portraitRect = UiFactory.CreateRect("Portrait", rect, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f),
-                new Vector2(0.5f, 1f), new Vector2(0f, -16f), new Vector2(100f, 100f));
+                new Vector2(0.5f, 1f), new Vector2(-16f, -24f), new Vector2(86f, 86f));
             _portrait = UiFactory.AddImage(portraitRect, _heroColor, hero.Sprite != null ? hero.Sprite : PlaceholderArt.Circle, false);
 
             var nameRect = UiFactory.CreateRect("Name", rect, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f),
@@ -66,6 +88,41 @@ namespace Arena3Q.UI
             _status = UiFactory.AddText(statusRect, isLord ? "Chủ tướng" : "", 22, TextAnchor.MiddleCenter,
                 new Color(1f, 0.85f, 0.4f));
             _status.gameObject.name = isLord ? "Status (Lord)" : "Status";
+
+            BuildSkills(rect, hero);
+        }
+
+        // Skill 2 and 3 icons on the right of the portrait, the rage bar under it.
+        private void BuildSkills(RectTransform rect, HeroDefinition hero)
+        {
+            _skillIcons = new SkillIcon[2];
+            var slots = new[] { SkillSlot.Skill2, SkillSlot.Skill3 };
+            for (var i = 0; i < slots.Length; i++)
+            {
+                var skill = hero.GetSkill(slots[i]);
+                var iconRect = UiFactory.CreateRect($"Skill {slots[i]}", rect, new Vector2(1f, 1f), new Vector2(1f, 1f),
+                    new Vector2(1f, 1f), new Vector2(-5f, -28f - i * 40f), new Vector2(34f, 34f));
+                UiFactory.AddImage(iconRect, skill != null && skill.Icon == null ? skill.IconColor : Color.white,
+                    skill != null ? skill.Icon : null, false);
+                var cooldown = UiFactory.AddImage(UiFactory.Stretch("Cooldown", iconRect), new Color(0f, 0f, 0f, 0.7f), PlaceholderArt.Square, false);
+                cooldown.type = Image.Type.Filled;
+                cooldown.fillMethod = Image.FillMethod.Radial360;
+                cooldown.fillOrigin = (int)Image.Origin360.Top;
+                cooldown.fillClockwise = false;
+                var label = UiFactory.AddText(UiFactory.Stretch("Label", iconRect), "", 18, TextAnchor.MiddleCenter, Color.white);
+                label.gameObject.AddComponent<Outline>().effectColor = Color.black;
+                _skillIcons[i] = new SkillIcon { Slot = slots[i], Root = iconRect.gameObject, Cooldown = cooldown, Label = label };
+                iconRect.gameObject.SetActive(skill != null);
+            }
+
+            _rageBar = UiFactory.CreateRect("Rage", rect, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f),
+                new Vector2(0f, -114f), new Vector2(136f, 9f));
+            UiFactory.AddImage(_rageBar, new Color(0f, 0f, 0f, 0.7f), null, false);
+            _rageFill = UiFactory.AddImage(UiFactory.Stretch("Fill", _rageBar), new Color(1f, 0.5f, 0.15f), PlaceholderArt.Square, false);
+            _rageFill.type = Image.Type.Filled;
+            _rageFill.fillMethod = Image.FillMethod.Horizontal;
+            _rageFill.fillAmount = 0f;
+            _rageBar.gameObject.SetActive(false);
         }
 
         internal void Refresh(CardState state, bool selected, bool isLord)
@@ -83,8 +140,83 @@ namespace Arena3Q.UI
         }
 
         private HeroCard Card => _hud.Battle.State.Cards[CardIndex];
+        private HeroUnit Hero => _hud.Battle.GetHero(Card.Hero);
+
+        private void Update()
+        {
+            if (_hud == null || _hud.Battle.State == null || CardIndex >= _hud.Battle.State.Cards.Count)
+                return;
+            UpdateSkills();
+            if (_pressTime >= 0f && !_holdUsed && _dragMode == DragMode.None &&
+                Time.unscaledTime - _pressTime >= HoldToSelectSeconds)
+                SelectByHold();
+        }
+
+        private void UpdateSkills()
+        {
+            var hero = Card.State == CardState.Deployed ? Hero : null;
+            var rules = _hud.Battle.Rules;
+            foreach (var icon in _skillIcons)
+            {
+                if (_card.SkillLevel(icon.Slot, rules) <= 0)
+                {
+                    // Locked: the lord's unlock level or the stars needed (spec §3 🟡), shown before summoning too.
+                    icon.Cooldown.fillAmount = 1f;
+                    icon.Label.text = LockLabel(icon.Slot);
+                    continue;
+                }
+                var slot = hero?.Skills.Get(icon.Slot);
+                var cooldown = slot?.Definition != null ? slot.Definition.Cooldown : 0f;
+                var left = slot?.CooldownLeft ?? 0f;
+                icon.Cooldown.fillAmount = cooldown > 0f ? left / cooldown : 0f;
+                icon.Label.text = left > 0f ? Mathf.CeilToInt(left).ToString() : "";
+            }
+
+            // No ultimate learned yet: no rage bar (spec §3 🟡).
+            var showRage = hero != null && hero.Skills.HasUltimate;
+            _rageBar.gameObject.SetActive(showRage);
+            if (showRage)
+            {
+                _rageFill.fillAmount = hero.Skills.Rage.Fraction;
+                _rageFill.color = hero.Skills.Rage.IsFull
+                    ? Color.Lerp(new Color(1f, 0.85f, 0.2f), Color.white, Mathf.PingPong(Time.unscaledTime * 2f, 0.6f))
+                    : new Color(1f, 0.5f, 0.15f);
+            }
+        }
+
+        private string LockLabel(SkillSlot slot)
+        {
+            var rules = _hud.Battle.Rules;
+            var kind = _card.Hero.Kind;
+            if (kind == HeroKind.Lord)
+                return $"Lv{rules.LordUnlockLevel(slot)}";
+            for (var stars = 1; stars <= rules.MaxStars; stars++)
+            {
+                if (rules.IsSkillUnlocked(kind, slot, _card.Level, stars))
+                    return $"{stars}★";
+            }
+            return "";
+        }
+
+        // ---- Input ----
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            _pressTime = Time.unscaledTime;
+            _holdUsed = false;
+        }
+
+        public void OnPointerUp(PointerEventData eventData) => _pressTime = -1f;
 
         public void OnPointerClick(PointerEventData eventData)
+        {
+            if (_holdUsed || eventData.dragging)
+                return;
+            Tap();
+        }
+
+        /// <summary>Tap: summon an unused card; use the ultimate of a deployed hero.</summary>
+        public void Tap()
         {
             if (_hud.Battle.IsOver)
                 return;
@@ -94,16 +226,25 @@ namespace Arena3Q.UI
                     _hud.Battle.TrySummon(SummonRequest.Quick(CardIndex));
                     break;
                 case CardState.Deployed:
-                    if (_hud.Battle.TrySelectCard(CardIndex))
-                        _hud.FocusSelectedHero();
+                    _hud.Battle.TryUseUltimate(CardIndex);
                     break;
             }
+        }
+
+        /// <summary>Held 1.5 s: select the deployed hero (and look at it).</summary>
+        public void SelectByHold()
+        {
+            _holdUsed = true;
+            _pressTime = -1f;
+            if (Card.State == CardState.Deployed && _hud.Battle.TrySelectCard(CardIndex))
+                _hud.FocusSelectedHero();
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
             _dragMode = DragMode.None;
-            if (_hud.Battle.IsOver)
+            _pressTime = -1f;
+            if (_hud.Battle.IsOver || _holdUsed)
                 return;
             switch (Card.State)
             {
@@ -112,7 +253,14 @@ namespace Arena3Q.UI
                     _hud.Battle.ShowSummonZone(true);
                     break;
                 case CardState.Deployed:
-                    _dragMode = DragMode.Attack;
+                    // 🟡 Aiming only starts with a full rage bar; otherwise the usual "not ready" message.
+                    var hero = Hero;
+                    if (hero == null || !hero.Skills.HasUltimate || !hero.Skills.Rage.IsFull)
+                    {
+                        _hud.Battle.TryUseUltimate(CardIndex);
+                        return;
+                    }
+                    _dragMode = DragMode.Ultimate;
                     break;
                 default:
                     return;
@@ -126,7 +274,10 @@ namespace Arena3Q.UI
                 ShowGhost(eventData.position);
         }
 
-        public void OnEndDrag(PointerEventData eventData)
+        public void OnEndDrag(PointerEventData eventData) => ReleaseDrag(eventData.position);
+
+        /// <summary>End of a drag at a screen position: summon there, or aim the ultimate there; over UI = cancel.</summary>
+        public void ReleaseDrag(Vector2 screenPosition)
         {
             var mode = _dragMode;
             _dragMode = DragMode.None;
@@ -136,19 +287,24 @@ namespace Arena3Q.UI
                 return;
 
             // Released over UI (e.g. back on the card bar) = cancel, the card is not used.
-            if (_hud.IsOverUi(eventData.position))
+            if (_hud.IsOverUi(screenPosition))
                 return;
 
-            var world = _hud.Camera.ScreenToWorld(eventData.position);
+            var world = _hud.Camera.ScreenToWorld(screenPosition);
             if (mode == DragMode.Summon)
-            {
                 _hud.Battle.TrySummon(SummonRequest.Free(CardIndex, world));
-                return;
-            }
+            else
+                _hud.Battle.TryUseUltimate(CardIndex, world);
+        }
 
-            var target = _hud.Battle.FindEnemyAt(world);
-            if (target != null && Card.State == CardState.Deployed)
-                _hud.Battle.AttackWithHero(Card.Hero, target);
+        /// <summary>Starts aiming the ultimate from code (tests): the same check as a real drag.</summary>
+        public bool BeginUltimateDrag()
+        {
+            var hero = Hero;
+            if (Card.State != CardState.Deployed || hero == null || !hero.Skills.Rage.IsFull)
+                return false;
+            _dragMode = DragMode.Ultimate;
+            return true;
         }
 
         private void ShowGhost(Vector2 screenPosition)
@@ -160,8 +316,8 @@ namespace Arena3Q.UI
                 _ghostImage = UiFactory.AddImage(_ghost, Color.white, PlaceholderArt.Circle, false);
             }
             _ghost.gameObject.SetActive(true);
-            _ghostImage.color = _dragMode == DragMode.Attack
-                ? new Color(1f, 0.3f, 0.25f, 0.8f)
+            _ghostImage.color = _dragMode == DragMode.Ultimate
+                ? new Color(1f, 0.75f, 0.2f, 0.8f)
                 : new Color(_heroColor.r, _heroColor.g, _heroColor.b, 0.75f);
             RectTransformUtility.ScreenPointToLocalPointInRectangle(_hud.OverlayRoot, screenPosition, null, out var local);
             _ghost.localPosition = local;

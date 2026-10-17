@@ -19,7 +19,7 @@ namespace Arena3Q.Gameplay
         // Position on the logic plane. The transform shows it through the battle's view projection (2.5D tilt).
         private Vector2 _position;
 
-        protected BattleController Battle { get; private set; }
+        public BattleController Battle { get; private set; }
         protected UnitVisual Visual { get; private set; }
 
         public UnitId Id { get; private set; }
@@ -43,6 +43,18 @@ namespace Arena3Q.Gameplay
         public float DamageReduction { get; private set; }
         public float CritChance { get; private set; }
         public float CritMultiplier { get; private set; } = 1f;
+
+        /// <summary>Timed statuses from skills: stun, slow, shield, poison, buffs.</summary>
+        public StatusSet Statuses { get; } = new StatusSet();
+        public bool IsStunned => Statuses.IsStunned;
+
+        /// <summary>Move speed after slows and speed buffs.</summary>
+        public float CurrentMoveSpeed => MoveSpeed * Statuses.MoveSpeedMultiplier;
+
+        /// <summary>Seconds between attacks after attack-speed statuses (heroes add their passives).</summary>
+        public virtual float CurrentAttackInterval => AttackInterval / Statuses.AttackSpeedMultiplier;
+
+        private readonly List<(object source, float damagePerSecond)> _poison = new List<(object source, float damagePerSecond)>();
 
         /// <summary>An attacker counts as a threat only this long after its last hit (provisional, default 2 s).</summary>
         public float AttackerMemorySeconds { get; private set; } = CombatStats.DefaultAttackerMemorySeconds;
@@ -114,8 +126,13 @@ namespace Arena3Q.Gameplay
             if (!IsAlive || amount <= 0f || Battle == null || Battle.IsOver)
                 return;
 
-            amount *= 1f - DamageReduction;
+            var reduction = DamageReduction + ExtraDamageReduction + Statuses.DamageTakenReduction;
+            amount *= 1f - Mathf.Clamp(reduction, 0f, Battle.Rules.Settings.MaxDamageReduction);
+            var dealt = amount;
+            amount = Statuses.AbsorbWithShield(amount);
             Health = Mathf.Max(0f, Health - amount);
+            if (source != null)
+                source.OnDealtDamage(this, dealt);
             if (Record != null)
                 Record.Health = Health;
             Visual.Flash();
@@ -152,6 +169,92 @@ namespace Arena3Q.Gameplay
         protected virtual void OnDamaged(float amount, UnitBase source)
         {
         }
+
+        /// <summary>Damage reduction from passives (heroes), added to the unit's own and the statuses'.</summary>
+        protected virtual float ExtraDamageReduction => 0f;
+
+        /// <summary>This unit hurt <paramref name="target"/> (any damage, after the target's reduction). Heroes gain rage.</summary>
+        protected virtual void OnDealtDamage(UnitBase target, float amount)
+        {
+        }
+
+        /// <summary>Damage of one basic attack (heroes add their passives).</summary>
+        protected virtual float ComputeAttackDamage(UnitBase target)
+        {
+            var damage = Damage * Statuses.DamageMultiplier;
+            return CritChance > 0f && Battle.RollCritical(CritChance) ? damage * CritMultiplier : damage;
+        }
+
+        /// <summary>A basic attack just hit (heroes: lifesteal, combo, pierce…).</summary>
+        protected virtual void OnAttackLanded(UnitBase target, float damage)
+        {
+        }
+
+        /// <summary>Adds a status unless the unit is a castle (castles ignore statuses).</summary>
+        public bool ApplyStatus(StatusKind kind, float value, float duration, object source = null)
+        {
+            if (!IsAlive || IsCastle)
+                return false;
+            var applied = Statuses.Apply(kind, value, duration, source);
+            RefreshStatusVisual();
+            return applied;
+        }
+
+        public void Heal(float amount)
+        {
+            if (!IsAlive || amount <= 0f)
+                return;
+            Health = Mathf.Min(MaxHealth, Health + amount);
+            if (Record != null)
+                Record.Health = Health;
+            Visual.SetHealth(Health / MaxHealth, Team == Team.Enemy);
+            OnHealthChanged();
+        }
+
+        /// <summary>Raises (or lowers) max health keeping the same share of health (army-wide bonuses).</summary>
+        public void ScaleMaxHealth(float factor)
+        {
+            if (!IsAlive || factor <= 0f)
+                return;
+            MaxHealth *= factor;
+            Health *= factor;
+            if (Record != null)
+                Record.Health = Health;
+            Visual.SetHealth(Health / MaxHealth, Team == Team.Enemy);
+            OnHealthChanged();
+        }
+
+        protected virtual void OnHealthChanged()
+        {
+        }
+
+        /// <summary>
+        /// Pushes or pulls the unit, stopped by forbidden zones and the map edge (spec §8 ✅); castles and units immune
+        /// to crowd control do not move.
+        /// </summary>
+        public void Displace(Vector2 offset)
+        {
+            if (!IsAlive || IsCastle || Statuses.IsImmune || offset.sqrMagnitude < 1e-8f)
+                return;
+            var target = Position + offset;
+            SetPosition(Battle != null && Battle.Layout != null ? Battle.Layout.ResolveStep(Position, target, Radius) : target);
+        }
+
+        /// <summary>Advances statuses and applies poison; called by the battle every step before the unit thinks.</summary>
+        internal void TickStatuses(float deltaTime)
+        {
+            if (Statuses.Count == 0)
+                return;
+            Statuses.Tick(deltaTime);
+            _poison.Clear();
+            Statuses.CollectPoison(_poison);
+            foreach (var (source, damagePerSecond) in _poison)
+                TakeDamage(damagePerSecond * deltaTime, source as UnitBase);
+            RefreshStatusVisual();
+        }
+
+        private void RefreshStatusVisual() =>
+            Visual?.SetStatus(Statuses.IsStunned, Statuses.Shield > 0f, Statuses.Has(StatusKind.Slow) || Statuses.Has(StatusKind.Weaken));
 
         protected virtual void OnDied()
         {
@@ -212,9 +315,10 @@ namespace Arena3Q.Gameplay
                     {
                         if (_cooldown <= 0f)
                         {
-                            _cooldown = AttackInterval;
-                            var damage = CritChance > 0f && Battle.RollCritical(CritChance) ? Damage * CritMultiplier : Damage;
+                            _cooldown = CurrentAttackInterval;
+                            var damage = ComputeAttackDamage(target);
                             target.TakeDamage(damage, this);
+                            OnAttackLanded(target, damage);
                         }
                     }
                     else if (intent.MayChase)
@@ -232,7 +336,7 @@ namespace Arena3Q.Gameplay
             var distance = toTarget.magnitude;
             if (distance <= stopDistance || distance < 1e-5f)
                 return;
-            var step = Mathf.Min(MoveSpeed * deltaTime, distance - stopDistance);
+            var step = Mathf.Min(CurrentMoveSpeed * deltaTime, distance - stopDistance);
             var layout = Battle != null ? Battle.Layout : null;
             if (layout == null)
             {

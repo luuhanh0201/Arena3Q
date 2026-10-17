@@ -57,6 +57,34 @@ namespace Arena3Q.Gameplay
 
         public void Flash() => _flash = FlashSeconds;
 
+        private SpriteRenderer _stun;
+        private SpriteRenderer _shield;
+        private bool _weakened;
+
+        /// <summary>Status markers: spinning stars when stunned, a ring while shielded, a dim tint when slowed or weakened.</summary>
+        public void SetStatus(bool stunned, bool shielded, bool weakened)
+        {
+            var size = _body.transform.localScale.x;
+            if (stunned && _stun == null)
+            {
+                _stun = PlaceholderArt.CreateRenderer("Stun", _root, PlaceholderArt.Star, new Color(1f, 0.9f, 0.2f),
+                    new Vector2(0.35f, 0.35f), 3);
+                _stun.transform.localPosition = new Vector3(0f, size * 0.5f + 0.4f, 0f);
+            }
+            if (_stun != null)
+                _stun.enabled = stunned;
+            if (shielded && _shield == null)
+            {
+                _shield = PlaceholderArt.CreateRenderer("Shield", _root, PlaceholderArt.Ring, new Color(1f, 0.85f, 0.3f, 0.8f),
+                    new Vector2(size * 1.35f, size * 1.35f), 3);
+            }
+            if (_shield != null)
+                _shield.enabled = shielded;
+            _weakened = weakened;
+            if (_flash <= 0f)
+                _body.color = _weakened ? Color.Lerp(_color, new Color(0.4f, 0.4f, 0.6f), 0.4f) : _color;
+        }
+
         /// <summary>Ground-plane decorations (the selection ring) are squashed with the 2.5D tilt; the body stays upright.</summary>
         public void SetGroundScale(float yScale)
         {
@@ -72,8 +100,11 @@ namespace Arena3Q.Gameplay
             if (_flash > 0f)
             {
                 _flash -= deltaTime;
-                _body.color = _flash > 0f ? Color.Lerp(_color, Color.white, 0.7f) : _color;
+                var resting = _weakened ? Color.Lerp(_color, new Color(0.4f, 0.4f, 0.6f), 0.4f) : _color;
+                _body.color = _flash > 0f ? Color.Lerp(_color, Color.white, 0.7f) : resting;
             }
+            if (_stun != null && _stun.enabled)
+                _stun.transform.Rotate(0f, 0f, 240f * deltaTime);
 
             var order = Mathf.RoundToInt(-_root.position.y * 20f) * 4;
             _body.sortingOrder = order;

@@ -312,6 +312,8 @@ namespace Arena3Q.UI
                 case RejectReason.OutsideBattlefield: return "Ngoài chiến trường";
                 case RejectReason.InForbiddenZone: return "Không đi vào vùng cấm được";
                 case RejectReason.TargetNotHostile: return "Chỉ tấn công được quân địch";
+                case RejectReason.SkillNotReady: return "Kỹ năng chưa thể sử dụng";
+                case RejectReason.NoSkillTarget: return "Không có mục tiêu cho kỹ năng";
                 default: return null;
             }
         }

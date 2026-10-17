@@ -152,3 +152,13 @@ Không phải lỗi đã phát hành; ghi lại các chỗ suýt sai và số li
 3. **`Object.Destroy` chỉ xoá ở cuối khung hình:** test đổi giao diện rồi tìm nút theo tên trong cùng khung hình sẽ thấy cả nút cũ lẫn nút mới. Chờ một khung (`yield return null`) trước khi tìm.
 4. **Kiểm tra bằng mắt không cần màn hình:** `FrontendFlowTests.Screenshot_FrontendScreens` ghi `Logs/Screenshots/frontend_*.png`; lần đầu xem ảnh phát hiện 4 lỗi bố cục (hộp xác nhận bị bảng phía sau lộ qua, tiêu đề đè danh sách máy chủ, ô nhập tên chồng nút, khung thừa chỗ) – đã sửa, thêm `FrontendUi.Modal` (lớp tối phủ màn hình + khung đặc).
 - **Kiểm chứng:** EditMode 198/198, PlayMode 42/42 (thêm `FrontendRulesTests`, `FrontendContentTests`, `FrontendFlowTests`).
+
+## Hệ kỹ năng trong code (2026-10-17)
+
+Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số liệu cần nhớ:
+1. **Lineup test không có chủ tướng đứng đầu → 9 test PlayMode đỏ.** `StartBattle(stage, lineup)` ghi `Debug.LogError` ("the first card must be the lord"), và Test Framework coi mọi log lỗi không khai báo là test hỏng. Sửa: helper `WithLord(...)` trong `SkillBattleTests` đặt chủ tướng cấp 1 (chưa có kỹ năng) lên đầu. Tránh lặp lại: lineup tự dựng trong test luôn bắt đầu bằng chủ tướng; đọc thông báo "Unhandled log message" trước khi nghi code gameplay.
+2. **Viết sai kỳ vọng mở kỹ năng theo sao** (test chờ kỹ năng 3 mở ở 3★, thật ra 2★ – spec §2: 1★ nội tại + kỹ năng 2 · 2★ kỹ năng 3 · 3★ tuyệt kỹ). Tránh lặp lại: lấy số trong test từ spec / `ProgressionRules`, không nhớ.
+3. **Kiểm tra dữ liệu chặn kỹ năng đơn mục tiêu nhắm đồng minh:** `SkillDefinition.Validate` chỉ cho kỹ năng `Single` nhắm `CurrentTarget`, nên Hiệu Triệu (bổ sung lính cho đội đồng minh) sẽ bị báo lỗi. Đã cho phép `AllyNeedingSoldiers`.
+4. **Bố cục thẻ** (phát hiện nhờ ảnh `Logs/Screenshots/defense.png`): icon kỹ năng đè lên chân dung, và thẻ chưa triệu hồi không hiện điều kiện mở kỹ năng (chỉ đọc từ tướng trên sân). Sửa: chân dung lệch trái và nhỏ lại, trạng thái khoá đọc từ `LineupEntry.SkillLevel`. Thêm ảnh `skills.png` (chủ tướng Lv15 + tướng 1–3★ đang đánh) vào test chụp màn hình.
+5. **Cân bằng sau khi có kỹ năng** (bộ thẻ thử: chủ tướng cấp 1 chưa có kỹ năng, 4 tướng 1★ có nội tại + kỹ năng 2): ải Công giây 62, mất 1 tướng, 2 sao → **giây 52, mất 0, 3 sao**; ải Thủ giây 134, mất 3 tướng, thành 2300/3000 → **giây 135, mất 3, thành 2545/3000, 1 sao**. Chưa chỉnh lại (cân bằng để giai đoạn sắp phát hành).
+- **Kiểm chứng:** EditMode 212/212 (thêm `SkillCoreTests`, `SkillContentTests`), PlayMode 56/56 (thêm `SkillBattleTests`; sửa test chạm thẻ: chạm = tuyệt kỹ, giữ = chọn).

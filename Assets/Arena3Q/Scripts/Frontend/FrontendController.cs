@@ -210,7 +210,7 @@ namespace Arena3Q.Frontend
             var lord = ChosenLord;
             if (character == null || lord == null)
                 return lineup;
-            lineup.Add(new LineupEntry(lord.lord, character.lordLevel));
+            lineup.Add(new LineupEntry(lord.lord, character.lordLevel, 1, character.lordSkillLevels));
             foreach (var owned in character.heroes)
             {
                 var hero = config.FindHero(owned.heroId);

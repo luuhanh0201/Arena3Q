@@ -12,9 +12,10 @@ namespace Arena3Q.Gameplay
         private readonly List<TroopUnit> _members = new List<TroopUnit>();
         private readonly OnHeroDeathTroopBehavior _onHeroDeath;
 
-        public Squad(HeroUnit hero, OnHeroDeathTroopBehavior onHeroDeath)
+        public Squad(HeroUnit hero, OnHeroDeathTroopBehavior onHeroDeath, int size = 0)
         {
             Hero = hero;
+            Size = size;
             HeroId = hero.Id;
             _onHeroDeath = onHeroDeath;
             LastHeroPosition = hero.Position;
@@ -23,6 +24,9 @@ namespace Arena3Q.Gameplay
 
         /// <summary>The leading hero; null once it has died and been destroyed.</summary>
         public HeroUnit Hero { get; private set; }
+
+        /// <summary>Soldiers the squad should have (base size + passive extras, ≤ maxSquadSize).</summary>
+        public int Size { get; }
         public UnitId HeroId { get; }
         public IReadOnlyList<TroopUnit> Members => _members;
         public SquadMode Mode { get; private set; }
@@ -30,6 +34,9 @@ namespace Arena3Q.Gameplay
         public bool HeroAlive => Hero != null && Hero.IsAlive;
 
         internal void Add(TroopUnit troop) => _members.Add(troop);
+
+        /// <summary>Is a living soldier standing in this formation slot?</summary>
+        public bool HasSlot(int slotIndex) => _members.Exists(m => m != null && m.IsAlive && m.SlotIndex == slotIndex);
         internal void Remove(TroopUnit troop) => _members.Remove(troop);
 
         public Vector2 SlotPosition(int slotIndex) => LastHeroPosition + FormationMath.SlotOffset(slotIndex, SlotSpacing);

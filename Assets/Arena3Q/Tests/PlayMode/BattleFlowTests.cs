@@ -769,7 +769,7 @@ namespace Arena3Q.Tests.PlayMode
             new PointerEventData(EventSystem.current) { position = screen, button = PointerEventData.InputButton.Left };
 
         [UnityTest]
-        public IEnumerator CardTap_QuickSummons_ThenTapSelectsThatHero()
+        public IEnumerator CardTap_QuickSummons_ThenTapUsesTheUltimate_HoldSelects()
         {
             _battle.StartBattle(0);
             yield return null;
@@ -781,8 +781,18 @@ namespace Arena3Q.Tests.PlayMode
             Assert.That(_battle.State.Cards[0].State, Is.EqualTo(CardState.Deployed));
             Assert.That(_battle.SelectedHero.CardIndex, Is.EqualTo(1));
 
+            // Spec §3: tapping a deployed card uses its ultimate (none learned yet here), holding it selects the hero.
+            var rejected = new List<RejectReason>();
+            _battle.ActionRejected += rejected.Add;
             ExecuteEvents.Execute(first.gameObject, Pointer(ScreenPositionOf(first)), ExecuteEvents.pointerClickHandler);
-            Assert.That(_battle.SelectedHero.CardIndex, Is.EqualTo(0), "tapping a deployed card selects, not summons");
+            Assert.That(rejected, Is.EqualTo(new[] { RejectReason.SkillNotReady }));
+            Assert.That(_battle.SelectedHero.CardIndex, Is.EqualTo(1), "a tap does not select any more");
+
+            ExecuteEvents.Execute(first.gameObject, Pointer(ScreenPositionOf(first)), ExecuteEvents.pointerDownHandler);
+            first.SelectByHold();
+            ExecuteEvents.Execute(first.gameObject, Pointer(ScreenPositionOf(first)), ExecuteEvents.pointerClickHandler);
+            Assert.That(_battle.SelectedHero.CardIndex, Is.EqualTo(0), "holding a deployed card selects its hero");
+            Assert.That(rejected, Has.Count.EqualTo(1), "the click that ends a hold does nothing");
             Assert.That(_battle.State.SummonedCount, Is.EqualTo(2));
         }
 
@@ -840,6 +850,24 @@ namespace Arena3Q.Tests.PlayMode
             for (var i = 0; i < 30; i++)
                 yield return null;
             Capture("attack_tilt45.png");
+
+            // Skills on the cards: a level-15 lord (all skills, rage bar) and starters at 1–3 stars, then a fight.
+            var loadout = Stage(1).TestLoadout;
+            var heroes = loadout.GetCards().Skip(1).ToList();
+            _battle.StartBattle(Stage(1), new[]
+            {
+                new LineupEntry(loadout.LordHero, 15), new LineupEntry(heroes[0], 1, 3), new LineupEntry(heroes[1], 1, 2),
+                new LineupEntry(heroes[2]), new LineupEntry(heroes[3], 1, 3)
+            });
+            _battle.ViewTiltDegrees = 41f;
+            SummonQuick(0);
+            SummonQuick(1);
+            SummonQuick(4);
+            Run(14f);
+            _camera.FocusOn(new Vector2(0f, 0f));
+            for (var i = 0; i < 30; i++)
+                yield return null;
+            Capture("skills.png");
         }
 
         private void Capture(string fileName)

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ec58f6e5744074497e527e64bdaefe, type: 3}
+  m_Name: Skill_hoa_ke
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.SkillDefinition
+  skillId: hoa_ke
+  displayName: "H\u1ECFa K\u1EBF"
+  slot: 1
+  description: "Tr\u1EADn l\u1EEDa b\xE1n k\xEDnh 2 trong 5 gi\xE2y."
+  icon: {fileID: 0}
+  iconColor: {r: 0.7705, g: 0.694, b: 0.86399996, a: 1}
+  cooldown: 12
+  castTime: 0.3
+  targeting: 1
+  range: 6
+  condition: 1
+  casterMove: 0
+  moveDistance: 0
+  autoCastWhileMoving: 0
+  shape: 1
+  radius: 2
+  length: 5
+  width: 1
+  angle: 60
+  firstHitOnly: 0
+  castleMultiplier: 1
+  zoneDuration: 5
+  tickInterval: 0.5
+  followCaster: 0
+  repeatCount: 1
+  repeatInterval: 0.25
+  finalHitMultiplier: 1
+  effects:
+  - kind: 0
+    affects: 0
+    value: 0.25
+    duration: 0
+  passives: []

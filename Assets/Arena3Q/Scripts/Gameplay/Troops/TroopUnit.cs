@@ -40,6 +40,12 @@ namespace Arena3Q.Gameplay
 
         public override void Simulate(float deltaTime)
         {
+            // Stunned: no moving, no attacking, orders kept (spec §8 ✅).
+            if (IsStunned)
+            {
+                ConsumeDamageFlags();
+                return;
+            }
             var intent = _brain.Tick(Squad.Mode, this, deltaTime);
             ConsumeDamageFlags();
             Execute(intent, deltaTime);

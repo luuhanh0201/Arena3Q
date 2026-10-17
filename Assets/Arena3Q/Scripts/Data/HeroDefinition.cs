@@ -44,6 +44,13 @@ namespace Arena3Q.Data
                  "used by balance checks and combat power. 0.18 = worth +18 %.")]
         [SerializeField, Min(0f)] private float roleBonus;
 
+        [Header("Skills (spec §3: passive, skill 2, skill 3, ultimate)")]
+        [SerializeField] private SkillDefinition[] skills = new SkillDefinition[4];
+        [Tooltip("Rage bar size.")]
+        [SerializeField, Min(1f)] private float rageMax = 100f;
+        [Tooltip("Basic hits (at the hero's own Công) that fill the rage bar (spec 🟡: about 15–20).")]
+        [SerializeField, Min(1f)] private float rageHitsToFill = 18f;
+
         [Header("Idle rule (spec §6)")]
         [Tooltip("Seconds with no target and no new command before an Idle hero starts Advancing.")]
         [SerializeField, Min(0f)] private float idleBeforeAdvanceSeconds = DefaultIdleBeforeAdvanceSeconds;
@@ -80,6 +87,12 @@ namespace Arena3Q.Data
         public GrowthRates GrowthRates => growthProfile != null ? growthProfile.Rates : GrowthRates.None;
         public float Leadership => leadership;
         public float RoleBonus => roleBonus;
+        public float RageMax => rageMax;
+        public float RageHitsToFill => rageHitsToFill;
+
+        /// <summary>The skill in a slot, or null when the hero has none there.</summary>
+        public SkillDefinition GetSkill(SkillSlot slot) =>
+            skills != null && (int)slot < skills.Length ? skills[(int)slot] : null;
         public float IdleBeforeAdvanceSeconds => idleBeforeAdvanceSeconds;
         public bool IdleTimerResetsOnOutOfRangeDamage => idleTimerResetsOnOutOfRangeDamage;
         public bool SelfDefendWhileAttacking => selfDefendWhileAttacking;
@@ -107,6 +120,17 @@ namespace Arena3Q.Data
             if (kind == HeroKind.Named && faction == null) errors.Add($"{owner}: a named hero needs a faction.");
             if (kind != HeroKind.Named && faction != null) errors.Add($"{owner}: only named heroes have a faction.");
             if (leadership < 0f) errors.Add($"{owner}: leadership must be >= 0.");
+            if (skills != null)
+            {
+                for (var i = 0; i < skills.Length; i++)
+                {
+                    if (skills[i] == null)
+                        continue;
+                    if ((int)skills[i].Slot != i)
+                        errors.Add($"{owner}: skill '{skills[i].name}' is a {skills[i].Slot} but sits in slot {i}.");
+                    skills[i].Validate(errors);
+                }
+            }
         }
     }
 }

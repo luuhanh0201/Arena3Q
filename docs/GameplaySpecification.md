@@ -26,10 +26,10 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 - ✅ (người dùng chốt 2026-10-17) Chủ tướng **bắt đầu chưa có kỹ năng**: lên cấp thì học dần (🟡 nội tại Lv2, kỹ năng 2 Lv5, kỹ năng 3 Lv10, tuyệt kỹ Lv15), rồi nâng cấp từng kỹ năng bằng **điểm kỹ năng nhận khi lên cấp**. Chi tiết: `docs/KeHoach/HeroProgression.md` §6.
 - ✅ (2026-10-17) Luồng vào game: intro → đăng nhập (Google, tài khoản + mật khẩu, **Chơi ngay** không cần đăng nhập) → chọn máy chủ → chọn chủ tướng → cốt truyện mở đầu. Kế hoạch màn hình và prompt: `docs/KeHoach/VaoGame.md` (🟡).
   - **Đã có trong code (bản thử, hình tạm):** scene `Frontend` chạy đủ các màn theo thứ tự trong `FrontendConfig`; người chơi cũ bỏ qua chọn tướng / đặt tên / cốt truyện; ải hướng dẫn với Giáp Sĩ 3★, thắng thì chủ tướng lên Lv2; hồ sơ lưu trên máy. ⏳ Chưa có: đăng nhập Google / Apple / tài khoản (cần backend – nút báo "chưa hỗ trợ"), danh sách máy chủ thật, video intro và hình (dùng hình tạm cho tới khi có art).
-- ⏳ Màn chọn chủ tướng, kỹ năng chủ tướng, cấp và tiến trình (code): chưa làm ở prototype. `FactionDefinition` dùng cho **phe của danh tướng** (mục "Cấp, sao và phe" dưới đây).
+- Màn chọn chủ tướng, cấp / sao / phe và kỹ năng: **đã có trong code** (bản thử, hình tạm – 2026-10-17). `FactionDefinition` dùng cho **phe của danh tướng** (mục "Cấp, sao và phe" dưới đây).
 - 🟡 Prototype dùng **một chủ tướng placeholder** (`Hero_Lord`).
 
-### Cấp, sao và phe (người dùng chốt 2026-10-17 · ⏳ code sau prototype)
+### Cấp, sao và phe (người dùng chốt 2026-10-17 · đã có trong code 2026-10-17)
 Thiết kế và bảng chỉ số (🟡): `docs/KeHoach/HeroProgression.md`.
 - ✅ **Cấp tối đa 60** cho mọi tướng. Chỉ số tăng theo cấp **ưu tiên điểm mạnh của hệ** (vai trò) và mọi hệ phải cân bằng.
 - ✅ Ba loại tướng: **chủ tướng** (học kỹ năng theo cấp); **tướng khởi đầu** – 4 tướng thường hiện có (`docs/Tuong/NormalHeroes.md`), **không phe**, chỉ số gốc thấp hơn danh tướng, dễ tăng sao; **danh tướng** nhận sau này (Lữ Bố…).
@@ -42,9 +42,9 @@ Thiết kế và bảng chỉ số (🟡): `docs/KeHoach/HeroProgression.md`.
 - ✅ Chủ tướng **tính vào giới hạn 5 tướng**.
 - 🟡 Chủ tướng **không có sẵn trên sân**; được triệu hồi bằng thẻ như các tướng khác.
 - 🟡 Prototype: trận cấp sẵn bộ thẻ thử nghiệm gồm **1 thẻ chủ tướng + 4 thẻ tướng placeholder** (cấu hình trong `StageConfig` hoặc một `TestLoadout`), để kiểm tra được giới hạn 5 tướng.
-- ✅ Sau khi tướng đã ra sân, **chạm thẻ = chọn tướng đó** (không triệu hồi lần nữa). *(Luật hiện tại của prototype; được thay bằng mục "Kỹ năng trên thẻ" bên dưới khi làm kỹ năng.)*
+- ~~Sau khi tướng đã ra sân, chạm thẻ = chọn tướng đó~~ → thay bằng mục "Kỹ năng trên thẻ" bên dưới (đã có trong code 2026-10-17): chạm = tuyệt kỹ, **giữ 1.5 giây = chọn tướng**.
 
-### Kỹ năng trên thẻ (người dùng chốt 2026-10-17 · ⏳ code làm cùng kỹ năng)
+### Kỹ năng trên thẻ (người dùng chốt 2026-10-17 · đã có trong code 2026-10-17)
 - ✅ **Mọi tướng (chủ tướng và tướng thường) có cùng cấu trúc 4 kỹ năng**: **kỹ năng 1 = nội tại** (bị động, luôn có tác dụng) · **kỹ năng 2 và 3 = kỹ năng phụ** (tự dùng) · **tuyệt kỹ** (thanh nộ, dùng bằng thẻ). Thiết kế cụ thể của chủ tướng: `docs/Tuong/LordHeroes.md`; tướng thường: `docs/Tuong/NormalHeroes.md` (🟡 bản nháp chờ duyệt).
 - ✅ **Kỹ năng 2 và 3 tự dùng** ngay khi hồi chiêu xong; nếu cả hai cùng sẵn sàng thì **dùng kỹ năng 2 trước, rồi đến kỹ năng 3**. **Tự nhắm** (🟡 thứ tự: mục tiêu tướng đang đánh → cụm quân địch đông nhất trong tầm → thành địch; không có mục tiêu trong tầm thì chờ, không phí chiêu).
 - ✅ **Tuyệt kỹ dùng thanh nộ, không có thời gian hồi**: thanh nộ **tăng mỗi lần tướng gây sát thương**; đầy thì dùng được.
@@ -61,6 +61,14 @@ Thiết kế và bảng chỉ số (🟡): `docs/KeHoach/HeroProgression.md`.
 - 🟡 **Vận chiêu**: kỹ năng có hiệu lực ở mốc phát chiêu trong animation (`Cast`, `docs/Tuong/LordAnimations.md`); trong lúc vận chiêu tướng đứng yên, xong thì về lệnh / trạng thái cũ. Bị khống chế hoặc chết **trước** mốc phát chiêu → kỹ năng không bị tính (không vào hồi chiêu, không mất nộ).
 - 🟡 Kỹ năng của ta **đẩy / hất văng / kéo** quân địch (Đông Phong, Thiết Kỵ Xung Phong…) dùng cùng luật với khống chế của địch ở mục 8: tuân theo vùng cấm và biên bản đồ.
 - 🟡 Gợi ý `rageMax`: thanh nộ đầy sau khoảng **15–20 đòn đánh thường** trúng mục tiêu (cân bằng sau, mục 13).
+- **Đã có trong code (2026-10-17, hình tạm):** 32 kỹ năng của 4 chủ tướng + 4 tướng khởi đầu là dữ liệu (`SkillDefinition` ghép từ khối: cách nhắm, vùng, thời gian, lặp, dịch chuyển, danh sách hiệu ứng / nội tại) – thêm hay chỉnh kỹ năng không cần sửa code. Các chọn lựa 🟡 khi code (đổi được trong asset hoặc cấu hình):
+  - `rageMax` 100, đầy sau **18** đòn bằng Công của tướng (`rageHitsToFill`); sát thương kỹ năng của tướng cũng tích nộ; vùng kỹ năng còn lại sau khi tướng chết vẫn gây sát thương nhưng không tích nộ.
+  - Hiệu ứng cùng loại **không cộng dồn**: lấy giá trị mạnh nhất và thời gian dài nhất (độc: mỗi nguồn một lần). **Miễn khống chế** chặn và xoá choáng / làm chậm.
+  - Cấp kỹ năng: **+5 %/cấp** cho sát thương, độc, khiên; % làm chậm, tăng sức, thời gian giữ nguyên. ⏳ Mốc 5 / 10 / 15 (`docs/KeHoach/HeroProgression.md` §6.1) chưa làm.
+  - Tuyệt kỹ do người chơi dùng **huỷ kỹ năng 2/3 đang vận chưa tới mốc phát** (không tính chiêu đó). Trong lúc vận chiêu và các nhát lặp (Liên Châu Tiễn, Cuồng Đao Lục Trảm) tướng đứng yên.
+  - Kỹ năng chưa học: icon tối kèm điều kiện mở (`Lv5`, `2★`) thay cho ổ khoá (chưa có art), hiện cả khi thẻ chưa triệu hồi.
+  - Đơn giản hoá tạm: Xuyên Dương Tiễn tự nhắm theo thứ tự chung (chưa ưu tiên "địch nhiều máu nhất"); Đao Khí trúng tức thì (chưa có đạn bay 12 đv/s); Thiết Kỵ Xung Phong là đòn theo đường thẳng (chưa có đội kỵ binh chạy qua); +5 % máu toàn quân của Thống soái **giữ lại** khi Thống soái chết (không giảm máu giữa trận). Hình kỹ năng là vùng màu trên mặt đất cho tới khi có VFX.
+  - `Hero_Lord` (chủ tướng placeholder) mượn bộ kỹ năng của Kiếm sĩ; tướng khởi đầu: `Hero_Archer` = Xạ Thủ, `Hero_Swordsman` = Đao Khách, `Hero_Cavalry` = Kỵ Binh, `Hero_Guardian` = Giáp Sĩ (tên hiển thị: mục 13 xung đột 4).
 
 ## 4. Triệu hồi
 - ✅ Tối đa **5 tướng đã triệu hồi** mỗi trận. Tướng chết **không** trả lại lượt.
@@ -73,10 +81,10 @@ Thiết kế và bảng chỉ số (🟡): `docs/KeHoach/HeroProgression.md`.
 
 ## 5. Điều khiển ✅
 - Chỉ **một tướng được chọn** tại một thời điểm; tướng được chọn có vòng sáng.
-- **Chọn tướng**: chạm trực tiếp vào tướng, chạm thẻ của tướng đã ra sân (⏳ khi có kỹ năng: **giữ thẻ 1.5 giây**, mục 3 "Kỹ năng trên thẻ"), hoặc chạm icon tướng ở mép màn hình (mục 9).
+- **Chọn tướng**: chạm trực tiếp vào tướng, **giữ thẻ** của tướng đã ra sân **1.5 giây** (mục 3 "Kỹ năng trên thẻ"), hoặc chạm icon tướng ở mép màn hình (mục 9).
 - **Lệnh di chuyển (`MoveCommand`)**: khi đã chọn tướng, chạm vào mặt đất hợp lệ.
 - 🟡 Khi đã chọn tướng, **chạm vào quân địch hoặc thành địch** = `AttackCommand` tới mục tiêu đó (cùng tác dụng với vuốt từ tướng).
-- **Lệnh tấn công (`AttackCommand`)**: **vuốt bắt đầu từ tướng** tới thành địch hoặc một đơn vị địch → tướng (và đội lính) tiến tới đánh mục tiêu đó. 🟡 Vuốt bắt đầu từ thẻ của tướng đã ra sân cũng được tính *(⏳ khi có kỹ năng: kéo thẻ dùng để nhắm tuyệt kỹ, luật này bỏ)*.
+- **Lệnh tấn công (`AttackCommand`)**: **vuốt bắt đầu từ tướng** tới thành địch hoặc một đơn vị địch → tướng (và đội lính) tiến tới đánh mục tiêu đó. ~~Vuốt bắt đầu từ thẻ của tướng đã ra sân cũng được tính~~ – đã bỏ: kéo thẻ giờ dùng để nhắm tuyệt kỹ (mục 3).
 - Lệnh mới **thay thế** lệnh cũ.
 - Không phát lệnh khi ngón tay/con trỏ đang ở trên UI.
 - Không nhận lệnh tới vị trí ngoài chiến trường hoặc vùng cấm.
@@ -227,7 +235,7 @@ Màn chọn chủ tướng, kỹ năng chủ tướng, kỹ năng và cấp bậ
 - ⚠️ **Xung đột cần chốt (2026-10-17):**
   1. **Khiêu khích** (Hộ Pháp Đồng Giáp, `docs/QuanDich/Chuong2_HoangCan.md`: "buộc quân ta trong bán kính 2.5 đánh mình") xung đột với ✅ **IgnoreUntilDestination** (Moving không đổi mục tiêu) và ✅ **Attacking** (đánh đúng mục tiêu được chỉ định). Đề xuất: chỉ tác dụng lên đơn vị **không đang thi hành lệnh** (Idle / Advancing / Combat và lính đang giao chiến tự do); tướng đang Moving / Attacking bỏ qua. Hoặc đổi kỹ năng thành chỉ giảm sát thương (bỏ khiêu khích).
   2. **Đơn vị bay** (Quỷ Hoả, `docs/QuanDich/Chuong3_YeuQuai.md`: "không bị sông chặn") xung đột với mục 9 🟡 vùng cấm **chặn mọi unit**. Đề xuất: thêm cờ `flying` – đơn vị bay qua được **sông** nhưng vẫn bị **vùng cấm chữ nhật** và biên bản đồ chặn; quân ta cận chiến vẫn đánh được khi nó ở trên bờ. Hoặc bỏ đặc tính bay.
-  3. **Kỹ năng di chuyển tướng tự dùng** (Kiếm sĩ – Phi Ảnh Đột Kích: "lướt tới mục tiêu trong bán kính 6", `docs/Tuong/LordHeroes.md` §2.2) xung đột với ✅ **IgnoreUntilDestination** (đang Moving thì không đổi hướng, không lao vào địch): kỹ năng 2/3 tự dùng sẽ kéo tướng khỏi đường đi. Đề xuất: kỹ năng làm tướng **dịch chuyển** không tự dùng khi tướng đang **Moving** (chờ tới đích); các kỹ năng đứng tại chỗ vẫn dùng khi đang đi. Hoặc đổi Phi Ảnh Đột Kích thành đòn đứng tại chỗ.
+  3. **Kỹ năng di chuyển tướng tự dùng** (Kiếm sĩ – Phi Ảnh Đột Kích: "lướt tới mục tiêu trong bán kính 6", `docs/Tuong/LordHeroes.md` §2.2) xung đột với ✅ **IgnoreUntilDestination** (đang Moving thì không đổi hướng, không lao vào địch): kỹ năng 2/3 tự dùng sẽ kéo tướng khỏi đường đi. Đề xuất: kỹ năng làm tướng **dịch chuyển** không tự dùng khi tướng đang **Moving** (chờ tới đích); các kỹ năng đứng tại chỗ vẫn dùng khi đang đi. Hoặc đổi Phi Ảnh Đột Kích thành đòn đứng tại chỗ. *(Code 2026-10-17 dùng đề xuất làm mặc định, chờ duyệt; mỗi kỹ năng có cờ `autoCastWhileMoving` để đổi.)*
   4. **Tên tướng thường trùng tên chủ tướng** (2026-10-17): asset `Hero_Archer` tên "Cung Thủ" và `Hero_Swordsman` tên "Kiếm Sĩ" trùng với hai class chủ tướng ✅ (mục 2) → thẻ và giao diện dễ nhầm. Đề xuất: đổi tên tướng thường thành **Xạ Thủ** và **Đao Khách** (`docs/Tuong/NormalHeroes.md` đang tạm dùng hai tên này; `displayName` trong asset chưa đổi). Hoặc đặt tên khác.
   5. ~~Thời điểm đặt tên chủ tướng~~ – **đã chốt 2026-10-17**: đặt tên ngay sau khi chọn chủ tướng, mỗi máy chủ một tên (mục 2).
 - **Câu hỏi thiết kế (không chặn prototype):** khống chế của quân ta lên **boss** (choáng, hất văng) – đề xuất 🟡 boss không bị hất văng / đẩy lùi, thời lượng choáng giảm 50 % (`docs/Tuong/NormalHeroes.md` §5 mục 3).

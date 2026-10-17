@@ -285,6 +285,8 @@ namespace Arena3Q.Gameplay
             Registry.Clear();
             _squads.Clear();
             _heroes.Clear();
+            _zones.Clear();
+            _armyHealthFactor = 1f;
             _playerCastle = null;
             _enemyCastle = null;
             if (_worldRoot != null)
@@ -321,7 +323,20 @@ namespace Arena3Q.Gameplay
             foreach (var unit in _simulationScratch)
             {
                 if (unit != null && unit.IsAlive)
+                    unit.TickStatuses(deltaTime);
+            }
+            foreach (var unit in _simulationScratch)
+            {
+                if (unit != null && unit.IsAlive)
                     unit.Simulate(deltaTime);
+            }
+
+            // Skill areas that stay on the ground (fire field, rain of arrows…).
+            for (var i = _zones.Count - 1; i >= 0; i--)
+            {
+                _zones[i].Tick(deltaTime);
+                if (_zones[i].IsOver)
+                    _zones.RemoveAt(i);
             }
 
             SeparateUnits();
@@ -389,35 +404,21 @@ namespace Arena3Q.Gameplay
             var card = Lineup[request.CardIndex];
             var definition = card.Hero;
             var numbers = CombatNumbersFactory.ForHero(card, Rules, PlayerModifiers);
+            numbers.MaxHealth *= _armyHealthFactor;
             var runtime = State.RegisterSummon(request.CardIndex, numbers.MaxHealth);
             var hero = CreateUnit<HeroUnit>("Hero");
             hero.Init(this, runtime, card, numbers, Stage.CreateHeroBrainSettings(definition), decision.Position);
             Register(hero);
             _heroes[hero.Id] = hero;
+            RaiseArmyHealth(1f + hero.Skills.ArmyMaxHealthBonus);
 
-            var squad = new Squad(hero, Stage.OnHeroDeathTroopBehavior);
+            // Passive extra soldiers (Quân Lệnh Như Sơn), never above maxSquadSize (spec §7).
+            var squadSize = Mathf.Min(definition.MaxSquadSize, definition.BaseSquadSize + hero.Skills.ExtraSoldiers);
+            var squad = new Squad(hero, Stage.OnHeroDeathTroopBehavior, squadSize);
             hero.Squad = squad;
             _squads.Add(squad);
-            if (definition.Troop != null)
-            {
-                var troopSettings = new TroopBrainSettings
-                {
-                    StageType = Stage.StageType,
-                    LeashRadius = definition.LeashRadius,
-                    UnreachableSeconds = definition.TroopUnreachableSeconds,
-                    AssistRadius = definition.TroopAssistRadius
-                };
-                var tint = Color.Lerp(definition.PlaceholderColor, Color.white, 0.35f);
-                var troopNumbers = CombatNumbersFactory.ForTroop(definition.Troop, card.Level, definition.Leadership, Rules,
-                    PlayerModifiers);
-                for (var i = 0; i < definition.BaseSquadSize; i++)
-                {
-                    var troop = CreateUnit<TroopUnit>("Troop");
-                    troop.Init(this, State.AllocateUnitId(), definition.Troop, troopNumbers, squad, i, troopSettings, tint);
-                    troop.Record = State.RegisterUnit(troop.Id, Team.Player, UnitKind.Troop, hero.Id, troop.MaxHealth);
-                    Register(troop);
-                }
-            }
+            for (var i = 0; i < squadSize; i++)
+                SpawnSoldier(hero, card, i);
 
             // Provisional: a freshly summoned hero becomes the selected one.
             TrySelectHero(hero.Id);
@@ -576,6 +577,153 @@ namespace Arena3Q.Gameplay
             Registry.Remove(unit);
             if (unit.Record != null)
                 State.MarkUnitDead(unit.Id);
+        }
+
+        // ---- Skills ----
+
+        private readonly List<SkillZone> _zones = new List<SkillZone>();
+        private float _armyHealthFactor = 1f;
+
+        /// <summary>
+        /// The card of a deployed hero was tapped (auto-aim) or dragged to <paramref name="point"/>: use its ultimate
+        /// (spec §3). Rejected with "kỹ năng chưa thể sử dụng" when not learned, not full or the hero is stunned.
+        /// </summary>
+        public CommandResult TryUseUltimate(int cardIndex, Vector2? point = null)
+        {
+            if (State == null || State.IsOver)
+                return Reject(RejectReason.BattleOver);
+            if (cardIndex < 0 || cardIndex >= State.Cards.Count || State.Cards[cardIndex].State != CardState.Deployed)
+                return Reject(RejectReason.HeroNotAvailable);
+            var hero = GetHero(State.Cards[cardIndex].Hero);
+            if (hero == null)
+                return Reject(RejectReason.HeroNotAvailable);
+            var reason = hero.Skills.TryUltimate(point);
+            if (reason != RejectReason.None)
+                return Reject(reason);
+            Changed?.Invoke();
+            return CommandResult.Ok;
+        }
+
+        internal void AddZone(SkillZone zone) => _zones.Add(zone);
+
+        public int ActiveZoneCount => _zones.Count;
+
+        /// <summary>The nearest living hero of the same team (the caster included) whose squad lost soldiers, in range.</summary>
+        internal HeroUnit FindHeroNeedingSoldiers(HeroUnit caster, float range)
+        {
+            HeroUnit best = null;
+            var bestDistance = float.MaxValue;
+            foreach (var hero in LivingHeroes)
+            {
+                if (hero.Team != caster.Team || hero.Squad == null || hero.Squad.Members.Count >= hero.Squad.Size)
+                    continue;
+                var distance = hero == caster ? 0f : caster.EdgeDistance(hero);
+                if (distance <= range && distance < bestDistance)
+                {
+                    best = hero;
+                    bestDistance = distance;
+                }
+            }
+            return best;
+        }
+
+        /// <summary>Brings back up to <paramref name="count"/> fallen soldiers of a hero's squad (Hiệu Triệu).</summary>
+        internal int RefillSquad(HeroUnit hero, int count)
+        {
+            if (hero == null || !hero.IsAlive || hero.Squad == null)
+                return 0;
+            var card = Lineup[hero.CardIndex];
+            var added = 0;
+            for (var slot = 0; slot < hero.Squad.Size && added < count; slot++)
+            {
+                if (hero.Squad.HasSlot(slot))
+                    continue;
+                SpawnSoldier(hero, card, slot);
+                added++;
+            }
+            return added;
+        }
+
+        private void SpawnSoldier(HeroUnit hero, LineupEntry card, int slot)
+        {
+            var definition = card.Hero;
+            if (definition.Troop == null)
+                return;
+            var settings = new TroopBrainSettings
+            {
+                StageType = Stage.StageType,
+                LeashRadius = definition.LeashRadius,
+                UnreachableSeconds = definition.TroopUnreachableSeconds,
+                AssistRadius = definition.TroopAssistRadius
+            };
+            var tint = Color.Lerp(definition.PlaceholderColor, Color.white, 0.35f);
+            var numbers = CombatNumbersFactory.ForTroop(definition.Troop, card.Level, definition.Leadership, Rules, PlayerModifiers);
+            numbers.MaxHealth *= _armyHealthFactor;
+            var troop = CreateUnit<TroopUnit>("Troop");
+            troop.Init(this, State.AllocateUnitId(), definition.Troop, numbers, hero.Squad, slot, settings, tint);
+            troop.Record = State.RegisterUnit(troop.Id, Team.Player, UnitKind.Troop, hero.Id, troop.MaxHealth);
+            Register(troop);
+        }
+
+        // Army-wide max health passive (Quân Lệnh Như Sơn): every player unit, present and future. 🟡 The bonus stays
+        // after its hero dies (no stat drop mid-fight).
+        private void RaiseArmyHealth(float factor)
+        {
+            if (factor <= _armyHealthFactor)
+                return;
+            var ratio = factor / _armyHealthFactor;
+            _armyHealthFactor = factor;
+            foreach (var unit in Registry.Units)
+            {
+                if (unit != null && unit.IsAlive && unit.Team == Team.Player && !unit.IsCastle)
+                    unit.ScaleMaxHealth(ratio);
+            }
+        }
+
+        private static readonly Color PlayerSkillColor = new Color(0.35f, 0.75f, 1f, 0.35f);
+        private static readonly Color EnemySkillColor = new Color(1f, 0.3f, 0.25f, 0.35f);
+
+        /// <summary>Placeholder look of a skill until the VFX exist: the area on the ground, fading out.</summary>
+        internal void ShowSkill(SkillDefinition skill, SkillAim aim, Team team, float seconds, UnitBase follow)
+        {
+            if (_groundRoot == null)
+                return;
+            var color = skill.IconColor;
+            color.a = 0.4f;
+            if (color.r + color.g + color.b < 0.1f)
+                color = team == Team.Player ? PlayerSkillColor : EnemySkillColor;
+            SpriteRenderer renderer;
+            switch (skill.Shape)
+            {
+                case SkillShape.Circle:
+                    renderer = PlaceholderArt.CreateRenderer($"Skill {skill.SkillId}", _groundRoot, PlaceholderArt.Circle, color,
+                        Vector2.one * skill.Radius * 2f, 29000);
+                    renderer.transform.localPosition = follow != null ? follow.Position : aim.Point;
+                    break;
+                case SkillShape.Line:
+                case SkillShape.Cone:
+                {
+                    var length = skill.CasterMove == CasterMove.ChargeLine ? skill.MoveDistance : skill.Length;
+                    var width = skill.Shape == SkillShape.Line ? skill.Width : 2f * length * Mathf.Tan(skill.Angle * 0.5f * Mathf.Deg2Rad);
+                    renderer = PlaceholderArt.CreateRenderer($"Skill {skill.SkillId}", _groundRoot, PlaceholderArt.Square, color,
+                        new Vector2(length, Mathf.Max(0.3f, width)), 29000);
+                    renderer.transform.localPosition = aim.Origin + aim.Direction * length * 0.5f;
+                    renderer.transform.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(aim.Direction.y, aim.Direction.x) * Mathf.Rad2Deg);
+                    break;
+                }
+                case SkillShape.Global:
+                    renderer = PlaceholderArt.CreateRenderer($"Skill {skill.SkillId}", _groundRoot, PlaceholderArt.Square, color,
+                        Stage.MapBounds.size, 29000);
+                    renderer.transform.localPosition = Stage.MapBounds.center;
+                    break;
+                default:
+                    renderer = PlaceholderArt.CreateRenderer($"Skill {skill.SkillId}", _groundRoot, PlaceholderArt.Star,
+                        new Color(color.r, color.g, color.b, 0.9f), new Vector2(0.9f, 0.9f), 29001);
+                    renderer.transform.localPosition = aim.Point;
+                    break;
+            }
+            var effect = renderer.gameObject.AddComponent<SkillAreaVisual>();
+            effect.Setup(seconds, follow);
         }
 
         /// <summary>One crit roll from the battle's seeded random numbers (deterministic for a given seed).</summary>

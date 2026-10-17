@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ec58f6e5744074497e527e64bdaefe, type: 3}
+  m_Name: Skill_pha_thanh_hoa_tien
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.SkillDefinition
+  skillId: pha_thanh_hoa_tien
+  displayName: "Ph\xE1 Th\xE0nh H\u1ECFa Ti\u1EC5n"
+  slot: 3
+  description: "M\u0169i t\xEAn l\u1EEDa bay th\u1EB3ng, xuy\xEAn m\u1ECDi qu\xE2n tr\xEAn \u0111\u01B0\u1EDDng; tr\xFAng th\xE0nh \xD73."
+  icon: {fileID: 0}
+  iconColor: {r: 0.648, g: 0.81850004, b: 0.74700004, a: 1}
+  cooldown: 0
+  castTime: 0.5
+  targeting: 2
+  range: 10
+  condition: 0
+  casterMove: 0
+  moveDistance: 0
+  autoCastWhileMoving: 0
+  shape: 3
+  radius: 1.5
+  length: 12
+  width: 1
+  angle: 60
+  firstHitOnly: 0
+  castleMultiplier: 3
+  zoneDuration: 0
+  tickInterval: 0.5
+  followCaster: 0
+  repeatCount: 1
+  repeatInterval: 0.25
+  finalHitMultiplier: 1
+  effects:
+  - kind: 0
+    affects: 0
+    value: 3
+    duration: 0
+  passives: []
