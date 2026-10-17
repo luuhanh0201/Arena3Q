@@ -20,7 +20,8 @@ namespace Arena3Q.Core
 
         private readonly List<Entry> _entries = new List<Entry>();
 
-        public static bool IsCrowdControl(StatusKind kind) => kind == StatusKind.Stun || kind == StatusKind.Slow;
+        public static bool IsCrowdControl(StatusKind kind) =>
+            kind == StatusKind.Stun || kind == StatusKind.Slow || kind == StatusKind.Taunt;
 
         public bool IsStunned => Has(StatusKind.Stun);
         public bool IsImmune => Has(StatusKind.CrowdControlImmunity);
@@ -42,6 +43,9 @@ namespace Arena3Q.Core
                 if (entry.Kind != kind || (kind == StatusKind.Poison && !Equals(entry.Source, source)))
                     continue;
                 entry.Value = Math.Max(entry.Value, value);
+                // A new taunt pulls towards the newest taunter.
+                if (kind == StatusKind.Taunt)
+                    entry.Source = source;
                 entry.Remaining = Math.Max(entry.Remaining, duration);
                 _entries[i] = entry;
                 return true;
@@ -83,6 +87,20 @@ namespace Arena3Q.Core
             }
             return value;
         }
+
+        /// <summary>Who applied the status (taunt: the unit to attack), or null.</summary>
+        public object SourceOf(StatusKind kind)
+        {
+            foreach (var entry in _entries)
+            {
+                if (entry.Kind == kind)
+                    return entry.Source;
+            }
+            return null;
+        }
+
+        /// <summary>Removes every status of this kind (a new player order ends a taunt).</summary>
+        public void Remove(StatusKind kind) => RemoveAll(k => k == kind);
 
         public float Remaining(StatusKind kind)
         {

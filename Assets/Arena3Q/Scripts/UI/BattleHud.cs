@@ -35,6 +35,9 @@ namespace Arena3Q.UI
         private RectTransform _resultButtons;
         private Slider _tiltSlider;
         private Text _tiltLabel;
+        private RectTransform _bossBar;
+        private Image _bossFill;
+        private Text _bossLabel;
 
         public BattleController Battle => battle;
         public BattleCameraController Camera => cameraController;
@@ -42,6 +45,11 @@ namespace Arena3Q.UI
         public bool IsResultVisible => _resultPanel != null && _resultPanel.activeSelf;
         public IReadOnlyList<HeroCardView> CardViews => _cards;
         public Slider TiltSlider => _tiltSlider;
+
+        /// <summary>The boss health bar (spec §8 ✅): shown while a boss is alive.</summary>
+        public bool IsBossBarVisible => _bossBar != null && _bossBar.gameObject.activeSelf;
+        public float BossBarFraction => _bossFill != null ? _bossFill.fillAmount : 0f;
+        public string BossBarText => _bossLabel != null ? _bossLabel.text : "";
 
         public void Bind(BattleController controller, BattleCameraController cameraRig)
         {
@@ -191,9 +199,21 @@ namespace Arena3Q.UI
                 56, TextAnchor.UpperCenter, Color.white);
             _infoLabel = UiFactory.CreateLabel("Info", root, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-30f, -20f),
                 new Vector2(600f, 100f), "", 32, TextAnchor.UpperRight, Color.white);
-            _toast = UiFactory.CreateLabel("Toast", root, top, top, new Vector2(0f, -110f), new Vector2(1000f, 60f), "",
+            _toast = UiFactory.CreateLabel("Toast", root, top, top, new Vector2(0f, -150f), new Vector2(1000f, 60f), "",
                 38, TextAnchor.MiddleCenter, new Color(1f, 0.8f, 0.4f));
             _toast.enabled = false;
+
+            // Boss health bar under the timer (spec §8 ✅ "thanh máu riêng trên HUD").
+            _bossBar = UiFactory.CreateRect("BossBar", root, top, top, top, new Vector2(0f, -92f), new Vector2(640f, 46f));
+            _bossLabel = UiFactory.CreateLabel("BossName", _bossBar, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), Vector2.zero,
+                new Vector2(640f, 26f), "", 22, TextAnchor.UpperCenter, new Color(1f, 0.85f, 0.75f));
+            var barBack = UiFactory.CreateRect("Back", _bossBar, new Vector2(0f, 0f), new Vector2(1f, 0f), new Vector2(0.5f, 0f),
+                Vector2.zero, new Vector2(0f, 16f));
+            UiFactory.AddImage(barBack, new Color(0f, 0f, 0f, 0.7f), null, false);
+            _bossFill = UiFactory.AddImage(UiFactory.Stretch("Fill", barBack), new Color(0.85f, 0.15f, 0.12f), PlaceholderArt.Square, false);
+            _bossFill.type = Image.Type.Filled;
+            _bossFill.fillMethod = Image.FillMethod.Horizontal;
+            _bossBar.gameObject.SetActive(false);
 
             _cardBar = UiFactory.CreateRect("CardBar", root, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f),
                 new Vector2(0.5f, 0f), new Vector2(0f, 16f), new Vector2(1000f, HeroCardView.CardSize.y));
@@ -376,6 +396,21 @@ namespace Arena3Q.UI
             }
         }
 
+        private void UpdateBossBar()
+        {
+            EnemyUnit boss = null;
+            foreach (var candidate in battle.LivingBosses)
+            {
+                boss = candidate;
+                break;
+            }
+            _bossBar.gameObject.SetActive(boss != null);
+            if (boss == null)
+                return;
+            _bossFill.fillAmount = boss.Health / boss.MaxHealth;
+            _bossLabel.text = boss.InPhaseTwo ? $"{boss.DisplayName} · Pha 2" : boss.DisplayName;
+        }
+
         private void Update()
         {
             if (battle == null || battle.State == null)
@@ -387,6 +422,7 @@ namespace Arena3Q.UI
             _timerLabel.color = state.HasTimeLimit && seconds <= 20f ? new Color(1f, 0.45f, 0.4f) : Color.white;
             if (state.StageType == StageType.Defense)
                 UpdateInfo();
+            UpdateBossBar();
 
             if (_toastTimer > 0f)
             {

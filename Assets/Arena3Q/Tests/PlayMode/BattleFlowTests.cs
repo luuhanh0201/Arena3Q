@@ -868,6 +868,22 @@ namespace Arena3Q.Tests.PlayMode
             for (var i = 0; i < 30; i++)
                 yield return null;
             Capture("skills.png");
+
+            // Chapter-1 boss stage: elites with their outline, the boss bar, a red warning.
+            _battle.StartBattle(_battle.Stages.First(s => s.StageId == "c1_boss_attack"));
+            SummonQuick(0);
+            SummonQuick(1);
+            SummonQuick(2);
+            foreach (var hero in _battle.LivingHeroes.ToList())
+                _battle.AttackWithHero(hero.Id, _battle.LivingBosses.First());
+            var boss = _battle.LivingBosses.First();
+            Run(25f);
+            for (var i = 0; i < 200 && boss.IsAlive && boss.Skills.Warning == null; i++)
+                _battle.Simulate(Step);
+            _camera.FocusOn(boss.Position);
+            for (var i = 0; i < 30; i++)
+                yield return null;
+            Capture("boss.png");
         }
 
         private void Capture(string fileName)

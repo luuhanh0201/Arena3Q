@@ -3,9 +3,12 @@ using UnityEngine;
 
 namespace Arena3Q.Data
 {
-    /// <summary>A soldier type: hero squads, Attack-stage defenders and Defense-stage wave enemies (spec §10).</summary>
+    /// <summary>
+    /// A soldier type: hero squads, Attack-stage defenders and Defense-stage wave enemies (spec §10). Enemies with a rank,
+    /// skills or traits use the <see cref="EnemyDefinition"/> subclass; a plain troop fights as a normal enemy.
+    /// </summary>
     [CreateAssetMenu(menuName = "Arena3Q/Troop Definition", fileName = "Troop")]
-    public sealed class TroopDefinition : ScriptableObject
+    public class TroopDefinition : ScriptableObject
     {
         [SerializeField] private string troopId = "troop";
         [SerializeField] private string displayName = "Troop";
@@ -23,7 +26,7 @@ namespace Arena3Q.Data
         public Color PlaceholderColor => placeholderColor;
         public CombatStats Stats => stats;
 
-        public void Validate(List<string> errors)
+        public virtual void Validate(List<string> errors)
         {
             var owner = $"Troop '{name}'";
             if (string.IsNullOrWhiteSpace(troopId)) errors.Add($"{owner}: troopId is empty.");

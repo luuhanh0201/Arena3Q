@@ -82,6 +82,10 @@ namespace Arena3Q.Data
         [Tooltip("Crit chance every hero starts with (heroes can add their own bonus).")]
         [SerializeField, Range(0f, 1f)] private float heroBaseCritChance = 0.05f;
         [SerializeField, Min(1f)] private float critMultiplier = 1.5f;
+        [Tooltip("Spec §8: a hero stunned without a break for longer than this gets crowd-control immunity (0 = off).")]
+        [SerializeField, Min(0f)] private float crowdControlLockSeconds = 2f;
+        [Tooltip("Length of that immunity.")]
+        [SerializeField, Min(0f)] private float crowdControlBreakSeconds = 2f;
 
         [Header("Combat power (menus)")]
         [SerializeField, Min(0f)] private float combatPowerScale = 10f;
@@ -137,6 +141,8 @@ namespace Arena3Q.Data
                 MaxDamageReduction = maxDamageReduction,
                 HeroBaseCritChance = heroBaseCritChance,
                 CritMultiplier = critMultiplier,
+                CrowdControlLockSeconds = crowdControlLockSeconds,
+                CrowdControlBreakSeconds = crowdControlBreakSeconds,
                 CombatPowerScale = combatPowerScale,
                 CombatPowerPerSkillLevel = combatPowerPerSkillLevel
             };

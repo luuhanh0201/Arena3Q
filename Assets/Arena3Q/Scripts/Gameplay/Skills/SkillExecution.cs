@@ -21,13 +21,13 @@ namespace Arena3Q.Gameplay
     public sealed class SkillContext
     {
         public BattleController Battle;
-        public HeroUnit Caster;
+        public UnitBase Caster;
         public Team Team;
         public float Damage;
         public float MaxHealth;
         public float ValueMultiplier = 1f;
 
-        public static SkillContext Of(HeroUnit caster, float valueMultiplier) => new SkillContext
+        public static SkillContext Of(UnitBase caster, float valueMultiplier) => new SkillContext
         {
             Battle = caster.Battle,
             Caster = caster,
@@ -182,7 +182,7 @@ namespace Arena3Q.Gameplay
         private static readonly List<UnitBase> Scratch = new List<UnitBase>();
 
         /// <summary>Once per cast (first repeat): caster movement, then the hit or the zone.</summary>
-        public static void Fire(HeroUnit caster, SkillDefinition skill, SkillContext context, ref SkillAim aim)
+        public static void Fire(UnitBase caster, SkillAreaDefinition skill, SkillContext context, ref SkillAim aim)
         {
             var battle = caster.Battle;
             switch (skill.CasterMove)
@@ -221,7 +221,7 @@ namespace Arena3Q.Gameplay
         /// One hit on everything in the area. <paramref name="minStatusSeconds"/> keeps statuses of a zone alive between
         /// its ticks.
         /// </summary>
-        public static void Hit(SkillDefinition skill, SkillContext context, SkillAim aim, float multiplier, float minStatusSeconds)
+        public static void Hit(SkillAreaDefinition skill, SkillContext context, SkillAim aim, float multiplier, float minStatusSeconds)
         {
             foreach (var effect in skill.Effects)
             {
@@ -233,13 +233,13 @@ namespace Arena3Q.Gameplay
             }
         }
 
-        public static int CountInArea(HeroUnit hero, SkillDefinition skill, SkillAim aim)
+        public static int CountInArea(UnitBase caster, SkillAreaDefinition skill, SkillAim aim)
         {
-            Select(skill, SkillContext.Of(hero, 1f), aim, SkillAffects.Enemies, Scratch);
+            Select(skill, SkillContext.Of(caster, 1f), aim, SkillAffects.Enemies, Scratch);
             return Scratch.Count;
         }
 
-        private static void Select(SkillDefinition skill, SkillContext context, SkillAim aim, SkillAffects affects, List<UnitBase> into)
+        private static void Select(SkillAreaDefinition skill, SkillContext context, SkillAim aim, SkillAffects affects, List<UnitBase> into)
         {
             into.Clear();
             var battle = context.Battle;
@@ -307,12 +307,12 @@ namespace Arena3Q.Gameplay
         }
 
         // A charge hits what it passes: from where it started to where the caster stopped.
-        private static float LineLength(SkillDefinition skill, SkillContext context, SkillAim aim) =>
+        private static float LineLength(SkillAreaDefinition skill, SkillContext context, SkillAim aim) =>
             skill.CasterMove == CasterMove.ChargeLine && context.Caster != null
                 ? Mathf.Max(0.5f, Vector2.Distance(aim.Origin, context.Caster.Position))
                 : skill.Length;
 
-        private static void Apply(SkillDefinition.Effect effect, SkillDefinition skill, SkillContext context, SkillAim aim,
+        private static void Apply(SkillAreaDefinition.Effect effect, SkillAreaDefinition skill, SkillContext context, SkillAim aim,
             UnitBase unit, float multiplier, float minStatusSeconds)
         {
             var value = effect.value * context.ValueMultiplier * multiplier;
@@ -325,7 +325,11 @@ namespace Arena3Q.Gameplay
                     if (unit.IsCastle)
                         damage *= skill.CastleMultiplier;
                     if (context.Caster != null)
-                        damage = context.Caster.Skills.ModifyOutgoingDamage(unit, damage * context.Caster.Statuses.DamageMultiplier);
+                    {
+                        damage *= context.Caster.Statuses.DamageMultiplier;
+                        if (context.Caster is HeroUnit caster)
+                            damage = caster.Skills.ModifyOutgoingDamage(unit, damage);
+                    }
                     unit.TakeDamage(damage, context.Source);
                     break;
                 }
@@ -349,6 +353,23 @@ namespace Arena3Q.Gameplay
                     if (unit is HeroUnit hero)
                         hero.Battle.RefillSquad(hero, Mathf.RoundToInt(effect.value));
                     break;
+                case SkillEffectKind.Heal:
+                    unit.Heal(unit.MaxHealth * value);
+                    break;
+                case SkillEffectKind.Pull:
+                {
+                    // Towards the caster, stopping next to it (Câu Hồn Tỏa); forbidden zones stop the pull (spec §8).
+                    var anchor = context.Caster != null && context.Caster.IsAlive ? context.Caster.Position : aim.Origin;
+                    var toAnchor = anchor - unit.Position;
+                    var gap = toAnchor.magnitude - unit.Radius - (context.Caster != null ? context.Caster.Radius : 0f) - 0.1f;
+                    if (gap > 0f)
+                        unit.Displace(toAnchor.normalized * Mathf.Min(gap, effect.value));
+                    break;
+                }
+                case SkillEffectKind.Taunt:
+                    if (context.Source != null)
+                        unit.ApplyStatus(StatusKind.Taunt, 1f, seconds, context.Source);
+                    break;
                 // Statuses keep their raw value (a 40 % slow stays 40 % at every skill level).
                 case SkillEffectKind.Stun: unit.ApplyStatus(StatusKind.Stun, 1f, seconds, context.Source); break;
                 case SkillEffectKind.Slow: unit.ApplyStatus(StatusKind.Slow, effect.value, seconds, context.Source); break;
@@ -366,13 +387,13 @@ namespace Arena3Q.Gameplay
     /// <summary>An area that stays on the ground (rain of arrows, fire field, formation, shield wall) and hits every tick.</summary>
     public sealed class SkillZone
     {
-        private readonly SkillDefinition _skill;
+        private readonly SkillAreaDefinition _skill;
         private readonly SkillContext _context;
         private SkillAim _aim;
         private float _remaining;
         private float _tick;
 
-        public SkillZone(SkillDefinition skill, SkillContext context, SkillAim aim)
+        public SkillZone(SkillAreaDefinition skill, SkillContext context, SkillAim aim)
         {
             _skill = skill;
             _context = context;

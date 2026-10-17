@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29283196bcc9f574db0dba5632b65e7c, type: 3}
+  m_Name: Enemy_c3_ox_head
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.EnemyDefinition
+  troopId: c3_ox_head
+  displayName: "Ng\u01B0u \u0110\u1EA7u"
+  sprite: {fileID: 0}
+  placeholderColor: {r: 0.4, g: 0.2, b: 0.25, a: 1}
+  stats:
+    maxHealth: 1292.3
+    damage: 35.2
+    moveSpeed: 1.8
+    attackRange: 0.9
+    attackInterval: 1.6666666
+    reactionRange: 0.9
+    aggroRange: 5
+    attackerMemorySeconds: 2
+  tier: 1
+  bodyRadius: 0.4
+  phaseTwoColor: {r: 1, g: 0.25, b: 0.2, a: 1}
+  skills:
+  - {fileID: 11400000, guid: 3d0630e5ae676e047a3f600709cbaa5c, type: 2}
+  phaseTwo:
+    healthThreshold: 0.5
+    attackSpeedBonus: 0
+    moveSpeedBonus: 0
+    damageBonus: 0
+    skills: []
+    onEnter: []
+  flying: 0
+  reviveChance: 0
+  reviveHealth: 0.3

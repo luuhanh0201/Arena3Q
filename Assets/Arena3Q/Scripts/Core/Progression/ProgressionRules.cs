@@ -39,6 +39,10 @@ namespace Arena3Q.Core
         public float MaxDamageReduction { get; set; } = 0.75f;
         public float HeroBaseCritChance { get; set; } = 0.05f;
         public float CritMultiplier { get; set; } = 1.5f;
+        /// <summary>Anti-lock (spec §8 🟡): a hero stunned without a break longer than this gets immunity…</summary>
+        public float CrowdControlLockSeconds { get; set; } = 2f;
+        /// <summary>…for this long.</summary>
+        public float CrowdControlBreakSeconds { get; set; } = 2f;
 
         public float CombatPowerScale { get; set; } = 10f;
         public float CombatPowerPerSkillLevel { get; set; } = 0.004f;

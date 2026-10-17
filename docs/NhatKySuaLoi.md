@@ -162,3 +162,14 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 4. **Bố cục thẻ** (phát hiện nhờ ảnh `Logs/Screenshots/defense.png`): icon kỹ năng đè lên chân dung, và thẻ chưa triệu hồi không hiện điều kiện mở kỹ năng (chỉ đọc từ tướng trên sân). Sửa: chân dung lệch trái và nhỏ lại, trạng thái khoá đọc từ `LineupEntry.SkillLevel`. Thêm ảnh `skills.png` (chủ tướng Lv15 + tướng 1–3★ đang đánh) vào test chụp màn hình.
 5. **Cân bằng sau khi có kỹ năng** (bộ thẻ thử: chủ tướng cấp 1 chưa có kỹ năng, 4 tướng 1★ có nội tại + kỹ năng 2): ải Công giây 62, mất 1 tướng, 2 sao → **giây 52, mất 0, 3 sao**; ải Thủ giây 134, mất 3 tướng, thành 2300/3000 → **giây 135, mất 3, thành 2545/3000, 1 sao**. Chưa chỉnh lại (cân bằng để giai đoạn sắp phát hành).
 - **Kiểm chứng:** EditMode 212/212 (thêm `SkillCoreTests`, `SkillContentTests`), PlayMode 56/56 (thêm `SkillBattleTests`; sửa test chạm thẻ: chạm = tuyệt kỹ, giữ = chọn).
+
+## Cấp bậc và kỹ năng quân địch trong code (2026-10-17)
+
+Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số liệu cần nhớ:
+1. **Đổi kiểu asset bằng cách sửa `m_Script`:** ba lính chương 1 (`Enemy_Swordsman/Archer/Brute`) chuyển từ `TroopDefinition` sang `EnemyDefinition` (lớp con) bằng cách thay GUID script trong YAML; giữ được GUID asset nên ải và scene không mất tham chiếu. Chỉ làm được vì lớp con giữ nguyên tên mọi trường của lớp cha.
+2. **Sửa tên tiếng Việt trong YAML bằng `sed` với `\u`** ghi ra chữ hỏng (`"L00E2u La…"`). Tránh lặp lại: ghi thẳng chuỗi UTF-8 trong ngoặc kép (Unity đọc được), hoặc dùng công cụ Edit; grep lại dòng vừa sửa.
+3. **Xoá asset kèm `.meta` để builder tạo lại** làm scene giữ một tham chiếu GUID cũ không còn tồn tại. Đã gỡ dòng đó trong `Battle.unity`. Tránh lặp lại: muốn builder tạo lại thì chỉ xoá file asset, giữ `.meta` (GUID giữ nguyên), hoặc sửa asset bằng SerializedObject.
+4. **Tầm phản ứng lớn hơn tầm đánh** (`reactionRange` 0.6 > `attackRange` 0.5) ở 3 lính nhỏ: kiểm tra dữ liệu bắt được ngay. Công thức builder giờ lấy `min(tầm đánh, 1)`.
+5. **Test viết sai:** vòng lặp chống khoá cứng chạy đúng 2.0 giây trong khi luật là "quá 2 giây"; test khiêu khích đặt quân địch ngoài tầm phản ứng của tướng nên tướng không đánh lại. Tránh lặp lại: đặt số trong test có khoảng dư so với ngưỡng của luật.
+6. **Ải boss quá khó với bộ thẻ thử cấp 1** (ảnh `Logs/Screenshots/boss.png`: 3 tướng chết trong 25 giây ở ải boss chương 1, cấp địch 1). Ải Thủ chương 3 để cấp địch 19 theo tài liệu nên còn khó hơn. Chưa chỉnh (cân bằng để giai đoạn sắp phát hành); hai ải gốc không đổi (Công giây 52, mất 0, 3 sao; Thủ giây 135, mất 3, thành 2545/3000).
+- **Kiểm chứng:** EditMode 224/224 (thêm `EnemyRulesTests`, `EnemyContentTests`), PlayMode 69/69 (thêm `EnemyBattleTests`, ảnh `boss.png`).

@@ -72,7 +72,13 @@ namespace Arena3Q.Core
         DamageUp,
         DamageTakenDown,
         CrowdControlImmunity,
-        RefillSquad
+        RefillSquad,
+        /// <summary>value = share of the target's max health healed (enemy support skills).</summary>
+        Heal,
+        /// <summary>Pulls the target towards the caster, at most value units, stopped by forbidden zones.</summary>
+        Pull,
+        /// <summary>Forces free-fighting units to attack the caster (spec §8: not units carrying out an order).</summary>
+        Taunt
     }
 
     /// <summary>Always-on effects of a passive skill (kỹ năng 1).</summary>
@@ -116,6 +122,8 @@ namespace Arena3Q.Core
         MoveSpeedUp,
         DamageUp,
         DamageTakenDown,
-        CrowdControlImmunity
+        CrowdControlImmunity,
+        /// <summary>Attack the source (spec §8 taunt); crowd control, so immunity blocks it.</summary>
+        Taunt
     }
 }

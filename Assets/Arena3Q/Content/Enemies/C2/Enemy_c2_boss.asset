@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29283196bcc9f574db0dba5632b65e7c, type: 3}
+  m_Name: Enemy_c2_boss
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.EnemyDefinition
+  troopId: c2_boss
+  displayName: "Thi\xEAn C\xF4ng T\u1EBF T\u1EEDu"
+  sprite: {fileID: 0}
+  placeholderColor: {r: 0.95, g: 0.8, b: 0.2, a: 1}
+  stats:
+    maxHealth: 6131.3
+    damage: 46
+    moveSpeed: 1.6
+    attackRange: 4
+    attackInterval: 1.6666666
+    reactionRange: 1
+    aggroRange: 5.5
+    attackerMemorySeconds: 2
+  tier: 2
+  bodyRadius: 0.8
+  phaseTwoColor: {r: 1, g: 0.25, b: 0.2, a: 1}
+  skills:
+  - {fileID: 11400000, guid: 5d7471afb1fbb594e86441ba0df81aae, type: 2}
+  - {fileID: 11400000, guid: 46751289e02189f449b29fdea3e40e7d, type: 2}
+  phaseTwo:
+    healthThreshold: 0.5
+    attackSpeedBonus: 0
+    moveSpeedBonus: 0
+    damageBonus: 0
+    skills: []
+    onEnter:
+    - {fileID: 11400000, guid: efd59b073deb63f46ad73863da4a00c1, type: 2}
+    - {fileID: 11400000, guid: b2b41e9532918704c9a50690ccfdeecf, type: 2}
+  flying: 0
+  reviveChance: 0
+  reviveHealth: 0.3

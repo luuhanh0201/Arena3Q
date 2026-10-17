@@ -100,8 +100,49 @@ namespace Arena3Q.Data
             SelfDefendWhileAttacking = hero.SelfDefendWhileAttacking
         };
 
+        /// <summary>
+        /// The field with its forbidden zones. Path nodes keep clear room for the largest unit of the stage (bosses are
+        /// bigger than heroes, spec §8), so every unit can follow the routes.
+        /// </summary>
         public BattlefieldLayout CreateLayout() =>
-            new BattlefieldLayout(mapBounds, summonZone, forbiddenZones, CreateRiverObstacles());
+            new BattlefieldLayout(mapBounds, summonZone, forbiddenZones, CreateRiverObstacles(),
+                Mathf.Max(BattlefieldLayout.DefaultMaxUnitRadius, LargestEnemyRadius));
+
+        /// <summary>Body radius of the largest enemy this stage can field (its summons included).</summary>
+        public float LargestEnemyRadius
+        {
+            get
+            {
+                var largest = 0f;
+                void Consider(TroopDefinition unit)
+                {
+                    if (!(unit is EnemyDefinition enemy))
+                        return;
+                    largest = Mathf.Max(largest, enemy.BodyRadius);
+                    foreach (var skill in enemy.Skills)
+                    {
+                        if (skill != null && skill.SummonUnit is EnemyDefinition summoned)
+                            largest = Mathf.Max(largest, summoned.BodyRadius);
+                    }
+                }
+                if (defenders != null)
+                {
+                    foreach (var defender in defenders)
+                        Consider(defender?.Unit);
+                }
+                if (waves != null)
+                {
+                    foreach (var wave in waves)
+                    {
+                        if (wave?.Spawns == null)
+                            continue;
+                        foreach (var spawn in wave.Spawns)
+                            Consider(spawn?.Unit);
+                    }
+                }
+                return largest;
+            }
+        }
 
         /// <summary>Core shapes of the valid rivers (invalid ones are skipped here and reported by Validate).</summary>
         public List<IObstacle> CreateRiverObstacles()

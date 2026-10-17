@@ -52,9 +52,17 @@ namespace Arena3Q.Gameplay
             SetCombat(numbers);
         }
 
+        // Seconds stunned without a break (anti-lock, spec §8 🟡).
+        private float _stunnedSeconds;
+
         public override void Simulate(float deltaTime)
         {
             Skills.Tick(deltaTime);
+            var settings = Battle.Rules.Settings;
+            _stunnedSeconds = EnemyRules.TrackCrowdControl(_stunnedSeconds, IsStunned, deltaTime,
+                settings.CrowdControlLockSeconds, out var breakFree);
+            if (breakFree)
+                ApplyStatus(StatusKind.CrowdControlImmunity, 1f, settings.CrowdControlBreakSeconds);
             // Stunned or winding up a skill: the hero stands still but keeps its order (spec §3, §8).
             if (IsStunned || Skills.IsCasting)
             {
@@ -62,6 +70,10 @@ namespace Arena3Q.Gameplay
                 return;
             }
             var intent = Brain.Tick(deltaTime, this);
+            // Taunt (spec §8 ✅): only while the hero is not carrying out a player order (Moving / Attacking ignore it).
+            var taunter = TauntSource;
+            if (taunter != null && EnemyRules.HeroFollowsTaunt(Brain.State))
+                intent = HeroIntent.Engage(taunter.Id, mayChase: true);
             ConsumeDamageFlags();
             Execute(intent, deltaTime);
             Runtime.SyncFrom(Brain);

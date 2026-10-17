@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac904e45e0e2b5e44bc71dd9db8294f9, type: 3}
+  m_Name: EnemySkill_c1_ruou_manh
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.EnemySkillDefinition
+  skillId: c1_ruou_manh
+  displayName: "R\u01B0\u1EE3u M\u1EA1nh Ti\u1EBFp S\u1EE9c"
+  description: 
+  icon: {fileID: 0}
+  iconColor: {r: 0.95, g: 0.6, b: 0.25, a: 1}
+  cooldown: 10
+  castTime: 0.6
+  range: 0
+  condition: 2
+  casterMove: 0
+  moveDistance: 0
+  shape: 1
+  radius: 4
+  length: 5
+  width: 1
+  angle: 60
+  firstHitOnly: 0
+  castleMultiplier: 1
+  zoneDuration: 0
+  tickInterval: 0.5
+  followCaster: 0
+  repeatCount: 1
+  repeatInterval: 0.25
+  finalHitMultiplier: 1
+  effects:
+  - kind: 14
+    affects: 1
+    value: 0.15
+    duration: 0
+  - kind: 8
+    affects: 1
+    value: 0.2
+    duration: 5
+  aim: 0
+  zoneCount: 1
+  zoneSpread: 1.5
+  telegraphSeconds: 0
+  initialCooldown: 4
+  channelSeconds: 0
+  summonUnit: {fileID: 0}
+  summonCount: 0
+  summonLimit: 8
+  summonClones: 0
+  cloneHealthFactor: 0.1
+  cloneDamageFactor: 0.3
+  summonRadius: 1.5

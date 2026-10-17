@@ -48,8 +48,34 @@ namespace Arena3Q.Gameplay
         public StatusSet Statuses { get; } = new StatusSet();
         public bool IsStunned => Statuses.IsStunned;
 
-        /// <summary>Move speed after slows and speed buffs.</summary>
-        public float CurrentMoveSpeed => MoveSpeed * Statuses.MoveSpeedMultiplier;
+        /// <summary>Move speed after slows, speed buffs and the unit's own bonus (boss phase 2).</summary>
+        public float CurrentMoveSpeed => MoveSpeed * Statuses.MoveSpeedMultiplier * MoveSpeedFactor;
+
+        /// <summary>Permanent move-speed factor of the unit itself (boss phase 2); 1 = none.</summary>
+        protected virtual float MoveSpeedFactor => 1f;
+
+        /// <summary>Flying units cross rivers anywhere (spec §8); rectangular zones and the map edge still block them.</summary>
+        public virtual bool IsFlying => false;
+
+        /// <summary>The forbidden zones this unit is blocked by (flyers ignore rivers).</summary>
+        protected BattlefieldLayout MovementLayout => Battle != null ? Battle.LayoutFor(this) : null;
+
+        /// <summary>The living enemy that taunts this unit, or null (spec §8).</summary>
+        public UnitBase TauntSource
+        {
+            get
+            {
+                var source = Statuses.SourceOf(StatusKind.Taunt) as UnitBase;
+                return source != null && source.IsAlive && source.Team != Team ? source : null;
+            }
+        }
+
+        /// <summary>A new player order ends a taunt (spec §8: the player's order always wins).</summary>
+        public void ClearTaunt()
+        {
+            if (Statuses.Has(StatusKind.Taunt))
+                Statuses.Remove(StatusKind.Taunt);
+        }
 
         /// <summary>Seconds between attacks after attack-speed statuses (heroes add their passives).</summary>
         public virtual float CurrentAttackInterval => AttackInterval / Statuses.AttackSpeedMultiplier;
@@ -150,7 +176,7 @@ namespace Arena3Q.Gameplay
             }
 
             OnDamaged(amount, source);
-            if (Health <= 0f)
+            if (Health <= 0f && !TryCheatDeath())
                 Die();
         }
 
@@ -168,6 +194,22 @@ namespace Arena3Q.Gameplay
 
         protected virtual void OnDamaged(float amount, UnitBase source)
         {
+        }
+
+        /// <summary>Called when health reaches 0: return true to stay alive (enemy trait "stands up once").</summary>
+        protected virtual bool TryCheatDeath() => false;
+
+        /// <summary>Back on its feet with this share of max health, statuses cleared.</summary>
+        protected void Revive(float healthFraction)
+        {
+            Health = Mathf.Clamp(MaxHealth * healthFraction, 1f, MaxHealth);
+            Statuses.Clear();
+            _attackers.Clear();
+            if (Record != null)
+                Record.Health = Health;
+            Visual.SetHealth(Health / MaxHealth, Team == Team.Enemy);
+            RefreshStatusVisual();
+            OnHealthChanged();
         }
 
         /// <summary>Damage reduction from passives (heroes), added to the unit's own and the statuses'.</summary>
@@ -237,7 +279,8 @@ namespace Arena3Q.Gameplay
             if (!IsAlive || IsCastle || Statuses.IsImmune || offset.sqrMagnitude < 1e-8f)
                 return;
             var target = Position + offset;
-            SetPosition(Battle != null && Battle.Layout != null ? Battle.Layout.ResolveStep(Position, target, Radius) : target);
+            var layout = MovementLayout;
+            SetPosition(layout != null ? layout.ResolveStep(Position, target, Radius) : target);
         }
 
         /// <summary>Advances statuses and applies poison; called by the battle every step before the unit thinks.</summary>
@@ -254,7 +297,8 @@ namespace Arena3Q.Gameplay
         }
 
         private void RefreshStatusVisual() =>
-            Visual?.SetStatus(Statuses.IsStunned, Statuses.Shield > 0f, Statuses.Has(StatusKind.Slow) || Statuses.Has(StatusKind.Weaken));
+            Visual?.SetStatus(Statuses.IsStunned, Statuses.Shield > 0f, Statuses.Has(StatusKind.Slow) || Statuses.Has(StatusKind.Weaken),
+                Statuses.Has(StatusKind.Taunt));
 
         protected virtual void OnDied()
         {
@@ -337,7 +381,7 @@ namespace Arena3Q.Gameplay
             if (distance <= stopDistance || distance < 1e-5f)
                 return;
             var step = Mathf.Min(CurrentMoveSpeed * deltaTime, distance - stopDistance);
-            var layout = Battle != null ? Battle.Layout : null;
+            var layout = MovementLayout;
             if (layout == null)
             {
                 SetPosition(position + toTarget / distance * step);
@@ -357,10 +401,11 @@ namespace Arena3Q.Gameplay
         /// <summary>Moves the unit, clamped to the battlefield bounds and kept out of forbidden zones.</summary>
         public void SetPosition(Vector2 position)
         {
-            if (Battle != null && Battle.Layout != null)
+            var layout = MovementLayout;
+            if (layout != null)
             {
-                var b = Battle.Layout.Bounds;
-                position = Battle.Layout.PushOut(position, Radius);
+                var b = layout.Bounds;
+                position = layout.PushOut(position, Radius);
                 position.x = Mathf.Clamp(position.x, b.xMin + Radius, b.xMax - Radius);
                 position.y = Mathf.Clamp(position.y, b.yMin + Radius, b.yMax - Radius);
             }

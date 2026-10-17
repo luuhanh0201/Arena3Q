@@ -487,6 +487,7 @@ namespace Arena3Q.Gameplay
                 return Reject(result.Reason);
             hero.Brain.Issue(command);
             hero.Runtime.SyncFrom(hero.Brain);
+            ClearTaunts(hero);
             SpawnMarker(destination, new Color(1f, 1f, 1f, 0.8f));
             return result;
         }
@@ -504,9 +505,20 @@ namespace Arena3Q.Gameplay
             var hero = GetHero(heroId);
             hero.Brain.Issue(command);
             hero.Runtime.SyncFrom(hero.Brain);
+            ClearTaunts(hero);
             TrySelectHero(heroId);
             SpawnMarker(target.Position, new Color(1f, 0.3f, 0.25f, 0.9f));
             return result;
+        }
+
+        // Spec §8: a new player order always wins over a taunt (the hero and its squad).
+        private static void ClearTaunts(HeroUnit hero)
+        {
+            hero.ClearTaunt();
+            if (hero.Squad == null)
+                return;
+            foreach (var troop in hero.Squad.Members)
+                troop.ClearTaunt();
         }
 
         private CommandResult Reject(RejectReason reason)
@@ -541,15 +553,58 @@ namespace Arena3Q.Gameplay
         }
 
         internal EnemyUnit SpawnEnemy(TroopDefinition definition, EnemyRole role, Vector2 position, float guardRadius,
-            int waveIndex)
+            int waveIndex, float healthFactor = 1f, float damageFactor = 1f, bool isClone = false)
         {
             var enemy = CreateUnit<EnemyUnit>("Enemy");
             var numbers = CombatNumbersFactory.ForEnemy(definition, Stage.EnemyLevel, Rules);
-            enemy.Init(this, State.AllocateUnitId(), definition, numbers, role, position, guardRadius, waveIndex);
+            numbers.MaxHealth *= healthFactor;
+            numbers.Damage *= damageFactor;
+            enemy.Init(this, State.AllocateUnitId(), definition, numbers, role, position, guardRadius, waveIndex, isClone);
             enemy.Record = State.RegisterUnit(enemy.Id, Team.Enemy, UnitKind.Enemy, UnitId.None, enemy.MaxHealth);
             Register(enemy);
             return enemy;
         }
+
+        /// <summary>
+        /// A soldier called in by an enemy skill (spec §8 ✅: a normal enemy). It fights like its caller: guards around the
+        /// spot it appears at, or belongs to the caller's wave (so the wave is not cleared while it lives).
+        /// </summary>
+        internal EnemyUnit SpawnSummon(EnemyUnit caller, TroopDefinition unit, Vector2 position) =>
+            unit == null ? null : SpawnEnemy(unit, caller.Role, position, caller.GuardRadius, caller.WaveIndex);
+
+        /// <summary>A weaker copy of a boss (Huyễn Ảnh): same look, no skills, no phase, no boss bar.</summary>
+        internal EnemyUnit SpawnClone(EnemyUnit original, Vector2 position, float healthFactor, float damageFactor) =>
+            SpawnEnemy(original.Definition, original.Role, position, original.GuardRadius, original.WaveIndex,
+                healthFactor, damageFactor, isClone: true);
+
+        /// <summary>Living bosses (not their copies), for the HUD's boss bar.</summary>
+        public IEnumerable<EnemyUnit> LivingBosses
+        {
+            get
+            {
+                foreach (var unit in Registry.Units)
+                {
+                    if (unit is EnemyUnit enemy && enemy.IsAlive && enemy.IsBoss)
+                        yield return enemy;
+                }
+            }
+        }
+
+        /// <summary>A boss entered its second phase (spec §8).</summary>
+        public event Action<EnemyUnit> BossPhaseChanged;
+
+        internal void NotifyBossPhase(EnemyUnit boss)
+        {
+            BossPhaseChanged?.Invoke(boss);
+            Changed?.Invoke();
+        }
+
+        /// <summary>The forbidden zones a unit is blocked by: flyers cross rivers (spec §8).</summary>
+        internal BattlefieldLayout LayoutFor(UnitBase unit) =>
+            unit != null && unit.IsFlying && Layout != null ? Layout.ForFlyers() : Layout;
+
+        /// <summary>A number in [0, 1) from the battle's seeded random numbers (deterministic for a given seed).</summary>
+        internal float Random01() => (float)_random.NextDouble();
 
         private CastleUnit SpawnCastle(CastleRuntime runtime, CastleConfig config)
         {
@@ -684,14 +739,23 @@ namespace Arena3Q.Gameplay
         private static readonly Color EnemySkillColor = new Color(1f, 0.3f, 0.25f, 0.35f);
 
         /// <summary>Placeholder look of a skill until the VFX exist: the area on the ground, fading out.</summary>
-        internal void ShowSkill(SkillDefinition skill, SkillAim aim, Team team, float seconds, UnitBase follow)
+        internal GameObject ShowSkill(SkillAreaDefinition skill, SkillAim aim, Team team, float seconds, UnitBase follow)
         {
-            if (_groundRoot == null)
-                return;
             var color = skill.IconColor;
             color.a = 0.4f;
             if (color.r + color.g + color.b < 0.1f)
                 color = team == Team.Player ? PlayerSkillColor : EnemySkillColor;
+            return ShowArea(skill, aim, color, seconds, follow);
+        }
+
+        /// <summary>Spec §8 ✅: the red warning of an enemy skill, fixed in place (a single target gets a mark that follows it).</summary>
+        internal GameObject ShowWarning(SkillAreaDefinition skill, SkillAim aim, float seconds, UnitBase markTarget) =>
+            ShowArea(skill, aim, new Color(1f, 0.1f, 0.05f, 0.35f), seconds, markTarget);
+
+        private GameObject ShowArea(SkillAreaDefinition skill, SkillAim aim, Color color, float seconds, UnitBase follow)
+        {
+            if (_groundRoot == null)
+                return null;
             SpriteRenderer renderer;
             switch (skill.Shape)
             {
@@ -724,6 +788,7 @@ namespace Arena3Q.Gameplay
             }
             var effect = renderer.gameObject.AddComponent<SkillAreaVisual>();
             effect.Setup(seconds, follow);
+            return renderer.gameObject;
         }
 
         /// <summary>One crit roll from the battle's seeded random numbers (deterministic for a given seed).</summary>

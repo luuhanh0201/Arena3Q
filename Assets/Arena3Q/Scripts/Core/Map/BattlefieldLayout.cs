@@ -23,6 +23,8 @@ namespace Arena3Q.Core
         private readonly Vector2[] _nodes;
         private readonly bool[,] _visible;
         private readonly float _maxUnitRadius;
+        private readonly IObstacle[] _extraObstacles;
+        private BattlefieldLayout _forFlyers;
 
         public BattlefieldLayout(Rect bounds, Rect summonZone, IReadOnlyList<Rect> forbiddenZones = null,
             IReadOnlyList<IObstacle> obstacles = null, float maxUnitRadius = DefaultMaxUnitRadius)
@@ -35,8 +37,8 @@ namespace Arena3Q.Core
             var all = new List<IObstacle>();
             foreach (var rect in _rectZones)
                 all.Add(new RectObstacle(rect));
-            if (obstacles != null)
-                all.AddRange(obstacles);
+            _extraObstacles = obstacles == null ? Array.Empty<IObstacle>() : new List<IObstacle>(obstacles).ToArray();
+            all.AddRange(_extraObstacles);
             _obstacles = all.ToArray();
 
             _nodes = BuildNodes();
@@ -54,6 +56,26 @@ namespace Arena3Q.Core
 
         /// <summary>Path nodes around the forbidden zones (exposed for debugging and map tooling).</summary>
         public IReadOnlyList<Vector2> PathNodes => _nodes;
+
+        /// <summary>
+        /// The same field for flying units (spec §8): rivers do not block them, rectangular zones and the bounds do.
+        /// Built once on first use; the layout itself when there is no river.
+        /// </summary>
+        public BattlefieldLayout ForFlyers()
+        {
+            if (_forFlyers != null)
+                return _forFlyers;
+            var kept = new List<IObstacle>();
+            foreach (var obstacle in _extraObstacles)
+            {
+                if (!(obstacle is RiverObstacle))
+                    kept.Add(obstacle);
+            }
+            _forFlyers = kept.Count == _extraObstacles.Length
+                ? this
+                : new BattlefieldLayout(Bounds, SummonZone, _rectZones, kept, _maxUnitRadius);
+            return _forFlyers;
+        }
 
         public bool IsInsideBounds(Vector2 point) => Bounds.Contains(point);
 

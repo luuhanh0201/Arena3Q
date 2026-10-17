@@ -169,7 +169,7 @@ Thiết kế và bảng chỉ số (🟡): `docs/KeHoach/HeroProgression.md`.
   - Thắng, mất từ 2 tướng → 1 sao.
 - 🟡 Ngưỡng sao ở trên là mặc định, nằm trong `StageConfig` để chỉnh từng ải.
 
-### Quân địch: cấp bậc và kỹ năng (người dùng chốt 2026-10-17 · ⏳ code sau prototype)
+### Quân địch: cấp bậc và kỹ năng (người dùng chốt 2026-10-17 · đã có trong code 2026-10-17)
 Thiết kế từng loại địch theo chương (hình ảnh, chỉ số gợi ý, kỹ năng cụ thể): `docs/QuanDich/`.
 - ✅ Ba cấp: **Thường** (không kỹ năng) · **Tinh anh** (1 kỹ năng, có dấu hiệu nhận biết – viền sáng) · **Boss** (2–3 kỹ năng, đổi pha, **thanh máu riêng trên HUD**). 🟡 Kích thước, bán kính thân và hệ số máu theo bảng `docs/QuanDich/README.md` §1.
 - ✅ Kỹ năng địch **tự dùng khi hồi chiêu xong và có mục tiêu hợp lệ trong tầm** (không phí chiêu). Quân địch **không có thanh nộ**.
@@ -185,6 +185,16 @@ Thiết kế từng loại địch theo chương (hình ảnh, chỉ số gợi 
 - 🟡 Đặc tính bị động (không phải kỹ năng), ví dụ **sống lại một lần** khi chết (xác suất và % máu cấu hình được – Cương Thi).
 - ✅ (người dùng chốt 2026-10-17, mục 13 xung đột 1) **Khiêu khích** (Hộ Pháp Đồng Giáp): chỉ tác dụng lên đơn vị ta **không đang thi hành lệnh của người chơi** – tướng ở Idle / Advancing / Combat và lính đang giao chiến tự do – buộc chúng đánh kẻ khiêu khích trong thời gian hiệu lực. Tướng đang **Moving** (✅ IgnoreUntilDestination) hoặc **Attacking** (✅ đánh đúng mục tiêu được chỉ định) và đội lính đi theo lệnh đó **bỏ qua** khiêu khích. Lệnh mới của người chơi luôn thắng khiêu khích. Đơn vị bị khiêu khích có dấu nhận biết. Bán kính, thời gian: 🟡 dữ liệu kỹ năng (gợi ý r 2.5, 4 giây).
 - ✅ (người dùng chốt 2026-10-17, mục 13 xung đột 2) **Đơn vị bay** (cờ `flying` của quân địch, ví dụ Quỷ Hoả): đi qua được **sông** (`RiverObstacle`) ở bất cứ đâu, không cần cầu; vẫn bị **vùng cấm chữ nhật** (`RectObstacle`) và **biên bản đồ** chặn. Quân ta cận chiến vẫn đánh được khi nó trong tầm (khi nó ở trên sông thì chỉ đánh được nếu với tới từ bờ). Kéo / hất văng đơn vị bay vẫn theo vùng cấm như trên (được thả trên sông).
+- **Đã có trong code (2026-10-17, hình tạm):** quân địch 3 chương của `docs/QuanDich` (12 lính thường, 6 tinh anh, 3 boss, 16 kỹ năng) là dữ liệu trong `Assets/Arena3Q/Content/Enemies/` (ba lính chương 1 dùng lại asset cũ ở `Content/Troops/`, đổi tên thành Lâu La Đao / Lâu La Cung / Đại Hán Búa). Hai ải thử có boss: `Stage_Attack_C1_Boss` (boss gác thành, cấp địch 1) và `Stage_Defense_C3_Boss` (boss ở đợt cuối, cấp địch 19). Các chọn lựa 🟡 khi code (đổi được trong asset):
+  - Chỉ số trong asset là chỉ số **cấp 1**; chương 1 / 2 / 3 bắt đầu ở cấp 1 / 10 / 19, nên ở cấp đầu chương các con số bằng đúng bảng trong file chương.
+  - Kỹ năng địch dùng chung khối vùng / hiệu ứng với kỹ năng tướng; danh sách kỹ năng theo thứ tự ưu tiên; có **hồi chiêu đầu trận** (2–6 giây). Bị khống chế hoặc chết trong lúc cảnh báo: **huỷ, không vào hồi chiêu** (đề xuất trong `docs/QuanDich/Animation.md`). Trong lúc cảnh báo / vận chiêu (Cuồng Phủ Xoáy 1.5 giây, Kim Cương Hộ Thể 4 giây) quân địch đứng yên.
+  - "Trói" (Câu Hồn Tỏa) và "mê hoặc" (Mị Hoặc) tính là **choáng** (không đi, không đánh – đúng định nghĩa khống chế ở trên). Chống khoá cứng chỉ đếm choáng.
+  - **Khiêu khích** tính là khống chế: miễn khống chế chặn được. Kim Cương Hộ Thể là vùng quanh Hộ Pháp, mỗi 0.5 giây khiêu khích lại quân ta còn đứng trong bán kính 2.5 – nên lệnh mới xoá khiêu khích, nhưng tướng xong lệnh mà vẫn đứng trong vùng thì bị khiêu khích lại.
+  - Quân được gọi xuất hiện **quanh người gọi** (chưa chạy ra từ cổng trại / mép bản đồ như `Animation.md`); thuộc cùng đợt với người gọi (ải Thủ chưa "hết đợt" khi chúng còn sống). Phân thân Huyễn Ảnh: 10 % máu, 30 % sát thương của boss lúc gọi, không kỹ năng, không thanh máu boss.
+  - Tà Khí Phong Bạo: vùng r 3 bám boss tới hết trận, chậm 30 % và 10 % Công mỗi 0.5 giây; Khiên Tà Khí = 12.5 % máu tối đa của boss (= 1000 ở cấp đầu chương 2).
+  - Ngưu Ma Xung trúng mọi quân ta trên đoạn đã lao khi lao xong; Câu Hồn Tỏa trúng ngay khi hết 0.5 giây báo hiệu (chưa có xích bay).
+  - Đơn vị bay dùng một bản đồ đường đi riêng không có sông. Đường đi của mọi đơn vị chừa khoảng trống bằng **bán kính con địch lớn nhất của ải** (boss 0.8) để boss đi qua cầu không bị kẹt.
+  - Hình tạm: viền vàng = tinh anh, viền đỏ = boss, boss đổi màu khi sang pha 2; thanh máu boss dưới đồng hồ (ghi "Pha 2"); vùng cảnh báo đỏ; dấu đỏ trên quân bị khiêu khích. Vùng hình quạt tạm vẽ thành hình chữ nhật.
 
 ## 9. Bản đồ và camera
 Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng cấm, quy cách art): `docs/BanDo/MapSpecification.md` (🟡 đề xuất, chờ duyệt).
@@ -210,13 +220,13 @@ Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng
   - ⏳ Chưa có: hiệu ứng kỹ năng (nên mở kỹ năng theo cấp / sao mới chỉ là quy tắc), kinh nghiệm, mảnh tướng, lưu tiến trình.
 - `HeroDefinition`: heroId, tên, sprite/placeholder, máu, sát thương, tốc độ di chuyển, tầm đánh, **tốc đánh** (đòn/giây; hiện lưu dưới dạng `attackInterval` = 1 / tốc đánh), `reactionRange`, `aggroRange`, `idleBeforeAdvanceSeconds` (mặc định 5), `baseSquadSize`, `maxSquadSize`, `TroopDefinition` của đội lính, `leashRadius`.
 - `TroopDefinition`: máu, sát thương, tốc độ, tầm đánh, **tốc đánh** (đòn/giây; hiện lưu dưới dạng `attackInterval` = 1 / tốc đánh), `reactionRange`, `aggroRange`.
-- `EnemyDefinition` ⏳ (hiện quân địch dùng `TroopDefinition`): các trường của `TroopDefinition` + cấp bậc (Thường / Tinh anh / Boss), kích thước và bán kính thân, danh sách kỹ năng, pha 2 (ngưỡng máu, kỹ năng và chỉ số thay đổi), đặc tính bị động (sống lại…), cờ `flying` (bay qua sông), prefab hiển thị. `EnemySkillDefinition` có hiệu ứng **khiêu khích** (bán kính, thời gian; luật ở mục 8).
-- `EnemySkillDefinition` ⏳: kiểu (vùng tròn / hình quạt / đường thẳng / một mục tiêu / hỗ trợ / triệu hồi), cách chọn chỗ đánh, kích thước vùng, số vùng, sát thương, khống chế + thời lượng, hồi chiêu, hồi chiêu đầu trận, thời gian cảnh báo, quân được gọi + giới hạn.
+- `EnemyDefinition` (đã có, kế thừa `TroopDefinition`; lính thường không cấp bậc vẫn dùng được `TroopDefinition`): các trường của `TroopDefinition` + cấp bậc (Thường / Tinh anh / Boss), kích thước và bán kính thân, danh sách kỹ năng, pha 2 (ngưỡng máu, kỹ năng và chỉ số thay đổi), đặc tính bị động (sống lại…), cờ `flying` (bay qua sông), prefab hiển thị. `EnemySkillDefinition` có hiệu ứng **khiêu khích** (bán kính, thời gian; luật ở mục 8).
+- `EnemySkillDefinition` (đã có; phần vùng và hiệu ứng dùng chung `SkillAreaDefinition` với kỹ năng tướng): kiểu (vùng tròn / hình quạt / đường thẳng / một mục tiêu / hỗ trợ / triệu hồi), cách chọn chỗ đánh, kích thước vùng, số vùng, sát thương, khống chế + thời lượng, hồi chiêu, hồi chiêu đầu trận, thời gian cảnh báo, quân được gọi + giới hạn.
 - `StageConfig`: id ải, loại (`Attack` / `Defense`), kích thước và biên bản đồ, vùng cấm, thành ta và thành địch (máu, có bắn hay không), `summonZone`, `quickSummonPoints`, bố trí quân phòng thủ (ải Công), các đợt quân (ải Thủ), `timeLimit`, luật thua, ngưỡng sao, bộ thẻ thử nghiệm, `onHeroDeathTroopBehavior`, `allowResummonDeadHero`.
 - `BattleRuntimeState` (tạo mới mỗi trận): số tướng đã triệu hồi, tướng đang chọn, trạng thái và máu từng tướng/lính/thành, lệnh hiện tại và điểm đích đã lưu của từng tướng, đồng hồ, đợt hiện tại, kết quả và số sao.
 
 ## 11. Ngoài phạm vi prototype ⏳
-Màn chọn chủ tướng, kỹ năng chủ tướng, kỹ năng và cấp bậc quân địch (tinh anh, boss), kiếm thẻ (nhiệm vụ, sự kiện, cửa hàng), kinh nghiệm, mảnh tướng và giao diện nâng cấp, tài nguyên triệu hồi, PvP, đăng nhập thật (Google / Apple / tài khoản), backend, lưu tiến trình trên máy chủ, sảnh chính và bản đồ chương, animation và hiệu ứng thật. *(Đã làm ở bản thử: chỉ số theo cấp / sao / phe, luồng vào game với "Chơi ngay" và hồ sơ trên máy – mục 2.)*
+Kiếm thẻ (nhiệm vụ, sự kiện, cửa hàng), kinh nghiệm, mảnh tướng và giao diện nâng cấp, tài nguyên triệu hồi, PvP, đăng nhập thật (Google / Apple / tài khoản), backend, lưu tiến trình trên máy chủ, sảnh chính và bản đồ chương, animation và hiệu ứng thật. * *(Đã làm ở bản thử: chọn chủ tướng, chỉ số theo cấp / sao / phe, kỹ năng tướng, cấp bậc và kỹ năng quân địch, luồng vào game với "Chơi ngay" và hồ sơ trên máy – mục 2, 3, 8.)*
 
 ## 12. Tiêu chí nghiệm thu prototype
 - [ ] Mở scene Battle, chạy không lỗi compile.

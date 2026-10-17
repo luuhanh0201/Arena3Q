@@ -47,6 +47,10 @@ namespace Arena3Q.Gameplay
                 return;
             }
             var intent = _brain.Tick(Squad.Mode, this, deltaTime);
+            // Taunt (spec §8 ✅): soldiers fighting freely go for the taunter; marching or focusing an order, they do not.
+            var taunter = TauntSource;
+            if (taunter != null && EnemyRules.SquadFollowsTaunt(Squad.Mode))
+                intent = HeroIntent.Engage(taunter.Id, mayChase: true);
             ConsumeDamageFlags();
             Execute(intent, deltaTime);
         }

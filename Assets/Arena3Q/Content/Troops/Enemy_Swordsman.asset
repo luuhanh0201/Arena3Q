@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49c3c4e62cf6aac0ec5deab5e4602ecb, type: 3}
+  m_Script: {fileID: 11500000, guid: 29283196bcc9f574db0dba5632b65e7c, type: 3}
   m_Name: Enemy_Swordsman
-  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.TroopDefinition
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.EnemyDefinition
   troopId: enemy_swordsman
-  displayName: "Ki\u1EBFm binh \u0111\u1ECBch"
+  displayName: "Lâu La Đao"
   sprite: {fileID: 0}
   placeholderColor: {r: 0.6, g: 0.12, b: 0.15, a: 1}
   stats:

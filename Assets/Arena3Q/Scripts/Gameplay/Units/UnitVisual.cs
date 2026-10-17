@@ -12,7 +12,9 @@ namespace Arena3Q.Gameplay
         private readonly SpriteRenderer _healthBack;
         private readonly SpriteRenderer _healthFill;
         private readonly SpriteRenderer _ring;
-        private readonly Color _color;
+        private Color _color;
+        private SpriteRenderer _outline;
+        private SpriteRenderer _taunt;
         private readonly float _barWidth;
         private float _flash;
 
@@ -57,13 +59,37 @@ namespace Arena3Q.Gameplay
 
         public void Flash() => _flash = FlashSeconds;
 
+        /// <summary>Rank outline behind the body: golden for elites, red for bosses (spec §8 ✅ "viền sáng").</summary>
+        public void SetRankOutline(Color color)
+        {
+            var size = _body.transform.localScale.x * 1.3f;
+            if (_outline == null)
+                _outline = PlaceholderArt.CreateRenderer("RankOutline", _root, PlaceholderArt.Circle, color, new Vector2(size, size), -1);
+            _outline.color = color;
+        }
+
+        /// <summary>Changes the body colour for good (boss phase 2).</summary>
+        public void SetTint(Color color)
+        {
+            _color = color;
+            _body.color = color;
+        }
+
         private SpriteRenderer _stun;
         private SpriteRenderer _shield;
         private bool _weakened;
 
         /// <summary>Status markers: spinning stars when stunned, a ring while shielded, a dim tint when slowed or weakened.</summary>
-        public void SetStatus(bool stunned, bool shielded, bool weakened)
+        public void SetStatus(bool stunned, bool shielded, bool weakened, bool taunted = false)
         {
+            if (taunted && _taunt == null)
+            {
+                _taunt = PlaceholderArt.CreateRenderer("Taunt", _root, PlaceholderArt.Circle, new Color(1f, 0.15f, 0.1f, 0.95f),
+                    new Vector2(0.22f, 0.22f), 3);
+                _taunt.transform.localPosition = new Vector3(0.3f, _body.transform.localScale.x * 0.5f + 0.35f, 0f);
+            }
+            if (_taunt != null)
+                _taunt.enabled = taunted;
             var size = _body.transform.localScale.x;
             if (stunned && _stun == null)
             {
@@ -112,6 +138,8 @@ namespace Arena3Q.Gameplay
             _healthFill.sortingOrder = order + 2;
             if (_ring != null)
                 _ring.sortingOrder = order - 1;
+            if (_outline != null)
+                _outline.sortingOrder = order - 1;
         }
     }
 }

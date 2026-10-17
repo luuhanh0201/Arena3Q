@@ -30,7 +30,7 @@ namespace Arena3Q.Editor
             {
                 var stages = BuildAssets(out var progression);
                 BuildScene(stages, progression);
-                EnsureBattleSceneReferences(progression);
+                EnsureBattleSceneReferences(progression, stages);
                 AssetDatabase.SaveAssets();
                 var frontend = FrontendContentBuilder.Build(progression, stages[0], stages[1]);
                 AssetDatabase.SaveAssets();
@@ -91,11 +91,11 @@ namespace Arena3Q.Editor
 
             var soldier = Troop("Troop_Soldier", "soldier", "Lính", new Color(0.85f, 0.85f, 0.9f),
                 120f, 12f, 2.7f, 0.6f, 1.0f, 0.6f, 4.5f);
-            var swordsman = Troop("Enemy_Swordsman", "enemy_swordsman", "Kiếm binh địch", new Color(0.6f, 0.12f, 0.15f),
+            var swordsman = Troop<EnemyDefinition>("Enemy_Swordsman", "enemy_swordsman", "Lâu La Đao", new Color(0.6f, 0.12f, 0.15f),
                 160f, 16f, 2.2f, 0.6f, 1.0f, 0.6f, 5f);
-            var archer = Troop("Enemy_Archer", "enemy_archer", "Cung thủ địch", new Color(0.9f, 0.45f, 0.15f),
+            var archer = Troop<EnemyDefinition>("Enemy_Archer", "enemy_archer", "Lâu La Cung", new Color(0.9f, 0.45f, 0.15f),
                 90f, 13f, 2.2f, 4.5f, 1.3f, 0.7f, 6f);
-            var brute = Troop("Enemy_Brute", "enemy_brute", "Lực sĩ địch", new Color(0.45f, 0.15f, 0.45f),
+            var brute = Troop<EnemyDefinition>("Enemy_Brute", "enemy_brute", "Đại Hán Búa", new Color(0.45f, 0.15f, 0.45f),
                 600f, 35f, 1.6f, 0.7f, 1.5f, 0.7f, 5f);
 
             // The prototype's placeholder lord (spec §2: "Prototype dùng một chủ tướng placeholder").
@@ -205,7 +205,10 @@ namespace Arena3Q.Editor
                 }
             });
 
-            return new[] { attack, defense };
+            // Chapters 1–3 of enemies (docs/QuanDich) and two stages with a boss; the templates must be on disk to be copied.
+            AssetDatabase.SaveAssets();
+            var bosses = EnemyContentBuilder.Build(swordsman, archer, brute, attack, defense);
+            return new[] { attack, defense, bosses.AttackBossStage, bosses.DefenseBossStage };
         }
 
         // Standard size-M layout (docs/BanDo/MapSpecification.md), measured from the map art map1.png so logic and art match:
@@ -337,7 +340,12 @@ namespace Arena3Q.Editor
 
         private static TroopDefinition Troop(string file, string id, string displayName, Color color, float health,
             float damage, float speed, float range, float interval, float reaction, float aggro) =>
-            GetOrCreate<TroopDefinition>($"{ContentRoot}/Troops/{file}.asset", so =>
+            Troop<TroopDefinition>(file, id, displayName, color, health, damage, speed, range, interval, reaction, aggro);
+
+        // Chapter-1 soldiers (docs/QuanDich/Chuong1_SonTac.md) are normal-rank EnemyDefinitions.
+        internal static T Troop<T>(string file, string id, string displayName, Color color, float health,
+            float damage, float speed, float range, float interval, float reaction, float aggro) where T : TroopDefinition =>
+            GetOrCreate<T>($"{ContentRoot}/Troops/{file}.asset", so =>
             {
                 so.FindProperty("troopId").stringValue = id;
                 so.FindProperty("displayName").stringValue = displayName;
@@ -443,7 +451,7 @@ namespace Arena3Q.Editor
                 }
             });
 
-        private static void SetStats(SerializedProperty stats, float health, float damage, float speed, float range,
+        internal static void SetStats(SerializedProperty stats, float health, float damage, float speed, float range,
             float interval, float reaction, float aggro)
         {
             stats.FindPropertyRelative("maxHealth").floatValue = health;
@@ -483,25 +491,47 @@ namespace Arena3Q.Editor
         // ---- Scene ----
 
         /// <summary>Wires assets added after the Battle scene was created (fills empty references only).</summary>
-        private static void EnsureBattleSceneReferences(ProgressionConfig progression)
+        private static void EnsureBattleSceneReferences(ProgressionConfig progression, StageConfig[] stages)
         {
             // OpenScene(Single) can unload saved assets nothing references: reload by path afterwards.
             var progressionPath = AssetDatabase.GetAssetPath(progression);
+            var stagePaths = Array.ConvertAll(stages, s => AssetDatabase.GetAssetPath(s));
             var scene = EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
             progression = AssetDatabase.LoadAssetAtPath<ProgressionConfig>(progressionPath);
             var battle = UnityEngine.Object.FindAnyObjectByType<BattleController>();
             if (battle == null)
                 throw new InvalidOperationException($"{ScenePath} has no BattleController.");
             var so = new SerializedObject(battle);
+            var changed = false;
             var property = so.FindProperty("progression");
-            if (property.objectReferenceValue != null)
+            if (property.objectReferenceValue == null)
+            {
+                property.objectReferenceValue = progression;
+                changed = true;
+                Debug.Log($"[Arena3Q] {ScenePath}: progression config assigned.");
+            }
+
+            // Stages added to the content later (boss stages) join the scene's list, after the ones it has.
+            var list = so.FindProperty("stages");
+            var present = new HashSet<UnityEngine.Object>();
+            for (var i = 0; i < list.arraySize; i++)
+                present.Add(list.GetArrayElementAtIndex(i).objectReferenceValue);
+            foreach (var path in stagePaths)
+            {
+                var stage = AssetDatabase.LoadAssetAtPath<StageConfig>(path);
+                if (stage == null || present.Contains(stage))
+                    continue;
+                list.arraySize++;
+                list.GetArrayElementAtIndex(list.arraySize - 1).objectReferenceValue = stage;
+                changed = true;
+                Debug.Log($"[Arena3Q] {ScenePath}: stage {stage.name} added.");
+            }
+            if (!changed)
                 return;
-            property.objectReferenceValue = progression;
             so.ApplyModifiedPropertiesWithoutUndo();
             EditorSceneManager.MarkSceneDirty(scene);
             if (!EditorSceneManager.SaveScene(scene))
                 throw new InvalidOperationException($"Could not save {ScenePath}.");
-            Debug.Log($"[Arena3Q] {ScenePath}: progression config assigned.");
         }
 
         private static void BuildScene(StageConfig[] stages, ProgressionConfig progression)
