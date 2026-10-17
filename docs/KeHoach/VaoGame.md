@@ -21,7 +21,7 @@ Liên quan: cấp, kỹ năng học theo cấp, sao, phe – `docs/KeHoach/HeroP
 | 6 | **Chọn máy chủ** | dùng máy chủ đề xuất hoặc chọn khác → Vào game | §8 | UI kit §7 |
 | 7 | **Chọn chủ tướng** → xác nhận → **đặt tên** | chọn 1 trong 4 (cố định cả game) | §9 | `bg_lord_select`; chân dung và splash đã có prompt |
 | 8 | **Cốt truyện mở đầu** | chạm để qua từng câu, có nút **Bỏ qua** | 6 khung tranh + hộp thoại | §10 |
-| 9 | **Ải hướng dẫn 1-1** "Giải vây Thanh Thạch" | chơi | ải Thủ dễ (ít quân địch); dạy kéo thẻ triệu hồi, chạm đất ra lệnh đi, vuốt vào địch ra lệnh đánh | bản đồ hiện có |
+| 9 | **Ải hướng dẫn 1-1** "Giải vây Thanh Thạch" | chơi | ải Thủ dễ (ít quân địch); đội hình: chủ tướng + **Giáp Sĩ 3★** (có tuyệt kỹ) + Xạ Thủ 1★; dạy kéo thẻ triệu hồi, chạm đất ra lệnh đi, vuốt vào địch ra lệnh đánh | bản đồ hiện có |
 | 10 | Thắng ải → chủ tướng **lên Lv2** | đọc thông báo | "Học được kỹ năng nội tại!" – chủ tướng bắt đầu chưa có kỹ năng (`docs/KeHoach/HeroProgression.md` §6) | icon kỹ năng (đã có prompt) |
 
 **Người chơi cũ:** intro (bỏ qua được) → tự đăng nhập → màn **"Chạm để vào game"** với máy chủ lần trước → sảnh chính (⏳ chưa thiết kế).
@@ -380,9 +380,9 @@ Instrumental only, no vocals. Ancient Chinese storytelling music: a lonely erhu 
 ---
 
 ## 13. Lưu ý và điểm cần chốt
-1. ⚠️ **Thời điểm đặt tên** (spec §13 mục 5): spec §2 ✅ ghi chủ tướng mang "tên người chơi **đặt khi đăng nhập**", nhưng đăng nhập Google / Chơi ngay không có bước gõ tên. Đề xuất: đặt tên **ngay sau khi chọn chủ tướng** (vẫn trong lần vào game đầu tiên), **mỗi máy chủ một tên**.
+1. ✅ **Thời điểm đặt tên** (đã chốt 2026-10-17, spec §2): đặt tên **ngay sau khi chọn chủ tướng** trong lần vào game đầu tiên, **mỗi máy chủ một tên**.
 2. **Đăng nhập với Apple** trên iOS (App Store 4.8) và **xoá tài khoản trong game** (App Store, Google Play) là bắt buộc khi phát hành.
-3. **Tuyệt kỹ ở các ải đầu**: chủ tướng Lv15 mới có tuyệt kỹ, tướng 1★ chưa có → ải hướng dẫn không dạy được chạm thẻ dùng tuyệt kỹ. Đề xuất tặng **Giáp Sĩ 3★** (`HeroProgression.md` §13 câu 2).
+3. ✅ **Tuyệt kỹ ở các ải đầu** (đã chốt 2026-10-17): tặng **Giáp Sĩ 3★** ở ải hướng dẫn để dạy chạm thẻ dùng tuyệt kỹ (`docs/KeHoach/HeroProgression.md` §13).
 4. **Sau cốt truyện và ải 1-1** người chơi đi đâu: sảnh chính / bản đồ chương chưa thiết kế (⏳).
 5. Đăng nhập, máy chủ, lưu tiến trình cần **backend** (⏳); prototype chỉ có Chơi ngay + một máy chủ giả.
 6. Nếu phát hành ở Việt Nam, game có máy chủ và đăng nhập là game trực tuyến: cần giấy phép và tuân thủ quy định quản lý trò chơi điện tử trên mạng (hiện là Nghị định 147/2024/NĐ-CP – ví dụ xác thực tài khoản, giới hạn thời gian chơi của người dưới 18 tuổi). Cần kiểm tra lại khi chuẩn bị phát hành.

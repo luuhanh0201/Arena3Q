@@ -17,7 +17,7 @@ Phiên bản: v0.1 · 2026-10-17 · Trạng thái: **🟡 thiết kế chờ duy
 | | **Chủ tướng** | **Tướng khởi đầu** | **Danh tướng** (sau này) |
 |---|---|---|---|
 | Gồm | Cung thủ, Kiếm sĩ, Mưu sĩ, Thống soái | Xạ Thủ, Kỵ Binh, Giáp Sĩ, Đao Khách | Lữ Bố, Quan Vũ, Tào Tháo, Chu Du… |
-| Có được | chọn khi vào game (spec §2 ✅) | tặng trong cốt truyện chương 1 | gom mảnh (nhiệm vụ, sự kiện, cửa hàng – ⏳) |
+| Có được | chọn khi vào game (spec §2 ✅) | tặng trong cốt truyện chương 1 (Giáp Sĩ **3★** ở ải hướng dẫn, còn lại 1★) | gom mảnh (nhiệm vụ, sự kiện, cửa hàng – ⏳) |
 | Phe | không | không | Thục / Ngụy / Ngô / Quần |
 | Cấp | 1–60 | 1–60 | 1–60 |
 | Mở và nâng kỹ năng | **theo cấp** + điểm kỹ năng (§6) | **theo sao** (§7) | **theo sao** (§7) |
@@ -103,7 +103,7 @@ DPS đơn mục tiêu của Mưu sĩ thấp vì kỹ năng của Mưu sĩ **trú
 | Kiểm tra S × (1 + vai trò) ở Lv60 | 1.00 | 1.00 | 1.00 | 1.00 |
 
 ### 5.3 Đột phá chủ tướng 🟡
-Chủ tướng không có sao, nên để **ngang danh tướng 5★**, chủ tướng **đột phá** khi đạt **Lv15, 30, 45, 60**: mỗi lần **+10 % Máu và Công** (cộng dồn, tối đa +40 % → sức mạnh ×1.4, bằng danh tướng 5★). Lv15 cũng là lúc học tuyệt kỹ → một mốc lớn. Đột phá tự động hay cần vật phẩm: câu hỏi §13.
+Chủ tướng không có sao, nên để **ngang danh tướng 5★**, chủ tướng **đột phá** khi đạt **Lv15, 30, 45, 60**: mỗi lần **+10 % Máu và Công** (cộng dồn, tối đa +40 % → sức mạnh ×1.4, bằng danh tướng 5★). Lv15 cũng là lúc học tuyệt kỹ → một mốc lớn. Đột phá **tự động khi đạt cấp** (đã chốt, §13).
 
 ---
 
@@ -223,9 +223,12 @@ Sao và đột phá làm người chơi mạnh hơn đường chuẩn (tối đa
 
 ---
 
-## 13. Câu hỏi còn mở
-1. **Đột phá chủ tướng** (§5.3): tự động khi đạt cấp, hay cần vật phẩm / nhiệm vụ cốt truyện?
-2. **Tướng khởi đầu tặng ở mấy sao?** Chủ tướng tới Lv15 mới có tuyệt kỹ, tướng 1★ chưa có tuyệt kỹ → những ải đầu **không ai dùng được tuyệt kỹ**, người chơi chưa học thao tác chạm thẻ. Đề xuất: tặng **Giáp Sĩ 3★** ở ải hướng dẫn (có tuyệt kỹ để dạy), các tướng khởi đầu khác 1★.
-3. **Thống soái "+2 lính"**: theo mô hình, đội lính ≈ một nửa sức mạnh của tướng nên nội tại này rất mạnh. Nếu chơi thử thấy Thống soái quá mạnh, đề xuất giảm còn **+1 lính** trước khi giảm chỉ số.
+## 13. Câu hỏi
+Đã chốt (người dùng đồng ý đề xuất, 2026-10-17):
+1. **Đột phá chủ tướng** (§5.3): **tự động khi đạt cấp** (🟡 là tuỳ chọn cấu hình – sau này đổi sang cần vật phẩm / nhiệm vụ được mà không sửa code).
+2. **Tướng khởi đầu tặng ở ải hướng dẫn: Giáp Sĩ 3★** (có tuyệt kỹ để dạy thao tác chạm thẻ); các tướng khởi đầu khác 1★.
+3. **Thống soái "+2 lính"** giữ nguyên; nếu chơi thử thấy quá mạnh thì giảm còn **+1 lính** trước khi giảm chỉ số (số lính thêm là tuỳ chọn cấu hình).
+
+Còn mở:
 4. **Độ hiếm danh tướng** (ví dụ Lữ Bố mạnh hơn tướng ít tên tuổi): hiện mọi danh tướng cùng ngân sách – ⏳.
-5. **Kinh nghiệm cần để lên cấp** và nguồn kinh nghiệm: ⏳ thiết kế cùng phần thưởng ải.
+5. **Kinh nghiệm cần để lên cấp** và nguồn kinh nghiệm: ⏳ thiết kế cùng phần thưởng ải. Tạm thời: thắng ải hướng dẫn thì chủ tướng lên **Lv2** (§6, `docs/KeHoach/VaoGame.md` §0).
