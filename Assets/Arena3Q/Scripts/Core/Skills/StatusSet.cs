@@ -231,7 +231,7 @@ namespace Arena3Q.Core
 
         /// <summary>
         /// May an auto-cast skill start now? Skills that move the hero do not auto-cast while it walks to a move order
-        /// (spec §13 conflict 3, proposed default; <paramref name="castWhileMoving"/> turns it off per skill).
+        /// (spec §3, settled 2026-10-17; <paramref name="castWhileMoving"/> lets a skill opt out).
         /// </summary>
         public static bool CanAutoCast(bool unlocked, float cooldownLeft, bool busy, bool stunned, bool movingOnOrder,
             bool movesCaster, bool castWhileMoving) =>

@@ -36,7 +36,7 @@ Chỉ số máu / sát thương / tầm / tốc chạy / tốc đánh lấy từ
 
 Cách dùng như chủ tướng (`LordHeroes.md` §2): kỹ năng 2, 3 **tự dùng, tự nhắm** (mục tiêu đang đánh → cụm địch đông nhất trong tầm → thành địch; không có mục tiêu thì chờ). Tuyệt kỹ: **chạm** thẻ = tự nhắm, **kéo** thẻ = tự chọn hướng / điểm (kỹ năng không có hướng thì kéo cũng như chạm). HC = hồi chiêu (giây). Mọi con số là gợi ý để chơi thử.
 
-**Tránh xung đột đã biết:** không có kỹ năng 2/3 nào làm **tướng dịch chuyển** (spec §13 mục 3) và không có **khiêu khích** (spec §13 mục 1). Dịch chuyển chỉ có ở tuyệt kỹ của Kỵ Binh – do người chơi bấm, theo luật vùng cấm.
+**Tránh xung đột đã biết:** không có kỹ năng 2/3 nào làm **tướng dịch chuyển** (luật đã chốt: spec §3 – không tự dùng khi đang Moving) và không có **khiêu khích** (spec §13 mục 1). Dịch chuyển chỉ có ở tuyệt kỹ của Kỵ Binh – do người chơi bấm, theo luật vùng cấm.
 
 ### 2.1 Xạ Thủ
 | Loại | Tên | Hiệu ứng | Cách dùng | HC (s) / Nộ |
@@ -256,5 +256,5 @@ Tên VFX dùng tiền tố riêng (`hunter`, `blade`) để **không trùng** v�
 ## 5. Câu hỏi còn mở
 1. ⚠️ **Tên trùng** (spec §13 mục 4): đổi tướng thường "Cung Thủ" → **Xạ Thủ**, "Kiếm Sĩ" → **Đao Khách**? Hoặc bạn đặt tên khác.
 2. **Kỵ Binh** to hơn tướng thường (hình 🟡 1.7 × 1.7 thay vì 1.2 × 1.6): giữ thân logic bán kính 0.45 như mọi tướng, hay tăng lên 0.6?
-3. **Khống chế của quân ta lên boss** (choáng của Thuẫn Kích, Mã Đạp, Xung Phong; hất văng của Thiên Quân Đột Kích, Đông Phong, Thiết Kỵ Xung Phong): spec chưa nói. Đề xuất 🟡: boss **không bị hất văng / đẩy lùi**, thời lượng choáng **giảm 50 %**; tinh anh chịu đủ.
+3. ~~Khống chế của quân ta lên boss~~ – **đã chốt 2026-10-17**: boss chịu **đủ** choáng, hất văng / đẩy lùi và mọi hiệu ứng như quân địch khác (spec §8).
 4. Chỉ số ở bảng §1 giữ nguyên theo asset; cân bằng để giai đoạn sắp phát hành (spec §13 ⏳).

@@ -153,7 +153,7 @@ namespace Arena3Q.Tests.EditMode
             Assert.That(SkillMath.CanAutoCast(true, 0f, true, false, false, false, false), Is.False, "casting");
             Assert.That(SkillMath.CanAutoCast(true, 0f, false, true, false, false, false), Is.False, "stunned");
             Assert.That(SkillMath.CanAutoCast(true, 0f, false, false, true, false, false), Is.True, "moving, not a dash");
-            Assert.That(SkillMath.CanAutoCast(true, 0f, false, false, true, true, false), Is.False, "conflict 3 default");
+            Assert.That(SkillMath.CanAutoCast(true, 0f, false, false, true, true, false), Is.False, "spec §3: dash skills wait while moving");
             Assert.That(SkillMath.CanAutoCast(true, 0f, false, false, true, true, true), Is.True, "per-skill switch");
         }
     }

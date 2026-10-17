@@ -83,6 +83,6 @@ Cách dùng (✅ spec §3 "Kỹ năng trên thẻ"): **kỹ năng 2 và 3 tự d
 ## 4. Câu hỏi còn mở
 1. Có muốn bộ kỹ năng nào thay đổi (ví dụ Mưu sĩ thiên về hồi máu thay vì khống chế)?
 2. Tốc đánh gợi ý ở bảng §1 (0.9 / 1.4 / 0.8 / 1.0 đòn/giây) – để chơi thử, cân bằng sau (spec §13 ⏳).
-3. ⚠️ **Phi Ảnh Đột Kích** (Kiếm sĩ, kỹ năng 2 tự dùng, lướt tới mục tiêu) xung đột với ✅ IgnoreUntilDestination khi tướng đang Moving – đề xuất: kỹ năng làm tướng dịch chuyển không tự dùng khi đang Moving (spec §13 mục 3).
+3. ~~Phi Ảnh Đột Kích khi đang Moving~~ – **đã chốt 2026-10-17**: kỹ năng làm tướng dịch chuyển không tự dùng khi đang Moving (spec §3, §13 mục 3).
 
 Đã trả lời (2026-10-17): nộ chỉ tính sát thương do tướng gây ra (tạm thời); không giữ nộ khi chết / sang trận sau; chạm thẻ khi chưa đủ nộ hiện "kỹ năng chưa thể sử dụng"; kỹ năng 1 là nội tại, kỹ năng 2 → 3 tự dùng theo thứ tự ưu tiên.

@@ -116,7 +116,7 @@ Bộ xương **đầy đủ** như tướng + phần riêng; PSD cao ~420 px (h�
 | `idle`, `run`, `attack` | như tướng | `attack`: `Hit` @ 0.4, tua theo tốc đánh |
 | `hit` | – | boss **không giật**, chỉ nháy trắng |
 | `die` | 2.0 s | ngã chậm, nổ khói lớn, `ko` |
-| `stunned` | 0.6 s | chỉ dùng nếu boss chịu choáng (câu hỏi `docs/Tuong/NormalHeroes.md` §5 mục 3) |
+| `stunned` | 0.6 s | bắt buộc: boss chịu choáng như mọi quân địch (spec §8, chốt 2026-10-17) |
 | `skillN_windup` / `skillN_cast` | – | mục 0.3 |
 | **`phase2`** | 1.5 s | khi máu < 🟡 50 % (spec §8 ✅ "có hiệu ứng nhận biết"); 🟡 trong lúc chạy clip boss không đánh, không dùng kỹ năng, **vẫn nhận sát thương**; `vfx_enemy_common`: sóng đỏ sẫm |
 

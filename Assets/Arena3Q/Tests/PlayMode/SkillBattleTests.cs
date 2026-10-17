@@ -175,7 +175,7 @@ namespace Arena3Q.Tests.PlayMode
             Assert.That(_battle.MoveSelectedHero(hero.Position + new Vector2(0f, 3f)).Accepted, Is.True);
             Run(0.5f);
             Assert.That(hero.State, Is.EqualTo(HeroState.Moving));
-            Assert.That(used, Is.Empty, "Phi Ảnh waits while the hero walks to its move order (spec §13 conflict 3)");
+            Assert.That(used, Is.Empty, "Phi Ảnh waits while the hero walks to its move order (spec §3)");
 
             Assert.That(_battle.AttackWithHero(hero.Id, enemy).Accepted, Is.True);
             Run(2f, () => used.Count > 0);

@@ -56,7 +56,7 @@ namespace Arena3Q.Data
         [SerializeField] private CastCondition condition = CastCondition.HasTarget;
         [SerializeField] private CasterMove casterMove = CasterMove.None;
         [SerializeField, Min(0f)] private float moveDistance;
-        [Tooltip("Skills that move the hero: also auto-cast while it walks to a move order (spec §13 conflict 3; off = proposal).")]
+        [Tooltip("Skills that move the hero: also auto-cast while it walks to a move order (spec §3: off = settled rule, the hero keeps walking).")]
         [SerializeField] private bool autoCastWhileMoving;
 
         [Header("Area")]
