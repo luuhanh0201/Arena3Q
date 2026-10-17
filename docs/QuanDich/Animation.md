@@ -84,7 +84,7 @@ Lính thường dùng **bộ xương đơn giản ~10 mảnh** (`README.md` §3)
 | 3 | Thạch Tinh | T1L | melee_heavy (đấm hai tay) | – | `vfx_c3_basic`: mảnh đá + tinh thể tím |
 
 - **Cương Thi sống lại** (🟡 30 %): `die` dừng ở tư thế nằm, 1.0 s sau chạy `revive` (bật thẳng dậy như lò xo, lá bùa loé sáng) – VFX `vfx_c3_revive`. Không sống lại thì poof như thường.
-- **Quỷ Hoả** bay hay không: chờ chốt (spec §13 mục 2) – animation không đổi, chỉ khác luật đi.
+- **Quỷ Hoả** là đơn vị **bay** (đã chốt 2026-10-17, spec §8): qua sông không cần cầu – animation không đổi, chỉ khác luật đi.
 - Yêu quái chương 3 chết bằng **khói tím** (`vfx_c3_basic`) thay khói xám.
 
 ---
@@ -98,7 +98,7 @@ Bộ xương **đầy đủ như tướng** (`docs/Tuong/LordAnimations.md`: tay
 | 1 | **Đầu Mục Song Phủ** · Cuồng Phủ Xoáy | khom người, hai rìu bắt chéo, vai xoay lấy đà, `shout` · vùng đỏ **tròn r 1.8** quanh mình | 1.5 s xoay tròn tại chỗ, hai rìu dang rộng | @ 0 / 0.25 / … / 1.25 (6 nhịp) | `vfx_c1_axes`: vòng chém đỏ đen @ `root` |
 | 1 | **Quân Sư Sơn Trại** · đánh thường | – | – | `Hit` @ 0.4: ném phi tiêu (đạn **15**) | `vfx_c1_advisor`: phi tiêu |
 | 1 | **Quân Sư Sơn Trại** · Rượu Mạnh Tiếp Sức (không cảnh báo) | – | 0.9 s: giơ hồ lô uống một ngụm rồi vẩy rượu lên trời, cười | @ 0.6 | `vfx_c1_advisor`: giọt rượu, vòng cam ấm r 4, mũi tên đỏ trên quân được tăng 5 s |
-| 2 | **Hộ Pháp Đồng Giáp** · Kim Cương Hộ Thể (không cảnh báo) | – | 0.5 s giơ khiên, khom gối → giữ clip **`skill_hold`** (lặp) suốt 4 s | @ 0.3 | `vfx_c2_guardian`: vòm vàng bát quái 4 s; ⚠️ dấu khiêu khích trên quân ta **chỉ làm nếu** luật khiêu khích được chốt (spec §13 mục 1) |
+| 2 | **Hộ Pháp Đồng Giáp** · Kim Cương Hộ Thể (không cảnh báo) | – | 0.5 s giơ khiên, khom gối → giữ clip **`skill_hold`** (lặp) suốt 4 s | @ 0.3 | `vfx_c2_guardian`: vòm vàng bát quái 4 s; dấu khiêu khích (mặt giận đỏ) trên quân ta bị khiêu khích (luật đã chốt, spec §8) |
 | 2 | **Đại Phương Sư** · đánh thường | – | – | `Hit` @ 0.4: tia sét nhỏ (đạn **30**, gần như tức thì) | `vfx_c2_sorcerer`: tia sét ngang |
 | 2 | **Đại Phương Sư** · Thiên Lôi Phù | chĩa kiếm gỗ đào lên trời, bùa bay vòng quanh · **3 vùng tròn r 1.2** tại quân ta | 0.5 s chém kiếm xuống | @ 0.15 | `vfx_c2_sorcerer`: lá bùa lơ lửng trên mỗi vùng → sét đánh xuống, đất cháy xém; sao choáng 1 s |
 | 3 | **Ngưu Đầu** · Ngưu Ma Xung | cào chân, khịt mũi, cúi đầu chĩa sừng · **vạch đỏ thẳng dài 5** (rộng 1.2) | 0.8 s lao theo vạch (code đẩy vị trí), dừng, lắc đầu | @ 0 (bắt đầu lao, trúng theo đường) | `vfx_c3_ox`: vệt bụi, va chạm sừng, vệt hất văng |

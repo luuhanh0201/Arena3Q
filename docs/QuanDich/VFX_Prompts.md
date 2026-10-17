@@ -80,9 +80,9 @@ A set of separate VFX texture elements for yellow-turban cult attacks, evenly sp
 ```
 Stylised 3D-rendered game visual effects matching the look of the attached images (soft, clean, mobile game quality), glowing, no characters, no text, no watermark.
 A set of separate VFX texture elements for a bronze guardian shield skill, evenly spaced on a transparent background, nothing overlapping:
-1) a translucent golden-bronze dome bubble with a faint bagua pattern on its surface, seen from the front at a slight angle, 2) a golden bagua circle seen from directly above (eight trigram marks around a yin-yang centre), 3) a small bright golden ping spark (a hit bouncing off the dome).
+1) a translucent golden-bronze dome bubble with a faint bagua pattern on its surface, seen from the front at a slight angle, 2) a golden bagua circle seen from directly above (eight trigram marks around a yin-yang centre), 3) a small bright golden ping spark (a hit bouncing off the dome), 4) a small red angry-face mark to float above a taunted unit.
 ```
-⚠️ Nếu luật **khiêu khích** được chốt (spec §13 mục 1), thêm mảnh `4) a small red angry-face mark to float above a taunted unit` vào prompt trên.
+Mảnh 4 là dấu **khiêu khích** (luật đã chốt 2026-10-17, spec §8): chỉ hiện trên quân ta thật sự bị khiêu khích.
 
 ### c2-3. Đại Phương Sư – tia sét + Thiên Lôi Phù (3 vùng r 1.2, sét, choáng 1 giây)
 Đính kèm: `chutuong1.png` + `c2_elite_sorcerer_sheet.png` · Lưu: `vfx_c2_sorcerer_sheet.png`

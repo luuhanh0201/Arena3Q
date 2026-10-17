@@ -183,7 +183,8 @@ Thiết kế từng loại địch theo chương (hình ảnh, chỉ số gợi 
 - ✅ **Boss đổi pha** một lần khi máu xuống dưới 🟡 50 %: có hiệu ứng nhận biết, thay/thêm kỹ năng và chỉ số theo dữ liệu.
 - ✅ **Vị trí boss**: ải Công – đứng gác trước thành địch như quân phòng thủ (luật `guardRadius` ở trên); ải Thủ – xuất hiện ở **đợt cuối**. Điều kiện thắng/thua của ải **không đổi** (ải Công thắng khi phá thành dù boss còn sống; ải Thủ thắng khi trụ hết giờ / hết đợt).
 - 🟡 Đặc tính bị động (không phải kỹ năng), ví dụ **sống lại một lần** khi chết (xác suất và % máu cấu hình được – Cương Thi).
-- ⚠️ Chưa chốt vì xung đột với luật đã có: **khiêu khích** và **đơn vị bay** – xem mục 13.
+- ✅ (người dùng chốt 2026-10-17, mục 13 xung đột 1) **Khiêu khích** (Hộ Pháp Đồng Giáp): chỉ tác dụng lên đơn vị ta **không đang thi hành lệnh của người chơi** – tướng ở Idle / Advancing / Combat và lính đang giao chiến tự do – buộc chúng đánh kẻ khiêu khích trong thời gian hiệu lực. Tướng đang **Moving** (✅ IgnoreUntilDestination) hoặc **Attacking** (✅ đánh đúng mục tiêu được chỉ định) và đội lính đi theo lệnh đó **bỏ qua** khiêu khích. Lệnh mới của người chơi luôn thắng khiêu khích. Đơn vị bị khiêu khích có dấu nhận biết. Bán kính, thời gian: 🟡 dữ liệu kỹ năng (gợi ý r 2.5, 4 giây).
+- ✅ (người dùng chốt 2026-10-17, mục 13 xung đột 2) **Đơn vị bay** (cờ `flying` của quân địch, ví dụ Quỷ Hoả): đi qua được **sông** (`RiverObstacle`) ở bất cứ đâu, không cần cầu; vẫn bị **vùng cấm chữ nhật** (`RectObstacle`) và **biên bản đồ** chặn. Quân ta cận chiến vẫn đánh được khi nó trong tầm (khi nó ở trên sông thì chỉ đánh được nếu với tới từ bờ). Kéo / hất văng đơn vị bay vẫn theo vùng cấm như trên (được thả trên sông).
 
 ## 9. Bản đồ và camera
 Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng cấm, quy cách art): `docs/BanDo/MapSpecification.md` (🟡 đề xuất, chờ duyệt).
@@ -209,7 +210,7 @@ Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng
   - ⏳ Chưa có: hiệu ứng kỹ năng (nên mở kỹ năng theo cấp / sao mới chỉ là quy tắc), kinh nghiệm, mảnh tướng, lưu tiến trình.
 - `HeroDefinition`: heroId, tên, sprite/placeholder, máu, sát thương, tốc độ di chuyển, tầm đánh, **tốc đánh** (đòn/giây; hiện lưu dưới dạng `attackInterval` = 1 / tốc đánh), `reactionRange`, `aggroRange`, `idleBeforeAdvanceSeconds` (mặc định 5), `baseSquadSize`, `maxSquadSize`, `TroopDefinition` của đội lính, `leashRadius`.
 - `TroopDefinition`: máu, sát thương, tốc độ, tầm đánh, **tốc đánh** (đòn/giây; hiện lưu dưới dạng `attackInterval` = 1 / tốc đánh), `reactionRange`, `aggroRange`.
-- `EnemyDefinition` ⏳ (hiện quân địch dùng `TroopDefinition`): các trường của `TroopDefinition` + cấp bậc (Thường / Tinh anh / Boss), kích thước và bán kính thân, danh sách kỹ năng, pha 2 (ngưỡng máu, kỹ năng và chỉ số thay đổi), đặc tính bị động (sống lại…), prefab hiển thị.
+- `EnemyDefinition` ⏳ (hiện quân địch dùng `TroopDefinition`): các trường của `TroopDefinition` + cấp bậc (Thường / Tinh anh / Boss), kích thước và bán kính thân, danh sách kỹ năng, pha 2 (ngưỡng máu, kỹ năng và chỉ số thay đổi), đặc tính bị động (sống lại…), cờ `flying` (bay qua sông), prefab hiển thị. `EnemySkillDefinition` có hiệu ứng **khiêu khích** (bán kính, thời gian; luật ở mục 8).
 - `EnemySkillDefinition` ⏳: kiểu (vùng tròn / hình quạt / đường thẳng / một mục tiêu / hỗ trợ / triệu hồi), cách chọn chỗ đánh, kích thước vùng, số vùng, sát thương, khống chế + thời lượng, hồi chiêu, hồi chiêu đầu trận, thời gian cảnh báo, quân được gọi + giới hạn.
 - `StageConfig`: id ải, loại (`Attack` / `Defense`), kích thước và biên bản đồ, vùng cấm, thành ta và thành địch (máu, có bắn hay không), `summonZone`, `quickSummonPoints`, bố trí quân phòng thủ (ải Công), các đợt quân (ải Thủ), `timeLimit`, luật thua, ngưỡng sao, bộ thẻ thử nghiệm, `onHeroDeathTroopBehavior`, `allowResummonDeadHero`.
 - `BattleRuntimeState` (tạo mới mỗi trận): số tướng đã triệu hồi, tướng đang chọn, trạng thái và máu từng tướng/lính/thành, lệnh hiện tại và điểm đích đã lưu của từng tướng, đồng hồ, đợt hiện tại, kết quả và số sao.
@@ -234,9 +235,9 @@ Màn chọn chủ tướng, kỹ năng chủ tướng, kỹ năng và cấp bậ
 
 ## 13. Câu hỏi còn mở
 - Không có câu hỏi chặn prototype. Các mục 🟡 là mặc định tạm, người dùng có thể đổi bất cứ lúc nào bằng cách sửa file này.
-- ⚠️ **Xung đột cần chốt (2026-10-17):**
-  1. **Khiêu khích** (Hộ Pháp Đồng Giáp, `docs/QuanDich/Chuong2_HoangCan.md`: "buộc quân ta trong bán kính 2.5 đánh mình") xung đột với ✅ **IgnoreUntilDestination** (Moving không đổi mục tiêu) và ✅ **Attacking** (đánh đúng mục tiêu được chỉ định). Đề xuất: chỉ tác dụng lên đơn vị **không đang thi hành lệnh** (Idle / Advancing / Combat và lính đang giao chiến tự do); tướng đang Moving / Attacking bỏ qua. Hoặc đổi kỹ năng thành chỉ giảm sát thương (bỏ khiêu khích).
-  2. **Đơn vị bay** (Quỷ Hoả, `docs/QuanDich/Chuong3_YeuQuai.md`: "không bị sông chặn") xung đột với mục 9 🟡 vùng cấm **chặn mọi unit**. Đề xuất: thêm cờ `flying` – đơn vị bay qua được **sông** nhưng vẫn bị **vùng cấm chữ nhật** và biên bản đồ chặn; quân ta cận chiến vẫn đánh được khi nó ở trên bờ. Hoặc bỏ đặc tính bay.
+- **Xung đột đã chốt hết (2026-10-17):**
+  1. ~~Khiêu khích~~ – **đã chốt 2026-10-17** theo đề xuất: chỉ tác dụng lên đơn vị không đang thi hành lệnh; tướng Moving / Attacking bỏ qua (mục 8).
+  2. ~~Đơn vị bay~~ – **đã chốt 2026-10-17** theo đề xuất: cờ `flying` – bay qua sông, vẫn bị vùng cấm chữ nhật và biên bản đồ chặn (mục 8).
   3. ~~Kỹ năng di chuyển tướng tự dùng khi đang Moving~~ – **đã chốt 2026-10-17** theo đề xuất: kỹ năng làm tướng dịch chuyển không tự dùng khi tướng đang Moving (mục 3 "Kỹ năng trên thẻ").
   4. ~~Tên tướng thường trùng tên chủ tướng~~ – **đã chốt 2026-10-17**: tướng thường đổi tên thành **Xạ Thủ** (`Hero_Archer`) và **Đao Khách** (`Hero_Swordsman`); id `archer` / `swordsman` giữ nguyên.
   5. ~~Thời điểm đặt tên chủ tướng~~ – **đã chốt 2026-10-17**: đặt tên ngay sau khi chọn chủ tướng, mỗi máy chủ một tên (mục 2).
