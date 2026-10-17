@@ -1,8 +1,8 @@
 # Arena3Q – Animation, xương và mốc kỹ năng của 4 chủ tướng
 
 Phiên bản: v0.1 · 2026-10-17 · **🟡 bản nháp** (thời lượng, mốc sự kiện, tốc độ đạn là gợi ý để chơi thử). Đi kèm:
-- Kỹ năng: `docs/LordHeroes.md` §2 · luật kỹ năng: spec §3 "Kỹ năng trên thẻ".
-- Quy trình mẫu (Krita, Skinning Editor, phần mình code): `docs/StrategistArtGuide.md` §3, §4, §6.
+- Kỹ năng: `docs/Tuong/LordHeroes.md` §2 · luật kỹ năng: spec §3 "Kỹ năng trên thẻ".
+- Quy trình mẫu (Krita, Skinning Editor, phần mình code): `docs/Tuong/StrategistArtGuide.md` §3, §4, §6.
 - Prompt ảnh: `docs/art/concepts/<ChuTuong>_Prompts.md` · VFX: `docs/art/concepts/VFX_Prompts.md`.
 
 ---

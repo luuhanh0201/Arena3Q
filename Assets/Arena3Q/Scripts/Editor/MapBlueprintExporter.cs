@@ -10,7 +10,7 @@ namespace Arena3Q.Editor
 {
     /// <summary>
     /// Exports map blueprints for artists / image generators, rasterised straight from the stage data with the same
-    /// geometry the game uses, in the fixed 3/4 art view (docs/MapSpecification.md §8.3):
+    /// geometry the game uses, in the fixed 3/4 art view (docs/BanDo/MapSpecification.md §8.3):
     ///   &lt;stage&gt;_layout.png – grid, castles, river, bridges, summon zone, markers, HUD margins (to read);
     ///   &lt;stage&gt;_mask.png   – flat colour areas only (to paint over / use as an img2img or ControlNet guide).
     /// Batch mode: -executeMethod Arena3Q.Editor.MapBlueprintExporter.ExportAll
@@ -28,7 +28,7 @@ namespace Arena3Q.Editor
         private const float BottomHudMargin = 4f;
         private const float TopHudMargin = 2.5f;
 
-        // Mask palette (also listed in docs/ArtPrompts.md).
+        // Mask palette (also listed in docs/BanDo/MapArtGuide.md).
         private static readonly Color32 Grass = new Color32(0x5C, 0x8C, 0x4A, 0xFF);
         private static readonly Color32 Water = new Color32(0x3A, 0x7B, 0xD5, 0xFF);
         private static readonly Color32 Bridge = new Color32(0x8B, 0x5A, 0x2B, 0xFF);

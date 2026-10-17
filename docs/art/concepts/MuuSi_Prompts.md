@@ -3,7 +3,7 @@
 Phong cách đã chốt: **A – chibi ~2.5 đầu, render 3D** theo ảnh mẫu `chutuong1.png` (cùng thư mục này).
 Công cụ: **ChatGPT** (tạo ảnh). Làm cả Mưu sĩ trong **một cuộc trò chuyện**. Kết quả lưu **vào chính thư mục này** (`docs/art/concepts/`) với tên ghi dưới mỗi prompt.
 
-Giải thích từng ảnh dùng để làm gì, cách tách bộ phận và gắn xương: `docs/StrategistArtGuide.md`.
+Giải thích từng ảnh dùng để làm gì, cách tách bộ phận và gắn xương: `docs/Tuong/StrategistArtGuide.md`.
 
 | # | Ảnh | Đính kèm | Lưu thành |
 |---|---|---|---|

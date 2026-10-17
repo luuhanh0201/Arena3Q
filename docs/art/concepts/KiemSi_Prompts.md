@@ -2,7 +2,7 @@
 
 Phong cách đã chốt: **A – chibi ~2.5 đầu, render 3D** theo ảnh mẫu `chutuong1.png` (cùng thư mục này).
 Công cụ: **ChatGPT** (tạo ảnh). Làm cả Kiếm sĩ trong **một cuộc trò chuyện**. Kết quả lưu **vào chính thư mục này** với tên ghi dưới mỗi prompt.
-Thiết kế và kỹ năng: `docs/LordHeroes.md` §1, §2.2. Quy trình tách bộ phận, gắn xương, animation: `docs/StrategistArtGuide.md` (làm y hệt Mưu sĩ, khác biệt ghi ở cuối file này).
+Thiết kế và kỹ năng: `docs/Tuong/LordHeroes.md` §1, §2.2. Quy trình tách bộ phận, gắn xương, animation: `docs/Tuong/StrategistArtGuide.md` (làm y hệt Mưu sĩ, khác biệt ghi ở cuối file này).
 
 **Tóm tắt nhân vật:** nam, kiếm khách giang hồ, đột phá cận chiến (tầm 0.6), máu trung – sát thương cao; tốc đánh 1.4 đòn/giây (nhanh nhất). Màu chủ đạo **trắng bạc + xanh lam đậm**. Nhận ra từ xa nhờ: **song kiếm** (kiếm dài trên tay + đoản kiếm bên hông), **tóc dài buộc sau có băng trán bay**, áo bào trắng.
 
@@ -110,7 +110,7 @@ A pose reference sheet of the attached character, FRONT-RIGHT three-quarter view
 ---
 
 ## Khác với Mưu sĩ khi tách bộ phận và gắn xương
-Danh sách lớp đầy đủ, cây xương, bảng clip và VFX theo sự kiện: `docs/LordAnimations.md`.
+Danh sách lớp đầy đủ, cây xương, bảng clip và VFX theo sự kiện: `docs/Tuong/LordAnimations.md`.
 - **Không** có tay áo rộng; tay áo bó theo cánh tay (vẽ luôn trên `arm_*`). Vạt áo bào xẻ hai bên → `F_robe_front`, `F_robe_back`, `F_robe_side_near` (xương `robe_*` 2 đoạn); chân đầy đủ (`leg_*_upper`, `leg_*_lower`, `foot_*`).
 - Vũ khí: `F_sword_long` (con của `hand_near`), `F_sword_short` + `F_scabbard_short`, `F_scabbard_long` (con của `hip`). Tuyệt kỹ có thể rút đoản kiếm: thêm lớp `F_sword_short_drawn` (ẩn), con của `hand_far`.
 - Tóc: `F_ponytail_1`, `F_ponytail_2` (xương `ponytail_1 → ponytail_2` con của `head`).

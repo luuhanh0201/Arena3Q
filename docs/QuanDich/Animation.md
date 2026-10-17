@@ -2,7 +2,7 @@
 
 Phiên bản: v0.1 · 2026-10-17 · **🟡 bản nháp** (thời lượng, mốc sự kiện, tốc độ đạn là gợi ý để chơi thử). Đi kèm:
 - Thiết kế từng loại, chỉ số, kỹ năng: `Chuong1_SonTac.md`, `Chuong2_HoangCan.md`, `Chuong3_YeuQuai.md` · luật kỹ năng địch: spec §8 "Quân địch: cấp bậc và kỹ năng".
-- Prompt VFX: `VFX_Prompts.md` (cùng thư mục) · quy ước animation của tướng: `docs/LordAnimations.md` §0 · quy trình Krita + Skinning Editor: `docs/StrategistArtGuide.md` §3–4.
+- Prompt VFX: `VFX_Prompts.md` (cùng thư mục) · quy ước animation của tướng: `docs/Tuong/LordAnimations.md` §0 · quy trình Krita + Skinning Editor: `docs/Tuong/StrategistArtGuide.md` §3–4.
 
 ---
 
@@ -91,7 +91,7 @@ Lính thường dùng **bộ xương đơn giản ~10 mảnh** (`README.md` §3)
 
 ## 3. Tinh anh
 
-Bộ xương **đầy đủ như tướng** (`docs/LordAnimations.md`: tay, chân 2 đoạn, IK, vạt áo / áo choàng có xương), PSD cao ~240 px (hình 1.1 × 1.5). Có **4 mặt** (`calm`, `shout`, `hurt`, `ko`). Clip: `idle` 2.0 · `run` · `attack` · `hit` 0.3 · `die` 1.0 (+ poof lớn) · `stunned` · `spawn` 0.8 · `skill_windup` · `skill_cast` (mục 0.3).
+Bộ xương **đầy đủ như tướng** (`docs/Tuong/LordAnimations.md`: tay, chân 2 đoạn, IK, vạt áo / áo choàng có xương), PSD cao ~240 px (hình 1.1 × 1.5). Có **4 mặt** (`calm`, `shout`, `hurt`, `ko`). Clip: `idle` 2.0 · `run` · `attack` · `hit` 0.3 · `die` 1.0 (+ poof lớn) · `stunned` · `spawn` 0.8 · `skill_windup` · `skill_cast` (mục 0.3).
 
 | Chương | Tinh anh · kỹ năng | `skill_windup` (lặp, `Telegraph`) | `skill_cast` | `Cast` | VFX |
 |---|---|---|---|---|---|
@@ -116,7 +116,7 @@ Bộ xương **đầy đủ** như tướng + phần riêng; PSD cao ~420 px (h�
 | `idle`, `run`, `attack` | như tướng | `attack`: `Hit` @ 0.4, tua theo tốc đánh |
 | `hit` | – | boss **không giật**, chỉ nháy trắng |
 | `die` | 2.0 s | ngã chậm, nổ khói lớn, `ko` |
-| `stunned` | 0.6 s | chỉ dùng nếu boss chịu choáng (câu hỏi `docs/NormalHeroes.md` §5 mục 3) |
+| `stunned` | 0.6 s | chỉ dùng nếu boss chịu choáng (câu hỏi `docs/Tuong/NormalHeroes.md` §5 mục 3) |
 | `skillN_windup` / `skillN_cast` | – | mục 0.3 |
 | **`phase2`** | 1.5 s | khi máu < 🟡 50 % (spec §8 ✅ "có hiệu ứng nhận biết"); 🟡 trong lúc chạy clip boss không đánh, không dùng kỹ năng, **vẫn nhận sát thương**; `vfx_enemy_common`: sóng đỏ sẫm |
 

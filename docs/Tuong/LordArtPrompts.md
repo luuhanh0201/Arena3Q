@@ -1,8 +1,8 @@
 # Arena3Q – Prompt hình ảnh và danh sách animation cho 4 chủ tướng
 
-Phiên bản: v0.4 · 2026-10-17 (đổi phong cách sang chibi render 3D – phương án A; trước đó: bỏ tên riêng, icon kỹ năng, kỹ năng 2/3, animation theo tốc đánh). Đi kèm `docs/LordHeroes.md` (thiết kế, kỹ năng) và `docs/StrategistArtGuide.md` (mẫu chi tiết trên Mưu sĩ).
+Phiên bản: v0.4 · 2026-10-17 (đổi phong cách sang chibi render 3D – phương án A; trước đó: bỏ tên riêng, icon kỹ năng, kỹ năng 2/3, animation theo tốc đánh). Đi kèm `docs/Tuong/LordHeroes.md` (thiết kế, kỹ năng) và `docs/Tuong/StrategistArtGuide.md` (mẫu chi tiết trên Mưu sĩ).
 
-> **Phong cách nhân vật đã đổi (người dùng chốt 2026-10-17): phương án A – chibi ~2.5 đầu, render 3D kiểu mô hình figure, theo ảnh mẫu `docs/art/concepts/chutuong1.png`.** Bản đồ vẫn vẽ tay (map spec §8.1). Hướng dẫn chi tiết làm mẫu trên Mưu sĩ: `docs/StrategistArtGuide.md`; prompt dán sẵn để cạnh ảnh mẫu trong `docs/art/concepts/` (`MuuSi_Prompts.md`, các chủ tướng sau đặt tên tương tự).
+> **Phong cách nhân vật đã đổi (người dùng chốt 2026-10-17): phương án A – chibi ~2.5 đầu, render 3D kiểu mô hình figure, theo ảnh mẫu `docs/art/concepts/chutuong1.png`.** Bản đồ vẫn vẽ tay (map spec §8.1). Hướng dẫn chi tiết làm mẫu trên Mưu sĩ: `docs/Tuong/StrategistArtGuide.md`; prompt dán sẵn để cạnh ảnh mẫu trong `docs/art/concepts/` (`MuuSi_Prompts.md`, các chủ tướng sau đặt tên tương tự).
 
 Đã chốt ✅: Đông Á cổ trang · **chibi render 3D (phương án A)**, góc 3/4 · animation **skeletal** (Unity 2D Animation, đã có trong project) từ **PSD tách bộ phận** · **2 hướng** (trước-phải, sau-phải) + lật gương ra trái · 2 nam + 2 nữ.
 
@@ -33,10 +33,10 @@ Việc này cần 3 thứ: (1) **làm đúng chỉ dẫn** (đúng danh sách b�
 ## 2. Quy trình cho mỗi chủ tướng
 
 1. **Ảnh** theo `docs/art/concepts/<ChuTuong>_Prompts.md`: bảng xoay 4 hướng (ảnh gốc) → tư thế chuẩn trước-phải và sau-phải → 4 biểu cảm → (vá phần bị che khi cắt) → tư thế tham khảo.
-2. **Tách bộ phận và ghép PSD** trong Krita – làm theo mẫu `docs/StrategistArtGuide.md` §3; danh sách lớp riêng từng chủ tướng: `docs/LordAnimations.md`.
+2. **Tách bộ phận và ghép PSD** trong Krita – làm theo mẫu `docs/Tuong/StrategistArtGuide.md` §3; danh sách lớp riêng từng chủ tướng: `docs/Tuong/LordAnimations.md`.
 3. **Gắn xương** trong Unity Skinning Editor – `StrategistArtGuide.md` §4; tên xương riêng: `LordAnimations.md`.
 4. Mình dựng prefab, Animator, clip, VFX và code (`LordAnimations.md`, `StrategistArtGuide.md` §6).
-5. **VFX, icon, chân dung**: `VFX_Prompts.md`, `Icon_Prompts.md`, `ChanDung_Prompts.md` (cùng thư mục prompt) – làm sau khi đã chốt bảng xoay.
+5. **VFX, icon, chân dung**: `VFX_Prompts.md`, `Icon_Prompts.md`, `ChanDung_Prompts.md` (trong `docs/art/concepts/`) – làm sau khi đã chốt bảng xoay.
 
 ---
 
@@ -88,7 +88,7 @@ Identical size and angle for all four.
 
 ## 5. Từng chủ tướng – prompt dán sẵn
 
-Prompt đầy đủ (phong cách A, đã ghép sẵn, dán nguyên văn) cho từng chủ tướng nằm cạnh ảnh mẫu trong `docs/art/concepts/`. Mỗi file gồm: tóm tắt + bảng màu, 6 prompt (bảng xoay, tư thế chuẩn trước-phải, sau-phải, biểu cảm, vá phần bị che, tư thế tham khảo) và **khác biệt khi tách bộ phận / gắn xương** so với mẫu Mưu sĩ (`docs/StrategistArtGuide.md`).
+Prompt đầy đủ (phong cách A, đã ghép sẵn, dán nguyên văn) cho từng chủ tướng nằm cạnh ảnh mẫu trong `docs/art/concepts/`. Mỗi file gồm: tóm tắt + bảng màu, 6 prompt (bảng xoay, tư thế chuẩn trước-phải, sau-phải, biểu cảm, vá phần bị che, tư thế tham khảo) và **khác biệt khi tách bộ phận / gắn xương** so với mẫu Mưu sĩ (`docs/Tuong/StrategistArtGuide.md`).
 
 | Chủ tướng | File prompt | Tiền tố ảnh | Dải màu đội |
 |---|---|---|---|
@@ -97,7 +97,7 @@ Prompt đầy đủ (phong cách A, đã ghép sẵn, dán nguyên văn) cho t�
 | Mưu sĩ (nữ) | `MuuSi_Prompts.md` | `strategist_` | 2 đuôi dải lụa thắt lưng |
 | Thống soái (nam) | `ThongSoai_Prompts.md` | `marshal_` | chùm lông mũ + vải cờ lệnh |
 
-Tướng thường (Xạ Thủ `hunter_`, Kỵ Binh `cavalry_`, Giáp Sĩ `guardian_`, Đao Khách `blade_`): cùng quy trình, prompt gộp trong `TuongThuong_Prompts.md`; lớp PSD, xương, clip ở `docs/NormalHeroes.md` §4.
+Tướng thường (Xạ Thủ `hunter_`, Kỵ Binh `cavalry_`, Giáp Sĩ `guardian_`, Đao Khách `blade_`): cùng quy trình, prompt gộp trong `TuongThuong_Prompts.md`; lớp PSD, xương, clip ở `docs/Tuong/NormalHeroes.md` §4.
 
 Mục 4 (tấm bộ phận tách rời do AI vẽ) là cách cũ – nay ưu tiên **ảnh tư thế chuẩn rồi tự cắt trong Krita** (`StrategistArtGuide.md` §3), dùng tấm bộ phận chỉ khi cần tham khảo.
 
@@ -113,7 +113,7 @@ Prompt dán sẵn: **`docs/art/concepts/Icon_Prompts.md`** (16 icon: nội tại
 
 ## 7. Danh sách animation (mình làm trong Unity bằng skeletal)
 
-Bộ clip, độ dài, mốc `Hit` / `Cast`, xương, lớp PSD và VFX gắn theo sự kiện của **cả 4 chủ tướng**: **`docs/LordAnimations.md`**. Prompt tư thế tham khảo: ảnh 6 trong từng file `<ChuTuong>_Prompts.md`.
+Bộ clip, độ dài, mốc `Hit` / `Cast`, xương, lớp PSD và VFX gắn theo sự kiện của **cả 4 chủ tướng**: **`docs/Tuong/LordAnimations.md`**. Prompt tư thế tham khảo: ảnh 6 trong từng file `<ChuTuong>_Prompts.md`.
 ---
 
 ## 8. Chân dung và ảnh màn chọn
@@ -126,7 +126,7 @@ Prompt dán sẵn: **`docs/art/concepts/ChanDung_Prompts.md`** – chân dung th
 1. Cắt từng bộ phận ra **lớp riêng**, xoá nền, giữ mép mềm (không viền trắng).
 2. Ghép lại nhân vật ở **tư thế đứng mặc định** (đúng vị trí, đúng thứ tự trước/sau) – mỗi bộ phận một lớp, các khớp chồng lên nhau một chút.
 3. Kích thước: nhân vật cao ≈ **420 px**; mọi bộ phận cùng tỉ lệ.
-4. **Đặt tên lớp** rõ ràng, tiếng Anh, theo hướng: `F_` (trước-phải) / `B_` (sau-phải), bên phải nhân vật = `near` (gần camera), bên trái = `far`; ví dụ `F_head`, `F_arm_near_upper`, `F_hand_near_grip`, `F_fan`, `F_sash_tail_near`, `F_face_shout`. Danh sách lớp và tên xương mẫu: `docs/StrategistArtGuide.md` §3–§4.
+4. **Đặt tên lớp** rõ ràng, tiếng Anh, theo hướng: `F_` (trước-phải) / `B_` (sau-phải), bên phải nhân vật = `near` (gần camera), bên trái = `far`; ví dụ `F_head`, `F_arm_near_upper`, `F_hand_near_grip`, `F_fan`, `F_sash_tail_near`, `F_face_shout`. Danh sách lớp và tên xương mẫu: `docs/Tuong/StrategistArtGuide.md` §3–§4.
 5. Một file PSD cho mỗi hướng: `lord_archer_front.psd`, `lord_archer_back.psd` (tương tự `swordsman`, `strategist`, `marshal`).
 6. Hiệu ứng: PNG nền trong suốt, mỗi mảnh một file, tên `vfx_<chủ tướng>_<kỹ năng>_<mảnh>.png`.
 

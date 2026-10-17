@@ -2,7 +2,7 @@
 
 Phong cách đã chốt: **A – chibi ~2.5 đầu, render 3D** theo ảnh mẫu `chutuong1.png` (cùng thư mục này).
 Công cụ: **ChatGPT** (tạo ảnh). Làm **mỗi tướng trong một cuộc trò chuyện riêng**. Kết quả lưu **vào chính thư mục này** với tên ghi dưới mỗi prompt.
-Thiết kế, kỹ năng, lớp PSD, xương và clip: `docs/NormalHeroes.md`. Quy trình tách bộ phận và gắn xương: `docs/StrategistArtGuide.md` (làm y hệt Mưu sĩ).
+Thiết kế, kỹ năng, lớp PSD, xương và clip: `docs/Tuong/NormalHeroes.md`. Quy trình tách bộ phận và gắn xương: `docs/Tuong/StrategistArtGuide.md` (làm y hệt Mưu sĩ).
 
 > ⚠️ Tên **Xạ Thủ** và **Đao Khách** là tên đề xuất (trùng tên chủ tướng – spec §13 mục 4). Tên file ảnh dùng mã tiếng Anh (`hunter`, `cavalry`, `guardian`, `blade`) nên **không phải đổi** dù tên tiếng Việt thay đổi.
 

@@ -75,7 +75,7 @@ Full-body splash art of the attached character in a dynamic signature pose: plan
 ---
 
 # Tướng thường – chỉ chân dung thẻ
-Tướng thường **không có** màn chọn nên **không cần ảnh splash**. Mã tên file `hunter`, `cavalry`, `guardian`, `blade` (`docs/NormalHeroes.md`). Đính kèm `<mã>_turnaround.png`.
+Tướng thường **không có** màn chọn nên **không cần ảnh splash**. Mã tên file `hunter`, `cavalry`, `guardian`, `blade` (`docs/Tuong/NormalHeroes.md`). Đính kèm `<mã>_turnaround.png`.
 
 **`portrait_hunter.png`** (Xạ Thủ)
 ```

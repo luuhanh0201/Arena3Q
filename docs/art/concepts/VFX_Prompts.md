@@ -1,6 +1,6 @@
 # Hiệu ứng kỹ năng (VFX) – prompt tạo ảnh (dán nguyên văn)
 
-Phong cách: **A – render 3D stylised** cùng tông với ảnh mẫu `chutuong1.png`; kỹ năng của từng chủ tướng: `docs/LordHeroes.md` §2; tướng thường: `docs/NormalHeroes.md` §2.
+Phong cách: **A – render 3D stylised** cùng tông với ảnh mẫu `chutuong1.png`; kỹ năng của từng chủ tướng: `docs/Tuong/LordHeroes.md` §2; tướng thường: `docs/Tuong/NormalHeroes.md` §2.
 Hiệu ứng **không** vẽ từng khung: mình dựng bằng **hệ thống hạt (particle) của Unity** từ các **mảnh hiệu ứng** dưới đây (xoay, phóng to, mờ dần, lặp lại).
 
 **Quy tắc chung**
@@ -204,7 +204,7 @@ A set of separate VFX texture elements for a strategist aura passive, evenly spa
 ---
 
 # Tướng thường (§20–41)
-Kỹ năng: `docs/NormalHeroes.md` §2 · mốc sự kiện: `docs/NormalHeroes.md` §4. Tên file dùng mã `hunter` (Xạ Thủ), `cavalry` (Kỵ Binh), `guardian` (Giáp Sĩ), `blade` (Đao Khách) – không trùng chủ tướng. Đính kèm: `chutuong1.png` + `<mã>_turnaround.png` của tướng đó.
+Kỹ năng: `docs/Tuong/NormalHeroes.md` §2 · mốc sự kiện: `docs/Tuong/NormalHeroes.md` §4. Tên file dùng mã `hunter` (Xạ Thủ), `cavalry` (Kỵ Binh), `guardian` (Giáp Sĩ), `blade` (Đao Khách) – không trùng chủ tướng. Đính kèm: `chutuong1.png` + `<mã>_turnaround.png` của tướng đó.
 
 ## 20. Xạ Thủ – đánh thường
 Lưu: `vfx_hunter_basic_sheet.png`

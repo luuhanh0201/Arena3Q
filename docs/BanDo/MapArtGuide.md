@@ -1,6 +1,6 @@
 # Arena3Q – Hướng dẫn gửi file và viết prompt để vẽ map
 
-Phiên bản: v0.2 · 2026-10-17 (prompt chuyển sang `docs/art/concepts/BanDo_Prompts.md`). Dựa trên `docs/MapSpecification.md` v0.4 (cỡ M, PPU 128, góc 3/4 cố định tỉ lệ 🟡 0.75, vẽ tay màu mềm, Tilemap + SpriteShape + sprite PSD).
+Phiên bản: v0.2 · 2026-10-17 (prompt chuyển sang `docs/art/concepts/BanDo_Prompts.md`). Dựa trên `docs/BanDo/MapSpecification.md` v0.4 (cỡ M, PPU 128, góc 3/4 cố định tỉ lệ 🟡 0.75, vẽ tay màu mềm, Tilemap + SpriteShape + sprite PSD).
 
 > **Nguyên tắc quan trọng nhất:** *không* xin AI (hay họa sĩ) vẽ cả bản đồ thành **một tấm ảnh dùng trong game**. Ảnh toàn bản đồ chỉ để **chốt phong cách (concept)**. Thứ đưa vào game là **từng mảnh**: bộ ô nền, dải sông, cầu, thành, cây/đá – mỗi mảnh đúng kích thước pixel ở mục 4. Lý do: ảnh 6144 × 2496 px quá nặng cho điện thoại, AI không giữ đúng kích thước/tỉ lệ, và đổi bố cục là phải vẽ lại cả tấm (xem MapSpecification §8.4).
 
@@ -23,7 +23,7 @@ Sinh tự động từ dữ liệu ải (luôn khớp game) bằng menu **Arena3
 | `docs/art/blueprints/attack_01_mask.png` | **Ảnh bố cục gửi cho AI / làm nền cho họa sĩ vẽ đè**: chỉ có mảng màu phẳng |
 | `docs/art/blueprints/attack_01_layout.png` | Ảnh **đọc** bố cục: lưới, vùng triệu hồi, điểm triệu hồi, quân phòng thủ, lề HUD (không gửi cho AI làm ảnh điều khiển – lưới và chấm sẽ bị vẽ vào tranh) |
 | `docs/art/blueprints/defense_01_*.png` | Như trên cho ải Thủ (cùng địa hình, khu bên phải là chỗ quân địch xuất hiện) |
-| `docs/MapSpecification.md` mục 8 | Gửi cho họa sĩ: kích thước, góc nhìn, pivot |
+| `docs/BanDo/MapSpecification.md` mục 8 | Gửi cho họa sĩ: kích thước, góc nhìn, pivot |
 
 **Bảng màu của ảnh mask** (ghi rõ trong prompt khi gửi ảnh):
 
@@ -82,7 +82,7 @@ Kèm thêm **1–3 ảnh tham khảo phong cách** (ảnh game bạn thích) n�
 
 ## 6. Nếu gửi cho họa sĩ (mẫu brief)
 > Game chiến thuật 2D trên điện thoại, màn ngang, phong cách vẽ tay màu mềm kiểu Clash of Clans. Góc nhìn 3/4 cố định: mặt đất nén dọc còn 0.75 (một ô vuông 1 × 1 trên đất vẽ thành 128 × 96 px), không phối cảnh, sáng từ trên-trái.
-> Cần các mảnh riêng (danh sách + kích thước ở mục 3 của `docs/ArtPrompts.md`, prompt ở `docs/art/concepts/BanDo_Prompts.md`), nền trong suốt, PSD nhiều lớp hoặc PNG.
+> Cần các mảnh riêng (danh sách + kích thước ở mục 3 của `docs/BanDo/MapArtGuide.md`, prompt ở `docs/art/concepts/BanDo_Prompts.md`), nền trong suốt, PSD nhiều lớp hoặc PNG.
 > Bố cục bản đồ: `attack_01_mask.png` (màu: xanh lá = cỏ, xanh nước = sông, nâu = cầu, tròn xanh/đỏ = chỗ đặt thành ta/địch). Sông và cầu phải **đúng vị trí và bề rộng** trong ảnh này.
 
 ---

@@ -1,6 +1,6 @@
 # Icon kỹ năng – prompt tạo ảnh (dán nguyên văn)
 
-Phong cách: **A – render 3D stylised** cùng tông với ảnh mẫu `chutuong1.png`; kỹ năng: `docs/LordHeroes.md` §2.
+Phong cách: **A – render 3D stylised** cùng tông với ảnh mẫu `chutuong1.png`; kỹ năng: `docs/Tuong/LordHeroes.md` §2.
 Thẻ tướng đã ra sân hiển thị **icon kỹ năng 2 và 3** kèm đếm ngược hồi chiêu (game tự phủ lớp tối + số giây) và **thanh nộ** cho tuyệt kỹ (game tự vẽ thanh; icon tuyệt kỹ sáng lên khi đầy) – spec §3. Vì vậy chỉ cần **icon tĩnh**.
 
 **Quy tắc chung**
@@ -127,7 +127,7 @@ A single bold central symbol: the head of a charging armoured war horse facing r
 ---
 
 # Tướng thường
-Kỹ năng: `docs/NormalHeroes.md` §2. Cùng quy tắc như trên; mã tên file `hunter` (Xạ Thủ), `cavalry` (Kỵ Binh), `guardian` (Giáp Sĩ), `blade` (Đao Khách). Đính kèm `chutuong1.png` + `<mã>_turnaround.png`.
+Kỹ năng: `docs/Tuong/NormalHeroes.md` §2. Cùng quy tắc như trên; mã tên file `hunter` (Xạ Thủ), `cavalry` (Kỵ Binh), `guardian` (Giáp Sĩ), `blade` (Đao Khách). Đính kèm `chutuong1.png` + `<mã>_turnaround.png`.
 
 | Tướng | Màu nền đĩa |
 |---|---|

@@ -24,7 +24,7 @@ Mạch truyện gợi ý: dẹp sơn tặc (người thường) → phản quân
 | **Tinh anh** | **1.1 × 1.5** | 0.40 | ×4–6 | **1 kỹ năng** | chi tiết hơn, có **viền sáng vàng** nhẹ (game vẽ) |
 | **Boss** | **2.0 × 2.6** | 0.80 | ×30–60 (≈ 3–6 lần chủ tướng) | **2–3 kỹ năng + đổi pha ở 50 % máu** | chi tiết cao, có **thanh máu riêng** trên HUD |
 
-**Mốc chỉ số hiện có** (asset trong `Assets/Arena3Q/Content/Troops`): lính ta 120 máu / 12 sát thương / 1.0 đòn/s; kiếm binh địch 160 / 16; cung thủ địch 90 / 13, tầm 4.5; lực sĩ địch 600 / 35, chậm 1.6; chủ tướng 900 / 45. Chỉ số trong các file chương dùng cùng thang này.
+**Mốc chỉ số hiện có** (asset trong `Assets/Arena3Q/Content/Troops`): lính ta 120 máu / 12 sát thương / 1.0 đòn/s; kiếm binh địch 160 / 16; cung thủ địch 90 / 13, tầm 4.5; lực sĩ địch 600 / 35, chậm 1.6; chủ tướng 900 / 45. Chỉ số trong các file chương dùng cùng thang này và là chỉ số ở **cấp đầu chương**; mỗi cấp ải +3 % Máu và Công, chương N bắt đầu ở cấp 1 + 9 × (N − 1) (`docs/KeHoach/HeroProgression.md` §10).
 
 **Vai trò** (mỗi chương có đủ để ải đa dạng): **cận chiến** · **tầm xa** · **trâu (tank)** · **nhanh / bầy đàn** · tinh anh **hỗ trợ / khống chế** · tinh anh **đột phá** · **boss**.
 
@@ -41,7 +41,7 @@ Mạch truyện gợi ý: dẹp sơn tặc (người thường) → phản quân
 - **Phong cách A** (giống chủ tướng): chibi ~2.5 đầu, render 3D kiểu mô hình figure, theo `docs/art/concepts/chutuong1.png`. Yêu quái vẫn **dễ thương – hơi đáng sợ** (không máu me, không ghê rợn) để hợp game mobile mọi lứa tuổi.
 - **Phân biệt với quân ta**: quân ta mang màu đội **xanh**; quân địch mỗi chương có **màu phe riêng** (đen–đỏ, vàng đất, tím–xanh ma) và tông **tối hơn**.
 - **Góc nhìn**: như chủ tướng – **trước-phải 3/4** và **sau-phải 3/4**, nhìn xuống ~40°, lật gương ra trái.
-- **Animation**: lính thường dùng **bộ xương đơn giản** (~10 mảnh: đầu, thân, 2 tay, 2 chân, vũ khí, phụ kiện) và **dùng chung bộ clip** giữa các lính cùng dáng; tinh anh và boss có bộ xương riêng đầy đủ như chủ tướng (`docs/StrategistArtGuide.md`). Chi tiết khung xương, bộ clip, mốc `Telegraph` / `Cast` của từng kỹ năng: **`Animation.md`**.
+- **Animation**: lính thường dùng **bộ xương đơn giản** (~10 mảnh: đầu, thân, 2 tay, 2 chân, vũ khí, phụ kiện) và **dùng chung bộ clip** giữa các lính cùng dáng; tinh anh và boss có bộ xương riêng đầy đủ như chủ tướng (`docs/Tuong/StrategistArtGuide.md`). Chi tiết khung xương, bộ clip, mốc `Telegraph` / `Cast` của từng kỹ năng: **`Animation.md`**.
 - **VFX**: vùng cảnh báo đỏ, chết / xuất hiện, kỹ năng tinh anh và boss – prompt dán sẵn ở **`VFX_Prompts.md`**.
 - **Prompt**: mỗi file chương có prompt **dán sẵn** cho từng loại + một prompt **xếp hàng cả chương** để kiểm tra đồng bộ. Công cụ: ChatGPT, đính kèm `chutuong1.png`.
 - **Lưu ảnh**: `docs/QuanDich/art/` – tên `<chương>_<loại>_<kiểu ảnh>.png`, ví dụ `c1_saber_sheet.png`, `c1_boss_turnaround.png`, `vfx_c1_boss_sheet.png`.

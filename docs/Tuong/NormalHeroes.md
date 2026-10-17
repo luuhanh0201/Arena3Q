@@ -2,9 +2,11 @@
 
 Phiên bản: v0.1 · 2026-10-17 · Trạng thái: **🟡 bản nháp chờ duyệt** (tên, ngoại hình, kỹ năng, con số). Kỹ năng **chưa code** (⏳).
 
-Đã chốt ✅ (spec §3 "Kỹ năng trên thẻ"): mọi tướng có **kỹ năng 1 = nội tại + kỹ năng 2, 3 (tự dùng, 2 trước 3) + tuyệt kỹ (thanh nộ, dùng bằng thẻ)**; luật nộ, vận chiêu, tự nhắm giống hệt chủ tướng (`docs/LordHeroes.md` §2, §3). Animation **skeletal từ PSD tách bộ phận**, 2 hướng + lật gương, phong cách **A** (chibi ~2.5 đầu, render 3D).
+Đã chốt ✅ (spec §3 "Kỹ năng trên thẻ"): mọi tướng có **kỹ năng 1 = nội tại + kỹ năng 2, 3 (tự dùng, 2 trước 3) + tuyệt kỹ (thanh nộ, dùng bằng thẻ)**; luật nộ, vận chiêu, tự nhắm giống hệt chủ tướng (`docs/Tuong/LordHeroes.md` §2, §3). Animation **skeletal từ PSD tách bộ phận**, 2 hướng + lật gương, phong cách **A** (chibi ~2.5 đầu, render 3D).
 
-Đi kèm: prompt ảnh `docs/art/concepts/TuongThuong_Prompts.md` · VFX `docs/art/concepts/VFX_Prompts.md` §20–41 · icon `Icon_Prompts.md` · chân dung thẻ `ChanDung_Prompts.md` · quy ước animation chung `docs/LordAnimations.md` §0.
+✅ (2026-10-17) Bốn tướng này là **tướng khởi đầu**: **không phe**, chỉ số gốc thấp hơn danh tướng, dễ tăng sao; kỹ năng **mở theo sao** (1★ nội tại + kỹ năng 2 · 2★ kỹ năng 3 · 3★ tuyệt kỹ · 4–5★ tăng cấp kỹ năng). Chỉ số đề xuất và tăng theo cấp: `docs/KeHoach/HeroProgression.md` §4, §7, §8.
+
+Đi kèm: prompt ảnh `docs/art/concepts/TuongThuong_Prompts.md` · VFX `docs/art/concepts/VFX_Prompts.md` §20–41 · icon `Icon_Prompts.md` · chân dung thẻ `ChanDung_Prompts.md` · quy ước animation chung `docs/Tuong/LordAnimations.md` §0.
 
 > ⚠️ **Tên trùng chủ tướng** (spec §13 mục 4): asset hiện có tên tướng thường **"Cung Thủ"** và **"Kiếm Sĩ"** trùng tên hai class chủ tướng ✅. Tài liệu này tạm dùng tên đề xuất **Xạ Thủ** (`archer`) và **Đao Khách** (`swordsman`); `displayName` trong asset **chưa đổi** cho tới khi bạn chốt. Ngoại hình và kỹ năng cũng được làm **khác hẳn** chủ tướng cùng loại.
 
@@ -12,7 +14,7 @@ Phiên bản: v0.1 · 2026-10-17 · Trạng thái: **🟡 bản nháp chờ duy�
 
 ## 1. Tổng quan 🟡
 
-Chỉ số máu / sát thương / tầm / tốc chạy / tốc đánh lấy từ asset hiện có (`Assets/Arena3Q/Content/Heroes`), tốc đánh = 1 / `attackInterval`.
+Chỉ số máu / sát thương / tầm / tốc chạy / tốc đánh lấy từ asset hiện có (`Assets/Arena3Q/Content/Heroes`), tốc đánh = 1 / `attackInterval`. Đề xuất cân bằng (Xạ Thủ Công 30 → 52, Giáp Sĩ 25 → 20…): `docs/KeHoach/HeroProgression.md` §8 – asset chưa đổi.
 
 | | **Xạ Thủ** | **Kỵ Binh** | **Giáp Sĩ** | **Đao Khách** |
 |---|---|---|---|---|
@@ -82,7 +84,7 @@ Tuyệt kỹ làm Kỵ Binh dịch chuyển: **dừng ở mép vùng cấm / bi�
 
 ## 4. Animation, lớp PSD và xương
 
-Quy ước chung (bộ 13 clip, `Hit` @ 0.4 s ở nhịp 1 đòn/giây, `Cast`, mặt đổi qua Sprite Resolver, `F_` / `B_`, key `sortingOrder`): **`docs/LordAnimations.md` §0**. Quy trình Krita + Skinning Editor: `docs/StrategistArtGuide.md` §3–4. Tướng thường **không có** clip `select` (không có màn chọn).
+Quy ước chung (bộ 13 clip, `Hit` @ 0.4 s ở nhịp 1 đòn/giây, `Cast`, mặt đổi qua Sprite Resolver, `F_` / `B_`, key `sortingOrder`): **`docs/Tuong/LordAnimations.md` §0**. Quy trình Krita + Skinning Editor: `docs/Tuong/StrategistArtGuide.md` §3–4. Tướng thường **không có** clip `select` (không có màn chọn).
 
 ### 4.1 Xạ Thủ (nam · cung ngắn · tầm 4.5 · tốc đánh 0.9)
 **Lớp `F_` (dưới → trên):** `F_hat_tail_2` · `F_hat_tail_1` · `F_coat_back` · `F_bow` · `F_bowstring` · `F_hand_far` · `F_arm_far_lower` · `F_arm_far_upper` · `F_leg_far_upper` · `F_leg_far_lower` · `F_foot_far` · `F_body` · `F_pelvis` · `F_quiver_hip` · `F_leg_near_upper` · `F_leg_near_lower` · `F_foot_near` · `F_coat_front` · `F_cape_fur` (áo lông vai) · `F_team_scarf` · `F_neck` · `F_head` · nhóm `F_face` (`calm`, `shout`, `hurt`, `ko`) · `F_hat_fur` · `F_arm_near_upper` · `F_arm_near_lower` · `F_arrow` · nhóm `F_hand_near` (`open`, `pinch`).

@@ -2,7 +2,7 @@
 
 Phong cách đã chốt: **A – chibi ~2.5 đầu, render 3D** theo ảnh mẫu `chutuong1.png` (cùng thư mục này).
 Công cụ: **ChatGPT** (tạo ảnh). Làm cả Cung thủ trong **một cuộc trò chuyện**. Kết quả lưu **vào chính thư mục này** với tên ghi dưới mỗi prompt.
-Thiết kế và kỹ năng: `docs/LordHeroes.md` §1, §2.1. Quy trình tách bộ phận, gắn xương, animation: `docs/StrategistArtGuide.md` (làm y hệt Mưu sĩ, khác biệt ghi ở cuối file này).
+Thiết kế và kỹ năng: `docs/Tuong/LordHeroes.md` §1, §2.1. Quy trình tách bộ phận, gắn xương, animation: `docs/Tuong/StrategistArtGuide.md` (làm y hệt Mưu sĩ, khác biệt ghi ở cuối file này).
 
 **Tóm tắt nhân vật:** nữ, cung thủ du hiệp, nhanh nhẹn; tầm xa (4.5), máu thấp – sát thương cao; tốc đánh 0.9 đòn/giây. Màu chủ đạo **xanh lục ngọc + nâu da**. Nhận ra từ xa nhờ: **tóc đuôi ngựa cao**, **cây cung sừng cao gần bằng người**, **ống tên sau lưng**, áo choàng ngắn có mũ trùm.
 
@@ -110,7 +110,7 @@ A pose reference sheet of the attached character, FRONT-RIGHT three-quarter view
 ---
 
 ## Khác với Mưu sĩ khi tách bộ phận và gắn xương
-Danh sách lớp đầy đủ, cây xương, bảng clip và VFX theo sự kiện: `docs/LordAnimations.md`.
+Danh sách lớp đầy đủ, cây xương, bảng clip và VFX theo sự kiện: `docs/Tuong/LordAnimations.md`.
 - **Không** có tay áo rộng (`sleeve_*`) và vạt áo dài (`robe_*`); thay bằng `F_cape_1`, `F_cape_2` (áo choàng 2 mảnh) và chân đầy đủ (`leg_*_upper`, `leg_*_lower`, `foot_*`).
 - Cung cầm ở **tay xa** (`hand_far` → `bow`); **dây cung tách lớp riêng** `F_bowstring` (kéo căng khi bắn, xương `bowstring` con của `bow`).
 - Thêm `F_quiver` (con của `chest`), `F_arrow` (mũi tên đang cầm/lên dây, con của `hand_near`), `F_ponytail_1`, `F_ponytail_2` (xương `ponytail_1 → ponytail_2` con của `head`).

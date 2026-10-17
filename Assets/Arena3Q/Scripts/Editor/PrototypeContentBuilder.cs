@@ -174,7 +174,7 @@ namespace Arena3Q.Editor
             return new[] { attack, defense };
         }
 
-        // Standard size-M layout (docs/MapSpecification.md), measured from the map art map1.png so logic and art match:
+        // Standard size-M layout (docs/BanDo/MapSpecification.md), measured from the map art map1.png so logic and art match:
         // one winding river crossing the map from top to bottom through the middle, with two bridges (two lanes).
         // The centre line runs straight down under each bridge because the bridges are drawn spanning left-right.
         public static readonly Vector2[] StandardRiverPath =

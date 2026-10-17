@@ -2,7 +2,7 @@
 
 Phong cách đã chốt: **A – chibi ~2.5 đầu, render 3D** theo ảnh mẫu `chutuong1.png` (cùng thư mục này).
 Công cụ: **ChatGPT** (tạo ảnh). Làm cả Thống soái trong **một cuộc trò chuyện**. Kết quả lưu **vào chính thư mục này** với tên ghi dưới mỗi prompt.
-Thiết kế và kỹ năng: `docs/LordHeroes.md` §1, §2.4. Quy trình tách bộ phận, gắn xương, animation: `docs/StrategistArtGuide.md` (làm y hệt Mưu sĩ, khác biệt ghi ở cuối file này).
+Thiết kế và kỹ năng: `docs/Tuong/LordHeroes.md` §1, §2.4. Quy trình tách bộ phận, gắn xương, animation: `docs/Tuong/StrategistArtGuide.md` (làm y hệt Mưu sĩ, khác biệt ghi ở cuối file này).
 
 **Tóm tắt nhân vật:** nam trung niên, đại tướng chỉ huy; cận chiến bằng thương dài (tầm 0.9), máu cao – sát thương trung; tốc đánh 1.0 đòn/giây; chạy chậm. Màu chủ đạo **đỏ son + vàng đồng**. Nhận ra từ xa nhờ: **mũ có chùm lông cao**, **cờ lệnh cắm sau lưng**, **thương dài**, áo choàng đỏ, râu quai nón, dáng to chắc.
 
@@ -112,7 +112,7 @@ A pose reference sheet of the attached character, FRONT-RIGHT three-quarter view
 ---
 
 ## Khác với Mưu sĩ khi tách bộ phận và gắn xương
-Danh sách lớp đầy đủ, cây xương, bảng clip và VFX theo sự kiện: `docs/LordAnimations.md`.
+Danh sách lớp đầy đủ, cây xương, bảng clip và VFX theo sự kiện: `docs/Tuong/LordAnimations.md`.
 - **Không** có tay áo rộng; thay bằng `F_shoulder_guard_near`, `F_shoulder_guard_far` (con của `arm_*_upper`). Váy giáp `F_skirt_front`, `F_skirt_back` (xương `skirt_*` 2 đoạn); chân đầy đủ.
 - **Áo choàng** 2 mảnh: `F_cape_1`, `F_cape_2` (xương `cape_1 → cape_2` con của `chest`), nằm **dưới** thân ở hướng trước, **trên** thân ở hướng sau.
 - Vũ khí và đồ sau lưng: `F_spear` (con của `hand_near`), `F_banner_pole` (con của `chest`), `F_banner_cloth` (xương `banner_1 → banner_2` để vải bay).

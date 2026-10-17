@@ -2,7 +2,7 @@
 
 Phiên bản: v0.2 · 2026-10-17 · **Phong cách đã chốt: phương án A – chibi ~2.5 đầu, render 3D kiểu mô hình figure** theo ảnh mẫu `docs/art/concepts/chutuong1.png` (chỉ là mẫu phong cách, không phải nhân vật trong game). Bản đồ vẫn vẽ tay.
 
-Đi kèm: `docs/LordHeroes.md` (kỹ năng Mưu sĩ §2.3), `docs/LordArtPrompts.md` (quy trình chung, VFX, icon, chân dung). Làm xong Mưu sĩ theo tài liệu này thì 3 chủ tướng còn lại làm y hệt, chỉ đổi khối nhân vật.
+Đi kèm: `docs/Tuong/LordHeroes.md` (kỹ năng Mưu sĩ §2.3), `docs/Tuong/LordArtPrompts.md` (quy trình chung, VFX, icon, chân dung). Làm xong Mưu sĩ theo tài liệu này thì 3 chủ tướng còn lại làm y hệt, chỉ đổi khối nhân vật.
 
 **Thứ tự công việc:**
 1. Tạo ảnh bằng AI (§2) – bạn.
@@ -190,7 +190,7 @@ Hướng sau dùng **cùng tên xương** (để một bộ clip gần như dùn
 
 ## 5. Clip animation của Mưu sĩ
 
-Bảng clip (độ dài, động tác, sự kiện `Hit` / `Cast`, VFX gắn theo sự kiện) của **cả 4 chủ tướng** nằm chung ở **`docs/LordAnimations.md`** (Mưu sĩ: mục 1; quy ước chung: mục 0). Tóm tắt: `attack` dài 1.0 s ở nhịp chuẩn, `Hit` @ 0.4 s, chạy với tốc độ = tốc đánh (Mưu sĩ 0.8 → 1.25 s); kỹ năng có hiệu lực ở `Cast`.
+Bảng clip (độ dài, động tác, sự kiện `Hit` / `Cast`, VFX gắn theo sự kiện) của **cả 4 chủ tướng** nằm chung ở **`docs/Tuong/LordAnimations.md`** (Mưu sĩ: mục 1; quy ước chung: mục 0). Tóm tắt: `attack` dài 1.0 s ở nhịp chuẩn, `Hit` @ 0.4 s, chạy với tốc độ = tốc đánh (Mưu sĩ 0.8 → 1.25 s); kỹ năng có hiệu lực ở `Cast`.
 
 ---
 

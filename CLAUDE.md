@@ -20,18 +20,25 @@ Bugs fixed so far, with root causes and how to avoid repeating them, are logged 
 ## Repository layout
 
 ```
-docs/GameplaySpecification.md   gameplay spec (source of truth)
-docs/NhatKySuaLoi.md            bug-fix log (root cause + prevention per fix)
-docs/MapSpecification.md        map dimensions, layout, forbidden-zone and art rules
-docs/ArtPrompts.md              how to brief artists / image generators for map art (files to attach, piece sizes, post-processing)
-docs/art/blueprints/            map blueprints exported from stage data (Arena3Q > Export Map Blueprints)
-docs/LordHeroes.md              the 4 player lords (archer, swordsman, strategist, marshal): roles and draft skills
-docs/LordArtPrompts.md          lord image prompts, PSD parts sheet and animation list (skeletal animation)
-docs/LordAnimations.md          per-lord PSD layers, bone trees, clip list with Hit/Cast timings and VFX hooks
-docs/NormalHeroes.md            the 4 normal heroes (hunter, cavalry, guardian, blade): draft skills, PSD layers, bones, clips
-docs/StrategistArtGuide.md      strategist lord (template for all lords): look spec, AI prompts (style A: chibi 3D render), Krita PSD layers, bone names, clips
-docs/art/concepts/              all ready-to-paste image prompts (*_Prompts.md: 4 lords, normal heroes, map, VFX, icons, portraits) + style reference chutuong1.png + generated images
-docs/QuanDich/                  stage enemies by chapter (bandits, yellow-turban cult, yokai): tiers, suggested stats, elite/boss skills, prompts, Animation.md (rigs, clips, Telegraph/Cast), VFX_Prompts.md; images in docs/QuanDich/art/
+docs/                           keep the root small: only README.md (index), the spec and the bug log; everything else goes in a topic folder
+  README.md                     index of the docs folders
+  GameplaySpecification.md      gameplay spec (source of truth)
+  NhatKySuaLoi.md               bug-fix log (root cause + prevention per fix)
+  KeHoach/                      draft plans waiting for the user's review; once approved, move them to their topic folder
+    VaoGame.md                  launch → intro → login / guest → server → lord select + naming → opening story (plan + prompts)
+    HeroProgression.md          levels (cap 60), lord skills learned by level, stars, factions (Thục/Ngụy/Ngô/Quần), stat growth and balance model
+  Tuong/                        heroes
+    LordHeroes.md               the 4 player lords (archer, swordsman, strategist, marshal): roles and draft skills
+    NormalHeroes.md             the 4 starter heroes (hunter, cavalry, guardian, blade): draft skills, PSD layers, bones, clips
+    LordAnimations.md           per-lord PSD layers, bone trees, clip list with Hit/Cast timings and VFX hooks
+    LordArtPrompts.md           lord art overview: tools, workflow, style block, parts sheet, links to the prompt files
+    StrategistArtGuide.md       strategist lord (template for all lords): look spec, Krita PSD layers, bone names, rigging steps
+  BanDo/                        map
+    MapSpecification.md         map dimensions, layout, forbidden-zone and art rules
+    MapArtGuide.md              how to brief artists / image generators for map art (files to attach, piece sizes, post-processing)
+  QuanDich/                     stage enemies by chapter (bandits, yellow-turban cult, yokai): tiers, stats, elite/boss skills, prompts, Animation.md, VFX_Prompts.md; images in QuanDich/art/
+  art/blueprints/               map blueprints exported from stage data (Arena3Q > Export Map Blueprints; path used by MapBlueprintExporter)
+  art/concepts/                 all ready-to-paste image prompts (*_Prompts.md: lords, starter heroes, map, VFX, icons, portraits) + style reference chutuong1.png + generated images
 Assets/
   Arena3Q/                      everything this project owns
     Scripts/                    Core, Data, Gameplay (Battle, Camera, Heroes, Input, Stages, Troops, Units, Visuals), UI, Editor
@@ -90,6 +97,8 @@ $unity = "C:\Program Files\Unity\Hub\Editor\6000.6.6f1\Editor\Unity.exe"
 ```
 
 In batch mode, `-logFile -` output is easy to lose; writing to `Logs/<name>.log` and grepping for `error CS` works better.
+
+**After every player build, tell the user how big the app is**, in MB with one decimal (MB = bytes / 1 048 576, the same unit as the `[Arena3Q] Build …` log line from `BuildScripts`): Android = size of the `.apk` in `Builds/Android/`, Windows = total size of `Builds/Windows/` (excluding the `*_BurstDebugInformation_DoNotShip` / `*_BackUpThisFolder_ButDontShipItWithYourGame` folders). Compare with the previous build when known; the last Android dev build (2026-10-16) was 40.2 MB.
 
 To open the Editor straight into the battle: `Start-Process $unity -ArgumentList '-projectPath "<repo>"', '-executeMethod Arena3Q.Editor.PrototypeContentBuilder.OpenBattleScene'`.
 

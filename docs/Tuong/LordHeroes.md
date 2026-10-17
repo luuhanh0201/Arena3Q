@@ -4,7 +4,9 @@ Phiên bản: v0.3 · 2026-10-17 · Trạng thái: **🟡 bản nháp chờ duy�
 
 Đã chốt ✅ (spec §2): người chơi chọn **1 trong 4 chủ tướng** khi vào game – nhân vật cố định; không chọn phe; bối cảnh **Đông Á cổ trang**; mỗi chủ tướng (như mọi tướng) có **kỹ năng 1 = nội tại (bị động) + kỹ năng 2, 3 (phụ, tự dùng) + tuyệt kỹ (thanh nộ)**; 2 nam + 2 nữ; animation **skeletal từ PSD tách bộ phận**, vẽ **2 hướng (trước-phải, sau-phải) + lật gương**.
 
-Hình ảnh và prompt: `docs/LordArtPrompts.md`.
+Hình ảnh và prompt: `docs/Tuong/LordArtPrompts.md`.
+
+✅ (2026-10-17) Chủ tướng **bắt đầu chưa có kỹ năng**: học nội tại ở Lv2, kỹ năng 2 ở Lv5, kỹ năng 3 ở Lv10, tuyệt kỹ ở Lv15 (🟡 mốc cấp), nâng cấp bằng điểm kỹ năng khi lên cấp. Chỉ số theo cấp, mốc nâng cấp từng kỹ năng, đột phá: `docs/KeHoach/HeroProgression.md`.
 
 ---
 
@@ -16,8 +18,9 @@ Hình ảnh và prompt: `docs/LordArtPrompts.md`.
 | Vai trò | Sát thương tầm xa, phá thành | Đột phá cận chiến, tự hồi máu | Khống chế vùng, tăng sức đội lính | Chỉ huy: tăng sức toàn quân, thêm lính |
 | Vũ khí | Cung sừng dài, ống tên sau lưng | Song kiếm (kiếm dài + đoản kiếm) | Quạt lông vũ, sách binh thư | Thương dài + cờ lệnh cắm sau lưng |
 | Tầm đánh thường | Xa (4.5) | Cận (0.6) | Trung (3.0, phóng luồng khí từ quạt) | Cận (0.9, thương dài) |
-| Máu / sát thương | Thấp / cao | Trung / cao | Thấp / thấp | Cao / trung |
-| Tốc chạy | Nhanh | Nhanh | Trung | Chậm |
+| Máu / sát thương | Thấp / cao | Trung / cao | Thấp / thấp (kỹ năng đánh vùng) | Cao / thấp (mạnh nhờ đội lính) |
+| Chỉ số Lv1: Máu / Công (`HeroProgression.md` §5) | 560 / 58 | 760 / 36 | 600 / 32 | 950 / 26 |
+| Tốc chạy | Nhanh (2.9) | Nhanh (3.0) | Trung (2.6) | Chậm (2.3) |
 | Tốc đánh (đòn/giây) | 0.9 | 1.4 | 0.8 | 1.0 |
 | Màu chủ đạo (cố định của nhân vật) | Xanh lục ngọc + nâu da | Trắng bạc + xanh lam đậm | Tím nhạt + trắng ngà | Đỏ son + vàng đồng |
 | Độ khó chơi | Dễ | Trung | Khó | Dễ |
@@ -71,9 +74,9 @@ Cách dùng (✅ spec §3 "Kỹ năng trên thẻ"): **kỹ năng 2 và 3 tự d
 - Kéo thẻ để nhắm tuyệt kỹ dùng cùng luật vùng hợp lệ như lệnh (không thả ngoài chiến trường; được phép thả lên sông; thả trên UI = huỷ).
 - Thanh nộ: 🟡 (người dùng xác nhận tạm thời) chỉ tính sát thương **do chính tướng** gây ra (không tính đội lính, không tính khi bị đánh), tỉ lệ với sát thương; mỗi tướng cấu hình `rageMax` và tốc độ tích trong `HeroDefinition`; không tự giảm. ✅ Dùng xong về 0; tướng chết mất nộ; không mang sang trận sau.
 - 🟡 Gợi ý `rageMax`: đầy sau khoảng 15–20 đòn đánh thường trúng mục tiêu (spec §3).
-- 🟡 Vận chiêu: hiệu lực ở mốc `Cast` của animation; bị khống chế / chết trước mốc đó thì kỹ năng không bị tính (spec §3). Mốc và clip từng kỹ năng: `docs/LordAnimations.md`.
+- 🟡 Vận chiêu: hiệu lực ở mốc `Cast` của animation; bị khống chế / chết trước mốc đó thì kỹ năng không bị tính (spec §3). Mốc và clip từng kỹ năng: `docs/Tuong/LordAnimations.md`.
 - 🟡 Kỹ năng đẩy / hất văng quân địch (Đông Phong, Thiết Kỵ Xung Phong) tuân theo vùng cấm và biên bản đồ (spec §3, §8).
-- ✅ Mọi tướng (cả tướng thường) có cùng cấu trúc: nội tại + kỹ năng 2, 3 + tuyệt kỹ; bộ kỹ năng tướng thường (🟡 nháp): `docs/NormalHeroes.md`.
+- ✅ Mọi tướng (cả tướng thường) có cùng cấu trúc: nội tại + kỹ năng 2, 3 + tuyệt kỹ; bộ kỹ năng tướng thường (🟡 nháp): `docs/Tuong/NormalHeroes.md`.
 - ✅ **Tốc đánh** (spec §6): quyết định nhịp đánh và tốc độ ra đòn; animation đánh tua theo tốc đánh. Các hiệu ứng "+% tốc đánh" (Kiếm Tâm, Trống Trận) nhân vào tốc đánh này.
 - Cân bằng con số để giai đoạn sắp phát hành (spec §13 ⏳).
 

@@ -1,7 +1,7 @@
 # Bản đồ – prompt tạo ảnh (dán nguyên văn)
 
 Phong cách bản đồ: **vẽ tay, màu mềm** (map spec §8.1), góc 3/4 cố định – mặt đất nén dọc **0.75** (🟡). Ảnh chuẩn hiện có: `Assets/Arena3Q/Art/Maps/map1.png`.
-Giải thích cách dùng, ảnh bố cục gửi kèm, hậu kỳ, mẫu brief cho họa sĩ: `docs/ArtPrompts.md`. Số đo: `docs/MapSpecification.md` §8.
+Giải thích cách dùng, ảnh bố cục gửi kèm, hậu kỳ, mẫu brief cho họa sĩ: `docs/BanDo/MapArtGuide.md`. Số đo: `docs/BanDo/MapSpecification.md` §8.
 
 > Ảnh toàn bản đồ chỉ để **chốt phong cách**; thứ đưa vào game là **từng mảnh** (ô nền, dải sông, cầu, thành, cây/đá) đúng kích thước pixel bên dưới.
 
@@ -17,7 +17,7 @@ Giải thích cách dùng, ảnh bố cục gửi kèm, hậu kỳ, mẫu brief 
 | 8 | Thành địch | `castle_player.png` | 448 × 576 px | `castle_enemy.png` |
 | 9 | Cây, bụi, đá | `map1.png` | cây ≈ 192 × 320 px | `prop_tree_01.png` … |
 
-AI thường trả ảnh 1024/1536 px – thu nhỏ/cắt lại đúng kích thước trong Krita (`docs/ArtPrompts.md` §5). Ảnh mảnh lưu vào thư mục này trước, mình kiểm tra rồi chuyển vào `Assets/Arena3Q/Art/Maps/`.
+AI thường trả ảnh 1024/1536 px – thu nhỏ/cắt lại đúng kích thước trong Krita (`docs/BanDo/MapArtGuide.md` §5). Ảnh mảnh lưu vào thư mục này trước, mình kiểm tra rồi chuyển vào `Assets/Arena3Q/Art/Maps/`.
 
 ---
 
