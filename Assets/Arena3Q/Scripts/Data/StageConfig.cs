@@ -33,6 +33,8 @@ namespace Arena3Q.Data
         [Tooltip("The Bát Quái Trận of the map (docs/BanDo/BatQuaiTran.md): pillar ring, rotating gates, centre altar. " +
                  "Empty = no formation.")]
         [SerializeField] private BaguaFormationConfig formation;
+        [Tooltip("Pictures standing on the map (tents, towers, fences…); they never block movement.")]
+        [SerializeField] private MapDecorConfig decorations;
 
         [Header("Castles")]
         [Tooltip("Provisional: in Defense stages the player castle shoots by default.")]
@@ -81,6 +83,7 @@ namespace Arena3Q.Data
         public Rect BackgroundArtArea =>
             backgroundArtArea.width > 0f && backgroundArtArea.height > 0f ? backgroundArtArea : mapBounds;
         public BaguaFormationConfig Formation => formation;
+        public MapDecorConfig Decorations => decorations;
 
         /// <summary>The view tilt (degrees) that makes the flat logic map line up with the painted background.</summary>
         public float BackgroundArtTiltDegrees => Mathf.Acos(Mathf.Clamp01(backgroundArtVerticalScale)) * Mathf.Rad2Deg;

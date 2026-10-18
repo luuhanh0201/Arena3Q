@@ -73,7 +73,18 @@ Ký hiệu: ✅ đã chốt · 🟡 mặc định tạm · ⏳ để sau · ⚠�
 - Cây, đá, bụi, đồ doanh trại trong vùng chơi: **chỉ để nhìn, không chặn đường**.
 - Vách đá / gò ở rìa nằm **ngoài** `mapBounds`: chặn (biên bản đồ đã chặn), unit vốn không ra đó.
 - Lều, rào, tháp canh trong doanh trại: **không chặn**, trừ khi có lý do gameplay sau này.
-- Vị trí đặt: Claude đề xuất bằng ảnh bố cục để người dùng duyệt (chưa chốt).
+- Vị trí đặt: 🟡 đề xuất đầu (2026-10-18, chờ người dùng duyệt), lưu trong `Content/Maps/MapDecorations_BatTran.asset` (`MapDecorConfig`, gắn vào `StageConfig.decorations`; builder chỉ tạo khi chưa có, sửa trong asset là giữ). Doanh trại phe ta (phe địch đối xứng qua x = 0):
+
+| Vật | Sprite | Vị trí (phe ta) |
+|---|---|---|
+| Thành | `ThreeKingdomsCommand_1` (ta) / `ThreeKingdomsCommand_2` – bản cờ rách, gỗ cháy (địch) | (∓19.5, 0), qua `CastleConfig.sprite` |
+| 2 lều | `ThreeKingdomsSquare` | (−22, ±7.5) |
+| 2 chòi canh | `WoodenCampWatchtower` | (−17, ±10) |
+| 4 đoạn rào | `WoodenPalisadeFence` | (−22.3 / −19.3, ±11.8) |
+| 2 cột cờ trước thành | `MilitaryFlagpoleBanner` | (−17.8, ±2.6) |
+| 4 cột cờ đánh dấu làn trên / dưới | `MilitaryFlagpoleBanner` | (±7.5, ±10.5) |
+
+  Tránh vùng triệu hồi (x −17.5…−11, y −9…9), điểm triệu hồi nhanh, làn ngoài (y ≈ ±8) và chỗ sinh quân ải Thủ (x 21–22.5, y −6…6). ⏳ Cây / đá / bụi: chưa có sprite (3 file `.blend` cây chưa render được vì máy không có Blender).
 
 ## 6. Hình ảnh (placeholder nếu chưa có asset) ✅
 

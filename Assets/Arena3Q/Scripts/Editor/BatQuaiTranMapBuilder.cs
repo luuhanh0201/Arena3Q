@@ -23,7 +23,37 @@ namespace Arena3Q.Editor
         /// <summary>Same vertical scale as the prop sprites (map spec §8.3); the painted ground is flat, so it fits any.</summary>
         public const float ArtVerticalScale = 0.75f;
 
+        public const string DecorationsAssetPath = PrototypeContentBuilder.ContentRoot + "/Maps/MapDecorations_BatTran.asset";
+
         private const string SlabProp = "BaguaWideStoneSlab";
+        private const string PlayerCastleProp = "ThreeKingdomsCommand_1";
+        // The battle-worn variant (torn banners, charred wood) marks the enemy camp.
+        private const string EnemyCastleProp = "ThreeKingdomsCommand_2";
+        private const string TentProp = "ThreeKingdomsSquare";
+        private const string TowerProp = "WoodenCampWatchtower";
+        private const string FenceProp = "WoodenPalisadeFence";
+        private const string FlagProp = "MilitaryFlagpoleBanner";
+
+        /// <summary>
+        /// First proposal for the camps (docs/BanDo/BatQuaiTran.md §5), for the player side (x &lt; 0); the enemy camp
+        /// mirrors it. Kept clear of the summon zone (x −17.5…−11, y −9…9), the quick summon points, the outer lanes
+        /// and the Defense spawn area (x 21–22.5, y −6…6). Pictures only, nothing blocks.
+        /// </summary>
+        private static readonly (string prop, Vector2 position)[] CampLayout =
+        {
+            (TentProp, new Vector2(-22f, 7.5f)), (TentProp, new Vector2(-22f, -7.5f)),
+            (TowerProp, new Vector2(-17f, 10f)), (TowerProp, new Vector2(-17f, -10f)),
+            (FenceProp, new Vector2(-22.3f, 11.8f)), (FenceProp, new Vector2(-19.3f, 11.8f)),
+            (FenceProp, new Vector2(-22.3f, -11.8f)), (FenceProp, new Vector2(-19.3f, -11.8f)),
+            (FlagProp, new Vector2(-17.8f, 2.6f)), (FlagProp, new Vector2(-17.8f, -2.6f)),
+        };
+
+        /// <summary>Flags marking the outer lanes (they run at y ≈ ±8 around x ±7.5).</summary>
+        private static readonly (string prop, Vector2 position)[] FieldLayout =
+        {
+            (FlagProp, new Vector2(-7.5f, 10.5f)), (FlagProp, new Vector2(7.5f, 10.5f)),
+            (FlagProp, new Vector2(-7.5f, -10.5f)), (FlagProp, new Vector2(7.5f, -10.5f)),
+        };
         private const string PillarProp = "BaguaStonePillar";
         private const string AltarProp = "BaguaRoundStoneAltar";
 
@@ -58,6 +88,9 @@ namespace Arena3Q.Editor
                          ?? throw new InvalidOperationException($"{LayoutJsonPath} could not be read.");
             EnsureSlabSprites();
             var formation = BuildFormation(layout);
+            var decorations = EnsureDecorations();
+            var playerCastleSprite = FirstSprite(PlayerCastleProp);
+            var enemyCastleSprite = FirstSprite(EnemyCastleProp);
             var ground = ImportPaintedGround();
             var area = new Rect(layout.terrain.posX, layout.terrain.posZ, layout.terrain.sizeX, layout.terrain.sizeZ);
             var playerBase = Find(layout, "Base_A");
@@ -71,6 +104,9 @@ namespace Arena3Q.Editor
                 so.FindProperty("forbiddenZones").arraySize = 0;
                 so.FindProperty("rivers").arraySize = 0;
                 so.FindProperty("formation").objectReferenceValue = formation;
+                so.FindProperty("decorations").objectReferenceValue = decorations;
+                SetIfEmpty(so.FindProperty("playerCastle.sprite"), playerCastleSprite);
+                SetIfEmpty(so.FindProperty("enemyCastle.sprite"), enemyCastleSprite);
                 so.FindProperty("backgroundArt").objectReferenceValue = ground;
                 so.FindProperty("backgroundArtVerticalScale").floatValue = ArtVerticalScale;
                 so.FindProperty("backgroundArtArea").rectValue = area;
@@ -214,6 +250,59 @@ namespace Arena3Q.Editor
                 importer.SaveAndReimport();
             }
             return AssetDatabase.LoadAssetAtPath<Sprite>(PaintedGroundPath);
+        }
+
+        /// <summary>Creates the decorations asset with the proposed camps once; later runs keep any edits.</summary>
+        private static MapDecorConfig EnsureDecorations()
+        {
+            var decorations = AssetDatabase.LoadAssetAtPath<MapDecorConfig>(DecorationsAssetPath);
+            if (decorations != null)
+                return decorations;
+            Directory.CreateDirectory(Path.GetDirectoryName(DecorationsAssetPath));
+            decorations = ScriptableObject.CreateInstance<MapDecorConfig>();
+            AssetDatabase.CreateAsset(decorations, DecorationsAssetPath);
+
+            var pieces = new List<(Sprite sprite, Vector2 position)>();
+            foreach (var (prop, position) in CampLayout)
+            {
+                var sprite = FirstSprite(prop);
+                if (sprite == null)
+                    continue;
+                pieces.Add((sprite, position));
+                pieces.Add((sprite, new Vector2(-position.x, position.y)));
+            }
+            foreach (var (prop, position) in FieldLayout)
+            {
+                var sprite = FirstSprite(prop);
+                if (sprite != null)
+                    pieces.Add((sprite, position));
+            }
+
+            var so = new SerializedObject(decorations);
+            var list = so.FindProperty("pieces");
+            list.arraySize = pieces.Count;
+            for (var i = 0; i < pieces.Count; i++)
+            {
+                var element = list.GetArrayElementAtIndex(i);
+                element.FindPropertyRelative("sprite").objectReferenceValue = pieces[i].sprite;
+                element.FindPropertyRelative("position").vector2Value = pieces[i].position;
+            }
+            so.ApplyModifiedPropertiesWithoutUndo();
+            EditorUtility.SetDirty(decorations);
+            Debug.Log($"[Arena3Q] Created {DecorationsAssetPath} with {pieces.Count} pieces.");
+            return decorations;
+        }
+
+        private static Sprite FirstSprite(string prop)
+        {
+            var sprites = LoadSprites(prop, out _);
+            return sprites.Count > 0 ? sprites[0] : null;
+        }
+
+        private static void SetIfEmpty(SerializedProperty property, UnityEngine.Object value)
+        {
+            if (property != null && property.objectReferenceValue == null && value != null)
+                property.objectReferenceValue = value;
         }
 
         private static Marker Find(Layout layout, string name)

@@ -13,6 +13,8 @@ namespace Arena3Q.Data
         [SerializeField, Min(0f)] private float attackRange = 6f;
         [SerializeField, Min(0f)] private float damage = 30f;
         [SerializeField, Min(0.05f)] private float attackInterval = 1.5f;
+        [Tooltip("Picture of the castle (pivot on the ground, e.g. a rendered prop sprite). Empty = placeholder square.")]
+        [SerializeField] private Sprite sprite;
 
         public CastleConfig()
         {
@@ -30,6 +32,7 @@ namespace Arena3Q.Data
         public float AttackRange => attackRange;
         public float Damage => damage;
         public float AttackInterval => attackInterval;
+        public Sprite Sprite => sprite;
     }
 
     /// <summary>Where a river can be crossed (bridge or ford).</summary>

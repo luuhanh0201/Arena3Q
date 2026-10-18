@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d923f8a53d2ace749a29a65bf8c86b1b, type: 3}
+  m_Name: MapDecorations_BatTran
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.MapDecorConfig
+  pieces:
+  - sprite: {fileID: 21300000, guid: 75305cf671297e44e80e3cc43ec33448, type: 3}
+    position: {x: -22, y: 7.5}
+  - sprite: {fileID: 21300000, guid: 75305cf671297e44e80e3cc43ec33448, type: 3}
+    position: {x: 22, y: 7.5}
+  - sprite: {fileID: 21300000, guid: 75305cf671297e44e80e3cc43ec33448, type: 3}
+    position: {x: -22, y: -7.5}
+  - sprite: {fileID: 21300000, guid: 75305cf671297e44e80e3cc43ec33448, type: 3}
+    position: {x: 22, y: -7.5}
+  - sprite: {fileID: 21300000, guid: fa3a423033e79e6468395cb8f01ce3a6, type: 3}
+    position: {x: -17, y: 10}
+  - sprite: {fileID: 21300000, guid: fa3a423033e79e6468395cb8f01ce3a6, type: 3}
+    position: {x: 17, y: 10}
+  - sprite: {fileID: 21300000, guid: fa3a423033e79e6468395cb8f01ce3a6, type: 3}
+    position: {x: -17, y: -10}
+  - sprite: {fileID: 21300000, guid: fa3a423033e79e6468395cb8f01ce3a6, type: 3}
+    position: {x: 17, y: -10}
+  - sprite: {fileID: 21300000, guid: 3ae8e913d7194774180c818a3c6bf832, type: 3}
+    position: {x: -22.3, y: 11.8}
+  - sprite: {fileID: 21300000, guid: 3ae8e913d7194774180c818a3c6bf832, type: 3}
+    position: {x: 22.3, y: 11.8}
+  - sprite: {fileID: 21300000, guid: 3ae8e913d7194774180c818a3c6bf832, type: 3}
+    position: {x: -19.3, y: 11.8}
+  - sprite: {fileID: 21300000, guid: 3ae8e913d7194774180c818a3c6bf832, type: 3}
+    position: {x: 19.3, y: 11.8}
+  - sprite: {fileID: 21300000, guid: 3ae8e913d7194774180c818a3c6bf832, type: 3}
+    position: {x: -22.3, y: -11.8}
+  - sprite: {fileID: 21300000, guid: 3ae8e913d7194774180c818a3c6bf832, type: 3}
+    position: {x: 22.3, y: -11.8}
+  - sprite: {fileID: 21300000, guid: 3ae8e913d7194774180c818a3c6bf832, type: 3}
+    position: {x: -19.3, y: -11.8}
+  - sprite: {fileID: 21300000, guid: 3ae8e913d7194774180c818a3c6bf832, type: 3}
+    position: {x: 19.3, y: -11.8}
+  - sprite: {fileID: 21300000, guid: 95d2ea6011ef4284390bf632326c3262, type: 3}
+    position: {x: -17.8, y: 2.6}
+  - sprite: {fileID: 21300000, guid: 95d2ea6011ef4284390bf632326c3262, type: 3}
+    position: {x: 17.8, y: 2.6}
+  - sprite: {fileID: 21300000, guid: 95d2ea6011ef4284390bf632326c3262, type: 3}
+    position: {x: -17.8, y: -2.6}
+  - sprite: {fileID: 21300000, guid: 95d2ea6011ef4284390bf632326c3262, type: 3}
+    position: {x: 17.8, y: -2.6}
+  - sprite: {fileID: 21300000, guid: 95d2ea6011ef4284390bf632326c3262, type: 3}
+    position: {x: -7.5, y: 10.5}
+  - sprite: {fileID: 21300000, guid: 95d2ea6011ef4284390bf632326c3262, type: 3}
+    position: {x: 7.5, y: 10.5}
+  - sprite: {fileID: 21300000, guid: 95d2ea6011ef4284390bf632326c3262, type: 3}
+    position: {x: -7.5, y: -10.5}
+  - sprite: {fileID: 21300000, guid: 95d2ea6011ef4284390bf632326c3262, type: 3}
+    position: {x: 7.5, y: -10.5}

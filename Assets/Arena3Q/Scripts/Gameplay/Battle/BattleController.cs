@@ -269,6 +269,12 @@ namespace Arena3Q.Gameplay
             _worldRoot.SetParent(transform, false);
             BuildMapVisuals();
             _formation?.BuildView(_worldRoot, _groundRoot);
+            if (stage.Decorations != null)
+            {
+                var decor = new GameObject("Decorations");
+                decor.transform.SetParent(_worldRoot, false);
+                decor.AddComponent<MapDecorView>().Init(this, stage.Decorations);
+            }
 
             _playerCastle = SpawnCastle(State.PlayerCastle, stage.PlayerCastle);
             // Defense stages have no enemy castle to attack (spec §8: enemies come in waves).

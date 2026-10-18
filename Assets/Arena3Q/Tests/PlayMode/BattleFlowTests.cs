@@ -842,6 +842,21 @@ namespace Arena3Q.Tests.PlayMode
                 yield return null;
             Capture("defense.png");
 
+            // The whole map at once (both camps, the ring, the decorations), beyond the in-game zoom limit.
+            _battle.StartBattle(0);
+            SummonQuick(0);
+            Run(2f);
+            yield return null;
+            var overview = Camera.main;
+            var savedSize = overview.orthographicSize;
+            var savedPosition = overview.transform.position;
+            var view = _battle.ViewBounds;
+            overview.orthographicSize = Mathf.Max(view.height * 0.5f, view.width * 0.5f / overview.aspect) + 0.2f;
+            overview.transform.position = new Vector3(view.center.x, view.center.y, savedPosition.z);
+            Capture("map_overview.png");
+            overview.orthographicSize = savedSize;
+            overview.transform.position = savedPosition;
+
             _battle.StartBattle(0);
             SummonQuick(0);
             SummonQuick(1);

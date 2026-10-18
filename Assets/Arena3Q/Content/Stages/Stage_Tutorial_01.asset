@@ -31,6 +31,7 @@ MonoBehaviour:
     width: 54
     height: 30.38
   formation: {fileID: 11400000, guid: f42eae35cc3b6044eb0913786235eb33, type: 2}
+  decorations: {fileID: 11400000, guid: 00611714d3e915a41a2ddae823d68be1, type: 2}
   playerCastle:
     position: {x: -19.5, y: 0}
     maxHealth: 3000
@@ -38,6 +39,7 @@ MonoBehaviour:
     attackRange: 6
     damage: 30
     attackInterval: 1.5
+    sprite: {fileID: 21300000, guid: 951b49c44df7dfd41b2ff59c785a463e, type: 3}
   enemyCastle:
     position: {x: 19.5, y: 0}
     maxHealth: 4000
@@ -45,6 +47,7 @@ MonoBehaviour:
     attackRange: 6
     damage: 30
     attackInterval: 1.5
+    sprite: {fileID: 21300000, guid: 6d50dc9ae493f5b49a91796dad5f0ef0, type: 3}
   summonZone:
     serializedVersion: 2
     x: -17.5

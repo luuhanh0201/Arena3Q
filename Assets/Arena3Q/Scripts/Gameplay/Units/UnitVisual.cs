@@ -42,6 +42,24 @@ namespace Arena3Q.Gameplay
             }
         }
 
+        /// <summary>
+        /// Shows a painted sprite (pivot on the ground, real size) instead of the tinted placeholder shape; the health
+        /// bar moves above the picture.
+        /// </summary>
+        public void UseArt(Sprite sprite)
+        {
+            if (sprite == null)
+                return;
+            _color = Color.white;
+            _body.sprite = sprite;
+            _body.color = Color.white;
+            _body.transform.localScale = Vector3.one;
+            _body.transform.localPosition = Vector3.zero;
+            var barY = sprite.bounds.max.y + 0.15f;
+            _healthBack.transform.localPosition = new Vector3(0f, barY, 0f);
+            _healthFill.transform.localPosition = new Vector3(_healthFill.transform.localPosition.x, barY, 0f);
+        }
+
         public void SetHealth(float fraction, bool isEnemy)
         {
             fraction = Mathf.Clamp01(fraction);

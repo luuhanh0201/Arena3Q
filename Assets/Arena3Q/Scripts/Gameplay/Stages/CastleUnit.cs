@@ -23,6 +23,8 @@ namespace Arena3Q.Gameplay
             var color = runtime.Team == Team.Player ? new Color(0.35f, 0.6f, 1f) : new Color(0.85f, 0.25f, 0.25f);
             InitUnit(battle, runtime.Id, runtime.Team, runtime.MaxHealth, BodyRadius, PlaceholderArt.Square, color,
                 withSelectionRing: false);
+            if (config.Sprite != null)
+                Visual.UseArt(config.Sprite);
             SetCombat(config.Damage, config.AttackRange, config.AttackInterval, 0f, 0f, config.AttackRange);
             SetPosition(config.Position);
         }
