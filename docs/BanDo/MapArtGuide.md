@@ -80,6 +80,15 @@ Kèm thêm **1–3 ảnh tham khảo phong cách** (ảnh game bạn thích) n�
 
 ---
 
+## 5b. Vật thể làm từ model 3D (Meshy…) → sprite
+Game vẫn là 2D: model 3D **chỉ là nguồn**, được render thành sprite ở đúng góc 3/4 (0.75), PPU 128, có bóng đổ mềm trên nền trong suốt; pivot là **tâm chân model trên mặt đất** (điểm đứng đúng vị trí logic), không phải mép dưới ảnh.
+1. Tải FBX + texture về, mỗi model một folder đặt theo tên model (ví dụ `Art/Maps/batQuaiTran/BaguaStonePillar/`), giữ nguyên tên file `Meshy_AI_*` (FBX tìm texture theo tên; `.gitignore` bỏ qua các file này vì mỗi model ~100 MB).
+2. Thêm model vào một asset `PropSpriteRenderConfig` (map Bát Quái Trận: `Art/Maps/batQuaiTran/PropSprites.asset`): `size` theo đơn vị logic, đo theo `sizeAxis` (`Footprint` = bề rộng/sâu lớn nhất, `Height` = chiều cao – cho vật cao và mảnh như cột cờ), `rotation` = sửa hướng nếu model bị nằm nghiêng, `yaws` = các góc xoay cần (mỗi góc một sprite, ví dụ 8 cột quanh vòng Bát Môn).
+3. Chạy **Arena3Q > Render Prop Sprites** (batch: `-executeMethod Arena3Q.Editor.PropSpriteRenderer.RenderAll`); sprite ra `outputFolder`, đã cài sẵn PPU, pivot, lọc Bilinear.
+4. Ánh sáng, bóng, góc nhìn chỉnh chung trong asset để mọi vật cùng một hướng sáng.
+
+---
+
 ## 6. Nếu gửi cho họa sĩ (mẫu brief)
 > Game chiến thuật 2D trên điện thoại, màn ngang, phong cách vẽ tay màu mềm kiểu Clash of Clans. Góc nhìn 3/4 cố định: mặt đất nén dọc còn 0.75 (một ô vuông 1 × 1 trên đất vẽ thành 128 × 96 px), không phối cảnh, sáng từ trên-trái.
 > Cần các mảnh riêng (danh sách + kích thước ở mục 3 của `docs/BanDo/MapArtGuide.md`, prompt ở `docs/art/concepts/BanDo_Prompts.md`), nền trong suốt, PSD nhiều lớp hoặc PNG.

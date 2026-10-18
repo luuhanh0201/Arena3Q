@@ -1,0 +1,298 @@
+{
+  "map": "BatTran",
+  "terrain": {
+    "sizeX": 54.0,
+    "height": 3.0,
+    "sizeZ": 30.38,
+    "posX": -27.0,
+    "posY": -0.5,
+    "posZ": -15.19,
+    "heightRes": 257,
+    "alphaRes": 512
+  },
+  "mapBounds": {
+    "x": -24.0,
+    "y": -13.0,
+    "w": 48.0,
+    "h": 26.0
+  },
+  "ring": {
+    "radius": 5.7,
+    "gateWidth": 2.5,
+    "pillarWidth": 2.0,
+    "altarDiameter": 4.0
+  },
+  "markers": [
+    {
+      "name": "Base_A",
+      "kind": "base",
+      "x": -19.5,
+      "y": 0.0,
+      "rotY": 90.0
+    },
+    {
+      "name": "Base_B",
+      "kind": "base",
+      "x": 19.5,
+      "y": 0.0,
+      "rotY": -90.0
+    },
+    {
+      "name": "Formation_Center",
+      "kind": "altar",
+      "x": 0.0,
+      "y": 0.0,
+      "rotY": 0.0
+    },
+    {
+      "name": "Gate_0",
+      "kind": "gate",
+      "x": 5.7,
+      "y": 0.0,
+      "rotY": 90.0
+    },
+    {
+      "name": "Pillar_0",
+      "kind": "pillar",
+      "x": 5.266,
+      "y": 2.181,
+      "rotY": 67.5
+    },
+    {
+      "name": "Gate_1",
+      "kind": "gate",
+      "x": 4.031,
+      "y": 4.031,
+      "rotY": 45.0
+    },
+    {
+      "name": "Pillar_1",
+      "kind": "pillar",
+      "x": 2.181,
+      "y": 5.266,
+      "rotY": 22.5
+    },
+    {
+      "name": "Gate_2",
+      "kind": "gate",
+      "x": 0.0,
+      "y": 5.7,
+      "rotY": 0.0
+    },
+    {
+      "name": "Pillar_2",
+      "kind": "pillar",
+      "x": -2.181,
+      "y": 5.266,
+      "rotY": -22.5
+    },
+    {
+      "name": "Gate_3",
+      "kind": "gate",
+      "x": -4.031,
+      "y": 4.031,
+      "rotY": -45.0
+    },
+    {
+      "name": "Pillar_3",
+      "kind": "pillar",
+      "x": -5.266,
+      "y": 2.181,
+      "rotY": -67.5
+    },
+    {
+      "name": "Gate_4",
+      "kind": "gate",
+      "x": -5.7,
+      "y": 0.0,
+      "rotY": -90.0
+    },
+    {
+      "name": "Pillar_4",
+      "kind": "pillar",
+      "x": -5.266,
+      "y": -2.181,
+      "rotY": -112.5
+    },
+    {
+      "name": "Gate_5",
+      "kind": "gate",
+      "x": -4.031,
+      "y": -4.031,
+      "rotY": -135.0
+    },
+    {
+      "name": "Pillar_5",
+      "kind": "pillar",
+      "x": -2.181,
+      "y": -5.266,
+      "rotY": -157.5
+    },
+    {
+      "name": "Gate_6",
+      "kind": "gate",
+      "x": -0.0,
+      "y": -5.7,
+      "rotY": -180.0
+    },
+    {
+      "name": "Pillar_6",
+      "kind": "pillar",
+      "x": 2.181,
+      "y": -5.266,
+      "rotY": -202.5
+    },
+    {
+      "name": "Gate_7",
+      "kind": "gate",
+      "x": 4.031,
+      "y": -4.031,
+      "rotY": -225.0
+    },
+    {
+      "name": "Pillar_7",
+      "kind": "pillar",
+      "x": 5.266,
+      "y": -2.181,
+      "rotY": -247.5
+    },
+    {
+      "name": "Spawn_A_01",
+      "kind": "spawn",
+      "x": -16.0,
+      "y": -1.5,
+      "rotY": 90.0
+    },
+    {
+      "name": "Spawn_B_01",
+      "kind": "spawn",
+      "x": 16.0,
+      "y": 1.5,
+      "rotY": -90.0
+    },
+    {
+      "name": "Spawn_A_02",
+      "kind": "spawn",
+      "x": -16.0,
+      "y": 0.0,
+      "rotY": 90.0
+    },
+    {
+      "name": "Spawn_B_02",
+      "kind": "spawn",
+      "x": 16.0,
+      "y": -0.0,
+      "rotY": -90.0
+    },
+    {
+      "name": "Spawn_A_03",
+      "kind": "spawn",
+      "x": -16.0,
+      "y": 1.5,
+      "rotY": 90.0
+    },
+    {
+      "name": "Spawn_B_03",
+      "kind": "spawn",
+      "x": 16.0,
+      "y": -1.5,
+      "rotY": -90.0
+    }
+  ],
+  "lanes": [
+    {
+      "name": "Lane_Center",
+      "length": 39.0,
+      "points": [
+        {
+          "x": -19.5,
+          "y": 0.0
+        },
+        {
+          "x": -5.7,
+          "y": 0.0
+        },
+        {
+          "x": 0.0,
+          "y": 0.0
+        },
+        {
+          "x": 5.7,
+          "y": 0.0
+        },
+        {
+          "x": 19.5,
+          "y": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Lane_North",
+      "length": 44.66,
+      "points": [
+        {
+          "x": -19.5,
+          "y": 0.0
+        },
+        {
+          "x": -15.0,
+          "y": 5.0
+        },
+        {
+          "x": -7.5,
+          "y": 8.0
+        },
+        {
+          "x": 0.0,
+          "y": 8.6
+        },
+        {
+          "x": 7.5,
+          "y": 8.0
+        },
+        {
+          "x": 15.0,
+          "y": 5.0
+        },
+        {
+          "x": 19.5,
+          "y": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Lane_South",
+      "length": 44.66,
+      "points": [
+        {
+          "x": -19.5,
+          "y": 0.0
+        },
+        {
+          "x": -15.0,
+          "y": -5.0
+        },
+        {
+          "x": -7.5,
+          "y": -8.0
+        },
+        {
+          "x": 0.0,
+          "y": -8.6
+        },
+        {
+          "x": 7.5,
+          "y": -8.0
+        },
+        {
+          "x": 15.0,
+          "y": -5.0
+        },
+        {
+          "x": 19.5,
+          "y": 0.0
+        }
+      ]
+    }
+  ]
+}

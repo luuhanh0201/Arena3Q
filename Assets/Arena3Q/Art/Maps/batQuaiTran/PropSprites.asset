@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb04a23f71918d449b71ab3e2f8b541, type: 3}
+  m_Name: PropSprites
+  m_EditorClassIdentifier: Arena3Q.Editor::Arena3Q.Editor.PropSpriteRenderConfig
+  outputFolder: Assets/Arena3Q/Art/Maps/batQuaiTran/Sprites
+  verticalScale: 0.75
+  pixelsPerUnit: 128
+  supersampling: 3
+  padding: 0.06
+  maxTextureSize: 2048
+  lightAzimuth: -50
+  lightElevation: 55
+  ambient: 0.62
+  diffuse: 0.5
+  lightWrap: 0.35
+  castShadow: 1
+  shadowColor: {r: 0.1, g: 0.07, b: 0.04, a: 0.38}
+  shadowBlur: 0.08
+  props:
+  - name: BaguaRoundStoneAltar
+    model: {fileID: 919132149155446097, guid: 3fae028f9ab9e6a44b8f9f9258c0ea1e, type: 3}
+    baseColor: {fileID: 2800000, guid: 04373c52427ba95468185e005969e556, type: 3}
+    normalMap: {fileID: 2800000, guid: bf10f7b9fd2fa024ca0e55a910f99409, type: 3}
+    sizeAxis: 0
+    size: 4
+    rotation: {x: 0, y: 0, z: 0}
+    yaws:
+    - 0
+  - name: BaguaStonePillar
+    model: {fileID: 919132149155446097, guid: 3d80a58b2ba4632488f5269e2278b9ca, type: 3}
+    baseColor: {fileID: 2800000, guid: 5e44ef8519bde9347aed457734609731, type: 3}
+    normalMap: {fileID: 2800000, guid: 5a3f3dea9798ace4c80b8ed1eadb6610, type: 3}
+    sizeAxis: 0
+    size: 2
+    rotation: {x: 0, y: 0, z: 0}
+    yaws:
+    - 22.5
+    - 67.5
+    - 112.5
+    - 157.5
+    - 202.5
+    - 247.5
+    - 292.5
+    - 337.5
+  - name: BaguaWideStoneSlab
+    model: {fileID: 919132149155446097, guid: 045c8432825e50c47b3486813535e196, type: 3}
+    baseColor: {fileID: 2800000, guid: 8a28d61da4278b348b81369a2a0595f1, type: 3}
+    normalMap: {fileID: 2800000, guid: 1404eb47b19f62f46930bbd6eff37468, type: 3}
+    sizeAxis: 0
+    size: 2.5
+    rotation: {x: 0, y: 0, z: 0}
+    yaws:
+    - 0
+  - name: MilitaryFlagpoleBanner
+    model: {fileID: 919132149155446097, guid: 3294c8b72376cd547a35891842f19e88, type: 3}
+    baseColor: {fileID: 2800000, guid: 91c1fc3ff6527004aa18824eaddce8c5, type: 3}
+    normalMap: {fileID: 2800000, guid: 1806e64b5d12bf94e9b10d5c489b8b26, type: 3}
+    sizeAxis: 1
+    size: 3
+    rotation: {x: 0, y: 0, z: 0}
+    yaws:
+    - 0
+  - name: ThreeKingdomsCommand_1
+    model: {fileID: 919132149155446097, guid: 38301760402a9d9408c7abf360b6dc3c, type: 3}
+    baseColor: {fileID: 2800000, guid: 632cd1b62f8131c4084fb05bf64662a9, type: 3}
+    normalMap: {fileID: 2800000, guid: aa8e54744eabd7c438e398dcea72ba9a, type: 3}
+    sizeAxis: 0
+    size: 3.5
+    rotation: {x: 0, y: 0, z: 0}
+    yaws:
+    - 0
+  - name: ThreeKingdomsCommand_2
+    model: {fileID: 919132149155446097, guid: 1cb5579798f81c84080cb82c88a66431, type: 3}
+    baseColor: {fileID: 2800000, guid: c8e6a7dc60dce5d4cbdbf610513a08c9, type: 3}
+    normalMap: {fileID: 2800000, guid: 45fb7eb235ab9e54cb993a3e9fd888a4, type: 3}
+    sizeAxis: 0
+    size: 3.5
+    rotation: {x: 0, y: 0, z: 0}
+    yaws:
+    - 0
+  - name: ThreeKingdomsSquare
+    model: {fileID: 919132149155446097, guid: c77ccd1ca925ebf4b8be75bdb99d1eb3, type: 3}
+    baseColor: {fileID: 2800000, guid: 22cec829368eb0f4782929a9bac29b38, type: 3}
+    normalMap: {fileID: 2800000, guid: 2f39cfd710bc553459ac019a2cd8552a, type: 3}
+    sizeAxis: 0
+    size: 3.5
+    rotation: {x: 0, y: 0, z: 0}
+    yaws:
+    - 0
+  - name: WoodenCampWatchtower
+    model: {fileID: 919132149155446097, guid: c874a90e4ff51e64fb998b4fe2362e47, type: 3}
+    baseColor: {fileID: 2800000, guid: b21668a48961d204794ce84ef24726c3, type: 3}
+    normalMap: {fileID: 2800000, guid: 878a73e4e9e18ba4392fe2853b58b0c2, type: 3}
+    sizeAxis: 1
+    size: 4
+    rotation: {x: 0, y: 0, z: 0}
+    yaws:
+    - 0
+  - name: WoodenPalisadeFence
+    model: {fileID: 919132149155446097, guid: bde5eaac25c854b4d95fdbf99dcc9e5d, type: 3}
+    baseColor: {fileID: 2800000, guid: 2102ab20a28378b47a8c98089951e1d8, type: 3}
+    normalMap: {fileID: 2800000, guid: 42322f8f5d13f4f4a8200f21afc82809, type: 3}
+    sizeAxis: 0
+    size: 3
+    rotation: {x: 0, y: 0, z: 0}
+    yaws:
+    - 0

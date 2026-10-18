@@ -1,0 +1,32 @@
+ARENA3Q — MAP "BÁT TRẬN ĐỒ" — NỀN ĐẤT CHO UNITY TERRAIN
+=========================================================
+
+FILE
+- BatTran_Height.bytes   : heightmap 257x257 (16-bit) — nền phẳng, gò thấp ở rìa ngoài vùng chơi
+- BatTran_Splat.bytes    : splat map 512x512 (cỏ khô / cát / đường đất / đá rìa)
+- BatTran_Painted.png    : texture vẽ tay lấy từ ảnh của bạn (đã khoét 2 bãi doanh trại)
+- BatTran_Layout.json    : tọa độ thành, vòng trận, 8 cửa, 8 cụm cột, spawn, 3 lane
+- Scripts/Editor/BatTranTerrainBuilder.cs : công cụ dựng Terrain (menu Arena3Q)
+- Scripts/BatTranMarkers.cs              : vẽ marker + lane trong cửa sổ Scene
+- Preview_BatTran.png    : ảnh xem trước
+
+CÁCH DÙNG (khoảng 2 phút)
+1. Chép các file dữ liệu vào Assets/Art/Maps/BatTran/
+   Chép BatTranTerrainBuilder.cs vào Assets/Editor/
+   Chép BatTranMarkers.cs vào Assets/Scripts/Maps/
+2. Trên thanh menu Unity: Arena3Q > Bat Tran > Build Terrain
+3. Kéo 3 file .json/.bytes vào 3 ô Data, kéo BatTran_Painted.png vào ô texture.
+4. Bấm "Build Terrain + Markers". Terrain + object "BatTran_Markers" được tạo trong scene.
+
+HAI CHẾ ĐỘ TEXTURE
+- Painted (mặc định): giống hệt ảnh concept, nhìn gần hơi mờ (ảnh gốc 1536 px).
+- Tiled: bỏ tick, kéo 4 texture lặp (cỏ khô, cát, đường đất, đá) -> nét hơn, bố cục theo splat map.
+
+THÔNG SỐ
+- Terrain 54 x 30.4 m, tâm (0,0). Mặt đất vùng chơi ở Y = 0. Vùng chơi 48 x 26 (khung nét đứt).
+- Unity: X = x logic, Z = y logic.
+- Thành: (-19.5, 0) và (19.5, 0), có bãi cát doanh trại bán kính ~4 m.
+- Vòng Bát Môn: tâm (0,0), cột và cửa xếp trên bán kính 5.7 m.
+  Cụm cột rộng 2.0 m (scale model cụm cột về 2.0 m), cửa rộng 2.5 m.
+- Lane giữa 39 m (~15 giây), lane trên/dưới 44.7 m (~17 giây).
+- Toàn bộ vùng chơi đi được; chỉ có cột/cửa/đài là vật cản -> Bake NavMesh như bình thường.
