@@ -262,7 +262,11 @@ namespace Arena3Q.Tests.PlayMode
         [UnityTest]
         public IEnumerator MoveCommand_AcrossTheRiver_GoesOverABridge()
         {
-            _battle.StartBattle(Variant(0, so => so.FindProperty("defenders").arraySize = 0));
+            _battle.StartBattle(Variant(0, so =>
+            {
+                so.FindProperty("defenders").arraySize = 0;
+                TestStages.UseRiverInsteadOfFormation(so);
+            }));
             yield return null;
             var river = _battle.Layout.Obstacles.OfType<RiverObstacle>().Single();
             Assert.That(river.Name, Is.EqualTo("Sông"));
@@ -352,15 +356,10 @@ namespace Arena3Q.Tests.PlayMode
             SummonQuick(0);
             yield return null;
 
-            // The centre-line point furthest from every bridge is surely water.
-            var river = Stage(0).Rivers[0];
-            var inTheRiver = river.Path
-                .Where(p => Stage(0).MapBounds.Contains(p))
-                .OrderByDescending(p => river.Crossings.Min(c => Vector2.Distance(p, c.Position)))
-                .First();
-            Assert.That(_battle.MoveSelectedHero(inTheRiver).Reason, Is.EqualTo(RejectReason.InForbiddenZone));
-            var bridge = Stage(0).Rivers[0].Crossings[0].Position;
-            Assert.That(_battle.MoveSelectedHero(bridge).Accepted, Is.True, "the bridge itself is walkable");
+            // The shipped map: a Bát Quái pillar blocks, an open gate (4, west, Khai at the start) does not.
+            var formation = Stage(0).Formation;
+            Assert.That(_battle.MoveSelectedHero(formation.Pillars[0]).Reason, Is.EqualTo(RejectReason.InForbiddenZone));
+            Assert.That(_battle.MoveSelectedHero(formation.Gates[4].position).Accepted, Is.True, "an open gate is walkable");
             _battle.SelectedHero.Brain.Issue(new MoveCommand(_battle.SelectedHero.Id, _battle.SelectedHero.Position));
             Run(Step);
             Assert.That(_battle.MoveSelectedHero(new Vector2(500f, 0f)).Reason, Is.EqualTo(RejectReason.OutsideBattlefield));
@@ -733,10 +732,11 @@ namespace Arena3Q.Tests.PlayMode
         {
             _battle.StartBattle(0);
             yield return null;
-            Assert.That(Stage(0).BackgroundArt, Is.Not.Null, "the shipped stages use map1 as background art");
+            Assert.That(Stage(0).BackgroundArt, Is.Not.Null, "the shipped stages use the Bát Quái Trận ground as background art");
 
             var art = _battle.GetComponentsInChildren<SpriteRenderer>().Single(r => r.name == "MapArt");
-            var bounds = Stage(0).MapBounds;
+            var bounds = Stage(0).BackgroundArtArea;
+            Assert.That(bounds.width, Is.GreaterThan(Stage(0).MapBounds.width), "the painting has a rim outside the map");
             var scale = _battle.ViewYScale;
             Assert.That(art.bounds.size.x, Is.EqualTo(bounds.width).Within(0.01f), "art spans the map width");
             Assert.That(art.bounds.size.y, Is.EqualTo(bounds.height * scale).Within(0.01f), "and the tilted map height");
@@ -827,7 +827,7 @@ namespace Arena3Q.Tests.PlayMode
             _battle.StartBattle(0);
             SummonQuick(0);
             SummonQuick(1);
-            _battle.MoveSelectedHero(new Vector2(-6f, 2f));
+            _battle.MoveSelectedHero(new Vector2(-8f, 2f));
             Run(3f);
             _battle.ShowSummonZone(true);
             yield return null;

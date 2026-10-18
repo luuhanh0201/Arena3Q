@@ -322,7 +322,7 @@ namespace Arena3Q.Tests.PlayMode
         [UnityTest]
         public IEnumerator Flyer_CrossesTheRiverAnywhere_WalkersNeedABridge()
         {
-            StartWithLoneHero(Empty("defense_01"));
+            StartWithLoneHero(Copy(Empty("defense_01"), TestStages.UseRiverInsteadOfFormation));
             yield return null;
             // Between the two bridges (y ≈ 6.7 and −4.85), east of the river.
             var start = new Vector2(4f, 0.5f);

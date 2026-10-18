@@ -35,6 +35,7 @@ namespace Arena3Q.Editor
                 var frontend = FrontendContentBuilder.Build(progression, stages[0], stages[1]);
                 AssetDatabase.SaveAssets();
                 FrontendContentBuilder.BuildScene(frontend);
+                BatQuaiTranMapBuilder.ApplyToAllStages();
                 AddScenesToBuildSettings();
                 AssetDatabase.SaveAssets();
                 Debug.Log("[Arena3Q] Prototype content is ready.");
@@ -228,45 +229,6 @@ namespace Arena3Q.Editor
         // The painted bridge decks are ~2.4 long along the river (narrower than the 4 proposed in the map spec).
         public const float StandardBridgeWidth = 2.4f;
 
-        public const string StandardMapArtPath = "Assets/Arena3Q/Art/Maps/map1.png";
-        /// <summary>The map art is painted in the fixed 3/4 view with this vertical scale (map spec §8.3).</summary>
-        public const float StandardMapArtVerticalScale = 0.75f;
-
-        /// <summary>
-        /// Imports the map art as a sprite sized to cover the whole size-M map and assigns it as the temporary
-        /// background of the shipped stages. Batch: -executeMethod Arena3Q.Editor.PrototypeContentBuilder.ImportMapArt
-        /// </summary>
-        [MenuItem("Arena3Q/Import Map Art (map1)")]
-        public static void ImportMapArt()
-        {
-            AssetDatabase.ImportAsset(StandardMapArtPath, ImportAssetOptions.ForceSynchronousImport);
-            var importer = (TextureImporter)AssetImporter.GetAtPath(StandardMapArtPath)
-                           ?? throw new InvalidOperationException($"{StandardMapArtPath} not found.");
-            var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(StandardMapArtPath);
-            const float mapWidthUnits = 48f;
-            importer.textureType = TextureImporterType.Sprite;
-            importer.spriteImportMode = SpriteImportMode.Single;
-            importer.spritePixelsPerUnit = texture.width / mapWidthUnits;
-            importer.filterMode = FilterMode.Bilinear;
-            importer.mipmapEnabled = false;
-            importer.maxTextureSize = 2048;
-            importer.textureCompression = TextureImporterCompression.Compressed;
-            importer.SaveAndReimport();
-
-            var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(StandardMapArtPath);
-            foreach (var guid in AssetDatabase.FindAssets("t:StageConfig", new[] { ContentRoot }))
-            {
-                var stage = AssetDatabase.LoadAssetAtPath<StageConfig>(AssetDatabase.GUIDToAssetPath(guid));
-                var so = new SerializedObject(stage);
-                so.FindProperty("backgroundArt").objectReferenceValue = sprite;
-                so.FindProperty("backgroundArtVerticalScale").floatValue = StandardMapArtVerticalScale;
-                so.ApplyModifiedPropertiesWithoutUndo();
-                EditorUtility.SetDirty(stage);
-                Debug.Log($"[Arena3Q] Map art assigned to {stage.name}.");
-            }
-            AssetDatabase.SaveAssets();
-        }
-
         /// <summary>
         /// Replaces the forbidden zones of the shipped stages with the standard river, keeping each asset (and its
         /// GUID, so the Battle scene keeps its references). Batch mode:
@@ -314,7 +276,7 @@ namespace Arena3Q.Editor
             so.FindProperty("stageId").stringValue = stageId;
             so.FindProperty("stageType").enumValueIndex = (int)type;
             so.FindProperty("mapBounds").rectValue = new Rect(-24f, -13f, 48f, 26f);
-            ApplyStandardRiver(so);
+            // The map itself (Bát Quái Trận) is put on every stage at the end of BuildAll.
             so.FindProperty("summonZone").rectValue = new Rect(-17.5f, -9f, 6.5f, 18f);
             var points = new[]
             {

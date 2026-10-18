@@ -27,6 +27,12 @@ namespace Arena3Q.Data
         [Tooltip("Vertical scale of the 3/4 view the background art is painted in (map spec §8.3). The camera tilt is " +
                  "set to match it when the stage starts.")]
         [SerializeField, Range(0.5f, 1f)] private float backgroundArtVerticalScale = 0.75f;
+        [Tooltip("Logic-plane area the background art covers (it may include a rim outside the map). Zero size = the " +
+                 "map bounds.")]
+        [SerializeField] private Rect backgroundArtArea;
+        [Tooltip("The Bát Quái Trận of the map (docs/BanDo/BatQuaiTran.md): pillar ring, rotating gates, centre altar. " +
+                 "Empty = no formation.")]
+        [SerializeField] private BaguaFormationConfig formation;
 
         [Header("Castles")]
         [Tooltip("Provisional: in Defense stages the player castle shoots by default.")]
@@ -72,6 +78,9 @@ namespace Arena3Q.Data
         public IReadOnlyList<RiverConfig> Rivers => rivers;
         public Sprite BackgroundArt => backgroundArt;
         public float BackgroundArtVerticalScale => backgroundArtVerticalScale;
+        public Rect BackgroundArtArea =>
+            backgroundArtArea.width > 0f && backgroundArtArea.height > 0f ? backgroundArtArea : mapBounds;
+        public BaguaFormationConfig Formation => formation;
 
         /// <summary>The view tilt (degrees) that makes the flat logic map line up with the painted background.</summary>
         public float BackgroundArtTiltDegrees => Mathf.Acos(Mathf.Clamp01(backgroundArtVerticalScale)) * Mathf.Rad2Deg;
@@ -102,11 +111,29 @@ namespace Arena3Q.Data
 
         /// <summary>
         /// The field with its forbidden zones. Path nodes keep clear room for the largest unit of the stage (bosses are
-        /// bigger than heroes, spec §8), so every unit can follow the routes.
+        /// bigger than heroes, spec §8), so every unit can follow the routes. Pass the battle's own
+        /// <paramref name="runtimeFormation"/> so its gate slabs switch this layout's zones; without one, a fresh
+        /// formation in its starting state is used (validation, summon rules).
         /// </summary>
-        public BattlefieldLayout CreateLayout() =>
-            new BattlefieldLayout(mapBounds, summonZone, forbiddenZones, CreateRiverObstacles(),
+        public BattlefieldLayout CreateLayout(BaguaFormation runtimeFormation = null)
+        {
+            var obstacles = CreateRiverObstacles();
+            var activeFormation = runtimeFormation ?? CreateFormation();
+            if (activeFormation != null)
+                obstacles.AddRange(activeFormation.Obstacles);
+            return new BattlefieldLayout(mapBounds, summonZone, forbiddenZones, obstacles,
                 Mathf.Max(BattlefieldLayout.DefaultMaxUnitRadius, LargestEnemyRadius));
+        }
+
+        /// <summary>A fresh runtime Bát Quái Trận for one battle, or null when the map has none.</summary>
+        public BaguaFormation CreateFormation()
+        {
+            if (formation == null)
+                return null;
+            var errors = new List<string>();
+            formation.Validate(errors);
+            return errors.Count == 0 ? formation.CreateFormation() : null;
+        }
 
         /// <summary>Body radius of the largest enemy this stage can field (its summons included).</summary>
         public float LargestEnemyRadius
@@ -253,6 +280,7 @@ namespace Arena3Q.Data
             }
 
             ValidateRivers(owner, errors);
+            formation?.Validate(errors);
             ValidateReachability(owner, layout, errors);
 
             if (starThresholds == null)

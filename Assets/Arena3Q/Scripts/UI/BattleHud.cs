@@ -38,6 +38,8 @@ namespace Arena3Q.UI
         private RectTransform _bossBar;
         private Image _bossFill;
         private Text _bossLabel;
+        private Text _formationLabel;
+        private Text _formationWarning;
 
         public BattleController Battle => battle;
         public BattleCameraController Camera => cameraController;
@@ -202,6 +204,12 @@ namespace Arena3Q.UI
             _toast = UiFactory.CreateLabel("Toast", root, top, top, new Vector2(0f, -150f), new Vector2(1000f, 60f), "",
                 38, TextAnchor.MiddleCenter, new Color(1f, 0.8f, 0.4f));
             _toast.enabled = false;
+
+            // Bát Quái Trận: time to the next rotation and who holds the altar; a warning before each rotation.
+            _formationLabel = UiFactory.CreateLabel("Formation", root, new Vector2(0f, 1f), new Vector2(0f, 1f),
+                new Vector2(30f, -160f), new Vector2(560f, 36f), "", 24, TextAnchor.UpperLeft, new Color(0.9f, 0.9f, 0.8f));
+            _formationWarning = UiFactory.CreateLabel("FormationWarning", root, top, top, new Vector2(0f, -210f),
+                new Vector2(1000f, 60f), "", 40, TextAnchor.MiddleCenter, new Color(1f, 0.75f, 0.3f));
 
             // Boss health bar under the timer (spec §8 ✅ "thanh máu riêng trên HUD").
             _bossBar = UiFactory.CreateRect("BossBar", root, top, top, top, new Vector2(0f, -92f), new Vector2(640f, 46f));
@@ -411,6 +419,29 @@ namespace Arena3Q.UI
             _bossLabel.text = boss.InPhaseTwo ? $"{boss.DisplayName} · Pha 2" : boss.DisplayName;
         }
 
+        /// <summary>The Bát Quái Trận warning line (docs/BanDo/BatQuaiTran.md §3), shown before a rotation.</summary>
+        public string FormationWarningText => _formationWarning != null && _formationWarning.enabled ? _formationWarning.text : "";
+
+        private void UpdateFormation()
+        {
+            var formation = battle.Formation;
+            _formationLabel.enabled = formation != null;
+            _formationWarning.enabled = formation != null && formation.IsWarning && !battle.IsOver;
+            if (formation == null)
+                return;
+            var holder = formation.AltarOwner switch
+            {
+                Team.Player => "Ta",
+                Team.Enemy => "Địch",
+                _ => "—"
+            };
+            var blessed = formation.BlessedTeam == Team.Player ? " · Trận nhãn phù hộ quân ta"
+                : formation.BlessedTeam == Team.Enemy ? " · Trận nhãn phù hộ quân địch" : "";
+            _formationLabel.text = $"Trận đồ xoay sau {Mathf.CeilToInt(formation.SecondsToRotation)} s · Trận nhãn: {holder}{blessed}";
+            if (_formationWarning.enabled)
+                _formationWarning.text = $"Bát Quái Trận sắp xoay: {Mathf.CeilToInt(formation.SecondsToRotation)}";
+        }
+
         private void Update()
         {
             if (battle == null || battle.State == null)
@@ -423,6 +454,7 @@ namespace Arena3Q.UI
             if (state.StageType == StageType.Defense)
                 UpdateInfo();
             UpdateBossBar();
+            UpdateFormation();
 
             if (_toastTimer > 0f)
             {

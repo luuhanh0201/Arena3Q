@@ -6,6 +6,8 @@ Tài liệu này đề xuất thông số để vẽ bản đồ cho ải Công 
 
 Ký hiệu: 🟡 đề xuất (chờ người dùng duyệt, sau khi duyệt đổi thành ✅) · ⏳ để sau.
 
+> ✅ (2026-10-18) Bố cục hiện hành của **mọi ải** là **Bát Quái Trận** (`docs/BanDo/BatQuaiTran.md`: vòng 8 cột + 8 cửa, đài tâm, thành ±19.5, không sông). Cỡ M, góc 3/4, PPU 128, lề HUD ở đây vẫn áp dụng; bố cục sông + 2 cầu (mục 4–6) giữ làm tham khảo cho map có sông.
+
 ---
 
 ## 1. Số gốc từ prototype (không phải đề xuất, chỉ để tham chiếu)

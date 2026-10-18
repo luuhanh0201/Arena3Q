@@ -146,14 +146,19 @@ namespace Arena3Q.Gameplay
 
         public bool IsInAttackRange(UnitBase other) => EdgeDistance(other) <= AttackRange;
 
-        public virtual void TakeDamage(float amount, UnitBase source)
+        /// <param name="ignoreReduction">True damage (e.g. the Tử gate's share of max health): damage reduction does
+        /// not apply, shields still absorb it.</param>
+        public virtual void TakeDamage(float amount, UnitBase source, bool ignoreReduction = false)
         {
             // Spec §6: no damage once dead or after the battle has ended.
             if (!IsAlive || amount <= 0f || Battle == null || Battle.IsOver)
                 return;
 
-            var reduction = DamageReduction + ExtraDamageReduction + Statuses.DamageTakenReduction;
-            amount *= 1f - Mathf.Clamp(reduction, 0f, Battle.Rules.Settings.MaxDamageReduction);
+            if (!ignoreReduction)
+            {
+                var reduction = DamageReduction + ExtraDamageReduction + Statuses.DamageTakenReduction;
+                amount *= 1f - Mathf.Clamp(reduction, 0f, Battle.Rules.Settings.MaxDamageReduction);
+            }
             var dealt = amount;
             amount = Statuses.AbsorbWithShield(amount);
             Health = Mathf.Max(0f, Health - amount);

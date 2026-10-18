@@ -27,6 +27,9 @@ namespace Arena3Q.Editor
         /// <summary>The 8 pillars of the Bát Môn ring stand at rotY 22.5° + k·45° (BatTran_Layout.json).</summary>
         private static readonly float[] RingYaws = { 22.5f, 67.5f, 112.5f, 157.5f, 202.5f, 247.5f, 292.5f, 337.5f };
 
+        /// <summary>The 8 gate slabs stand across their gaps at rotY 90° − k·45°, i.e. every 45°.</summary>
+        private static readonly float[] GateYaws = { 0f, 45f, 90f, 135f, 180f, 225f, 270f, 315f };
+
         /// <summary>
         /// First-guess footprints (logic units) and yaws for the Bát Quái Trận props; tune them in the asset after
         /// looking at the sprites. Ring sizes come from BatTran_Layout.json, the rest from map spec §8.5.
@@ -36,7 +39,7 @@ namespace Arena3Q.Editor
             {
                 ["BaguaRoundStoneAltar"] = (PropSpriteRenderConfig.SizeAxis.Footprint, 4f, new[] { 0f }),
                 ["BaguaStonePillar"] = (PropSpriteRenderConfig.SizeAxis.Footprint, 2f, RingYaws),
-                ["BaguaWideStoneSlab"] = (PropSpriteRenderConfig.SizeAxis.Footprint, 2.5f, new[] { 0f }),
+                ["BaguaWideStoneSlab"] = (PropSpriteRenderConfig.SizeAxis.Footprint, 2.5f, GateYaws),
                 ["MilitaryFlagpoleBanner"] = (PropSpriteRenderConfig.SizeAxis.Height, 3f, new[] { 0f }),
                 ["ThreeKingdomsCommand_1"] = (PropSpriteRenderConfig.SizeAxis.Footprint, 3.5f, new[] { 0f }),
                 ["ThreeKingdomsCommand_2"] = (PropSpriteRenderConfig.SizeAxis.Footprint, 3.5f, new[] { 0f }),

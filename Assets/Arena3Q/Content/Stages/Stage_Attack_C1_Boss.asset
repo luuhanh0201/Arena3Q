@@ -21,46 +21,25 @@ MonoBehaviour:
     width: 48
     height: 26
   forbiddenZones: []
-  rivers:
-  - name: "S\xF4ng"
-    path:
-    - {x: 1.5, y: 14}
-    - {x: 0.4, y: 11.8}
-    - {x: -0.4, y: 9.3}
-    - {x: -0.2, y: 8.6}
-    - {x: 0.85, y: 8}
-    - {x: 0.85, y: 5.4}
-    - {x: 1.9, y: 4.6}
-    - {x: 1.5, y: 3.5}
-    - {x: 1.1, y: 1.6}
-    - {x: 0.8, y: 0.2}
-    - {x: 0.3, y: -1.2}
-    - {x: -0.4, y: -2.5}
-    - {x: -0.2, y: -3.6}
-    - {x: -0.2, y: -6.1}
-    - {x: 1.1, y: -7}
-    - {x: 1.25, y: -8.3}
-    - {x: 0.7, y: -9.6}
-    - {x: 0.4, y: -10.6}
-    - {x: 0.1, y: -11.7}
-    - {x: -0.2, y: -14}
-    width: 2.3
-    crossings:
-    - position: {x: 0.85, y: 6.7}
-      width: 2.4
-    - position: {x: -0.2, y: -4.85}
-      width: 2.4
-  backgroundArt: {fileID: 21300000, guid: 3f8527969bf91f242801e3bfdc2c9d6d, type: 3}
+  rivers: []
+  backgroundArt: {fileID: 21300000, guid: 67cff0e583b649f409cec1bb1b7324bd, type: 3}
   backgroundArtVerticalScale: 0.75
+  backgroundArtArea:
+    serializedVersion: 2
+    x: -27
+    y: -15.19
+    width: 54
+    height: 30.38
+  formation: {fileID: 11400000, guid: f42eae35cc3b6044eb0913786235eb33, type: 2}
   playerCastle:
-    position: {x: -19.4, y: 0}
+    position: {x: -19.5, y: 0}
     maxHealth: 3000
     canAttack: 0
     attackRange: 6
     damage: 30
     attackInterval: 1.5
   enemyCastle:
-    position: {x: 19.4, y: 0}
+    position: {x: 19.5, y: 0}
     maxHealth: 10000
     canAttack: 1
     attackRange: 6

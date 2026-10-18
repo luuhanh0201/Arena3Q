@@ -73,6 +73,118 @@ namespace Arena3Q.Core
             new Rect(rect.xMin - amount, rect.yMin - amount, rect.width + amount * 2f, rect.height + amount * 2f);
     }
 
+    /// <summary>Round forbidden zone (the pillar clusters of the Bát Quái ring, docs/BanDo/BatQuaiTran.md §1).</summary>
+    public sealed class CircleObstacle : IObstacle
+    {
+        // Path nodes form a regular polygon round the circle; its edges stay clear of the grown circle.
+        private const int WaypointCount = 8;
+
+        public CircleObstacle(Vector2 center, float radius, string name = "Cột")
+        {
+            if (radius <= 0f)
+                throw new ArgumentOutOfRangeException(nameof(radius));
+            Center = center;
+            Radius = radius;
+            Name = name;
+        }
+
+        public Vector2 Center { get; }
+        public float Radius { get; }
+        public string Name { get; }
+
+        public bool Contains(Vector2 point, float radius) => (point - Center).sqrMagnitude < Sqr(Radius + radius);
+
+        public bool BlocksSegment(Vector2 a, Vector2 b, float radius) =>
+            Geometry2D.PointSegmentDistance(Center, a, b) < Radius + radius;
+
+        public void AddWaypoints(List<Vector2> nodes, float clearance)
+        {
+            var distance = (Radius + clearance) / Mathf.Cos(Mathf.PI / WaypointCount);
+            for (var i = 0; i < WaypointCount; i++)
+            {
+                var angle = (i + 0.5f) * 2f * Mathf.PI / WaypointCount;
+                nodes.Add(Center + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * distance);
+            }
+        }
+
+        public Vector2 PushOut(Vector2 point, float radius)
+        {
+            var offset = point - Center;
+            var limit = Radius + radius;
+            if (offset.sqrMagnitude >= limit * limit)
+                return point;
+            var direction = offset.sqrMagnitude > 1e-10f ? offset.normalized : Vector2.right;
+            return Center + direction * (limit + 1e-3f);
+        }
+
+        private static float Sqr(float value) => value * value;
+    }
+
+    /// <summary>
+    /// A straight wall with a thickness that can be switched on and off (the slab of a closed Bát Quái gate,
+    /// docs/BanDo/BatQuaiTran.md §3). While off it blocks nothing. Whoever switches it must call
+    /// <see cref="BattlefieldLayout.RebuildRoutes"/> so routes follow the change.
+    /// </summary>
+    public sealed class WallObstacle : IObstacle
+    {
+        public WallObstacle(Vector2 a, Vector2 b, float thickness, string name = "Phiến đá", bool active = true)
+        {
+            if (thickness <= 0f)
+                throw new ArgumentOutOfRangeException(nameof(thickness));
+            A = a;
+            B = b;
+            HalfThickness = thickness * 0.5f;
+            Name = name;
+            IsActive = active;
+        }
+
+        public Vector2 A { get; }
+        public Vector2 B { get; }
+        public float HalfThickness { get; }
+        public string Name { get; }
+        public bool IsActive { get; set; }
+
+        public bool Contains(Vector2 point, float radius) =>
+            IsActive && Geometry2D.PointSegmentDistance(point, A, B) < HalfThickness + radius;
+
+        public bool BlocksSegment(Vector2 a, Vector2 b, float radius) =>
+            IsActive && Geometry2D.SegmentSegmentDistance(a, b, A, B) < HalfThickness + radius;
+
+        public void AddWaypoints(List<Vector2> nodes, float clearance)
+        {
+            // Corners of the grown wall; kept while the wall is off too (they are ordinary free points then).
+            var along = (B - A).normalized;
+            var side = new Vector2(-along.y, along.x);
+            var d = HalfThickness + clearance;
+            nodes.Add(A - along * d + side * d);
+            nodes.Add(A - along * d - side * d);
+            nodes.Add(B + along * d + side * d);
+            nodes.Add(B + along * d - side * d);
+        }
+
+        /// <summary>Pushes a point to the nearer side of the wall (units caught in a closing gate step out).</summary>
+        public Vector2 PushOut(Vector2 point, float radius)
+        {
+            if (!IsActive)
+                return point;
+            var limit = HalfThickness + radius;
+            var closest = Geometry2D.ClosestPointOnSegment(point, A, B);
+            var offset = point - closest;
+            var distance = offset.magnitude;
+            if (distance >= limit)
+                return point;
+            Vector2 away;
+            if (distance > 1e-5f)
+                away = offset / distance;
+            else
+            {
+                var along = (B - A).normalized;
+                away = new Vector2(-along.y, along.x);
+            }
+            return closest + away * (limit + 1e-3f);
+        }
+    }
+
     /// <summary>A place where a river can be crossed (bridge or ford).</summary>
     public readonly struct RiverCrossing
     {

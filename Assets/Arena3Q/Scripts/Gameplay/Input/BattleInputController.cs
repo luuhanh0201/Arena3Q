@@ -47,6 +47,34 @@ namespace Arena3Q.Gameplay
             cameraController = cameraRig;
         }
 
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        // Bát Quái Trận dev keys (docs/BanDo/BatQuaiTran.md §7): F5 rotate now, F6 altar holder,
+        // Shift + 1..8 force gate 0..7 open / closed, Shift + 0 clears every override.
+        private void HandleDevKeys()
+        {
+            var keyboard = Keyboard.current;
+            if (keyboard == null || battle.Formation == null)
+                return;
+            if (keyboard.f5Key.wasPressedThisFrame)
+                battle.DevRotateFormation();
+            if (keyboard.f6Key.wasPressedThisFrame)
+                battle.DevCycleAltarOwner();
+            if (!keyboard.shiftKey.isPressed)
+                return;
+            Key[] digits = { Key.Digit1, Key.Digit2, Key.Digit3, Key.Digit4, Key.Digit5, Key.Digit6, Key.Digit7, Key.Digit8 };
+            for (var gate = 0; gate < digits.Length; gate++)
+            {
+                if (keyboard[digits[gate]].wasPressedThisFrame)
+                    battle.DevToggleGate(gate);
+            }
+            if (keyboard[Key.Digit0].wasPressedThisFrame)
+            {
+                for (var gate = 0; gate < battle.Formation.GateCount; gate++)
+                    battle.DevToggleGate(gate, clearOverride: true);
+            }
+        }
+#endif
+
         private float TapMaxPixels => Mathf.Max(10f, (Screen.dpi > 0f ? Screen.dpi : 160f) * tapMaxInches);
 
         private void OnEnable() => EnhancedTouchSupport.Enable();
@@ -61,6 +89,9 @@ namespace Arena3Q.Gameplay
         {
             if (battle == null || cameraController == null || battle.State == null)
                 return;
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            HandleDevKeys();
+#endif
 
             var touches = Touch.activeTouches;
             if (touches.Count >= 2)

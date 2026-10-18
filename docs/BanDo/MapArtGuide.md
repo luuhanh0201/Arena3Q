@@ -6,9 +6,11 @@ Phiên bản: v0.2 · 2026-10-17 (prompt chuyển sang `docs/art/concepts/BanDo_
 
 ---
 
-## 0. Ảnh bản đồ hiện có: `map1.png`
+## 0. Ảnh bản đồ hiện có
 
-- Nằm ở `Assets/Arena3Q/Art/Maps/map1.png` (1971 × 798 px, vẽ tay, góc 3/4). Đã được **dùng tạm làm ảnh nền** cho cả hai ải (`StageConfig.backgroundArt`, menu **Arena3Q > Import Map Art (map1)**); khi ải có ảnh nền, game tự đặt góc nhìn bằng góc của ảnh (tỉ lệ 0.75 ≈ 41°) và ẩn hình placeholder của mặt đất/sông/cầu.
+- ✅ (2026-10-18) **Bản đồ hiện hành: Bát Quái Trận** (`docs/BanDo/BatQuaiTran.md`): nền đất vẽ nhìn thẳng `Art/Maps/batQuaiTran/BatTran_Terrain/BatTran_Painted.png` (phủ cả gò rìa, `StageConfig.backgroundArtArea`), vật thể là sprite render từ model 3D (mục 5b); menu **Arena3Q > Apply Bat Quai Tran Map** áp lên mọi ải. `map1.png` đã bỏ (người dùng xoá); phần dưới chỉ còn để tham khảo cách khớp ảnh với dữ liệu.
+
+- Nằm ở `Assets/Arena3Q/Art/Maps/map1.png` (1971 × 798 px, vẽ tay, góc 3/4). Từng được **dùng tạm làm ảnh nền** cho cả hai ải (`StageConfig.backgroundArt`; menu import đã gỡ cùng ảnh); khi ải có ảnh nền, game tự đặt góc nhìn bằng góc của ảnh (tỉ lệ 0.75 ≈ 41°) và ẩn hình placeholder của mặt đất/sông/cầu.
 - Bố cục logic (sông, 2 cầu, 2 thành, vùng triệu hồi) đã được **đo từ ảnh này và chỉnh cho khớp** – `map1` hiện là ảnh chuẩn về phong cách và bố cục.
 - Hạn chế: độ phân giải ≈ 41 px/đơn vị (cần 128) nên hơi mờ khi zoom gần; là một tấm liền (bản chính cần tách mảnh – mục 3). Cầu vẽ chỉ rộng ≈ 2.4 đơn vị → là điểm nghẽn.
 

@@ -61,6 +61,13 @@ MonoBehaviour:
     rotation: {x: 0, y: 0, z: 0}
     yaws:
     - 0
+    - 45
+    - 90
+    - 135
+    - 180
+    - 225
+    - 270
+    - 315
   - name: MilitaryFlagpoleBanner
     model: {fileID: 919132149155446097, guid: 3294c8b72376cd547a35891842f19e88, type: 3}
     baseColor: {fileID: 2800000, guid: 91c1fc3ff6527004aa18824eaddce8c5, type: 3}

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bdd8956105de88446aafe15234509630
+guid: 86c038510ac6320478f86faa96bfd3ec
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 968297945943674787
-    second: BaguaWideStoneSlab_0
+      213: 6091505506963240385
+    second: BaguaWideStoneSlab_135_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -50,7 +50,7 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 9
-  spritePivot: {x: 0.4152174, y: 0.43928573}
+  spritePivot: {x: 0.42548078, y: 0.46875}
   spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -141,13 +141,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BaguaWideStoneSlab_0
+      name: BaguaWideStoneSlab_135_0
       rect:
         serializedVersion: 2
         x: 7
         y: 7
-        width: 408
-        height: 231
+        width: 402
+        height: 370
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,8 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3af86b00ad5107d00800000000000000
-      internalID: 968297945943674787
+      spriteID: 1c531e10cff598450800000000000000
+      internalID: 6091505506963240385
       vertices: []
       indices: 
       edges: []
@@ -176,7 +176,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BaguaWideStoneSlab_0: 968297945943674787
+      BaguaWideStoneSlab_135_0: 6091505506963240385
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

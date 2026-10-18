@@ -20,8 +20,8 @@ namespace Arena3Q.Core
 
         private readonly IObstacle[] _obstacles;
         private readonly Rect[] _rectZones;
-        private readonly Vector2[] _nodes;
-        private readonly bool[,] _visible;
+        private Vector2[] _nodes;
+        private bool[,] _visible;
         private readonly float _maxUnitRadius;
         private readonly IObstacle[] _extraObstacles;
         private BattlefieldLayout _forFlyers;
@@ -75,6 +75,19 @@ namespace Arena3Q.Core
                 ? this
                 : new BattlefieldLayout(Bounds, SummonZone, _rectZones, kept, _maxUnitRadius);
             return _forFlyers;
+        }
+
+        /// <summary>
+        /// Recomputes the path nodes and their visibility after a switchable zone (<see cref="WallObstacle"/>) turned on
+        /// or off, so the next <see cref="NextWaypoint"/> already routes round (or through) it. The flyers' field shares
+        /// the same zones and is rebuilt too.
+        /// </summary>
+        public void RebuildRoutes()
+        {
+            _nodes = BuildNodes();
+            _visible = BuildVisibility(_nodes);
+            if (_forFlyers != null && _forFlyers != this)
+                _forFlyers.RebuildRoutes();
         }
 
         public bool IsInsideBounds(Vector2 point) => Bounds.Contains(point);

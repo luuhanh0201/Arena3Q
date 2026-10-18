@@ -41,6 +41,7 @@ namespace Arena3Q.Gameplay
         private readonly Dictionary<UnitId, HeroUnit> _heroes = new Dictionary<UnitId, HeroUnit>();
         private SummonRules _summonRules;
         private StageRunner _stageRunner;
+        private BaguaFormationRunner _formation;
         private Transform _worldRoot;
         private Transform _groundRoot;
         private SpriteRenderer _summonZoneOverlay;
@@ -249,7 +250,9 @@ namespace Arena3Q.Gameplay
 
             Stage = stage;
             State = new BattleRuntimeState(stage.CreateBattleSetup(Lineup));
-            Layout = stage.CreateLayout();
+            var formation = stage.CreateFormation();
+            Layout = stage.CreateLayout(formation);
+            _formation = formation != null ? new BaguaFormationRunner(this, stage.Formation, formation) : null;
             _summonRules = stage.CreateSummonRules();
             LastOutcome = OutcomeDecision.InProgress;
             LastResultNote = "";
@@ -265,6 +268,7 @@ namespace Arena3Q.Gameplay
             _worldRoot = new GameObject("World").transform;
             _worldRoot.SetParent(transform, false);
             BuildMapVisuals();
+            _formation?.BuildView(_worldRoot, _groundRoot);
 
             _playerCastle = SpawnCastle(State.PlayerCastle, stage.PlayerCastle);
             // Defense stages have no enemy castle to attack (spec §8: enemies come in waves).
@@ -286,6 +290,7 @@ namespace Arena3Q.Gameplay
             _squads.Clear();
             _heroes.Clear();
             _zones.Clear();
+            _formation = null;
             _armyHealthFactor = 1f;
             _playerCastle = null;
             _enemyCastle = null;
@@ -340,6 +345,14 @@ namespace Arena3Q.Gameplay
             }
 
             SeparateUnits();
+
+            // Bát Quái Trận: rotation, slabs, altar and gate effects (after movement, on the settled positions).
+            if (_formation != null)
+            {
+                var formationEvents = _formation.Tick(deltaTime);
+                if (formationEvents != BaguaFormationEvents.None)
+                    FormationEvent?.Invoke(formationEvents);
+            }
 
             var decision = BattleOutcomeRules.EvaluateAndApply(State);
             if (decision.IsFinal)
@@ -603,6 +616,50 @@ namespace Arena3Q.Gameplay
         internal BattlefieldLayout LayoutFor(UnitBase unit) =>
             unit != null && unit.IsFlying && Layout != null ? Layout.ForFlyers() : Layout;
 
+        // ---- Bát Quái Trận (docs/BanDo/BatQuaiTran.md) ----
+
+        /// <summary>The running formation of this battle's map, or null when the map has none.</summary>
+        public BaguaFormation Formation => _formation?.Formation;
+
+        /// <summary>Formation rule events of a step (warning, rotation, slabs, altar holder) – for the HUD.</summary>
+        public event Action<BaguaFormationEvents> FormationEvent;
+
+        /// <summary>Dev tool (§7): rotate the gates now.</summary>
+        public void DevRotateFormation() => RaiseFormation(_formation?.Formation.RotateNow());
+
+        /// <summary>Dev tool (§7): altar holder none → player → enemy → none.</summary>
+        public void DevCycleAltarOwner()
+        {
+            var formation = _formation?.Formation;
+            if (formation == null)
+                return;
+            formation.SetAltarOwner(formation.AltarOwner switch
+            {
+                null => Team.Player,
+                Team.Player => Team.Enemy,
+                _ => (Team?)null
+            });
+            RaiseFormation(BaguaFormationEvents.AltarOwnerChanged);
+        }
+
+        /// <summary>Dev tool (§7): force a gate open if it is closed and closed if it is open (null clears the override).</summary>
+        public void DevToggleGate(int gate, bool clearOverride = false)
+        {
+            var formation = _formation?.Formation;
+            if (formation == null || gate < 0 || gate >= formation.GateCount)
+                return;
+            RaiseFormation(formation.SetForcedClosed(gate, clearOverride ? (bool?)null : !formation.IsGateClosed(gate)));
+        }
+
+        private void RaiseFormation(BaguaFormationEvents? events)
+        {
+            if (events == null || _formation == null)
+                return;
+            _formation.Handle(events.Value);
+            if (events.Value != BaguaFormationEvents.None)
+                FormationEvent?.Invoke(events.Value);
+        }
+
         /// <summary>A number in [0, 1) from the battle's seeded random numbers (deterministic for a given seed).</summary>
         internal float Random01() => (float)_random.NextDouble();
 
@@ -630,6 +687,7 @@ namespace Arena3Q.Gameplay
         private void OnUnitDied(UnitBase unit)
         {
             Registry.Remove(unit);
+            _formation?.Forget(unit);
             if (unit.Record != null)
                 State.MarkUnitDead(unit.Id);
         }
@@ -823,12 +881,12 @@ namespace Arena3Q.Gameplay
 
             if (Stage.BackgroundArt != null)
             {
-                // The painting already shows grass, river and bridges; it is stretched over the map bounds in logic
-                // space, and the ground root's tilt (set to the art's angle) brings it back to its painted proportions.
+                // The painting is stretched over its area in logic space (the map bounds, or more when it has a rim),
+                // and the ground root's tilt (set to the art's angle) brings it back to its painted proportions.
                 var art = PlaceholderArt.CreateRenderer("MapArt", _groundRoot, Stage.BackgroundArt, Color.white,
                     Vector2.one, -32000);
                 var artSize = Stage.BackgroundArt.bounds.size;
-                var bounds = Stage.MapBounds;
+                var bounds = Stage.BackgroundArtArea;
                 art.transform.localPosition = bounds.center;
                 art.transform.localScale = new Vector3(bounds.width / artSize.x, bounds.height / artSize.y, 1f);
             }
