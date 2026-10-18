@@ -21,6 +21,7 @@ Quy ước sắp xếp:
 | `Tuong/StrategistArtGuide.md` | Mẫu quy trình cho mọi chủ tướng (làm trên Mưu sĩ): Krita, tách lớp, gắn xương, phần mình code. |
 | **`BanDo/`** | **Bản đồ** |
 | `BanDo/MapSpecification.md` | Kích thước, bố cục, vùng cấm, sông và cầu, quy cách art bản đồ. |
+| `BanDo/BatQuaiTran.md` | **Map Bát Quái Trận** (bản đồ hiện hành của mọi ải): vòng 8 cột, 8 cửa Bát Môn (Sinh / Khai / Tử / Đỗ), xoay trận mỗi 20 s, đài tâm chiếm trận nhãn, hình ảnh, debug và test. |
 | `BanDo/MapArtGuide.md` | Cách gửi file và viết yêu cầu vẽ bản đồ: file đính kèm, kích thước mảnh, hậu kỳ. |
 | **`QuanDich/`** | **Quân địch khi đi ải** – `README.md` (cấp bậc, luật hình ảnh), `Chuong1_SonTac.md`, `Chuong2_HoangCan.md`, `Chuong3_YeuQuai.md` (từng loại địch, chỉ số, kỹ năng, prompt), `Animation.md` (khung xương, clip, mốc cảnh báo / ra đòn), `VFX_Prompts.md`; ảnh lưu trong `QuanDich/art/`. |
 | **`art/concepts/`** | **Mọi prompt dán sẵn** + ảnh mẫu `chutuong1.png` + ảnh đã tạo: 4 chủ tướng (`CungThu_`, `KiemSi_`, `MuuSi_`, `ThongSoai_Prompts.md`), tướng khởi đầu (`TuongThuong_Prompts.md`), bản đồ (`BanDo_Prompts.md`), `VFX_Prompts.md`, `Icon_Prompts.md`, `ChanDung_Prompts.md`. |
