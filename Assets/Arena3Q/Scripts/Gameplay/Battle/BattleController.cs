@@ -297,6 +297,8 @@ namespace Arena3Q.Gameplay
             _heroes.Clear();
             _zones.Clear();
             _formation = null;
+            _castleFalls.Clear();
+            ResultDelaySeconds = 0f;
             _armyHealthFactor = 1f;
             _playerCastle = null;
             _enemyCastle = null;
@@ -621,6 +623,31 @@ namespace Arena3Q.Gameplay
         /// <summary>The forbidden zones a unit is blocked by: flyers cross rivers (spec §8).</summary>
         internal BattlefieldLayout LayoutFor(UnitBase unit) =>
             unit != null && unit.IsFlying && Layout != null ? Layout.ForFlyers() : Layout;
+
+        // ---- Castle fall ----
+
+        /// <summary>
+        /// Seconds the result screen should wait after the battle ended, so a castle's fall can be seen (0 when no
+        /// castle with art fell).
+        /// </summary>
+        public float ResultDelaySeconds { get; private set; }
+
+        /// <summary>The castles that fell this battle (their ruins stay on the field).</summary>
+        internal IReadOnlyList<CastleFallView> CastleFalls => _castleFalls;
+
+        private readonly List<CastleFallView> _castleFalls = new List<CastleFallView>();
+
+        internal void ShowCastleFall(CastleArtConfig art, Vector2 position)
+        {
+            if (_worldRoot == null)
+                return;
+            var go = new GameObject("Castle Fall");
+            go.transform.SetParent(_worldRoot, false);
+            var view = go.AddComponent<CastleFallView>();
+            view.Init(this, art, position, randomSeed + _castleFalls.Count);
+            _castleFalls.Add(view);
+            ResultDelaySeconds = Mathf.Max(ResultDelaySeconds, art.ResultDelaySeconds);
+        }
 
         // ---- Bát Quái Trận (docs/BanDo/BatQuaiTran.md) ----
 

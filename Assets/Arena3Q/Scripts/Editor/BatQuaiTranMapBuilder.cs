@@ -26,9 +26,12 @@ namespace Arena3Q.Editor
         public const string DecorationsAssetPath = PrototypeContentBuilder.ContentRoot + "/Maps/MapDecorations_BatTran.asset";
 
         private const string SlabProp = "BaguaWideStoneSlab";
-        private const string PlayerCastleProp = "ThreeKingdomsCommand_1";
-        // The battle-worn variant (torn banners, charred wood) marks the enemy camp.
-        private const string EnemyCastleProp = "ThreeKingdomsCommand_2";
+        public const string CastleArtAssetPath = PrototypeContentBuilder.ContentRoot + "/Maps/CastleArt_Command.asset";
+
+        // The drum platform (command post) is the castle of both sides; the battle-worn model (torn banners, charred
+        // wood) is the same post after it has been destroyed.
+        private const string CastleIntactProp = "ThreeKingdomsCommand_1";
+        private const string CastleDestroyedProp = "ThreeKingdomsCommand_2";
         private const string TentProp = "ThreeKingdomsSquare";
         private const string TowerProp = "WoodenCampWatchtower";
         private const string FenceProp = "WoodenPalisadeFence";
@@ -89,8 +92,7 @@ namespace Arena3Q.Editor
             EnsureSlabSprites();
             var formation = BuildFormation(layout);
             var decorations = EnsureDecorations();
-            var playerCastleSprite = FirstSprite(PlayerCastleProp);
-            var enemyCastleSprite = FirstSprite(EnemyCastleProp);
+            var castleArt = EnsureCastleArt();
             var ground = ImportPaintedGround();
             var area = new Rect(layout.terrain.posX, layout.terrain.posZ, layout.terrain.sizeX, layout.terrain.sizeZ);
             var playerBase = Find(layout, "Base_A");
@@ -105,8 +107,8 @@ namespace Arena3Q.Editor
                 so.FindProperty("rivers").arraySize = 0;
                 so.FindProperty("formation").objectReferenceValue = formation;
                 so.FindProperty("decorations").objectReferenceValue = decorations;
-                SetIfEmpty(so.FindProperty("playerCastle.sprite"), playerCastleSprite);
-                SetIfEmpty(so.FindProperty("enemyCastle.sprite"), enemyCastleSprite);
+                SetIfEmpty(so.FindProperty("playerCastle.art"), castleArt);
+                SetIfEmpty(so.FindProperty("enemyCastle.art"), castleArt);
                 so.FindProperty("backgroundArt").objectReferenceValue = ground;
                 so.FindProperty("backgroundArtVerticalScale").floatValue = ArtVerticalScale;
                 so.FindProperty("backgroundArtArea").rectValue = area;
@@ -291,6 +293,24 @@ namespace Arena3Q.Editor
             EditorUtility.SetDirty(decorations);
             Debug.Log($"[Arena3Q] Created {DecorationsAssetPath} with {pieces.Count} pieces.");
             return decorations;
+        }
+
+        /// <summary>Creates the castle art (intact + destroyed command post) once; animation numbers stay tunable.</summary>
+        private static CastleArtConfig EnsureCastleArt()
+        {
+            var art = AssetDatabase.LoadAssetAtPath<CastleArtConfig>(CastleArtAssetPath);
+            if (art == null)
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(CastleArtAssetPath));
+                art = ScriptableObject.CreateInstance<CastleArtConfig>();
+                AssetDatabase.CreateAsset(art, CastleArtAssetPath);
+            }
+            var so = new SerializedObject(art);
+            SetIfEmpty(so.FindProperty("intactSprite"), FirstSprite(CastleIntactProp));
+            SetIfEmpty(so.FindProperty("destroyedSprite"), FirstSprite(CastleDestroyedProp));
+            so.ApplyModifiedPropertiesWithoutUndo();
+            EditorUtility.SetDirty(art);
+            return art;
         }
 
         private static Sprite FirstSprite(string prop)

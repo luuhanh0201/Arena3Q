@@ -77,7 +77,7 @@ Ký hiệu: ✅ đã chốt · 🟡 mặc định tạm · ⏳ để sau · ⚠�
 
 | Vật | Sprite | Vị trí (phe ta) |
 |---|---|---|
-| Thành | `ThreeKingdomsCommand_1` (ta) / `ThreeKingdomsCommand_2` – bản cờ rách, gỗ cháy (địch) | (∓19.5, 0), qua `CastleConfig.sprite` |
+| Thành (cả hai phe) | đài trống `ThreeKingdomsCommand_1`; khi bị phá: rung + chớp → bụi + mảnh vỡ → đổi sang `ThreeKingdomsCommand_2` (bản cờ rách, gỗ cháy) + khói, phần đổ nát nằm lại; màn hình kết quả chờ 1.8 s | (∓19.5, 0), qua `CastleConfig.art` → `Content/Maps/CastleArt_Command.asset` (mọi số của animation ở đây) |
 | 2 lều | `ThreeKingdomsSquare` | (−22, ±7.5) |
 | 2 chòi canh | `WoodenCampWatchtower` | (−17, ±10) |
 | 4 đoạn rào | `WoodenPalisadeFence` | (−22.3 / −19.3, ±11.8) |

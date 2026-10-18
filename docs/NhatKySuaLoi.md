@@ -182,3 +182,9 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 4. **Dòng trạng thái trận đồ đè chữ "Góc nhìn"** trên HUD (thấy nhờ `attack.png`). Sửa: đặt dưới thanh trượt (y −160).
 5. **Cân bằng sau khi đổi map** (bộ thẻ thử như cũ): ải Công **giây 52, mất 0, 3 sao** (không đổi); ải Thủ giây 135, mất 3, thành 2545/3000 → **giây 122, mất 2, thành 2760/3000, 1 sao**. Chưa chỉnh (cân bằng để giai đoạn sắp phát hành).
 - **Kiểm chứng:** EditMode 235/235 (thêm `BaguaFormationTests`: test (a)–(e) của `docs/BanDo/BatQuaiTran.md` §7, đài, cửa), PlayMode 77/77 (thêm `BaguaFormationBattleTests`: đổi đường khi cửa đóng giữa chừng, không kẹt khi phiến trồi, hiệu ứng Sinh / Tử / Khai, cảnh báo HUD, đài, phím dev), ảnh `attack.png` / `defense.png`.
+
+## Thành đài trống: gán nhầm bản "đã bị phá" cho thành địch (2026-10-18)
+
+- **Triệu chứng:** người dùng báo "cái trống chưa có animation khi bị phá, tài nguyên đã có sẵn". **Nguyên nhân:** model `ThreeKingdomsCommand_2` (cờ rách, gỗ cháy) là **trạng thái sau khi bị phá** của đài trống `ThreeKingdomsCommand_1`, nhưng Claude đoán tên Meshy bị cắt và dùng nó làm hình thành địch. **Sửa:** cả hai thành dùng `Command_1`; khi thành bị phá, `CastleFallView` chạy rung/chớp → bụi + mảnh vỡ → đổi sang `Command_2` + khói, phần đổ nát nằm lại; màn hình kết quả chờ `CastleArtConfig.resultDelaySeconds` (1.8 s) để thấy cảnh sập. **Tránh lặp lại:** hai model gần giống nhau (một bản lành, một bản hư hại) thường là hai trạng thái của cùng một vật – hỏi người dùng trước khi gán chúng thành hai vật khác nhau.
+- Ảnh chụp có canvas ở chế độ `ScreenSpaceCamera` (test chụp màn hình) làm sprite có thứ tự vẽ cao nổi lên trên HUD (`castle_ruin.png`); trong game HUD là Overlay nên không bị. Chỉ là giới hạn của ảnh chụp.
+- **Kiểm chứng:** EditMode 235/235, PlayMode 78/78 (thêm `CastleFall_ShakesThenLeavesTheRuin_ThenTheResultShows`; test chiến thắng chờ màn hình kết quả), ảnh `castle_fall.png`, `castle_ruin.png`.

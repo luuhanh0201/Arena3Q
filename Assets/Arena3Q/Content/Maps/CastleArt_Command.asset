@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545b069567061c94b999fbfc929eb14a, type: 3}
+  m_Name: CastleArt_Command
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.CastleArtConfig
+  intactSprite: {fileID: 21300000, guid: 951b49c44df7dfd41b2ff59c785a463e, type: 3}
+  destroyedSprite: {fileID: 21300000, guid: 6d50dc9ae493f5b49a91796dad5f0ef0, type: 3}
+  shakeSeconds: 0.8
+  shakeAmplitude: 0.12
+  collapseDrop: 0.25
+  collapseSeconds: 0.4
+  dustPuffs: 14
+  debrisPieces: 12
+  smokeSeconds: 6
+  smokeInterval: 0.35
+  flashColor: {r: 1, g: 0.55, b: 0.45, a: 1}
+  dustColor: {r: 0.78, g: 0.66, b: 0.48, a: 0.85}
+  debrisColor: {r: 0.42, g: 0.27, b: 0.15, a: 1}
+  smokeColor: {r: 0.25, g: 0.23, b: 0.22, a: 0.55}
+  resultDelaySeconds: 1.8

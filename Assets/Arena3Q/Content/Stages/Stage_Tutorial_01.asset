@@ -39,7 +39,7 @@ MonoBehaviour:
     attackRange: 6
     damage: 30
     attackInterval: 1.5
-    sprite: {fileID: 21300000, guid: 951b49c44df7dfd41b2ff59c785a463e, type: 3}
+    art: {fileID: 11400000, guid: 3cfed498936f88d4eba02052286bec9b, type: 2}
   enemyCastle:
     position: {x: 19.5, y: 0}
     maxHealth: 4000
@@ -47,7 +47,7 @@ MonoBehaviour:
     attackRange: 6
     damage: 30
     attackInterval: 1.5
-    sprite: {fileID: 21300000, guid: 6d50dc9ae493f5b49a91796dad5f0ef0, type: 3}
+    art: {fileID: 11400000, guid: 3cfed498936f88d4eba02052286bec9b, type: 2}
   summonZone:
     serializedVersion: 2
     x: -17.5

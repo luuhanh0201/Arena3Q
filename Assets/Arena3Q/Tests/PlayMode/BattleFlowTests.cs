@@ -390,8 +390,42 @@ namespace Arena3Q.Tests.PlayMode
             Assert.That(_battle.State.Outcome, Is.EqualTo(BattleOutcome.Victory));
             Assert.That(_battle.LastOutcome.Reason, Is.EqualTo(OutcomeReason.EnemyCastleDestroyed));
             Assert.That(_battle.State.Stars, Is.EqualTo(3));
-            yield return null;
+            // The result screen waits for the castle's fall animation.
+            for (var t = 0f; t < _battle.ResultDelaySeconds + 1f && !_hud.IsResultVisible; t += Time.unscaledDeltaTime)
+                yield return null;
             Assert.That(_hud.IsResultVisible, Is.True);
+        }
+
+        [UnityTest]
+        public IEnumerator CastleFall_ShakesThenLeavesTheRuin_ThenTheResultShows()
+        {
+            _battle.StartBattle(Variant(0, so => so.FindProperty("defenders").arraySize = 0));
+            yield return null;
+            var art = Stage(0).EnemyCastle.Art;
+            Assert.That(art, Is.Not.Null, "the shipped castles use the command post art");
+            Assert.That(art.IntactSprite, Is.Not.Null);
+            Assert.That(art.DestroyedSprite, Is.Not.Null);
+            var castle = _battle.Registry.Get(_battle.EnemyCastleId);
+            Assert.That(castle.GetComponentsInChildren<SpriteRenderer>().Any(r => r.sprite == art.IntactSprite), Is.True,
+                "the standing castle shows the intact command post");
+
+            castle.TakeDamage(castle.MaxHealth * 2f, null);
+            _battle.Simulate(Step);
+            Assert.That(_battle.IsOver, Is.True);
+            Assert.That(_battle.CastleFalls, Has.Count.EqualTo(1));
+            var fall = _battle.CastleFalls[0];
+            yield return null;
+            Assert.That(_hud.IsResultVisible, Is.False, "the fall is shown first");
+
+            for (var t = 0f; t < art.ShakeSeconds + 1f && !fall.HasCollapsed; t += Time.unscaledDeltaTime)
+                yield return null;
+            Assert.That(fall.HasCollapsed, Is.True);
+            Assert.That(fall.GetComponentsInChildren<SpriteRenderer>().Any(r => r.sprite == art.DestroyedSprite), Is.True,
+                "the ruin replaces the post");
+            for (var t = 0f; t < art.ResultDelaySeconds + 1f && !_hud.IsResultVisible; t += Time.unscaledDeltaTime)
+                yield return null;
+            Assert.That(_hud.IsResultVisible, Is.True);
+            Assert.That(fall != null, Is.True, "the ruin stays on the field");
         }
 
         [UnityTest]
@@ -899,6 +933,25 @@ namespace Arena3Q.Tests.PlayMode
             for (var i = 0; i < 30; i++)
                 yield return null;
             Capture("boss.png");
+
+            // The enemy command post falling: dust and debris just after it gives way, then the smoking ruin.
+            _battle.StartBattle(0);
+            yield return null;
+            var post = _battle.Registry.Get(_battle.EnemyCastleId);
+            var postPosition = post.Position;
+            _camera.FocusOn(postPosition);
+            post.TakeDamage(post.MaxHealth * 2f, null);
+            _battle.Simulate(Step);
+            var fall = _battle.CastleFalls[0];
+            while (!fall.HasCollapsed)
+                yield return null;
+            for (var t = 0f; t < 0.15f; t += Time.unscaledDeltaTime)
+                yield return null;
+            _camera.FocusOn(postPosition);
+            Capture("castle_fall.png");
+            for (var t = 0f; t < 2f; t += Time.unscaledDeltaTime)
+                yield return null;
+            Capture("castle_ruin.png");
         }
 
         private void Capture(string fileName)

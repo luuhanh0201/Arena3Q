@@ -12,6 +12,7 @@ namespace Arena3Q.Gameplay
         private CastleRuntime _runtime;
         private bool _canAttack;
         private float _cooldown;
+        private CastleArtConfig _art;
 
         public override bool IsCastle => true;
 
@@ -23,8 +24,9 @@ namespace Arena3Q.Gameplay
             var color = runtime.Team == Team.Player ? new Color(0.35f, 0.6f, 1f) : new Color(0.85f, 0.25f, 0.25f);
             InitUnit(battle, runtime.Id, runtime.Team, runtime.MaxHealth, BodyRadius, PlaceholderArt.Square, color,
                 withSelectionRing: false);
-            if (config.Sprite != null)
-                Visual.UseArt(config.Sprite);
+            _art = config.Art;
+            if (_art != null)
+                Visual.UseArt(_art.IntactSprite);
             SetCombat(config.Damage, config.AttackRange, config.AttackInterval, 0f, 0f, config.AttackRange);
             SetPosition(config.Position);
         }
@@ -44,5 +46,12 @@ namespace Arena3Q.Gameplay
         }
 
         protected override void OnDamaged(float amount, UnitBase source) => _runtime.ApplyDamage(amount);
+
+        // The castle object goes away; its fall is played by a separate ruin that stays on the field.
+        protected override void OnDied()
+        {
+            if (_art != null && _art.IntactSprite != null)
+                Battle.ShowCastleFall(_art, Position);
+        }
     }
 }

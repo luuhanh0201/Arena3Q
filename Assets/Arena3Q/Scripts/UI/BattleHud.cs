@@ -27,6 +27,7 @@ namespace Arena3Q.UI
         private Text _infoLabel;
         private Text _toast;
         private float _toastTimer;
+        private float _resultDelay;
         private OffscreenHeroIndicators _indicators;
         private GameObject _resultPanel;
         private Text _resultTitle;
@@ -276,6 +277,7 @@ namespace Arena3Q.UI
             _cards.Clear();
             _indicators.ClearAll();
             _resultPanel.SetActive(false);
+            _resultDelay = 0f;
 
             var lineup = battle.Lineup;
             _cardBar.sizeDelta = new Vector2(lineup.Count * (HeroCardView.CardSize.x + 18f), HeroCardView.CardSize.y);
@@ -386,7 +388,9 @@ namespace Arena3Q.UI
                 back.GetComponentInChildren<Text>().fontSize = 26;
                 back.onClick.AddListener(() => battle.ReturnToMenu());
             }
-            _resultPanel.SetActive(true);
+            // A falling castle is shown first (its animation runs behind an empty screen, not behind the panel).
+            _resultDelay = battle.ResultDelaySeconds;
+            _resultPanel.SetActive(_resultDelay <= 0f);
             Refresh();
         }
 
@@ -455,6 +459,13 @@ namespace Arena3Q.UI
                 UpdateInfo();
             UpdateBossBar();
             UpdateFormation();
+
+            if (_resultDelay > 0f)
+            {
+                _resultDelay -= Time.unscaledDeltaTime;
+                if (_resultDelay <= 0f && battle.IsOver)
+                    _resultPanel.SetActive(true);
+            }
 
             if (_toastTimer > 0f)
             {
