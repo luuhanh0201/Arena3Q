@@ -60,3 +60,9 @@ Thumbs.db
 # Meshy downloads (FBX + 4K textures, ~100 MB each) are editor-only sources for Arena3Q > Render Prop Sprites;
 # only the rendered sprites are committed. Listed after the *.meta rule so their .meta files are ignored too.
 /[Aa]ssets/**/Meshy_AI_*
+
+# AgentComms: tasks and reports are transient messages between agents; only the rules, status and folders are tracked.
+/AgentComms/*/inbox/*
+/AgentComms/*/outbox/*
+!/AgentComms/*/inbox/.gitkeep
+!/AgentComms/*/outbox/.gitkeep
