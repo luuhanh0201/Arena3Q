@@ -39,3 +39,6 @@ AgentComms/
 
 ## 5. Git và folder này
 Chỉ `README.md`, `STATUS.md` và các `.gitkeep` được commit; file việc và báo cáo trong inbox / outbox bị `.gitignore` bỏ qua (giao tiếp tạm thời, tránh hai agent xung đột khi commit).
+
+## 6. Nghiệm thu
+Khi agent làm báo `Trạng thái: xong` cho một phần việc, Claude review (test Unity, đo bề mặt, chụp trận thật nhiều góc). **Chỉ khi đạt**, Claude tạo một đợt trong `NghiemThu/<Tướng>/<NN>_<TênĐợt>_<YYYYMMDD>/` với ảnh chụp chi tiết và % so với tài liệu để người dùng tự kiểm (`NghiemThu/README.md`). Chưa đạt thì chỉ có phản hồi trong inbox của agent làm.
