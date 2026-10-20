@@ -89,6 +89,8 @@ namespace Arena3Q.Gameplay
         {
             if (sprite == null) return;
             _spatial?.Stop();transform.rotation=Quaternion.identity;transform.localScale=Vector3.one;
+            // The ghost is the whole effect: the mesh layers (three concentric rings) read as hard drawn lines.
+            if (_layers != null) foreach (var layer in _layers) layer.gameObject.SetActive(false);
             if (_ghost == null)
             {
                 var go = new GameObject("Character afterimage"); go.transform.SetParent(transform, false);
@@ -143,6 +145,15 @@ namespace Arena3Q.Gameplay
             if (!ManualClock) Advance(Time.deltaTime);
         }
         public void SetCharge() { _charge = true;if(_spatial!=null)_spatial.SetCharge(); }
+        /// <summary>Visual end that disperses instead of popping (projectile hit, end of flight, charge handed to the
+        /// release). It stops following and is reclaimed when the fade ends. Gameplay is not affected.</summary>
+        public void FadeOut(float seconds)
+        {
+            if (!_running) return;
+            _follow = null;
+            if (_spatial is MacAnhVfxPlayer player) player.Vanish(seconds);
+            _duration = Mathf.Min(_duration, _seconds + Mathf.Max(.01f, seconds));
+        }
         public void SetGroundLayers()
         {
             if(_spatial!=null)return;

@@ -210,7 +210,11 @@ namespace Arena3Q.Frontend
             var lord = ChosenLord;
             if (character == null || lord == null)
                 return lineup;
-            lineup.Add(new LineupEntry(lord.lord, character.lordLevel, 1, character.lordSkillLevels));
+            // Development players (not the Editor, which has Play Combat Test) may raise the lord to a test level
+            // (FrontendConfig); the saved profile is untouched.
+            var lordLevel = !Application.isEditor && Debug.isDebugBuild && config.DevelopmentLordLevel > 0
+                ? Mathf.Max(character.lordLevel, config.DevelopmentLordLevel) : character.lordLevel;
+            lineup.Add(new LineupEntry(lord.lord, lordLevel, 1, character.lordSkillLevels));
             foreach (var owned in character.heroes)
             {
                 var hero = config.FindHero(owned.heroId);

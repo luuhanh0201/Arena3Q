@@ -30,6 +30,13 @@ namespace Arena3Q.Gameplay
         private float _seconds, _duration, _scale = 1f, _projection = 1f;
         private int _order;
         private bool _running;
+        private float _vanishAt, _vanishSeconds, _seed;
+        // Nothing pops in or out: every layer takes at least this long to gather and to disperse.
+        private const float MinFadeIn = .1f, MinFadeOut = .16f;
+        private static readonly int DissolveId = Shader.PropertyToID("_Dissolve");
+        private static readonly int BreathId = Shader.PropertyToID("_Breath");
+        private static readonly int NoiseScaleId = Shader.PropertyToID("_NoiseScale");
+        private static readonly int SeedId = Shader.PropertyToID("_Seed");
 
         public MacAnhVfxRecipe Recipe => recipe;
 
@@ -98,6 +105,8 @@ namespace Arena3Q.Gameplay
             _seconds = 0f;
             _phase = MacAnhVfxPhase.Release;
             _running = true;
+            _vanishSeconds = 0f;
+            _seed = Random.Range(0f, 100f);
             Apply();
         }
 
@@ -113,6 +122,19 @@ namespace Arena3Q.Gameplay
         {
             _phase = MacAnhVfxPhase.Charge;
             Apply();
+        }
+
+        /// <summary>Vanish now (hit, end of flight, hand-over to the release): erode away over <paramref name="seconds"/>
+        /// from wherever each layer's fade currently is, instead of disappearing in one frame.</summary>
+        public void Vanish(float seconds)
+        {
+            if (!_running || seconds <= 0f)
+                return;
+            var at = _seconds + seconds;
+            if (_vanishSeconds > 0f && at >= _vanishAt)
+                return;
+            _vanishAt = at;
+            _vanishSeconds = seconds;
         }
 
         public void Advance(float delta)
@@ -146,7 +168,8 @@ namespace Arena3Q.Gameplay
             var fadeOut = charge ? 0f : recipe.dimFadeOut;
             var fade = Mathf.Min(fadeIn > 0f ? Mathf.Clamp01(_seconds / fadeIn) : 1f,
                 fadeOut > 0f ? Mathf.Clamp01((_duration - _seconds) / fadeOut) : 1f);
-            var amount = _running ? recipe.screenDim * fade : 0f;
+            // A vanishing charge hands its dim to the release at once (two dims would stack into a darker flash).
+            var amount = _running && !(charge && _vanishSeconds > 0f) ? recipe.screenDim * fade : 0f;
             _dim.enabled = amount > .001f;
             if (!_dim.enabled)
                 return 0f;
@@ -174,25 +197,36 @@ namespace Arena3Q.Gameplay
                 var layer = recipe.layers[i];
                 var r = _renderers[i];
                 var end = recipe.LayerEnd(layer, _duration);
+                var vanish = _vanishSeconds > 0f ? Mathf.Clamp01((_vanishAt - _seconds) / _vanishSeconds) : 1f;
                 var active = _running && layer.phase == _phase && layer.frames.Length > 0 &&
                              !(layer.highQualityOnly && _quality == MacAnhFxQuality.Low) &&
-                             _seconds >= layer.start && _seconds <= end;
+                             _seconds >= layer.start && _seconds <= end && vanish > 0f;
                 r.enabled = active;
                 if (!active)
                     continue;
                 var age = _seconds - layer.start;
                 var life = Mathf.Max(.001f, end - layer.start);
-                var fade = Mathf.Min(layer.fadeIn > 0f ? Mathf.Clamp01(age / layer.fadeIn) : 1f,
-                    layer.fadeOut > 0f ? Mathf.Clamp01((end - _seconds) / layer.fadeOut) : 1f);
+                // 0 means "continues another layer" (release taking over the charge, charge held to the hand-over):
+                // no fade there; any other value is at least the minimum, so nothing pops.
+                var fadeIn = layer.fadeIn <= 0f ? 0f : Mathf.Max(layer.fadeIn, MinFadeIn);
+                var fadeOut = layer.fadeOut <= 0f ? 0f : Mathf.Min(Mathf.Max(layer.fadeOut, MinFadeOut), life * .5f);
+                var fade = Mathf.Min(fadeIn > 0f ? Mathf.SmoothStep(0f, 1f, age / fadeIn) : 1f,
+                    fadeOut > 0f ? Mathf.SmoothStep(0f, 1f, (end - _seconds) / fadeOut) : 1f) * vanish;
                 var index = Mathf.FloorToInt(age * layer.framesPerSecond);
                 index = layer.loop ? index % layer.frames.Length : Mathf.Min(index, layer.frames.Length - 1);
                 r.sprite = layer.frames[index];
-                r.color = new Color(layer.tint.r, layer.tint.g, layer.tint.b, layer.tint.a * fade);
+                // Dissolving layers erode along the noise; a little alpha fade on top keeps the edges soft.
+                var alpha = layer.dissolve ? Mathf.Lerp(.55f, 1f, fade) * (fade > 0f ? 1f : 0f) : fade;
+                r.color = new Color(layer.tint.r, layer.tint.g, layer.tint.b, layer.tint.a * alpha);
                 r.sortingOrder = (layer.plane == MacAnhVfxPlane.Ground ? -4990 : _order) + layer.sortingOffset;
                 _block.Clear();
                 _block.SetFloat(GlowId, layer.glow);
                 _block.SetFloat(UnderlayId, layer.underlay);
                 _block.SetColor(UnderlayColourId, layer.underlayColour);
+                _block.SetFloat(DissolveId, layer.dissolve ? 1f - fade : 0f);
+                _block.SetFloat(BreathId, layer.breath);
+                _block.SetFloat(NoiseScaleId, layer.noiseScale);
+                _block.SetFloat(SeedId, _seed + i * 17.3f);
                 r.SetPropertyBlock(_block);
 
                 var size = _scale * Mathf.Lerp(layer.scaleFrom, layer.scaleTo, Mathf.SmoothStep(0f, 1f, age / life));

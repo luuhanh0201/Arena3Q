@@ -77,7 +77,8 @@ namespace Arena3Q.Gameplay
                             Quaternion.identity, flight.Quality, .3f, renderer != null ? renderer.sortingOrder : 0);
                     }
                 }
-                if (flight.OwnsFx) flight.Fx.Stop(); _flights.RemoveAt(i);
+                // The blade disperses where it is (hit or end of flight) while the impact plays.
+                if (flight.OwnsFx) flight.Fx.FadeOut(first != null ? .16f : .25f); _flights.RemoveAt(i);
             }
         }
         private void Finish(Arena3Q.Core.OutcomeDecision _) => Clear();

@@ -89,8 +89,9 @@ namespace Arena3Q.Gameplay
                 time < _skill.skill.CastTime && _gate.TryAccept(_cast, "Charge"))
             {
                 var r = _skill.skill.Radius;
+                // Lives a little past the release, which disperses it (FadeOut) while the release gathers.
                 _charge = Spawn(action == MacAnhAction.Skill01 ? "MagicArray" : "Ultimate", _hero.Battle.ToView(_skillAim.Point),
-                    new Vector3(r, r * _hero.Battle.ViewYScale, 1), _skill.skill.CastTime - time);
+                    new Vector3(r, r * _hero.Battle.ViewYScale, 1), _skill.skill.CastTime - time + .3f);
                 if (_charge != null) { _chargeGeneration = _charge.Generation; _charge.SetCharge(); }
             }
             // Rune circle behind Mặc Ảnh from frame 31 until the release (spec §12), following the caster.
@@ -118,7 +119,9 @@ namespace Arena3Q.Gameplay
             var binding = _set.Find(skill); if (binding == null) return;
             var action = binding.action;
             if (!_gate.TryAccept(_cast, action + ":" + combo)) return;
-            StopOwned(ref _charge, _chargeGeneration);
+            // The charge disperses into the release instead of vanishing in the same frame.
+            if (_charge != null && _charge.Generation == _chargeGeneration) _charge.FadeOut(.25f);
+            _charge = null;
             // Released: the rune circle fades out on its own clock; a later cancel/end must not cut it.
             if (action == MacAnhAction.Ultimate) _aura = null;
             if (action == MacAnhAction.Attack02 || action == MacAnhAction.DodgeAttack)

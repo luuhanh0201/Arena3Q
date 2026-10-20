@@ -36,6 +36,9 @@ MonoBehaviour:
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 0
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
     highQualityOnly: 0
   - name: Dome
     frames:
@@ -73,6 +76,9 @@ MonoBehaviour:
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 1
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
     highQualityOnly: 0
   screenDim: 0
   dimColour: {r: 0.06, g: 0.02, b: 0.12, a: 1}

@@ -26,8 +26,8 @@ MonoBehaviour:
     end: 0
     fadeIn: 0.2
     fadeOut: 0.5
-    scaleFrom: 0.29615384
-    scaleTo: 0.42307693
+    scaleFrom: 0.40384614
+    scaleTo: 0.5769231
     spinDegreesPerSecond: -240
     stretchToGround: 0
     height: 0
@@ -36,6 +36,9 @@ MonoBehaviour:
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 0
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
     highQualityOnly: 0
   - name: Column
     frames:
@@ -54,15 +57,15 @@ MonoBehaviour:
     - {fileID: 3781041669496648148, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
     - {fileID: -7513751691392370523, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
     - {fileID: 7195334146484328493, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: 5073274036790231005, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: -3795459019838433504, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: -4159871257028858629, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: -6884264905516766229, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: -443876315865130576, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: -8089611022909069370, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: -4766120398727889419, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: -56831905834595927, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: 7923496903242025283, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: 5073274036790231005, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: -3795459019838433504, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: -4159871257028858629, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: -6884264905516766229, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: -443876315865130576, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: -8089611022909069370, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: -4766120398727889419, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: -56831905834595927, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: 7923496903242025283, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
     framesPerSecond: 20
     loop: 1
     plane: 0
@@ -81,6 +84,9 @@ MonoBehaviour:
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 1
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
     highQualityOnly: 0
   screenDim: 0
   dimColour: {r: 0.06, g: 0.02, b: 0.12, a: 1}

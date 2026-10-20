@@ -29,7 +29,7 @@ ONLY = argv[argv.index('--only') + 1].split(',') if '--only' in argv else None
 PREVIEW = argv[argv.index('--preview') + 1] if '--preview' in argv else ''
 ROOT = os.path.dirname(os.path.abspath(__file__))
 PROJECT = os.path.abspath(os.path.join(ROOT, '../../../../..'))
-OUT = os.path.join(PROJECT, 'Assets/Arena3Q/Art/Heroes/MacAnh/VFX/Flipbook')
+OUT = os.path.abspath(argv[argv.index('--out') + 1]) if '--out' in argv else os.path.join(PROJECT, 'Assets/Arena3Q/Art/Heroes/MacAnh/VFX/Flipbook')
 PAGE = 2048
 PROJECTION = .75            # same ground projection as export_macanh_sprites.py
 # How much the glow halo (not the shapes) darkens what is behind it: lower = the halo lights the sand up.
@@ -483,7 +483,7 @@ def layer(name, frames, ppu, **kw):
     d = {'name': name, 'ppu': ppu, 'framesPerSecond': 24, 'loop': False, 'plane': 'Upright', 'phase': 'Release',
          'start': 0, 'end': 0, 'fadeIn': .06, 'fadeOut': .15, 'scaleFrom': 1, 'scaleTo': 1, 'spin': 0, 'height': 0,
          'glow': .85, 'underlay': .9, 'underlayColour': [.22, .07, .45, 1], 'tint': [1, 1, 1, 1], 'sortingOffset': 0,
-         'highQualityOnly': False, 'stretchToGround': False}
+         'highQualityOnly': False, 'stretchToGround': False, 'breath': .45, 'noiseScale': 2.5, 'dissolve': True}
     d.update(kw)
     d['_frames'] = frames
     return d
@@ -825,8 +825,8 @@ def build_magic_array(seed=21):
     energy spikes erupting around the circle (game view)."""
     rnd = random.Random(seed)
     ppu_top = 320
-    gold = line_material('Gold', GOLD, 1.25)
-    gold_thin = line_material('GoldThin', GOLD, 1.05, .85)
+    gold = line_material('Gold', GOLD, 2.0)
+    gold_thin = line_material('GoldThin', GOLD, 1.6, .9)
     violet = line_material('Violet', BAND, 1.4)
     pale = line_material('Pale', CORE2, 1.5)
     set_glare(6, .45, .8)
@@ -856,18 +856,39 @@ def build_magic_array(seed=21):
     spike_m = glow_material('Spike', [(0, DEEP, .2), (.3, BAND, 1.4), (.5, CORE, 3.2), (.7, BAND, 1.4), (1, DEEP, .2)],
                             [(0, .2), (.5, 1), (1, .2)], 1.0)
     burst_m = glow_material('SpikeBase', [(0, CORE, 3), (.4, CORE2, 1.6), (1, BAND, 0)], [(0, 1), (1, 0)], 1.0, tips=False)
+    # Shards of energy, not a picket fence (Model3D_Rules 29): random places (not on a circle), each leans outward
+    # by its own angle, bends a little, has an uneven width along its length and its own timing and flicker.
     spikes = []
     for i in range(23):
-        a = 2 * math.pi * i / 22 + rnd.uniform(-.15, .15)
-        r = rnd.uniform(.35, .95) if i % 3 else rnd.uniform(.1, .4)
+        centre = i == 22
+        a = rnd.uniform(0, 2 * math.pi)
+        r = 0.0 if centre else math.sqrt(rnd.uniform(.02, 1.0)) * .95
         base = Vector((math.cos(a) * r, math.sin(a) * r, 0))
-        h = rnd.uniform(.9, 2.2) if i < 22 else 2.6
-        if i == 22:
-            base = Vector((0, 0, 0))
-        pts = [base + Vector((0, 0, h * t)) for t in np.linspace(0, 1, 16)]
-        o = ribbon(f'Spike{i}', pts, [(.21 if i == 22 else .1) * (1 - t) ** .6 + .008 for t in np.linspace(0, 1, 16)], Vector((0, 1, 0)), spike_m.copy())
-        b = disc(f'Base{i}', .3 if i == 22 else .14, burst_m.copy(), location=base + Vector((0, -.01, .02)), segments=16)
-        spikes.append((o, b, rnd.uniform(0, .22)))
+        h = 2.6 if centre else rnd.uniform(.7, 2.2) * (1.1 - .45 * r)
+        out = Vector((math.cos(a), math.sin(a), 0))
+        side = Vector((-out.y, out.x, 0))
+        lean = 0.0 if centre else rnd.uniform(.03, .28)
+        bend = rnd.uniform(-.06, .06)
+        width = .21 if centre else rnd.uniform(.06, .13)
+        knots = [rnd.uniform(.7, 1.3) for _ in range(5)]
+        ts = np.linspace(0, 1, 16)
+        pts = [base + Vector((0, 0, h * t)) + out * (lean * h * t ** 1.5) + side * (bend * h * math.sin(math.pi * t)) for t in ts]
+        widths = [width * (1 - t) ** .6 * float(np.interp(t, np.linspace(0, 1, 5), knots)) + .008 for t in ts]
+        o = ribbon(f'Spike{i}', pts, widths, Vector((0, 1, 0)), spike_m.copy())
+        b = disc(f'Base{i}', .3 if centre else rnd.uniform(.09, .18), burst_m.copy(), location=base + Vector((0, -.01, .02)), segments=16)
+        spikes.append((o, b, 0.0 if centre else rnd.uniform(0, .3), rnd.uniform(.07, .14), rnd.uniform(.35, .65),
+                       rnd.uniform(6, 14), rnd.random()))
+    # Spirit vapour rising from the circle between the shards.
+    vapour = []
+    for i in range(6):
+        a = rnd.uniform(0, 2 * math.pi)
+        r = rnd.uniform(.2, .85)
+        base = Vector((math.cos(a) * r, math.sin(a) * r, 0))
+        m = smoke_ribbon_material(f'Vapour{i}', 1.0, scale=(1.6, 2.4), contrast=(.4, .75), lead=None)
+        pts = [base + Vector((rnd.uniform(-.05, .05), 0, 1.3 * t)) for t in np.linspace(0, 1, 12)]
+        o = ribbon(f'Vapour{i}', pts, [.32 * math.sin(math.pi * min(1.0, .1 + t)) + .02 for t in np.linspace(0, 1, 12)],
+                   Vector((0, 1, 0)), m)
+        vapour.append((o, m, rnd.uniform(0, .25)))
     frames_count = 24
     ppu = 120
     set_view('game', 2.6, 3.4, ppu, (0, 0, 1.05))
@@ -875,15 +896,22 @@ def build_magic_array(seed=21):
     spike_frames = []
     for f in range(frames_count):
         t = f / 30.0
-        for o, b, delay in spikes:
+        for o, b, delay, rise, life, freq, ph in spikes:
             age = t - delay
-            grow = min(1.0, max(0.0, age / .1))
+            grow = min(1.0, max(0.0, age / rise))
             o.scale = (1, 1, max(.001, grow))
             o.location = (0, 0, 0)
-            fade = 0.0 if age < 0 else max(0.0, 1 - max(0.0, age - .14) / .5)
-            set_gain(o.data.materials[0], fade)
+            fade = 0.0 if age < 0 else max(0.0, 1 - max(0.0, age - rise) / life)
+            flicker = .78 + .22 * math.sin(2 * math.pi * (age * freq + ph))
+            set_gain(o.data.materials[0], fade * flicker)
             b.scale = Vector((1, 1, 1)) * (.6 + 1.2 * min(1, max(0, age) / .15))
             set_gain(b.data.materials[0], 0 if age < 0 else max(0, 1 - age / .25))
+        for o, m, delay in vapour:
+            age = t - delay
+            set_phase(m, (age * 1.3) % 1.0)
+            o.scale = (1, 1, max(.001, min(1.0, max(0.0, age) / .35)))
+            set_gain_smoke = math.sin(math.pi * min(1.0, max(0.0, age) / .8))
+            o.hide_render = age < 0 or set_gain_smoke <= 0
         spike_frames.append((render_frame(.8), anchor_pixel((0, 0, 0))))
     clear_effect()
     return outer, inner, fill, spike_frames, ppu_top, ppu
@@ -1104,7 +1132,7 @@ def smoke_ribbon_material(name, strength=1.4, scale=(3.2, 1.3), contrast=(.42, .
 
 def setup_volumes():
     e = scene.eevee
-    for attr, value in (('volumetric_tile_size', '2'), ('volumetric_samples', 96), ('volumetric_start', 6.0),
+    for attr, value in (('volumetric_tile_size', '1'), ('volumetric_samples', 160), ('volumetric_start', 6.0),
                         ('volumetric_end', 14.0), ('use_volumetric_shadows', False), ('volumetric_sample_distribution', .6)):
         try:
             setattr(e, attr, value)
@@ -1141,7 +1169,7 @@ def build_cyclone(frames_count=24, seed=31):
     # Caught debris: random height, radius jitter, speed (1 or 2 turns per loop keeps the loop seamless) and tilt.
     orbiters = [(rnd.uniform(.25, 2.3), rnd.random(), rnd.choice((1, 1, 2)), rnd.random() < .22, rnd.uniform(-.18, .22),
                  rnd.uniform(-.6, .6)) for _ in range(22)]
-    ppu = 110
+    ppu = 150
     set_view('game', 3.3, 4.3, ppu, (0, 0, 1.45))
     set_glare(7, .4, 1.0)
     frames = []
@@ -1280,30 +1308,41 @@ def build_ultimate(seed=51):
     top_z = 2.4
     beams = []
     head_m = glow_material('BeamHead', [(0, CORE, 4.0), (.4, CORE2, 2.2), (1, BAND, 0)], [(0, 1), (1, 0)], 1.0, tips=False)
+    # Not a fence of identical bars (Model3D_Rules 29): each beam leans by its own small angle, has its own width
+    # profile, brightness, landing time (in loose waves) and flicker; impacts differ in size.
     for i in range(40):
         r = math.sqrt(rnd.random()) * 1.12
         a = rnd.uniform(0, 2 * math.pi)
         x, y = math.cos(a) * r, math.sin(a) * r
-        o = ribbon(f'Beam{i}', [Vector((x, y, top_z * t)) for t in np.linspace(0, 1, 18)],
-                   [.12 + .07 * math.sin(math.pi * t) for t in np.linspace(0, 1, 18)], Vector((0, 1, 0)), beam_m.copy())
-        h = disc(f'Hit{i}', .3, hit_m.copy(), location=(x, y - .01, .03), segments=20)
-        hd = disc(f'Head{i}', .11, head_m.copy(), location=(x, y - .02, top_z), segments=16)
-        beams.append((o, h, hd, (x, y), rnd.uniform(0, .5)))
+        width = rnd.uniform(.07, .17)
+        knots = [rnd.uniform(.65, 1.35) for _ in range(4)]
+        ts = np.linspace(0, 1, 18)
+        o = ribbon(f'Beam{i}', [Vector((0, 0, top_z * t)) for t in ts],
+                   [width * (.75 + .35 * math.sin(math.pi * t)) * float(np.interp(t, np.linspace(0, 1, 4), knots)) for t in ts],
+                   Vector((0, 1, 0)), beam_m.copy())
+        o.location = (x, y, 0)
+        o.rotation_euler = (rnd.uniform(-.12, .12), rnd.uniform(-.16, .16), 0)
+        h = disc(f'Hit{i}', rnd.uniform(.18, .4), hit_m.copy(), location=(x, y - .01, .03), segments=20)
+        hd = disc(f'Head{i}', .08 + width * .4, head_m.copy(), location=(x, y - .02, top_z), segments=16)
+        wave = rnd.choice((0.0, .12, .26, .4))
+        beams.append((o, h, hd, (x, y), wave + rnd.uniform(0, .1), rnd.uniform(.7, 1.0), rnd.uniform(8, 16), rnd.random()))
     ppu = 100
     set_view('game', 3.0, 3.6, ppu, (0, 0, 1.15))
     set_glare(7, .4, 1.0)
     frames = []
     for f in range(30):
         t = f / 30.0
-        for o, h, hd, (x, y), delay in beams:
+        for o, h, hd, (x, y), delay, gain, freq, ph in beams:
             age = t - delay
-            # The beam front falls from the formation in 0.12 s, then the shaft fades from the top.
+            # The beam front falls from the formation in 0.12 s along the beam's own (tilted) axis, then fades.
             fall = min(1.0, max(0.0, age / .12))
+            axis = o.rotation_euler.to_matrix() @ Vector((0, 0, 1))
             o.scale = (1, 1, max(.001, fall))
-            o.location = (0, 0, top_z * (1 - fall))
-            hd.location = (x, y - .02, top_z * (1 - fall) + .02)
-            set_gain(hd.data.materials[0], 0 if age < 0 or fall >= 1 else 1)
-            set_gain(o.data.materials[0], 0 if age < 0 else max(0, 1 - max(0, age - .12) / .3))
+            o.location = Vector((x, y, 0)) + axis * (top_z * (1 - fall))
+            hd.location = Vector((x, y - .02, 0)) + axis * (top_z * (1 - fall) + .02)
+            set_gain(hd.data.materials[0], 0 if age < 0 or fall >= 1 else gain)
+            flicker = .8 + .2 * math.sin(2 * math.pi * (age * freq + ph))
+            set_gain(o.data.materials[0], 0 if age < 0 else gain * flicker * max(0, 1 - max(0, age - .12) / .3))
             land = age - .12
             h.scale = Vector((1, 1, 1)) * (.4 + 1.4 * min(1, max(0, land) / .15))
             set_gain(h.data.materials[0], 0 if land < 0 else max(0, 1 - land / .3))
@@ -1384,11 +1423,11 @@ def magic_array_layers():
     k = ppu / ppu_top
     common = dict(plane='Ground', loop=False, framesPerSecond=1)
     return [
-        layer('ChargeFill', fill, ppu, phase='Charge', fadeIn=.25, fadeOut=.1, glow=.7, underlay=.85, sortingOffset=0,
+        layer('ChargeFill', fill, ppu, phase='Charge', fadeIn=.25, fadeOut=0, glow=.7, underlay=.85, sortingOffset=0,
               scaleFrom=1.2 * ppu / 120, scaleTo=.95 * ppu / 120, **common),
-        layer('ChargeOuter', outer, ppu, phase='Charge', fadeIn=.25, fadeOut=.1, spin=60, scaleFrom=1.25 * k, scaleTo=.95 * k,
+        layer('ChargeOuter', outer, ppu, phase='Charge', fadeIn=.25, fadeOut=0, spin=60, scaleFrom=1.25 * k, scaleTo=.95 * k,
               sortingOffset=1, **common),
-        layer('ChargeInner', inner, ppu, phase='Charge', fadeIn=.3, fadeOut=.1, spin=-90, scaleFrom=1.3 * k, scaleTo=.9 * k,
+        layer('ChargeInner', inner, ppu, phase='Charge', fadeIn=.3, fadeOut=0, spin=-90, scaleFrom=1.3 * k, scaleTo=.9 * k,
               sortingOffset=2, **common),
         layer('Fill', fill, ppu, fadeIn=.05, fadeOut=.35, glow=.7, underlay=.85, scaleFrom=ppu / 120, scaleTo=ppu / 120,
               sortingOffset=0, **common),
@@ -1425,13 +1464,13 @@ def ultimate_layers():
     sky = 2.4 * math.sqrt(1 - PROJECTION ** 2)      # where the beams start on screen, above the target point
     g = dict(plane='Ground', framesPerSecond=1)
     return [
-        layer('ChargeTarget', target, ppu, phase='Charge', fadeIn=.3, fadeOut=.1, spin=12, scaleFrom=1 * k220, scaleTo=1 * k220,
+        layer('ChargeTarget', target, ppu, phase='Charge', fadeIn=.3, fadeOut=0, spin=12, scaleFrom=1 * k220, scaleTo=1 * k220,
               underlay=.75, **g),
-        layer('ChargeSkyFill', sky_fill, ppu, phase='Charge', height=sky, fadeIn=.4, fadeOut=.1, scaleFrom=1.3 * k110 * 1.2,
+        layer('ChargeSkyFill', sky_fill, ppu, phase='Charge', height=sky, fadeIn=.4, fadeOut=0, scaleFrom=1.3 * k110 * 1.2,
               scaleTo=1 * k110 * 1.2, glow=.8, underlay=.85, sortingOffset=10, **g),
-        layer('ChargeSkyOuter', sky_outer, ppu, phase='Charge', height=sky, fadeIn=.4, fadeOut=.1, spin=40, scaleFrom=1.35 * k260 * 1.2,
+        layer('ChargeSkyOuter', sky_outer, ppu, phase='Charge', height=sky, fadeIn=.4, fadeOut=0, spin=40, scaleFrom=1.35 * k260 * 1.2,
               scaleTo=1 * k260 * 1.2, sortingOffset=11, **g),
-        layer('ChargeSkyInner', sky_inner, ppu, phase='Charge', height=sky, fadeIn=.5, fadeOut=.1, spin=-70, scaleFrom=1.4 * k260 * 1.2,
+        layer('ChargeSkyInner', sky_inner, ppu, phase='Charge', height=sky, fadeIn=.5, fadeOut=0, spin=-70, scaleFrom=1.4 * k260 * 1.2,
               scaleTo=1 * k260 * 1.2, sortingOffset=12, **g),
         layer('SkyFill', sky_fill, ppu, height=sky, end=1.0, fadeIn=0, fadeOut=.5, scaleFrom=1 * k110 * 1.2, scaleTo=1.1 * k110 * 1.2, glow=.8,
               underlay=.5, sortingOffset=10, **g),

@@ -55,6 +55,12 @@ namespace Arena3Q.Data
             public Color underlayColour = new Color(.2f, .08f, .38f, 1f);
             public Color tint = Color.white;
             public int sortingOffset;
+            [Tooltip("Qi look: how much a slow drifting noise thins and thickens the layer (0 = flat).")]
+            [Range(0f, 1f)] public float breath = .45f;
+            [Tooltip("Size of the density / dissolve noise, per metre.")]
+            [Min(.1f)] public float noiseScale = 2.5f;
+            [Tooltip("Appear / vanish by eroding along the noise (with a glowing edge) instead of a flat alpha fade.")]
+            public bool dissolve = true;
             [Tooltip("Skipped at the Low quality level.")] public bool highQualityOnly;
         }
 

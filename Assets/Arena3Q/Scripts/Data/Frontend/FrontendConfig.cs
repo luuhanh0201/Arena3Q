@@ -78,8 +78,14 @@ namespace Arena3Q.Data
         [SerializeField] private StageConfig defaultStage;
         [SerializeField] private string battleSceneName = "Battle";
         [SerializeField] private string frontendSceneName = "Frontend";
+        [Header("Development builds only")]
+        [Tooltip("Lord level used in battle by Development players on a device, so every lord skill can be tested " +
+                 "(skills unlock at levels 2/5/10/15). 0 = off. The Editor (use Play Combat Test) and release builds " +
+                 "always use the saved level.")]
+        [SerializeField, Min(0)] private int developmentLordLevel = 15;
 
         public IReadOnlyList<FrontendStep> Steps => steps;
+        public int DevelopmentLordLevel => developmentLordLevel;
         public string GameTitle => gameTitle;
         public float IntroSeconds => introSeconds;
         public VideoClip IntroVideo => introVideo;

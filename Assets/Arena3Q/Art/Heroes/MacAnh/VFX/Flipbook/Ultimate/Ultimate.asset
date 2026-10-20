@@ -25,7 +25,7 @@ MonoBehaviour:
     start: 0
     end: 0
     fadeIn: 0.3
-    fadeOut: 0.1
+    fadeOut: 0
     scaleFrom: 0.45454547
     scaleTo: 0.45454547
     spinDegreesPerSecond: 12
@@ -36,6 +36,9 @@ MonoBehaviour:
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 0
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
     highQualityOnly: 0
   - name: ChargeSkyFill
     frames:
@@ -47,7 +50,7 @@ MonoBehaviour:
     start: 0
     end: 0
     fadeIn: 0.4
-    fadeOut: 0.1
+    fadeOut: 0
     scaleFrom: 1.4181818
     scaleTo: 1.0909091
     spinDegreesPerSecond: 0
@@ -58,6 +61,9 @@ MonoBehaviour:
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 10
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
     highQualityOnly: 0
   - name: ChargeSkyOuter
     frames:
@@ -69,7 +75,7 @@ MonoBehaviour:
     start: 0
     end: 0
     fadeIn: 0.4
-    fadeOut: 0.1
+    fadeOut: 0
     scaleFrom: 0.6230769
     scaleTo: 0.46153846
     spinDegreesPerSecond: 40
@@ -80,6 +86,9 @@ MonoBehaviour:
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 11
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
     highQualityOnly: 0
   - name: ChargeSkyInner
     frames:
@@ -91,7 +100,7 @@ MonoBehaviour:
     start: 0
     end: 0
     fadeIn: 0.5
-    fadeOut: 0.1
+    fadeOut: 0
     scaleFrom: 0.64615387
     scaleTo: 0.46153846
     spinDegreesPerSecond: -70
@@ -102,6 +111,9 @@ MonoBehaviour:
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 12
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
     highQualityOnly: 0
   - name: SkyFill
     frames:
@@ -124,6 +136,9 @@ MonoBehaviour:
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 10
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
     highQualityOnly: 0
   - name: SkyOuter
     frames:
@@ -146,6 +161,9 @@ MonoBehaviour:
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 11
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
     highQualityOnly: 0
   - name: SkyInner
     frames:
@@ -168,6 +186,9 @@ MonoBehaviour:
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 12
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
     highQualityOnly: 0
   - name: Beams
     frames:
@@ -187,7 +208,7 @@ MonoBehaviour:
     - {fileID: 4433283760511879815, guid: 9854345c13e337a4399b76546c039d18, type: 3}
     - {fileID: 1395647911358688880, guid: 9854345c13e337a4399b76546c039d18, type: 3}
     - {fileID: -1577582035049167115, guid: 9854345c13e337a4399b76546c039d18, type: 3}
-    - {fileID: -7917578390171567727, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: -7917578390171567727, guid: 85ad9783d93570642b6acee359a02302, type: 3}
     - {fileID: -5917017586434363046, guid: 85ad9783d93570642b6acee359a02302, type: 3}
     - {fileID: 8137760211563363721, guid: 85ad9783d93570642b6acee359a02302, type: 3}
     - {fileID: 140167906321812253, guid: 85ad9783d93570642b6acee359a02302, type: 3}
@@ -219,6 +240,9 @@ MonoBehaviour:
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 13
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
     highQualityOnly: 0
   - name: Shockwave
     frames:
@@ -241,6 +265,9 @@ MonoBehaviour:
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 0
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
     highQualityOnly: 0
   - name: Target
     frames:
@@ -263,6 +290,9 @@ MonoBehaviour:
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 0
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
     highQualityOnly: 0
   screenDim: 0.6
   dimColour: {r: 0.06, g: 0.02, b: 0.12, a: 1}
