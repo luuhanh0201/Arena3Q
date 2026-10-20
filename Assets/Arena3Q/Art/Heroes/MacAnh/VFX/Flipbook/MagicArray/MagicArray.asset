@@ -159,22 +159,26 @@ MonoBehaviour:
     - {fileID: -8510063520223714411, guid: faca55f502989204497251356ce8c280, type: 3}
     - {fileID: 1942883030207509825, guid: faca55f502989204497251356ce8c280, type: 3}
     - {fileID: 7692292063395307524, guid: faca55f502989204497251356ce8c280, type: 3}
-    - {fileID: 2190756080307481014, guid: faca55f502989204497251356ce8c280, type: 3}
-    - {fileID: 1859205178451452594, guid: faca55f502989204497251356ce8c280, type: 3}
-    - {fileID: 3944495529914366457, guid: faca55f502989204497251356ce8c280, type: 3}
-    - {fileID: 8050414102813949951, guid: faca55f502989204497251356ce8c280, type: 3}
-    - {fileID: -1286218123429072607, guid: faca55f502989204497251356ce8c280, type: 3}
-    - {fileID: 3598127627162572359, guid: faca55f502989204497251356ce8c280, type: 3}
-    - {fileID: 412219621496667253, guid: faca55f502989204497251356ce8c280, type: 3}
-    - {fileID: 8211589097244541156, guid: faca55f502989204497251356ce8c280, type: 3}
-    - {fileID: -2855211799391208519, guid: faca55f502989204497251356ce8c280, type: 3}
-    - {fileID: 168917416676304078, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: 2190756080307481014, guid: 4e7ef033530ef274c83c2fe15b7a34d4, type: 3}
+    - {fileID: 1859205178451452594, guid: 4e7ef033530ef274c83c2fe15b7a34d4, type: 3}
+    - {fileID: 3944495529914366457, guid: 4e7ef033530ef274c83c2fe15b7a34d4, type: 3}
+    - {fileID: 8050414102813949951, guid: 4e7ef033530ef274c83c2fe15b7a34d4, type: 3}
+    - {fileID: -1286218123429072607, guid: 4e7ef033530ef274c83c2fe15b7a34d4, type: 3}
+    - {fileID: 3598127627162572359, guid: 4e7ef033530ef274c83c2fe15b7a34d4, type: 3}
+    - {fileID: 412219621496667253, guid: 4e7ef033530ef274c83c2fe15b7a34d4, type: 3}
+    - {fileID: 8211589097244541156, guid: 4e7ef033530ef274c83c2fe15b7a34d4, type: 3}
+    - {fileID: -2855211799391208519, guid: 4e7ef033530ef274c83c2fe15b7a34d4, type: 3}
+    - {fileID: 168917416676304078, guid: 4e7ef033530ef274c83c2fe15b7a34d4, type: 3}
+    - {fileID: 1822850327801410739, guid: 4e7ef033530ef274c83c2fe15b7a34d4, type: 3}
+    - {fileID: 4296102308050577459, guid: 4e7ef033530ef274c83c2fe15b7a34d4, type: 3}
+    - {fileID: -1629370794171479843, guid: 4e7ef033530ef274c83c2fe15b7a34d4, type: 3}
+    - {fileID: 7249794227233101935, guid: 4e7ef033530ef274c83c2fe15b7a34d4, type: 3}
     framesPerSecond: 30
     loop: 0
     plane: 0
     phase: 0
     start: 0
-    end: 0.7
+    end: 0.82
     fadeIn: 0
     fadeOut: 0.15
     scaleFrom: 1
@@ -182,9 +186,13 @@ MonoBehaviour:
     spinDegreesPerSecond: 0
     stretchToGround: 1
     height: 0
-    glow: 1.1
+    glow: 1.2
     underlay: 0.7
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 3
     highQualityOnly: 0
+  screenDim: 0
+  dimColour: {r: 0.06, g: 0.02, b: 0.12, a: 1}
+  dimFadeIn: 0.25
+  dimFadeOut: 0.4

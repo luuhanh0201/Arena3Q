@@ -32,6 +32,8 @@ PROJECT = os.path.abspath(os.path.join(ROOT, '../../../../..'))
 OUT = os.path.join(PROJECT, 'Assets/Arena3Q/Art/Heroes/MacAnh/VFX/Flipbook')
 PAGE = 2048
 PROJECTION = .75            # same ground projection as export_macanh_sprites.py
+# How much the glow halo (not the shapes) darkens what is behind it: lower = the halo lights the sand up.
+HALO_COVER = float(argv[argv.index('--halo') + 1]) if '--halo' in argv else .9
 
 CORE = '#F3ECFF'; CORE2 = '#D6B9FF'; BAND = '#9657EF'; DEEP = '#552C91'; GOLD = '#E6C47C'
 
@@ -132,7 +134,7 @@ def render_frame(cover_scale=1.0):
     out[:, :, :3] = np.clip(glow[:, :, :3], 0, 1)
     # The underlay also follows the glow halo, so the halo tints the sand violet instead of washing it out.
     lum = glow[:, :, :3].max(2)
-    out[:, :, 3] = np.clip(np.maximum(cover[:, :, 3] * cover_scale, np.clip(lum * 1.6, 0, 1) * .9), 0, 1)
+    out[:, :, 3] = np.clip(np.maximum(cover[:, :, 3] * cover_scale, np.clip(lum * 1.6, 0, 1) * HALO_COVER), 0, 1)
     return out
 
 
@@ -471,6 +473,7 @@ def write_effect(name, layers, reference_radius=1.0):
             os.makedirs(PREVIEW, exist_ok=True)
     pages = packer.save(folder)
     recipe = {'name': name, 'referenceRadius': reference_radius, 'renderProjection': PROJECTION, 'pages': pages, 'layers': out_layers}
+    recipe.update(SCREEN_DIM.get(name, {}))
     with open(os.path.join(folder, name + '.recipe.json'), 'w', encoding='utf-8') as f:
         json.dump(recipe, f, indent=1)
     print('EFFECT', name, 'layers', len(out_layers), 'frames', sum(len(l['frames']) for l in out_layers), 'pages', len(pages), flush=True)
@@ -978,7 +981,7 @@ def build_shield(frames_count=16):
     me = bpy.data.meshes.new('Dome')
     bm.to_mesh(me)
     bm.free()
-    me.materials.append(fresnel_material('DomeM', CORE2, BAND, rim_strength=1.6, body_alpha=.28, rim_alpha=.85))
+    me.materials.append(fresnel_material('DomeM', CORE2, BAND, rim_strength=2.4, body_alpha=.28, rim_alpha=.9))
     dome = bpy.data.objects.new('Dome', me)
     scene.collection.objects.link(dome)
     _objects.append(dome)
@@ -989,7 +992,7 @@ def build_shield(frames_count=16):
     me = bpy.data.meshes.new('Lattice')
     bm.to_mesh(me)
     bm.free()
-    lattice_m = flat_glow('LatticeM', CORE2, 1.1, .45)
+    lattice_m = flat_glow('LatticeM', CORE2, 1.5, .55)
     me.materials.append(lattice_m)
     lattice = bpy.data.objects.new('Lattice', me)
     wire = lattice.modifiers.new('Wire', 'WIREFRAME')
@@ -999,7 +1002,7 @@ def build_shield(frames_count=16):
     _objects.append(lattice)
     base = ring('Base', 1.0, .035, line_material('BaseM', GOLD, 1.5))
     # Front emblem (storyboard "Lá chắn (Front)"): octagram in a circle, standing at the front of the dome.
-    emblem_m = line_material('EmblemM', GOLD, 1.3, .8)
+    emblem_m = line_material('EmblemM', GOLD, 1.8, .9)
     before = len(_objects)
     star_polygon('Emb', .28, 8, 3, emblem_m, .012)
     ring('EmbRing', .3, .012, emblem_m, segments=64)
@@ -1070,8 +1073,8 @@ def build_ultimate(seed=51):
     top_z = 2.4
     beams = []
     head_m = glow_material('BeamHead', [(0, CORE, 4.0), (.4, CORE2, 2.2), (1, BAND, 0)], [(0, 1), (1, 0)], 1.0, tips=False)
-    for i in range(30):
-        r = math.sqrt(rnd.random()) * .95
+    for i in range(40):
+        r = math.sqrt(rnd.random()) * 1.12
         a = rnd.uniform(0, 2 * math.pi)
         x, y = math.cos(a) * r, math.sin(a) * r
         o = ribbon(f'Beam{i}', [Vector((x, y, top_z * t)) for t in np.linspace(0, 1, 18)],
@@ -1080,7 +1083,7 @@ def build_ultimate(seed=51):
         hd = disc(f'Head{i}', .11, head_m.copy(), location=(x, y - .02, top_z), segments=16)
         beams.append((o, h, hd, (x, y), rnd.uniform(0, .5)))
     ppu = 100
-    set_view('game', 2.6, 3.4, ppu, (0, 0, 1.15))
+    set_view('game', 3.0, 3.6, ppu, (0, 0, 1.15))
     set_glare(7, .4, 1.0)
     frames = []
     for f in range(30):
@@ -1179,15 +1182,17 @@ EFFECTS = {
     'Cyclone': cyclone_layers,
     'Shield': shield_layers,
     'Ultimate': ultimate_layers,
-    'WindSlash': lambda: [layer('Blade', *build_wind_slash(1.6), framesPerSecond=24, loop=True, fadeIn=.05, fadeOut=.08,
+    'WindSlash': lambda: [layer('Blade', *build_wind_slash(2.2), framesPerSecond=24, loop=True, fadeIn=.05, fadeOut=.08,
                                 glow=1.15, underlay=.85)],
-    'CounterSlash': lambda: [layer('Blade', *build_wind_slash(1.15, seed=5), framesPerSecond=24, loop=True, fadeIn=.04,
+    'CounterSlash': lambda: [layer('Blade', *build_wind_slash(1.5, seed=5), framesPerSecond=24, loop=True, fadeIn=.04,
                                    fadeOut=.08, glow=1.15, underlay=.85)],
     'Impact': lambda: [layer('Burst', *build_impact(), framesPerSecond=30, loop=False, fadeIn=0, fadeOut=.12, underlay=.6)],
 }
 
 # Radius the battle passes for 'scale 1' of each effect (Impact is spawned at 0.5: draw it at 1.6x).
 REFERENCE_RADIUS = {'Impact': .3, 'Shield': .55}
+# Cinematic dim of the battlefield while the effect plays (see MacAnhVfxRecipe.screenDim); 0 / missing = off.
+SCREEN_DIM = {'Ultimate': {'screenDim': .6, 'dimFadeIn': .35, 'dimFadeOut': .5, 'dimColour': [.06, .02, .12, 1]}}
 
 for name, build in EFFECTS.items():
     if ONLY and name not in ONLY:

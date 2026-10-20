@@ -34,7 +34,11 @@ namespace Arena3Q.Editor
         }
 
         [Serializable]
-        private sealed class RecipeJson { public string name; public float referenceRadius, renderProjection; public string[] pages; public LayerJson[] layers; }
+        private sealed class RecipeJson
+        {
+            public string name; public float referenceRadius, renderProjection, screenDim, dimFadeIn = .25f, dimFadeOut = .4f;
+            public float[] dimColour; public string[] pages; public LayerJson[] layers;
+        }
 
         [MenuItem("Arena3Q/Mac Anh/Graphics/Import Flipbook VFX")]
         public static void Import() => ImportAll(bind: false);
@@ -134,6 +138,10 @@ namespace Arena3Q.Editor
             }
             recipe.referenceRadius = Mathf.Max(.01f, data.referenceRadius);
             recipe.renderProjection = data.renderProjection > 0f ? data.renderProjection : .75f;
+            recipe.screenDim = Mathf.Clamp01(data.screenDim);
+            recipe.dimFadeIn = data.dimFadeIn;
+            recipe.dimFadeOut = data.dimFadeOut;
+            recipe.dimColour = ToColour(data.dimColour, new Color(.06f, .02f, .12f, 1f));
             recipe.layers = data.layers.Select(l => new MacAnhVfxRecipe.Layer
             {
                 name = l.name,

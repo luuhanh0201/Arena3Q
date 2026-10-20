@@ -64,6 +64,14 @@ namespace Arena3Q.Data
         [Range(.05f, 1f)] public float renderProjection = .75f;
         public Layer[] layers = Array.Empty<Layer>();
 
+        [Header("Screen dim (cinematic)")]
+        [Tooltip("Darkens the whole battlefield behind the effect while it plays, so the light reads like the concept " +
+                 "art on a dark ground. 0 = off. The effect's own layers are drawn above the dim.")]
+        [Range(0f, 1f)] public float screenDim;
+        public Color dimColour = new Color(.06f, .02f, .12f, 1f);
+        [Min(0f)] public float dimFadeIn = .25f;
+        [Min(0f)] public float dimFadeOut = .4f;
+
         public float LayerEnd(Layer layer, float duration) => layer.end > 0f ? Mathf.Min(layer.end, duration) : duration + layer.end;
     }
 }

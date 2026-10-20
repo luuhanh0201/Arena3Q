@@ -48,3 +48,7 @@ MonoBehaviour:
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 0
     highQualityOnly: 0
+  screenDim: 0
+  dimColour: {r: 0.06, g: 0.02, b: 0.12, a: 1}
+  dimFadeIn: 0.25
+  dimFadeOut: 0.4

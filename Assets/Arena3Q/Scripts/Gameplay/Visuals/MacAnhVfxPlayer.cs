@@ -16,8 +16,13 @@ namespace Arena3Q.Gameplay
         private static readonly int UnderlayId = Shader.PropertyToID("_Underlay");
         private static readonly int UnderlayColourId = Shader.PropertyToID("_UnderlayColor");
 
+        /// <summary>Above every unit and ground decoration; the effect's layers go above it while the dim is on.</summary>
+        private const int DimOrder = 20000;
+        private static Sprite _dimSprite;
+
         private Transform[] _roots, _spins;
         private SpriteRenderer[] _renderers;
+        private SpriteRenderer _dim;
         private MaterialPropertyBlock _block;
         private MacAnhFxQuality _quality;
         private MacAnhVfxPhase _phase;
@@ -56,6 +61,32 @@ namespace Arena3Q.Gameplay
                 _spins[i] = spin;
                 _renderers[i] = sprite;
             }
+            if (recipe.screenDim > 0f)
+            {
+                if (_dimSprite == null)
+                {
+                    // RGB 0 / A 1: with the flipbook shader this is pure underlay, i.e. a premultiplied darkening.
+                    var texture = new Texture2D(4, 4, TextureFormat.RGBA32, false) { name = "MacAnh screen dim", hideFlags = HideFlags.DontSave };
+                    texture.SetPixels(Repeat(new Color(0f, 0f, 0f, 1f), 16));
+                    texture.Apply();
+                    _dimSprite = Sprite.Create(texture, new Rect(0, 0, 4, 4), new Vector2(.5f, .5f), 4f);
+                    _dimSprite.hideFlags = HideFlags.DontSave;
+                }
+                _dim = new GameObject("Screen dim", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
+                _dim.transform.SetParent(transform, false);
+                _dim.sprite = _dimSprite;
+                _dim.sharedMaterial = material;
+                _dim.sortingOrder = DimOrder;
+                _dim.enabled = false;
+            }
+        }
+
+        private static Color[] Repeat(Color colour, int count)
+        {
+            var colours = new Color[count];
+            for (var i = 0; i < count; i++)
+                colours[i] = colour;
+            return colours;
         }
 
         public void Begin(MacAnhFxQuality quality, float duration)
@@ -98,6 +129,36 @@ namespace Arena3Q.Gameplay
                 return;
             foreach (var r in _renderers)
                 r.enabled = false;
+            if (_dim != null)
+                _dim.enabled = false;
+        }
+
+        private float ApplyDim()
+        {
+            if (_dim == null)
+                return 0f;
+            // The release instance takes over from the charge instance in the same frame, so only the charge fades in;
+            // otherwise the battlefield would flash bright between the two.
+            // Likewise the charge holds its dim to the end (the release continues it) and only the release fades out.
+            var charge = _phase == MacAnhVfxPhase.Charge;
+            var fadeIn = charge ? recipe.dimFadeIn : 0f;
+            var fadeOut = charge ? 0f : recipe.dimFadeOut;
+            var fade = Mathf.Min(fadeIn > 0f ? Mathf.Clamp01(_seconds / fadeIn) : 1f,
+                fadeOut > 0f ? Mathf.Clamp01((_duration - _seconds) / fadeOut) : 1f);
+            var amount = _running ? recipe.screenDim * fade : 0f;
+            _dim.enabled = amount > .001f;
+            if (!_dim.enabled)
+                return 0f;
+            // Big enough to cover any battle camera; it follows the effect, which stays on screen while it plays.
+            _dim.transform.localScale = new Vector3(400f, 400f, 1f);
+            _dim.transform.rotation = Quaternion.identity;
+            _dim.color = new Color(1f, 1f, 1f, 1f);
+            _block.Clear();
+            _block.SetFloat(GlowId, 0f);
+            _block.SetFloat(UnderlayId, amount);
+            _block.SetColor(UnderlayColourId, recipe.dimColour);
+            _dim.SetPropertyBlock(_block);
+            return amount;
         }
 
         private void Apply()
@@ -106,6 +167,7 @@ namespace Arena3Q.Gameplay
                 return;
             // Projectiles are spawned rotated towards their screen direction; keep "up" up when they fly left.
             var flip = Mathf.Cos(transform.eulerAngles.z * Mathf.Deg2Rad) < 0f ? -1f : 1f;
+            var dimmed = ApplyDim() > 0f;
             for (var i = 0; i < _renderers.Length; i++)
             {
                 var layer = recipe.layers[i];
@@ -125,7 +187,7 @@ namespace Arena3Q.Gameplay
                 index = layer.loop ? index % layer.frames.Length : Mathf.Min(index, layer.frames.Length - 1);
                 r.sprite = layer.frames[index];
                 r.color = new Color(layer.tint.r, layer.tint.g, layer.tint.b, layer.tint.a * fade);
-                r.sortingOrder = (layer.plane == MacAnhVfxPlane.Ground ? -4990 : _order) + layer.sortingOffset;
+                r.sortingOrder = (dimmed ? DimOrder + 10 : layer.plane == MacAnhVfxPlane.Ground ? -4990 : _order) + layer.sortingOffset;
                 _block.Clear();
                 _block.SetFloat(GlowId, layer.glow);
                 _block.SetFloat(UnderlayId, layer.underlay);

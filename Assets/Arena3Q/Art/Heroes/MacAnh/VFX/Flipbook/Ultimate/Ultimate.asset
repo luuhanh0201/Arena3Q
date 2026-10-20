@@ -48,8 +48,8 @@ MonoBehaviour:
     end: 0
     fadeIn: 0.4
     fadeOut: 0.1
-    scaleFrom: 1.1818181
-    scaleTo: 0.90909094
+    scaleFrom: 1.4181818
+    scaleTo: 1.0909091
     spinDegreesPerSecond: 0
     stretchToGround: 0
     height: 1.5874507
@@ -70,8 +70,8 @@ MonoBehaviour:
     end: 0
     fadeIn: 0.4
     fadeOut: 0.1
-    scaleFrom: 0.5192308
-    scaleTo: 0.3846154
+    scaleFrom: 0.6230769
+    scaleTo: 0.46153846
     spinDegreesPerSecond: 40
     stretchToGround: 0
     height: 1.5874507
@@ -92,8 +92,8 @@ MonoBehaviour:
     end: 0
     fadeIn: 0.5
     fadeOut: 0.1
-    scaleFrom: 0.53846157
-    scaleTo: 0.3846154
+    scaleFrom: 0.64615387
+    scaleTo: 0.46153846
     spinDegreesPerSecond: -70
     stretchToGround: 0
     height: 1.5874507
@@ -114,8 +114,8 @@ MonoBehaviour:
     end: 1
     fadeIn: 0
     fadeOut: 0.5
-    scaleFrom: 0.90909094
-    scaleTo: 1
+    scaleFrom: 1.0909091
+    scaleTo: 1.2
     spinDegreesPerSecond: 0
     stretchToGround: 0
     height: 1.5874507
@@ -136,8 +136,8 @@ MonoBehaviour:
     end: 1
     fadeIn: 0
     fadeOut: 0.5
-    scaleFrom: 0.3846154
-    scaleTo: 0.42307693
+    scaleFrom: 0.46153846
+    scaleTo: 0.50769234
     spinDegreesPerSecond: 40
     stretchToGround: 0
     height: 1.5874507
@@ -158,8 +158,8 @@ MonoBehaviour:
     end: 1
     fadeIn: 0
     fadeOut: 0.5
-    scaleFrom: 0.3846154
-    scaleTo: 0.42307693
+    scaleFrom: 0.46153846
+    scaleTo: 0.50769234
     spinDegreesPerSecond: -70
     stretchToGround: 0
     height: 1.5874507
@@ -188,10 +188,10 @@ MonoBehaviour:
     - {fileID: 1395647911358688880, guid: 9854345c13e337a4399b76546c039d18, type: 3}
     - {fileID: -1577582035049167115, guid: 9854345c13e337a4399b76546c039d18, type: 3}
     - {fileID: -7917578390171567727, guid: 9854345c13e337a4399b76546c039d18, type: 3}
-    - {fileID: -5917017586434363046, guid: 9854345c13e337a4399b76546c039d18, type: 3}
-    - {fileID: 8137760211563363721, guid: 9854345c13e337a4399b76546c039d18, type: 3}
-    - {fileID: 140167906321812253, guid: 9854345c13e337a4399b76546c039d18, type: 3}
-    - {fileID: 6507989664431468841, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: -5917017586434363046, guid: 85ad9783d93570642b6acee359a02302, type: 3}
+    - {fileID: 8137760211563363721, guid: 85ad9783d93570642b6acee359a02302, type: 3}
+    - {fileID: 140167906321812253, guid: 85ad9783d93570642b6acee359a02302, type: 3}
+    - {fileID: 6507989664431468841, guid: 85ad9783d93570642b6acee359a02302, type: 3}
     - {fileID: -2944369979645844446, guid: 85ad9783d93570642b6acee359a02302, type: 3}
     - {fileID: 2887614003893383322, guid: 85ad9783d93570642b6acee359a02302, type: 3}
     - {fileID: 8642297395267706451, guid: 85ad9783d93570642b6acee359a02302, type: 3}
@@ -264,3 +264,7 @@ MonoBehaviour:
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 0
     highQualityOnly: 0
+  screenDim: 0.6
+  dimColour: {r: 0.06, g: 0.02, b: 0.12, a: 1}
+  dimFadeIn: 0.35
+  dimFadeOut: 0.5
