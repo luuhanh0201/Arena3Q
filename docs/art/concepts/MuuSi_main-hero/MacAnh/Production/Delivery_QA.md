@@ -105,3 +105,17 @@ màu concept (trắng dưới nách, tím đậm lót tay áo, đen trong ủng)
 vùng lụa trong atlas (atlas AI quá vụn), node AO và vân dệt (nhiễu hạt/moiré ở 8 mẫu Eevee). Hạt nhiễu
 còn thấy ở ảnh cận 8 mẫu là đặc tính Eevee của mọi bề mặt và tan khi thu về cỡ sprite.
 `find_macanh_noise_texture.py` dò mặt có texture xám nhiễu của model AI (chưa tìm thấy vùng đủ lớn).
+
+## VFX flipbook – các vòng sau (Claude, 2026-10-20)
+
+Thứ tự sửa và lý do (chi tiết lỗi trong `docs/NhatKySuaLoi.md`, ảnh trước–sau trong `AgentComms/claude/NghiemThu/MacAnh/XemTruoc_*`):
+
+1. **Kích thước, độ sáng** (vòng 2–3): lưỡi gió dài hơn (cung 165°), 22 gai + cột giữa cho Skill01, 40 tia + đầu tia + 2 sóng xung kích cho Ultimate, viền/lưới/phù hiệu khiên.
+2. **Gió/khói tự nhiên** (người dùng + review Codex, Model3D_Rules 28–29): lốc Skill02 là volume Eevee (`cyclone_volume_material`: 2 trường nhiễu xoắn theo độ cao quay 1 và 2 vòng/chu kỳ, bán kính thở, trục nghiêng tuế sai, chân/đỉnh tan bằng nhiễu, cage lớn hơn density; tile 1, 160 mẫu, 150 ppu); xoáy đất là nhiễu xoắn theo bán kính; đuôi gió là khói nhiễu 4D lặp bằng cross-fade W (`smoke_ribbon_material`). Gai Skill01 và tia Ultimate: vị trí, độ nghiêng, độ cong, độ dày, độ sáng và nhịp nhấp nháy riêng từng cái. Chỉ hình học trận pháp (vòng phù văn, sao) đều theo chủ ý.
+3. **Bổ sung theo spec**: `UltimateAura` (vòng phép sau lưng khi gom Ultimate, §12 f31–45, theo người tung chiêu, `MacAnhPerformance.ultimateAuraStart`), `DodgeStreak` (vệt lướt khói, §13 f8) và bản sao phát sáng của bóng ảnh (`afterimageGlowMaterial/Glow/Tint`). Bóng ảnh không còn vẽ 3 vòng mesh của prefab cũ.
+4. **Ultimate làm tối nền** (`MacAnhVfxRecipe.screenDim` 0,6): lớp tối nằm trên nền vẽ, dưới lính và hiệu ứng, nên chỉ mặt đất tối; gom lực bật và giữ, phát chiêu nhận lại không chớp.
+5. **Dạng khí** (người dùng test điện thoại): shader có `_Breath` (đậm nhạt trôi chậm, nhiễu trong không gian cục bộ của sprite) và `_Dissolve` (tụ/tan theo nhiễu, viền sáng). `MacAnhVfxPlayer` mờ vào ≥ 0,1 s, mờ ra ≥ 0,16 s, smoothstep; `fadeIn`/`fadeOut` = 0 nghĩa là nối tiếp lớp khác. `MacAnhFx.FadeOut`: đạn trúng tan 0,16 s, hết tầm 0,25 s; gom lực sống thêm 0,3 s và tan vào phần phát chiêu. Huỷ chiêu / vỡ khiên vẫn dừng ngay (test yêu cầu thu hồi).
+
+Quy trình làm lại một hiệu ứng: sửa hàm `build_*` / bảng `EFFECTS` trong `vfx_macanh_flipbooks.py` → `blender -b --factory-startup --python vfx_macanh_flipbooks.py -- --only <Tên> --preview Logs/...` (xem ảnh ghép nền cát + nền tối, đúng công thức shader) → nếu Unity đang build thì thêm `--out Library/ClaudeVfxStaging` rồi chép sau → Import and Bind → `MacAnhCombatTests` (chụp trận `Logs/MacAnhBattleQa`). Số liệu trình diễn (thời gian, độ sáng, lớp phủ, xoay, tối nền, đậm nhạt) chỉnh được trực tiếp trong asset recipe; nhập lại sẽ ghi đè bằng số trong script.
+
+Test lúc ghi: PlayMode 101/101, EditMode 250/250. Điểm review độc lập của Codex: 63/100 (chưa nghiệm thu; hiệu năng Android chưa đo theo yêu cầu người dùng). Còn mở: material realtime 3D chưa theo lụa mới, capture cuối lifetime Skill01/02/03 ở 3 tier, huỷ aura sau khi sinh.

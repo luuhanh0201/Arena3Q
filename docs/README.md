@@ -14,8 +14,10 @@ Quy ước sắp xếp:
 | `KeHoach/VaoGame.md` | Luồng vào game: biểu tượng → intro 3 s (logo + banner) → đăng nhập / Chơi ngay → chọn máy chủ → chọn chủ tướng + đặt tên → cốt truyện mở đầu; kèm prompt ảnh, video, tiếng, nhạc. |
 | `KeHoach/HeroProgression.md` | Cấp (tối đa 60), chủ tướng học kỹ năng theo cấp, sao, đột phá, phe Thục / Ngụy / Ngô / Quần, bảng chỉ số và cách cân bằng các hệ. |
 | **`Tuong/`** | **Tướng** |
+| `Tuong/Model3D_Rules.md` | Quy tắc bắt buộc khi sửa model 3D, skinning, animation và VFX; lỗi đã gặp và các bước tự kiểm tra trước bàn giao. |
 | `Tuong/LordHeroes.md` | 4 chủ tướng (Cung thủ, Kiếm sĩ, Mưu sĩ, Thống soái): vai trò, chỉ số, bộ kỹ năng. |
 | `Tuong/NormalHeroes.md` | 4 tướng khởi đầu (Xạ Thủ, Kỵ Binh, Giáp Sĩ, Đao Khách): kỹ năng, lớp PSD, xương, clip. |
+| `Tuong/LuBu.md` | Lữ Bố: rig 73 xương, sửa weight/tư thế/da, chỗ cầm kích, 7 animation, sprite tám hướng (trang 2048) và cách đưa vào game. |
 | `Tuong/LordAnimations.md` | Animation 4 chủ tướng: lớp PSD, cây xương, clip, mốc `Hit` / `Cast`, VFX theo sự kiện. |
 | `Tuong/LordArtPrompts.md` | Tổng quan làm hình chủ tướng: công cụ, quy trình, khối phong cách, đặt tên lớp, link tới các file prompt. |
 | `Tuong/StrategistArtGuide.md` | Mẫu quy trình cho mọi chủ tướng (làm trên Mưu sĩ): Krita, tách lớp, gắn xương, phần mình code. |
