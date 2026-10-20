@@ -25,6 +25,8 @@ namespace Arena3Q.Data
             public float value;
             [Tooltip("Seconds, for statuses.")]
             public float duration;
+            [Tooltip("Only when the hit reached at least this many enemies (0 = always), e.g. a bonus stack for 2+.")]
+            [Min(0)] public int minimumTargets;
         }
 
         [Header("Identity")]
@@ -56,6 +58,10 @@ namespace Arena3Q.Data
         [SerializeField] private bool firstHitOnly;
         [Tooltip("Damage multiplier against castles (e.g. ×3 for the fire arrow).")]
         [SerializeField, Min(0f)] private float castleMultiplier = 1f;
+        [Tooltip("This skill's damage is +executeBonus against units strictly below this share of their health " +
+                 "(checked before the hit; 0 = none). Castles excluded.")]
+        [SerializeField, Range(0f, 1f)] private float executeThreshold;
+        [SerializeField, Min(0f)] private float executeBonus;
 
         [Header("Over time")]
         [Tooltip("Seconds the area stays on the ground, hitting every tick; 0 = one hit.")]
@@ -90,6 +96,8 @@ namespace Arena3Q.Data
         public float Angle => angle;
         public bool FirstHitOnly => firstHitOnly;
         public float CastleMultiplier => castleMultiplier;
+        public float ExecuteThreshold => executeThreshold;
+        public float ExecuteBonus => executeBonus;
         public float ZoneDuration => zoneDuration;
         public float TickInterval => tickInterval;
         public bool FollowCaster => followCaster;

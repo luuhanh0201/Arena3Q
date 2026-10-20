@@ -72,6 +72,8 @@ namespace Arena3Q.Gameplay
         {
             ResetLocomotion();
             Skills.Tick(deltaTime);
+            if (Skills.FrenzyMaxStacks > 0)
+                Visual.SetStacks(Skills.FrenzyStacks, Skills.FrenzyMaxStacks);
             Performance?.Tick(deltaTime);
             var settings = Battle.Rules.Settings;
             _stunnedSeconds = EnemyRules.TrackCrowdControl(_stunnedSeconds, IsStunned, deltaTime,

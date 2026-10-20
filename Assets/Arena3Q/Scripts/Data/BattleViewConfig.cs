@@ -44,6 +44,11 @@ namespace Arena3Q.Data
         [Tooltip("Darkness of the soft shadow under 3D map props.")]
         [SerializeField, Range(0f, 1f)] private float propShadowAlpha = 0.3f;
 
+        [Header("Motion")]
+        [Tooltip("How high a knocked-up unit rises at the top of its arc (metres).")]
+        [SerializeField, Min(0f)] private float knockUpHeight = 0.9f;
+
+        public float KnockUpHeight => knockUpHeight;
         public MapProps3DLibrary MapProps => mapProps;
         public float PropShadowAlpha => propShadowAlpha;
         public bool Presentation3D => presentation3D;

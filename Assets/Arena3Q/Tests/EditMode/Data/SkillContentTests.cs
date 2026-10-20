@@ -41,7 +41,7 @@ namespace Arena3Q.Tests.EditMode
         public void Skills_AreValid_AndIdsAreUnique()
         {
             var skills = LoadAll<SkillDefinition>();
-            Assert.That(skills, Has.Count.EqualTo(38), "32 original skills + 6 MacAnh skill variants");
+            Assert.That(skills, Has.Count.EqualTo(42), "32 original skills + 6 MacAnh skill variants + 4 Lữ Bố skills");
             var errors = new List<string>();
             foreach (var skill in skills)
                 skill.Validate(errors);

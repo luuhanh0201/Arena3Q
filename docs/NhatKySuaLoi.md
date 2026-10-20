@@ -1,5 +1,12 @@
 # Nhật ký sửa lỗi – Arena3Q
 
+## Lữ Bố: tầng Cuồng Huyết làm lệch sát thương giữa các mục tiêu và ngưỡng 30 % bị số thực đánh lừa (2026-10-21, Claude)
+
+- Nguyên nhân 1: tầng "mỗi lần tung chiêu" được cộng ngay trong vòng gây sát thương, nên mục tiêu thứ hai của cùng một chiêu đã nhận thêm 3 %. Sửa: `SkillExecutor.Hit` cộng tầng (`HeroSkills.OnSkillHit`) **sau** khi đánh xong mọi mục tiêu.
+- Nguyên nhân 2: điều kiện kết liễu viết `Health < MaxHealth × 0,3` – với 0,3f nhân ra hơi lớn hơn, đơn vị đúng 30 % vẫn được tính là "dưới". Sửa: so tỉ lệ `Health / MaxHealth < ngưỡng` như nội tại `LowHealthTargetBonus`.
+- Lưu ý khi test: tướng không có animation chiêu (mọi tướng trừ Mặc Ảnh) kết thúc chiêu ngay bước nó phát động, nên có thể đánh thường trong cùng bước đó; đo kết quả của chiêu trong sự kiện `HeroSkills.Used`, không đo sau bước mô phỏng.
+- Kiểm: `LuBuSkillsTests` 6/6, `SkillCoreTests` (hất tung, miễn chậm, `FrenzyMeter`).
+
 ## Mặc Ảnh A3: flipbook VFX giật giữa các khung nguồn (2026-10-21, Claude)
 
 - Nguyên nhân: `MacAnhVfxPlayer` chọn `floor(tuổi × fps)` cho `SpriteRenderer`, nên ở 60 FPS một flipbook 12–24 khung/giây đứng yên 3–5 khung hình rồi nhảy (WindSlash: 34/60 bước 1/60 s không đổi gì).

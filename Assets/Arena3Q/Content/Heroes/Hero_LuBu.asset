@@ -36,10 +36,10 @@ MonoBehaviour:
   leadership: 100
   roleBonus: 0
   skills:
-  - {fileID: 11400000, guid: d6d4f33197caca74eaf720b0f234d8e8, type: 2}
-  - {fileID: 11400000, guid: 0d03ede8f466c38419e8c8257e7248e4, type: 2}
-  - {fileID: 11400000, guid: 4dc3b6653fbfbbe44b4a40fa0d470903, type: 2}
-  - {fileID: 11400000, guid: 783adbd128598c14f91658fa6e906a97, type: 2}
+  - {fileID: 11400000, guid: 8d663aca53a7e484a956350828d03d5a, type: 2}
+  - {fileID: 11400000, guid: 64134ab6da41d8f43979c9f6f13cb817, type: 2}
+  - {fileID: 11400000, guid: bab54a9d39cca4247a1c839dbebeb208, type: 2}
+  - {fileID: 11400000, guid: 367346725f02f374282a2817ef0b45c8, type: 2}
   rageMax: 100
   rageHitsToFill: 18
   idleBeforeAdvanceSeconds: 5

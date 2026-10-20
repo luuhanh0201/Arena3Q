@@ -15,17 +15,34 @@ namespace Arena3Q.Core
             public StatusKind Kind;
             public float Value;
             public float Remaining;
+            public float Duration;
             public object Source;
         }
 
         private readonly List<Entry> _entries = new List<Entry>();
+        private bool _slowImmune;
 
         public static bool IsCrowdControl(StatusKind kind) =>
-            kind == StatusKind.Stun || kind == StatusKind.Slow || kind == StatusKind.Taunt;
+            kind == StatusKind.Stun || kind == StatusKind.Slow || kind == StatusKind.Taunt || kind == StatusKind.Airborne;
 
-        public bool IsStunned => Has(StatusKind.Stun);
+        /// <summary>Cannot act: stunned or knocked up.</summary>
+        public bool IsStunned => Has(StatusKind.Stun) || Has(StatusKind.Airborne);
         public bool IsImmune => Has(StatusKind.CrowdControlImmunity);
         public int Count => _entries.Count;
+
+        /// <summary>
+        /// Slows are ignored while set (Lữ Bố at full Cuồng Huyết); setting it also lifts the slows already on the unit.
+        /// </summary>
+        public bool SlowImmune
+        {
+            get => _slowImmune;
+            set
+            {
+                if (value && !_slowImmune)
+                    Remove(StatusKind.Slow);
+                _slowImmune = value;
+            }
+        }
 
         /// <summary>Adds or refreshes a status. Returns false when it was blocked (immunity, zero time or value).</summary>
         public bool Apply(StatusKind kind, float value, float duration, object source = null)
@@ -33,6 +50,8 @@ namespace Arena3Q.Core
             if (duration <= 0f)
                 return false;
             if (IsCrowdControl(kind) && IsImmune)
+                return false;
+            if (kind == StatusKind.Slow && _slowImmune)
                 return false;
             if (kind == StatusKind.CrowdControlImmunity)
                 RemoveAll(IsCrowdControl);
@@ -46,12 +65,31 @@ namespace Arena3Q.Core
                 // A new taunt pulls towards the newest taunter.
                 if (kind == StatusKind.Taunt)
                     entry.Source = source;
-                entry.Remaining = Math.Max(entry.Remaining, duration);
+                if (duration > entry.Remaining)
+                {
+                    entry.Remaining = duration;
+                    entry.Duration = duration;
+                }
                 _entries[i] = entry;
                 return true;
             }
-            _entries.Add(new Entry { Kind = kind, Value = value, Remaining = duration, Source = source });
+            _entries.Add(new Entry { Kind = kind, Value = value, Remaining = duration, Duration = duration, Source = source });
             return true;
+        }
+
+        /// <summary>How far the longest status of this kind has run: 0 just applied … 1 about to end (0 when absent).</summary>
+        public float Progress(StatusKind kind)
+        {
+            var best = -1f;
+            var progress = 0f;
+            foreach (var entry in _entries)
+            {
+                if (entry.Kind != kind || entry.Remaining <= best)
+                    continue;
+                best = entry.Remaining;
+                progress = entry.Duration > 0f ? 1f - entry.Remaining / entry.Duration : 0f;
+            }
+            return progress;
         }
 
         public void Tick(float deltaTime)

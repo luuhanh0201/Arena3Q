@@ -46,6 +46,8 @@ namespace Arena3Q.Gameplay
         private bool _charged;
         private Vector2 _lastPosition;
         private float _auraTimer;
+        private FrenzyMeter _frenzy;
+        private SkillContext _lastFrenzyCast;
 
         public HeroSkills(HeroUnit hero, LineupEntry card, ProgressionRules rules)
         {
@@ -63,6 +65,38 @@ namespace Arena3Q.Gameplay
         public bool HasUltimate => Get(SkillSlot.Ultimate).Unlocked;
         public bool IsCharged => _charged;
         public int ComboStacks => _comboStacks;
+
+        /// <summary>Cuồng Huyết stacks (<see cref="PassiveKind.FrenzyStacks"/>), 0 without that passive.</summary>
+        public int FrenzyStacks => Frenzy?.Stacks ?? 0;
+        public int FrenzyMaxStacks => Frenzy?.Max ?? 0;
+        public bool IsFrenzyFull => Frenzy?.IsFull ?? false;
+
+        private FrenzyMeter Frenzy
+        {
+            get
+            {
+                var passive = Passive(PassiveKind.FrenzyStacks);
+                if (passive == null)
+                    return null;
+                return _frenzy ??= new FrenzyMeter(passive.count, passive.threshold);
+            }
+        }
+
+        /// <summary>Stacks from a skill effect (the ultimate fills them, a sweep on 2+ enemies adds one).</summary>
+        public void AddFrenzyStacks(int amount)
+        {
+            Frenzy?.Gain(amount);
+            _hero.Statuses.SlowImmune = IsFrenzyFull;
+        }
+
+        /// <summary>A skill cast hit an enemy: one stack per cast, however many enemies or hits it had.</summary>
+        public void OnSkillHit(SkillContext cast)
+        {
+            if (Frenzy == null || cast == _lastFrenzyCast)
+                return;
+            _lastFrenzyCast = cast;
+            AddFrenzyStacks(1);
+        }
 
         /// <summary>A skill took effect (for the HUD and tests).</summary>
         public event Action<SkillSlot> Used;
@@ -108,6 +142,9 @@ namespace Arena3Q.Gameplay
             var executer = Passive(PassiveKind.LowHealthTargetBonus);
             if (executer != null && !target.IsCastle && target.Health / target.MaxHealth < executer.threshold)
                 damage *= 1f + executer.value;
+            var frenzy = Passive(PassiveKind.FrenzyStacks);
+            if (frenzy != null)
+                damage *= Frenzy.DamageMultiplier(frenzy.value);
             return damage;
         }
 
@@ -143,6 +180,9 @@ namespace Arena3Q.Gameplay
             if (lifesteal != null)
                 _hero.Heal(damage * lifesteal.value);
 
+            if (Frenzy != null)
+                AddFrenzyStacks(1);
+
             var pierce = Passive(PassiveKind.PierceEveryNthAttack);
             if (pierce != null && pierce.count > 0 && ++_basicAttacks % pierce.count == 0)
             {
@@ -158,6 +198,14 @@ namespace Arena3Q.Gameplay
         /// <summary>Rage from the hero's own damage (spec 🟡: proportional to damage, about 18 basic hits to fill).</summary>
         public void OnDealtDamage(float amount)
         {
+            // Cuồng Huyết: any damage keeps the stacks; at full stacks it also heals (basic attacks and skills).
+            var frenzy = Passive(PassiveKind.FrenzyStacks);
+            if (frenzy != null)
+            {
+                Frenzy.Refresh();
+                if (Frenzy.IsFull)
+                    _hero.Heal(amount * frenzy.secondValue);
+            }
             if (!HasUltimate || IsCasting && _cast.Slot == SkillSlot.Ultimate)
                 return;
             Rage.Add(RageMeter.GainFor(amount, _hero.Damage, _hero.Definition.RageHitsToFill, Rage.Max,
@@ -169,6 +217,8 @@ namespace Arena3Q.Gameplay
             _hero.Performance?.EndSkill();
             _cast = null;
             Rage.Reset();
+            _frenzy?.Reset();
+            _hero.Statuses.SlowImmune = false;
         }
 
         // ---- Every step ----
@@ -181,6 +231,11 @@ namespace Arena3Q.Gameplay
                     slot.CooldownLeft = Mathf.Max(0f, slot.CooldownLeft - deltaTime);
             }
             TickPassives(deltaTime);
+            if (_frenzy != null)
+            {
+                _frenzy.Tick(deltaTime);
+                _hero.Statuses.SlowImmune = _frenzy.IsFull;
+            }
 
             if (_cast != null)
             {

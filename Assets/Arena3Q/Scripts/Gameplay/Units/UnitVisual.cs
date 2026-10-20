@@ -224,6 +224,42 @@ namespace Arena3Q.Gameplay
             LayoutMarkers();
         }
 
+        private SpriteRenderer[] _stackMarks;
+        private int _stacksShown = -1;
+
+        /// <summary>Stacks of a passive (Cuồng Huyết): small blood-red marks over the health bar, bright at full.</summary>
+        public void SetStacks(int count, int max)
+        {
+            if (max <= 0 || count == _stacksShown)
+                return;
+            _stacksShown = count;
+            if (_stackMarks == null || _stackMarks.Length != max)
+            {
+                _stackMarks = new SpriteRenderer[max];
+                for (var i = 0; i < max; i++)
+                    _stackMarks[i] = PlaceholderArt.CreateRenderer($"Stack {i}", _root, PlaceholderArt.Square,
+                        Color.white, new Vector2(0.1f, 0.06f), 3);
+                LayoutMarkers();
+            }
+            var full = count >= max;
+            for (var i = 0; i < max; i++)
+            {
+                _stackMarks[i].enabled = i < count;
+                _stackMarks[i].color = full ? new Color(1f, 0.32f, 0.3f) : new Color(0.67f, 0.13f, 0.19f);
+            }
+        }
+
+        /// <summary>Keeps the ground pieces (ring, shadow, rank disc) on the ground while the unit is lifted.</summary>
+        public void SetGroundOffset(Vector3 local)
+        {
+            if (_ring != null)
+                _ring.transform.localPosition = local;
+            if (_shadow != null)
+                _shadow.transform.localPosition = local;
+            if (_outline != null && _model != null)
+                _outline.transform.localPosition = local;
+        }
+
         // Health bar, stun star, taunt mark and shield ring sit above the top of the body as seen on screen.
         private void LayoutMarkers()
         {
@@ -246,6 +282,12 @@ namespace Arena3Q.Gameplay
                 _taunt.transform.localPosition = new Vector3(0.3f, top + 0.35f, 0f);
             if (_shield != null)
                 _shield.transform.localPosition = new Vector3(0f, _model != null ? top * 0.5f : 0f, 0f);
+            if (_stackMarks != null)
+            {
+                for (var i = 0; i < _stackMarks.Length; i++)
+                    _stackMarks[i].transform.localPosition =
+                        new Vector3((i - (_stackMarks.Length - 1) * 0.5f) * 0.13f, barY + 0.11f, 0f);
+            }
         }
 
         /// <summary>Hit flash and Y-sorting for the top-down 2.5D look (lower on screen = drawn in front).</summary>

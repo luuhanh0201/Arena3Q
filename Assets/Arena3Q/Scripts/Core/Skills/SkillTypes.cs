@@ -50,7 +50,9 @@ namespace Arena3Q.Core
         /// <summary>The hero dashes next to its target.</summary>
         DashToTarget,
         /// <summary>The hero charges in a straight line, hitting what it passes.</summary>
-        ChargeLine
+        ChargeLine,
+        /// <summary>The hero leaps onto the aimed point (at most moveDistance away when set) and the hit lands there.</summary>
+        LeapToPoint
     }
 
     /// <summary>
@@ -78,7 +80,14 @@ namespace Arena3Q.Core
         /// <summary>Pulls the target towards the caster, at most value units, stopped by forbidden zones.</summary>
         Pull,
         /// <summary>Forces free-fighting units to attack the caster (spec §8: not units carrying out an order).</summary>
-        Taunt
+        Taunt,
+        /// <summary>Knocks the target up for duration seconds: it cannot act (crowd control, immunity blocks it).</summary>
+        KnockUp,
+        /// <summary>
+        /// Adds value stacks to the caster's stacking passive (<see cref="PassiveKind.FrenzyStacks"/>); with
+        /// minimumTargets only when the hit reached that many enemies. Not scaled by the skill level.
+        /// </summary>
+        FrenzyStacks
     }
 
     /// <summary>Always-on effects of a passive skill (kỹ năng 1).</summary>
@@ -106,7 +115,13 @@ namespace Arena3Q.Core
         /// <summary>each consecutive hit on the same target: +value damage, up to count stacks.</summary>
         ComboStacks,
         /// <summary>after running threshold seconds: next basic attack × value and stuns secondValue seconds.</summary>
-        ChargedFirstHit
+        ChargedFirstHit,
+        /// <summary>
+        /// Lữ Bố's Cuồng Huyết: every basic attack or skill cast that hits an enemy adds a stack (at most count); each
+        /// stack gives +value damage; at full stacks +secondValue lifesteal on all damage dealt and no slows. The stacks
+        /// last threshold seconds, refreshed by any damage dealt, then all fall off together.
+        /// </summary>
+        FrenzyStacks
     }
 
     /// <summary>Timed states on a unit (statuses from skills).</summary>
@@ -124,6 +139,8 @@ namespace Arena3Q.Core
         DamageTakenDown,
         CrowdControlImmunity,
         /// <summary>Attack the source (spec §8 taunt); crowd control, so immunity blocks it.</summary>
-        Taunt
+        Taunt,
+        /// <summary>Knocked up: cannot act, lifted off the ground in the picture; crowd control.</summary>
+        Airborne
     }
 }

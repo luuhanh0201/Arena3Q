@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ec58f6e5744074497e527e64bdaefe, type: 3}
+  m_Name: LuBu_3_ThienHaVoSong
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.SkillDefinition
+  skillId: lubu_thien_ha_vo_song
+  displayName: "Thi\xEAn H\u1EA1 V\xF4 Song"
+  description: "Tuy\u1EC7t k\u1EF9: nh\u1EA3y l\xEAn, gi\xE1ng Ph\u01B0\u01A1ng Thi\xEAn H\u1ECDa K\xEDch xu\u1ED1ng \u0111\u1EA5t: 300% s\xE1t th\u01B0\u01A1ng di\u1EC7n r\u1ED9ng, h\u1EA5t tung 1 gi\xE2y; \u0111\u1ECBch d\u01B0\u1EDBi 30% m\xE1u ch\u1ECBu th\xEAm 25% s\xE1t th\u01B0\u01A1ng t\u1EEB chi\xEAu n\xE0y. Sau chi\xEAu nh\u1EADn \u0111\u1EE7 5 t\u1EA7ng Cu\u1ED3ng Huy\u1EBFt."
+  icon: {fileID: 0}
+  iconColor: {r: 0.98, g: 0.9, b: 0.84, a: 1}
+  cooldown: 0
+  castTime: 1.8333334
+  range: 5
+  condition: 0
+  casterMove: 3
+  moveDistance: 5
+  shape: 1
+  radius: 2.5
+  length: 5
+  width: 1
+  angle: 60
+  firstHitOnly: 0
+  castleMultiplier: 1
+  executeThreshold: 0.3
+  executeBonus: 0.25
+  zoneDuration: 0
+  tickInterval: 0.5
+  followCaster: 0
+  repeatCount: 1
+  repeatInterval: 0.25
+  finalHitMultiplier: 1
+  effects:
+  - kind: 0
+    affects: 0
+    value: 3
+    duration: 0
+    minimumTargets: 0
+  - kind: 17
+    affects: 0
+    value: 0
+    duration: 1
+    minimumTargets: 0
+  - kind: 18
+    affects: 2
+    value: 5
+    duration: 0
+    minimumTargets: 0
+  slot: 3
+  targeting: 1
+  autoCastWhileMoving: 0
+  passives: []

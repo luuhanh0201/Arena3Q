@@ -207,6 +207,16 @@ namespace Arena3Q.Gameplay
                     caster.SetPosition(end);
                     break;
                 }
+                case CasterMove.LeapToPoint:
+                {
+                    // A leap clears what is in between; it lands outside forbidden zones.
+                    var offset = aim.Point - caster.Position;
+                    if (skill.MoveDistance > 0f)
+                        offset = Vector2.ClampMagnitude(offset, skill.MoveDistance);
+                    aim.Origin = caster.Position;
+                    caster.SetPosition(battle.Layout.PushOut(caster.Position + offset, caster.Radius));
+                    break;
+                }
             }
 
             if (skill.ZoneDuration > 0f)
@@ -226,14 +236,30 @@ namespace Arena3Q.Gameplay
         /// </summary>
         public static void Hit(SkillAreaDefinition skill, SkillContext context, SkillAim aim, float multiplier, float minStatusSeconds)
         {
+            // Effects with a target condition count the enemies in the area once, before anything is applied.
+            var enemies = -1;
+            var hitEnemy = false;
             foreach (var effect in skill.Effects)
             {
                 if (effect == null)
                     continue;
+                if (effect.minimumTargets > 0)
+                {
+                    if (enemies < 0)
+                    {
+                        Select(skill, context, aim, SkillAffects.Enemies, Scratch);
+                        enemies = Scratch.Count;
+                    }
+                    if (enemies < effect.minimumTargets)
+                        continue;
+                }
                 Select(skill, context, aim, effect.affects, Scratch);
                 foreach (var unit in Scratch)
-                    Apply(effect, skill, context, aim, unit, multiplier, minStatusSeconds);
+                    hitEnemy |= Apply(effect, skill, context, aim, unit, multiplier, minStatusSeconds);
             }
+            // After the whole hit, so every target of one cast takes the same bonus (Cuồng Huyết: a stack per cast).
+            if (hitEnemy && context.Source is HeroUnit attacker)
+                attacker.Skills.OnSkillHit(context);
         }
 
         public static int CountInArea(UnitBase caster, SkillAreaDefinition skill, SkillAim aim)
@@ -315,7 +341,8 @@ namespace Arena3Q.Gameplay
                 ? Mathf.Max(0.5f, Vector2.Distance(aim.Origin, context.Caster.Position))
                 : skill.Length;
 
-        private static void Apply(SkillAreaDefinition.Effect effect, SkillAreaDefinition skill, SkillContext context, SkillAim aim,
+        /// <summary>Applies one effect to one unit; true when it damaged an enemy of the caster.</summary>
+        private static bool Apply(SkillAreaDefinition.Effect effect, SkillAreaDefinition skill, SkillContext context, SkillAim aim,
             UnitBase unit, float multiplier, float minStatusSeconds)
         {
             var value = effect.value * context.ValueMultiplier * multiplier;
@@ -327,6 +354,9 @@ namespace Arena3Q.Gameplay
                     var damage = context.Damage * value;
                     if (unit.IsCastle)
                         damage *= skill.CastleMultiplier;
+                    // This skill's execute bonus, on the health before the hit (strictly below the threshold).
+                    else if (skill.ExecuteBonus > 0f && unit.Health / unit.MaxHealth < skill.ExecuteThreshold)
+                        damage *= 1f + skill.ExecuteBonus;
                     if (context.Caster != null)
                     {
                         damage *= context.Caster.Statuses.DamageMultiplier;
@@ -334,8 +364,16 @@ namespace Arena3Q.Gameplay
                             damage = caster.Skills.ModifyOutgoingDamage(unit, damage);
                     }
                     unit.TakeDamage(damage, context.Source);
-                    break;
+                    return unit.Team != context.Team;
                 }
+                case SkillEffectKind.KnockUp:
+                    unit.ApplyStatus(StatusKind.Airborne, 1f, seconds, context.Source);
+                    break;
+                case SkillEffectKind.FrenzyStacks:
+                    // A count, not scaled by the skill level.
+                    if (unit is HeroUnit stacking)
+                        stacking.Skills.AddFrenzyStacks(Mathf.RoundToInt(effect.value));
+                    break;
                 case SkillEffectKind.Poison:
                     unit.ApplyStatus(StatusKind.Poison, context.Damage * value, seconds, context.Source);
                     break;
@@ -384,6 +422,7 @@ namespace Arena3Q.Gameplay
                 case SkillEffectKind.DamageTakenDown: unit.ApplyStatus(StatusKind.DamageTakenDown, effect.value, seconds, context.Source); break;
                 case SkillEffectKind.CrowdControlImmunity: unit.ApplyStatus(StatusKind.CrowdControlImmunity, 1f, seconds, context.Source); break;
             }
+            return false;
         }
     }
 

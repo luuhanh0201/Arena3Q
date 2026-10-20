@@ -111,6 +111,14 @@ namespace Arena3Q.Gameplay
         /// <summary>World direction that shows as "up" on screen (offsets above a unit, rising smoke).</summary>
         public Vector3 ScreenUp => UprightRotation * Vector3.up;
 
+        /// <summary>
+        /// One metre straight up from the ground (knock-ups, leaps): -Z in 3D; in the flat view the height it shows on
+        /// screen, sin(tilt) along Y.
+        /// </summary>
+        public Vector3 WorldUp => Presentation3D
+            ? Vector3.back
+            : new Vector3(0f, Mathf.Sqrt(Mathf.Max(0f, 1f - GroundProjection * GroundProjection)), 0f);
+
         /// <summary>Logic-plane point → world position shown on screen.</summary>
         public Vector3 ToView(Vector2 logic) => new Vector3(logic.x, logic.y * ViewYScale, 0f);
 

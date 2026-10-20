@@ -444,15 +444,33 @@ namespace Arena3Q.Gameplay
             }
         }
 
-        private void ApplyViewTransform() =>
-            transform.position = Battle != null ? Battle.ToView(_position) : new Vector3(_position.x, _position.y, 0f);
+        private void ApplyViewTransform()
+        {
+            transform.position = Battle != null ? Battle.ToView(_position) + Battle.WorldUp * _lift
+                : new Vector3(_position.x, _position.y, 0f);
+        }
 
         private Vector2 _lastFacingPosition;
+        private float _lift;
 
         protected virtual void LateUpdate()
         {
+            ApplyLift();
             FaceForward();
             Visual?.Update(Time.deltaTime);
+        }
+
+        // Knocked up: the unit rises and falls on an arc over the status' time; its shadow and ring stay on the ground.
+        private void ApplyLift()
+        {
+            var lift = Battle != null && Statuses.Has(StatusKind.Airborne)
+                ? Mathf.Sin(Mathf.PI * Statuses.Progress(StatusKind.Airborne)) * Battle.View.KnockUpHeight
+                : 0f;
+            if (lift <= 0f && _lift <= 0f)
+                return;
+            _lift = Mathf.Max(0f, lift);
+            ApplyViewTransform();
+            Visual?.SetGroundOffset(Quaternion.Inverse(transform.rotation) * (-Battle.WorldUp * _lift));
         }
 
         // 3D bodies look where they walk, or at what they fight while standing.

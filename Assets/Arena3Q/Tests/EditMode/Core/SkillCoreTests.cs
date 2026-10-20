@@ -156,5 +156,56 @@ namespace Arena3Q.Tests.EditMode
             Assert.That(SkillMath.CanAutoCast(true, 0f, false, false, true, true, false), Is.False, "spec §3: dash skills wait while moving");
             Assert.That(SkillMath.CanAutoCast(true, 0f, false, false, true, true, true), Is.True, "per-skill switch");
         }
+
+        // ---- Knock-up, slow immunity, Cuồng Huyết (docs/art/concepts/LuBu_Arena3Q spec §4, §6, §7) ----
+
+        [Test]
+        public void Airborne_StopsTheUnitLikeAStun_IsCrowdControl_AndTracksItsArc()
+        {
+            var statuses = new StatusSet();
+            Assert.That(statuses.Apply(StatusKind.Airborne, 1f, 0.8f), Is.True);
+            Assert.That(statuses.IsStunned, Is.True, "a knocked-up unit cannot act");
+            statuses.Tick(0.4f);
+            Assert.That(statuses.Progress(StatusKind.Airborne), Is.EqualTo(0.5f).Within(Tolerance), "top of the arc");
+            statuses.Tick(0.41f);
+            Assert.That(statuses.IsStunned, Is.False);
+
+            var immune = new StatusSet();
+            immune.Apply(StatusKind.CrowdControlImmunity, 1f, 5f);
+            Assert.That(immune.Apply(StatusKind.Airborne, 1f, 1f), Is.False, "immunity blocks knock-ups");
+        }
+
+        [Test]
+        public void SlowImmunity_LiftsCurrentSlows_AndBlocksNewOnes_UntilItEnds()
+        {
+            var statuses = new StatusSet();
+            statuses.Apply(StatusKind.Slow, 0.3f, 2f);
+            statuses.SlowImmune = true;
+            Assert.That(statuses.Has(StatusKind.Slow), Is.False, "the slow already on is lifted");
+            Assert.That(statuses.Apply(StatusKind.Slow, 0.3f, 2f), Is.False);
+            Assert.That(statuses.Apply(StatusKind.Stun, 1f, 1f), Is.True, "only slows are ignored");
+            statuses.SlowImmune = false;
+            Assert.That(statuses.Apply(StatusKind.Slow, 0.3f, 2f), Is.True);
+        }
+
+        [Test]
+        public void Frenzy_StacksToFive_RefreshesOnDamage_ThenAllFallOffTogether()
+        {
+            var frenzy = new FrenzyMeter(5, 5f);
+            for (var i = 0; i < 7; i++)
+                frenzy.Gain(1);
+            Assert.That(frenzy.Stacks, Is.EqualTo(5), "at most 5");
+            Assert.That(frenzy.IsFull, Is.True);
+            Assert.That(frenzy.DamageMultiplier(0.03f), Is.EqualTo(1.15f).Within(Tolerance), "+3% per stack");
+
+            frenzy.Tick(4f);
+            frenzy.Refresh(); // damage dealt keeps them, also at full stacks
+            frenzy.Tick(4f);
+            Assert.That(frenzy.Stacks, Is.EqualTo(5));
+            frenzy.Tick(1.01f);
+            Assert.That(frenzy.Stacks, Is.Zero, "5 s without damage: every stack falls off at once");
+            frenzy.Refresh();
+            Assert.That(frenzy.Remaining, Is.Zero, "nothing to refresh without stacks");
+        }
     }
 }

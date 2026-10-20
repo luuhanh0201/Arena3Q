@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ec58f6e5744074497e527e64bdaefe, type: 3}
+  m_Name: LuBu_2_XichThoXungPhong
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.SkillDefinition
+  skillId: lubu_xich_tho_xung_phong
+  displayName: "X\xEDch Th\u1ED1 Xung Phong"
+  description: "Lao th\u1EB3ng v\u1EC1 ph\xEDa tr\u01B0\u1EDBc c\xF9ng b\xF3ng X\xEDch Th\u1ED1: 130% s\xE1t th\u01B0\u01A1ng l\xEAn \u0111\u1ECBch tr\xEAn \u0111\u01B0\u1EDDng lao, h\u1EA5t tung 0,8 gi\xE2y. K\u1EBFt th\xFAc lao nh\u1EADn khi\xEAn b\u1EB1ng 12% m\xE1u t\u1ED1i \u0111a trong 3 gi\xE2y."
+  icon: {fileID: 0}
+  iconColor: {r: 0.97, g: 0.45, b: 0.2, a: 1}
+  cooldown: 12
+  castTime: 0.46666667
+  range: 4.5
+  condition: 0
+  casterMove: 2
+  moveDistance: 4.5
+  shape: 3
+  radius: 1.5
+  length: 5
+  width: 1.2
+  angle: 60
+  firstHitOnly: 0
+  castleMultiplier: 1
+  executeThreshold: 0
+  executeBonus: 0
+  zoneDuration: 0
+  tickInterval: 0.5
+  followCaster: 0
+  repeatCount: 1
+  repeatInterval: 0.25
+  finalHitMultiplier: 1
+  effects:
+  - kind: 0
+    affects: 0
+    value: 1.3
+    duration: 0
+    minimumTargets: 0
+  - kind: 17
+    affects: 0
+    value: 0
+    duration: 0.8
+    minimumTargets: 0
+  - kind: 7
+    affects: 2
+    value: 0.12
+    duration: 3
+    minimumTargets: 0
+  slot: 2
+  targeting: 2
+  autoCastWhileMoving: 0
+  passives: []
