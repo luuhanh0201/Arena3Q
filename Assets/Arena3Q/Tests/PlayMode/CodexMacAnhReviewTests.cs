@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR
+#if UNITY_EDITOR
 using System.Collections;
 using System.Linq;
 using System.IO;
@@ -165,6 +165,8 @@ var timeline=new System.Collections.Generic.List<string>{"action,time,activeKind
 profile.FindProperty("effectQuality").intValue=quality;
 bool previousTrial=profile.FindProperty("enableBattle3DTrial").boolValue;
             profile.FindProperty("enableBattle3DTrial").boolValue=realtime;profile.ApplyModifiedPropertiesWithoutUndo();
+            // The sprite route only exists in the flat 2.5D view; the 3D battle always shows the real model.
+            if(!realtime){var flat=BattleViewConfig.CreateDefault();flat.SetPresentation3D(false);_battle.UseView(flat);}
             try
             {
             var camera=Camera.main;
@@ -174,6 +176,7 @@ bool previousTrial=profile.FindProperty("enableBattle3DTrial").boolValue;
             foreach(var action in actions)
             {
                 _battle.StartBattle(_battle.Stage,new[]{new LineupEntry(definition,1)});
+                BattleView3D.ConfigureCamera(Camera.main,_battle);
                 Assert.That(_battle.TrySummon(SummonRequest.Quick(0)).Accepted,Is.True);
                 _hero=_battle.GetHero(_battle.State.Cards[0].Hero);
                 _target=_battle.Registry.Get(_battle.EnemyCastleId);
@@ -214,7 +217,9 @@ float elapsed=0;int activeSamples=0;
                     yield return null;
                     if(MacAnhFxPool.For(_battle).ActiveCount>0)activeSamples++;
                     var focus=Vector3.Lerp(_hero.transform.position,_target.transform.position,.35f)+Vector3.up*.65f;
-                    camera.transform.position=new Vector3(focus.x,focus.y,-10);
+                    if(_battle.Presentation3D)
+                        BattleView3D.PlaceCamera(camera.transform,_battle,Vector2.Lerp(_hero.Position,_target.Position,.35f)+Vector2.up*(.65f/_battle.GroundProjection));
+                    else camera.transform.position=new Vector3(focus.x,focus.y,-10);
                     timeline.Add(action+","+time.ToString("R",System.Globalization.CultureInfo.InvariantCulture)+","+
 string.Join(";",Object.FindObjectsByType<MacAnhFx>(FindObjectsSortMode.None).Where(f=>f.IsRunning).Select(f=>f.Kind+":"+f.Generation)));
 foreach(float zoom in new[]{4.5f})
@@ -237,6 +242,7 @@ if(!locomotion)Assert.That(activeSamples,Is.GreaterThan(0),action+" must create 
             {
                 profile.Update();profile.FindProperty("effectQuality").intValue=previousQuality;profile.FindProperty("enableBattle3DTrial").boolValue=previousTrial;
                 profile.ApplyModifiedPropertiesWithoutUndo();
+                _battle.UseView(null);
             }
         }
 private static void CaptureCamera(Camera camera,string path)

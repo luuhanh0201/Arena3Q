@@ -8,9 +8,10 @@ using UnityEngine.Rendering.Universal;
 namespace Arena3Q.Graphics3D
 {
     /// <summary>
-    /// Realtime skinned 3D rendered through a separate Forward camera into an
-    /// alpha target. The composite participates in the existing sprite y-sort.
-    /// No simulation coordinates or global pipeline settings are changed.
+    /// Realtime skinned 3D Mặc Ảnh. In the 3D battle presentation the model stands directly in the scene (direct
+    /// mode: lit by the battle sun, sockets read from the bones, afterimages baked from the skinned mesh). In the flat
+    /// 2.5D view it is rendered through a separate Forward camera into an alpha target whose composite joins the
+    /// sprite y-sort. No simulation coordinates or global pipeline settings are changed.
     /// </summary>
     [DefaultExecutionOrder(80)]
     public sealed class MacAnhRealtimeBattleView:MonoBehaviour,IMacAnhRealtimeView
@@ -27,6 +28,14 @@ namespace Arena3Q.Graphics3D
         [SerializeField]private float lookHeight=.8f,yawOffset=-90f,yawSign=-1f;
         [SerializeField,Min(0)]private float transitionSeconds=.07f;
         [SerializeField,Min(0)]private float keyIntensity=20f,fillIntensity=5f;
+        [Tooltip("Transparent qi material: direct-mode afterimages and the body dispersing when Mặc Ảnh falls.")]
+        [SerializeField]private Material afterimageMaterial;
+        [SerializeField,Min(.1f)]private float modelScale=1f;
+        // Model space (Y up) → battle space (ground XY, up = -Z; the capture's +Z = north = +Y).
+        private static readonly Quaternion StandUp=Quaternion.Euler(-90,0,0);
+        private bool _direct;
+        private SpriteRenderer _blob;
+        private Material _disperse;
         private static readonly HashSet<int> Slots=new HashSet<int>();
         private HeroUnit _hero;
         private SpriteRenderer _sprite;
@@ -50,8 +59,10 @@ namespace Arena3Q.Graphics3D
         public void ConfigureFacing(float offset,float sign){yawOffset=offset;yawSign=sign;}
         public bool Initialize(HeroUnit hero,SpriteRenderer sprite)
         {
-            if(characterPrefab==null||compositeMaterial==null||clips.Length!=11)return false;
+            if(characterPrefab==null||clips.Length!=11)return false;
             _hero=hero;_sprite=sprite;
+            if(hero.Battle!=null&&hero.Battle.Presentation3D)return InitializeDirect();
+            if(compositeMaterial==null)return false;
             _slot=0;while(Slots.Contains(_slot))_slot++;Slots.Add(_slot);
             _stage=new GameObject("MacAnh realtime capture "+_slot);
             // Behind the battle camera and outside the map, while retaining
@@ -96,6 +107,32 @@ namespace Arena3Q.Graphics3D
             _shadowRenderer.sortingOrder=-4990;
             _ready=true;_sprite.enabled=false;return true;
         }
+        private bool InitializeDirect()
+        {
+            _direct=true;
+            _placement=new GameObject("MacAnh 3D").transform;_placement.SetParent(transform,false);
+            _model=Instantiate(characterPrefab,_placement);
+            foreach(var animator in _model.GetComponentsInChildren<Animator>())animator.enabled=false;
+            foreach(var child in _model.GetComponentsInChildren<Transform>())
+            {
+                if(child.name=="Socket_Fan_Tip")_fanTip=child;
+                if(child.name=="Socket_Hand_L")_leftHand=child;
+                if(child.name=="Socket_Cast")_cast=child;
+            }
+            foreach(var skin in _model.GetComponentsInChildren<SkinnedMeshRenderer>())
+            {
+                skin.quality=SkinQuality.Bone4;skin.skinnedMotionVectors=false;
+                skin.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;skin.receiveShadows=false;
+            }
+            _bones=_model.GetComponentsInChildren<Transform>();
+            _fromPosition=new Vector3[_bones.Length];_fromScale=new Vector3[_bones.Length];_fromRotation=new Quaternion[_bones.Length];
+            // Soft round shadow on the ground (no realtime shadows in the battle budget).
+            var blob=new GameObject("Soft ground shadow");blob.transform.SetParent(transform,false);
+            _blob=blob.AddComponent<SpriteRenderer>();_blob.sprite=PlaceholderArt.Blob;_blob.color=new Color(0,0,0,.4f);
+            if(PlaceholderArt.SpriteMaterial!=null)_blob.sharedMaterial=PlaceholderArt.SpriteMaterial;
+            _blob.sortingOrder=-30990;blob.transform.localScale=new Vector3(1.1f,1.1f,1);
+            _ready=true;_sprite.enabled=false;return true;
+        }
         private void AddLight(string name,Vector3 position,float intensity)
         {
             var go=new GameObject(name,typeof(Light));go.transform.SetParent(_stage.transform,false);go.transform.localPosition=position;
@@ -138,12 +175,15 @@ namespace Arena3Q.Graphics3D
                 }
                 _blending=t<1;
             }
-            _placement.localRotation=Quaternion.Euler(0,yawOffset+yawSign*facingDegrees,0);
+            var yaw=Quaternion.Euler(0,yawOffset+yawSign*facingDegrees,0);
+            if(_direct){_placement.rotation=StandUp*yaw;_placement.localScale=Vector3.one*modelScale;}
+            else _placement.localRotation=yaw;
             _sampled=true;_dirty=true;
         }
         public void SetOpacity(float opacity)
         {
             _opacity=Mathf.Clamp01(opacity);
+            if(_direct){Disperse();return;}
             if(_material!=null)_material.SetFloat("_Opacity",_opacity);
             if(_shadowMaterial!=null)_shadowMaterial.SetFloat("_Opacity",_opacity);
         }
@@ -152,6 +192,7 @@ namespace Arena3Q.Graphics3D
             position=default;if(!_ready||!_sampled)return false;
             var bone=socket==MacAnhSocket.FanTip?_fanTip:socket==MacAnhSocket.LeftHand?_leftHand:_cast;
             if(bone==null)return false;
+            if(_direct){position=bone.position;return true;}
             var uv=_camera.WorldToViewportPoint(bone.position);
             float bottom=_quad.bounds.min.y;
             position=transform.TransformPoint(new Vector3((uv.x-.5f)*orthographicSize*2,bottom+uv.y*orthographicSize*2,0));return true;
@@ -159,6 +200,7 @@ namespace Arena3Q.Graphics3D
         public bool CaptureAfterimage(MacAnhFx effect,int sortingOrder)
         {
             if(!_ready||!_sampled)return false;
+            if(_direct)return CaptureDirectAfterimage(effect);
             if(_dirty){_camera.Render();_dirty=false;}
             var descriptor=_target.descriptor;descriptor.depthBufferBits=0;descriptor.msaaSamples=1;
             var target=new RenderTexture(descriptor){name="MacAnh captured afterimage"};target.Create();Graphics.Blit(_target,target);
@@ -169,15 +211,55 @@ namespace Arena3Q.Graphics3D
             renderer.sharedMaterial=material;renderer.sortingOrder=sortingOrder;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
             effect.SetCapturedAfterimage(pose,()=>{target.Release();Destroy(target);Destroy(mesh);Destroy(material);Destroy(pose);});return true;
         }
+        // The current pose baked into one world-space mesh, drawn with the qi material (faded by the effect).
+        private bool CaptureDirectAfterimage(MacAnhFx effect)
+        {
+            if(afterimageMaterial==null)return false;
+            var skins=_model.GetComponentsInChildren<SkinnedMeshRenderer>();
+            var parts=new CombineInstance[skins.Length];var baked=new Mesh[skins.Length];
+            for(int i=0;i<skins.Length;i++)
+            {
+                baked[i]=new Mesh();skins[i].BakeMesh(baked[i],false);
+                parts[i]=new CombineInstance{mesh=baked[i],transform=skins[i].transform.localToWorldMatrix};
+            }
+            var mesh=new Mesh{name="MacAnh baked afterimage",indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};
+            mesh.CombineMeshes(parts,true,true);foreach(var part in baked)Destroy(part);
+            var material=new Material(afterimageMaterial);
+            var pose=new GameObject("Baked 3D pose",typeof(MeshFilter),typeof(MeshRenderer));
+            pose.GetComponent<MeshFilter>().sharedMesh=mesh;var renderer=pose.GetComponent<MeshRenderer>();
+            renderer.sharedMaterial=material;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
+            effect.SetCapturedAfterimage(pose,()=>{Destroy(mesh);Destroy(material);Destroy(pose);});
+            // The mesh is already in world space.
+            pose.transform.SetPositionAndRotation(Vector3.zero,Quaternion.identity);
+            var parentScale=pose.transform.parent!=null?pose.transform.parent.lossyScale:Vector3.one;
+            pose.transform.localScale=new Vector3(1/parentScale.x,1/parentScale.y,1/parentScale.z);
+            return true;
+        }
+        // Falling: the body turns into translucent qi that thins out with the hero's fade.
+        private void Disperse()
+        {
+            if(afterimageMaterial==null){_model.SetActive(_opacity>.05f);return;}
+            if(_disperse==null&&_opacity<.999f)
+            {
+                _disperse=new Material(afterimageMaterial);
+                foreach(var skin in _model.GetComponentsInChildren<SkinnedMeshRenderer>())
+                {var materials=skin.sharedMaterials;for(int i=0;i<materials.Length;i++)materials[i]=_disperse;skin.sharedMaterials=materials;}
+            }
+            if(_disperse!=null)_disperse.SetFloat("_Opacity",_opacity*.7f);
+            if(_blob!=null)_blob.color=new Color(0,0,0,.4f*_opacity);
+            _model.SetActive(_opacity>.01f);
+        }
         private void LateUpdate()
         {
             if(!_ready||_hero==null)return;
+            if(_direct){if(_blob!=null)_blob.transform.rotation=Quaternion.identity;return;}
             _renderer.sortingOrder=_sprite.sortingOrder;
             _renderer.sortingLayerID=_sprite.sortingLayerID;
             if(_dirty){_camera.Render();_dirty=false;}
         }
         private void OnDestroy()
         {
+            if(_disperse!=null)Destroy(_disperse);
             if(_slot>=0)Slots.Remove(_slot);
             if(_sprite!=null)_sprite.enabled=true;
             if(_target!=null){_target.Release();Destroy(_target);}

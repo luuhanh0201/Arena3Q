@@ -28,7 +28,8 @@ namespace Arena3Q.Gameplay
             var go = new GameObject("Pose transition"); go.transform.SetParent(transform, false);
             _previous = go.AddComponent<SpriteRenderer>(); _previous.sharedMaterial = body.sharedMaterial; _previous.enabled = false;
             _display = transform.position; _lastTime = hero.Battle.BattleTime;
-            if(_set.EnableBattle3DTrial && _set.Battle3DViewPrefab!=null)
+            // The 3D battle always shows the real model; the flat 2.5D view only on request (trial switch).
+            if((_set.EnableBattle3DTrial || hero.Battle.Presentation3D) && _set.Battle3DViewPrefab!=null)
             {
                 var trial=Instantiate(_set.Battle3DViewPrefab,transform);
                 foreach(var component in trial.GetComponents<MonoBehaviour>())

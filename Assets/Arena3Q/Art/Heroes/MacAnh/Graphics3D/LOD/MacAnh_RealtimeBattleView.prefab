@@ -79,3 +79,4 @@ MonoBehaviour:
   transitionSeconds: 0.07
   keyIntensity: 20
   fillIntensity: 5
+  afterimageMaterial: {fileID: 2100000, guid: 0749c90ebb6371e46917b62a1165e299, type: 2}

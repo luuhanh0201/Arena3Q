@@ -141,6 +141,8 @@ namespace Arena3Q.Tests.PlayMode
             var profile=new SerializedObject(definition.MacAnhPerformance);
             bool previousTrial=profile.FindProperty("enableBattle3DTrial").boolValue;
             profile.FindProperty("enableBattle3DTrial").boolValue=realtime;profile.ApplyModifiedPropertiesWithoutUndo();
+            // The sprite route only exists in the flat 2.5D view; the 3D battle always shows the real model.
+            if(!realtime){var flat=BattleViewConfig.CreateDefault();flat.SetPresentation3D(false);_battle.UseView(flat);}
             try
             {
             var camera=Camera.main;
@@ -151,6 +153,7 @@ namespace Arena3Q.Tests.PlayMode
             foreach(var action in actions)
             {
                 _battle.StartBattle(_battle.Stage,new[]{new LineupEntry(definition,1)});
+                BattleView3D.ConfigureCamera(Camera.main,_battle);
                 Assert.That(_battle.TrySummon(SummonRequest.Quick(0)).Accepted,Is.True);
                 _hero=_battle.GetHero(_battle.State.Cards[0].Hero);
                 _target=_battle.Registry.Get(_battle.EnemyCastleId);
@@ -194,7 +197,9 @@ namespace Arena3Q.Tests.PlayMode
                     yield return null;
                     if(MacAnhFxPool.For(_battle).ActiveCount>0)activeSamples++;
                     var focus=Vector3.Lerp(_hero.transform.position,_target.transform.position,.35f)+Vector3.up*.65f;
-                    camera.transform.position=new Vector3(focus.x,focus.y,-10);
+                    if(_battle.Presentation3D)
+                        BattleView3D.PlaceCamera(camera.transform,_battle,Vector2.Lerp(_hero.Position,_target.Position,.35f)+Vector2.up*(.65f/_battle.GroundProjection));
+                    else camera.transform.position=new Vector3(focus.x,focus.y,-10);
                     foreach(float zoom in new[]{4.5f,3.5f})
                     {
                         camera.orthographicSize=zoom;
@@ -209,6 +214,7 @@ namespace Arena3Q.Tests.PlayMode
             {
                 profile.Update();profile.FindProperty("enableBattle3DTrial").boolValue=previousTrial;
                 profile.ApplyModifiedPropertiesWithoutUndo();
+                _battle.UseView(null);
             }
         }
         [UnityTest] public IEnumerator NewEffectDoesNotInheritTimeBeforeItWasSpawned()
