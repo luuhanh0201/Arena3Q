@@ -1,0 +1,153 @@
+{
+ "name": "DodgeStreak",
+ "referenceRadius": 0.5,
+ "renderProjection": 0.75,
+ "pages": [
+  "DodgeStreak_p00.png"
+ ],
+ "layers": [
+  {
+   "name": "Streak",
+   "ppu": 110,
+   "framesPerSecond": 24,
+   "loop": true,
+   "plane": "Upright",
+   "phase": "Release",
+   "start": 0,
+   "end": 0,
+   "fadeIn": 0.03,
+   "fadeOut": 0.22,
+   "scaleFrom": 1,
+   "scaleTo": 1,
+   "spin": 0,
+   "height": 0.33,
+   "glow": 1.1,
+   "underlay": 0.8,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 0,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "frames": [
+    {
+     "page": 0,
+     "x": 0,
+     "y": 0,
+     "width": 140,
+     "height": 94,
+     "pivot_x": 0.14142857491970062,
+     "pivot_y": 0.4787229020544823
+    },
+    {
+     "page": 0,
+     "x": 142,
+     "y": 0,
+     "width": 143,
+     "height": 99,
+     "pivot_x": 0.15944056285844815,
+     "pivot_y": 0.47474699791031655
+    },
+    {
+     "page": 0,
+     "x": 287,
+     "y": 0,
+     "width": 137,
+     "height": 99,
+     "pivot_x": 0.12262774079385465,
+     "pivot_y": 0.48484800801132666
+    },
+    {
+     "page": 0,
+     "x": 426,
+     "y": 0,
+     "width": 135,
+     "height": 100,
+     "pivot_x": 0.10962963325005991,
+     "pivot_y": 0.4899995279312134
+    },
+    {
+     "page": 0,
+     "x": 563,
+     "y": 0,
+     "width": 135,
+     "height": 98,
+     "pivot_x": 0.10962963325005991,
+     "pivot_y": 0.4795913550318504
+    },
+    {
+     "page": 0,
+     "x": 700,
+     "y": 0,
+     "width": 135,
+     "height": 97,
+     "pivot_x": 0.10962963325005991,
+     "pivot_y": 0.4639170391043437
+    },
+    {
+     "page": 0,
+     "x": 837,
+     "y": 0,
+     "width": 134,
+     "height": 93,
+     "pivot_x": 0.11044776484147827,
+     "pivot_y": 0.45161239562496064
+    },
+    {
+     "page": 0,
+     "x": 973,
+     "y": 0,
+     "width": 134,
+     "height": 93,
+     "pivot_x": 0.11044776484147827,
+     "pivot_y": 0.45161239562496064
+    },
+    {
+     "page": 0,
+     "x": 1109,
+     "y": 0,
+     "width": 135,
+     "height": 92,
+     "pivot_x": 0.10962963325005991,
+     "pivot_y": 0.4456516607947972
+    },
+    {
+     "page": 0,
+     "x": 1246,
+     "y": 0,
+     "width": 136,
+     "height": 92,
+     "pivot_x": 0.11617647418204476,
+     "pivot_y": 0.4456516607947972
+    },
+    {
+     "page": 0,
+     "x": 1384,
+     "y": 0,
+     "width": 136,
+     "height": 93,
+     "pivot_x": 0.11617647418204476,
+     "pivot_y": 0.45161239562496064
+    },
+    {
+     "page": 0,
+     "x": 1522,
+     "y": 0,
+     "width": 136,
+     "height": 91,
+     "pivot_x": 0.11617647418204476,
+     "pivot_y": 0.47252695377056414
+    }
+   ]
+  }
+ ]
+}

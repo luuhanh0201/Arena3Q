@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5f39fd0d73e6c40b99ad88dc603826, type: 3}
+  m_Name: DodgeStreak
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.MacAnhVfxRecipe
+  referenceRadius: 0.5
+  renderProjection: 0.75
+  layers:
+  - name: Streak
+    frames:
+    - {fileID: 6052561795228038777, guid: 49305586c93a0f34ba6e7c25e4916798, type: 3}
+    - {fileID: -7679153767839924820, guid: 49305586c93a0f34ba6e7c25e4916798, type: 3}
+    - {fileID: 2243299196766938447, guid: 49305586c93a0f34ba6e7c25e4916798, type: 3}
+    - {fileID: 2018719892914423433, guid: 49305586c93a0f34ba6e7c25e4916798, type: 3}
+    - {fileID: 8216419191682554305, guid: 49305586c93a0f34ba6e7c25e4916798, type: 3}
+    - {fileID: -6985160148485576057, guid: 49305586c93a0f34ba6e7c25e4916798, type: 3}
+    - {fileID: -1018765492373502557, guid: 49305586c93a0f34ba6e7c25e4916798, type: 3}
+    - {fileID: -2222517734646718219, guid: 49305586c93a0f34ba6e7c25e4916798, type: 3}
+    - {fileID: 2026333731191454798, guid: 49305586c93a0f34ba6e7c25e4916798, type: 3}
+    - {fileID: -8323078240705541679, guid: 49305586c93a0f34ba6e7c25e4916798, type: 3}
+    - {fileID: 2698808519009773137, guid: 49305586c93a0f34ba6e7c25e4916798, type: 3}
+    - {fileID: -2006746218861761426, guid: 49305586c93a0f34ba6e7c25e4916798, type: 3}
+    framesPerSecond: 24
+    loop: 1
+    plane: 0
+    phase: 0
+    start: 0
+    end: 0
+    fadeIn: 0.03
+    fadeOut: 0.22
+    scaleFrom: 1
+    scaleTo: 1
+    spinDegreesPerSecond: 0
+    stretchToGround: 0
+    height: 0.33
+    glow: 1.1
+    underlay: 0.8
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 0
+    highQualityOnly: 0
+  screenDim: 0
+  dimColour: {r: 0.06, g: 0.02, b: 0.12, a: 1}
+  dimFadeIn: 0.25
+  dimFadeOut: 0.4

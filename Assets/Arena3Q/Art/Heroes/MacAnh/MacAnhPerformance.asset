@@ -12037,6 +12037,10 @@ MonoBehaviour:
     prefab: {fileID: 7480359662982930350, guid: f7bc94efce930e94298d0da8c156c63f, type: 3}
   - key: Impact
     prefab: {fileID: 7260455843727409228, guid: 19f770f0d1623214d841b9d0863ebcc3, type: 3}
+  - key: DodgeStreak
+    prefab: {fileID: 2634987422126321188, guid: 6ee072be2de63964cbafee3fd9afd3bc, type: 3}
+  - key: UltimateAura
+    prefab: {fileID: 775530420495062090, guid: 06689f407388fd5439a6fc39345deee3, type: 3}
   spriteMaterial: {fileID: 2100000, guid: 96f74d60c424c1f45a9cfc09968d7209, type: 2}
   enableBattle3DTrial: 0
   battle3DViewPrefab: {fileID: 0}

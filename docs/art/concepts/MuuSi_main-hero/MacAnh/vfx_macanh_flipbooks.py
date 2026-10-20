@@ -1085,7 +1085,8 @@ def smoke_ribbon_material(name, strength=1.4, scale=(3.2, 1.3), contrast=(.42, .
     b = noise4(g.math('MULTIPLY', g.math('SUBTRACT', phase, 1.0), 1.2))
     n = g.math('ADD', g.math('MULTIPLY', a, g.math('SUBTRACT', 1.0, phase)), g.math('MULTIPLY', b, phase))
     smoke = g.remap(n, contrast[0], contrast[1])
-    edge = g.remap(v, 1.0 - lead, .05 + .9 * lead)  # strongest at the leading edge, gone at the back
+    # lead None: soft on both long edges (free-floating smoke); else strongest at the leading edge, gone at the back.
+    edge = g.remap(g.math('ABSOLUTE', g.math('SUBTRACT', v, .5)), .5, .08) if lead is None else g.remap(v, 1.0 - lead, .05 + .9 * lead)
     tips = g.math('MULTIPLY', g.remap(u, 0.0, .2), g.remap(u, 1.0, .8))
     mask = g.math('MULTIPLY', g.math('MULTIPLY', smoke, edge), tips)
     colour = g.ramp(g.math('MULTIPLY', smoke, edge), [(0, DEEP), (.45, BAND), (.8, CORE2), (1, CORE)])
@@ -1311,6 +1312,71 @@ def build_ultimate(seed=51):
     return sky_outer, sky_inner, sky_fill, shock, target, frames, ppu
 
 
+def build_ultimate_aura(frames_count=24, seed=61):
+    """Ultimate f31–45 (spec §12 "vòng ma pháp xuất hiện phía sau"): an upright rune circle behind Mặc Ảnh, drawn
+    in the screen plane. Formation geometry may be regular (Model3D_Rules 29); it turns 90° per loop (a common
+    period of its 20 runes and the octagram), so the loop is seamless."""
+    rnd = random.Random(seed)
+    gold = line_material('AGold', GOLD, 1.6)
+    pale = line_material('APale', CORE2, 1.7)
+    violet = line_material('AViolet', BAND, 1.5)
+    before = len(_objects)
+    ring('AR1', .75, .022, gold)
+    ring('AR2', .7, .008, pale)
+    rune_band('ARune', .64, .07, 20, rnd, line_material('ARuneM', GOLD, 1.3, .9))
+    ring('AR3', .56, .012, violet)
+    star_polygon('AOct', .56, 8, 3, pale, .01)
+    ring('AR4', .24, .014, gold)
+    disc('AFill', .8, fill_material('AFill', .22), normal_axis='Z', segments=64)
+    parts = _objects[before:]
+    pivot = bpy.data.objects.new('AuraPivot', None)
+    scene.collection.objects.link(pivot)
+    _objects.append(pivot)
+    for o in parts:
+        o.parent = pivot
+    pivot.rotation_euler = (math.radians(90), 0, 0)      # stand the circle up, facing the front camera
+    ppu = 110
+    set_view('front', 1.7, 1.7, ppu)
+    set_glare(6, .45, .9)
+    frames = []
+    for f in range(frames_count):
+        pivot.rotation_euler = (math.radians(90), math.radians(90) * f / frames_count, 0)
+        frames.append((render_frame(.75), anchor_pixel((0, 0, 0))))
+    clear_effect()
+    return frames, ppu
+
+
+def build_dodge_streak(frames_count=12, seed=71):
+    """DodgeAttack f8–13 (spec §13 "vệt thân lướt"): a short smoky violet streak trailing the dash (+X = the
+    direction of travel's opposite, the game rotates it), with a few motes. Noise smoke, no drawn lines."""
+    rnd = random.Random(seed)
+    smoke = smoke_ribbon_material('StreakSmoke', 1.6, scale=(2.6, 1.6), contrast=(.34, .7), lead=None)
+    n = 40
+    pts = [Vector((-.1 + 1.1 * t, 0, .5 + .08 * math.sin(math.pi * t))) for t in np.linspace(0, 1, n)]
+    ribbon('Streak', pts, [.85 * math.sin(math.pi * min(1.0, .15 + t * .95)) ** .8 * (1 - .55 * t) + .04 for t in np.linspace(0, 1, n)], Vector((0, 1, 0)), smoke)
+    wisp = smoke_ribbon_material('StreakWisp', 1.1, scale=(4.0, 2.2), contrast=(.42, .76), lead=None)
+    pts2 = [Vector((.1 + 1.0 * t, -.01, .78 - .1 * t)) for t in np.linspace(0, 1, n)]
+    ribbon('Wisp', pts2, [.42 * math.sin(math.pi * min(1.0, .1 + t)) + .03 for t in np.linspace(0, 1, n)], Vector((0, 1, 0)), wisp)
+    mote = glow_material('SMote', [(0, CORE, 5), (1, BAND, 0)], [(0, 1), (1, 0)], 1.0, tips=False)
+    motes = [(disc(f'SMote{i}', rnd.uniform(.01, .022), mote, segments=8), rnd.random(), rnd.uniform(.15, .95), rnd.uniform(.2, .9))
+             for i in range(12)]
+    ppu = 110
+    set_view('front', 1.5, 1.2, ppu, (.45, 0, .5))
+    set_glare(6, .4, 1.0)
+    frames = []
+    for f in range(frames_count):
+        phase = f / frames_count
+        for m in bpy.data.materials:
+            set_phase(m, phase)
+        for o, start, z, travel in motes:
+            t = (start + phase) % 1
+            o.location = (t * travel + .05, -.02, z)
+            set_gain(o.data.materials[0], math.sin(math.pi * t))
+        frames.append((render_frame(.85), anchor_pixel((0, 0, .5))))
+    clear_effect()
+    return frames, ppu
+
+
 def magic_array_layers():
     outer, inner, fill, spikes, ppu_top, ppu = build_magic_array()
     # One pixels-per-unit per effect (importer rule): the top views were drawn at ppu_top, so their layer scale
@@ -1385,6 +1451,11 @@ EFFECTS = {
     'TripleFeather': lambda: [layer('Feather', *build_feather_blade(), framesPerSecond=24, loop=True, fadeIn=.04, fadeOut=.08,
                                     glow=1.15, underlay=.85)],
     'MagicArray': magic_array_layers,
+    # Upright behind the caster: height lifts the circle to the chest (1 m of height = 0.66 on screen in the 3/4 view).
+    'UltimateAura': lambda: [layer('Circle', *build_ultimate_aura(), framesPerSecond=12, loop=True, fadeIn=.35, fadeOut=.5,
+                                   height=.66, glow=1.0, underlay=.9, scaleFrom=.6, scaleTo=1.0)],
+    'DodgeStreak': lambda: [layer('Streak', *build_dodge_streak(), framesPerSecond=24, loop=True, fadeIn=.03, fadeOut=.22,
+                                  height=.33, glow=1.1, underlay=.8)],
     'Cyclone': cyclone_layers,
     'Shield': shield_layers,
     'Ultimate': ultimate_layers,
@@ -1396,7 +1467,7 @@ EFFECTS = {
 }
 
 # Radius the battle passes for 'scale 1' of each effect (Impact is spawned at 0.5: draw it at 1.6x).
-REFERENCE_RADIUS = {'Impact': .3, 'Shield': .55}
+REFERENCE_RADIUS = {'Impact': .3, 'Shield': .55, 'UltimateAura': .62, 'DodgeStreak': .5}
 # Cinematic dim of the battlefield while the effect plays (see MacAnhVfxRecipe.screenDim); 0 / missing = off.
 SCREEN_DIM = {'Ultimate': {'screenDim': .6, 'dimFadeIn': .35, 'dimFadeOut': .5, 'dimColour': [.06, .02, .12, 1]}}
 
