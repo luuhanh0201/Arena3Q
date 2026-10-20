@@ -108,8 +108,9 @@ namespace Arena3Q.Gameplay
             MaxHealth = Mathf.Max(1f, maxHealth);
             Health = MaxHealth;
             Radius = radius;
+            // In 3D a unit without a picture stands as a lit placeholder body.
             Visual = new UnitVisual(transform, sprite != null ? sprite : PlaceholderArt.Circle, color, radius * 2f,
-                withSelectionRing);
+                withSelectionRing, battle.Presentation3D && sprite == null ? battle.View : null);
             Visual.SetHealth(1f, team == Team.Enemy);
             Visual.SetGroundScale(battle.ViewYScale);
             transform.rotation = battle.UprightRotation;
@@ -446,9 +447,25 @@ namespace Arena3Q.Gameplay
         private void ApplyViewTransform() =>
             transform.position = Battle != null ? Battle.ToView(_position) : new Vector3(_position.x, _position.y, 0f);
 
+        private Vector2 _lastFacingPosition;
+
         protected virtual void LateUpdate()
         {
+            FaceForward();
             Visual?.Update(Time.deltaTime);
+        }
+
+        // 3D bodies look where they walk, or at what they fight while standing.
+        private void FaceForward()
+        {
+            if (Visual?.Model == null)
+                return;
+            var moved = _position - _lastFacingPosition;
+            _lastFacingPosition = _position;
+            if (moved.sqrMagnitude > 1e-6f)
+                Visual.Face(moved);
+            else if (EngagedTarget.IsValid && Battle != null && Battle.Registry.Get(EngagedTarget) is UnitBase target)
+                Visual.Face(target.Position - _position);
         }
     }
 }

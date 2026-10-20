@@ -30,7 +30,18 @@ namespace Arena3Q.Data
         [SerializeField, Min(0f)] private float lightIntensity = 1.15f;
         [SerializeField] private Color ambientColour = new Color(0.56f, 0.56f, 0.62f, 1f);
 
+        [Header("Placeholder bodies (units without a model or a picture)")]
+        [Tooltip("Lit material of the placeholder capsules (tinted per unit). Empty = the pipeline's default material.")]
+        [SerializeField] private Material unitMaterial;
+        [Tooltip("Body height as a multiple of the unit's diameter.")]
+        [SerializeField, Min(0.5f)] private float placeholderHeight = 1.8f;
+        [Tooltip("Darkness of the soft round shadow under every unit (no realtime shadows).")]
+        [SerializeField, Range(0f, 1f)] private float blobShadowAlpha = 0.35f;
+
         public bool Presentation3D => presentation3D;
+        public Material UnitMaterial => unitMaterial;
+        public float PlaceholderHeight => placeholderHeight;
+        public float BlobShadowAlpha => blobShadowAlpha;
         public float DefaultTiltDegrees => defaultTiltDegrees;
         public int RendererIndex => rendererIndex;
         public float CameraDistance => cameraDistance;

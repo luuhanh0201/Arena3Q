@@ -20,3 +20,6 @@ MonoBehaviour:
   lightColour: {r: 1, g: 0.96, b: 0.9, a: 1}
   lightIntensity: 1.15
   ambientColour: {r: 0.56, g: 0.56, b: 0.62, a: 1}
+  unitMaterial: {fileID: 2100000, guid: 06390b571777456eaf210709f4d404b8, type: 2}
+  placeholderHeight: 1.8
+  blobShadowAlpha: 0.35

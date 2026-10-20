@@ -723,6 +723,38 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator Presentation3D_UnitsWithoutArtStandAsLitBodies_FacingTheirWay()
+        {
+            Assume.That(_battle.Presentation3D, Is.True, "3D presentation is the shipped default");
+            _battle.StartBattle(0);
+            var hero = SummonQuick(0);
+            yield return null;
+            var enemy = _battle.Registry.Units.OfType<EnemyUnit>().First();
+            Assert.That(enemy.Definition.Sprite, Is.Null, "placeholder enemy");
+            var body = enemy.GetComponentsInChildren<MeshRenderer>().Where(r => r.transform.parent.name == "Body3D").ToArray();
+            Assert.That(body.Length, Is.EqualTo(2), "capsule + nose");
+            Assert.That(enemy.transform.Find("Body").GetComponent<SpriteRenderer>().enabled, Is.False, "no flat circle");
+            Assert.That(enemy.transform.Find("Shadow"), Is.Not.Null, "soft ground shadow");
+            // The body stands up from the ground (up = -Z), whatever the root's billboard rotation.
+            var capsule = body.Single(r => r.name == "Capsule").transform;
+            Assert.That(Vector3.Dot(capsule.up, Vector3.back), Is.GreaterThan(0.999f));
+
+            // Walking turns it: after moving, its forward points along the move on the ground.
+            var start = enemy.Position;
+            Run(1f);
+            yield return null;
+            var moved = enemy.Position - start;
+            if (moved.sqrMagnitude > 0.01f)
+            {
+                var forward = (Vector2)capsule.forward;
+                Assert.That(Vector2.Dot(forward.normalized, moved.normalized), Is.GreaterThan(0.7f));
+            }
+            // A hero with a picture keeps it (billboard), no capsule.
+            if (hero.Definition.Sprite != null)
+                Assert.That(hero.transform.Find("Body3D"), Is.Null);
+        }
+
+        [UnityTest]
         public IEnumerator ViewTilt_SquashesTheGround_PickingStillHitsLogicPositions()
         {
             _battle.StartBattle(0);

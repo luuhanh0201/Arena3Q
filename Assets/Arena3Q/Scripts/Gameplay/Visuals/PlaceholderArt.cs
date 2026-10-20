@@ -19,6 +19,9 @@ namespace Arena3Q.Gameplay
         public static Sprite Square => _square ??= Create("Square", (x, y) => 1f);
         public static Sprite Ring => _ring ??= Create("Ring", (x, y) => Mathf.Min(Disc(x, y, 1f), 1f - Disc(x, y, 0.78f)));
         public static Sprite Star => _star ??= Create("Star", StarAlpha);
+        private static Sprite _blob;
+        /// <summary>Soft round shadow: dark in the middle, fading to nothing at the rim.</summary>
+        public static Sprite Blob => _blob ??= Create("Blob", (x, y) => { var d = Mathf.Clamp01(1f - Mathf.Sqrt(x * x + y * y)); return d * d * (3f - 2f * d); });
 
         /// <summary>Material for every SpriteRenderer we create. Set by BattleController from its serialized field.</summary>
         public static Material SpriteMaterial { get; set; }
