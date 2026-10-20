@@ -189,6 +189,15 @@ def bad_edges(points):
     return int((valid & (((r > 1.35) & (L - L0 > 0.004 * height)) | ((r < 0.65) & (L0 - L > 0.004 * height)))).sum())
 
 
+def bad_against(points, reference):
+    # Edges whose length differs from the approved shape itself (not from the rest pose): distortion the skinning adds.
+    L = np.linalg.norm(points[edges[:, 0]] - points[edges[:, 1]], axis=1)
+    R = np.linalg.norm(reference[edges[:, 0]] - reference[edges[:, 1]], axis=1)
+    ok = valid & (R > 1e-6 * height)
+    r = np.where(ok, L / np.where(ok, R, 1), 1.0)
+    return int((ok & (((r > 1.35) & (L - R > 0.004 * height)) | ((r < 0.65) & (R - L > 0.004 * height)))).sum())
+
+
 def linear(weights, mats):
     # Σ_b w_b · (M_b · v)
     moved = np.einsum('bij,nj->bni', mats[:, :3, :], rest_h)
@@ -282,7 +291,8 @@ for clip in CLIPS:
     rows = [i for i, (name, _) in enumerate(frames) if name == clip]
     item = {'blender_bad_edges_max': 0, 'plain_bad_edges_max': 0, 'fitted_bad_edges_max': 0,
             'source_bad_fraction_max': max(source_bad[i] for i in rows), 'fitted_bad_fraction_max': 0.0,
-            'plain_rms_mm': 0.0, 'fitted_rms_mm': 0.0, 'fitted_max_mm': 0.0}
+            'plain_rms_mm': 0.0, 'fitted_rms_mm': 0.0, 'fitted_max_mm': 0.0,
+            'plain_vs_approved_bad_max': 0, 'fitted_vs_approved_bad_max': 0}
     for i in rows:
         mats = M[i].astype(np.float64)
         target = T[i].astype(np.float64)
@@ -290,6 +300,8 @@ for clip in CLIPS:
         p_fit = linear(fitted, mats)
         item['blender_bad_edges_max'] = max(item['blender_bad_edges_max'], bad_edges(target))
         item['plain_bad_edges_max'] = max(item['plain_bad_edges_max'], bad_edges(p_plain))
+        item['plain_vs_approved_bad_max'] = max(item['plain_vs_approved_bad_max'], bad_against(p_plain, target))
+        item['fitted_vs_approved_bad_max'] = max(item['fitted_vs_approved_bad_max'], bad_against(p_fit, target))
         fit_bad = bad_edges(p_fit)
         item['fitted_bad_fraction_max'] = max(item['fitted_bad_fraction_max'], fit_bad / max(1, int(valid.sum())))
         if fit_bad > item['fitted_bad_edges_max']:
@@ -297,8 +309,10 @@ for clip in CLIPS:
         item['plain_rms_mm'] = max(item['plain_rms_mm'], float(np.sqrt(((p_plain - target) ** 2).sum(1).mean())) * 1000)
         item['fitted_rms_mm'] = max(item['fitted_rms_mm'], float(np.sqrt(((p_fit - target) ** 2).sum(1).mean())) * 1000)
         item['fitted_max_mm'] = max(item['fitted_max_mm'], float(np.sqrt(((p_fit - target) ** 2).sum(1)).max()) * 1000)
-    # Passed: the LOD in Unity's skinning distorts no more of its surface than the approved full-resolution look.
-    item['passed'] = item['fitted_bad_fraction_max'] <= item['source_bad_fraction_max'] + 1e-4
+    # Passed: in Unity's skinning the LOD adds no stretched / squashed edge to the approved full-resolution look
+    # (edge lengths against that look, not against the rest pose: long LOD edges across a bent joint change chord
+    # length even on a perfect surface).
+    item['passed'] = item['fitted_vs_approved_bad_max'] == 0
     report['clips'][clip] = item
     log('AUDIT', clip, item)
 report['passed'] = all(c['passed'] for c in report['clips'].values())
