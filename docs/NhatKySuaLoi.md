@@ -2,6 +2,54 @@
 
 Mỗi mục: **triệu chứng → nguyên nhân → cách sửa → cách tránh lặp lại → kiểm chứng**. Đọc file này trước khi sửa code gameplay hoặc chạy build/test bằng dòng lệnh.
 
+## Mặc Ảnh VFX flipbook: các lỗi khi chuyển sang hiệu ứng vẽ sẵn (2026-10-20, Claude)
+
+- **Trúng đích làm vỡ trận (NullReferenceException).** `MacAnhProjectiles` lấy thứ tự vẽ của hiệu ứng trúng đòn bằng `GetComponentInChildren<MeshRenderer>()`; hiệu ứng flipbook là `SpriteRenderer` nên trả null, 4/13 test Mặc Ảnh fail. Sửa: tìm `Renderer` (mesh và sprite đều là Renderer). Tránh: code chung cho mọi loại hiệu ứng không được giả định kiểu renderer. Kiểm: MacAnhCombatTests 13/13.
+- **Lốc và gió như "đường kẻ lập trình sẵn"** (người dùng + review Codex 19:40). Lốc dựng bằng dải xoắn helix đều, đuôi gió là các cung song song, sọc sin tuần hoàn: vi phạm `docs/Tuong/Model3D_Rules.md` dòng 28–29. Sửa: lốc là volume nhiễu xoắn (trục nghiêng, bán kính thở, đỉnh tan), gió là khói nhiễu 4D; chỉ hình học trận pháp được đều. Tránh: đọc rule 28–29 trước khi dựng gió/khói; không dùng sin/khoảng cách đều cho thứ tự nhiên.
+- **Ultimate mất đại trận đúng lúc phát chiêu.** Phần gom lực hết giờ đúng lúc phần phát chiêu mới bắt đầu tụ (mờ vào tối thiểu 0,1 s) nên có một khoảng trống. Sửa: gom lực sống thêm 0,3 s và tan vào phần phát chiêu (`FadeOut`), lớp Charge giữ tới lúc bàn giao (fadeOut 0), fadeIn 0 = nối tiếp; lớp tối nền của gom lực tắt ngay khi bàn giao để hai lớp tối không chồng thành chớp đen. Kiểm: ảnh Ultimate t2520 trong `claude/NghiemThu/MacAnh/XemTruoc_DangKhi_TanTu_20261020/`.
+- **Vòng trắng nét cứng quanh DodgeAttack.** Prefab bóng ảnh cũ `FX_MacAnh_Afterimage` vẫn vẽ 3 vòng mesh đồng tâm dưới hình bóng ảnh. Sửa: `SetAfterimage` ẩn các lớp mesh. Tránh: khi một prefab được dùng cho việc khác (bóng ảnh), tắt phần hình gốc của nó.
+- **Cấp test chủ tướng lọt vào test Frontend.** `Debug.isDebugBuild` luôn đúng trong Editor, nên cấp 15 của bản Development chen vào luồng tạo nhân vật (2 test Frontend fail). Sửa: chỉ áp khi `!Application.isEditor && Debug.isDebugBuild`. Tránh: tùy chọn "chỉ bản dev" cho thiết bị phải loại Editor.
+- **Trên điện thoại chỉ thấy đánh thường** không phải lỗi: chiêu chủ tướng mở ở cấp 2/5/10/15, tài khoản mới cấp 2. Bản Development trên máy dùng `FrontendConfig.developmentLordLevel` (15) để thử đủ chiêu.
+- **Ảnh trong Editor kém hơn điện thoại** không do sprite: Game view bật "Low Resolution Aspect Ratios" trên màn Windows 125 % (vẽ 822×404 rồi phóng 1,25× lọc điểm). Tắt tùy chọn đó, chọn 1920×1080, scale 1×.
+
+## Mặc Ảnh: quạt bám tay nhưng xuyên tóc và cổ tay áo (2026-10-20)
+
+- Khoảng cách grip bằng0 và cạnh vải không giãn vẫn bỏ sót va xuyên giữa các mesh. Clamp cổ tay làm lông quạt ngả vào tóc; hướng áo rủ và tua trang trí phẳng đưa cán/ngọc/tua vào cổ tay áo.
+- Chỉnh riêng channel Socket_Hand_R không deform để giữ điểm cầm, có nghiêng theo đà chiêu; chỉnh chuỗi áo bằng một phép quay chung quanh điểm gắn, giữ độ giãn cạnh. Tua được uốn cong dần ra ngoài tối đa4cm, gốc tua giữ nguyên; property giá trị đã áp ngăn bake cộng dồn. Không thêm xương, không đổi11clip hoặc thời điểm event, không ghi đè nguồn gốc.
+- Kiểm tam giác thực của cả6phần quạt với body đã skin tại985mẫu/LOD, chỉ loại tiếp xúc lòng bàn tay/ngón. Cả Battle và Portrait đã qua bản đã lưu; bề mặt hai LOD cũng qua985mẫu/LOD. Đang đối chiếu lại FBX Unity và xuất sprite; chưa coi kết quả Blender là nghiệm thu cuối.
+- Thêm phép xuất mesh/weight/bone pose thực đã import Unity và đối chiếu dựng lại với BakeMesh trên65đỉnh phân bố đều mỗi mẫu. Battle:985mẫu, sai lệch lớn nhất0,000000603m; audit tam giác native tiếp theo phải sạch trước bàn giao. Báo cáo cuối ghi trong codex/outbox và Production/LOD/ImportedFanContacts_*.json.
+
+## Mặc Ảnh: sai thuật toán skinning và nguồn bake bị ghi đè (2026-10-20)
+
+- Blender đang dùng Preserve Volume (dual quaternion), trong khi Unity dùng skin tuyến tính; ảnh Blender có thể che lỗi mà runtime vẫn kéo rách. Bản apply weight mới tắt Preserve Volume để so với Unity. Audit đo bề mặt sau skinning, gồm giãn >1,35/ép <0,65 khi sai lệch >0,004 chiều cao, gai >3 lần/+2 mm, 20 cạnh nặng nhất và vùng lỗi; bản LOD cuối bắt buộc tối đa 4 influence. Các candidate hiện vẫn fail nên chưa nghiệm thu.
+- Script bake action cũ mặc định lưu bản chính. Sau quyết định LOD ngày 20/10, mặc định chuyển sang bản làm việc và chặn rõ đường dẫn nguồn gốc. Hai lần bake normal 4096² kiểm hash nguồn trước/sau vẫn bằng `8bcb4755b01621f04758cf2a4be7fa147d1d7cd9b44f9fcfe82e16960a1f0af7`.
+
+## Mặc Ảnh: hiệu ứng mới bị già trước lúc sinh (2026-10-20)
+
+- Khi nhiều bước mô phỏng chạy giữa hai Update, pool lấy một delta chung từ lần Update trước và áp cho cả instance mới spawn. Ultimate/impact có lifetime ngắn có thể tan ngay trước ảnh release; hình charge vẫn có nên kiểm tra chỉ ActiveCount không đủ.
+- Pool lưu clock tick riêng của từng instance, khởi tạo bằng BattleTime khi spawn và xóa khi release/clear. Thêm `NewEffectDoesNotInheritTimeBeforeItWasSpawned`; chụp cả bảy chiêu theo battle clock tại zoom 4,5 và 3,5. Kết quả lượt test sau sửa sẽ ghi trong outbox; không dùng ảnh chụp trước sửa clock để nghiệm thu.
+
+## Lữ Bố di chuyển và animation bị cứng (2026-10-19)
+
+- **Triệu chứng:** đổi hướng giật, nhịp chân không khớp tốc độ, chen lấn làm chớp Run/Idle; ngón tay và cổ tay xoắn khi sửa tư thế cầm kích.
+- **Nguyên nhân:** chỉ bốn hướng và ít mẫu hình; chọn Run từ mọi thay đổi vị trí; đặt lại pha mỗi lần đổi clip; hàm nắm tay cộng dồn độ cong ngón và IK/khung tham chiếu cổ tay đảo hướng.
+- **Sửa:** vận tốc di chuyển chủ động tách khỏi dịch chuyển do đẩy; quay có tốc độ/vùng giữ hướng; Walk/Run theo tốc độ, giữ pha, nhịp chân theo quãng đường và chờ dừng ngắn. Chỉ ảnh nhân vật được làm dịu vị trí, lệch tối đa 0,15; hòa ảnh 70 ms khi đổi trạng thái/hướng. Không sửa vị trí logic hoặc thời điểm sát thương.
+- Bản Blender Smooth đặt lại ngón trước khi nắm, giải tay hai đoạn với hướng khuỷu ổn định, không kéo giãn, quaternion cùng bán cầu và nội suy Bezier. Rút ngắn cán phía sau tay để tránh xuyên bắp tay/đùi của model chibi; giữ UV và bản nguồn riêng.
+- **Tránh lặp lại:** kiểm tra cả frame trung gian ở tốc độ xuất; giữ điểm chân khi cắt ảnh/đóng atlas; kiểm thử bằng lệnh di chuyển thực, không dùng teleport để giả lập bước chân.
+- **Kiểm chứng:** 235/235 EditMode, 85/85 PlayMode; thêm test chen lấn và Slow → Walk → Run. `RigAuditSmooth.json`: 875 mẫu scale hợp lệ, 574 mẫu còn cầm kích không báo xuyên thân/giáp; phép kiểm tra loại vùng bàn tay nắm cán và vải/lông theo thiết kế nguồn.
+
+## Rig Lữ Bố: tay và vũ khí bị phóng lớn (2026-10-19)
+
+- **Triệu chứng:** ảnh thử cho thấy bàn tay và kích rất lớn, che thân; pose lưu có scale RightHand tới khoảng 505.
+- **Nguyên nhân:** script nguồn cho IK kéo giãn, rồi liên tục gán ma trận tay mà không đặt lại scale; các action chỉ key rotation nên scale dư truyền sang animation khác.
+- **Sửa:** tắt IK stretch, đặt scale vai/cánh tay/bàn tay về 1 sau khi gán ma trận, key scale 1 trong action. Thêm audit scale trên từng frame và kiểm tra ảnh bốn hướng.
+- Bone heat trên mesh gốc có nhiều lớp rời thất bại cho toàn bộ 98.598 đỉnh. Dùng lưới voxel phụ kín để giải heat weights rồi chuyển lại model gốc, giữ nguyên UV; ngón tay, đầu, áo choàng và lông trĩ được giới hạn nhóm xương riêng.
+- Sửa phép tìm chân từ O(n²) thành O(n): không tính lại max chiều cao trong vòng lặp từng đỉnh. Sửa bước tạo năm action gọi xem Idle thay vì Defeat chưa tồn tại.
+- **Tránh lặp lại:** không coi script compile thành công là rig đúng; kiểm tra tổng weight, số ảnh hưởng, scale xương, hình các tư thế và va chạm ở frame trung gian trước khi xuất.
+- Sửa thêm thao tác lấy mẫu `bpy_prop_collection` (không hỗ trợ bước nhảy khi slice), tư thế thu kích frame 22 và tay cầm kích trong Victory; nới khung chụp Attack01/Defeat, bù PPU/pivot để không đổi cỡ/điểm chân.
+- **Trong trận:** chuyển động trước cú đánh cùng frame từng làm Run ghi đè Attack; ưu tiên đòn đánh vừa bắt đầu trong frame đó. Test cộng hưởng trước đây tìm Đao Khách trong bộ thẻ thử; đổi fixture sang lấy tướng từ catalog để không phụ thuộc đội hình đang dùng Lữ Bố.
+- **Kiểm chứng:** 235/235 EditMode, 83/83 PlayMode; `RigAudit.json` không còn xương giãn hoặc kích xuyên thân trong các clip cầm kích; `SpriteAudit.json` ghi 432 frame không bị cắt mép và UV khớp nguồn.
+
 ---
 
 ## Bài học trước đợt nghiệm thu (2026-10-16)
@@ -188,3 +236,38 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 - **Triệu chứng:** người dùng báo "cái trống chưa có animation khi bị phá, tài nguyên đã có sẵn". **Nguyên nhân:** model `ThreeKingdomsCommand_2` (cờ rách, gỗ cháy) là **trạng thái sau khi bị phá** của đài trống `ThreeKingdomsCommand_1`, nhưng Claude đoán tên Meshy bị cắt và dùng nó làm hình thành địch. **Sửa:** cả hai thành dùng `Command_1`; khi thành bị phá, `CastleFallView` chạy rung/chớp → bụi + mảnh vỡ → đổi sang `Command_2` + khói, phần đổ nát nằm lại; màn hình kết quả chờ `CastleArtConfig.resultDelaySeconds` (1.8 s) để thấy cảnh sập. **Tránh lặp lại:** hai model gần giống nhau (một bản lành, một bản hư hại) thường là hai trạng thái của cùng một vật – hỏi người dùng trước khi gán chúng thành hai vật khác nhau.
 - Ảnh chụp có canvas ở chế độ `ScreenSpaceCamera` (test chụp màn hình) làm sprite có thứ tự vẽ cao nổi lên trên HUD (`castle_ruin.png`); trong game HUD là Overlay nên không bị. Chỉ là giới hạn của ảnh chụp.
 - **Kiểm chứng:** EditMode 235/235, PlayMode 78/78 (thêm `CastleFall_ShakesThenLeavesTheRuin_ThenTheResultShows`; test chiến thắng chờ màn hình kết quả), ảnh `castle_fall.png`, `castle_ruin.png`.
+
+## Rig Mặc Ảnh và sự kiện chiến đấu (2026-10-19)
+
+1. **Mesh co xuống 1/10 sau khi parent vào rig.** Proxy heat thử ở scale 10, reset scale nhưng dependency graph còn giữ ma trận cũ; parent inverse nhận scale 0,1. Sửa: cập nhật view layer sau reset, đặt parent inverse/basis của mesh đúng identity. Hash tọa độ/UV giữ nguyên, chiều cao rest vẫn 1,70 m.
+2. **Vai/tay áo xoắn và kẽ ngón bị kéo thành gai.** Dựng frame từ pole làm cánh tay tự xoay quanh trục quá lớn; mask màu loại những pixel đỏ vốn vẫn thuộc ngón tay. Sửa: aim bằng phép quay ngắn nhất, chọn weight bàn tay theo hình học, tách vùng vải phía sau khỏi cẳng tay, normalize/limit 4 và làm mượt weight. Kiểm tra pose thật nhiều góc; quạt hạ/nghiêng ở nhịp đánh để mặt còn rõ.
+3. **MaterialPropertyBlock tạo từ initializer của MonoBehaviour.** Unity có thể deserialize trên luồng không cho phép gọi native constructor. Sửa: khởi tạo trong hàm chuẩn bị layer ở main thread trước khi phát FX.
+4. **FX không có audio vẫn ném MissingComponentException khi trả pool.** `?.` / `??` không xử lý đúng null giả của Unity Object. Sửa: kiểm tra `source != null` / `source == null` trước khi Stop hoặc AddComponent. Hai test collision/restart đã bắt lỗi này.
+5. **Projectile mới sinh có thể nhận cả delta của bước trước thời điểm phóng.** Sửa: lưu BattleTime khi sinh, chỉ bắt đầu di chuyển từ bước simulation kế tiếp. Swept collision chọn điểm vào bề mặt đầu tiên thay vì thứ tự tâm; snapshot hit không truy cập caster đã Destroy.
+6. **Trùng tên field `_cooldown` ở UnitBase và CastleUnit gây lỗi serialization khi reload.** Đổi field riêng của thành thành `_castleAttackCooldown`; không thay thời gian bắn.
+7. **Bước chân trượt khi nhịp clip không khớp quãng đường chân trụ.** Hiệu chỉnh stride theo biên độ/pha trụ của Action, giữ phase khi chuyển Walk/Run, thêm nhịp thân nhỏ và bù đầu. Vị trí gameplay không lấy từ sprite/transform.
+
+8. **VFX có thể hết lifetime theo thời gian thật trong lúc simulation đứng yên.** Pool nay tick theo BattleTime; mỗi lượt thuê có generation riêng, tham chiếu cũ không được di chuyển/dừng hiệu ứng của lượt thuê mới. Test pause theo thời gian thật kiểm tra việc không trả pool sớm.
+
+**Kiểm chứng cuối:** EditMode **242/242**, PlayMode **94/94**, không skip/fail. Blender kiểm tra 498 pose nguồn, hash mesh/UV/material/texture giữ nguyên, 3.960 sprite không crop. Chi tiết và giới hạn đo thiết bị: `art/concepts/MuuSi_main-hero/MacAnh/Production/Delivery_QA.md`.
+
+## Nâng đồ họa Mặc Ảnh và sửa đuôi chiêu (2026-10-19)
+
+### Hồi quy bề mặt/clock (2026-10-20, đang sửa, chưa nghiệm thu hình)
+- FBX có renderer scale100. BakeMesh(false) đã tính scale đó, rồi TransformPoint nhân thêm100 làm audit báo chiều cao169m và dùng sai ngưỡng tuyệt đối. Đổi sang BakeMesh(true), đưa toàn bộ đỉnh về world metres trước đo cạnh/chiều cao và assert1,70m±0,05m. Đã chạy985mẫu/LOD thực sau import cho Battle/Portrait: đều không vượt ngưỡng giãn/ép/gai. Ảnh vẫn chưa đạt nên kết quả số chưa cho phép bàn giao.
+- Pool dùng delta toàn trận cho effect vừa spawn khiến bulk simulation đẩy tuổi hiệu ứng vượt lifetime ngay sau release. Mỗi instance lưu clock riêng từ thời điểm sinh. Test spawn trong khoảng nhảy lớn đã bắt lỗi; cần giữ test này khi thay simulation.
+- Afterimage spatial trả sớm, bỏ qua fade của sprite; phép xoay/chiếu của VFX áp lên sprite đã render làm bóng dẹt. Reset transform snapshot và fade bằng battle clock; nhánh3D chụp pose vào RT riêng, trả texture khi dừng/reuse. Test hồi quy và capture mới còn đang chạy.
+- Diffuse albedo bake làm vàng kim loại thành đen. Nối nguyên Base Color nguồn qua Emission để bake màu; giữ UV0 (hash), thêm UV1 cho normal. Không dùng UV atlas thay UV0 để gọi là giữ UV gốc.
+- Đổi tên material sau bake làm FBX thân dùng Sprite-Lit mặc định trong renderer3D và hiện mảng trắng. Nạp lại ModelImporter sau các texture reimport, gán remap cuối theo export report và assert sharedMaterials của model thực trỏ đúng asset PBR. Thêm kiểm tra vào GraphicsContentTests; xem ảnh sau import vì test combat từng đạt dù model vẫn trắng.
+- Normal ghi vào UV1 nhưng tangent bake còn lấy active render UV0: mặt/vải lốm đốm và hoa văn trông vụn. Bật NormalBakeUV làm active render trong lúc bake rồi trả UV0; đối chiếu ảnh có/tắt normal và ảnh Unity. Đã chứng minh revision normal không đổi vị trí, topology, UV0/UV1 hay weight bằng hash từng mảng (`NormalOnlyRevision_Battle/Portrait.json`); giữ kết quả surface audit của geometry hiện hành. Bộ3960sprite đầu dùng normal sai đã loại và xuất lại, không dùng làm bản bàn giao.
+
+- Preview cũ là sprite pose nhỏ và lốc nét xoắn procedural. Tạo scene/prefab3D riêng từ model gốc1,70m, không lưu đè Blender, không đổi mesh/UV/rig/texture; profile game dùng wrapper VFX mới, giữ prefab cũ.
+- Bắt/sửa qua ảnh Unity: alpha dùng nhầm Mathf.SmoothStep như HLSL; màu sRGB đưa thẳng vào shader linear; camera nhân đôi xoay180° nhìn lưng; capture linear làm PNG tối. Dùng sRGB render target1920×1080 và màu linear đúng nguồn.
+- ModelImporter animation event time phải chuẩn hóa0–1; nhầm giây làm Skill02 phóng trễ và Ultimate không tới event. Test kiểm tra time ở AnimationClip sau import.
+- Mesh crescent có NaN ở endpoint do Pow(sin(pi),fraction) nhận số âm rất nhỏ. Clamp sin>=0 trước Pow; test mọi vertex hữu hạn.
+- Particle Shader Graph UniversalForward không được Renderer2D vẽ. Thêm material Universal2D cho presentation trận, giữ graph trong preview3D.
+- Đuôi chiêu khựng: giữ tốc độ đến cuối, dissolve ngưỡng làm rune chớp, burst cuối bật đồng loạt, nhân vật giữ frame recovery. Sửa easing1giây/giảm tốc UV và quay, alpha fade rune, phát hạt dần và kết thúc lifetime trước pool, preview blend Idle0,28giây. Benchmark Android chuyển sang chủ động để không tự đổi tier khi đang xem.
+- Kiểm chứng sau sửa:7/7 EditMode,12/12 PlayMode (nhóm MacAnh), gồm test đuôi3,19s gần trong suốt/không còn hạt trước release3,2s. Render Console không error/warning. Không coi test chức năng là nghiệm thu nghệ thuật/FPS.
+- Redmi Note8Pro đã kết nối ADB/shell, APK riêng cài thành công. Lần đầu2340×1080:13,30/13,02/14,92FPS Low/Medium/High; chưa đạt mục tiêu. Bản cập nhật và chẩn đoán8 workload đang đo, xem báo cáo sống tại `art/concepts/MuuSi_main-hero/MacAnh/Production/GraphicsUpgrade/Graphics_QA.md`.
+- Bổ sung Android: phát hiện CopyDepth shader bị build stripper loại khi các quality của platform vẫn trỏ Renderer2D. Builder dùng preview pipeline tạm thời cho default/mọi quality, rồi nạp lại pipeline gốc theo đường dẫn trong finally (tham chiếu object có thể bị unload khi build). GPU skinning giữ nguyên nguồn. Bài đo GPU mới còn chờ người dùng mở khóa màn hình; không công bố FPS chưa đo. PlayMode sau sửa benchmark/JNI12/12; SHA model nguồn khớp manifest.
+- Bản cuối Android144,4MB đã cài; GPU skinning và fix build depth, clamp shader pow. Đã xác nhận khôi phục pipeline2D của cả6 quality sau build bằng cách nạp lại asset theo đường dẫn. Unity mở preview Skill02. Android FPS mới còn chờ mở khóa; không lấy số bản đầu làm kết quả của bản sửa.
