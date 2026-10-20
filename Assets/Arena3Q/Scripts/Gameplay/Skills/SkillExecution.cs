@@ -213,8 +213,11 @@ namespace Arena3Q.Gameplay
                 battle.AddZone(new SkillZone(skill, context, aim));
             else
                 Hit(skill, context, aim, 1f, 0f);
-            battle.ShowSkill(skill, aim, context.Team, skill.ZoneDuration > 0f ? skill.ZoneDuration : 0.4f,
-                skill.FollowCaster ? caster : null);
+            var hero = caster as HeroUnit;
+            if (hero == null || hero.Definition.MacAnhPerformance == null ||
+                hero.Definition.MacAnhPerformance.Find(skill as SkillDefinition) == null)
+                battle.ShowSkill(skill, aim, context.Team, skill.ZoneDuration > 0f ? skill.ZoneDuration : 0.4f,
+                    skill.FollowCaster ? caster : null);
         }
 
         /// <summary>

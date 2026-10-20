@@ -1,0 +1,38 @@
+[
+  {
+    "action": "Attack02",
+    "frame": 15,
+    "grip_error_m": 0.0,
+    "max_bone_scale_error": 0.0
+  },
+  {
+    "action": "Skill01",
+    "frame": 33,
+    "grip_error_m": 0.0,
+    "max_bone_scale_error": 0.0
+  },
+  {
+    "action": "Skill02",
+    "frame": 30,
+    "grip_error_m": 0.0,
+    "max_bone_scale_error": 0.0
+  },
+  {
+    "action": "Skill03",
+    "frame": 27,
+    "grip_error_m": 5.960464477539063e-08,
+    "max_bone_scale_error": 0.0
+  },
+  {
+    "action": "Ultimate",
+    "frame": 75,
+    "grip_error_m": 1.4901161193847656e-08,
+    "max_bone_scale_error": 0.0
+  },
+  {
+    "action": "DodgeAttack",
+    "frame": 24,
+    "grip_error_m": 0.0,
+    "max_bone_scale_error": 0.0
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "unity": "6000.6.6f1",
+  "editMode": {
+    "passed": 242,
+    "failed": 0,
+    "job": "aa38418b616b4f6facb0596ad6c57dda"
+  },
+  "playMode": {
+    "passed": 94,
+    "failed": 0,
+    "job": "857576e78749484d81cb7c553a1e8c14"
+  },
+  "metrics": {
+    "unity": "6000.6.6f1",
+    "clips": 11,
+    "sprites": 3960,
+    "textures": 27,
+    "nativeTextureBytes": 566256096,
+    "walkStride": 0.338709652,
+    "runStride": 0.9069767,
+    "shaderSupported": true
+  },
+  "editor": {
+    "activeBuildTarget": "Android",
+    "graphics": "Direct3D12",
+    "etc2Supported": false
+  },
+  "deviceProfiled": false
+}

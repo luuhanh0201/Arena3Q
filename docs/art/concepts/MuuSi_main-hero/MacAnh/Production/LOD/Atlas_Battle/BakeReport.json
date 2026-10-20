@@ -1,0 +1,17 @@
+{
+  "status": "trial; colour/normal/seam comparisons pending",
+  "uv": "original UV0 unchanged; added NormalBakeUV UV1",
+  "resolution": [
+    4096,
+    4096
+  ],
+  "maps": {
+    "Normal": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\LOD\\Atlas_Battle\\MacAnh_Battle_AtlasNormal.png"
+  },
+  "body_material": "MacAnh_Battle_DualUvBody.001",
+  "uv0_sha256": "e0f0a1374af855ed7319ed8976d5971866a6d5f20bbd3d9603c93849aee28eed",
+  "source_sha256": "8bcb4755b01621f04758cf2a4be7fa147d1d7cd9b44f9fcfe82e16960a1f0af7",
+  "cage_extrusion_m": 0.004,
+  "max_ray_distance_m": 0.02,
+  "seconds": 21.128151893615723
+}

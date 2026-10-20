@@ -44,15 +44,22 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 58ee30e4589bf324684f9594e03a35ad, type: 2}
   - {fileID: 11400000, guid: d4accd7038df2c54fb4d6a41a7fd078b, type: 2}
   - {fileID: 11400000, guid: 7f85e9a8c0614b84694e9fa2d08885f7, type: 2}
+  - {fileID: 11400000, guid: 0d2ace241d7d2bb4fa6dba3011768ada, type: 2}
   progression: {fileID: 11400000, guid: 0fb10bd7ba8baae4082f63f5008d19eb, type: 2}
   tutorialStage: {fileID: 11400000, guid: 8312ed9470000604db64a1540d49dab5, type: 2}
   starterGifts:
   - hero: {fileID: 11400000, guid: 7f85e9a8c0614b84694e9fa2d08885f7, type: 2}
     level: 1
     stars: 3
+    lordSkillLevels: 00000000000000000000000000000000i
   - hero: {fileID: 11400000, guid: 58ee30e4589bf324684f9594e03a35ad, type: 2}
     level: 1
     stars: 1
+    lordSkillLevels: 00000000000000000000000000000000i
+  - hero: {fileID: 11400000, guid: 0d2ace241d7d2bb4fa6dba3011768ada, type: 2}
+    level: 1
+    stars: 3
+    lordSkillLevels: 00000000000000000000000000000000i
   tutorialRewardLevel: 2
   defaultStage: {fileID: 11400000, guid: 8a7039988c475614984e3c7114bd74f8, type: 2}
   battleSceneName: Battle

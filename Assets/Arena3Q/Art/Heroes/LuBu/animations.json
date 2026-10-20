@@ -1,0 +1,53 @@
+{
+  "vertices": 98598,
+  "bones": 73,
+  "unweighted": 0,
+  "over_four_influences": 0,
+  "max_weight_sum_error": 4.023313522338867e-06,
+  "clips": [
+    {
+      "name": "Idle",
+      "frames": 8,
+      "duration": 1.3333333333333333,
+      "loop": true
+    },
+    {
+      "name": "Walk",
+      "frames": 12,
+      "duration": 0.8,
+      "loop": true
+    },
+    {
+      "name": "Run",
+      "frames": 12,
+      "duration": 0.5333333333333333,
+      "loop": true
+    },
+    {
+      "name": "Attack01",
+      "frames": 12,
+      "duration": 0.9,
+      "loop": false,
+      "ortho_scale": 2.4
+    },
+    {
+      "name": "Attack02",
+      "frames": 12,
+      "duration": 0.9,
+      "loop": false
+    },
+    {
+      "name": "Victory",
+      "frames": 24,
+      "duration": 5.0,
+      "loop": false
+    },
+    {
+      "name": "Defeat",
+      "frames": 28,
+      "duration": 5.0,
+      "loop": false,
+      "ortho_scale": 3.2
+    }
+  ]
+}

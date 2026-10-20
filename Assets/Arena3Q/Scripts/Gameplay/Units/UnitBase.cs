@@ -31,6 +31,9 @@ namespace Arena3Q.Gameplay
         public virtual bool IsCastle => false;
         /// <summary>Logic-plane position (all gameplay uses this; the transform is only the on-screen projection).</summary>
         public Vector2 Position => _position;
+        /// <summary>Voluntary movement only; crowd separation and knockback do not start a running animation.</summary>
+        public Vector2 LocomotionVelocity { get; private set; }
+        protected void ResetLocomotion() => LocomotionVelocity = Vector2.zero;
 
         public float Damage { get; private set; }
         public float AttackRange { get; private set; }
@@ -346,6 +349,7 @@ namespace Arena3Q.Gameplay
         /// <summary>Turns a brain intent into movement and attacks.</summary>
         protected void Execute(HeroIntent intent, float deltaTime)
         {
+            ResetLocomotion();
             _cooldown -= deltaTime;
             EngagedTarget = UnitId.None;
 
@@ -365,9 +369,7 @@ namespace Arena3Q.Gameplay
                         if (_cooldown <= 0f)
                         {
                             _cooldown = CurrentAttackInterval;
-                            var damage = ComputeAttackDamage(target);
-                            target.TakeDamage(damage, this);
-                            OnAttackLanded(target, damage);
+                            BeginBasicAttack(target);
                         }
                     }
                     else if (intent.MayChase)
@@ -376,6 +378,13 @@ namespace Arena3Q.Gameplay
                     }
                     break;
             }
+        }
+
+        protected virtual void BeginBasicAttack(UnitBase target)
+        {
+            var damage = ComputeAttackDamage(target);
+            target.TakeDamage(damage, this);
+            OnAttackLanded(target, damage);
         }
 
         protected void MoveTowards(Vector2 destination, float deltaTime, float stopDistance)
@@ -390,6 +399,7 @@ namespace Arena3Q.Gameplay
             if (layout == null)
             {
                 SetPosition(position + toTarget / distance * step);
+                LocomotionVelocity = deltaTime > 0f ? (Position - position) / deltaTime : Vector2.zero;
                 return;
             }
 
@@ -401,6 +411,7 @@ namespace Arena3Q.Gameplay
                 ? position
                 : position + toWaypoint / waypointDistance * Mathf.Min(step, waypointDistance);
             SetPosition(layout.ResolveStep(position, next, Radius));
+            LocomotionVelocity = deltaTime > 0f ? (Position - position) / deltaTime : Vector2.zero;
         }
 
         /// <summary>Moves the unit, clamped to the battlefield bounds and kept out of forbidden zones.</summary>

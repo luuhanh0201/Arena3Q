@@ -1,0 +1,59 @@
+{
+  "bones": 73,
+  "vertices": 98598,
+  "clips": [
+    {
+      "name": "Idle",
+      "first": 1,
+      "last": 41,
+      "max_scale_error": 0,
+      "weapon_intersections": []
+    },
+    {
+      "name": "Walk",
+      "first": 1,
+      "last": 25,
+      "max_scale_error": 0,
+      "weapon_intersections": []
+    },
+    {
+      "name": "Run",
+      "first": 1,
+      "last": 17,
+      "max_scale_error": 0,
+      "weapon_intersections": []
+    },
+    {
+      "name": "Attack01",
+      "first": 1,
+      "last": 28,
+      "max_scale_error": 0,
+      "weapon_intersections": []
+    },
+    {
+      "name": "Attack02",
+      "first": 1,
+      "last": 28,
+      "max_scale_error": 0,
+      "weapon_intersections": []
+    },
+    {
+      "name": "Victory",
+      "first": 1,
+      "last": 151,
+      "max_scale_error": 0,
+      "weapon_intersections": []
+    },
+    {
+      "name": "Defeat",
+      "first": 1,
+      "last": 151,
+      "max_scale_error": 0,
+      "weapon_intersections": []
+    }
+  ],
+  "uv_checksum": "73482c4002efad79579c885bf96015f074c349ed867615cd612c6ebf8207933c",
+  "unweighted": 0,
+  "max_weight_sum_error": 1.5902332961559296e-07,
+  "max_influences": 4
+}

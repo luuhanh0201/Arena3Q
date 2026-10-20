@@ -1,0 +1,39 @@
+{
+    "utc": "2026-10-19T13:12:54.2257020Z",
+    "platform": "Android",
+    "device": "Xiaomi Redmi Note 8 Pro",
+    "gpu": "Mali-G76 MC4",
+    "cpu": "ARM64 FP ASIMD AES",
+    "unity": "6000.6.6f1",
+    "ramMB": 5635,
+    "width": 2340,
+    "height": 1080,
+    "sourceTriangles": 2953808,
+    "workload": "1 original skinned character walking + 1 active cyclone; no battle units; capped at display refresh / 120 Hz maximum",
+    "samples": [
+        {
+            "quality": "Low",
+            "frames": 200,
+            "seconds": 15.041595458984375,
+            "fps": 13.296462059020996,
+            "medianMs": 66.49971008300781,
+            "p95Ms": 89.2801284790039
+        },
+        {
+            "quality": "Medium",
+            "frames": 196,
+            "seconds": 15.056171417236328,
+            "fps": 13.01791763305664,
+            "medianMs": 68.15719604492188,
+            "p95Ms": 94.1009521484375
+        },
+        {
+            "quality": "High",
+            "frames": 224,
+            "seconds": 15.018562316894531,
+            "fps": 14.914875984191895,
+            "medianMs": 66.71524047851563,
+            "p95Ms": 91.094970703125
+        }
+    ]
+}

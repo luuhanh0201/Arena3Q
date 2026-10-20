@@ -1,0 +1,9 @@
+{
+  "method": "surface diffusion / continuous reconstruction / ninth-weight subtraction",
+  "solver_vertices": 465818,
+  "iterations": 240,
+  "max_influences": 8,
+  "quantization": false,
+  "sum_error": 2.384185791015625e-07,
+  "seconds": 178.74097537994385
+}

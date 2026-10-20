@@ -25,6 +25,8 @@ namespace Arena3Q.Gameplay
 
         /// <summary>Passive, skills 2 and 3, ultimate and rage (spec §3).</summary>
         public HeroSkills Skills { get; private set; }
+        private HeroAnimationView _animation;
+        public MacAnhCombatPerformance Performance { get; private set; }
 
         internal void Init(BattleController battle, HeroRuntime runtime, LineupEntry card, CombatNumbers numbers,
             HeroBrainSettings settings, Vector2 position)
@@ -39,7 +41,18 @@ namespace Arena3Q.Gameplay
             InitUnit(battle, runtime.Id, Team.Player, numbers.MaxHealth, BodyRadius, definition.Sprite,
                 definition.PlaceholderColor, withSelectionRing: true);
             SetPosition(position);
+            if (definition.Animations != null && definition.MacAnhPerformance == null)
+            {
+                Visual.UseArt(definition.Sprite);
+                _animation = Visual.BodyRenderer.gameObject.AddComponent<HeroAnimationView>();
+                _animation.Init(this, Visual.BodyRenderer);
+            }
             Skills = new HeroSkills(this, card, battle.Rules);
+            if (definition.MacAnhPerformance != null)
+            {
+                Visual.UseArt(definition.Sprite);
+                Performance = new MacAnhCombatPerformance(this, Visual.BodyRenderer);
+            }
 
             // Passive range bonus (e.g. Ưng Nhãn +15 %): the reach the hero fights and aims with.
             var rangeBonus = Skills.AttackRangeBonus;
@@ -57,15 +70,18 @@ namespace Arena3Q.Gameplay
 
         public override void Simulate(float deltaTime)
         {
+            ResetLocomotion();
             Skills.Tick(deltaTime);
+            Performance?.Tick(deltaTime);
             var settings = Battle.Rules.Settings;
             _stunnedSeconds = EnemyRules.TrackCrowdControl(_stunnedSeconds, IsStunned, deltaTime,
                 settings.CrowdControlLockSeconds, out var breakFree);
             if (breakFree)
                 ApplyStatus(StatusKind.CrowdControlImmunity, 1f, settings.CrowdControlBreakSeconds);
             // Stunned or winding up a skill: the hero stands still but keeps its order (spec §3, §8).
-            if (IsStunned || Skills.IsCasting)
+            if (IsStunned || Skills.IsCasting || (Performance != null && Performance.IsAttacking))
             {
+                if (Performance != null && Performance.IsAttacking) Execute(HeroIntent.Hold, deltaTime);
                 ConsumeDamageFlags();
                 return;
             }
@@ -89,7 +105,28 @@ namespace Arena3Q.Gameplay
         protected override float ComputeAttackDamage(UnitBase target) =>
             Skills.ModifyBasicAttack(target, base.ComputeAttackDamage(target));
 
-        protected override void OnAttackLanded(UnitBase target, float damage) => Skills.OnBasicAttackLanded(target, damage);
+        protected override void BeginBasicAttack(UnitBase target)
+        {
+            if (Performance != null) Performance.BeginAttack(target);
+            else base.BeginBasicAttack(target);
+        }
+
+        internal System.Action<UnitBase> CreateMacAnhBasicHit(UnitBase target)
+        {
+            var damage = ComputeAttackDamage(target);
+            return hit =>
+            {
+                var source = this != null && IsAlive ? this : null;
+                hit.TakeDamage(damage, source);
+                if (source != null) OnAttackLanded(hit, damage);
+            };
+        }
+
+        protected override void OnAttackLanded(UnitBase target, float damage)
+        {
+            Skills.OnBasicAttackLanded(target, damage);
+            _animation?.Attack(target);
+        }
 
         protected override void OnDealtDamage(UnitBase target, float amount) => Skills.OnDealtDamage(amount);
 
@@ -99,6 +136,8 @@ namespace Arena3Q.Gameplay
 
         protected override void OnDied()
         {
+            _animation?.Die();
+            Performance?.Die();
             Skills.OnDeath();
             Brain.Kill();
             Battle.NotifyHeroDied(this);

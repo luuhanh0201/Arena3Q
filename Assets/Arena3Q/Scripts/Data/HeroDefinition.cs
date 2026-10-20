@@ -18,6 +18,9 @@ namespace Arena3Q.Data
         [SerializeField] private string heroId = "hero";
         [SerializeField] private string displayName = "Hero";
         [SerializeField] private Sprite sprite;
+        [SerializeField] private Sprite portrait;
+        [SerializeField] private HeroAnimationSet animations;
+        [SerializeField] private MacAnhPerformance macAnhPerformance;
         [Tooltip("Tint used when no sprite is assigned.")]
         [SerializeField] private Color placeholderColor = Color.white;
         [Tooltip("Lord = the player's character (skills by level, breakthroughs); Starter = no faction, cheap stars; " +
@@ -77,6 +80,9 @@ namespace Arena3Q.Data
         public string HeroId => heroId;
         public string DisplayName => displayName;
         public Sprite Sprite => sprite;
+        public Sprite Portrait => portrait != null ? portrait : sprite;
+        public HeroAnimationSet Animations => animations;
+        public MacAnhPerformance MacAnhPerformance => macAnhPerformance;
         public Color PlaceholderColor => placeholderColor;
         public HeroKind Kind => kind;
         public FactionDefinition Faction => faction;

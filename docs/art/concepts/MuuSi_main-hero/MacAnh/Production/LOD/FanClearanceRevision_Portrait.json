@@ -1,0 +1,99 @@
+{
+  "source": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\LOD\\MacAnh_Portrait_CorrectNormalUV1.blend",
+  "edited_channels": [
+    "Socket_Hand_R",
+    "Sleeve_Right_1"
+  ],
+  "tassel_tip_sweep_m": 0.04,
+  "clips": [
+    {
+      "name": "MacAnh_Attack01",
+      "frames": [
+        0,
+        24
+      ],
+      "grip_error_m": 1.9082797281243946e-07
+    },
+    {
+      "name": "MacAnh_Attack02",
+      "frames": [
+        0,
+        45
+      ],
+      "grip_error_m": 1.7881393432617188e-07
+    },
+    {
+      "name": "MacAnh_Dodge",
+      "frames": [
+        0,
+        24
+      ],
+      "grip_error_m": 1.999200562387517e-07
+    },
+    {
+      "name": "MacAnh_DodgeAttack",
+      "frames": [
+        0,
+        33
+      ],
+      "grip_error_m": 2.2500259981366246e-07
+    },
+    {
+      "name": "MacAnh_Idle",
+      "frames": [
+        0,
+        40
+      ],
+      "grip_error_m": 1.4600096599955427e-07
+    },
+    {
+      "name": "MacAnh_Run",
+      "frames": [
+        0,
+        24
+      ],
+      "grip_error_m": 1.4901161193847656e-07
+    },
+    {
+      "name": "MacAnh_Skill01",
+      "frames": [
+        0,
+        54
+      ],
+      "grip_error_m": 1.999200562387517e-07
+    },
+    {
+      "name": "MacAnh_Skill02",
+      "frames": [
+        0,
+        60
+      ],
+      "grip_error_m": 2.384185791015625e-07
+    },
+    {
+      "name": "MacAnh_Skill03",
+      "frames": [
+        0,
+        42
+      ],
+      "grip_error_m": 1.999200562387517e-07
+    },
+    {
+      "name": "MacAnh_Ultimate",
+      "frames": [
+        0,
+        105
+      ],
+      "grip_error_m": 1.7120130796843852e-07
+    },
+    {
+      "name": "MacAnh_Walk",
+      "frames": [
+        0,
+        36
+      ],
+      "grip_error_m": 1.6049041769309353e-07
+    }
+  ],
+  "destination": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\LOD\\MacAnh_Portrait_FanClearance.blend"
+}

@@ -1,0 +1,712 @@
+{
+ "name": "Ultimate",
+ "referenceRadius": 1.0,
+ "renderProjection": 0.75,
+ "pages": [
+  "Ultimate_p00.png",
+  "Ultimate_p01.png"
+ ],
+ "layers": [
+  {
+   "name": "ChargeTarget",
+   "ppu": 100,
+   "framesPerSecond": 1,
+   "loop": false,
+   "plane": "Ground",
+   "phase": "Charge",
+   "start": 0,
+   "end": 0,
+   "fadeIn": 0.3,
+   "fadeOut": 0.1,
+   "scaleFrom": 0.45454545454545453,
+   "scaleTo": 0.45454545454545453,
+   "spin": 12,
+   "height": 0,
+   "glow": 0.85,
+   "underlay": 0.75,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 0,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "frames": [
+    {
+     "page": 0,
+     "x": 0,
+     "y": 0,
+     "width": 484,
+     "height": 484,
+     "pivot_x": 0.5,
+     "pivot_y": 0.5
+    }
+   ]
+  },
+  {
+   "name": "ChargeSkyFill",
+   "ppu": 100,
+   "framesPerSecond": 1,
+   "loop": false,
+   "plane": "Ground",
+   "phase": "Charge",
+   "start": 0,
+   "end": 0,
+   "fadeIn": 0.4,
+   "fadeOut": 0.1,
+   "scaleFrom": 1.4181818181818182,
+   "scaleTo": 1.0909090909090908,
+   "spin": 0,
+   "height": 1.5874507866387544,
+   "glow": 0.8,
+   "underlay": 0.85,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 10,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "frames": [
+    {
+     "page": 0,
+     "x": 486,
+     "y": 0,
+     "width": 248,
+     "height": 248,
+     "pivot_x": 0.5,
+     "pivot_y": 0.5
+    }
+   ]
+  },
+  {
+   "name": "ChargeSkyOuter",
+   "ppu": 100,
+   "framesPerSecond": 1,
+   "loop": false,
+   "plane": "Ground",
+   "phase": "Charge",
+   "start": 0,
+   "end": 0,
+   "fadeIn": 0.4,
+   "fadeOut": 0.1,
+   "scaleFrom": 0.6230769230769231,
+   "scaleTo": 0.46153846153846156,
+   "spin": 40,
+   "height": 1.5874507866387544,
+   "glow": 0.85,
+   "underlay": 0.9,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 11,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "frames": [
+    {
+     "page": 0,
+     "x": 736,
+     "y": 0,
+     "width": 624,
+     "height": 624,
+     "pivot_x": 0.5,
+     "pivot_y": 0.5
+    }
+   ]
+  },
+  {
+   "name": "ChargeSkyInner",
+   "ppu": 100,
+   "framesPerSecond": 1,
+   "loop": false,
+   "plane": "Ground",
+   "phase": "Charge",
+   "start": 0,
+   "end": 0,
+   "fadeIn": 0.5,
+   "fadeOut": 0.1,
+   "scaleFrom": 0.6461538461538461,
+   "scaleTo": 0.46153846153846156,
+   "spin": -70,
+   "height": 1.5874507866387544,
+   "glow": 0.85,
+   "underlay": 0.9,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 12,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "frames": [
+    {
+     "page": 0,
+     "x": 1362,
+     "y": 0,
+     "width": 364,
+     "height": 364,
+     "pivot_x": 0.5,
+     "pivot_y": 0.5
+    }
+   ]
+  },
+  {
+   "name": "SkyFill",
+   "ppu": 100,
+   "framesPerSecond": 1,
+   "loop": false,
+   "plane": "Ground",
+   "phase": "Release",
+   "start": 0,
+   "end": 1.0,
+   "fadeIn": 0,
+   "fadeOut": 0.5,
+   "scaleFrom": 1.0909090909090908,
+   "scaleTo": 1.2,
+   "spin": 0,
+   "height": 1.5874507866387544,
+   "glow": 0.8,
+   "underlay": 0.5,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 10,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "frames": [
+    {
+     "page": 0,
+     "x": 1728,
+     "y": 0,
+     "width": 248,
+     "height": 248,
+     "pivot_x": 0.5,
+     "pivot_y": 0.5
+    }
+   ]
+  },
+  {
+   "name": "SkyOuter",
+   "ppu": 100,
+   "framesPerSecond": 1,
+   "loop": false,
+   "plane": "Ground",
+   "phase": "Release",
+   "start": 0,
+   "end": 1.0,
+   "fadeIn": 0,
+   "fadeOut": 0.5,
+   "scaleFrom": 0.46153846153846156,
+   "scaleTo": 0.5076923076923078,
+   "spin": 40,
+   "height": 1.5874507866387544,
+   "glow": 0.85,
+   "underlay": 0.9,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 11,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "frames": [
+    {
+     "page": 0,
+     "x": 0,
+     "y": 626,
+     "width": 624,
+     "height": 624,
+     "pivot_x": 0.5,
+     "pivot_y": 0.5
+    }
+   ]
+  },
+  {
+   "name": "SkyInner",
+   "ppu": 100,
+   "framesPerSecond": 1,
+   "loop": false,
+   "plane": "Ground",
+   "phase": "Release",
+   "start": 0,
+   "end": 1.0,
+   "fadeIn": 0,
+   "fadeOut": 0.5,
+   "scaleFrom": 0.46153846153846156,
+   "scaleTo": 0.5076923076923078,
+   "spin": -70,
+   "height": 1.5874507866387544,
+   "glow": 0.85,
+   "underlay": 0.9,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 12,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "frames": [
+    {
+     "page": 0,
+     "x": 626,
+     "y": 626,
+     "width": 364,
+     "height": 364,
+     "pivot_x": 0.5,
+     "pivot_y": 0.5
+    }
+   ]
+  },
+  {
+   "name": "Beams",
+   "ppu": 100,
+   "framesPerSecond": 30,
+   "loop": false,
+   "plane": "Upright",
+   "phase": "Release",
+   "start": 0,
+   "end": 1.0,
+   "fadeIn": 0,
+   "fadeOut": 0.2,
+   "scaleFrom": 1,
+   "scaleTo": 1,
+   "spin": 0,
+   "height": 0,
+   "glow": 1.15,
+   "underlay": 0.7,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 13,
+   "highQualityOnly": false,
+   "stretchToGround": true,
+   "frames": [
+    {
+     "page": 0,
+     "x": 992,
+     "y": 626,
+     "width": 5,
+     "height": 5,
+     "pivot_x": 0.4,
+     "pivot_y": 0.5868951559066773
+    },
+    {
+     "page": 0,
+     "x": 999,
+     "y": 626,
+     "width": 158,
+     "height": 166,
+     "pivot_x": 0.7151898734177216,
+     "pivot_y": -0.29557544711124467
+    },
+    {
+     "page": 0,
+     "x": 1159,
+     "y": 626,
+     "width": 198,
+     "height": 229,
+     "pivot_x": 0.6212121212121212,
+     "pivot_y": -0.030853817556622767
+    },
+    {
+     "page": 0,
+     "x": 1359,
+     "y": 626,
+     "width": 208,
+     "height": 283,
+     "pivot_x": 0.625,
+     "pivot_y": 0.1305105151220261
+    },
+    {
+     "page": 0,
+     "x": 1569,
+     "y": 626,
+     "width": 232,
+     "height": 314,
+     "pivot_x": 0.5603448275862069,
+     "pivot_y": 0.2163518336927815
+    },
+    {
+     "page": 0,
+     "x": 0,
+     "y": 1252,
+     "width": 253,
+     "height": 333,
+     "pivot_x": 0.5138339920948617,
+     "pivot_y": 0.26106449183043057
+    },
+    {
+     "page": 0,
+     "x": 255,
+     "y": 1252,
+     "width": 257,
+     "height": 340,
+     "pivot_x": 0.5058365758754864,
+     "pivot_y": 0.2762778699398041
+    },
+    {
+     "page": 0,
+     "x": 514,
+     "y": 1252,
+     "width": 260,
+     "height": 340,
+     "pivot_x": 0.5,
+     "pivot_y": 0.2762778699398041
+    },
+    {
+     "page": 0,
+     "x": 776,
+     "y": 1252,
+     "width": 260,
+     "height": 340,
+     "pivot_x": 0.5,
+     "pivot_y": 0.2762778699398041
+    },
+    {
+     "page": 0,
+     "x": 1038,
+     "y": 1252,
+     "width": 260,
+     "height": 340,
+     "pivot_x": 0.5,
+     "pivot_y": 0.2762778699398041
+    },
+    {
+     "page": 0,
+     "x": 1300,
+     "y": 1252,
+     "width": 260,
+     "height": 340,
+     "pivot_x": 0.5,
+     "pivot_y": 0.2762778699398041
+    },
+    {
+     "page": 0,
+     "x": 1562,
+     "y": 1252,
+     "width": 260,
+     "height": 340,
+     "pivot_x": 0.5,
+     "pivot_y": 0.2762778699398041
+    },
+    {
+     "page": 0,
+     "x": 0,
+     "y": 1594,
+     "width": 260,
+     "height": 340,
+     "pivot_x": 0.5,
+     "pivot_y": 0.2762778699398041
+    },
+    {
+     "page": 0,
+     "x": 262,
+     "y": 1594,
+     "width": 260,
+     "height": 340,
+     "pivot_x": 0.5,
+     "pivot_y": 0.2762778699398041
+    },
+    {
+     "page": 0,
+     "x": 524,
+     "y": 1594,
+     "width": 260,
+     "height": 340,
+     "pivot_x": 0.5,
+     "pivot_y": 0.2762778699398041
+    },
+    {
+     "page": 0,
+     "x": 786,
+     "y": 1594,
+     "width": 260,
+     "height": 340,
+     "pivot_x": 0.5,
+     "pivot_y": 0.2762778699398041
+    },
+    {
+     "page": 0,
+     "x": 1048,
+     "y": 1594,
+     "width": 260,
+     "height": 340,
+     "pivot_x": 0.5,
+     "pivot_y": 0.2762778699398041
+    },
+    {
+     "page": 0,
+     "x": 1310,
+     "y": 1594,
+     "width": 260,
+     "height": 340,
+     "pivot_x": 0.5,
+     "pivot_y": 0.2762778699398041
+    },
+    {
+     "page": 0,
+     "x": 1572,
+     "y": 1594,
+     "width": 260,
+     "height": 340,
+     "pivot_x": 0.5,
+     "pivot_y": 0.2762778699398041
+    },
+    {
+     "page": 1,
+     "x": 0,
+     "y": 0,
+     "width": 260,
+     "height": 340,
+     "pivot_x": 0.5,
+     "pivot_y": 0.2762778699398041
+    },
+    {
+     "page": 1,
+     "x": 262,
+     "y": 0,
+     "width": 260,
+     "height": 338,
+     "pivot_x": 0.5,
+     "pivot_y": 0.27791265023530587
+    },
+    {
+     "page": 1,
+     "x": 524,
+     "y": 0,
+     "width": 260,
+     "height": 326,
+     "pivot_x": 0.5,
+     "pivot_y": 0.2728051404280165
+    },
+    {
+     "page": 1,
+     "x": 786,
+     "y": 0,
+     "width": 260,
+     "height": 312,
+     "pivot_x": 0.5,
+     "pivot_y": 0.27222588390876085
+    },
+    {
+     "page": 1,
+     "x": 1048,
+     "y": 0,
+     "width": 260,
+     "height": 286,
+     "pivot_x": 0.5,
+     "pivot_y": 0.24452613908927756
+    },
+    {
+     "page": 1,
+     "x": 1310,
+     "y": 0,
+     "width": 259,
+     "height": 272,
+     "pivot_x": 0.5019305019305019,
+     "pivot_y": 0.25343557271887274
+    },
+    {
+     "page": 1,
+     "x": 1571,
+     "y": 0,
+     "width": 258,
+     "height": 271,
+     "pivot_x": 0.5038759689922481,
+     "pivot_y": 0.25068072243370254
+    },
+    {
+     "page": 1,
+     "x": 0,
+     "y": 342,
+     "width": 245,
+     "height": 254,
+     "pivot_x": 0.5306122448979592,
+     "pivot_y": 0.2044664400769031
+    },
+    {
+     "page": 1,
+     "x": 247,
+     "y": 342,
+     "width": 170,
+     "height": 221,
+     "pivot_x": 0.3588235294117647,
+     "pivot_y": 0.08567636099336375
+    },
+    {
+     "page": 1,
+     "x": 419,
+     "y": 342,
+     "width": 5,
+     "height": 5,
+     "pivot_x": 0.4,
+     "pivot_y": 0.5868951559066773
+    },
+    {
+     "page": 1,
+     "x": 426,
+     "y": 342,
+     "width": 5,
+     "height": 5,
+     "pivot_x": 0.4,
+     "pivot_y": 0.5868951559066773
+    }
+   ]
+  },
+  {
+   "name": "Shockwave",
+   "ppu": 100,
+   "framesPerSecond": 1,
+   "loop": false,
+   "plane": "Ground",
+   "phase": "Release",
+   "start": 0.35,
+   "end": 1.0,
+   "fadeIn": 0.04,
+   "fadeOut": 0.4,
+   "scaleFrom": 0.11363636363636363,
+   "scaleTo": 0.6590909090909091,
+   "spin": 0,
+   "height": 0,
+   "glow": 0.85,
+   "underlay": 0.5,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 0,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "frames": [
+    {
+     "page": 1,
+     "x": 433,
+     "y": 342,
+     "width": 464,
+     "height": 464,
+     "pivot_x": 0.5,
+     "pivot_y": 0.5
+    }
+   ]
+  },
+  {
+   "name": "Target",
+   "ppu": 100,
+   "framesPerSecond": 1,
+   "loop": false,
+   "plane": "Ground",
+   "phase": "Release",
+   "start": 0,
+   "end": 0,
+   "fadeIn": 0,
+   "fadeOut": 0.4,
+   "scaleFrom": 0.45454545454545453,
+   "scaleTo": 0.45454545454545453,
+   "spin": 12,
+   "height": 0,
+   "glow": 0.85,
+   "underlay": 0.75,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 0,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "frames": [
+    {
+     "page": 1,
+     "x": 899,
+     "y": 342,
+     "width": 484,
+     "height": 484,
+     "pivot_x": 0.5,
+     "pivot_y": 0.5
+    }
+   ]
+  }
+ ]
+}

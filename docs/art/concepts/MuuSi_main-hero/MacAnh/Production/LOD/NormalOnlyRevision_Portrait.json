@@ -1,0 +1,19 @@
+{
+  "current": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\LOD\\MacAnh_Portrait_CorrectNormalUV1.blend",
+  "previous": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\LOD\\MacAnh_Portrait_RepairedBaked.blend",
+  "current_data": {
+    "positions": "fcf04b6c5b9fae43df02476ea4e28f15369e89989be1a995da2ad14b9e43266a",
+    "triangles": "193a1db6415494f148e65fc64ab01558b80555e323e8aa083d8c5e94aad91707",
+    "uv0": "5883c00ead65e647763daebd11f402f66a237c702d1192b84893f30fa3ecc790",
+    "uv1": "d6cac077f7f745778c157a22c9e954156a539ed4e77429758c5f03e5034cf51f",
+    "weights": "73583efe883412519b4b37a6df4301fcb58dc346f0164d3db96f234ced52d9ae"
+  },
+  "previous_data": {
+    "positions": "fcf04b6c5b9fae43df02476ea4e28f15369e89989be1a995da2ad14b9e43266a",
+    "triangles": "193a1db6415494f148e65fc64ab01558b80555e323e8aa083d8c5e94aad91707",
+    "uv0": "5883c00ead65e647763daebd11f402f66a237c702d1192b84893f30fa3ecc790",
+    "uv1": "d6cac077f7f745778c157a22c9e954156a539ed4e77429758c5f03e5034cf51f",
+    "weights": "73583efe883412519b4b37a6df4301fcb58dc346f0164d3db96f234ced52d9ae"
+  },
+  "equal": true
+}

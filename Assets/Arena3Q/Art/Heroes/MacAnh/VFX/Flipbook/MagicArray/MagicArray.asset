@@ -1,0 +1,190 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5f39fd0d73e6c40b99ad88dc603826, type: 3}
+  m_Name: MagicArray
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.MacAnhVfxRecipe
+  referenceRadius: 1
+  renderProjection: 0.75
+  layers:
+  - name: ChargeFill
+    frames:
+    - {fileID: -5609316426143960077, guid: faca55f502989204497251356ce8c280, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 1
+    start: 0
+    end: 0
+    fadeIn: 0.25
+    fadeOut: 0.1
+    scaleFrom: 1.2
+    scaleTo: 0.95
+    spinDegreesPerSecond: 0
+    stretchToGround: 0
+    height: 0
+    glow: 0.7
+    underlay: 0.85
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 0
+    highQualityOnly: 0
+  - name: ChargeOuter
+    frames:
+    - {fileID: -814387887842996093, guid: faca55f502989204497251356ce8c280, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 1
+    start: 0
+    end: 0
+    fadeIn: 0.25
+    fadeOut: 0.1
+    scaleFrom: 0.46875
+    scaleTo: 0.35625
+    spinDegreesPerSecond: 60
+    stretchToGround: 0
+    height: 0
+    glow: 0.85
+    underlay: 0.9
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 1
+    highQualityOnly: 0
+  - name: ChargeInner
+    frames:
+    - {fileID: -1918804137529237135, guid: faca55f502989204497251356ce8c280, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 1
+    start: 0
+    end: 0
+    fadeIn: 0.3
+    fadeOut: 0.1
+    scaleFrom: 0.4875
+    scaleTo: 0.3375
+    spinDegreesPerSecond: -90
+    stretchToGround: 0
+    height: 0
+    glow: 0.85
+    underlay: 0.9
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 2
+    highQualityOnly: 0
+  - name: Fill
+    frames:
+    - {fileID: -574499184621248550, guid: faca55f502989204497251356ce8c280, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 0
+    start: 0
+    end: 0
+    fadeIn: 0.05
+    fadeOut: 0.35
+    scaleFrom: 1
+    scaleTo: 1
+    spinDegreesPerSecond: 0
+    stretchToGround: 0
+    height: 0
+    glow: 0.7
+    underlay: 0.85
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 0
+    highQualityOnly: 0
+  - name: Outer
+    frames:
+    - {fileID: 4131938407050362064, guid: faca55f502989204497251356ce8c280, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 0
+    start: 0
+    end: 0
+    fadeIn: 0.05
+    fadeOut: 0.35
+    scaleFrom: 0.35625
+    scaleTo: 0.375
+    spinDegreesPerSecond: 18
+    stretchToGround: 0
+    height: 0
+    glow: 0.85
+    underlay: 0.9
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 1
+    highQualityOnly: 0
+  - name: Inner
+    frames:
+    - {fileID: 7912395054927761079, guid: faca55f502989204497251356ce8c280, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 0
+    start: 0
+    end: 0
+    fadeIn: 0.05
+    fadeOut: 0.35
+    scaleFrom: 0.3375
+    scaleTo: 0.375
+    spinDegreesPerSecond: -28
+    stretchToGround: 0
+    height: 0
+    glow: 0.85
+    underlay: 0.9
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 2
+    highQualityOnly: 0
+  - name: Spikes
+    frames:
+    - {fileID: 4154087185498944568, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: -8389350285749415066, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: 6891454403171721132, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: 7694073649630984466, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: 6100409562369943776, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: -7064110960669954666, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: -8443935509693851532, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: -8510063520223714411, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: 1942883030207509825, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: 7692292063395307524, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: 2190756080307481014, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: 1859205178451452594, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: 3944495529914366457, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: 8050414102813949951, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: -1286218123429072607, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: 3598127627162572359, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: 412219621496667253, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: 8211589097244541156, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: -2855211799391208519, guid: faca55f502989204497251356ce8c280, type: 3}
+    - {fileID: 168917416676304078, guid: faca55f502989204497251356ce8c280, type: 3}
+    framesPerSecond: 30
+    loop: 0
+    plane: 0
+    phase: 0
+    start: 0
+    end: 0.7
+    fadeIn: 0
+    fadeOut: 0.15
+    scaleFrom: 1
+    scaleTo: 1
+    spinDegreesPerSecond: 0
+    stretchToGround: 1
+    height: 0
+    glow: 1.1
+    underlay: 0.7
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 3
+    highQualityOnly: 0

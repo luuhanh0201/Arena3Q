@@ -1,0 +1,6 @@
+{
+  "name": "Arena3Q.Graphics3D",
+  "rootNamespace": "Arena3Q.Graphics3D",
+  "references": ["Arena3Q.Core", "Arena3Q.Data", "Arena3Q.Gameplay", "Unity.InputSystem", "UnityEngine.UI", "Unity.RenderPipelines.Universal.Runtime", "Unity.RenderPipelines.Core.Runtime"],
+  "autoReferenced": true
+}

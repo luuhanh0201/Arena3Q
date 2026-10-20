@@ -48,7 +48,10 @@ namespace Arena3Q.Tests.PlayMode
 
         private StageConfig Stage(int index) => _battle.Stages[index];
         private TestLoadout Loadout => Stage(0).TestLoadout;
-        private HeroDefinition Starter(string heroId) => Loadout.GetCards().First(h => h.HeroId == heroId);
+        private HeroDefinition Starter(string heroId) =>
+            AssetDatabase.FindAssets("t:HeroDefinition", new[] { "Assets/Arena3Q/Content/Heroes" })
+                .Select(guid => AssetDatabase.LoadAssetAtPath<HeroDefinition>(AssetDatabase.GUIDToAssetPath(guid)))
+                .First(hero => hero.Kind == HeroKind.Starter && hero.HeroId == heroId);
 
         private T Copy<T>(T original, System.Action<SerializedObject> edit) where T : Object
         {

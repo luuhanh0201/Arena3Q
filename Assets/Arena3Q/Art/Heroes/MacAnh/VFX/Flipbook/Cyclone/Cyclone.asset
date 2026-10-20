@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5f39fd0d73e6c40b99ad88dc603826, type: 3}
+  m_Name: Cyclone
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.MacAnhVfxRecipe
+  referenceRadius: 1
+  renderProjection: 0.75
+  layers:
+  - name: Vortex
+    frames:
+    - {fileID: -4623170486315005958, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 0
+    start: 0
+    end: 0
+    fadeIn: 0.2
+    fadeOut: 0.5
+    scaleFrom: 0.29615384
+    scaleTo: 0.42307693
+    spinDegreesPerSecond: -240
+    stretchToGround: 0
+    height: 0
+    glow: 1
+    underlay: 0.7
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 0
+    highQualityOnly: 0
+  - name: Column
+    frames:
+    - {fileID: -8156990981834051547, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -1080747056483739448, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: 2735527558343660357, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -2613058775519328290, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: 3763595727101776764, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: 4537539701152713619, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -2241054390904308657, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: 1171517909243612074, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -1185457193053010764, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -623380563890996946, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -8328353814758730896, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -234230300307492154, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: 3781041669496648148, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -7513751691392370523, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: 7195334146484328493, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: 5073274036790231005, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    framesPerSecond: 20
+    loop: 1
+    plane: 0
+    phase: 0
+    start: 0
+    end: 0
+    fadeIn: 0.35
+    fadeOut: 0.5
+    scaleFrom: 1
+    scaleTo: 1
+    spinDegreesPerSecond: 0
+    stretchToGround: 0
+    height: 0
+    glow: 1.1
+    underlay: 0.75
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 1
+    highQualityOnly: 0

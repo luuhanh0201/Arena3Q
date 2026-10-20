@@ -1,0 +1,144 @@
+[
+  {
+    "name": "MacAnh_Attack01",
+    "half_frame_samples": 49,
+    "max_wrist_step_m": 0.07746613956645847,
+    "max_step_frame": 11,
+    "max_fan_tip_step_m": 0.31732219389850597,
+    "max_scale_error": 0.0,
+    "events": [
+      {
+        "name": "SpawnWindSlash",
+        "frame": 14
+      }
+    ]
+  },
+  {
+    "name": "MacAnh_Attack02",
+    "half_frame_samples": 91,
+    "max_wrist_step_m": 0.08564867298296633,
+    "max_step_frame": 27,
+    "max_fan_tip_step_m": 0.2675678482120476,
+    "max_scale_error": 0.0,
+    "events": [
+      {
+        "name": "SpawnTripleFeather_0",
+        "frame": 15
+      },
+      {
+        "name": "SpawnTripleFeather_1",
+        "frame": 24
+      },
+      {
+        "name": "SpawnTripleFeather_2",
+        "frame": 33
+      }
+    ]
+  },
+  {
+    "name": "MacAnh_Dodge",
+    "half_frame_samples": 49,
+    "max_wrist_step_m": 0.02740946754746631,
+    "max_step_frame": 1,
+    "max_fan_tip_step_m": 0.02931120500250187,
+    "max_scale_error": 0.0,
+    "events": []
+  },
+  {
+    "name": "MacAnh_DodgeAttack",
+    "half_frame_samples": 67,
+    "max_wrist_step_m": 0.0467867509258719,
+    "max_step_frame": 19,
+    "max_fan_tip_step_m": 0.20805736983110829,
+    "max_scale_error": 0.0,
+    "events": [
+      {
+        "name": "SpawnCounterSlash",
+        "frame": 24
+      }
+    ]
+  },
+  {
+    "name": "MacAnh_Idle",
+    "half_frame_samples": 81,
+    "max_wrist_step_m": 0.00039106607550692404,
+    "max_step_frame": 21,
+    "max_fan_tip_step_m": 0.0003911257017243741,
+    "max_scale_error": 0.0,
+    "events": []
+  },
+  {
+    "name": "MacAnh_Run",
+    "half_frame_samples": 49,
+    "max_wrist_step_m": 0.008392458912219477,
+    "max_step_frame": 24,
+    "max_fan_tip_step_m": 0.015099362265746197,
+    "max_scale_error": 0.0,
+    "events": []
+  },
+  {
+    "name": "MacAnh_Skill01",
+    "half_frame_samples": 109,
+    "max_wrist_step_m": 0.11345579515379124,
+    "max_step_frame": 32,
+    "max_fan_tip_step_m": 0.26578057022160606,
+    "max_scale_error": 0.0,
+    "events": [
+      {
+        "name": "SpawnMagicArray",
+        "frame": 33
+      }
+    ]
+  },
+  {
+    "name": "MacAnh_Skill02",
+    "half_frame_samples": 121,
+    "max_wrist_step_m": 0.03783738113038661,
+    "max_step_frame": 26,
+    "max_fan_tip_step_m": 0.1330249072831606,
+    "max_scale_error": 0.0,
+    "events": [
+      {
+        "name": "SpawnCyclone",
+        "frame": 30
+      }
+    ]
+  },
+  {
+    "name": "MacAnh_Skill03",
+    "half_frame_samples": 85,
+    "max_wrist_step_m": 0.03183834855831399,
+    "max_step_frame": 39,
+    "max_fan_tip_step_m": 0.029348402084091906,
+    "max_scale_error": 0.0,
+    "events": [
+      {
+        "name": "ApplyShield",
+        "frame": 27
+      }
+    ]
+  },
+  {
+    "name": "MacAnh_Ultimate",
+    "half_frame_samples": 211,
+    "max_wrist_step_m": 0.06886310947255403,
+    "max_step_frame": 71,
+    "max_fan_tip_step_m": 0.2249768993923515,
+    "max_scale_error": 0.0,
+    "events": [
+      {
+        "name": "OnUltimateHit",
+        "frame": 75
+      }
+    ]
+  },
+  {
+    "name": "MacAnh_Walk",
+    "half_frame_samples": 73,
+    "max_wrist_step_m": 0.0029296492198758253,
+    "max_step_frame": 36,
+    "max_fan_tip_step_m": 0.005072983346525375,
+    "max_scale_error": 0.0,
+    "events": []
+  }
+]

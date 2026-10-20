@@ -1,0 +1,177 @@
+{
+  "source": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\muu-si.blend",
+  "blender": "4.5.3 LTS",
+  "original_vertices": 1476550,
+  "original_triangles": 2953808,
+  "bones": 87,
+  "coordinates_unchanged": true,
+  "topology_unchanged": true,
+  "uv_unchanged": true,
+  "original_materials_unchanged": true,
+  "source_scale_one": true,
+  "height_including_crown_m": 1.7000000476837158,
+  "original_images": [
+    {
+      "name": "Image_0",
+      "unchanged": true
+    },
+    {
+      "name": "Image_1",
+      "unchanged": true
+    },
+    {
+      "name": "Image_2",
+      "unchanged": true
+    }
+  ],
+  "original_material_nodes_unchanged": true,
+  "parent_inverse_identity": true,
+  "max_influences": 4,
+  "max_weight_sum_error": 1.7881393432617188e-07,
+  "unweighted": 0,
+  "actions": [
+    {
+      "name": "Idle",
+      "frames_checked": 41,
+      "max_grip_error_m": 2.9802322387695312e-08,
+      "max_scale_error": 0,
+      "max_root_translation_m": 0,
+      "finite_rotations": true,
+      "event_markers": []
+    },
+    {
+      "name": "Dodge",
+      "frames_checked": 25,
+      "max_grip_error_m": 5.960464477539063e-08,
+      "max_scale_error": 0,
+      "max_root_translation_m": 0,
+      "finite_rotations": true,
+      "event_markers": []
+    },
+    {
+      "name": "Attack01",
+      "frames_checked": 25,
+      "max_grip_error_m": 5.960464477539063e-08,
+      "max_scale_error": 0,
+      "max_root_translation_m": 0,
+      "finite_rotations": true,
+      "event_markers": [
+        {
+          "name": "SpawnWindSlash",
+          "frame": 14
+        }
+      ]
+    },
+    {
+      "name": "Attack02",
+      "frames_checked": 46,
+      "max_grip_error_m": 6.664001874625056e-08,
+      "max_scale_error": 0,
+      "max_root_translation_m": 0,
+      "finite_rotations": true,
+      "event_markers": [
+        {
+          "name": "SpawnTripleFeather_0",
+          "frame": 15
+        },
+        {
+          "name": "SpawnTripleFeather_1",
+          "frame": 24
+        },
+        {
+          "name": "SpawnTripleFeather_2",
+          "frame": 33
+        }
+      ]
+    },
+    {
+      "name": "Skill01",
+      "frames_checked": 55,
+      "max_grip_error_m": 5.960464477539063e-08,
+      "max_scale_error": 0,
+      "max_root_translation_m": 0,
+      "finite_rotations": true,
+      "event_markers": [
+        {
+          "name": "SpawnMagicArray",
+          "frame": 33
+        }
+      ]
+    },
+    {
+      "name": "Skill02",
+      "frames_checked": 61,
+      "max_grip_error_m": 6.664001874625056e-08,
+      "max_scale_error": 0,
+      "max_root_translation_m": 0,
+      "finite_rotations": true,
+      "event_markers": [
+        {
+          "name": "SpawnCyclone",
+          "frame": 30
+        }
+      ]
+    },
+    {
+      "name": "Skill03",
+      "frames_checked": 43,
+      "max_grip_error_m": 6.664001874625056e-08,
+      "max_scale_error": 0,
+      "max_root_translation_m": 0,
+      "finite_rotations": true,
+      "event_markers": [
+        {
+          "name": "ApplyShield",
+          "frame": 27
+        }
+      ]
+    },
+    {
+      "name": "Ultimate",
+      "frames_checked": 106,
+      "max_grip_error_m": 6.664001874625056e-08,
+      "max_scale_error": 0,
+      "max_root_translation_m": 0,
+      "finite_rotations": true,
+      "event_markers": [
+        {
+          "name": "OnUltimateHit",
+          "frame": 75
+        }
+      ]
+    },
+    {
+      "name": "DodgeAttack",
+      "frames_checked": 34,
+      "max_grip_error_m": 5.960464477539063e-08,
+      "max_scale_error": 0,
+      "max_root_translation_m": 0,
+      "finite_rotations": true,
+      "event_markers": [
+        {
+          "name": "SpawnCounterSlash",
+          "frame": 24
+        }
+      ]
+    },
+    {
+      "name": "Walk",
+      "frames_checked": 37,
+      "max_grip_error_m": 6.664001874625056e-08,
+      "max_scale_error": 0,
+      "max_root_translation_m": 0,
+      "finite_rotations": true,
+      "event_markers": []
+    },
+    {
+      "name": "Run",
+      "frames_checked": 25,
+      "max_grip_error_m": 5.960464477539063e-08,
+      "max_scale_error": 0,
+      "max_root_translation_m": 0,
+      "finite_rotations": true,
+      "event_markers": []
+    }
+  ],
+  "passed": true
+}

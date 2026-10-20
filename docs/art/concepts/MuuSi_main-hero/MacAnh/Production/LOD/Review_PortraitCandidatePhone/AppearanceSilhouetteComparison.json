@@ -1,0 +1,149 @@
+{
+  "reference": "Immutable high source; original weights/DQ used for appearance only. Current actions and same camera/lights. Numeric LBS acceptance is separate.",
+  "views": [
+    {
+      "image": "Attack01_014_Back.png",
+      "alpha_iou": 0.8990941852537255,
+      "reference_pixels": 128892,
+      "portrait_pixels": 124582
+    },
+    {
+      "image": "Attack01_014_Front.png",
+      "alpha_iou": 0.8991591600593534,
+      "reference_pixels": 128862,
+      "portrait_pixels": 124558
+    },
+    {
+      "image": "Attack01_014_Left.png",
+      "alpha_iou": 0.9200763090516593,
+      "reference_pixels": 115324,
+      "portrait_pixels": 114152
+    },
+    {
+      "image": "Attack01_014_Right.png",
+      "alpha_iou": 0.920031458643597,
+      "reference_pixels": 115330,
+      "portrait_pixels": 114156
+    },
+    {
+      "image": "Attack01_014_ThreeQuarter.png",
+      "alpha_iou": 0.8831955363143335,
+      "reference_pixels": 122507,
+      "portrait_pixels": 118478
+    },
+    {
+      "image": "Attack01_014_Top.png",
+      "alpha_iou": 0.8231392238062081,
+      "reference_pixels": 77791,
+      "portrait_pixels": 71453
+    },
+    {
+      "image": "Idle_000_Back.png",
+      "alpha_iou": 0.918298556461473,
+      "reference_pixels": 144611,
+      "portrait_pixels": 139372
+    },
+    {
+      "image": "Idle_000_Front.png",
+      "alpha_iou": 0.9182253564890808,
+      "reference_pixels": 144614,
+      "portrait_pixels": 139362
+    },
+    {
+      "image": "Idle_000_Left.png",
+      "alpha_iou": 0.9282282144333686,
+      "reference_pixels": 106608,
+      "portrait_pixels": 103270
+    },
+    {
+      "image": "Idle_000_Right.png",
+      "alpha_iou": 0.9284204917129102,
+      "reference_pixels": 106614,
+      "portrait_pixels": 103283
+    },
+    {
+      "image": "Idle_000_ThreeQuarter.png",
+      "alpha_iou": 0.9332385342355225,
+      "reference_pixels": 122276,
+      "portrait_pixels": 119721
+    },
+    {
+      "image": "Idle_000_Top.png",
+      "alpha_iou": 0.9078096233268647,
+      "reference_pixels": 77173,
+      "portrait_pixels": 76192
+    },
+    {
+      "image": "Skill02_030_Back.png",
+      "alpha_iou": 0.8866844664438331,
+      "reference_pixels": 143821,
+      "portrait_pixels": 136712
+    },
+    {
+      "image": "Skill02_030_Front.png",
+      "alpha_iou": 0.8866471636571506,
+      "reference_pixels": 143820,
+      "portrait_pixels": 136715
+    },
+    {
+      "image": "Skill02_030_Left.png",
+      "alpha_iou": 0.901923563654771,
+      "reference_pixels": 113734,
+      "portrait_pixels": 111701
+    },
+    {
+      "image": "Skill02_030_Right.png",
+      "alpha_iou": 0.9018635217101545,
+      "reference_pixels": 113750,
+      "portrait_pixels": 111695
+    },
+    {
+      "image": "Skill02_030_ThreeQuarter.png",
+      "alpha_iou": 0.9104873501166302,
+      "reference_pixels": 123757,
+      "portrait_pixels": 121135
+    },
+    {
+      "image": "Skill02_030_Top.png",
+      "alpha_iou": 0.8261250158371822,
+      "reference_pixels": 81187,
+      "portrait_pixels": 77359
+    },
+    {
+      "image": "Ultimate_075_Back.png",
+      "alpha_iou": 0.8669183443205768,
+      "reference_pixels": 135984,
+      "portrait_pixels": 127104
+    },
+    {
+      "image": "Ultimate_075_Front.png",
+      "alpha_iou": 0.8669094109547232,
+      "reference_pixels": 135940,
+      "portrait_pixels": 127087
+    },
+    {
+      "image": "Ultimate_075_Left.png",
+      "alpha_iou": 0.9275505001670153,
+      "reference_pixels": 111105,
+      "portrait_pixels": 108177
+    },
+    {
+      "image": "Ultimate_075_Right.png",
+      "alpha_iou": 0.9276108777049238,
+      "reference_pixels": 111125,
+      "portrait_pixels": 108187
+    },
+    {
+      "image": "Ultimate_075_ThreeQuarter.png",
+      "alpha_iou": 0.8642359612895272,
+      "reference_pixels": 125334,
+      "portrait_pixels": 116614
+    },
+    {
+      "image": "Ultimate_075_Top.png",
+      "alpha_iou": 0.8450312632793056,
+      "reference_pixels": 77773,
+      "portrait_pixels": 74193
+    }
+  ]
+}

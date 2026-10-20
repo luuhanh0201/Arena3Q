@@ -1,0 +1,31 @@
+{
+  "status": "provisional; surface/visual QA pending",
+  "source": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\DeformationFix\\MacAnh_DrapedMotion.blend",
+  "bones": 87,
+  "lods": [
+    {
+      "name": "Portrait",
+      "vertices": 119646,
+      "body_triangles": 240000,
+      "fan_triangles": 0,
+      "total_triangles": 240000,
+      "max_influences": 4,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "seconds": 101.8381040096283
+    },
+    {
+      "name": "Battle",
+      "vertices": 16146,
+      "body_triangles": 33000,
+      "fan_triangles": 0,
+      "total_triangles": 33000,
+      "max_influences": 4,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "seconds": 211.48874878883362
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+    "utc": "2026-10-19T12:57:22.0000634Z",
+    "platform": "WindowsEditor",
+    "device": "GL65 9SDK (Micro-Star International Co., Ltd.)",
+    "gpu": "NVIDIA GeForce GTX 1660 Ti",
+    "cpu": "Intel(R) Core(TM) i5-9300H CPU @ 2.40GHz",
+    "unity": "6000.6.6f1",
+    "ramMB": 16227,
+    "width": 1920,
+    "height": 1080,
+    "sourceTriangles": 2953808,
+    "workload": "1 original skinned character walking + 1 active cyclone; no battle units; capped at display refresh / 120 Hz maximum",
+    "samples": [
+        {
+            "quality": "Low",
+            "frames": 532,
+            "seconds": 15.009037017822266,
+            "fps": 35.4453125,
+            "medianMs": 25.45166015625,
+            "p95Ms": 33.36334228515625
+        },
+        {
+            "quality": "Medium",
+            "frames": 546,
+            "seconds": 16.321067810058594,
+            "fps": 33.45369338989258,
+            "medianMs": 24.19281005859375,
+            "p95Ms": 30.86090087890625
+        },
+        {
+            "quality": "High",
+            "frames": 608,
+            "seconds": 15.010818481445313,
+            "fps": 40.504119873046875,
+            "medianMs": 23.773193359375,
+            "p95Ms": 30.09796142578125
+        }
+    ]
+}

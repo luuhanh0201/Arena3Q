@@ -263,7 +263,15 @@ namespace Arena3Q.Tests.PlayMode
         [UnityTest]
         public IEnumerator Ultimate_EastWind_PushesEnemiesBack_AndSpeedsUpTheArmy()
         {
-            _battle.StartBattle(EmptyStage(), new[] { new LineupEntry(Hero("Lords/Lord_Strategist"), 15) });
+            // Exercise the retained Đông Phong skill explicitly; the strategist's current art kit is Mặc Ảnh.
+            var eastWindLord = Object.Instantiate(Hero("Lords/Lord_Strategist"));
+            _created.Add(eastWindLord);
+            var data = new SerializedObject(eastWindLord);
+            data.FindProperty("macAnhPerformance").objectReferenceValue = null;
+            data.FindProperty("skills").GetArrayElementAtIndex((int)SkillSlot.Ultimate).objectReferenceValue =
+                AssetDatabase.LoadAssetAtPath<SkillDefinition>(ContentRoot + "/Skills/Lord_Strategist/Skill_dong_phong.asset");
+            data.ApplyModifiedPropertiesWithoutUndo();
+            _battle.StartBattle(EmptyStage(), new[] { new LineupEntry(eastWindLord, 15) });
             yield return null;
             var hero = Summon(0);
             var enemy = Enemy(hero.Position + new Vector2(2f, 0f));

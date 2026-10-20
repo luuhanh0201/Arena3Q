@@ -1,0 +1,28 @@
+{
+  "vertices_reweighted": 309470,
+  "geometry_before": {
+    "co": "0d5839d94f54e561ac491d711282d6ee04ede6d616559f07c3268c424306fba7",
+    "uv": "9782043f6121419af72dae0258631110bc28d55c604aa8bb33ec33268dd471c2",
+    "topology": "8d8b9e21e9c08fd2c6b91c94e925a6736095f98e69bb49749d07821af2b7a3d9"
+  },
+  "geometry_after": {
+    "co": "0d5839d94f54e561ac491d711282d6ee04ede6d616559f07c3268c424306fba7",
+    "uv": "9782043f6121419af72dae0258631110bc28d55c604aa8bb33ec33268dd471c2",
+    "topology": "8d8b9e21e9c08fd2c6b91c94e925a6736095f98e69bb49749d07821af2b7a3d9"
+  },
+  "actions_untouched": true,
+  "action_hashes": {
+    "MacAnh_Attack01": "3e850ee180432b40c53304b5b8cbf14f472625ddf7b27ce95174f0e56658f239",
+    "MacAnh_Attack02": "4ad123b544b49d6369247a5af807244ecc9191803eb0f7ba62549d649dbd51f2",
+    "MacAnh_Dodge": "aee4fbdc3d524bfdcea6f4dcedba3c43d90915bb1ecc9bcee4045b28e083da0b",
+    "MacAnh_DodgeAttack": "fd3bea6bb034cfc75896da673bb9afc74475338a8b17309124944bf570f2b704",
+    "MacAnh_Idle": "39685922dc2c4e8816f4744e6521fef8c2c8169f17b5b02ff82092fba4ae2c68",
+    "MacAnh_Run": "5eeaf677825c0637f890ba73fec5ab5f8cbb6ce515fc89e36bdf5e14ac578d0a",
+    "MacAnh_Skill01": "d5c13edecbf7de90a672e587e20ca037bb9c57a735f08a0c776a2a573089bfbe",
+    "MacAnh_Skill02": "2ddf1025c7e4de5592c307b96c77174e368d01bb5315646e6bb36ab01b31326b",
+    "MacAnh_Skill03": "1a45350959cd08eb57b166749f18c917f0ad3b3dd474edff8fb5d14b34ebc952",
+    "MacAnh_Ultimate": "7530368747e548e66f3080654a0c59d163ad5c78a9498769c638cc693e0d94f2",
+    "MacAnh_Walk": "e6eaef3dccc7dd4cb3943124ccc78bd52c0713d85a5db4f0de765ada52b0132c"
+  },
+  "max_influences": 4
+}

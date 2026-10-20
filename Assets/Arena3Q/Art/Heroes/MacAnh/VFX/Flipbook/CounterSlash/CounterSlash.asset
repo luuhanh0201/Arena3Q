@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5f39fd0d73e6c40b99ad88dc603826, type: 3}
+  m_Name: CounterSlash
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.MacAnhVfxRecipe
+  referenceRadius: 1
+  renderProjection: 0.75
+  layers:
+  - name: Blade
+    frames:
+    - {fileID: 1431177545965090513, guid: 7462bf28859911a40a645a86cc000e36, type: 3}
+    - {fileID: 8593235794929196448, guid: 7462bf28859911a40a645a86cc000e36, type: 3}
+    - {fileID: 6192996442060830525, guid: 7462bf28859911a40a645a86cc000e36, type: 3}
+    - {fileID: -4671201327820297721, guid: 7462bf28859911a40a645a86cc000e36, type: 3}
+    - {fileID: -3648808150244087302, guid: 7462bf28859911a40a645a86cc000e36, type: 3}
+    - {fileID: -308702576111376870, guid: 7462bf28859911a40a645a86cc000e36, type: 3}
+    - {fileID: -8626023957114432043, guid: 7462bf28859911a40a645a86cc000e36, type: 3}
+    - {fileID: -284362576014869012, guid: 7462bf28859911a40a645a86cc000e36, type: 3}
+    - {fileID: 3212352329614600426, guid: 7462bf28859911a40a645a86cc000e36, type: 3}
+    - {fileID: 8140154069188329958, guid: 7462bf28859911a40a645a86cc000e36, type: 3}
+    - {fileID: -9151422517446495811, guid: 7462bf28859911a40a645a86cc000e36, type: 3}
+    - {fileID: 2804542598242267742, guid: 7462bf28859911a40a645a86cc000e36, type: 3}
+    framesPerSecond: 24
+    loop: 1
+    plane: 0
+    phase: 0
+    start: 0
+    end: 0
+    fadeIn: 0.04
+    fadeOut: 0.08
+    scaleFrom: 1
+    scaleTo: 1
+    spinDegreesPerSecond: 0
+    stretchToGround: 0
+    height: 0
+    glow: 1.15
+    underlay: 0.85
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 0
+    highQualityOnly: 0

@@ -1,0 +1,266 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5f39fd0d73e6c40b99ad88dc603826, type: 3}
+  m_Name: Ultimate
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.MacAnhVfxRecipe
+  referenceRadius: 1
+  renderProjection: 0.75
+  layers:
+  - name: ChargeTarget
+    frames:
+    - {fileID: 4818563376540683628, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 1
+    start: 0
+    end: 0
+    fadeIn: 0.3
+    fadeOut: 0.1
+    scaleFrom: 0.45454547
+    scaleTo: 0.45454547
+    spinDegreesPerSecond: 12
+    stretchToGround: 0
+    height: 0
+    glow: 0.85
+    underlay: 0.75
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 0
+    highQualityOnly: 0
+  - name: ChargeSkyFill
+    frames:
+    - {fileID: 3157881070480901374, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 1
+    start: 0
+    end: 0
+    fadeIn: 0.4
+    fadeOut: 0.1
+    scaleFrom: 1.1818181
+    scaleTo: 0.90909094
+    spinDegreesPerSecond: 0
+    stretchToGround: 0
+    height: 1.5874507
+    glow: 0.8
+    underlay: 0.85
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 10
+    highQualityOnly: 0
+  - name: ChargeSkyOuter
+    frames:
+    - {fileID: -785667913408247012, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 1
+    start: 0
+    end: 0
+    fadeIn: 0.4
+    fadeOut: 0.1
+    scaleFrom: 0.5192308
+    scaleTo: 0.3846154
+    spinDegreesPerSecond: 40
+    stretchToGround: 0
+    height: 1.5874507
+    glow: 0.85
+    underlay: 0.9
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 11
+    highQualityOnly: 0
+  - name: ChargeSkyInner
+    frames:
+    - {fileID: -604723177434443521, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 1
+    start: 0
+    end: 0
+    fadeIn: 0.5
+    fadeOut: 0.1
+    scaleFrom: 0.53846157
+    scaleTo: 0.3846154
+    spinDegreesPerSecond: -70
+    stretchToGround: 0
+    height: 1.5874507
+    glow: 0.85
+    underlay: 0.9
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 12
+    highQualityOnly: 0
+  - name: SkyFill
+    frames:
+    - {fileID: 9167908390720296403, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 0
+    start: 0
+    end: 1
+    fadeIn: 0
+    fadeOut: 0.5
+    scaleFrom: 0.90909094
+    scaleTo: 1
+    spinDegreesPerSecond: 0
+    stretchToGround: 0
+    height: 1.5874507
+    glow: 0.8
+    underlay: 0.5
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 10
+    highQualityOnly: 0
+  - name: SkyOuter
+    frames:
+    - {fileID: 7759204150393053564, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 0
+    start: 0
+    end: 1
+    fadeIn: 0
+    fadeOut: 0.5
+    scaleFrom: 0.3846154
+    scaleTo: 0.42307693
+    spinDegreesPerSecond: 40
+    stretchToGround: 0
+    height: 1.5874507
+    glow: 0.85
+    underlay: 0.9
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 11
+    highQualityOnly: 0
+  - name: SkyInner
+    frames:
+    - {fileID: 2509929168050536320, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 0
+    start: 0
+    end: 1
+    fadeIn: 0
+    fadeOut: 0.5
+    scaleFrom: 0.3846154
+    scaleTo: 0.42307693
+    spinDegreesPerSecond: -70
+    stretchToGround: 0
+    height: 1.5874507
+    glow: 0.85
+    underlay: 0.9
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 12
+    highQualityOnly: 0
+  - name: Beams
+    frames:
+    - {fileID: 633636200049959121, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: 2576991941028014266, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: -3915684336411070104, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: 1975688372098275206, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: 8780454505933823753, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: 5318780312653075621, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: -5419683605832293243, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: 2489480268471937886, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: 7776689355520584543, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: -3034330920392240030, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: 7667318033929418386, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: -6215860169235815831, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: -6251707671603260737, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: 4433283760511879815, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: 1395647911358688880, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: -1577582035049167115, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: -7917578390171567727, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: -5917017586434363046, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: 8137760211563363721, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: 140167906321812253, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: 6507989664431468841, guid: 9854345c13e337a4399b76546c039d18, type: 3}
+    - {fileID: -2944369979645844446, guid: 85ad9783d93570642b6acee359a02302, type: 3}
+    - {fileID: 2887614003893383322, guid: 85ad9783d93570642b6acee359a02302, type: 3}
+    - {fileID: 8642297395267706451, guid: 85ad9783d93570642b6acee359a02302, type: 3}
+    - {fileID: 1597694038902832537, guid: 85ad9783d93570642b6acee359a02302, type: 3}
+    - {fileID: 2874378144367714774, guid: 85ad9783d93570642b6acee359a02302, type: 3}
+    - {fileID: -4798540882787761917, guid: 85ad9783d93570642b6acee359a02302, type: 3}
+    - {fileID: 2277872922241900436, guid: 85ad9783d93570642b6acee359a02302, type: 3}
+    - {fileID: 2116373206899727727, guid: 85ad9783d93570642b6acee359a02302, type: 3}
+    - {fileID: -2973449305866440953, guid: 85ad9783d93570642b6acee359a02302, type: 3}
+    framesPerSecond: 30
+    loop: 0
+    plane: 0
+    phase: 0
+    start: 0
+    end: 1
+    fadeIn: 0
+    fadeOut: 0.2
+    scaleFrom: 1
+    scaleTo: 1
+    spinDegreesPerSecond: 0
+    stretchToGround: 1
+    height: 0
+    glow: 1.15
+    underlay: 0.7
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 13
+    highQualityOnly: 0
+  - name: Shockwave
+    frames:
+    - {fileID: 3662782875852378307, guid: 85ad9783d93570642b6acee359a02302, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 0
+    start: 0.35
+    end: 1
+    fadeIn: 0.04
+    fadeOut: 0.4
+    scaleFrom: 0.11363637
+    scaleTo: 0.65909094
+    spinDegreesPerSecond: 0
+    stretchToGround: 0
+    height: 0
+    glow: 0.85
+    underlay: 0.5
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 0
+    highQualityOnly: 0
+  - name: Target
+    frames:
+    - {fileID: 7354363820186073546, guid: 85ad9783d93570642b6acee359a02302, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 0
+    start: 0
+    end: 0
+    fadeIn: 0
+    fadeOut: 0.4
+    scaleFrom: 0.45454547
+    scaleTo: 0.45454547
+    spinDegreesPerSecond: 12
+    stretchToGround: 0
+    height: 0
+    glow: 0.85
+    underlay: 0.75
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 0
+    highQualityOnly: 0

@@ -1,0 +1,15 @@
+{
+  "lod": "Portrait",
+  "method": "Cycles selected-to-active tangent-space normal, source material normals included",
+  "resolution": [
+    4096,
+    4096
+  ],
+  "margin_pixels": 12,
+  "cage_extrusion_m": 0.015,
+  "max_ray_distance_m": 0.03,
+  "source_sha256": "8bcb4755b01621f04758cf2a4be7fa147d1d7cd9b44f9fcfe82e16960a1f0af7",
+  "image": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\LOD\\MacAnh_Portrait_Normal_4096.png",
+  "seconds": 28.91054391860962,
+  "status": "baked; inspect seams, silhouette and ray projection before approval"
+}

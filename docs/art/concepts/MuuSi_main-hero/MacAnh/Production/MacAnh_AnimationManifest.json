@@ -1,0 +1,148 @@
+{
+  "fps": 30,
+  "frame_time_convention": "frame label f means f/30 seconds; frame 0 is a preroll pose",
+  "in_place": true,
+  "height_including_crown_m": 1.7,
+  "clips": [
+    {
+      "name": "Idle",
+      "first": 0,
+      "last": 40,
+      "duration": 1.3333333333333333,
+      "loop": true,
+      "events": []
+    },
+    {
+      "name": "Walk",
+      "first": 0,
+      "last": 36,
+      "duration": 1.2,
+      "loop": true,
+      "events": []
+    },
+    {
+      "name": "Run",
+      "first": 0,
+      "last": 24,
+      "duration": 0.8,
+      "loop": true,
+      "events": []
+    },
+    {
+      "name": "Dodge",
+      "first": 0,
+      "last": 24,
+      "duration": 0.8,
+      "loop": false,
+      "events": []
+    },
+    {
+      "name": "Attack01",
+      "first": 0,
+      "last": 24,
+      "duration": 0.8,
+      "loop": false,
+      "events": [
+        {
+          "frame": 14,
+          "time": 0.4666666666666667,
+          "event": "SpawnWindSlash"
+        }
+      ]
+    },
+    {
+      "name": "Attack02",
+      "first": 0,
+      "last": 45,
+      "duration": 1.5,
+      "loop": false,
+      "events": [
+        {
+          "frame": 15,
+          "time": 0.5,
+          "event": "SpawnTripleFeather_0"
+        },
+        {
+          "frame": 24,
+          "time": 0.8,
+          "event": "SpawnTripleFeather_1"
+        },
+        {
+          "frame": 33,
+          "time": 1.1,
+          "event": "SpawnTripleFeather_2"
+        }
+      ]
+    },
+    {
+      "name": "Skill01",
+      "first": 0,
+      "last": 54,
+      "duration": 1.8,
+      "loop": false,
+      "events": [
+        {
+          "frame": 33,
+          "time": 1.1,
+          "event": "SpawnMagicArray"
+        }
+      ]
+    },
+    {
+      "name": "Skill02",
+      "first": 0,
+      "last": 60,
+      "duration": 2.0,
+      "loop": false,
+      "events": [
+        {
+          "frame": 30,
+          "time": 1.0,
+          "event": "SpawnCyclone"
+        }
+      ]
+    },
+    {
+      "name": "Skill03",
+      "first": 0,
+      "last": 42,
+      "duration": 1.4,
+      "loop": false,
+      "events": [
+        {
+          "frame": 27,
+          "time": 0.9,
+          "event": "ApplyShield"
+        }
+      ]
+    },
+    {
+      "name": "Ultimate",
+      "first": 0,
+      "last": 105,
+      "duration": 3.5,
+      "loop": false,
+      "events": [
+        {
+          "frame": 75,
+          "time": 2.5,
+          "event": "OnUltimateHit"
+        }
+      ]
+    },
+    {
+      "name": "DodgeAttack",
+      "first": 0,
+      "last": 33,
+      "duration": 1.1,
+      "loop": false,
+      "events": [
+        {
+          "frame": 24,
+          "time": 0.8,
+          "event": "SpawnCounterSlash"
+        }
+      ]
+    }
+  ]
+}

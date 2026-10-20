@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5f39fd0d73e6c40b99ad88dc603826, type: 3}
+  m_Name: Impact
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.MacAnhVfxRecipe
+  referenceRadius: 0.3
+  renderProjection: 0.75
+  layers:
+  - name: Burst
+    frames:
+    - {fileID: 8336797386023541062, guid: b8390693b8cf7da4585157869905e007, type: 3}
+    - {fileID: -4345461106898639895, guid: b8390693b8cf7da4585157869905e007, type: 3}
+    - {fileID: 1011073580110570704, guid: b8390693b8cf7da4585157869905e007, type: 3}
+    - {fileID: 4625666292072448384, guid: b8390693b8cf7da4585157869905e007, type: 3}
+    - {fileID: -6649258058096653174, guid: b8390693b8cf7da4585157869905e007, type: 3}
+    - {fileID: -8911258432375922855, guid: b8390693b8cf7da4585157869905e007, type: 3}
+    - {fileID: -1884860441957819189, guid: b8390693b8cf7da4585157869905e007, type: 3}
+    - {fileID: 3957578639024814341, guid: b8390693b8cf7da4585157869905e007, type: 3}
+    - {fileID: 4084246396692793888, guid: b8390693b8cf7da4585157869905e007, type: 3}
+    - {fileID: -8412740523964153306, guid: b8390693b8cf7da4585157869905e007, type: 3}
+    - {fileID: 2962186585799442755, guid: b8390693b8cf7da4585157869905e007, type: 3}
+    - {fileID: -1727007369190119667, guid: b8390693b8cf7da4585157869905e007, type: 3}
+    - {fileID: -4969699400587365709, guid: b8390693b8cf7da4585157869905e007, type: 3}
+    - {fileID: 4308726437679342904, guid: b8390693b8cf7da4585157869905e007, type: 3}
+    - {fileID: 2073393600330941526, guid: b8390693b8cf7da4585157869905e007, type: 3}
+    - {fileID: -4609574211244400782, guid: b8390693b8cf7da4585157869905e007, type: 3}
+    framesPerSecond: 30
+    loop: 0
+    plane: 0
+    phase: 0
+    start: 0
+    end: 0
+    fadeIn: 0
+    fadeOut: 0.12
+    scaleFrom: 1
+    scaleTo: 1
+    spinDegreesPerSecond: 0
+    stretchToGround: 0
+    height: 0
+    glow: 0.85
+    underlay: 0.6
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 0
+    highQualityOnly: 0

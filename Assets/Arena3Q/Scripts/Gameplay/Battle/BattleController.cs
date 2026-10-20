@@ -344,6 +344,8 @@ namespace Arena3Q.Gameplay
                     unit.Simulate(deltaTime);
             }
 
+            GetComponent<MacAnhProjectiles>()?.Simulate(deltaTime);
+
             // Skill areas that stay on the ground (fire field, rain of arrows…).
             for (var i = _zones.Count - 1; i >= 0; i--)
             {

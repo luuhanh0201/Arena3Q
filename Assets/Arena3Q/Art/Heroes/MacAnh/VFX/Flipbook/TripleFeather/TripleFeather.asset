@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5f39fd0d73e6c40b99ad88dc603826, type: 3}
+  m_Name: TripleFeather
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.MacAnhVfxRecipe
+  referenceRadius: 1
+  renderProjection: 0.75
+  layers:
+  - name: Feather
+    frames:
+    - {fileID: -7493424129835060155, guid: d636272b9549cce479e80e7fb597e10f, type: 3}
+    - {fileID: -844038691729013087, guid: d636272b9549cce479e80e7fb597e10f, type: 3}
+    - {fileID: 6286032732917473996, guid: d636272b9549cce479e80e7fb597e10f, type: 3}
+    - {fileID: -2334655435891685444, guid: d636272b9549cce479e80e7fb597e10f, type: 3}
+    - {fileID: -3221502879444296940, guid: d636272b9549cce479e80e7fb597e10f, type: 3}
+    - {fileID: -1935781752283903530, guid: d636272b9549cce479e80e7fb597e10f, type: 3}
+    - {fileID: 4636153213338093216, guid: d636272b9549cce479e80e7fb597e10f, type: 3}
+    - {fileID: -8280598155622129745, guid: d636272b9549cce479e80e7fb597e10f, type: 3}
+    - {fileID: 3123074743979536426, guid: d636272b9549cce479e80e7fb597e10f, type: 3}
+    - {fileID: 1898172973162110168, guid: d636272b9549cce479e80e7fb597e10f, type: 3}
+    - {fileID: -6006056250034603175, guid: d636272b9549cce479e80e7fb597e10f, type: 3}
+    - {fileID: 2728711612022340166, guid: d636272b9549cce479e80e7fb597e10f, type: 3}
+    framesPerSecond: 24
+    loop: 1
+    plane: 0
+    phase: 0
+    start: 0
+    end: 0
+    fadeIn: 0.04
+    fadeOut: 0.08
+    scaleFrom: 1
+    scaleTo: 1
+    spinDegreesPerSecond: 0
+    stretchToGround: 0
+    height: 0
+    glow: 1.15
+    underlay: 0.85
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 0
+    highQualityOnly: 0

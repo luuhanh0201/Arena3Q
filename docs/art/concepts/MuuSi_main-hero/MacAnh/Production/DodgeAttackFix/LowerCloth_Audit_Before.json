@@ -1,0 +1,1769 @@
+{
+  "source": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\muu-si.blend",
+  "source_sha256": "9e24aaaa481572a1bbc1739873792c774aa7004bb06d74dd6da6fff62bdb29c5",
+  "coordinates_sha256": "0d5839d94f54e561ac491d711282d6ee04ede6d616559f07c3268c424306fba7",
+  "vertices": 1476550,
+  "bones": 87,
+  "parents": {
+    "Root": null,
+    "Pelvis": "Root",
+    "Spine": "Pelvis",
+    "Chest": "Spine",
+    "Neck": "Chest",
+    "Head": "Neck",
+    "Hair_Right_1": "Head",
+    "Hair_Right_2": "Hair_Right_1",
+    "Hair_Right_3": "Hair_Right_2",
+    "Hair_Right_4": "Hair_Right_3",
+    "Ribbon_Right_1": "Head",
+    "Ribbon_Right_2": "Ribbon_Right_1",
+    "Ribbon_Right_3": "Ribbon_Right_2",
+    "Hair_Left_1": "Head",
+    "Hair_Left_2": "Hair_Left_1",
+    "Hair_Left_3": "Hair_Left_2",
+    "Hair_Left_4": "Hair_Left_3",
+    "Ribbon_Left_1": "Head",
+    "Ribbon_Left_2": "Ribbon_Left_1",
+    "Ribbon_Left_3": "Ribbon_Left_2",
+    "RightShoulder": "Chest",
+    "RightUpperArm": "RightShoulder",
+    "RightLowerArm": "RightUpperArm",
+    "RightHand": "RightLowerArm",
+    "RightThumb1": "RightHand",
+    "RightThumb2": "RightThumb1",
+    "RightThumb3": "RightThumb2",
+    "RightIndex1": "RightHand",
+    "RightIndex2": "RightIndex1",
+    "RightIndex3": "RightIndex2",
+    "RightMiddle1": "RightHand",
+    "RightMiddle2": "RightMiddle1",
+    "RightMiddle3": "RightMiddle2",
+    "RightRing1": "RightHand",
+    "RightRing2": "RightRing1",
+    "RightRing3": "RightRing2",
+    "RightLittle1": "RightHand",
+    "RightLittle2": "RightLittle1",
+    "RightLittle3": "RightLittle2",
+    "Socket_Hand_R": "RightHand",
+    "Sleeve_Right_1": "RightUpperArm",
+    "Sleeve_Right_2": "Sleeve_Right_1",
+    "Sleeve_Right_3": "Sleeve_Right_2",
+    "LeftShoulder": "Chest",
+    "LeftUpperArm": "LeftShoulder",
+    "LeftLowerArm": "LeftUpperArm",
+    "LeftHand": "LeftLowerArm",
+    "LeftThumb1": "LeftHand",
+    "LeftThumb2": "LeftThumb1",
+    "LeftThumb3": "LeftThumb2",
+    "LeftIndex1": "LeftHand",
+    "LeftIndex2": "LeftIndex1",
+    "LeftIndex3": "LeftIndex2",
+    "LeftMiddle1": "LeftHand",
+    "LeftMiddle2": "LeftMiddle1",
+    "LeftMiddle3": "LeftMiddle2",
+    "LeftRing1": "LeftHand",
+    "LeftRing2": "LeftRing1",
+    "LeftRing3": "LeftRing2",
+    "LeftLittle1": "LeftHand",
+    "LeftLittle2": "LeftLittle1",
+    "LeftLittle3": "LeftLittle2",
+    "Socket_Hand_L": "LeftHand",
+    "Sleeve_Left_1": "LeftUpperArm",
+    "Sleeve_Left_2": "Sleeve_Left_1",
+    "Sleeve_Left_3": "Sleeve_Left_2",
+    "Socket_Cast": "Chest",
+    "RightThigh": "Pelvis",
+    "RightShin": "RightThigh",
+    "RightFoot": "RightShin",
+    "RightToe": "RightFoot",
+    "Robe_Right_Outer_1": "Pelvis",
+    "Robe_Right_Outer_2": "Robe_Right_Outer_1",
+    "Robe_Right_Outer_3": "Robe_Right_Outer_2",
+    "Robe_Right_Inner_1": "Pelvis",
+    "Robe_Right_Inner_2": "Robe_Right_Inner_1",
+    "Robe_Right_Inner_3": "Robe_Right_Inner_2",
+    "LeftThigh": "Pelvis",
+    "LeftShin": "LeftThigh",
+    "LeftFoot": "LeftShin",
+    "LeftToe": "LeftFoot",
+    "Robe_Left_Outer_1": "Pelvis",
+    "Robe_Left_Outer_2": "Robe_Left_Outer_1",
+    "Robe_Left_Outer_3": "Robe_Left_Outer_2",
+    "Robe_Left_Inner_1": "Pelvis",
+    "Robe_Left_Inner_2": "Robe_Left_Inner_1",
+    "Robe_Left_Inner_3": "Robe_Left_Inner_2"
+  },
+  "regions": {
+    "central_lower": {
+      "vertices": 462043,
+      "arm_influenced": 18961,
+      "max_arm_mass": 1.000000238418579,
+      "groups": {
+        "RightLowerArm": 5349,
+        "Sleeve_Right_1": 6684,
+        "Sleeve_Right_2": 7830,
+        "Sleeve_Right_3": 7881,
+        "LeftLowerArm": 4531,
+        "Sleeve_Left_1": 7451,
+        "Sleeve_Left_2": 10740,
+        "Sleeve_Left_3": 10779
+      },
+      "examples": [
+        {
+          "vertex": 163132,
+          "co": [
+            -0.21490365266799927,
+            -0.041700687259435654,
+            0.4970642328262329
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.42270269989967346
+            ],
+            [
+              "Sleeve_Right_3",
+              0.3555947244167328
+            ],
+            [
+              "Sleeve_Right_1",
+              0.17301516234874725
+            ],
+            [
+              "RightLowerArm",
+              0.04868750274181366
+            ]
+          ]
+        },
+        {
+          "vertex": 139812,
+          "co": [
+            -0.22583000361919403,
+            -0.12539532780647278,
+            0.5023244619369507
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.4098278284072876
+            ],
+            [
+              "Sleeve_Right_3",
+              0.35366079211235046
+            ],
+            [
+              "Sleeve_Right_1",
+              0.14272630214691162
+            ],
+            [
+              "RightLowerArm",
+              0.09378517419099808
+            ]
+          ]
+        },
+        {
+          "vertex": 1257199,
+          "co": [
+            0.20617331564426422,
+            -0.12124744057655334,
+            0.4714186191558838
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_2",
+              0.4117553234100342
+            ],
+            [
+              "Sleeve_Left_3",
+              0.4038316607475281
+            ],
+            [
+              "Sleeve_Left_1",
+              0.11315207183361053
+            ],
+            [
+              "LeftLowerArm",
+              0.07126099616289139
+            ]
+          ]
+        },
+        {
+          "vertex": 1257202,
+          "co": [
+            0.20606155693531036,
+            -0.0743124932050705,
+            0.4385206997394562
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_3",
+              0.4619349241256714
+            ],
+            [
+              "Sleeve_Left_2",
+              0.423656165599823
+            ],
+            [
+              "Sleeve_Left_1",
+              0.07874337583780289
+            ],
+            [
+              "LeftLowerArm",
+              0.0356655977666378
+            ]
+          ]
+        },
+        {
+          "vertex": 163094,
+          "co": [
+            -0.21422143280506134,
+            -0.13670258224010468,
+            0.49616295099258423
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.39656132459640503
+            ],
+            [
+              "Sleeve_Right_3",
+              0.3568688929080963
+            ],
+            [
+              "Sleeve_Right_1",
+              0.14296631515026093
+            ],
+            [
+              "RightLowerArm",
+              0.1036035418510437
+            ]
+          ]
+        },
+        {
+          "vertex": 163068,
+          "co": [
+            -0.21405959129333496,
+            -0.09177763015031815,
+            0.4084974229335785
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_3",
+              0.5255720615386963
+            ],
+            [
+              "Sleeve_Right_2",
+              0.39789730310440063
+            ],
+            [
+              "Sleeve_Right_1",
+              0.04863908886909485
+            ],
+            [
+              "RightLowerArm",
+              0.027891600504517555
+            ]
+          ]
+        },
+        {
+          "vertex": 1272823,
+          "co": [
+            0.21398180723190308,
+            -0.09763064980506897,
+            0.40854930877685547
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_3",
+              0.5270405411720276
+            ],
+            [
+              "Sleeve_Left_2",
+              0.3973686099052429
+            ],
+            [
+              "Sleeve_Left_1",
+              0.04705430567264557
+            ],
+            [
+              "LeftLowerArm",
+              0.02853662520647049
+            ]
+          ]
+        },
+        {
+          "vertex": 163054,
+          "co": [
+            -0.21447715163230896,
+            -0.10156752169132233,
+            0.5541976690292358
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.40560731291770935
+            ],
+            [
+              "Sleeve_Right_1",
+              0.2877837121486664
+            ],
+            [
+              "Sleeve_Right_3",
+              0.18528500199317932
+            ],
+            [
+              "RightLowerArm",
+              0.12132405489683151
+            ]
+          ]
+        },
+        {
+          "vertex": 177716,
+          "co": [
+            -0.2075994610786438,
+            -0.14666235446929932,
+            0.5197385549545288
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.37647855281829834
+            ],
+            [
+              "Sleeve_Right_3",
+              0.2858613431453705
+            ],
+            [
+              "Sleeve_Right_1",
+              0.1925312876701355
+            ],
+            [
+              "RightLowerArm",
+              0.14512892067432404
+            ]
+          ]
+        },
+        {
+          "vertex": 139819,
+          "co": [
+            -0.2258264273405075,
+            -0.1470182090997696,
+            0.4775846004486084
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.4070674777030945
+            ],
+            [
+              "Sleeve_Right_3",
+              0.40055763721466064
+            ],
+            [
+              "Sleeve_Right_1",
+              0.10203710943460464
+            ],
+            [
+              "RightLowerArm",
+              0.0903378278017044
+            ]
+          ]
+        },
+        {
+          "vertex": 1284497,
+          "co": [
+            0.22143889963626862,
+            -0.0871916189789772,
+            0.3546096682548523
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_3",
+              0.6943498849868774
+            ],
+            [
+              "Sleeve_Left_2",
+              0.27180561423301697
+            ],
+            [
+              "Sleeve_Left_1",
+              0.020653950050473213
+            ],
+            [
+              "LeftLowerArm",
+              0.01319056935608387
+            ]
+          ]
+        },
+        {
+          "vertex": 1272802,
+          "co": [
+            0.21398001909255981,
+            -0.1467633843421936,
+            0.4553787410259247
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_3",
+              0.42151689529418945
+            ],
+            [
+              "Sleeve_Left_2",
+              0.4184423089027405
+            ],
+            [
+              "Sleeve_Left_1",
+              0.08571010082960129
+            ],
+            [
+              "LeftLowerArm",
+              0.07433080673217773
+            ]
+          ]
+        },
+        {
+          "vertex": 1284493,
+          "co": [
+            0.2200118452310562,
+            -0.1266256719827652,
+            0.39219197630882263
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_3",
+              0.5600886344909668
+            ],
+            [
+              "Sleeve_Left_2",
+              0.37491413950920105
+            ],
+            [
+              "Sleeve_Left_1",
+              0.03576630353927612
+            ],
+            [
+              "LeftLowerArm",
+              0.029230955988168716
+            ]
+          ]
+        },
+        {
+          "vertex": 1272799,
+          "co": [
+            0.2155626267194748,
+            -0.11972294747829437,
+            0.473919540643692
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_2",
+              0.41613060235977173
+            ],
+            [
+              "Sleeve_Left_3",
+              0.40678030252456665
+            ],
+            [
+              "Sleeve_Left_1",
+              0.10828196257352829
+            ],
+            [
+              "LeftLowerArm",
+              0.0688072070479393
+            ]
+          ]
+        },
+        {
+          "vertex": 1272822,
+          "co": [
+            0.21469084918498993,
+            -0.05456103757023811,
+            0.4313211441040039
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_3",
+              0.48937544226646423
+            ],
+            [
+              "Sleeve_Left_2",
+              0.4159811735153198
+            ],
+            [
+              "Sleeve_Left_1",
+              0.0673031136393547
+            ],
+            [
+              "LeftLowerArm",
+              0.027340298518538475
+            ]
+          ]
+        },
+        {
+          "vertex": 159255,
+          "co": [
+            -0.2160848081111908,
+            -0.07761810719966888,
+            0.4825497269630432
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.42347872257232666
+            ],
+            [
+              "Sleeve_Right_3",
+              0.3937528133392334
+            ],
+            [
+              "Sleeve_Right_1",
+              0.1303941309452057
+            ],
+            [
+              "RightLowerArm",
+              0.052374452352523804
+            ]
+          ]
+        },
+        {
+          "vertex": 178007,
+          "co": [
+            -0.20718728005886078,
+            -0.11391463130712509,
+            0.5393317937850952
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.3959253132343292
+            ],
+            [
+              "Sleeve_Right_1",
+              0.2511739134788513
+            ],
+            [
+              "Sleeve_Right_3",
+              0.22962652146816254
+            ],
+            [
+              "RightLowerArm",
+              0.12327438592910767
+            ]
+          ]
+        },
+        {
+          "vertex": 162969,
+          "co": [
+            -0.2144959419965744,
+            -0.10629034787416458,
+            0.5614964962005615
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.3987322151660919
+            ],
+            [
+              "Sleeve_Right_1",
+              0.30132395029067993
+            ],
+            [
+              "Sleeve_Right_3",
+              0.1650288999080658
+            ],
+            [
+              "RightLowerArm",
+              0.1349150538444519
+            ]
+          ]
+        },
+        {
+          "vertex": 145470,
+          "co": [
+            -0.2222418338060379,
+            -0.14915072917938232,
+            0.4791126549243927
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.40147480368614197
+            ],
+            [
+              "Sleeve_Right_3",
+              0.3898966312408447
+            ],
+            [
+              "Sleeve_Right_1",
+              0.11080048233270645
+            ],
+            [
+              "RightLowerArm",
+              0.097828209400177
+            ]
+          ]
+        },
+        {
+          "vertex": 154740,
+          "co": [
+            -0.21798038482666016,
+            -0.14230522513389587,
+            0.48653489351272583
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.40045401453971863
+            ],
+            [
+              "Sleeve_Right_3",
+              0.38057708740234375
+            ],
+            [
+              "Sleeve_Right_1",
+              0.12161752581596375
+            ],
+            [
+              "RightLowerArm",
+              0.09735149890184402
+            ]
+          ]
+        }
+      ]
+    },
+    "front_lower": {
+      "vertices": 319149,
+      "arm_influenced": 63438,
+      "max_arm_mass": 1.000000238418579,
+      "groups": {
+        "RightLowerArm": 12948,
+        "RightHand": 153,
+        "RightThumb1": 70,
+        "RightThumb2": 169,
+        "RightThumb3": 212,
+        "RightIndex1": 127,
+        "RightIndex2": 668,
+        "RightIndex3": 741,
+        "RightMiddle1": 348,
+        "RightMiddle2": 914,
+        "RightMiddle3": 685,
+        "RightRing1": 184,
+        "RightRing2": 286,
+        "RightRing3": 269,
+        "RightLittle1": 7,
+        "RightLittle2": 4,
+        "Sleeve_Right_1": 16086,
+        "Sleeve_Right_2": 28068,
+        "Sleeve_Right_3": 28881,
+        "LeftLowerArm": 11529,
+        "LeftHand": 1049,
+        "LeftThumb2": 122,
+        "LeftThumb3": 153,
+        "LeftIndex1": 556,
+        "LeftIndex2": 705,
+        "LeftIndex3": 371,
+        "LeftMiddle1": 704,
+        "LeftMiddle2": 470,
+        "LeftMiddle3": 101,
+        "LeftRing1": 274,
+        "LeftRing2": 266,
+        "LeftRing3": 102,
+        "LeftLittle1": 39,
+        "LeftLittle2": 34,
+        "LeftLittle3": 26,
+        "Sleeve_Left_1": 15717,
+        "Sleeve_Left_2": 30794,
+        "Sleeve_Left_3": 31476
+      },
+      "examples": [
+        {
+          "vertex": 1296544,
+          "co": [
+            0.2288772016763687,
+            -0.046825870871543884,
+            0.39508897066116333
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_3",
+              0.5968170166015625
+            ],
+            [
+              "Sleeve_Left_2",
+              0.35132643580436707
+            ],
+            [
+              "Sleeve_Left_1",
+              0.03572879359126091
+            ],
+            [
+              "LeftLowerArm",
+              0.01612778939306736
+            ]
+          ]
+        },
+        {
+          "vertex": 72587,
+          "co": [
+            -0.2719423472881317,
+            -0.18759050965309143,
+            0.46674320101737976
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_3",
+              0.4153960645198822
+            ],
+            [
+              "Sleeve_Right_2",
+              0.4142582416534424
+            ],
+            [
+              "RightLowerArm",
+              0.10876772552728653
+            ],
+            [
+              "Sleeve_Right_1",
+              0.06157798320055008
+            ]
+          ]
+        },
+        {
+          "vertex": 164728,
+          "co": [
+            -0.21307246387004852,
+            -0.16824856400489807,
+            0.5407713651657104
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.34460577368736267
+            ],
+            [
+              "Sleeve_Right_3",
+              0.22297672927379608
+            ],
+            [
+              "Sleeve_Right_1",
+              0.2179231494665146
+            ],
+            [
+              "RightLowerArm",
+              0.21449443697929382
+            ]
+          ]
+        },
+        {
+          "vertex": 1365579,
+          "co": [
+            0.28113317489624023,
+            -0.13798029720783234,
+            0.5571760535240173
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_2",
+              0.42016497254371643
+            ],
+            [
+              "Sleeve_Left_3",
+              0.19961915910243988
+            ],
+            [
+              "Sleeve_Left_1",
+              0.1912650763988495
+            ],
+            [
+              "LeftLowerArm",
+              0.18895092606544495
+            ]
+          ]
+        },
+        {
+          "vertex": 164583,
+          "co": [
+            -0.21362057328224182,
+            -0.11329948157072067,
+            0.5079896450042725
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.40681490302085876
+            ],
+            [
+              "Sleeve_Right_3",
+              0.32972419261932373
+            ],
+            [
+              "Sleeve_Right_1",
+              0.17171964049339294
+            ],
+            [
+              "RightLowerArm",
+              0.09174131602048874
+            ]
+          ]
+        },
+        {
+          "vertex": 1296507,
+          "co": [
+            0.22792942821979523,
+            -0.13802410662174225,
+            0.513991117477417
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_2",
+              0.39869242906570435
+            ],
+            [
+              "Sleeve_Left_3",
+              0.3194821774959564
+            ],
+            [
+              "Sleeve_Left_1",
+              0.16086356341838837
+            ],
+            [
+              "LeftLowerArm",
+              0.12096192687749863
+            ]
+          ]
+        },
+        {
+          "vertex": 1296502,
+          "co": [
+            0.22774255275726318,
+            -0.1434774398803711,
+            0.4702705442905426
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_2",
+              0.41556891798973083
+            ],
+            [
+              "Sleeve_Left_3",
+              0.41383621096611023
+            ],
+            [
+              "Sleeve_Left_1",
+              0.09120111167430878
+            ],
+            [
+              "LeftLowerArm",
+              0.07939384132623672
+            ]
+          ]
+        },
+        {
+          "vertex": 1296501,
+          "co": [
+            0.22806622087955475,
+            -0.14291323721408844,
+            0.46907779574394226
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_2",
+              0.4166378974914551
+            ],
+            [
+              "Sleeve_Left_3",
+              0.41513264179229736
+            ],
+            [
+              "Sleeve_Left_1",
+              0.08999443054199219
+            ],
+            [
+              "LeftLowerArm",
+              0.07823514193296432
+            ]
+          ]
+        },
+        {
+          "vertex": 164650,
+          "co": [
+            -0.21271122992038727,
+            -0.11852122098207474,
+            0.515184760093689
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.4031064510345459
+            ],
+            [
+              "Sleeve_Right_3",
+              0.3088074326515198
+            ],
+            [
+              "Sleeve_Right_1",
+              0.18560944497585297
+            ],
+            [
+              "RightLowerArm",
+              0.10247673094272614
+            ]
+          ]
+        },
+        {
+          "vertex": 1365707,
+          "co": [
+            0.2782522737979889,
+            -0.12614908814430237,
+            0.38217589259147644
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_3",
+              0.6768401861190796
+            ],
+            [
+              "Sleeve_Left_2",
+              0.2937168776988983
+            ],
+            [
+              "Sleeve_Left_1",
+              0.014819921925663948
+            ],
+            [
+              "LeftLowerArm",
+              0.014623047783970833
+            ]
+          ]
+        },
+        {
+          "vertex": 1296483,
+          "co": [
+            0.22762632369995117,
+            -0.1143268421292305,
+            0.4466501772403717
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_3",
+              0.4549655616283417
+            ],
+            [
+              "Sleeve_Left_2",
+              0.43359375
+            ],
+            [
+              "Sleeve_Left_1",
+              0.06649205088615417
+            ],
+            [
+              "LeftLowerArm",
+              0.04494866356253624
+            ]
+          ]
+        },
+        {
+          "vertex": 108043,
+          "co": [
+            -0.24453172087669373,
+            -0.042627010494470596,
+            0.481987327337265
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.44125688076019287
+            ],
+            [
+              "Sleeve_Right_3",
+              0.4167524576187134
+            ],
+            [
+              "Sleeve_Right_1",
+              0.10843897610902786
+            ],
+            [
+              "RightLowerArm",
+              0.033551763743162155
+            ]
+          ]
+        },
+        {
+          "vertex": 1342561,
+          "co": [
+            0.2567232549190521,
+            -0.2225261628627777,
+            0.5435941219329834
+          ],
+          "weights": [
+            [
+              "LeftLowerArm",
+              0.38885024189949036
+            ],
+            [
+              "Sleeve_Left_2",
+              0.2637175917625427
+            ],
+            [
+              "Sleeve_Left_3",
+              0.1995064914226532
+            ],
+            [
+              "Sleeve_Left_1",
+              0.14792579412460327
+            ]
+          ]
+        },
+        {
+          "vertex": 145470,
+          "co": [
+            -0.2222418338060379,
+            -0.14915072917938232,
+            0.4791126549243927
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.40147480368614197
+            ],
+            [
+              "Sleeve_Right_3",
+              0.3898966312408447
+            ],
+            [
+              "Sleeve_Right_1",
+              0.11080048233270645
+            ],
+            [
+              "RightLowerArm",
+              0.097828209400177
+            ]
+          ]
+        },
+        {
+          "vertex": 82293,
+          "co": [
+            -0.26658111810684204,
+            -0.12318503111600876,
+            0.5596331357955933
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.43803921341896057
+            ],
+            [
+              "Sleeve_Right_1",
+              0.22933989763259888
+            ],
+            [
+              "Sleeve_Right_3",
+              0.1826678216457367
+            ],
+            [
+              "RightLowerArm",
+              0.1499531865119934
+            ]
+          ]
+        },
+        {
+          "vertex": 111268,
+          "co": [
+            -0.24258609116077423,
+            -0.11873313039541245,
+            0.5602295398712158
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.4167309105396271
+            ],
+            [
+              "Sleeve_Right_1",
+              0.2653605341911316
+            ],
+            [
+              "Sleeve_Right_3",
+              0.17427346110343933
+            ],
+            [
+              "RightLowerArm",
+              0.14363521337509155
+            ]
+          ]
+        },
+        {
+          "vertex": 178007,
+          "co": [
+            -0.20718728005886078,
+            -0.11391463130712509,
+            0.5393317937850952
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.3959253132343292
+            ],
+            [
+              "Sleeve_Right_1",
+              0.2511739134788513
+            ],
+            [
+              "Sleeve_Right_3",
+              0.22962652146816254
+            ],
+            [
+              "RightLowerArm",
+              0.12327438592910767
+            ]
+          ]
+        },
+        {
+          "vertex": 99889,
+          "co": [
+            -0.2517545521259308,
+            -0.1381269246339798,
+            0.5500998497009277
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.40198126435279846
+            ],
+            [
+              "Sleeve_Right_1",
+              0.21562379598617554
+            ],
+            [
+              "Sleeve_Right_3",
+              0.21197877824306488
+            ],
+            [
+              "RightLowerArm",
+              0.17041629552841187
+            ]
+          ]
+        },
+        {
+          "vertex": 162969,
+          "co": [
+            -0.2144959419965744,
+            -0.10629034787416458,
+            0.5614964962005615
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.3987322151660919
+            ],
+            [
+              "Sleeve_Right_1",
+              0.30132395029067993
+            ],
+            [
+              "Sleeve_Right_3",
+              0.1650288999080658
+            ],
+            [
+              "RightLowerArm",
+              0.1349150538444519
+            ]
+          ]
+        },
+        {
+          "vertex": 154740,
+          "co": [
+            -0.21798038482666016,
+            -0.14230522513389587,
+            0.48653489351272583
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.40045401453971863
+            ],
+            [
+              "Sleeve_Right_3",
+              0.38057708740234375
+            ],
+            [
+              "Sleeve_Right_1",
+              0.12161752581596375
+            ],
+            [
+              "RightLowerArm",
+              0.09735149890184402
+            ]
+          ]
+        }
+      ]
+    },
+    "all_lower": {
+      "vertices": 651332,
+      "arm_influenced": 64288,
+      "max_arm_mass": 1.000000238418579,
+      "groups": {
+        "RightLowerArm": 12948,
+        "RightHand": 153,
+        "RightThumb1": 70,
+        "RightThumb2": 169,
+        "RightThumb3": 212,
+        "RightIndex1": 127,
+        "RightIndex2": 668,
+        "RightIndex3": 741,
+        "RightMiddle1": 348,
+        "RightMiddle2": 914,
+        "RightMiddle3": 685,
+        "RightRing1": 184,
+        "RightRing2": 286,
+        "RightRing3": 269,
+        "RightLittle1": 7,
+        "RightLittle2": 4,
+        "Sleeve_Right_1": 16097,
+        "Sleeve_Right_2": 28321,
+        "Sleeve_Right_3": 29219,
+        "LeftLowerArm": 11529,
+        "LeftHand": 1049,
+        "LeftThumb2": 122,
+        "LeftThumb3": 153,
+        "LeftIndex1": 556,
+        "LeftIndex2": 705,
+        "LeftIndex3": 371,
+        "LeftMiddle1": 704,
+        "LeftMiddle2": 470,
+        "LeftMiddle3": 101,
+        "LeftRing1": 274,
+        "LeftRing2": 266,
+        "LeftRing3": 102,
+        "LeftLittle1": 39,
+        "LeftLittle2": 34,
+        "LeftLittle3": 26,
+        "Sleeve_Left_1": 15719,
+        "Sleeve_Left_2": 30981,
+        "Sleeve_Left_3": 31760
+      },
+      "examples": [
+        {
+          "vertex": 1294396,
+          "co": [
+            0.22721320390701294,
+            -0.05598897486925125,
+            0.37605997920036316
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_3",
+              0.6563827991485596
+            ],
+            [
+              "Sleeve_Left_2",
+              0.3042534291744232
+            ],
+            [
+              "Sleeve_Left_1",
+              0.02613387256860733
+            ],
+            [
+              "LeftLowerArm",
+              0.013229910284280777
+            ]
+          ]
+        },
+        {
+          "vertex": 99504,
+          "co": [
+            -0.2518385946750641,
+            -0.13435010612010956,
+            0.5421295166015625
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.41257962584495544
+            ],
+            [
+              "Sleeve_Right_3",
+              0.24000808596611023
+            ],
+            [
+              "Sleeve_Right_1",
+              0.19737112522125244
+            ],
+            [
+              "RightLowerArm",
+              0.15004126727581024
+            ]
+          ]
+        },
+        {
+          "vertex": 99487,
+          "co": [
+            -0.2514791488647461,
+            -0.12577535212039948,
+            0.5422914028167725
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.42540445923805237
+            ],
+            [
+              "Sleeve_Right_3",
+              0.2404947429895401
+            ],
+            [
+              "Sleeve_Right_1",
+              0.2017887681722641
+            ],
+            [
+              "RightLowerArm",
+              0.13231207430362701
+            ]
+          ]
+        },
+        {
+          "vertex": 139584,
+          "co": [
+            -0.22485806047916412,
+            -0.07606678456068039,
+            0.38064420223236084
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_3",
+              0.6289785504341125
+            ],
+            [
+              "Sleeve_Right_2",
+              0.3262611925601959
+            ],
+            [
+              "Sleeve_Right_1",
+              0.02865276299417019
+            ],
+            [
+              "RightLowerArm",
+              0.016107503324747086
+            ]
+          ]
+        },
+        {
+          "vertex": 1260433,
+          "co": [
+            0.20775951445102692,
+            -0.06279691308736801,
+            0.4131889343261719
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_3",
+              0.5194312930107117
+            ],
+            [
+              "Sleeve_Left_2",
+              0.3989165425300598
+            ],
+            [
+              "Sleeve_Left_1",
+              0.05626160651445389
+            ],
+            [
+              "LeftLowerArm",
+              0.0253906287252903
+            ]
+          ]
+        },
+        {
+          "vertex": 11603,
+          "co": [
+            -0.40296000242233276,
+            -0.07416138052940369,
+            0.33612698316574097
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_3",
+              0.9488779306411743
+            ],
+            [
+              "Sleeve_Right_2",
+              0.04721589386463165
+            ],
+            [
+              "RightLowerArm",
+              0.0019531252328306437
+            ],
+            [
+              "Sleeve_Right_1",
+              0.0019531252328306437
+            ]
+          ]
+        },
+        {
+          "vertex": 99473,
+          "co": [
+            -0.25170180201530457,
+            -0.14103376865386963,
+            0.44834280014038086
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_3",
+              0.45912396907806396
+            ],
+            [
+              "Sleeve_Right_2",
+              0.43828245997428894
+            ],
+            [
+              "Sleeve_Right_1",
+              0.05201016739010811
+            ],
+            [
+              "RightLowerArm",
+              0.050583504140377045
+            ]
+          ]
+        },
+        {
+          "vertex": 1339517,
+          "co": [
+            0.2548438012599945,
+            -0.059591442346572876,
+            0.5230549573898315
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_2",
+              0.46715065836906433
+            ],
+            [
+              "Sleeve_Left_3",
+              0.30832815170288086
+            ],
+            [
+              "Sleeve_Left_1",
+              0.17255590856075287
+            ],
+            [
+              "LeftLowerArm",
+              0.05196532979607582
+            ]
+          ]
+        },
+        {
+          "vertex": 1384900,
+          "co": [
+            0.3000521659851074,
+            -0.12206558138132095,
+            0.34222322702407837
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_3",
+              0.834658145904541
+            ],
+            [
+              "Sleeve_Left_2",
+              0.1535792499780655
+            ],
+            [
+              "LeftLowerArm",
+              0.005903321318328381
+            ],
+            [
+              "Sleeve_Left_1",
+              0.005859375931322575
+            ]
+          ]
+        },
+        {
+          "vertex": 11602,
+          "co": [
+            -0.4054466187953949,
+            -0.07243301719427109,
+            0.3345103859901428
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_3",
+              0.9490676522254944
+            ],
+            [
+              "Sleeve_Right_2",
+              0.04702617973089218
+            ],
+            [
+              "RightLowerArm",
+              0.0019531252328306437
+            ],
+            [
+              "Sleeve_Right_1",
+              0.0019531252328306437
+            ]
+          ]
+        },
+        {
+          "vertex": 99459,
+          "co": [
+            -0.25169822573661804,
+            -0.13699674606323242,
+            0.4428921341896057
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_3",
+              0.46991395950317383
+            ],
+            [
+              "Sleeve_Right_2",
+              0.4370003342628479
+            ],
+            [
+              "Sleeve_Right_1",
+              0.0481388196349144
+            ],
+            [
+              "RightLowerArm",
+              0.04494699090719223
+            ]
+          ]
+        },
+        {
+          "vertex": 1300168,
+          "co": [
+            0.22977671027183533,
+            -0.05787649005651474,
+            0.39102962613105774
+          ],
+          "weights": [
+            [
+              "Sleeve_Left_3",
+              0.6104298830032349
+            ],
+            [
+              "Sleeve_Left_2",
+              0.3421024978160858
+            ],
+            [
+              "Sleeve_Left_1",
+              0.031842634081840515
+            ],
+            [
+              "LeftLowerArm",
+              0.01562500186264515
+            ]
+          ]
+        },
+        {
+          "vertex": 154740,
+          "co": [
+            -0.21798038482666016,
+            -0.14230522513389587,
+            0.48653489351272583
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.40045401453971863
+            ],
+            [
+              "Sleeve_Right_3",
+              0.38057708740234375
+            ],
+            [
+              "Sleeve_Right_1",
+              0.12161752581596375
+            ],
+            [
+              "RightLowerArm",
+              0.09735149890184402
+            ]
+          ]
+        },
+        {
+          "vertex": 82293,
+          "co": [
+            -0.26658111810684204,
+            -0.12318503111600876,
+            0.5596331357955933
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.43803921341896057
+            ],
+            [
+              "Sleeve_Right_1",
+              0.22933989763259888
+            ],
+            [
+              "Sleeve_Right_3",
+              0.1826678216457367
+            ],
+            [
+              "RightLowerArm",
+              0.1499531865119934
+            ]
+          ]
+        },
+        {
+          "vertex": 1342561,
+          "co": [
+            0.2567232549190521,
+            -0.2225261628627777,
+            0.5435941219329834
+          ],
+          "weights": [
+            [
+              "LeftLowerArm",
+              0.38885024189949036
+            ],
+            [
+              "Sleeve_Left_2",
+              0.2637175917625427
+            ],
+            [
+              "Sleeve_Left_3",
+              0.1995064914226532
+            ],
+            [
+              "Sleeve_Left_1",
+              0.14792579412460327
+            ]
+          ]
+        },
+        {
+          "vertex": 145470,
+          "co": [
+            -0.2222418338060379,
+            -0.14915072917938232,
+            0.4791126549243927
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.40147480368614197
+            ],
+            [
+              "Sleeve_Right_3",
+              0.3898966312408447
+            ],
+            [
+              "Sleeve_Right_1",
+              0.11080048233270645
+            ],
+            [
+              "RightLowerArm",
+              0.097828209400177
+            ]
+          ]
+        },
+        {
+          "vertex": 162969,
+          "co": [
+            -0.2144959419965744,
+            -0.10629034787416458,
+            0.5614964962005615
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.3987322151660919
+            ],
+            [
+              "Sleeve_Right_1",
+              0.30132395029067993
+            ],
+            [
+              "Sleeve_Right_3",
+              0.1650288999080658
+            ],
+            [
+              "RightLowerArm",
+              0.1349150538444519
+            ]
+          ]
+        },
+        {
+          "vertex": 111268,
+          "co": [
+            -0.24258609116077423,
+            -0.11873313039541245,
+            0.5602295398712158
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.4167309105396271
+            ],
+            [
+              "Sleeve_Right_1",
+              0.2653605341911316
+            ],
+            [
+              "Sleeve_Right_3",
+              0.17427346110343933
+            ],
+            [
+              "RightLowerArm",
+              0.14363521337509155
+            ]
+          ]
+        },
+        {
+          "vertex": 99889,
+          "co": [
+            -0.2517545521259308,
+            -0.1381269246339798,
+            0.5500998497009277
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.40198126435279846
+            ],
+            [
+              "Sleeve_Right_1",
+              0.21562379598617554
+            ],
+            [
+              "Sleeve_Right_3",
+              0.21197877824306488
+            ],
+            [
+              "RightLowerArm",
+              0.17041629552841187
+            ]
+          ]
+        },
+        {
+          "vertex": 178007,
+          "co": [
+            -0.20718728005886078,
+            -0.11391463130712509,
+            0.5393317937850952
+          ],
+          "weights": [
+            [
+              "Sleeve_Right_2",
+              0.3959253132343292
+            ],
+            [
+              "Sleeve_Right_1",
+              0.2511739134788513
+            ],
+            [
+              "Sleeve_Right_3",
+              0.22962652146816254
+            ],
+            [
+              "RightLowerArm",
+              0.12327438592910767
+            ]
+          ]
+        }
+      ]
+    }
+  }
+}

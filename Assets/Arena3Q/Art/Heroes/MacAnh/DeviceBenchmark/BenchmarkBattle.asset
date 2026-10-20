@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30fb88be20edac74e905472d14c43d46, type: 3}
+  m_Name: BenchmarkBattle
+  m_EditorClassIdentifier: Arena3Q.Graphics3D::Arena3Q.Graphics3D.MacAnhLodBenchmarkContent
+  performance: {fileID: 11400000, guid: a981cd63a3cd9384188f1f1adafc1f35, type: 2}
+  heroes:
+  - {fileID: 11400000, guid: b953be2ab29b870418a0f966a6d7347a, type: 2}
+  - {fileID: 11400000, guid: 0261a8371b691cc45897f27ad2f8fcc0, type: 2}
+  - {fileID: 11400000, guid: b41f70f916474f841948af4c434590e4, type: 2}
+  - {fileID: 11400000, guid: d66296b859f885c4f89e1a38149e27d5, type: 2}
+  - {fileID: 11400000, guid: 99f57e7e35e6d8b439fa4880ad5bdaeb, type: 2}
+  portraitPrefab: {fileID: 0}
+  clips: []
+  bodyTriangles: 0
+  fanTriangles: 0

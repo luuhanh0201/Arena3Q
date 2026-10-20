@@ -71,7 +71,7 @@ namespace Arena3Q.UI
 
             var portraitRect = UiFactory.CreateRect("Portrait", rect, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f),
                 new Vector2(0.5f, 1f), new Vector2(-16f, -24f), new Vector2(86f, 86f));
-            _portrait = UiFactory.AddImage(portraitRect, _heroColor, hero.Sprite != null ? hero.Sprite : PlaceholderArt.Circle, false);
+            _portrait = UiFactory.AddImage(portraitRect, _heroColor, hero.Portrait != null ? hero.Portrait : PlaceholderArt.Circle, false);
 
             var nameRect = UiFactory.CreateRect("Name", rect, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f),
                 new Vector2(0.5f, 0f), new Vector2(0f, 46f), new Vector2(150f, 40f));

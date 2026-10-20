@@ -1,0 +1,153 @@
+{
+ "name": "CounterSlash",
+ "referenceRadius": 1.0,
+ "renderProjection": 0.75,
+ "pages": [
+  "CounterSlash_p00.png"
+ ],
+ "layers": [
+  {
+   "name": "Blade",
+   "ppu": 110,
+   "framesPerSecond": 24,
+   "loop": true,
+   "plane": "Upright",
+   "phase": "Release",
+   "start": 0,
+   "end": 0,
+   "fadeIn": 0.04,
+   "fadeOut": 0.08,
+   "scaleFrom": 1,
+   "scaleTo": 1,
+   "spin": 0,
+   "height": 0,
+   "glow": 1.15,
+   "underlay": 0.85,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 0,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "frames": [
+    {
+     "page": 0,
+     "x": 0,
+     "y": 0,
+     "width": 181,
+     "height": 160,
+     "pivot_x": 0.6006314003665144,
+     "pivot_y": 0.4999997019767761
+    },
+    {
+     "page": 0,
+     "x": 183,
+     "y": 0,
+     "width": 183,
+     "height": 160,
+     "pivot_x": 0.6049960845155142,
+     "pivot_y": 0.4999997019767761
+    },
+    {
+     "page": 0,
+     "x": 368,
+     "y": 0,
+     "width": 163,
+     "height": 160,
+     "pivot_x": 0.5872041930450252,
+     "pivot_y": 0.4999997019767761
+    },
+    {
+     "page": 0,
+     "x": 533,
+     "y": 0,
+     "width": 161,
+     "height": 154,
+     "pivot_x": 0.5758651146977585,
+     "pivot_y": 0.5194802098460012
+    },
+    {
+     "page": 0,
+     "x": 696,
+     "y": 0,
+     "width": 149,
+     "height": 160,
+     "pivot_x": 0.5148609628613363,
+     "pivot_y": 0.4999997019767761
+    },
+    {
+     "page": 0,
+     "x": 847,
+     "y": 0,
+     "width": 147,
+     "height": 160,
+     "pivot_x": 0.5082604317438035,
+     "pivot_y": 0.4999997019767761
+    },
+    {
+     "page": 0,
+     "x": 996,
+     "y": 0,
+     "width": 144,
+     "height": 155,
+     "pivot_x": 0.532738079627355,
+     "pivot_y": 0.48387066010505925
+    },
+    {
+     "page": 0,
+     "x": 1142,
+     "y": 0,
+     "width": 145,
+     "height": 154,
+     "pivot_x": 0.529064023905787,
+     "pivot_y": 0.5194802098460012
+    },
+    {
+     "page": 0,
+     "x": 1289,
+     "y": 0,
+     "width": 160,
+     "height": 160,
+     "pivot_x": 0.5482142716646194,
+     "pivot_y": 0.4999997019767761
+    },
+    {
+     "page": 0,
+     "x": 1451,
+     "y": 0,
+     "width": 170,
+     "height": 160,
+     "pivot_x": 0.5747899027431712,
+     "pivot_y": 0.4999997019767761
+    },
+    {
+     "page": 0,
+     "x": 1623,
+     "y": 0,
+     "width": 174,
+     "height": 160,
+     "pivot_x": 0.6133004796916041,
+     "pivot_y": 0.4999997019767761
+    },
+    {
+     "page": 0,
+     "x": 1799,
+     "y": 0,
+     "width": 181,
+     "height": 156,
+     "pivot_x": 0.6227308478803266,
+     "pivot_y": 0.5128202071556678
+    }
+   ]
+  }
+ ]
+}

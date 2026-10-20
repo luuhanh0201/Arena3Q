@@ -1,0 +1,7 @@
+{
+  "bad_edges": 23122,
+  "region_vertices": 772252,
+  "iterations": 600,
+  "max_influences": 16,
+  "seconds": 954.9451427459717
+}

@@ -11,7 +11,7 @@ namespace Arena3Q.Gameplay
 
         private CastleRuntime _runtime;
         private bool _canAttack;
-        private float _cooldown;
+        private float _castleAttackCooldown;
         private CastleArtConfig _art;
 
         public override bool IsCastle => true;
@@ -35,13 +35,13 @@ namespace Arena3Q.Gameplay
         {
             if (!_canAttack)
                 return;
-            _cooldown -= deltaTime;
-            if (_cooldown > 0f)
+            _castleAttackCooldown -= deltaTime;
+            if (_castleAttackCooldown > 0f)
                 return;
             var target = Battle.Registry.Get(Battle.Registry.FindNearestHostile(this, AttackRange));
             if (target == null)
                 return;
-            _cooldown = AttackInterval;
+            _castleAttackCooldown = AttackInterval;
             target.TakeDamage(Damage, this);
         }
 

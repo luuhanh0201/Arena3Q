@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ef0170a6bf8cef31f2e9229cd2ff9a, type: 3}
+  m_Name: Lord_MacAnhPreview
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.HeroDefinition
+  heroId: mac_anh_art_preview
+  displayName: "M\u01B0u s\u0129"
+  sprite: {fileID: 3893079179384015821, guid: d97cc34d8d10c904aab0dc4e332d861f, type: 3}
+  portrait: {fileID: 3893079179384015821, guid: d97cc34d8d10c904aab0dc4e332d861f, type: 3}
+  animations: {fileID: 0}
+  macAnhPerformance: {fileID: 11400000, guid: a981cd63a3cd9384188f1f1adafc1f35, type: 2}
+  placeholderColor: {r: 1, g: 1, b: 1, a: 1}
+  kind: 1
+  faction: {fileID: 0}
+  stats:
+    maxHealth: 600
+    damage: 32
+    moveSpeed: 2.6
+    attackRange: 3
+    attackInterval: 1.25
+    reactionRange: 0.7
+    aggroRange: 6.5
+    attackerMemorySeconds: 2
+  damageReduction: 0
+  critChanceBonus: 0
+  growthProfile: {fileID: 11400000, guid: 7e0c8b9487db5664ba0fb11e984660d1, type: 2}
+  leadership: 100
+  roleBonus: 0.62
+  skills:
+  - {fileID: 11400000, guid: 4e2af82fc2cf59845b67fb5cf0238200, type: 2}
+  - {fileID: 11400000, guid: d557f149ece91fa4390dc7b87c452160, type: 2}
+  - {fileID: 11400000, guid: cfb732c734867084d864cdc0e9e89af0, type: 2}
+  - {fileID: 11400000, guid: 4ba81b711f209514da49c820e0b3c405, type: 2}
+  rageMax: 100
+  rageHitsToFill: 18
+  idleBeforeAdvanceSeconds: 5
+  idleTimerResetsOnOutOfRangeDamage: 0
+  selfDefendWhileAttacking: 0
+  troop: {fileID: 11400000, guid: 4ca3c59e0709d5b47bdf3962b2282f04, type: 2}
+  baseSquadSize: 4
+  maxSquadSize: 8
+  leashRadius: 4
+  troopUnreachableSeconds: 1.5
+  troopAssistRadius: 3
+  summonCost: 0
+  summonCooldown: 0

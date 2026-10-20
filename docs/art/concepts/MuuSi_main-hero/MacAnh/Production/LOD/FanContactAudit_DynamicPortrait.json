@@ -1,0 +1,85 @@
+{
+  "source": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\LOD\\MacAnh_Portrait_CorrectNormalUV1.blend",
+  "allowed_contact": "Fan_Handle is the held grip; palm/finger surfaces are excluded. Feather/frame/crystal against cloth/head are measured.",
+  "clips": [
+    {
+      "action": "MacAnh_Attack01",
+      "samples": 49,
+      "max_non_palm_intersections": 0,
+      "worst": null,
+      "total_palm_contacts": 11396
+    },
+    {
+      "action": "MacAnh_Attack02",
+      "samples": 91,
+      "max_non_palm_intersections": 0,
+      "worst": null,
+      "total_palm_contacts": 25154
+    },
+    {
+      "action": "MacAnh_Dodge",
+      "samples": 49,
+      "max_non_palm_intersections": 0,
+      "worst": null,
+      "total_palm_contacts": 8217
+    },
+    {
+      "action": "MacAnh_DodgeAttack",
+      "samples": 67,
+      "max_non_palm_intersections": 0,
+      "worst": null,
+      "total_palm_contacts": 13404
+    },
+    {
+      "action": "MacAnh_Idle",
+      "samples": 81,
+      "max_non_palm_intersections": 0,
+      "worst": null,
+      "total_palm_contacts": 11632
+    },
+    {
+      "action": "MacAnh_Run",
+      "samples": 49,
+      "max_non_palm_intersections": 0,
+      "worst": null,
+      "total_palm_contacts": 5377
+    },
+    {
+      "action": "MacAnh_Skill01",
+      "samples": 109,
+      "max_non_palm_intersections": 0,
+      "worst": null,
+      "total_palm_contacts": 19093
+    },
+    {
+      "action": "MacAnh_Skill02",
+      "samples": 121,
+      "max_non_palm_intersections": 0,
+      "worst": null,
+      "total_palm_contacts": 24299
+    },
+    {
+      "action": "MacAnh_Skill03",
+      "samples": 85,
+      "max_non_palm_intersections": 0,
+      "worst": null,
+      "total_palm_contacts": 14513
+    },
+    {
+      "action": "MacAnh_Ultimate",
+      "samples": 211,
+      "max_non_palm_intersections": 0,
+      "worst": null,
+      "total_palm_contacts": 44469
+    },
+    {
+      "action": "MacAnh_Walk",
+      "samples": 73,
+      "max_non_palm_intersections": 0,
+      "worst": null,
+      "total_palm_contacts": 11985
+    }
+  ],
+  "elapsed_seconds": 246.8860411643982,
+  "passed": true
+}

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ec58f6e5744074497e527e64bdaefe, type: 3}
+  m_Name: Skill_tam_vu_lien_kich
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.SkillDefinition
+  skillId: tam_vu_lien_kich
+  displayName: "Tam V\u0169 Li\xEAn K\xEDch"
+  description: "Tam V\u0169 Li\xEAn K\xEDch. Th\xF4ng s\u1ED1 chi\u1EBFn \u0111\u1EA5u c\xF3 th\u1EC3 ch\u1EC9nh trong asset."
+  icon: {fileID: 0}
+  iconColor: {r: 0.65, g: 0.35, b: 0.9, a: 1}
+  cooldown: 8
+  castTime: 0.5
+  range: 0
+  condition: 0
+  casterMove: 0
+  moveDistance: 0
+  shape: 0
+  radius: 1.5
+  length: 5
+  width: 1
+  angle: 60
+  firstHitOnly: 0
+  castleMultiplier: 1
+  zoneDuration: 0
+  tickInterval: 0.5
+  followCaster: 0
+  repeatCount: 3
+  repeatInterval: 0.3
+  finalHitMultiplier: 1
+  effects:
+  - kind: 0
+    affects: 0
+    value: 0.8
+    duration: 0
+  slot: 1
+  targeting: 0
+  autoCastWhileMoving: 0
+  passives: []

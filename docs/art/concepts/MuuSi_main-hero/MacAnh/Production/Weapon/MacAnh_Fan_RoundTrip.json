@@ -1,0 +1,153 @@
+{
+  "blender": "4.5.3 LTS",
+  "checks": {
+    "triangle_count": true,
+    "six_logical_meshes": true,
+    "bounds_meters": true,
+    "unique_vertex_positions": true,
+    "no_geometry_issues": true,
+    "five_pbr_materials": true,
+    "grip_pivot_origin": true,
+    "fan_tip_retained": true,
+    "feather_image_embedded": true,
+    "pbr_factors_preserved": true,
+    "render_roundtrip_matches": true
+  },
+  "source": {
+    "triangles": 7268,
+    "meshes": {
+      "Fan_Crystal": {
+        "triangles": 336,
+        "uv_layers": 1,
+        "materials": [
+          "MacAnh_Crystal_PBR"
+        ]
+      },
+      "Fan_Feathers": {
+        "triangles": 3328,
+        "uv_layers": 1,
+        "materials": [
+          "MacAnh_Feather_PBR"
+        ]
+      },
+      "Fan_GoldFrame": {
+        "triangles": 1884,
+        "uv_layers": 1,
+        "materials": [
+          "MacAnh_Gold_PBR"
+        ]
+      },
+      "Fan_Handle": {
+        "triangles": 456,
+        "uv_layers": 1,
+        "materials": [
+          "MacAnh_Grip_PBR",
+          "MacAnh_Gold_PBR"
+        ]
+      },
+      "Fan_Ornaments": {
+        "triangles": 304,
+        "uv_layers": 1,
+        "materials": [
+          "MacAnh_Gold_PBR"
+        ]
+      },
+      "Fan_Tassels": {
+        "triangles": 960,
+        "uv_layers": 1,
+        "materials": [
+          "MacAnh_Tassel_PBR"
+        ]
+      }
+    },
+    "bounds": {
+      "min": [
+        -0.30000001192092896,
+        -0.060920000076293945,
+        -0.1534372717142105
+      ],
+      "max": [
+        0.30000001192092896,
+        0.028999999165534973,
+        0.5429999828338623
+      ],
+      "dimensions": [
+        0.6000000238418579,
+        0.08991999924182892,
+        0.6964372545480728
+      ]
+    },
+    "issues": []
+  },
+  "reimported": {
+    "triangles": 7268,
+    "meshes": {
+      "Fan_Crystal": {
+        "triangles": 336,
+        "uv_layers": 1,
+        "materials": [
+          "MacAnh_Crystal_PBR"
+        ]
+      },
+      "Fan_Feathers": {
+        "triangles": 3328,
+        "uv_layers": 1,
+        "materials": [
+          "MacAnh_Feather_PBR"
+        ]
+      },
+      "Fan_GoldFrame": {
+        "triangles": 1884,
+        "uv_layers": 1,
+        "materials": [
+          "MacAnh_Gold_PBR"
+        ]
+      },
+      "Fan_Handle": {
+        "triangles": 456,
+        "uv_layers": 1,
+        "materials": [
+          "MacAnh_Grip_PBR",
+          "MacAnh_Gold_PBR"
+        ]
+      },
+      "Fan_Ornaments": {
+        "triangles": 304,
+        "uv_layers": 1,
+        "materials": [
+          "MacAnh_Gold_PBR"
+        ]
+      },
+      "Fan_Tassels": {
+        "triangles": 960,
+        "uv_layers": 1,
+        "materials": [
+          "MacAnh_Tassel_PBR"
+        ]
+      }
+    },
+    "bounds": {
+      "min": [
+        -0.30000001192092896,
+        -0.060920000076293945,
+        -0.1534372717142105
+      ],
+      "max": [
+        0.30000001192092896,
+        0.028999999165534973,
+        0.5429999828338623
+      ],
+      "dimensions": [
+        0.6000000238418579,
+        0.08991999924182892,
+        0.6964372545480728
+      ]
+    },
+    "issues": []
+  },
+  "material_errors": [],
+  "result": "PASS",
+  "unity_runtime_tested": false,
+  "posed_hand_fit_tested": false,
+  "render_mean_absolute_error": 1.316050020250259e-05
+}

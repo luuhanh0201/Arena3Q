@@ -1,0 +1,30 @@
+{
+  "scope": "Desktop QA; Android measurements explicitly deferred by user 2026-10-20",
+  "lods": {
+    "Battle": {
+      "blend": "MacAnh_Battle.blend",
+      "sha256": "2b809a84b049099c00fc9857943f801fa5944009c68d75b772196f5ae26bbc75",
+      "triangles": 43624,
+      "bones": 87,
+      "max_influences": 3,
+      "unity_surface_samples": 985,
+      "height_m": 1.6968761682510376,
+      "max_ratio": 1.2620172500610352,
+      "min_ratio": 0.7162565588951111,
+      "fbx": "D:\\UnityProjects\\Arena3Q\\Assets\\Arena3Q\\Art\\Heroes\\MacAnh\\Graphics3D\\Source\\LOD\\MacAnh_BattleRig.fbx"
+    },
+    "Portrait": {
+      "blend": "MacAnh_Portrait.blend",
+      "sha256": "1e3abd6b7af738e71b59a90204d5226673c895593927fe959f1533565b23ef5b",
+      "triangles": 259828,
+      "bones": 87,
+      "max_influences": 3,
+      "unity_surface_samples": 985,
+      "height_m": 1.698418378829956,
+      "max_ratio": 1.2869688272476196,
+      "min_ratio": 0.6991797685623169,
+      "fbx": "D:\\UnityProjects\\Arena3Q\\Assets\\Arena3Q\\Art\\Heroes\\MacAnh\\Graphics3D\\Source\\LOD\\MacAnh_PortraitRig.fbx"
+    }
+  },
+  "original_sha256": "8bcb4755b01621f04758cf2a4be7fa147d1d7cd9b44f9fcfe82e16960a1f0af7"
+}

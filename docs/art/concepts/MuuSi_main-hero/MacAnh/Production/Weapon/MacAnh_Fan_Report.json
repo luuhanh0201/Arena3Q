@@ -1,0 +1,111 @@
+{
+  "asset": "MacAnh_Fan",
+  "blender": "4.5.3 LTS",
+  "units": "meters",
+  "grip_origin": [
+    0,
+    0,
+    0
+  ],
+  "blender_axes": {
+    "front": "-Y",
+    "up": "+Z"
+  },
+  "feather_count": 13,
+  "feather_layer_intersections": 0,
+  "grip": {
+    "length_m": 0.095,
+    "diameter_m": 0.026,
+    "fan_width_target_m": 0.6
+  },
+  "geometry": {
+    "triangles": 7268,
+    "parts": [
+      {
+        "name": "Fan_Crystal",
+        "vertices": 182,
+        "triangles": 336,
+        "material_slots": [
+          "MacAnh_Crystal_PBR"
+        ],
+        "uv_layers": [
+          "UVMap"
+        ]
+      },
+      {
+        "name": "Fan_Feathers",
+        "vertices": 1690,
+        "triangles": 3328,
+        "material_slots": [
+          "MacAnh_Feather_PBR"
+        ],
+        "uv_layers": [
+          "UVMap"
+        ]
+      },
+      {
+        "name": "Fan_GoldFrame",
+        "vertices": 1010,
+        "triangles": 1884,
+        "material_slots": [
+          "MacAnh_Gold_PBR"
+        ],
+        "uv_layers": [
+          "UVMap"
+        ]
+      },
+      {
+        "name": "Fan_Handle",
+        "vertices": 240,
+        "triangles": 456,
+        "material_slots": [
+          "MacAnh_Grip_PBR",
+          "MacAnh_Gold_PBR"
+        ],
+        "uv_layers": [
+          "UVMap"
+        ]
+      },
+      {
+        "name": "Fan_Ornaments",
+        "vertices": 176,
+        "triangles": 304,
+        "material_slots": [
+          "MacAnh_Gold_PBR"
+        ],
+        "uv_layers": [
+          "UVMap"
+        ]
+      },
+      {
+        "name": "Fan_Tassels",
+        "vertices": 500,
+        "triangles": 960,
+        "material_slots": [
+          "MacAnh_Tassel_PBR"
+        ],
+        "uv_layers": [
+          "UVMap"
+        ]
+      }
+    ],
+    "min": [
+      -0.30000001192092896,
+      -0.060920000076293945,
+      -0.1534372717142105
+    ],
+    "max": [
+      0.30000001192092896,
+      0.028999999165534973,
+      0.5429999828338623
+    ],
+    "dimensions": [
+      0.6000000238418579,
+      0.08991999924182892,
+      0.6964372545480728
+    ]
+  },
+  "character_fit": "static hand measured; rig/posed grip not yet approved or validated",
+  "character_source_modified": false,
+  "closed_variant": false
+}

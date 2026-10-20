@@ -1,0 +1,635 @@
+{
+  "source": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\muu-si.blend",
+  "source_sha256": "9e24aaaa481572a1bbc1739873792c774aa7004bb06d74dd6da6fff62bdb29c5",
+  "vertices": 1476550,
+  "triangles": 2953808,
+  "bones": 87,
+  "textures": [
+    {
+      "name": "Image_0",
+      "path": "Assets\\Arena3Q\\Art\\Heroes\\MacAnh\\Graphics3D\\Source\\Image_0.jpg",
+      "size": [
+        8192,
+        8192
+      ],
+      "sha256": "db1f29caf8546757303b3b9261e179651d7d32ad26baab998f4b9cbfecab295c",
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "Image_1",
+      "path": "Assets\\Arena3Q\\Art\\Heroes\\MacAnh\\Graphics3D\\Source\\Image_1.jpg",
+      "size": [
+        4096,
+        4096
+      ],
+      "sha256": "a9195d7f7b707d8cf85735c58d842e80fcd73d071d9fde825832a904a06c014d",
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "Image_2",
+      "path": "Assets\\Arena3Q\\Art\\Heroes\\MacAnh\\Graphics3D\\Source\\Image_2.jpg",
+      "size": [
+        4096,
+        4096
+      ],
+      "sha256": "36779ffdc428f308bf7b43788345eec869723605583f5015ec255c7b859db10a",
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "MacAnh_Feathers_BaseColor",
+      "path": "Assets\\Arena3Q\\Art\\Heroes\\MacAnh\\Graphics3D\\Source\\MacAnh_Feathers_BaseColor.png",
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "975d71ed799ea6996fdf93f5c25f5e612a0ee8b9316f5c70f87a374b562e8212",
+      "colorspace": "sRGB"
+    }
+  ],
+  "materials": [
+    {
+      "name": "MacAnh_Crystal_PBR",
+      "properties": {
+        "Base Color": {
+          "value": [
+            0.16202937066555023,
+            0.03189603239297867,
+            0.520995557308197,
+            1.0
+          ],
+          "links": []
+        },
+        "Metallic": {
+          "value": 0.15000000596046448,
+          "links": []
+        },
+        "Roughness": {
+          "value": 0.1899999976158142,
+          "links": []
+        },
+        "Alpha": {
+          "value": 1.0,
+          "links": []
+        },
+        "Normal": {
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "links": []
+        },
+        "Emission Color": {
+          "value": [
+            0.3049873113632202,
+            0.09530746936798096,
+            0.8631572127342224,
+            1.0
+          ],
+          "links": []
+        },
+        "Emission Strength": {
+          "value": 0.10000000149011612,
+          "links": []
+        }
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "image": null,
+          "links": [
+            {
+              "to": "Material Output",
+              "input": "Surface",
+              "output": "BSDF"
+            }
+          ]
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL",
+          "image": null,
+          "links": []
+        }
+      ]
+    },
+    {
+      "name": "MacAnh_Feather_PBR",
+      "properties": {
+        "Base Color": {
+          "value": [
+            0.8962693810462952,
+            0.838798999786377,
+            1.0,
+            1.0
+          ],
+          "links": [
+            {
+              "node": "Image Texture",
+              "socket": "Color"
+            }
+          ]
+        },
+        "Metallic": {
+          "value": 0.019999999552965164,
+          "links": []
+        },
+        "Roughness": {
+          "value": 0.5699999928474426,
+          "links": []
+        },
+        "Alpha": {
+          "value": 1.0,
+          "links": []
+        },
+        "Normal": {
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "links": []
+        },
+        "Emission Color": {
+          "value": [
+            0.8962693810462952,
+            0.838798999786377,
+            1.0,
+            1.0
+          ],
+          "links": []
+        },
+        "Emission Strength": {
+          "value": 0.0,
+          "links": []
+        }
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "image": null,
+          "links": [
+            {
+              "to": "Material Output",
+              "input": "Surface",
+              "output": "BSDF"
+            }
+          ]
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL",
+          "image": null,
+          "links": []
+        },
+        {
+          "name": "Image Texture",
+          "type": "TEX_IMAGE",
+          "image": "MacAnh_Feathers_BaseColor",
+          "links": [
+            {
+              "to": "Principled BSDF",
+              "input": "Base Color",
+              "output": "Color"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MacAnh_Gold_PBR",
+      "properties": {
+        "Base Color": {
+          "value": [
+            0.7912979125976562,
+            0.5520114302635193,
+            0.2015562504529953,
+            1.0
+          ],
+          "links": []
+        },
+        "Metallic": {
+          "value": 0.8199999928474426,
+          "links": []
+        },
+        "Roughness": {
+          "value": 0.2800000011920929,
+          "links": []
+        },
+        "Alpha": {
+          "value": 1.0,
+          "links": []
+        },
+        "Normal": {
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "links": []
+        },
+        "Emission Color": {
+          "value": [
+            0.7912979125976562,
+            0.5520114302635193,
+            0.2015562504529953,
+            1.0
+          ],
+          "links": []
+        },
+        "Emission Strength": {
+          "value": 0.0,
+          "links": []
+        }
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "image": null,
+          "links": [
+            {
+              "to": "Material Output",
+              "input": "Surface",
+              "output": "BSDF"
+            }
+          ]
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL",
+          "image": null,
+          "links": []
+        }
+      ]
+    },
+    {
+      "name": "MacAnh_Grip_PBR",
+      "properties": {
+        "Base Color": {
+          "value": [
+            0.015208514407277107,
+            0.007499032188206911,
+            0.027320891618728638,
+            1.0
+          ],
+          "links": []
+        },
+        "Metallic": {
+          "value": 0.019999999552965164,
+          "links": []
+        },
+        "Roughness": {
+          "value": 0.47999998927116394,
+          "links": []
+        },
+        "Alpha": {
+          "value": 1.0,
+          "links": []
+        },
+        "Normal": {
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "links": []
+        },
+        "Emission Color": {
+          "value": [
+            0.015208514407277107,
+            0.007499032188206911,
+            0.027320891618728638,
+            1.0
+          ],
+          "links": []
+        },
+        "Emission Strength": {
+          "value": 0.0,
+          "links": []
+        }
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "image": null,
+          "links": [
+            {
+              "to": "Material Output",
+              "input": "Surface",
+              "output": "BSDF"
+            }
+          ]
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL",
+          "image": null,
+          "links": []
+        }
+      ]
+    },
+    {
+      "name": "MacAnh_Tassel_PBR",
+      "properties": {
+        "Base Color": {
+          "value": [
+            0.09084171056747437,
+            0.02518685907125473,
+            0.28314873576164246,
+            1.0
+          ],
+          "links": []
+        },
+        "Metallic": {
+          "value": 0.029999999329447746,
+          "links": []
+        },
+        "Roughness": {
+          "value": 0.5199999809265137,
+          "links": []
+        },
+        "Alpha": {
+          "value": 1.0,
+          "links": []
+        },
+        "Normal": {
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "links": []
+        },
+        "Emission Color": {
+          "value": [
+            0.09084171056747437,
+            0.02518685907125473,
+            0.28314873576164246,
+            1.0
+          ],
+          "links": []
+        },
+        "Emission Strength": {
+          "value": 0.0,
+          "links": []
+        }
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "image": null,
+          "links": [
+            {
+              "to": "Material Output",
+              "input": "Surface",
+              "output": "BSDF"
+            }
+          ]
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL",
+          "image": null,
+          "links": []
+        }
+      ]
+    },
+    {
+      "name": "Material_0.001",
+      "properties": {
+        "Base Color": {
+          "value": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1.0
+          ],
+          "links": [
+            {
+              "node": "Image Texture",
+              "socket": "Color"
+            }
+          ]
+        },
+        "Metallic": {
+          "value": 0.0,
+          "links": [
+            {
+              "node": "Separate Color",
+              "socket": "Blue"
+            }
+          ]
+        },
+        "Roughness": {
+          "value": 0.5,
+          "links": [
+            {
+              "node": "Separate Color",
+              "socket": "Green"
+            }
+          ]
+        },
+        "Alpha": {
+          "value": 1.0,
+          "links": []
+        },
+        "Normal": {
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "links": [
+            {
+              "node": "Normal Map",
+              "socket": "Normal"
+            }
+          ]
+        },
+        "Emission Color": {
+          "value": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "links": []
+        },
+        "Emission Strength": {
+          "value": 0.0,
+          "links": []
+        }
+      },
+      "nodes": [
+        {
+          "name": "Principled BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "image": null,
+          "links": [
+            {
+              "to": "Material Output",
+              "input": "Surface",
+              "output": "BSDF"
+            }
+          ]
+        },
+        {
+          "name": "Material Output",
+          "type": "OUTPUT_MATERIAL",
+          "image": null,
+          "links": []
+        },
+        {
+          "name": "Image Texture",
+          "type": "TEX_IMAGE",
+          "image": "Image_0",
+          "links": [
+            {
+              "to": "Principled BSDF",
+              "input": "Base Color",
+              "output": "Color"
+            }
+          ]
+        },
+        {
+          "name": "Separate Color",
+          "type": "SEPARATE_COLOR",
+          "image": null,
+          "links": [
+            {
+              "to": "Principled BSDF",
+              "input": "Roughness",
+              "output": "Green"
+            },
+            {
+              "to": "Principled BSDF",
+              "input": "Metallic",
+              "output": "Blue"
+            }
+          ]
+        },
+        {
+          "name": "Image Texture.001",
+          "type": "TEX_IMAGE",
+          "image": "Image_1",
+          "links": [
+            {
+              "to": "Separate Color",
+              "input": "Color",
+              "output": "Color"
+            }
+          ]
+        },
+        {
+          "name": "Normal Map",
+          "type": "NORMAL_MAP",
+          "image": null,
+          "links": [
+            {
+              "to": "Principled BSDF",
+              "input": "Normal",
+              "output": "Normal"
+            }
+          ]
+        },
+        {
+          "name": "Image Texture.002",
+          "type": "TEX_IMAGE",
+          "image": "Image_2",
+          "links": [
+            {
+              "to": "Normal Map",
+              "input": "Color",
+              "output": "Color"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "name": "MacAnh_Attack01",
+      "frames": [
+        0.0,
+        24.0
+      ]
+    },
+    {
+      "name": "MacAnh_Attack02",
+      "frames": [
+        0.0,
+        45.0
+      ]
+    },
+    {
+      "name": "MacAnh_Dodge",
+      "frames": [
+        0.0,
+        24.0
+      ]
+    },
+    {
+      "name": "MacAnh_DodgeAttack",
+      "frames": [
+        0.0,
+        33.0
+      ]
+    },
+    {
+      "name": "MacAnh_Idle",
+      "frames": [
+        0.0,
+        40.0
+      ]
+    },
+    {
+      "name": "MacAnh_Run",
+      "frames": [
+        0.0,
+        24.0
+      ]
+    },
+    {
+      "name": "MacAnh_Skill01",
+      "frames": [
+        0.0,
+        54.0
+      ]
+    },
+    {
+      "name": "MacAnh_Skill02",
+      "frames": [
+        0.0,
+        60.0
+      ]
+    },
+    {
+      "name": "MacAnh_Skill03",
+      "frames": [
+        0.0,
+        42.0
+      ]
+    },
+    {
+      "name": "MacAnh_Ultimate",
+      "frames": [
+        0.0,
+        105.0
+      ]
+    },
+    {
+      "name": "MacAnh_Walk",
+      "frames": [
+        0.0,
+        36.0
+      ]
+    }
+  ],
+  "source_preserved": true
+}

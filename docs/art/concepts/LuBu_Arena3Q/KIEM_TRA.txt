@@ -1,0 +1,47 @@
+ARENA3Q – KIỂM TRA BẢN LU BU UV SAFE + BUILDALL
+
+GHI CHÚ 2026-10-19: nội dung dưới ghi lại gói nguồn trước khi chạy Blender.
+Bản Smooth: RigAuditSmooth.json kiểm tra 875 mẫu (gồm frame nội suy),
+SpriteAuditSmooth.json kiểm tra 3.712 sprite tám hướng và UV khớp nguồn.
+Bản tích hợp đầu đã sửa script/rig/animation; xem RigAudit.json, SpriteAudit.json
+và docs/Tuong/LuBu.md để biết kết quả kiểm tra mới nhất. SHA256 bên dưới
+là của bản nguồn, không phải các script đã sửa trong dự án.
+
+NGUỒN ZIP DO NGƯỜI DÙNG GỬI:
+- lubu/lubu.blend: Blender 4.4, 1 mesh, 98598 vertices, 99504 polygons, 395720 loops
+- lubu/phuong-tien-hoa-kich.glb: GLB với 1 mesh, 3 ảnh JPEG, 1 material; 253118 vertices
+- Model Blender gốc KHÔNG có armature, rig, hoặc animation.
+
+XỬ LÝ TEXTURE:
+- Trích ảnh texture_0.png: 4096x4096 RGB.
+- UV tất cả nằm trong [0,1].
+- Đệm màu ngoài vùng UV bằng pixel gần nhất, trong phạm vi 8px.
+- Giữ nguyên tuyệt đối 8,295,020 pixel thuộc vùng UV rasterized (~49.44%).
+- Có 1,074,308 pixel thuộc vùng không sử dụng UV thay đổi; không chạm tới pixel nằm trong UV.
+- KHÔNG thực hiện làm mịn/xóa họa tiết khuôn mặt, áo, giáp.
+- Đây chỉ giảm nhem màu tại mép UV/mipmap; không thay được việc vẽ lại vết lem bên trong đảo UV.
+
+BẢN BLEND UV SAFE:
+- Cập nhật phần ảnh PNG đóng gói trong một BẢN SAO định dạng Blender 4.4.
+- Đã kiểm tra toàn bộ 1058 data blocks đọc liên tiếp hợp lệ và PNG packed đúng dung lượng.
+- Không sửa Object/Mesh/UV/Material/Rig, chỉ thay payload ảnh và PackedFile.size.
+- CHƯA MỞ THỬ bằng ứng dụng Blender do môi trường không có Blender.
+
+SCRIPT DỰNG FULL:
+- Có 2383 dòng. Kiểm tra AST/compile: thành công.
+- So với script gốc chỉ thay 2 hàm cũ: step1 (không merge UV seams) và run (thêm bước buildall/finishall/coloronly).
+- Mọi hàm animation gốc, Victory, Defeat, rơi kích, PlayAll được giữ nguyên.
+- Tắt tự động giảm lưới nhân vật (DECIMATE_TO=0) và vũ khí (WEAPON_TRIS=0).
+- Chạy buildall lưu một file mới: LuBu_Arena3Q_7Anims.blend; không viết đè lubu.blend.
+- STEP buildall = UV-safe, rig 73 xương dự kiến, weight, kích, Idle/Walk/Run/Attack01/Attack02/Victory/Defeat,
+  vũ khí rơi Defeat, PlayAll 35 giây x 30fps.
+- Tự kiểm tra lại mesh/UV, đủ 7 Action, weapon socket, armature skinning, NLA trước khi lưu.
+- Chưa chạy kiểm thử dựng rig/animation trong Blender. Cần chạy script trong Blender 4.4 hoặc 5.x và xem lại chuyển động,
+  đặc biệt tay nắm kích, quỳ xuống, ngã sấp, cây kích rơi, điểm tiếp đất trước khi xuất FBX.
+
+SHA256:
+source.blend: 7c5b4fdb3b9a39a6833e39fd20fa7bae4c2cf938f5902bab731574f3703ec499
+UVSafe.blend: b0372347ed9336486f31b89575a693c0c8e5442810fc03f7bc9ac6b33d4889e2
+weapon.glb: 4dbdf46f7e3e6dd13bdab280e8c2504f2dac5ae4e5840864f48ddfb99f6df4a5
+UVSafe.png: 3d08f3206abe02bd4efd9bd6136c568d77f6fff2396f7835f0ceb30b4e1ffbed
+script.py: 1f453b60db1773c2e26c86e35b264b7312f058adaf3706202a2eff8d61c8998a

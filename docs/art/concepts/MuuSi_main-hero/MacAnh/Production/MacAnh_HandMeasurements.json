@@ -1,0 +1,51 @@
+{
+  "method": "manual visible landmarks on front orthographic source render; not joint centers",
+  "front_render_pixels": {
+    "wrist": [
+      262,
+      485
+    ],
+    "palm": [
+      249,
+      499
+    ],
+    "middle_tip": [
+      232,
+      514
+    ],
+    "thumb_tip": [
+      271,
+      509
+    ]
+  },
+  "landmarks_world": {
+    "wrist": [
+      -0.35362499952316284,
+      -0.21144342422485352,
+      0.6321874856948853
+    ],
+    "palm": [
+      -0.3869374990463257,
+      -0.20361685752868652,
+      0.5963125228881836
+    ],
+    "middle_tip": [
+      -0.43050000071525574,
+      -0.1815502643585205,
+      0.5578749775886536
+    ],
+    "thumb_tip": [
+      -0.3305625021457672,
+      -0.15786981582641602,
+      0.570687472820282
+    ]
+  },
+  "wrist_to_middle_tip_m": 0.11102123898808436,
+  "palm_to_thumb_tip_m": 0.07699074805765822,
+  "grip_design": {
+    "length_m": 0.095,
+    "diameter_m": 0.026,
+    "fan_width_target_m": 0.6
+  },
+  "status": "provisional static-mesh fit; final grip/socket requires approved rig and posed hand"
+}

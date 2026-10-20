@@ -1,0 +1,1339 @@
+{
+  "source": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\LOD\\MacAnh_Battle_CorrectNormalUV1.blend",
+  "allowed_contact": "Fan_Handle is the held grip; palm/finger surfaces are excluded. Feather/frame/crystal against cloth/head are measured.",
+  "clips": [
+    {
+      "action": "MacAnh_Attack01",
+      "samples": 49,
+      "max_non_palm_intersections": 50,
+      "worst": {
+        "frame": 6.0,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 857,
+            "part": 1,
+            "fan_triangle": 99,
+            "body_center": [
+              -0.43795180320739746,
+              -0.22021707892417908,
+              0.8500161170959473
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 857,
+            "part": 1,
+            "fan_triangle": 140,
+            "body_center": [
+              -0.43795180320739746,
+              -0.22021707892417908,
+              0.8500161170959473
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 857,
+            "part": 1,
+            "fan_triangle": 141,
+            "body_center": [
+              -0.43795180320739746,
+              -0.22021707892417908,
+              0.8500161170959473
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 99,
+            "body_center": [
+              -0.4594672620296478,
+              -0.22646769881248474,
+              0.8341717720031738
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 98,
+            "body_center": [
+              -0.4594672620296478,
+              -0.22646769881248474,
+              0.8341717720031738
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 104,
+            "body_center": [
+              -0.4594672620296478,
+              -0.22646769881248474,
+              0.8341717720031738
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 105,
+            "body_center": [
+              -0.4594672620296478,
+              -0.22646769881248474,
+              0.8341717720031738
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 103,
+            "body_center": [
+              -0.4594672620296478,
+              -0.22646769881248474,
+              0.8341717720031738
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 108,
+            "body_center": [
+              -0.4594672620296478,
+              -0.22646769881248474,
+              0.8341717720031738
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 109,
+            "body_center": [
+              -0.4594672620296478,
+              -0.22646769881248474,
+              0.8341717720031738
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 13
+    },
+    {
+      "action": "MacAnh_Attack02",
+      "samples": 91,
+      "max_non_palm_intersections": 32,
+      "worst": {
+        "frame": 0.0,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 99,
+            "body_center": [
+              -0.37330183386802673,
+              -0.308159202337265,
+              0.7850577235221863
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 98,
+            "body_center": [
+              -0.37330183386802673,
+              -0.308159202337265,
+              0.7850577235221863
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 104,
+            "body_center": [
+              -0.37330183386802673,
+              -0.308159202337265,
+              0.7850577235221863
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 105,
+            "body_center": [
+              -0.37330183386802673,
+              -0.308159202337265,
+              0.7850577235221863
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 103,
+            "body_center": [
+              -0.37330183386802673,
+              -0.308159202337265,
+              0.7850577235221863
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 140,
+            "body_center": [
+              -0.37330183386802673,
+              -0.308159202337265,
+              0.7850577235221863
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 141,
+            "body_center": [
+              -0.37330183386802673,
+              -0.308159202337265,
+              0.7850577235221863
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 134,
+            "body_center": [
+              -0.37330183386802673,
+              -0.308159202337265,
+              0.7850577235221863
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 133,
+            "body_center": [
+              -0.37330183386802673,
+              -0.308159202337265,
+              0.7850577235221863
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 132,
+            "body_center": [
+              -0.37330183386802673,
+              -0.308159202337265,
+              0.7850577235221863
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 0
+    },
+    {
+      "action": "MacAnh_Dodge",
+      "samples": 49,
+      "max_non_palm_intersections": 47,
+      "worst": {
+        "frame": 15.0,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 101,
+            "body_center": [
+              -0.4199870526790619,
+              -0.231868177652359,
+              0.6964141726493835
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 99,
+            "body_center": [
+              -0.4199870526790619,
+              -0.231868177652359,
+              0.6964141726493835
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 98,
+            "body_center": [
+              -0.4199870526790619,
+              -0.231868177652359,
+              0.6964141726493835
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 104,
+            "body_center": [
+              -0.4199870526790619,
+              -0.231868177652359,
+              0.6964141726493835
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 105,
+            "body_center": [
+              -0.4199870526790619,
+              -0.231868177652359,
+              0.6964141726493835
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 143,
+            "body_center": [
+              -0.4199870526790619,
+              -0.231868177652359,
+              0.6964141726493835
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 141,
+            "body_center": [
+              -0.4199870526790619,
+              -0.231868177652359,
+              0.6964141726493835
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 121,
+            "body_center": [
+              -0.4199870526790619,
+              -0.231868177652359,
+              0.6964141726493835
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 134,
+            "body_center": [
+              -0.4199870526790619,
+              -0.231868177652359,
+              0.6964141726493835
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 135,
+            "body_center": [
+              -0.4199870526790619,
+              -0.231868177652359,
+              0.6964141726493835
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 0
+    },
+    {
+      "action": "MacAnh_DodgeAttack",
+      "samples": 67,
+      "max_non_palm_intersections": 46,
+      "worst": {
+        "frame": 3.5,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 101,
+            "body_center": [
+              -0.4085947871208191,
+              -0.2528558373451233,
+              0.7196801900863647
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 99,
+            "body_center": [
+              -0.4085947871208191,
+              -0.2528558373451233,
+              0.7196801900863647
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 98,
+            "body_center": [
+              -0.4085947871208191,
+              -0.2528558373451233,
+              0.7196801900863647
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 104,
+            "body_center": [
+              -0.4085947871208191,
+              -0.2528558373451233,
+              0.7196801900863647
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 105,
+            "body_center": [
+              -0.4085947871208191,
+              -0.2528558373451233,
+              0.7196801900863647
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 143,
+            "body_center": [
+              -0.4085947871208191,
+              -0.2528558373451233,
+              0.7196801900863647
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 141,
+            "body_center": [
+              -0.4085947871208191,
+              -0.2528558373451233,
+              0.7196801900863647
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 134,
+            "body_center": [
+              -0.4085947871208191,
+              -0.2528558373451233,
+              0.7196801900863647
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 135,
+            "body_center": [
+              -0.4085947871208191,
+              -0.2528558373451233,
+              0.7196801900863647
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 128,
+            "body_center": [
+              -0.4085947871208191,
+              -0.2528558373451233,
+              0.7196801900863647
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 0
+    },
+    {
+      "action": "MacAnh_Idle",
+      "samples": 81,
+      "max_non_palm_intersections": 33,
+      "worst": {
+        "frame": 27.5,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 103,
+            "body_center": [
+              -0.3621525168418884,
+              -0.31937023997306824,
+              0.7706974744796753
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 108,
+            "body_center": [
+              -0.3621525168418884,
+              -0.31937023997306824,
+              0.7706974744796753
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 109,
+            "body_center": [
+              -0.3621525168418884,
+              -0.31937023997306824,
+              0.7706974744796753
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 121,
+            "body_center": [
+              -0.3621525168418884,
+              -0.31937023997306824,
+              0.7706974744796753
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 120,
+            "body_center": [
+              -0.3621525168418884,
+              -0.31937023997306824,
+              0.7706974744796753
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 114,
+            "body_center": [
+              -0.3621525168418884,
+              -0.31937023997306824,
+              0.7706974744796753
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 126,
+            "body_center": [
+              -0.3621525168418884,
+              -0.31937023997306824,
+              0.7706974744796753
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 124,
+            "body_center": [
+              -0.3621525168418884,
+              -0.31937023997306824,
+              0.7706974744796753
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 118,
+            "body_center": [
+              -0.3621525168418884,
+              -0.31937023997306824,
+              0.7706974744796753
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 99,
+            "body_center": [
+              -0.37295159697532654,
+              -0.3079732060432434,
+              0.7818832397460938
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 0
+    },
+    {
+      "action": "MacAnh_Run",
+      "samples": 49,
+      "max_non_palm_intersections": 39,
+      "worst": {
+        "frame": 7.0,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 857,
+            "part": 1,
+            "fan_triangle": 101,
+            "body_center": [
+              -0.32330256700515747,
+              -0.33316320180892944,
+              0.6836251616477966
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 857,
+            "part": 1,
+            "fan_triangle": 143,
+            "body_center": [
+              -0.32330256700515747,
+              -0.33316320180892944,
+              0.6836251616477966
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 857,
+            "part": 1,
+            "fan_triangle": 137,
+            "body_center": [
+              -0.32330256700515747,
+              -0.33316320180892944,
+              0.6836251616477966
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 857,
+            "part": 1,
+            "fan_triangle": 135,
+            "body_center": [
+              -0.32330256700515747,
+              -0.33316320180892944,
+              0.6836251616477966
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 101,
+            "body_center": [
+              -0.3390307128429413,
+              -0.3430096507072449,
+              0.6629717946052551
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 104,
+            "body_center": [
+              -0.3390307128429413,
+              -0.3430096507072449,
+              0.6629717946052551
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 107,
+            "body_center": [
+              -0.3390307128429413,
+              -0.3430096507072449,
+              0.6629717946052551
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 105,
+            "body_center": [
+              -0.3390307128429413,
+              -0.3430096507072449,
+              0.6629717946052551
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 110,
+            "body_center": [
+              -0.3390307128429413,
+              -0.3430096507072449,
+              0.6629717946052551
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 111,
+            "body_center": [
+              -0.3390307128429413,
+              -0.3430096507072449,
+              0.6629717946052551
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 0
+    },
+    {
+      "action": "MacAnh_Skill01",
+      "samples": 109,
+      "max_non_palm_intersections": 43,
+      "worst": {
+        "frame": 49.0,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 98,
+            "body_center": [
+              -0.33009275794029236,
+              -0.3566770553588867,
+              0.761953592300415
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 104,
+            "body_center": [
+              -0.33009275794029236,
+              -0.3566770553588867,
+              0.761953592300415
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 105,
+            "body_center": [
+              -0.33009275794029236,
+              -0.3566770553588867,
+              0.761953592300415
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 103,
+            "body_center": [
+              -0.33009275794029236,
+              -0.3566770553588867,
+              0.761953592300415
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 108,
+            "body_center": [
+              -0.33009275794029236,
+              -0.3566770553588867,
+              0.761953592300415
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 109,
+            "body_center": [
+              -0.33009275794029236,
+              -0.3566770553588867,
+              0.761953592300415
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 114,
+            "body_center": [
+              -0.33009275794029236,
+              -0.3566770553588867,
+              0.761953592300415
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 127,
+            "body_center": [
+              -0.33009275794029236,
+              -0.3566770553588867,
+              0.761953592300415
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 126,
+            "body_center": [
+              -0.33009275794029236,
+              -0.3566770553588867,
+              0.761953592300415
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 124,
+            "body_center": [
+              -0.33009275794029236,
+              -0.3566770553588867,
+              0.761953592300415
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 0
+    },
+    {
+      "action": "MacAnh_Skill02",
+      "samples": 121,
+      "max_non_palm_intersections": 43,
+      "worst": {
+        "frame": 3.0,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 104,
+            "body_center": [
+              -0.36194247007369995,
+              -0.31217333674430847,
+              0.7584013938903809
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 103,
+            "body_center": [
+              -0.36194247007369995,
+              -0.31217333674430847,
+              0.7584013938903809
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 108,
+            "body_center": [
+              -0.36194247007369995,
+              -0.31217333674430847,
+              0.7584013938903809
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 109,
+            "body_center": [
+              -0.36194247007369995,
+              -0.31217333674430847,
+              0.7584013938903809
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 121,
+            "body_center": [
+              -0.36194247007369995,
+              -0.31217333674430847,
+              0.7584013938903809
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 120,
+            "body_center": [
+              -0.36194247007369995,
+              -0.31217333674430847,
+              0.7584013938903809
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 114,
+            "body_center": [
+              -0.36194247007369995,
+              -0.31217333674430847,
+              0.7584013938903809
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 126,
+            "body_center": [
+              -0.36194247007369995,
+              -0.31217333674430847,
+              0.7584013938903809
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 124,
+            "body_center": [
+              -0.36194247007369995,
+              -0.31217333674430847,
+              0.7584013938903809
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 718,
+            "part": 1,
+            "fan_triangle": 118,
+            "body_center": [
+              -0.36194247007369995,
+              -0.31217333674430847,
+              0.7584013938903809
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 0
+    },
+    {
+      "action": "MacAnh_Skill03",
+      "samples": 85,
+      "max_non_palm_intersections": 32,
+      "worst": {
+        "frame": 0.0,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 99,
+            "body_center": [
+              -0.37329477071762085,
+              -0.30816540122032166,
+              0.7850626707077026
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 98,
+            "body_center": [
+              -0.37329477071762085,
+              -0.30816540122032166,
+              0.7850626707077026
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 104,
+            "body_center": [
+              -0.37329477071762085,
+              -0.30816540122032166,
+              0.7850626707077026
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 105,
+            "body_center": [
+              -0.37329477071762085,
+              -0.30816540122032166,
+              0.7850626707077026
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 103,
+            "body_center": [
+              -0.37329477071762085,
+              -0.30816540122032166,
+              0.7850626707077026
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 140,
+            "body_center": [
+              -0.37329477071762085,
+              -0.30816540122032166,
+              0.7850626707077026
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 141,
+            "body_center": [
+              -0.37329477071762085,
+              -0.30816540122032166,
+              0.7850626707077026
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 134,
+            "body_center": [
+              -0.37329477071762085,
+              -0.30816540122032166,
+              0.7850626707077026
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 133,
+            "body_center": [
+              -0.37329477071762085,
+              -0.30816540122032166,
+              0.7850626707077026
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 132,
+            "body_center": [
+              -0.37329477071762085,
+              -0.30816540122032166,
+              0.7850626707077026
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 0
+    },
+    {
+      "action": "MacAnh_Ultimate",
+      "samples": 211,
+      "max_non_palm_intersections": 40,
+      "worst": {
+        "frame": 47.0,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 857,
+            "part": 1,
+            "fan_triangle": 97,
+            "body_center": [
+              -0.3943498134613037,
+              -0.30596810579299927,
+              0.9018433094024658
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 857,
+            "part": 1,
+            "fan_triangle": 102,
+            "body_center": [
+              -0.3943498134613037,
+              -0.30596810579299927,
+              0.9018433094024658
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 857,
+            "part": 1,
+            "fan_triangle": 133,
+            "body_center": [
+              -0.3943498134613037,
+              -0.30596810579299927,
+              0.9018433094024658
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 857,
+            "part": 1,
+            "fan_triangle": 132,
+            "body_center": [
+              -0.3943498134613037,
+              -0.30596810579299927,
+              0.9018433094024658
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 857,
+            "part": 1,
+            "fan_triangle": 138,
+            "body_center": [
+              -0.3943498134613037,
+              -0.30596810579299927,
+              0.9018433094024658
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 857,
+            "part": 1,
+            "fan_triangle": 136,
+            "body_center": [
+              -0.3943498134613037,
+              -0.30596810579299927,
+              0.9018433094024658
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 722,
+            "part": 1,
+            "fan_triangle": 99,
+            "body_center": [
+              -0.4271243214607239,
+              -0.2966294288635254,
+              0.9006437063217163
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 722,
+            "part": 1,
+            "fan_triangle": 98,
+            "body_center": [
+              -0.4271243214607239,
+              -0.2966294288635254,
+              0.9006437063217163
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 722,
+            "part": 1,
+            "fan_triangle": 140,
+            "body_center": [
+              -0.4271243214607239,
+              -0.2966294288635254,
+              0.9006437063217163
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 722,
+            "part": 1,
+            "fan_triangle": 139,
+            "body_center": [
+              -0.4271243214607239,
+              -0.2966294288635254,
+              0.9006437063217163
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 0
+    },
+    {
+      "action": "MacAnh_Walk",
+      "samples": 73,
+      "max_non_palm_intersections": 32,
+      "worst": {
+        "frame": 2.0,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 857,
+            "part": 1,
+            "fan_triangle": 99,
+            "body_center": [
+              -0.34973257780075073,
+              -0.30519866943359375,
+              0.7664856910705566
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 857,
+            "part": 1,
+            "fan_triangle": 140,
+            "body_center": [
+              -0.34973257780075073,
+              -0.30519866943359375,
+              0.7664856910705566
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 99,
+            "body_center": [
+              -0.36682844161987305,
+              -0.31658774614334106,
+              0.7477930784225464
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 98,
+            "body_center": [
+              -0.36682844161987305,
+              -0.31658774614334106,
+              0.7477930784225464
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 104,
+            "body_center": [
+              -0.36682844161987305,
+              -0.31658774614334106,
+              0.7477930784225464
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 105,
+            "body_center": [
+              -0.36682844161987305,
+              -0.31658774614334106,
+              0.7477930784225464
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 103,
+            "body_center": [
+              -0.36682844161987305,
+              -0.31658774614334106,
+              0.7477930784225464
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 140,
+            "body_center": [
+              -0.36682844161987305,
+              -0.31658774614334106,
+              0.7477930784225464
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 141,
+            "body_center": [
+              -0.36682844161987305,
+              -0.31658774614334106,
+              0.7477930784225464
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 689,
+            "part": 1,
+            "fan_triangle": 121,
+            "body_center": [
+              -0.36682844161987305,
+              -0.31658774614334106,
+              0.7477930784225464
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 0
+    }
+  ],
+  "elapsed_seconds": 37.99026679992676,
+  "passed": false
+}

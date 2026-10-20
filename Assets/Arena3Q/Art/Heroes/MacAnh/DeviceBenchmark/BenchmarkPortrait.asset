@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30fb88be20edac74e905472d14c43d46, type: 3}
+  m_Name: BenchmarkPortrait
+  m_EditorClassIdentifier: Arena3Q.Graphics3D::Arena3Q.Graphics3D.MacAnhLodBenchmarkContent
+  performance: {fileID: 0}
+  heroes: []
+  portraitPrefab: {fileID: 3898743471801052335, guid: f8bf1491d9a9d3b489cebfa68ad32d93, type: 3}
+  clips:
+  - {fileID: -6806552629896829340, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - {fileID: -5564097027603046378, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - {fileID: -4326700767524258678, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - {fileID: -3662692297750365931, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - {fileID: -2389674206222003, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - {fileID: 1254042947159826229, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - {fileID: 1581059346694213680, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - {fileID: 3091189329471250234, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - {fileID: 4136505970752483666, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - {fileID: 5444095327090306372, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - {fileID: 6889317785657371753, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  bodyTriangles: 252560
+  fanTriangles: 7268

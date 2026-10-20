@@ -1,0 +1,13 @@
+{
+  "method": "normalized spatial field / trilinear interpolation",
+  "grid_step_m": 0.01,
+  "cloth_sigma_m": 0.1,
+  "detail_sigma_m": 0.012,
+  "grid_shape": [
+    107,
+    79,
+    175
+  ],
+  "max_influences": 16,
+  "seconds": 65.82165741920471
+}

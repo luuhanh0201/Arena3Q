@@ -1,0 +1,76 @@
+{
+  "root": "D:\\UnityProjects\\Arena3Q\\Library\\MacAnhFanClearanceSprites\\Atlases",
+  "clips": [
+    {
+      "name": "Attack01",
+      "sprites": 200,
+      "pages": 1,
+      "issues": []
+    },
+    {
+      "name": "Attack02",
+      "sprites": 368,
+      "pages": 2,
+      "issues": []
+    },
+    {
+      "name": "Dodge",
+      "sprites": 200,
+      "pages": 1,
+      "issues": []
+    },
+    {
+      "name": "DodgeAttack",
+      "sprites": 272,
+      "pages": 2,
+      "issues": []
+    },
+    {
+      "name": "Idle",
+      "sprites": 320,
+      "pages": 2,
+      "issues": []
+    },
+    {
+      "name": "Run",
+      "sprites": 192,
+      "pages": 1,
+      "issues": []
+    },
+    {
+      "name": "Skill01",
+      "sprites": 440,
+      "pages": 3,
+      "issues": []
+    },
+    {
+      "name": "Skill02",
+      "sprites": 488,
+      "pages": 3,
+      "issues": []
+    },
+    {
+      "name": "Skill03",
+      "sprites": 344,
+      "pages": 2,
+      "issues": []
+    },
+    {
+      "name": "Ultimate",
+      "sprites": 848,
+      "pages": 5,
+      "issues": []
+    },
+    {
+      "name": "Walk",
+      "sprites": 288,
+      "pages": 2,
+      "issues": []
+    }
+  ],
+  "sprite_count": 3960,
+  "page_count": 24,
+  "png_bytes": 98509465,
+  "passed": true,
+  "source_sha256": "bfa814aa574d7f73484ee7bd0498c9da5cd4291ba161be16d17582130e3089b8"
+}

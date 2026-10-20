@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3865016083378784383
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6722160889755898250}
+  - component: {fileID: 1962728080305984738}
+  m_Layer: 0
+  m_Name: MacAnhRealtimeBattleView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6722160889755898250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3865016083378784383}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1962728080305984738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3865016083378784383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c84db0ce9141cfd4c9dc0e442e497ce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Arena3Q.Graphics3D::Arena3Q.Graphics3D.MacAnhRealtimeBattleView
+  characterPrefab: {fileID: 4659415737765224346, guid: 3eca296f9a49b0943831dc033d7cda85, type: 3}
+  clips:
+  - action: 4
+    clip: {fileID: -3662692297750365931, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - action: 5
+    clip: {fileID: 6889317785657371753, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - action: 3
+    clip: {fileID: 1581059346694213680, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - action: 10
+    clip: {fileID: -5564097027603046378, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - action: 0
+    clip: {fileID: 4136505970752483666, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - action: 2
+    clip: {fileID: 3091189329471250234, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - action: 6
+    clip: {fileID: -4326700767524258678, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - action: 7
+    clip: {fileID: 1254042947159826229, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - action: 8
+    clip: {fileID: -6806552629896829340, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - action: 9
+    clip: {fileID: 5444095327090306372, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  - action: 1
+    clip: {fileID: -2389674206222003, guid: bdec019408e7f2145b9f67e887f5a343, type: 3}
+  compositeMaterial: {fileID: 2100000, guid: 6a93773b08efcb948b82370b63c64f8a, type: 2}
+  forwardRendererIndex: 1
+  captureResolution: 256
+  captureMsaa: 4
+  groundProjection: 0.75
+  orthographicSize: 1.25
+  lookHeight: 0.8
+  yawOffset: 270
+  yawSign: -1
+  transitionSeconds: 0.07
+  keyIntensity: 20
+  fillIntensity: 5

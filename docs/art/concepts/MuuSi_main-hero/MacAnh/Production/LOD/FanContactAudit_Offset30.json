@@ -1,0 +1,3903 @@
+{
+  "source": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\LOD\\MacAnh_Battle_CorrectNormalUV1.blend",
+  "allowed_contact": "Fan_Handle is the held grip; palm/finger surfaces are excluded. Feather/frame/crystal against cloth/head are measured.",
+  "clips": [
+    {
+      "action": "MacAnh_Attack01",
+      "samples": 49,
+      "max_non_palm_intersections": 147,
+      "worst": {
+        "frame": 21.5,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 96,
+            "body_center": [
+              -0.24213099479675293,
+              -0.3671605587005615,
+              0.734653115272522
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 139,
+            "body_center": [
+              -0.24213099479675293,
+              -0.3671605587005615,
+              0.734653115272522
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 138,
+            "body_center": [
+              -0.24213099479675293,
+              -0.3671605587005615,
+              0.734653115272522
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 100,
+            "body_center": [
+              -0.24213099479675293,
+              -0.3671605587005615,
+              0.734653115272522
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 142,
+            "body_center": [
+              -0.24213099479675293,
+              -0.3671605587005615,
+              0.734653115272522
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 718,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3254239559173584,
+              -0.20974820852279663,
+              0.6593136191368103
+            ],
+            "fan_triangle": 10,
+            "body_center": [
+              -0.23425792157649994,
+              -0.34005582332611084,
+              0.7910609245300293
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 718,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3254239559173584,
+              -0.20974820852279663,
+              0.6593136191368103
+            ],
+            "fan_triangle": 13,
+            "body_center": [
+              -0.23425792157649994,
+              -0.34005582332611084,
+              0.7910609245300293
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 718,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3254239559173584,
+              -0.20974820852279663,
+              0.6593136191368103
+            ],
+            "fan_triangle": 12,
+            "body_center": [
+              -0.23425792157649994,
+              -0.34005582332611084,
+              0.7910609245300293
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 718,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3254239559173584,
+              -0.20974820852279663,
+              0.6593136191368103
+            ],
+            "fan_triangle": 15,
+            "body_center": [
+              -0.23425792157649994,
+              -0.34005582332611084,
+              0.7910609245300293
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 718,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3254239559173584,
+              -0.20974820852279663,
+              0.6593136191368103
+            ],
+            "fan_triangle": 14,
+            "body_center": [
+              -0.23425792157649994,
+              -0.34005582332611084,
+              0.7910609245300293
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 718,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3254239559173584,
+              -0.20974820852279663,
+              0.6593136191368103
+            ],
+            "fan_triangle": 17,
+            "body_center": [
+              -0.23425792157649994,
+              -0.34005582332611084,
+              0.7910609245300293
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 718,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3254239559173584,
+              -0.20974820852279663,
+              0.6593136191368103
+            ],
+            "fan_triangle": 16,
+            "body_center": [
+              -0.23425792157649994,
+              -0.34005582332611084,
+              0.7910609245300293
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 19,
+            "body_center": [
+              -0.24883973598480225,
+              -0.3295195400714874,
+              0.7975314855575562
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 16,
+            "body_center": [
+              -0.24883973598480225,
+              -0.3295195400714874,
+              0.7975314855575562
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 18,
+            "body_center": [
+              -0.24883973598480225,
+              -0.3295195400714874,
+              0.7975314855575562
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 6015
+    },
+    {
+      "action": "MacAnh_Attack02",
+      "samples": 91,
+      "max_non_palm_intersections": 189,
+      "worst": {
+        "frame": 10.0,
+        "contacts": [
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 15,
+            "body_center": [
+              -0.39032527804374695,
+              -0.26889872550964355,
+              0.9183418154716492
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 14,
+            "body_center": [
+              -0.39032527804374695,
+              -0.26889872550964355,
+              0.9183418154716492
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 17,
+            "body_center": [
+              -0.39032527804374695,
+              -0.26889872550964355,
+              0.9183418154716492
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 19,
+            "body_center": [
+              -0.39032527804374695,
+              -0.26889872550964355,
+              0.9183418154716492
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 16,
+            "body_center": [
+              -0.39032527804374695,
+              -0.26889872550964355,
+              0.9183418154716492
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 18,
+            "body_center": [
+              -0.39032527804374695,
+              -0.26889872550964355,
+              0.9183418154716492
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 21,
+            "body_center": [
+              -0.39032527804374695,
+              -0.26889872550964355,
+              0.9183418154716492
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 20,
+            "body_center": [
+              -0.39032527804374695,
+              -0.26889872550964355,
+              0.9183418154716492
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 401,
+            "body_center": [
+              -0.39032527804374695,
+              -0.26889872550964355,
+              0.9183418154716492
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 408,
+            "body_center": [
+              -0.39032527804374695,
+              -0.26889872550964355,
+              0.9183418154716492
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 176,
+            "body_center": [
+              -0.4563932418823242,
+              -0.24878734350204468,
+              0.7036055326461792
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 184,
+            "body_center": [
+              -0.4563932418823242,
+              -0.24878734350204468,
+              0.7036055326461792
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 185,
+            "body_center": [
+              -0.4563932418823242,
+              -0.24878734350204468,
+              0.7036055326461792
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 178,
+            "body_center": [
+              -0.4563932418823242,
+              -0.24878734350204468,
+              0.7036055326461792
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 177,
+            "body_center": [
+              -0.4563932418823242,
+              -0.24878734350204468,
+              0.7036055326461792
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 179,
+            "body_center": [
+              -0.4563932418823242,
+              -0.24878734350204468,
+              0.7036055326461792
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 376,
+            "body_center": [
+              -0.461863249540329,
+              -0.23108713328838348,
+              0.7003382444381714
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 377,
+            "body_center": [
+              -0.461863249540329,
+              -0.23108713328838348,
+              0.7003382444381714
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 368,
+            "body_center": [
+              -0.461863249540329,
+              -0.23108713328838348,
+              0.7003382444381714
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 369,
+            "body_center": [
+              -0.461863249540329,
+              -0.23108713328838348,
+              0.7003382444381714
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 11581
+    },
+    {
+      "action": "MacAnh_Dodge",
+      "samples": 49,
+      "max_non_palm_intersections": 87,
+      "worst": {
+        "frame": 20.0,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 98,
+            "body_center": [
+              -0.3511873185634613,
+              -0.3352455496788025,
+              0.7963137626647949
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 97,
+            "body_center": [
+              -0.3511873185634613,
+              -0.3352455496788025,
+              0.7963137626647949
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 607,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.35375022888183594,
+              -0.21929116547107697,
+              0.6058019995689392
+            ],
+            "fan_triangle": 10,
+            "body_center": [
+              -0.3679918050765991,
+              -0.34636104106903076,
+              0.8075060844421387
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 607,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.35375022888183594,
+              -0.21929116547107697,
+              0.6058019995689392
+            ],
+            "fan_triangle": 11,
+            "body_center": [
+              -0.3679918050765991,
+              -0.34636104106903076,
+              0.8075060844421387
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 607,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.35375022888183594,
+              -0.21929116547107697,
+              0.6058019995689392
+            ],
+            "fan_triangle": 13,
+            "body_center": [
+              -0.3679918050765991,
+              -0.34636104106903076,
+              0.8075060844421387
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 607,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.35375022888183594,
+              -0.21929116547107697,
+              0.6058019995689392
+            ],
+            "fan_triangle": 9,
+            "body_center": [
+              -0.3679918050765991,
+              -0.34636104106903076,
+              0.8075060844421387
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 607,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.35375022888183594,
+              -0.21929116547107697,
+              0.6058019995689392
+            ],
+            "fan_triangle": 8,
+            "body_center": [
+              -0.3679918050765991,
+              -0.34636104106903076,
+              0.8075060844421387
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 607,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.35375022888183594,
+              -0.21929116547107697,
+              0.6058019995689392
+            ],
+            "fan_triangle": 6,
+            "body_center": [
+              -0.3679918050765991,
+              -0.34636104106903076,
+              0.8075060844421387
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 10,
+            "body_center": [
+              -0.36151957511901855,
+              -0.34877485036849976,
+              0.8032667636871338
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 13,
+            "body_center": [
+              -0.36151957511901855,
+              -0.34877485036849976,
+              0.8032667636871338
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 81,
+            "body_center": [
+              -0.36151957511901855,
+              -0.34877485036849976,
+              0.8032667636871338
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 55,
+            "body_center": [
+              -0.36151957511901855,
+              -0.34877485036849976,
+              0.8032667636871338
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 364,
+            "body_center": [
+              -0.41611823439598083,
+              -0.24203038215637207,
+              0.647788405418396
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 367,
+            "body_center": [
+              -0.41611823439598083,
+              -0.24203038215637207,
+              0.647788405418396
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 365,
+            "body_center": [
+              -0.41611823439598083,
+              -0.24203038215637207,
+              0.647788405418396
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 470,
+            "body_center": [
+              -0.41611823439598083,
+              -0.24203038215637207,
+              0.647788405418396
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 473,
+            "body_center": [
+              -0.41611823439598083,
+              -0.24203038215637207,
+              0.647788405418396
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 472,
+            "body_center": [
+              -0.41611823439598083,
+              -0.24203038215637207,
+              0.647788405418396
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 465,
+            "body_center": [
+              -0.41611823439598083,
+              -0.24203038215637207,
+              0.647788405418396
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 464,
+            "body_center": [
+              -0.41611823439598083,
+              -0.24203038215637207,
+              0.647788405418396
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 466,
+            "body_center": [
+              -0.41611823439598083,
+              -0.24203038215637207,
+              0.647788405418396
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 375,
+            "body_center": [
+              -0.41611823439598083,
+              -0.24203038215637207,
+              0.647788405418396
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 5547
+    },
+    {
+      "action": "MacAnh_DodgeAttack",
+      "samples": 67,
+      "max_non_palm_intersections": 79,
+      "worst": {
+        "frame": 30.5,
+        "contacts": [
+          {
+            "object": "Fan_Handle",
+            "body_face": 749,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3392519950866699,
+              -0.21035413444042206,
+              0.6368412971496582
+            ],
+            "fan_triangle": 12,
+            "body_center": [
+              -0.32030007243156433,
+              -0.33976978063583374,
+              0.814318835735321
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 10,
+            "body_center": [
+              -0.3220010995864868,
+              -0.34827694296836853,
+              0.8023786544799805
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 13,
+            "body_center": [
+              -0.3220010995864868,
+              -0.34827694296836853,
+              0.8023786544799805
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 12,
+            "body_center": [
+              -0.3220010995864868,
+              -0.34827694296836853,
+              0.8023786544799805
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 726,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.34156325459480286,
+              -0.20884482562541962,
+              0.6399512887001038
+            ],
+            "fan_triangle": 12,
+            "body_center": [
+              -0.322170227766037,
+              -0.3369583785533905,
+              0.8171424865722656
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 10,
+            "body_center": [
+              -0.33222705125808716,
+              -0.3646849989891052,
+              0.784858226776123
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 11,
+            "body_center": [
+              -0.33222705125808716,
+              -0.3646849989891052,
+              0.784858226776123
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 607,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.35375022888183594,
+              -0.21929116547107697,
+              0.6058019995689392
+            ],
+            "fan_triangle": 11,
+            "body_center": [
+              -0.339067280292511,
+              -0.36243927478790283,
+              0.7885715961456299
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 607,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.35375022888183594,
+              -0.21929116547107697,
+              0.6058019995689392
+            ],
+            "fan_triangle": 9,
+            "body_center": [
+              -0.339067280292511,
+              -0.36243927478790283,
+              0.7885715961456299
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 607,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.35375022888183594,
+              -0.21929116547107697,
+              0.6058019995689392
+            ],
+            "fan_triangle": 8,
+            "body_center": [
+              -0.339067280292511,
+              -0.36243927478790283,
+              0.7885715961456299
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 470,
+            "body_center": [
+              -0.38014814257621765,
+              -0.2645966112613678,
+              0.6233571767807007
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 473,
+            "body_center": [
+              -0.38014814257621765,
+              -0.2645966112613678,
+              0.6233571767807007
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 472,
+            "body_center": [
+              -0.38014814257621765,
+              -0.2645966112613678,
+              0.6233571767807007
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 465,
+            "body_center": [
+              -0.38014814257621765,
+              -0.2645966112613678,
+              0.6233571767807007
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 464,
+            "body_center": [
+              -0.38014814257621765,
+              -0.2645966112613678,
+              0.6233571767807007
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 374,
+            "body_center": [
+              -0.38014814257621765,
+              -0.2645966112613678,
+              0.6233571767807007
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 376,
+            "body_center": [
+              -0.38014814257621765,
+              -0.2645966112613678,
+              0.6233571767807007
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 377,
+            "body_center": [
+              -0.38014814257621765,
+              -0.2645966112613678,
+              0.6233571767807007
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 368,
+            "body_center": [
+              -0.38014814257621765,
+              -0.2645966112613678,
+              0.6233571767807007
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 369,
+            "body_center": [
+              -0.38014814257621765,
+              -0.2645966112613678,
+              0.6233571767807007
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 7917
+    },
+    {
+      "action": "MacAnh_Idle",
+      "samples": 81,
+      "max_non_palm_intersections": 85,
+      "worst": {
+        "frame": 20.0,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 98,
+            "body_center": [
+              -0.3511418104171753,
+              -0.3352692127227783,
+              0.796364426612854
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 97,
+            "body_center": [
+              -0.3511418104171753,
+              -0.3352692127227783,
+              0.796364426612854
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 81,
+            "body_center": [
+              -0.361470103263855,
+              -0.3487986922264099,
+              0.8033219575881958
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 55,
+            "body_center": [
+              -0.361470103263855,
+              -0.3487986922264099,
+              0.8033219575881958
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 85,
+            "body_center": [
+              -0.361470103263855,
+              -0.3487986922264099,
+              0.8033219575881958
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 52,
+            "body_center": [
+              -0.361470103263855,
+              -0.3487986922264099,
+              0.8033219575881958
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 53,
+            "body_center": [
+              -0.361470103263855,
+              -0.3487986922264099,
+              0.8033219575881958
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 80,
+            "body_center": [
+              -0.361470103263855,
+              -0.3487986922264099,
+              0.8033219575881958
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 607,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.35375022888183594,
+              -0.21929116547107697,
+              0.6058019995689392
+            ],
+            "fan_triangle": 10,
+            "body_center": [
+              -0.36794373393058777,
+              -0.3463854491710663,
+              0.8075592517852783
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 607,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.35375022888183594,
+              -0.21929116547107697,
+              0.6058019995689392
+            ],
+            "fan_triangle": 11,
+            "body_center": [
+              -0.36794373393058777,
+              -0.3463854491710663,
+              0.8075592517852783
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 607,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.35375022888183594,
+              -0.21929116547107697,
+              0.6058019995689392
+            ],
+            "fan_triangle": 13,
+            "body_center": [
+              -0.36794373393058777,
+              -0.3463854491710663,
+              0.8075592517852783
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 607,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.35375022888183594,
+              -0.21929116547107697,
+              0.6058019995689392
+            ],
+            "fan_triangle": 9,
+            "body_center": [
+              -0.36794373393058777,
+              -0.3463854491710663,
+              0.8075592517852783
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 364,
+            "body_center": [
+              -0.4160838723182678,
+              -0.24213305115699768,
+              0.6478273272514343
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 367,
+            "body_center": [
+              -0.4160838723182678,
+              -0.24213305115699768,
+              0.6478273272514343
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 365,
+            "body_center": [
+              -0.4160838723182678,
+              -0.24213305115699768,
+              0.6478273272514343
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 470,
+            "body_center": [
+              -0.4160838723182678,
+              -0.24213305115699768,
+              0.6478273272514343
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 473,
+            "body_center": [
+              -0.4160838723182678,
+              -0.24213305115699768,
+              0.6478273272514343
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 472,
+            "body_center": [
+              -0.4160838723182678,
+              -0.24213305115699768,
+              0.6478273272514343
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 465,
+            "body_center": [
+              -0.4160838723182678,
+              -0.24213305115699768,
+              0.6478273272514343
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 464,
+            "body_center": [
+              -0.4160838723182678,
+              -0.24213305115699768,
+              0.6478273272514343
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 466,
+            "body_center": [
+              -0.4160838723182678,
+              -0.24213305115699768,
+              0.6478273272514343
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 375,
+            "body_center": [
+              -0.4160838723182678,
+              -0.24213305115699768,
+              0.6478273272514343
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 8553
+    },
+    {
+      "action": "MacAnh_Run",
+      "samples": 49,
+      "max_non_palm_intersections": 68,
+      "worst": {
+        "frame": 14.0,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 103,
+            "body_center": [
+              -0.36362916231155396,
+              -0.35837990045547485,
+              0.6586214900016785
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 102,
+            "body_center": [
+              -0.36362916231155396,
+              -0.35837990045547485,
+              0.6586214900016785
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 108,
+            "body_center": [
+              -0.36362916231155396,
+              -0.35837990045547485,
+              0.6586214900016785
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 112,
+            "body_center": [
+              -0.36362916231155396,
+              -0.35837990045547485,
+              0.6586214900016785
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 724,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3464150130748749,
+              -0.22058820724487305,
+              0.6028664112091064
+            ],
+            "fan_triangle": 106,
+            "body_center": [
+              -0.36362916231155396,
+              -0.35837990045547485,
+              0.6586214900016785
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 101,
+            "body_center": [
+              -0.352867066860199,
+              -0.34402522444725037,
+              0.6543204188346863
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 107,
+            "body_center": [
+              -0.352867066860199,
+              -0.34402522444725037,
+              0.6543204188346863
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 105,
+            "body_center": [
+              -0.352867066860199,
+              -0.34402522444725037,
+              0.6543204188346863
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 104,
+            "body_center": [
+              -0.352867066860199,
+              -0.34402522444725037,
+              0.6543204188346863
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 838,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3443576991558075,
+              -0.2213229387998581,
+              0.5909170508384705
+            ],
+            "fan_triangle": 104,
+            "body_center": [
+              -0.36442121863365173,
+              -0.36153480410575867,
+              0.6454895734786987
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 164,
+            "body_center": [
+              -0.35181328654289246,
+              -0.34655749797821045,
+              0.6783275008201599
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 165,
+            "body_center": [
+              -0.35181328654289246,
+              -0.34655749797821045,
+              0.6783275008201599
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 163,
+            "body_center": [
+              -0.35181328654289246,
+              -0.34655749797821045,
+              0.6783275008201599
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 56,
+            "body_center": [
+              -0.35181328654289246,
+              -0.34655749797821045,
+              0.6783275008201599
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 57,
+            "body_center": [
+              -0.35181328654289246,
+              -0.34655749797821045,
+              0.6783275008201599
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 81,
+            "body_center": [
+              -0.35181328654289246,
+              -0.34655749797821045,
+              0.6783275008201599
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 162,
+            "body_center": [
+              -0.35181328654289246,
+              -0.34655749797821045,
+              0.6783275008201599
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 75,
+            "body_center": [
+              -0.35181328654289246,
+              -0.34655749797821045,
+              0.6783275008201599
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 70,
+            "body_center": [
+              -0.35181328654289246,
+              -0.34655749797821045,
+              0.6783275008201599
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 85,
+            "body_center": [
+              -0.35181328654289246,
+              -0.34655749797821045,
+              0.6783275008201599
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 4765
+    },
+    {
+      "action": "MacAnh_Skill01",
+      "samples": 109,
+      "max_non_palm_intersections": 89,
+      "worst": {
+        "frame": 6.0,
+        "contacts": [
+          {
+            "object": "Fan_Handle",
+            "body_face": 1013,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.32066670060157776,
+              -0.19911004602909088,
+              0.6273150444030762
+            ],
+            "fan_triangle": 59,
+            "body_center": [
+              -0.3386729657649994,
+              -0.33118313550949097,
+              0.8886994123458862
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 1013,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.32066670060157776,
+              -0.19911004602909088,
+              0.6273150444030762
+            ],
+            "fan_triangle": 56,
+            "body_center": [
+              -0.3386729657649994,
+              -0.33118313550949097,
+              0.8886994123458862
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 1013,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.32066670060157776,
+              -0.19911004602909088,
+              0.6273150444030762
+            ],
+            "fan_triangle": 54,
+            "body_center": [
+              -0.3386729657649994,
+              -0.33118313550949097,
+              0.8886994123458862
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 1013,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.32066670060157776,
+              -0.19911004602909088,
+              0.6273150444030762
+            ],
+            "fan_triangle": 57,
+            "body_center": [
+              -0.3386729657649994,
+              -0.33118313550949097,
+              0.8886994123458862
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 749,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3392519950866699,
+              -0.21035413444042206,
+              0.6368412971496582
+            ],
+            "fan_triangle": 13,
+            "body_center": [
+              -0.3523014485836029,
+              -0.3345881402492523,
+              0.9079228639602661
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 10,
+            "body_center": [
+              -0.3552929759025574,
+              -0.34439557790756226,
+              0.8969370722770691
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 13,
+            "body_center": [
+              -0.3552929759025574,
+              -0.34439557790756226,
+              0.8969370722770691
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 726,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.34156325459480286,
+              -0.20884482562541962,
+              0.6399512887001038
+            ],
+            "fan_triangle": 13,
+            "body_center": [
+              -0.35381048917770386,
+              -0.3313732445240021,
+              0.9106099009513855
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 726,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.34156325459480286,
+              -0.20884482562541962,
+              0.6399512887001038
+            ],
+            "fan_triangle": 12,
+            "body_center": [
+              -0.35381048917770386,
+              -0.3313732445240021,
+              0.9106099009513855
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 607,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.35375022888183594,
+              -0.21929116547107697,
+              0.6058019995689392
+            ],
+            "fan_triangle": 8,
+            "body_center": [
+              -0.3737472891807556,
+              -0.3595298230648041,
+              0.8856910467147827
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 580,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3480554521083832,
+              -0.053862154483795166,
+              0.49979737401008606
+            ],
+            "fan_triangle": 471,
+            "body_center": [
+              -0.4090374708175659,
+              -0.262820303440094,
+              0.7204336524009705
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 580,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3480554521083832,
+              -0.053862154483795166,
+              0.49979737401008606
+            ],
+            "fan_triangle": 470,
+            "body_center": [
+              -0.4090374708175659,
+              -0.262820303440094,
+              0.7204336524009705
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 580,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3480554521083832,
+              -0.053862154483795166,
+              0.49979737401008606
+            ],
+            "fan_triangle": 473,
+            "body_center": [
+              -0.4090374708175659,
+              -0.262820303440094,
+              0.7204336524009705
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 580,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3480554521083832,
+              -0.053862154483795166,
+              0.49979737401008606
+            ],
+            "fan_triangle": 472,
+            "body_center": [
+              -0.4090374708175659,
+              -0.262820303440094,
+              0.7204336524009705
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 580,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3480554521083832,
+              -0.053862154483795166,
+              0.49979737401008606
+            ],
+            "fan_triangle": 465,
+            "body_center": [
+              -0.4090374708175659,
+              -0.262820303440094,
+              0.7204336524009705
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 580,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3480554521083832,
+              -0.053862154483795166,
+              0.49979737401008606
+            ],
+            "fan_triangle": 477,
+            "body_center": [
+              -0.4090374708175659,
+              -0.262820303440094,
+              0.7204336524009705
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 580,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3480554521083832,
+              -0.053862154483795166,
+              0.49979737401008606
+            ],
+            "fan_triangle": 479,
+            "body_center": [
+              -0.4090374708175659,
+              -0.262820303440094,
+              0.7204336524009705
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 88,
+            "body_center": [
+              -0.426876038312912,
+              -0.27689075469970703,
+              0.716159999370575
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 176,
+            "body_center": [
+              -0.426876038312912,
+              -0.27689075469970703,
+              0.716159999370575
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 375,
+            "body_center": [
+              -0.426876038312912,
+              -0.27689075469970703,
+              0.716159999370575
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 13000
+    },
+    {
+      "action": "MacAnh_Skill02",
+      "samples": 121,
+      "max_non_palm_intersections": 158,
+      "worst": {
+        "frame": 18.5,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 99,
+            "body_center": [
+              -0.24379776418209076,
+              -0.40318912267684937,
+              0.7501236796379089
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 98,
+            "body_center": [
+              -0.24379776418209076,
+              -0.40318912267684937,
+              0.7501236796379089
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 97,
+            "body_center": [
+              -0.24379776418209076,
+              -0.40318912267684937,
+              0.7501236796379089
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 17,
+            "body_center": [
+              -0.24919794499874115,
+              -0.3650682866573334,
+              0.8134074211120605
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 19,
+            "body_center": [
+              -0.24919794499874115,
+              -0.3650682866573334,
+              0.8134074211120605
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 16,
+            "body_center": [
+              -0.24919794499874115,
+              -0.3650682866573334,
+              0.8134074211120605
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 18,
+            "body_center": [
+              -0.24919794499874115,
+              -0.3650682866573334,
+              0.8134074211120605
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 21,
+            "body_center": [
+              -0.24919794499874115,
+              -0.3650682866573334,
+              0.8134074211120605
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 20,
+            "body_center": [
+              -0.24919794499874115,
+              -0.3650682866573334,
+              0.8134074211120605
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 417,
+            "body_center": [
+              -0.24919794499874115,
+              -0.3650682866573334,
+              0.8134074211120605
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 416,
+            "body_center": [
+              -0.24919794499874115,
+              -0.3650682866573334,
+              0.8134074211120605
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 414,
+            "body_center": [
+              -0.24919794499874115,
+              -0.3650682866573334,
+              0.8134074211120605
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 419,
+            "body_center": [
+              -0.24919794499874115,
+              -0.3650682866573334,
+              0.8134074211120605
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 15151
+    },
+    {
+      "action": "MacAnh_Skill03",
+      "samples": 85,
+      "max_non_palm_intersections": 132,
+      "worst": {
+        "frame": 7.5,
+        "contacts": [
+          {
+            "object": "Fan_Handle",
+            "body_face": 718,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3254239559173584,
+              -0.20974820852279663,
+              0.6593136191368103
+            ],
+            "fan_triangle": 14,
+            "body_center": [
+              -0.3032573461532593,
+              -0.34519803524017334,
+              0.8898813128471375
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 718,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3254239559173584,
+              -0.20974820852279663,
+              0.6593136191368103
+            ],
+            "fan_triangle": 17,
+            "body_center": [
+              -0.3032573461532593,
+              -0.34519803524017334,
+              0.8898813128471375
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 17,
+            "body_center": [
+              -0.3156162202358246,
+              -0.3324231803417206,
+              0.8977729678153992
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 19,
+            "body_center": [
+              -0.3156162202358246,
+              -0.3324231803417206,
+              0.8977729678153992
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 16,
+            "body_center": [
+              -0.3156162202358246,
+              -0.3324231803417206,
+              0.8977729678153992
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 751,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3428443372249603,
+              -0.2082948535680771,
+              0.6480412483215332
+            ],
+            "fan_triangle": 14,
+            "body_center": [
+              -0.3225671947002411,
+              -0.35207581520080566,
+              0.8833367824554443
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 751,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3428443372249603,
+              -0.2082948535680771,
+              0.6480412483215332
+            ],
+            "fan_triangle": 17,
+            "body_center": [
+              -0.3225671947002411,
+              -0.35207581520080566,
+              0.8833367824554443
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 711,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3528594970703125,
+              -0.2056841403245926,
+              0.6528095006942749
+            ],
+            "fan_triangle": 17,
+            "body_center": [
+              -0.33183473348617554,
+              -0.34721916913986206,
+              0.8883547186851501
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 711,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3528594970703125,
+              -0.2056841403245926,
+              0.6528095006942749
+            ],
+            "fan_triangle": 19,
+            "body_center": [
+              -0.33183473348617554,
+              -0.34721916913986206,
+              0.8883547186851501
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 711,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3528594970703125,
+              -0.2056841403245926,
+              0.6528095006942749
+            ],
+            "fan_triangle": 16,
+            "body_center": [
+              -0.33183473348617554,
+              -0.34721916913986206,
+              0.8883547186851501
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 80,
+            "body_center": [
+              -0.37586861848831177,
+              -0.3218342661857605,
+              0.680590808391571
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 88,
+            "body_center": [
+              -0.37586861848831177,
+              -0.3218342661857605,
+              0.680590808391571
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 81,
+            "body_center": [
+              -0.37586861848831177,
+              -0.3218342661857605,
+              0.680590808391571
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 83,
+            "body_center": [
+              -0.37586861848831177,
+              -0.3218342661857605,
+              0.680590808391571
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 82,
+            "body_center": [
+              -0.37586861848831177,
+              -0.3218342661857605,
+              0.680590808391571
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 89,
+            "body_center": [
+              -0.37586861848831177,
+              -0.3218342661857605,
+              0.680590808391571
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 176,
+            "body_center": [
+              -0.3842337131500244,
+              -0.30532535910606384,
+              0.6769902110099792
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 471,
+            "body_center": [
+              -0.3842337131500244,
+              -0.30532535910606384,
+              0.6769902110099792
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 470,
+            "body_center": [
+              -0.3842337131500244,
+              -0.30532535910606384,
+              0.6769902110099792
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 468,
+            "body_center": [
+              -0.3842337131500244,
+              -0.30532535910606384,
+              0.6769902110099792
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 10328
+    },
+    {
+      "action": "MacAnh_Ultimate",
+      "samples": 211,
+      "max_non_palm_intersections": 174,
+      "worst": {
+        "frame": 8.0,
+        "contacts": [
+          {
+            "object": "Fan_Handle",
+            "body_face": 718,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3254239559173584,
+              -0.20974820852279663,
+              0.6593136191368103
+            ],
+            "fan_triangle": 12,
+            "body_center": [
+              -0.3168961703777313,
+              -0.3236781060695648,
+              0.8876791000366211
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 718,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3254239559173584,
+              -0.20974820852279663,
+              0.6593136191368103
+            ],
+            "fan_triangle": 15,
+            "body_center": [
+              -0.3168961703777313,
+              -0.3236781060695648,
+              0.8876791000366211
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 718,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3254239559173584,
+              -0.20974820852279663,
+              0.6593136191368103
+            ],
+            "fan_triangle": 377,
+            "body_center": [
+              -0.3168961703777313,
+              -0.3236781060695648,
+              0.8876791000366211
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 718,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3254239559173584,
+              -0.20974820852279663,
+              0.6593136191368103
+            ],
+            "fan_triangle": 374,
+            "body_center": [
+              -0.3168961703777313,
+              -0.3236781060695648,
+              0.8876791000366211
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 15,
+            "body_center": [
+              -0.3285946249961853,
+              -0.31064653396606445,
+              0.8960830569267273
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 14,
+            "body_center": [
+              -0.3285946249961853,
+              -0.31064653396606445,
+              0.8960830569267273
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 17,
+            "body_center": [
+              -0.3285946249961853,
+              -0.31064653396606445,
+              0.8960830569267273
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 19,
+            "body_center": [
+              -0.3285946249961853,
+              -0.31064653396606445,
+              0.8960830569267273
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 16,
+            "body_center": [
+              -0.3285946249961853,
+              -0.31064653396606445,
+              0.8960830569267273
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 689,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33879271149635315,
+              -0.2014303207397461,
+              0.6694490313529968
+            ],
+            "fan_triangle": 18,
+            "body_center": [
+              -0.3285946249961853,
+              -0.31064653396606445,
+              0.8960830569267273
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 80,
+            "body_center": [
+              -0.39388537406921387,
+              -0.2945318818092346,
+              0.6806020140647888
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 88,
+            "body_center": [
+              -0.39388537406921387,
+              -0.2945318818092346,
+              0.6806020140647888
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 81,
+            "body_center": [
+              -0.39388537406921387,
+              -0.2945318818092346,
+              0.6806020140647888
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 86,
+            "body_center": [
+              -0.39388537406921387,
+              -0.2945318818092346,
+              0.6806020140647888
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 83,
+            "body_center": [
+              -0.39388537406921387,
+              -0.2945318818092346,
+              0.6806020140647888
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 82,
+            "body_center": [
+              -0.39388537406921387,
+              -0.2945318818092346,
+              0.6806020140647888
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 89,
+            "body_center": [
+              -0.39388537406921387,
+              -0.2945318818092346,
+              0.6806020140647888
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 84,
+            "body_center": [
+              -0.39388537406921387,
+              -0.2945318818092346,
+              0.6806020140647888
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 531,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3582892417907715,
+              -0.08246728777885437,
+              0.4852389991283417
+            ],
+            "fan_triangle": 85,
+            "body_center": [
+              -0.39388537406921387,
+              -0.2945318818092346,
+              0.6806020140647888
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 176,
+            "body_center": [
+              -0.40191516280174255,
+              -0.2777116894721985,
+              0.6772763133049011
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 26313
+    },
+    {
+      "action": "MacAnh_Walk",
+      "samples": 73,
+      "max_non_palm_intersections": 103,
+      "worst": {
+        "frame": 18.5,
+        "contacts": [
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 101,
+            "body_center": [
+              -0.3512532711029053,
+              -0.3375677764415741,
+              0.7589890360832214
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 105,
+            "body_center": [
+              -0.3512532711029053,
+              -0.3375677764415741,
+              0.7589890360832214
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 104,
+            "body_center": [
+              -0.3512532711029053,
+              -0.3375677764415741,
+              0.7589890360832214
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 103,
+            "body_center": [
+              -0.3512532711029053,
+              -0.3375677764415741,
+              0.7589890360832214
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 99,
+            "body_center": [
+              -0.3512532711029053,
+              -0.3375677764415741,
+              0.7589890360832214
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 98,
+            "body_center": [
+              -0.3512532711029053,
+              -0.3375677764415741,
+              0.7589890360832214
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 102,
+            "body_center": [
+              -0.3512532711029053,
+              -0.3375677764415741,
+              0.7589890360832214
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 112,
+            "body_center": [
+              -0.3512532711029053,
+              -0.3375677764415741,
+              0.7589890360832214
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 931,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.33441686630249023,
+              -0.20590482652187347,
+              0.6034836769104004
+            ],
+            "fan_triangle": 106,
+            "body_center": [
+              -0.3512532711029053,
+              -0.3375677764415741,
+              0.7589890360832214
+            ]
+          },
+          {
+            "object": "Fan_Crystal",
+            "body_face": 838,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3443576991558075,
+              -0.2213229387998581,
+              0.5909170508384705
+            ],
+            "fan_triangle": 112,
+            "body_center": [
+              -0.36259645223617554,
+              -0.356356680393219,
+              0.7528269290924072
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 1013,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.32066670060157776,
+              -0.19911004602909088,
+              0.6273150444030762
+            ],
+            "fan_triangle": 56,
+            "body_center": [
+              -0.3325616717338562,
+              -0.32236427068710327,
+              0.7775317430496216
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 1013,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.32066670060157776,
+              -0.19911004602909088,
+              0.6273150444030762
+            ],
+            "fan_triangle": 54,
+            "body_center": [
+              -0.3325616717338562,
+              -0.32236427068710327,
+              0.7775317430496216
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 1013,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.32066670060157776,
+              -0.19911004602909088,
+              0.6273150444030762
+            ],
+            "fan_triangle": 57,
+            "body_center": [
+              -0.3325616717338562,
+              -0.32236427068710327,
+              0.7775317430496216
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 1013,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.32066670060157776,
+              -0.19911004602909088,
+              0.6273150444030762
+            ],
+            "fan_triangle": 75,
+            "body_center": [
+              -0.3325616717338562,
+              -0.32236427068710327,
+              0.7775317430496216
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 1013,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.32066670060157776,
+              -0.19911004602909088,
+              0.6273150444030762
+            ],
+            "fan_triangle": 70,
+            "body_center": [
+              -0.3325616717338562,
+              -0.32236427068710327,
+              0.7775317430496216
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 1013,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.32066670060157776,
+              -0.19911004602909088,
+              0.6273150444030762
+            ],
+            "fan_triangle": 71,
+            "body_center": [
+              -0.3325616717338562,
+              -0.32236427068710327,
+              0.7775317430496216
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 726,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.34156325459480286,
+              -0.20884482562541962,
+              0.6399512887001038
+            ],
+            "fan_triangle": 13,
+            "body_center": [
+              -0.348315954208374,
+              -0.3262876868247986,
+              0.7986134886741638
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 749,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3392519950866699,
+              -0.21035413444042206,
+              0.6368412971496582
+            ],
+            "fan_triangle": 13,
+            "body_center": [
+              -0.3467937111854553,
+              -0.3289775550365448,
+              0.795488715171814
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 10,
+            "body_center": [
+              -0.34966593980789185,
+              -0.33655619621276855,
+              0.7832080125808716
+            ]
+          },
+          {
+            "object": "Fan_Handle",
+            "body_face": 785,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.3389453887939453,
+              -0.2130769044160843,
+              0.6238830089569092
+            ],
+            "fan_triangle": 13,
+            "body_center": [
+              -0.34966593980789185,
+              -0.33655619621276855,
+              0.7832080125808716
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 460,
+            "body_center": [
+              -0.4159667491912842,
+              -0.23892460763454437,
+              0.6139516830444336
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 463,
+            "body_center": [
+              -0.4159667491912842,
+              -0.23892460763454437,
+              0.6139516830444336
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 362,
+            "body_center": [
+              -0.4159667491912842,
+              -0.23892460763454437,
+              0.6139516830444336
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 365,
+            "body_center": [
+              -0.4159667491912842,
+              -0.23892460763454437,
+              0.6139516830444336
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 363,
+            "body_center": [
+              -0.4159667491912842,
+              -0.23892460763454437,
+              0.6139516830444336
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 461,
+            "body_center": [
+              -0.4159667491912842,
+              -0.23892460763454437,
+              0.6139516830444336
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 471,
+            "body_center": [
+              -0.4159667491912842,
+              -0.23892460763454437,
+              0.6139516830444336
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 470,
+            "body_center": [
+              -0.4159667491912842,
+              -0.23892460763454437,
+              0.6139516830444336
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 468,
+            "body_center": [
+              -0.4159667491912842,
+              -0.23892460763454437,
+              0.6139516830444336
+            ]
+          },
+          {
+            "object": "Fan_Tassels",
+            "body_face": 532,
+            "part": 1,
+            "material": "MacAnh_Battle_DualUvBody.001",
+            "rest_center": [
+              -0.36516711115837097,
+              -0.06445256620645523,
+              0.48675599694252014
+            ],
+            "fan_triangle": 466,
+            "body_center": [
+              -0.4159667491912842,
+              -0.23892460763454437,
+              0.6139516830444336
+            ]
+          }
+        ]
+      },
+      "total_palm_contacts": 8321
+    }
+  ],
+  "elapsed_seconds": 40.75571584701538,
+  "passed": false
+}

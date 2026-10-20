@@ -1,0 +1,16 @@
+{
+  "status": "trial; visual QA pending",
+  "face_regions": {
+    "0": 29160,
+    "1": 1450,
+    "2": 1871,
+    "3": 167,
+    "4": 162,
+    "5": 81,
+    "6": 109
+  },
+  "cut_edges": 972,
+  "caps": 27,
+  "vertices": 18168,
+  "sleeve_detail": 0.4
+}

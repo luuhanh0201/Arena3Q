@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.HeroDefinition
   heroId: lord_strategist
   displayName: "M\u01B0u s\u0129"
-  sprite: {fileID: 0}
-  placeholderColor: {r: 0.73, g: 0.64, b: 0.84, a: 1}
+  sprite: {fileID: 3893079179384015821, guid: d97cc34d8d10c904aab0dc4e332d861f, type: 3}
+  portrait: {fileID: 3893079179384015821, guid: d97cc34d8d10c904aab0dc4e332d861f, type: 3}
+  animations: {fileID: 0}
+  macAnhPerformance: {fileID: 11400000, guid: a981cd63a3cd9384188f1f1adafc1f35, type: 2}
+  placeholderColor: {r: 1, g: 1, b: 1, a: 1}
   kind: 1
   faction: {fileID: 0}
   stats:
@@ -34,9 +37,9 @@ MonoBehaviour:
   roleBonus: 0.62
   skills:
   - {fileID: 11400000, guid: 4e2af82fc2cf59845b67fb5cf0238200, type: 2}
-  - {fileID: 11400000, guid: 05327f463d9ba164585b30559ef5175e, type: 2}
-  - {fileID: 11400000, guid: db553fd32d0aaa941ad972a6e6eb82a3, type: 2}
-  - {fileID: 11400000, guid: 950ca259347d5fa4ca9aa8e39bb9274b, type: 2}
+  - {fileID: 11400000, guid: d557f149ece91fa4390dc7b87c452160, type: 2}
+  - {fileID: 11400000, guid: cfb732c734867084d864cdc0e9e89af0, type: 2}
+  - {fileID: 11400000, guid: 4ba81b711f209514da49c820e0b3c405, type: 2}
   rageMax: 100
   rageHitsToFill: 18
   idleBeforeAdvanceSeconds: 5

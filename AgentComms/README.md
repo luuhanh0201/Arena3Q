@@ -41,4 +41,10 @@ AgentComms/
 Chỉ `README.md`, `STATUS.md` và các `.gitkeep` được commit; file việc và báo cáo trong inbox / outbox bị `.gitignore` bỏ qua (giao tiếp tạm thời, tránh hai agent xung đột khi commit).
 
 ## 6. Nghiệm thu
-Khi agent làm báo `Trạng thái: xong` cho một phần việc, Claude review (test Unity, đo bề mặt, chụp trận thật nhiều góc). **Chỉ khi đạt**, Claude tạo một đợt trong `NghiemThu/<Tướng>/<NN>_<TênĐợt>_<YYYYMMDD>/` với ảnh chụp chi tiết và % so với tài liệu để người dùng tự kiểm (`NghiemThu/README.md`). Chưa đạt thì chỉ có phản hồi trong inbox của agent làm.
+Khi agent làm báo `Trạng thái: xong` cho một phần việc, agent review (từ 2026-10-20: **Codex review, Claude làm**) kiểm tra (test Unity, đo bề mặt, chụp trận thật nhiều góc). **Chỉ khi đạt**, agent review tạo một đợt trong `NghiemThu/<Tướng>/<NN>_<TênĐợt>_<YYYYMMDD>/` với ảnh chụp chi tiết và % so với tài liệu để người dùng tự kiểm (`NghiemThu/README.md`). Chưa đạt thì chỉ có phản hồi trong inbox của agent làm.
+
+## 7. Ảnh trước – sau cho mỗi chỉnh sửa (bắt buộc, từ 2026-10-20)
+Mỗi lần sửa một phần, dù nhỏ (weight một vùng, một clip, một VFX, đóng gói atlas, thông số nhập ảnh…), agent làm phải:
+- chụp **cùng góc, cùng khung, cùng frame** trước và sau khi sửa, ghép vào một ảnh so sánh (trái = trước, phải = sau; ghi tên vùng / frame lên ảnh nếu có thể);
+- lưu vào `NghiemThu/<Tướng>/XemTruoc_<TenViec>_<YYYYMMDD>/` (ảnh bị gitignore, README được commit), kèm số đo nếu có (số cạnh lỗi, kích thước, chênh lệch pixel);
+- **mở ảnh đó lên màn hình cho người dùng kiểm tra** ngay khi sửa xong phần đó, rồi mới làm phần tiếp theo. Thay đổi không đổi hình (ví dụ đóng gói lại atlas) vẫn phải có ảnh chứng minh hình không đổi.

@@ -9,6 +9,7 @@ namespace Arena3Q.Gameplay
 
         private readonly Transform _root;
         private readonly SpriteRenderer _body;
+        internal SpriteRenderer BodyRenderer => _body;
         private readonly SpriteRenderer _healthBack;
         private readonly SpriteRenderer _healthFill;
         private readonly SpriteRenderer _ring;

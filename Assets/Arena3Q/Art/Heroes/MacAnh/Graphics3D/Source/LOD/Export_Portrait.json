@@ -1,0 +1,89 @@
+{
+  "status": "working candidate; not approved for delivery",
+  "lod": "Portrait",
+  "source": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\LOD\\MacAnh_Portrait_FanClearance.blend",
+  "source_sha256": "bfa814aa574d7f73484ee7bd0498c9da5cd4291ba161be16d17582130e3089b8",
+  "vertices": 126089,
+  "bones": 87,
+  "max_influences": 3,
+  "body_triangles": 252560,
+  "fan_triangles": 7268,
+  "total_triangles": 259828,
+  "lining_materials": [],
+  "inner_materials": [
+    {
+      "name": "MacAnh_Portrait_InnerRobe",
+      "colour": [
+        0.62,
+        0.59,
+        0.68,
+        1
+      ],
+      "roughness": 0.85
+    },
+    {
+      "name": "MacAnh_Portrait_RightSleeveLining",
+      "colour": [
+        0.065,
+        0.025,
+        0.12,
+        1
+      ],
+      "roughness": 0.85
+    },
+    {
+      "name": "MacAnh_Portrait_LeftSleeveLining",
+      "colour": [
+        0.065,
+        0.025,
+        0.12,
+        1
+      ],
+      "roughness": 0.85
+    },
+    {
+      "name": "MacAnh_Portrait_RightWristInterior",
+      "colour": [
+        0.62,
+        0.45,
+        0.37,
+        1
+      ],
+      "roughness": 0.85
+    },
+    {
+      "name": "MacAnh_Portrait_LeftWristInterior",
+      "colour": [
+        0.62,
+        0.45,
+        0.37,
+        1
+      ],
+      "roughness": 0.85
+    },
+    {
+      "name": "MacAnh_Portrait_RightBootInterior",
+      "colour": [
+        0.055,
+        0.04,
+        0.035,
+        1
+      ],
+      "roughness": 0.85
+    },
+    {
+      "name": "MacAnh_Portrait_LeftBootInterior",
+      "colour": [
+        0.055,
+        0.04,
+        0.035,
+        1
+      ],
+      "roughness": 0.85
+    }
+  ],
+  "body_material": "MacAnh_Portrait_DualUvBody.001",
+  "cap_material": "",
+  "dual_uv": true,
+  "atlas": true
+}

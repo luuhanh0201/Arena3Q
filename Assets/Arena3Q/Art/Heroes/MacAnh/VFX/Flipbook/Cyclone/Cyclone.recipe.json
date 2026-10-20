@@ -1,0 +1,233 @@
+{
+ "name": "Cyclone",
+ "referenceRadius": 1.0,
+ "renderProjection": 0.75,
+ "pages": [
+  "Cyclone_p00.png"
+ ],
+ "layers": [
+  {
+   "name": "Vortex",
+   "ppu": 110,
+   "framesPerSecond": 1,
+   "loop": false,
+   "plane": "Ground",
+   "phase": "Release",
+   "start": 0,
+   "end": 0,
+   "fadeIn": 0.2,
+   "fadeOut": 0.5,
+   "scaleFrom": 0.29615384615384616,
+   "scaleTo": 0.4230769230769231,
+   "spin": -240,
+   "height": 0,
+   "glow": 1.0,
+   "underlay": 0.7,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 0,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "frames": [
+    {
+     "page": 0,
+     "x": 0,
+     "y": 0,
+     "width": 600,
+     "height": 600,
+     "pivot_x": 0.5,
+     "pivot_y": 0.5
+    }
+   ]
+  },
+  {
+   "name": "Column",
+   "ppu": 110,
+   "framesPerSecond": 20,
+   "loop": true,
+   "plane": "Upright",
+   "phase": "Release",
+   "start": 0,
+   "end": 0,
+   "fadeIn": 0.35,
+   "fadeOut": 0.5,
+   "scaleFrom": 1,
+   "scaleTo": 1,
+   "spin": 0,
+   "height": 0,
+   "glow": 1.1,
+   "underlay": 0.75,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 1,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "frames": [
+    {
+     "page": 0,
+     "x": 602,
+     "y": 0,
+     "width": 327,
+     "height": 331,
+     "pivot_x": 0.5198776758409785,
+     "pivot_y": 0.21871086117724278
+    },
+    {
+     "page": 0,
+     "x": 931,
+     "y": 0,
+     "width": 334,
+     "height": 321,
+     "pivot_x": 0.5089820359281437,
+     "pivot_y": 0.19437163566874566
+    },
+    {
+     "page": 0,
+     "x": 1267,
+     "y": 0,
+     "width": 315,
+     "height": 305,
+     "pivot_x": 0.5015873015873016,
+     "pivot_y": 0.15210916409727002
+    },
+    {
+     "page": 0,
+     "x": 1584,
+     "y": 0,
+     "width": 262,
+     "height": 308,
+     "pivot_x": 0.5763358778625954,
+     "pivot_y": 0.16036784107034857
+    },
+    {
+     "page": 0,
+     "x": 0,
+     "y": 602,
+     "width": 256,
+     "height": 322,
+     "pivot_x": 0.5078125,
+     "pivot_y": 0.1968735871107682
+    },
+    {
+     "page": 0,
+     "x": 258,
+     "y": 602,
+     "width": 306,
+     "height": 331,
+     "pivot_x": 0.5163398692810458,
+     "pivot_y": 0.21871086117724278
+    },
+    {
+     "page": 0,
+     "x": 566,
+     "y": 602,
+     "width": 334,
+     "height": 324,
+     "pivot_x": 0.5089820359281437,
+     "pivot_y": 0.20183115756070172
+    },
+    {
+     "page": 0,
+     "x": 902,
+     "y": 602,
+     "width": 318,
+     "height": 305,
+     "pivot_x": 0.5062893081761006,
+     "pivot_y": 0.16850260672022085
+    },
+    {
+     "page": 0,
+     "x": 1222,
+     "y": 602,
+     "width": 287,
+     "height": 294,
+     "pivot_x": 0.4425087108013937,
+     "pivot_y": 0.12038535731179374
+    },
+    {
+     "page": 0,
+     "x": 1511,
+     "y": 602,
+     "width": 265,
+     "height": 315,
+     "pivot_x": 0.44150943396226416,
+     "pivot_y": 0.19172474618942018
+    },
+    {
+     "page": 0,
+     "x": 0,
+     "y": 935,
+     "width": 308,
+     "height": 314,
+     "pivot_x": 0.4935064935064935,
+     "pivot_y": 0.2305518950626349
+    },
+    {
+     "page": 0,
+     "x": 310,
+     "y": 935,
+     "width": 327,
+     "height": 331,
+     "pivot_x": 0.4831804281345566,
+     "pivot_y": 0.21871086117724278
+    },
+    {
+     "page": 0,
+     "x": 639,
+     "y": 935,
+     "width": 314,
+     "height": 319,
+     "pivot_x": 0.47770700636942676,
+     "pivot_y": 0.18932067413688827
+    },
+    {
+     "page": 0,
+     "x": 955,
+     "y": 935,
+     "width": 296,
+     "height": 298,
+     "pivot_x": 0.46959459459459457,
+     "pivot_y": 0.13219226526734013
+    },
+    {
+     "page": 0,
+     "x": 1253,
+     "y": 935,
+     "width": 299,
+     "height": 284,
+     "pivot_x": 0.46153846153846156,
+     "pivot_y": 0.1527932924284062
+    },
+    {
+     "page": 0,
+     "x": 1554,
+     "y": 935,
+     "width": 276,
+     "height": 322,
+     "pivot_x": 0.4673913043478261,
+     "pivot_y": 0.215507127483439
+    }
+   ]
+  }
+ ]
+}

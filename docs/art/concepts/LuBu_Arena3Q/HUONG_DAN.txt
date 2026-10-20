@@ -1,0 +1,43 @@
+ARENA3Q – LỮ BỐ, BẢN UV SAFE & TRÌNH DỰNG 7 ANIMATION
+
+CẬP NHẬT TÍCH HỢP 2026-10-19:
+- Bản chuyển động mượt: LuBu_Arena3Q_Smooth.blend (bản rig bên dưới là dự phòng).
+- SmoothLuBuMotion.py sửa xoắn ngón, hướng khuỷu/cổ tay và nội suy; cán sau tay
+  được rút ngắn để hợp tỷ lệ nhân vật chibi. UV nhân vật/vũ khí được giữ.
+- RigAuditSmooth.json kiểm tra 441 frame; SpriteAuditSmooth.json kiểm tra bản
+  chụp tám hướng. LuBu_SmoothPreview.png xem các mốc của từng animation.
+- ExportSmoothSprites.py chụp riêng bản Smooth vào Art/Heroes/LuBu/Smooth;
+  BuildSmoothPreview.py kiểm tra atlas và điểm chân trước khi nhập Unity.
+- Bản đã rig và sửa animation: LuBu_Arena3Q_Rigged_Validated.blend.
+- 73 xương, 7 action, có PlayAll 35 giây và kích rơi trong Defeat.
+- RigAudit.json: kiểm tra weight, scale và kích với thân/giáp theo từng frame.
+- SpriteAudit.json: 432 sprite không bị cắt mép; UV khớp model gốc.
+- LuBu_AnimationPreview.png: ảnh xem nhanh các animation.
+- Quy trình dựng lại và tích hợp Unity: docs/Tuong/LuBu.md của dự án.
+
+Phần dưới là hướng dẫn của gói nguồn, trước khi sửa và chạy kiểm chứng:
+
+1. Giải nén toàn bộ ZIP, không chạy file khi vẫn nằm trong ZIP.
+2. Trong Blender 4.4+/5.x, mở LuBu_Texture_UV_DaXuLy.blend.
+   Đây là bản model chỉ thay packed texture bằng UV-padded version.
+   Nếu Blender không mở được bản này, mở lubu_goc.blend, script vẫn sẽ gán UV-safe texture khi buildall.
+3. Chuyển tab Scripting -> Open -> chọn Arena3Q_LuBu_BuildAll_UVSafe_7Animations.py.
+4. Ở đầu script STEP = "buildall". Bấm Run Script, chờ xử lý (model/vũ khí có nhiều polygon).
+   Không chạy buildall lên file đã có rig. Bản kết quả riêng được tạo ngay lúc bắt đầu.
+5. Nếu thành công, nhận được LuBu_Arena3Q_7Anims.blend ở cùng thư mục.
+   PlayAll 35 giây @ 30fps gồm Idle / Walk / Run / Attack01 / Attack02 / Victory / Defeat.
+6. Nếu dừng giữa chừng: mở LuBu_Arena3Q_7Anims.blend, đổi STEP = "finishall", chạy lại nếu rig/weight đã có.
+7. Kiểm tra tay cầm kích / quỳ ngã / kích rơi / chân chạm đất / texture trước khi xuất FBX.
+8. Chỉ chạy STEP = 3 sau khi đã kiểm tra trong Blender.
+
+BẢO TOÀN:
+- lubu_goc.blend không bị sửa.
+- Không decimate lưới, không merge-by-distance các đường nối UV, không bỏ UV layers.
+- LuBu_texture_UV_Safe.png chỉ có padding ở vùng trống sát mép UV (8px), pixel thực được UV sử dụng giữ nguyên.
+- Texture này không tự chữa các mảng bẩn nằm bên trong UV islands.
+
+GHI CHÚ KIỂM CHỨNG:
+- Đã phân tích tĩnh dữ liệu Blender và script. Không có Blender thực thi trong môi trường tạo gói;
+  file rigged cuối cùng phải được tạo bằng STEP=buildall trên máy có Blender.
+- Bản LuBu_Texture_UV_DaXuLy.blend được cập nhật trực tiếp ảnh packed PNG; đã soát block dữ liệu
+  nhưng chưa kiểm tra bằng Blender nên giữ sẵn lubu_goc.blend làm dự phòng.

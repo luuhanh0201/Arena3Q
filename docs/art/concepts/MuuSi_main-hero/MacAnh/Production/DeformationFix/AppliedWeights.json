@@ -1,0 +1,15 @@
+{
+  "candidate": "candidate_sleeveconstant3.npz",
+  "max_influences": 3,
+  "geometry_before": {
+    "co": "66ac8244b8f015e2d49ee4d74476a42d2137f0ec6f0bb70ebe13bce0e2bf3fe2",
+    "topology": "e3f6bc4531aa521ff618d95b9a28e56c365ddfdac0ba42c2f96730a11d978bf1",
+    "uv": "5ee80c6743ee506fa3e65a1e971ad34507a16c326007feb4cca6ae29e1aad4ce"
+  },
+  "geometry_after": {
+    "co": "66ac8244b8f015e2d49ee4d74476a42d2137f0ec6f0bb70ebe13bce0e2bf3fe2",
+    "topology": "e3f6bc4531aa521ff618d95b9a28e56c365ddfdac0ba42c2f96730a11d978bf1",
+    "uv": "5ee80c6743ee506fa3e65a1e971ad34507a16c326007feb4cca6ae29e1aad4ce"
+  },
+  "seconds": 0.09884524345397949
+}

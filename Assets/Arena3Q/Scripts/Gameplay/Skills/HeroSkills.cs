@@ -166,6 +166,7 @@ namespace Arena3Q.Gameplay
 
         public void OnDeath()
         {
+            _hero.Performance?.EndSkill();
             _cast = null;
             Rage.Reset();
         }
@@ -245,7 +246,10 @@ namespace Arena3Q.Gameplay
                 return RejectReason.NoSkillTarget;
             // The player's ultimate goes first: a skill still winding up is dropped without being used.
             if (_cast != null && !_cast.Fired)
+            {
+                _hero.Performance?.EndSkill();
                 _cast = null;
+            }
             Begin(SkillSlot.Ultimate, aim);
             return RejectReason.None;
         }
@@ -260,6 +264,7 @@ namespace Arena3Q.Gameplay
                 Context = SkillContext.Of(_hero, _rules.SkillValueMultiplier(state.Level)),
                 Aim = aim
             };
+            _hero.Performance?.BeginSkill(state.Definition, aim);
             if (state.Definition.CastTime <= 0f)
                 AdvanceCast(0f);
         }
@@ -271,20 +276,22 @@ namespace Arena3Q.Gameplay
             if (!_hero.IsAlive || _hero.IsStunned)
             {
                 // Spec §3 🟡: interrupted before Cast = not used; once fired, the remaining repeats are lost.
+                _hero.Performance?.EndSkill();
                 _cast = null;
                 return;
             }
 
             cast.Timer += deltaTime;
+            _hero.Performance?.SkillTime(cast.Timer);
             if (!cast.Fired)
             {
                 if (cast.Timer < skill.CastTime)
                     return;
                 cast.Fired = true;
                 Pay(cast.Slot);
-                SkillExecutor.Fire(_hero, skill, cast.Context, ref cast.Aim);
+                FireCast(cast, 0, true);
                 cast.RepeatsDone = 1;
-                cast.NextRepeat = cast.Timer + skill.RepeatInterval;
+                cast.NextRepeat = skill.CastTime + skill.RepeatInterval;
                 Used?.Invoke(cast.Slot);
             }
 
@@ -295,13 +302,29 @@ namespace Arena3Q.Gameplay
                     SkillTargetingResolver.TryResolve(_hero, skill, null, out var retarget))
                     cast.Aim = retarget;
                 cast.RepeatsDone++;
-                var last = cast.RepeatsDone == skill.RepeatCount;
-                SkillExecutor.Hit(skill, cast.Context, cast.Aim, last ? skill.FinalHitMultiplier : 1f, 0f);
+                FireCast(cast, cast.RepeatsDone - 1, false);
                 cast.NextRepeat += skill.RepeatInterval;
             }
 
-            if (cast.RepeatsDone >= skill.RepeatCount && cast.Timer >= skill.CastTime)
+            var binding = _hero.Definition.MacAnhPerformance?.Find(skill);
+            var recovery = binding == null ? skill.CastTime :
+                Mathf.Max(skill.CastTime, _hero.Definition.MacAnhPerformance.Find(binding.action)?.duration ?? skill.CastTime);
+            if (cast.RepeatsDone >= skill.RepeatCount && cast.Timer >= recovery)
+            {
+                _hero.Performance?.EndSkill();
                 _cast = null;
+            }
+        }
+
+        private void FireCast(Cast cast, int combo, bool first)
+        {
+            var binding = _hero.Definition.MacAnhPerformance?.Find(cast.Definition);
+            var projectile = binding != null && (binding.action == MacAnhAction.Attack02 || binding.action == MacAnhAction.DodgeAttack);
+            _hero.Performance?.SkillEffect(cast.Definition, cast.Aim, combo);
+            if (projectile) return;
+            if (first) SkillExecutor.Fire(_hero, cast.Definition, cast.Context, ref cast.Aim);
+            else SkillExecutor.Hit(cast.Definition, cast.Context, cast.Aim,
+                combo + 1 == cast.Definition.RepeatCount ? cast.Definition.FinalHitMultiplier : 1, 0);
         }
 
         private void Pay(SkillSlot slot)
