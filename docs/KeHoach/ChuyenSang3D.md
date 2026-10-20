@@ -1,6 +1,6 @@
 # Kế hoạch chuyển Arena3Q sang hiển thị 3D
 
-Trạng thái: **nháp chờ người dùng duyệt** (2026-10-21). Người dùng đã quyết định chuyển sang 3D; tài liệu này là cách làm. Khi duyệt xong, chuyển file sang thư mục chủ đề và cập nhật các tài liệu ở mục 10.
+Trạng thái: **người dùng đã chốt 5 câu hỏi (2026-10-21), P0 bắt đầu**. Người dùng đã quyết định chuyển sang 3D; tài liệu này là cách làm. Khi duyệt xong, chuyển file sang thư mục chủ đề và cập nhật các tài liệu ở mục 10.
 
 Ký hiệu: ✅ đã chốt · 🟡 đề xuất, cần người dùng xác nhận · ⏳ để sau.
 
@@ -29,6 +29,8 @@ Ký hiệu: ✅ đã chốt · 🟡 đề xuất, cần người dùng xác nh�
 | RAM | ≤ ~1,2 GB PSS khi trận | |
 
 ## 3. Camera và chuyển tọa độ
+
+> Người dùng đã chọn **orthographic nghiêng** và cách làm ở mục 12 – các dòng dưới về phối cảnh chỉ còn là phương án đã cân nhắc.
 
 - 🟡 **Camera phối cảnh góc hẹp** (FOV ~30°, nghiêng ~50–55°, nhìn hướng về phía bắc của map), tất cả là dữ liệu cấu hình. Phương án dự phòng: orthographic nghiêng (giống hiện tại, dễ khớp map vẽ sẵn).
 - `BattleController.ToView` đổi từ "nén trục Y" sang ánh xạ (x, y) → (x, 0, y). `viewTiltDegrees`, thanh "Góc nhìn" và `ViewYScale` bỏ (hoặc chỉ để debug).
@@ -134,7 +136,7 @@ Rig và animation có thể do agent làm (như Mặc Ảnh / Lữ Bố) sau khi
 
 ## 8. Quản lý file 3D trong git
 
-Hiện quy định "chỉ commit code và asset nhỏ" (2026-10-20). Với 3D, FBX + texture của bản trong trận là asset runtime bắt buộc (mất là game không có nhân vật). 🟡 Đề xuất: **Git LFS** cho `*.fbx`, `*.png`/`*.tga` texture nhân vật và map trong `Assets/`; nguồn `.blend` chi tiết chuyển sang `ArtSource/Heroes/<Tướng>/` (theo quy tắc chuyển file 3D ra khỏi `docs/` khi người dùng chốt), cũng qua LFS hoặc lưu ngoài repo.
+✅ Người dùng (2026-10-21): **tạm thời không dùng Git LFS** – FBX / texture lớn để ở máy, báo cáo ghi rõ. Đề xuất cũ để tham khảo khi cần: Hiện quy định "chỉ commit code và asset nhỏ" (2026-10-20). Với 3D, FBX + texture của bản trong trận là asset runtime bắt buộc (mất là game không có nhân vật). 🟡 Đề xuất: **Git LFS** cho `*.fbx`, `*.png`/`*.tga` texture nhân vật và map trong `Assets/`; nguồn `.blend` chi tiết chuyển sang `ArtSource/Heroes/<Tướng>/` (theo quy tắc chuyển file 3D ra khỏi `docs/` khi người dùng chốt), cũng qua LFS hoặc lưu ngoài repo.
 
 ## 9. Việc liên quan đang dở
 
@@ -155,10 +157,18 @@ Hiện quy định "chỉ commit code và asset nhỏ" (2026-10-20). Với 3D, F
 | M3 | P3 các tướng còn lại + lính + quân địch | theo tiến độ có model |
 | M4 | P4 VFX đầy đủ, P5, P6, P7 | APK, FPS sau 15 phút, tài liệu cập nhật, sprite cũ gỡ khỏi build |
 
-## 12. Câu hỏi cần người dùng chốt
+## 12. Quyết định của người dùng (2026-10-21) ✅
 
-1. Camera **phối cảnh góc hẹp** hay **orthographic nghiêng**?
-2. Mặt đất: **texture vẽ** trên mặt phẳng hay **terrain 3D** từ bộ kit?
-3. Model 7 tướng + lính + quân địch: người dùng tạo (Meshy) hay giao agent tìm nguồn / dựng khối?
-4. Lưu file 3D: **Git LFS** có được không?
-5. Phân công P0: agent nào làm, agent nào nghiệm thu?
+1. Camera: **orthographic nghiêng** (giữ góc 3/4 hiện tại, nén mặt đất 0,75 ≈ 41,4°), thay cho phối cảnh ở mục 3.
+2. Mặt đất: **mesh 3D + texture**.
+3. Model 7 tướng + lính + quân địch: **người dùng tự tạo**; agent chỉ làm model khi người dùng giao trực tiếp. Trước khi có model: khối tạm / dùng tạm model sẵn có.
+4. Git LFS: **tạm thời không**. FBX / texture lớn vẫn để ở máy (theo quy định "chỉ commit code và asset nhỏ"); ghi rõ trong báo cáo file nào không có trong git.
+5. P0: **Claude làm, Codex nghiệm thu** (song song: Codex vẫn sửa Mặc Ảnh, Claude vẫn nghiệm thu phần đó).
+
+### Cách làm P0 đã chọn (theo quyết định 1)
+- Giữ mặt phẳng hiện tại làm **mặt đất (XY, z = 0)**, chiều "lên" của model 3D = **−Z** (hướng về camera). Với `viewTiltDegrees = 0`, `ToView` = (x, y, 0) nên mọi thứ đang nằm trên mặt đất (nền vẽ, phiến, vòng trận, vùng cảnh báo, lớp Ground của VFX) **giữ đúng chỗ** mà không phải viết lại.
+- Camera orthographic quay quanh trục X một góc 41,4° (cấu hình) và dùng Universal Renderer (Forward, renderer index 1 có sẵn). `BattleCameraController` đổi chạm / kéo / zoom sang tia chiếu xuống z = 0 khi camera nghiêng; khi không nghiêng hành vi giữ nguyên.
+- Model 3D đứng tại vị trí logic, quay theo hướng di chuyển; sprite đứng (thành, đạo cụ còn là sprite, lớp Upright của VFX, thanh máu) quay mặt về camera (billboard) tới khi có model.
+- Mặt đất: mesh + texture (`BatTran_Painted`), đạo cụ map từ model Meshy đã giảm lưới.
+- Model đo hiệu năng: Mặc Ảnh Battle LOD có sẵn; Lữ Bố xuất FBX từ `LuBu_Arena3Q_Grip.blend` (giảm về ~40 nghìn); 3 slot tướng còn lại dùng tạm Mặc Ảnh / Lữ Bố; lính + quân địch dùng bản Lữ Bố giảm còn ~3 nghìn tam giác (skin thật, đổi màu) để tải skinning sát thực tế.
+- Shader flipbook cần thêm pass cho Forward renderer – file do Codex giữ (A1/A3), Claude đề nghị Codex thêm cùng A3.
