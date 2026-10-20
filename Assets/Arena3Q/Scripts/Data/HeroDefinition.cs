@@ -21,6 +21,8 @@ namespace Arena3Q.Data
         [SerializeField] private Sprite portrait;
         [SerializeField] private HeroAnimationSet animations;
         [SerializeField] private MacAnhPerformance macAnhPerformance;
+        [Tooltip("3D model for the 3D battle (pictures only); empty = the picture / placeholder body.")]
+        [SerializeField] private HeroModel3D model3D;
         [Tooltip("Tint used when no sprite is assigned.")]
         [SerializeField] private Color placeholderColor = Color.white;
         [Tooltip("Lord = the player's character (skills by level, breakthroughs); Starter = no faction, cheap stars; " +
@@ -83,6 +85,7 @@ namespace Arena3Q.Data
         public Sprite Portrait => portrait != null ? portrait : sprite;
         public HeroAnimationSet Animations => animations;
         public MacAnhPerformance MacAnhPerformance => macAnhPerformance;
+        public HeroModel3D Model3D => model3D;
         public Color PlaceholderColor => placeholderColor;
         public HeroKind Kind => kind;
         public FactionDefinition Faction => faction;

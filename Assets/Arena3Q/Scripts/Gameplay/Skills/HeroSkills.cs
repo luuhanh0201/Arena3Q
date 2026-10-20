@@ -62,6 +62,10 @@ namespace Arena3Q.Gameplay
         public RageMeter Rage { get; }
         public bool IsCasting => _cast != null;
         public SkillSlot? CastingSlot => _cast?.Slot;
+        /// <summary>The skill being cast and how long its cast has run (pictures: which clip, how far).</summary>
+        public SkillDefinition CastingSkill => _cast?.Definition;
+        public float CastSeconds => _cast?.Timer ?? 0f;
+        public SkillAim CastAim => _cast?.Aim ?? default;
         public bool HasUltimate => Get(SkillSlot.Ultimate).Unlocked;
         public bool IsCharged => _charged;
         public int ComboStacks => _comboStacks;
