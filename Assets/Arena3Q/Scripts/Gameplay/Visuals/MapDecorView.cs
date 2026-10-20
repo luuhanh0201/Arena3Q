@@ -41,6 +41,7 @@ namespace Arena3Q.Gameplay
             {
                 var view = _battle.ToView(logic);
                 renderer.transform.position = view;
+                renderer.transform.rotation = _battle.UprightRotation;
                 renderer.sortingOrder = Mathf.RoundToInt(-view.y * 20f) * 4;
             }
         }

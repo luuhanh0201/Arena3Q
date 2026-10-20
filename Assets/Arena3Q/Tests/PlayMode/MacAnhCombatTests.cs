@@ -232,7 +232,8 @@ namespace Arena3Q.Tests.PlayMode
             fx.SetAfterimage(_hero.Performance.View.Body.sprite,_hero.Performance.View.Body.sharedMaterial,10);
             _battle.Simulate(.1f);yield return null;
             var pose=fx.GetComponentInChildren<SpriteRenderer>();
-            Assert.That(Quaternion.Angle(pose.transform.rotation,Quaternion.identity),Is.LessThan(.01f));
+            // Upright = facing the camera (the battle's billboard rotation; identity in the flat view).
+            Assert.That(Quaternion.Angle(pose.transform.rotation,_battle.UprightRotation),Is.LessThan(.01f));
             float bright=pose.color.a;Assert.That(bright,Is.GreaterThan(.1f));
             yield return new WaitForSecondsRealtime(.1f);Assert.That(pose.color.a,Is.EqualTo(bright).Within(.001f));
             _battle.Simulate(.18f);yield return null;Assert.That(pose.color.a,Is.LessThan(bright));

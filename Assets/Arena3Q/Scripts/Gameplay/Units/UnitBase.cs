@@ -112,6 +112,8 @@ namespace Arena3Q.Gameplay
                 withSelectionRing);
             Visual.SetHealth(1f, team == Team.Enemy);
             Visual.SetGroundScale(battle.ViewYScale);
+            transform.rotation = battle.UprightRotation;
+            Visual.SetGroundRotation(Quaternion.Inverse(battle.UprightRotation));
         }
 
         protected void SetCombat(CombatStats stats) =>
@@ -429,11 +431,16 @@ namespace Arena3Q.Gameplay
             ApplyViewTransform();
         }
 
-        /// <summary>Re-applies the view projection after the camera tilt changed.</summary>
+        /// <summary>Re-applies the view projection after the camera tilt changed (in 3D the unit faces the camera).</summary>
         internal void RefreshView()
         {
             ApplyViewTransform();
             Visual?.SetGroundScale(Battle != null ? Battle.ViewYScale : 1f);
+            if (Battle != null)
+            {
+                transform.rotation = Battle.UprightRotation;
+                Visual?.SetGroundRotation(Quaternion.Inverse(Battle.UprightRotation));
+            }
         }
 
         private void ApplyViewTransform() =>

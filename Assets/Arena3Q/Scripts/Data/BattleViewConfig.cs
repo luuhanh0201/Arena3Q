@@ -1,0 +1,54 @@
+using UnityEngine;
+
+namespace Arena3Q.Data
+{
+    /// <summary>
+    /// How the battle is presented (docs/KeHoach/ChuyenSang3D.md §12): a 3D scene seen by a tilted orthographic camera
+    /// on the Universal (Forward) renderer, or the old flat 2.5D projection. Only the display changes; the battle
+    /// always runs on the flat logic plane. The tilt itself comes from the stage's painted ground
+    /// (<see cref="StageConfig.BackgroundArtTiltDegrees"/>), or <see cref="DefaultTiltDegrees"/> without one.
+    /// Loaded from Resources by the battle.
+    /// </summary>
+    [CreateAssetMenu(menuName = "Arena3Q/Battle View")]
+    public sealed class BattleViewConfig : ScriptableObject
+    {
+        public const string ResourceName = "BattleView";
+
+        [Tooltip("3D presentation (tilted orthographic camera, models, billboards). Off = the old flat 2.5D squash.")]
+        [SerializeField] private bool presentation3D = true;
+        [Tooltip("Camera tilt when the stage has no painted ground. 41.4° squashes the ground to 0.75 like the art.")]
+        [SerializeField, Range(0f, 80f)] private float defaultTiltDegrees = 41.41f;
+        [Tooltip("Index in the URP asset's renderer list used by the battle camera in 3D (the Universal renderer).")]
+        [SerializeField, Min(0)] private int rendererIndex = 1;
+        [Tooltip("How far the camera sits from the ground point it looks at (orthographic: only clipping depends on it).")]
+        [SerializeField, Min(5f)] private float cameraDistance = 60f;
+
+        [Header("Light (no realtime shadows: blob shadows only, spec budget)")]
+        [Tooltip("Direction the sunlight travels in battle space (ground = XY, up = -Z): Euler angles of the light.")]
+        [SerializeField] private Vector3 lightEulerAngles = new Vector3(-40f, 25f, 0f);
+        [SerializeField] private Color lightColour = new Color(1f, 0.96f, 0.9f, 1f);
+        [SerializeField, Min(0f)] private float lightIntensity = 1.15f;
+        [SerializeField] private Color ambientColour = new Color(0.56f, 0.56f, 0.62f, 1f);
+
+        public bool Presentation3D => presentation3D;
+        public float DefaultTiltDegrees => defaultTiltDegrees;
+        public int RendererIndex => rendererIndex;
+        public float CameraDistance => cameraDistance;
+        public Vector3 LightEulerAngles => lightEulerAngles;
+        public Color LightColour => lightColour;
+        public float LightIntensity => lightIntensity;
+        public Color AmbientColour => ambientColour;
+
+        /// <summary>Default presentation for tools and tests when the asset is missing.</summary>
+        public static BattleViewConfig CreateDefault()
+        {
+            var config = CreateInstance<BattleViewConfig>();
+            config.name = ResourceName;
+            config.hideFlags = HideFlags.DontSave;
+            return config;
+        }
+
+        /// <summary>Switches the presentation (tests and tools; changing the asset is the normal way).</summary>
+        public void SetPresentation3D(bool value) => presentation3D = value;
+    }
+}

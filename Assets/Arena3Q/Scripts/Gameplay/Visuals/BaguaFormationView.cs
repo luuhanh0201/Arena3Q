@@ -175,16 +175,18 @@ namespace Arena3Q.Gameplay
             var logic = _formation.Geometry.Gates[gate].Position;
             var basePosition = _battle.ToView(logic);
             // Heights show at sin(view angle) on screen; seen straight from above the slab only fades.
-            var heightScale = Mathf.Sqrt(Mathf.Max(0f, 1f - _battle.ViewYScale * _battle.ViewYScale));
+            var heightScale = Mathf.Sqrt(Mathf.Max(0f, 1f - _battle.GroundProjection * _battle.GroundProjection));
             var sink = (1f - raise) * _config.SlabSinkDepth * heightScale;
             slab.enabled = raise > 0f;
-            slab.transform.position = basePosition - new Vector3(0f, sink, 0f);
+            slab.transform.position = basePosition - _battle.ScreenUp * sink;
+            slab.transform.rotation = _battle.UprightRotation;
             slab.color = heightScale < 0.05f ? new Color(1f, 1f, 1f, raise) : Color.white;
 
             // The mask is the slab's own picture at full height: what has not risen above its base yet stays hidden.
             var mask = _slabMasks[gate];
             var bounds = slab.sprite.bounds;
-            mask.transform.position = basePosition + bounds.center;
+            mask.transform.position = basePosition + _battle.UprightRotation * bounds.center;
+            mask.transform.rotation = _battle.UprightRotation;
             mask.transform.localScale = new Vector3(bounds.size.x, bounds.size.y, 1f);
             mask.frontSortingOrder = slab.sortingOrder;
             mask.backSortingOrder = slab.sortingOrder - 1;
@@ -196,14 +198,16 @@ namespace Arena3Q.Gameplay
             {
                 var view = _battle.ToView(logic);
                 renderer.transform.position = view;
+                renderer.transform.rotation = _battle.UprightRotation;
                 if (renderer.sortingOrder != AltarOrder)
                     renderer.sortingOrder = Mathf.RoundToInt(-view.y * 20f) * 4;
             }
             if (_progressRoot != null)
             {
                 var geometry = _formation.Geometry;
-                _progressRoot.position = _battle.ToView(geometry.AltarCenter)
-                                         + new Vector3(0f, geometry.AltarRadius * _battle.ViewYScale + 0.9f, 0f);
+                _progressRoot.position = _battle.ToView(geometry.AltarCenter + new Vector2(0f, geometry.AltarRadius))
+                                         + _battle.ScreenUp * 0.9f;
+                _progressRoot.rotation = _battle.UprightRotation;
             }
             Refresh();
         }

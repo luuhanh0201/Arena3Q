@@ -139,6 +139,16 @@ namespace Arena3Q.Gameplay
             _ring.transform.localScale = new Vector3(size, size * yScale, 1f);
         }
 
+        /// <summary>
+        /// In 3D the unit root faces the camera; ground-plane decorations get the inverse rotation so they lie flat on
+        /// the ground again (identity in the flat 2.5D view).
+        /// </summary>
+        public void SetGroundRotation(Quaternion local)
+        {
+            if (_ring != null)
+                _ring.transform.localRotation = local;
+        }
+
         /// <summary>Hit flash and Y-sorting for the top-down 2.5D look (lower on screen = drawn in front).</summary>
         public void Update(float deltaTime)
         {

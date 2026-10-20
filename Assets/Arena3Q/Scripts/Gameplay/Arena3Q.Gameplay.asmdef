@@ -1,7 +1,7 @@
 {
     "name": "Arena3Q.Gameplay",
     "rootNamespace": "Arena3Q.Gameplay",
-    "references": ["Arena3Q.Core", "Arena3Q.Data", "Unity.InputSystem", "UnityEngine.UI"],
+    "references": ["Arena3Q.Core", "Arena3Q.Data", "Unity.InputSystem", "UnityEngine.UI", "Unity.RenderPipelines.Universal.Runtime", "Unity.RenderPipelines.Core.Runtime"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

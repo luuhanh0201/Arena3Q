@@ -739,8 +739,22 @@ namespace Arena3Q.Tests.PlayMode
 
             var scale = Mathf.Cos(45f * Mathf.Deg2Rad);
             Assert.That(_battle.ViewTiltDegrees, Is.EqualTo(45f));
-            Assert.That(hero.transform.position.y, Is.EqualTo(hero.Position.y * scale).Within(1e-3f), "drawn on the tilted ground");
+            Assert.That(_battle.GroundProjection, Is.EqualTo(scale).Within(1e-4f));
+            Assert.That(hero.transform.position, Is.EqualTo(_battle.ToView(hero.Position)), "drawn at its logic position");
             Assert.That(hero.transform.position.x, Is.EqualTo(hero.Position.x).Within(1e-3f));
+            if (_battle.Presentation3D)
+            {
+                // 3D: the ground keeps its size, the tilted camera squashes it, and the unit faces the camera.
+                Assert.That(hero.transform.position.y, Is.EqualTo(hero.Position.y).Within(1e-3f));
+                Assert.That(Quaternion.Angle(hero.transform.rotation, Camera.main.transform.rotation), Is.LessThan(0.01f));
+            }
+            else
+                Assert.That(hero.transform.position.y, Is.EqualTo(hero.Position.y * scale).Within(1e-3f), "drawn on the tilted ground");
+            // On screen one metre north is cos(tilt) as long as one metre east, in both presentations.
+            var east = _camera.WorldToScreen(hero.Position + Vector2.right) - _camera.WorldToScreen(hero.Position);
+            var north = _camera.WorldToScreen(hero.Position + Vector2.up) - _camera.WorldToScreen(hero.Position);
+            Assert.That(north.y / east.x, Is.EqualTo(scale).Within(1e-3f), "ground squashed by the tilt on screen");
+            Assert.That(Mathf.Abs(north.x), Is.LessThan(0.01f));
 
             // Screen → logic round trip, and a tap on an on-screen enemy still finds it.
             var screen = _camera.WorldToScreen(hero.Position);
@@ -751,10 +765,10 @@ namespace Arena3Q.Tests.PlayMode
                 Is.EqualTo(BattleController.TapResult.Attack));
 
             // Gameplay is unchanged by the tilt: logic positions, not the drawing, drive the rules.
-            var cam = Camera.main;
-            var viewBounds = _battle.ViewBounds;
-            Assert.That(cam.transform.position.y + cam.orthographicSize, Is.LessThanOrEqualTo(viewBounds.yMax + 0.01f),
+            var bounds = Stage(0).MapBounds;
+            Assert.That(_camera.WorldToViewport(new Vector2(bounds.center.x, bounds.yMax)).y, Is.GreaterThanOrEqualTo(0.999f),
                 "camera limits follow the squashed map");
+            Assert.That(_camera.WorldToViewport(new Vector2(bounds.center.x, bounds.yMin)).y, Is.LessThanOrEqualTo(0.001f));
 
             _hud.TiltSlider.value = 0f;
             yield return null;
@@ -774,7 +788,8 @@ namespace Arena3Q.Tests.PlayMode
             var scale = _battle.ViewYScale;
             Assert.That(art.bounds.size.x, Is.EqualTo(bounds.width).Within(0.01f), "art spans the map width");
             Assert.That(art.bounds.size.y, Is.EqualTo(bounds.height * scale).Within(0.01f), "and the tilted map height");
-            Assert.That(scale, Is.EqualTo(Stage(0).BackgroundArtVerticalScale).Within(1e-3f), "at the art's own angle");
+            // 3D: the ground keeps its true size and the tilted camera squashes it on screen.
+            Assert.That(_battle.GroundProjection, Is.EqualTo(Stage(0).BackgroundArtVerticalScale).Within(1e-3f), "at the art's own angle");
             Assert.That(_battle.GetComponentsInChildren<SpriteRenderer>().Any(r => r.name == "Water" || r.name == "Ground"),
                 Is.False, "no placeholder water/ground over the painting");
         }
@@ -886,7 +901,10 @@ namespace Arena3Q.Tests.PlayMode
             var savedPosition = overview.transform.position;
             var view = _battle.ViewBounds;
             overview.orthographicSize = Mathf.Max(view.height * 0.5f, view.width * 0.5f / overview.aspect) + 0.2f;
-            overview.transform.position = new Vector3(view.center.x, view.center.y, savedPosition.z);
+            if (_battle.Presentation3D)
+                BattleView3D.PlaceCamera(overview.transform, _battle, TiltedViewMath.PlaneToGround(view.center, _battle.GroundProjection));
+            else
+                overview.transform.position = new Vector3(view.center.x, view.center.y, savedPosition.z);
             Capture("map_overview.png");
             overview.orthographicSize = savedSize;
             overview.transform.position = savedPosition;

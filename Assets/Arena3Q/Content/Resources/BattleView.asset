@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87db7aa3e77c4b7f95b179a2a5de2c16, type: 3}
+  m_Name: BattleView
+  m_EditorClassIdentifier:
+  presentation3D: 1
+  defaultTiltDegrees: 41.41
+  rendererIndex: 1
+  cameraDistance: 60
+  lightEulerAngles: {x: -40, y: 25, z: 0}
+  lightColour: {r: 1, g: 0.96, b: 0.9, a: 1}
+  lightIntensity: 1.15
+  ambientColour: {r: 0.56, g: 0.56, b: 0.62, a: 1}

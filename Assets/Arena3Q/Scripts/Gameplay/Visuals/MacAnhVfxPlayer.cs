@@ -8,7 +8,7 @@ namespace Arena3Q.Gameplay
     /// Plays a <see cref="MacAnhVfxRecipe"/> (layers of pre-rendered frames) inside a pooled <see cref="MacAnhFx"/>.
     /// Visual only: timing comes from the effect's clock (battle time), never from gameplay rules.
     /// </summary>
-    public sealed class MacAnhVfxPlayer : MonoBehaviour, IMacAnhSpatialEffect
+    public sealed class MacAnhVfxPlayer : MonoBehaviour, IMacAnhSpatialEffect, IMacAnhBillboard
     {
         [SerializeField] private MacAnhVfxRecipe recipe;
         [SerializeField] private Material material;
@@ -137,6 +137,11 @@ namespace Arena3Q.Gameplay
             _projection = Mathf.Clamp(groundProjection, .05f, 1f);
             Apply();
         }
+
+        private Quaternion _upright = Quaternion.identity;
+
+        /// <summary>3D: upright layers face the camera with this rotation; ground layers stay on the ground.</summary>
+        public void SetUpright(Quaternion upright) => _upright = upright;
 
         public void SetCharge()
         {
@@ -281,6 +286,7 @@ namespace Arena3Q.Gameplay
                 root.localPosition = new Vector3(0f, layer.height * _scale, 0f);
                 if (layer.plane == MacAnhVfxPlane.Ground)
                 {
+                    root.localRotation = Quaternion.identity;
                     // Squash after the spin so the ring stays an ellipse of the ground plane while it turns.
                     root.localScale = new Vector3(1f, _projection, 1f);
                     _spins[i].localRotation = Quaternion.Euler(0f, 0f, layer.spinDegreesPerSecond * _seconds);
@@ -288,6 +294,11 @@ namespace Arena3Q.Gameplay
                 }
                 else
                 {
+                    // 3D: the picture faces the camera, still rolled like the effect (projectiles turn towards their
+                    // screen direction); world = upright · roll, so local = roll⁻¹ · upright · roll.
+                    var roll = transform.rotation;
+                    root.localRotation = Quaternion.Inverse(roll) * _upright * roll;
+                    root.localPosition = root.localRotation * new Vector3(0f, layer.height * _scale, 0f);
                     var stretch = layer.stretchToGround ? _projection / recipe.renderProjection : 1f;
                     root.localScale = new Vector3(1f, flip * stretch, 1f);
                     _spins[i].localRotation = Quaternion.identity;

@@ -40,6 +40,7 @@ namespace Arena3Q.Gameplay
             fx.transform.SetPositionAndRotation(position, rotation); fx.transform.localScale = scale;
             fx.gameObject.SetActive(true); _active.Add(fx);
             _lastEffectTime[fx]=_battle.BattleTime;
+            fx.SetUpright(_battle.UprightRotation);
             fx.Begin(quality, seconds, sortingOrder, Release, follow);
             fx.ManualClock = true;
             fx.SetGroundLayers();

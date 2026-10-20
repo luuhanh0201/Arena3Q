@@ -11,4 +11,10 @@ namespace Arena3Q.Gameplay
         void SetBattlePresentation(float radius,int order,float groundProjection,MacAnhFxKind kind);
         void SetCharge();
     }
+
+    /// <summary>3D presentation: rotation that makes an upright picture face the camera (identity in the flat view).</summary>
+    public interface IMacAnhBillboard
+    {
+        void SetUpright(Quaternion upright);
+    }
 }

@@ -89,4 +89,38 @@ namespace Arena3Q.Core
         public static bool HasMovedBeyond(Vector2 startScreen, Vector2 currentScreen, float maxMovePixels) =>
             (currentScreen - startScreen).sqrMagnitude > maxMovePixels * maxMovePixels;
     }
+
+    /// <summary>
+    /// Tilted orthographic battle camera (docs/KeHoach/ChuyenSang3D.md §12): the ground is the logic plane (XY, z = 0),
+    /// "up" is -Z, and the camera is turned about X by the tilt, so the ground shows squashed by cos(tilt) on screen.
+    /// The "screen plane" is the old 2.5D view space: (x, y · cos(tilt)).
+    /// </summary>
+    public static class TiltedViewMath
+    {
+        /// <summary>Rotation of the camera (and of upright billboards) for a tilt in degrees.</summary>
+        public static Quaternion CameraRotation(float tiltDegrees) => Quaternion.Euler(-tiltDegrees, 0f, 0f);
+
+        /// <summary>Ground point under a screen-plane point.</summary>
+        public static Vector2 PlaneToGround(Vector2 plane, float groundProjection) =>
+            new Vector2(plane.x, plane.y / Mathf.Max(0.01f, groundProjection));
+
+        public static Vector2 GroundToPlane(Vector2 ground, float groundProjection) =>
+            new Vector2(ground.x, ground.y * groundProjection);
+
+        /// <summary>Where a ray meets the ground (z = 0); false when it runs parallel to the ground.</summary>
+        public static bool RayToGround(Vector3 origin, Vector3 direction, out Vector2 ground)
+        {
+            ground = default;
+            if (Mathf.Abs(direction.z) < 1e-6f)
+                return false;
+            var t = -origin.z / direction.z;
+            var hit = origin + direction * t;
+            ground = new Vector2(hit.x, hit.y);
+            return true;
+        }
+
+        /// <summary>Camera position that looks at a ground point from <paramref name="distance"/> away.</summary>
+        public static Vector3 CameraPosition(Vector2 ground, float tiltDegrees, float distance) =>
+            new Vector3(ground.x, ground.y, 0f) - CameraRotation(tiltDegrees) * Vector3.forward * distance;
+    }
 }

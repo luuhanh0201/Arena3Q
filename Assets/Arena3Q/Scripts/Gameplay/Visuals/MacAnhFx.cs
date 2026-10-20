@@ -28,6 +28,9 @@ namespace Arena3Q.Gameplay
         public bool IsRunning => _running;
         public int Generation { get; private set; }
         public void ConfigureSpatial(MacAnhFxKind type,MonoBehaviour effect) {kind=type;spatialEffect=effect;}
+        private Quaternion _upright=Quaternion.identity;
+        /// <summary>3D: rotation that makes upright pictures face the camera; set by the pool before <see cref="Begin"/>.</summary>
+        public void SetUpright(Quaternion upright) => _upright = upright;
         public void Configure(MacAnhFxKind type, Material shared, Mesh[] highMeshes, Mesh[] mediumMeshes, Mesh[] lowMeshes)
         {
             kind = type; material = shared; high = highMeshes; medium = mediumMeshes; low = lowMeshes;
@@ -64,6 +67,7 @@ namespace Arena3Q.Gameplay
                 bool ground=kind==MacAnhFxKind.MagicArray||kind==MacAnhFxKind.Cyclone||kind==MacAnhFxKind.Ultimate;
                 float projection=ground?transform.localScale.y/Mathf.Max(.001f,radius):.819152f;
                 transform.localScale=Vector3.one;
+                if(_spatial is IMacAnhBillboard billboard)billboard.SetUpright(_upright);
                 _spatial.Begin(quality,_duration);_spatial.SetBattlePresentation(radius,order,projection,kind);return;
             }
             EnsureLayers(); _seconds = 0f; _duration = Mathf.Max(.05f, seconds); _release = release; _follow = follow; _running = true; _charge = false;
@@ -96,7 +100,7 @@ namespace Arena3Q.Gameplay
                 _ghost = go.AddComponent<SpriteRenderer>();
             }
             _ghost.sprite = sprite; _ghost.sharedMaterial = shared; _ghost.sortingOrder = order;
-            _ghost.transform.localPosition=Vector3.zero;_ghost.transform.localRotation=Quaternion.identity;_ghost.transform.localScale=Vector3.one;
+            _ghost.transform.localPosition=Vector3.zero;_ghost.transform.localRotation=_upright;_ghost.transform.localScale=Vector3.one;
             _ghost.gameObject.SetActive(true);
             // Glowing violet copy (flipbook shader: the sprite's colours become added light, a soft violet underlay).
             if (glowMaterial != null)

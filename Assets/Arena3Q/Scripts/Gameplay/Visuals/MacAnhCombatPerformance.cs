@@ -62,7 +62,7 @@ namespace Arena3Q.Gameplay
         {
             if (!_view.TrySocket(MacAnhSocket.FanTip, out var socket))
             { Debug.LogError("[MacAnh] Missing sampled FanTip socket; cast cancelled."); return; }
-            var projected = _hero.Battle.ToView(_hero.Position + direction) - _hero.Battle.ToView(_hero.Position);
+            var projected = _hero.Battle.ToScreenPlane(_hero.Position + direction) - _hero.Battle.ToScreenPlane(_hero.Position);
             var angle = Mathf.Atan2(projected.y, projected.x) * Mathf.Rad2Deg;
             float scale=_set.ProjectileVisualScale*(key=="TripleFeather"&&combo==2?_set.FinalFeatherVisualScale:1);
             var fx = Spawn(key, socket, Vector3.one * scale, _set.ProjectileLifetime, angle);
@@ -104,7 +104,7 @@ namespace Arena3Q.Gameplay
             // Dash streak along the dodge (spec §13 "vệt thân lướt"): points back along the backstep.
             if (action == MacAnhAction.DodgeAttack && time >= _set.DodgeStreakStart && _gate.TryAccept(_cast, "DodgeStreak"))
             {
-                var back = _hero.Battle.ToView(_hero.Position - _skillAim.Direction) - _hero.Battle.ToView(_hero.Position);
+                var back = _hero.Battle.ToScreenPlane(_hero.Position - _skillAim.Direction) - _hero.Battle.ToScreenPlane(_hero.Position);
                 SpawnExtra("DodgeStreak", _view.transform.position, .4f, Mathf.Atan2(back.y, back.x) * Mathf.Rad2Deg, null, -1);
             }
             if (action == MacAnhAction.DodgeAttack && time >= 8f / 30f && time <= 13f / 30f &&

@@ -74,22 +74,59 @@ namespace Arena3Q.Gameplay
             }
         }
 
-        /// <summary>How much the ground's Y axis is squashed on screen: cos(tilt), 1 when looking straight down.</summary>
-        public float ViewYScale => Mathf.Cos(viewTiltDegrees * Mathf.Deg2Rad);
+        private BattleViewConfig _view;
+
+        /// <summary>Presentation settings (3D or flat 2.5D, camera, light), from Resources.</summary>
+        public BattleViewConfig View
+        {
+            get
+            {
+                if (_view == null)
+                    _view = Resources.Load<BattleViewConfig>(BattleViewConfig.ResourceName);
+                if (_view == null)
+                {
+                    Debug.LogError("[Arena3Q] Missing BattleView config; using the default 3D presentation.");
+                    _view = BattleViewConfig.CreateDefault();
+                }
+                return _view;
+            }
+        }
+
+        /// <summary>3D presentation: a tilted orthographic camera looks at the flat ground (XY, up = -Z).</summary>
+        public bool Presentation3D => View.Presentation3D;
+
+        /// <summary>How much the ground's Y axis shows squashed on screen: cos(tilt), 1 when looking straight down.</summary>
+        public float GroundProjection => Mathf.Cos(viewTiltDegrees * Mathf.Deg2Rad);
+
+        /// <summary>
+        /// How much world positions squash the ground's Y axis: the flat 2.5D view squashes the world itself, while in
+        /// 3D the ground keeps its true size and the tilted camera does the squashing (1).
+        /// </summary>
+        public float ViewYScale => Presentation3D ? 1f : GroundProjection;
+
+        /// <summary>Rotation that makes an upright picture face the camera (billboard); identity in the flat view.</summary>
+        public Quaternion UprightRotation =>
+            Presentation3D ? TiltedViewMath.CameraRotation(viewTiltDegrees) : Quaternion.identity;
+
+        /// <summary>World direction that shows as "up" on screen (offsets above a unit, rising smoke).</summary>
+        public Vector3 ScreenUp => UprightRotation * Vector3.up;
 
         /// <summary>Logic-plane point → world position shown on screen.</summary>
         public Vector3 ToView(Vector2 logic) => new Vector3(logic.x, logic.y * ViewYScale, 0f);
 
+        /// <summary>Logic-plane point → the 2D screen plane (x, y · cos(tilt)) in world units, in both presentations.</summary>
+        public Vector2 ToScreenPlane(Vector2 logic) => TiltedViewMath.GroundToPlane(logic, GroundProjection);
+
         /// <summary>World position on screen (e.g. under a pointer) → logic-plane point.</summary>
         public Vector2 ToLogic(Vector2 view) => new Vector2(view.x, view.y / ViewYScale);
 
-        /// <summary>Map bounds as shown on screen, for camera limits.</summary>
+        /// <summary>Map bounds in the screen plane (see <see cref="ToScreenPlane"/>), for camera limits.</summary>
         public Rect ViewBounds
         {
             get
             {
                 var b = Stage != null ? Stage.MapBounds : default;
-                return new Rect(b.xMin, b.yMin * ViewYScale, b.width, b.height * ViewYScale);
+                return new Rect(b.xMin, b.yMin * GroundProjection, b.width, b.height * GroundProjection);
             }
         }
 
@@ -149,6 +186,9 @@ namespace Arena3Q.Gameplay
             if (spriteMaterial != null)
                 PlaceholderArt.SpriteMaterial = spriteMaterial;
         }
+
+        /// <summary>Replaces the presentation settings (tools and tests); takes effect at the next battle start.</summary>
+        public void UseView(BattleViewConfig config) => _view = config;
 
         /// <summary>Replaces the progression config (tools and tests); takes effect at the next battle start.</summary>
         public void UseProgression(ProgressionConfig config) => progression = config;
@@ -259,14 +299,18 @@ namespace Arena3Q.Gameplay
 
             // Painted art is drawn at one fixed 3/4 angle: start at that angle so logic and picture line up
             // (the HUD slider can still change it for debugging).
-            if (stage.BackgroundArt != null)
+            // In 3D the same angle tilts the camera (without painted ground: the configured default).
+            if (stage.BackgroundArt != null || Presentation3D)
             {
-                viewTiltDegrees = Mathf.Clamp(stage.BackgroundArtTiltDegrees, 0f, MaxViewTiltDegrees);
+                var tilt = stage.BackgroundArt != null ? stage.BackgroundArtTiltDegrees : View.DefaultTiltDegrees;
+                viewTiltDegrees = Mathf.Clamp(tilt, 0f, MaxViewTiltDegrees);
                 ViewChanged?.Invoke();
             }
 
             _worldRoot = new GameObject("World").transform;
             _worldRoot.SetParent(transform, false);
+            if (Presentation3D)
+                BattleView3D.CreateLight(_worldRoot, View);
             BuildMapVisuals();
             _formation?.BuildView(_worldRoot, _groundRoot);
             if (stage.Decorations != null)

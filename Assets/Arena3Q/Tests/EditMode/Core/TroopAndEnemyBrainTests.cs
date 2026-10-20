@@ -374,6 +374,26 @@ namespace Arena3Q.Tests.EditMode
         }
 
         [Test]
+        public void TiltedCamera_SquashesGroundByCosTilt_AndRaysLandOnTheGround()
+        {
+            const float tilt = 41.41f;
+            var rotation = TiltedViewMath.CameraRotation(tilt);
+            var up = rotation * Vector3.up;
+            // One metre north shows cos(tilt) high; screen up leans towards -Z (the sky).
+            Assert.That(Vector3.Dot(Vector3.up, up), Is.EqualTo(Mathf.Cos(tilt * Mathf.Deg2Rad)).Within(1e-5f));
+            Assert.That(up.z, Is.LessThan(0f));
+
+            var ground = new Vector2(3f, -7f);
+            var camera = TiltedViewMath.CameraPosition(ground, tilt, 60f);
+            Assert.That(TiltedViewMath.RayToGround(camera, rotation * Vector3.forward, out var hit), Is.True);
+            Assert.That(Vector2.Distance(hit, ground), Is.LessThan(1e-3f), "the camera looks at the ground point");
+
+            var plane = TiltedViewMath.GroundToPlane(ground, 0.75f);
+            Assert.That(TiltedViewMath.PlaneToGround(plane, 0.75f), Is.EqualTo(ground));
+            Assert.That(TiltedViewMath.RayToGround(Vector3.back, Vector3.right, out _), Is.False, "parallel ray");
+        }
+
+        [Test]
         public void MaxOrthographicSize_FitsTheMap()
         {
             Assert.That(CameraMath.MaxOrthographicSize(Bounds, 16f / 9f), Is.EqualTo(13f).Within(1e-4f));

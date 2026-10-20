@@ -59,14 +59,14 @@ namespace Arena3Q.Gameplay
         {
             var deltaTime = Time.deltaTime;
             _time += deltaTime;
-            var basePosition = _battle.ToView(_logic);
+            var basePosition = Vector3.zero; // local: the view sits on the castle and faces the camera
 
             if (!_collapsed)
             {
                 // Shaking harder and flashing faster until it gives way.
                 var t = Mathf.Clamp01(_time / _art.ShakeSeconds);
                 var shake = _art.ShakeAmplitude * t;
-                _body.transform.position = basePosition + new Vector3(Range(-shake, shake), Range(-shake, shake) * 0.5f, 0f);
+                _body.transform.localPosition = basePosition + new Vector3(Range(-shake, shake), Range(-shake, shake) * 0.5f, 0f);
                 _body.color = Color.Lerp(Color.white, _art.FlashColor, 0.5f + 0.5f * Mathf.Sin(_time * (12f + 30f * t)));
                 if (_time >= _art.ShakeSeconds)
                     Collapse();
@@ -76,7 +76,7 @@ namespace Arena3Q.Gameplay
                 // The ruin drops a little and settles back.
                 var settle = Mathf.Clamp01((_time - _art.ShakeSeconds) / _art.CollapseSeconds);
                 var drop = _art.CollapseDrop * Mathf.Sin(settle * Mathf.PI) * (1f - settle * 0.5f);
-                _body.transform.position = basePosition - new Vector3(0f, drop, 0f);
+                _body.transform.localPosition = basePosition - new Vector3(0f, drop, 0f);
                 _body.color = Color.white;
 
                 var smokeAge = _time - _art.ShakeSeconds;
@@ -103,7 +103,7 @@ namespace Arena3Q.Gameplay
                 }
                 particle.Velocity.y -= particle.Gravity * deltaTime;
                 var particleTransform = particle.Renderer.transform;
-                particleTransform.position += particle.Velocity * deltaTime;
+                particleTransform.localPosition += particle.Velocity * deltaTime;
                 particleTransform.localScale += Vector3.one * (particle.Growth * deltaTime);
                 var color = particle.Color;
                 color.a *= 1f - particle.Age / particle.Life;
@@ -116,7 +116,7 @@ namespace Arena3Q.Gameplay
             _collapsed = true;
             if (_art.DestroyedSprite != null)
                 _body.sprite = _art.DestroyedSprite;
-            var basePosition = _battle.ToView(_logic);
+            var basePosition = Vector3.zero; // local: the view sits on the castle and faces the camera
             var width = _art.IntactSprite.bounds.size.x * 0.5f;
 
             for (var i = 0; i < _art.DustPuffs; i++)
@@ -140,7 +140,7 @@ namespace Arena3Q.Gameplay
         {
             var renderer = PlaceholderArt.CreateRenderer("Particle", transform, sprite, color, Vector2.one * size,
                 _body.sortingOrder + 1);
-            renderer.transform.position = position;
+            renderer.transform.localPosition = position;
             _particles.Add(new Particle
             {
                 Renderer = renderer, Velocity = velocity, Gravity = gravity, Growth = growth, Life = life, Color = color
@@ -150,7 +150,9 @@ namespace Arena3Q.Gameplay
         private void Place()
         {
             var view = _battle.ToView(_logic);
-            _body.transform.position = view;
+            transform.position = view;
+            transform.rotation = _battle.UprightRotation;
+            _body.transform.localPosition = Vector3.zero;
             _body.sortingOrder = Mathf.RoundToInt(-view.y * 20f) * 4;
         }
 
