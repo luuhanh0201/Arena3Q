@@ -504,6 +504,12 @@ Bóng ảnh tím trong suốt tàn dần, vệt thân lướt, quầng sáng xoa
 
 ## 14  /  VFX: quy ước kỹ thuật & tối ưu
 
+### Yêu cầu bổ sung đã chốt21/10/2026
+
+- Theo GameplaySpecification§1, mục tiêu tối thiểu60FPS trên Android/iOS/PC, trong và ngoài trận. Target lấy từ dữ liệu cấu hình, không có mức30; kiểm cả Frontend, Battle chạy riêng và khôi phục sau preview/benchmark. Đạt target cấu hình không đồng nghĩa đạtFPS thực.
+- Flipbook hiệu ứng phải hòa hai frame kề trong shader theo phần lẻ thời gian effect/battle; hỗ trợ khác trang/rect atlas, cuối→đầu khi loop và giữ frame cuối khi khôngloop. Pause/seek/reuse phải quyết định toàn bộ hình, gồm drift/dissolve. Không hòa frame sprite nhân vật.
+- Bằng chứng nghiệm thu độ mượt gồm chuỗi frame/video60Hz cùngcamera/timing trước-sau. Hiệu năng phải đo đúngAPK trên Redmi Note8Pro, cùngworkload5tướng+lính+địch+VFX: FPS trung bình, p95frame-time, khung tụt và nhiệt. Chưa đủ60 phải báo nút thắt và tiếp tục tối ưu, không hạ yêu cầu.
+
 > Hình tham khảo: Concept VFX tổng hợp: phiến gió, vòng trận, lốc xoáy, khiên và đại trận. Dùng định hướng bố cục, không sao chép chữ nhỏ thành tham số kỹ thuật.
 
 ![Hình tham khảo](images/a_high_detail_game_design_concept_sheet_in_a_dark.png)

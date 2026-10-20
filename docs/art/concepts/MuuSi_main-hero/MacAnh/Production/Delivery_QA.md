@@ -1,5 +1,11 @@
 # Mặc Ảnh — bàn giao kỹ thuật
 
+## Cập nhật21/10/2026 — đang sửa, chưa nghiệm thu
+
+Phân công hiện tại: Codex sửa MặcẢnh, Claude kiểm độc lập. Baseline trước sửa: shader drift vẫn dùng thời gian thực, captured afterimage còn3vòng mesh, material3D chưa đồng bộ lụa; seam/motion/VFX còn thiếu bằng chứng đạt. Điểm review tạm64/100. Các kết quả và sốtest bên dưới là lịch sử, không chứng nhận bản sửa mới.
+
+Yêu cầu mới ở GameplaySpecification§1: tối thiểu60FPS từ cấu hình, shader hòa hai frame VFX theo battle/effectclock; không áp frameblend lên nhân vật. Cần chuỗi ảnh/video chứng minh liên tục và đoFPS/p95/nhiệt trên đúngAPK/Redmi/workload5tướng+lính+địch+VFX. Android baseline mới nhất131,0MB, chủ tướngLv60, chưa có benchmark mới. Theo dõi sửa và artifact: AgentComms/codex/outbox/20261021-0006_sua-toan-bo-macanh.report.md và Logs/CodexFix/20261021/.
+
 ## Quyết định và phạm vi
 
 - Đã đọc `START_HERE_Codex.md`, toàn bộ `MacAnh_Production_Spec_v1_1.md`, 5 ảnh tham chiếu, `CLAUDE.md`, gameplay specification và nhật ký lỗi của game.

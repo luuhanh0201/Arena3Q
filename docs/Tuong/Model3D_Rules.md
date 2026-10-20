@@ -48,6 +48,10 @@
 | Particle chạy khi pause; seek lệch | Nhiều clock khác nhau | Mesh, shader, particle, projectile và pool cùng clock; kiểm seek tiến/lùi và thuê lại. |
 | Va chạm/ultimate mất hình trong phép chạy nhiều bước | Pool cộng thời gian cả trước khi effect được sinh | Mỗi instance lưu thời điểm spawn/tick riêng; không dùng một delta chung cho effect mới. Capture phải xác nhận cả sau release, không chỉ có charge. |
 | FPS thấp nhưng báo animation mượt | Chỉ xem easing, không đo frame time | Tách chất lượng chuyển động và hiệu năng; chỉ ghi FPS của đúng bản build, thiết bị và workload đã đo. |
+| VFX vẫn trôi khi pause dù pool đã dừng | Shader lấy `_Time.y` thay đồng hồ instance | Truyền thời gian effect/battle qua property block; ảnh pause phải không đổi, kiểm tốc độ/seek tiến-lùi/reuse. |
+| Bóng ảnh sprite sạch nhưng bóng realtime còn vòng trắng | Hai đường snapshot không tắt cùng lớp mesh prefab | Dùng chung bước chuẩn bị snapshot; kiểm sprite và captured3D, rồi tái thuê để lớp mesh thông thường vẫn bật đúng. |
+| Flipbook giật giữa các frame nguồn | Chọn floor(frame) mà không hòa frame kế | Theo yêu cầu21/10, shader hòa hai frame VFX theo phần lẻ thời gian effect; kiểm atlas khác trang/rect, loop cuối→đầu, nonloop giữ frame cuối, pause và pool. Không áp hòa này lên sprite nhân vật. |
+| Android chạy30FPS dù hiệu ứng đã sửa | Không đặt targetFrameRate khi vào game; PC có thể bị vSync khóa | Target lấy từ ScriptableObject, tối thiểu60 cho Frontend/Battle/standalone scene; kiểm khôi phục sau preview/benchmark. Đo FPS/p95/khung tụt/nhiệt trên đúng APK với5tướng+lính+địch+VFX; đặt cap60 không phải chứng minh đạt60. |
 
 ## Checklist thực thi
 
@@ -59,3 +63,4 @@
 6. Xem cả 7 chiêu, 3 tier VFX, camera trước/sau/bên/trên; kiểm bất đối xứng tự nhiên, mép mềm, chiều sâu và pha kết thúc.
 7. Import Unity, compile sạch, chạy test EditMode/PlayMode phù hợp, capture/video thật. Kiểm nguồn prefab/controller/FBX khớp bản sửa. Sprite trong trận nếu được tạo từ nguồn đã sửa cũng phải tái xuất và kiểm lại.
 8. Ghi rõ kết quả đã chạy, đường dẫn artifact, lỗi còn lại và giới hạn. Chỉ hoàn tất bàn giao khi mọi lỗi thuộc yêu cầu đã sửa và kiểm chứng.
+9. Với flipbook, lưu chuỗi frame/video60Hz ngoài ảnh tĩnh; so trước/sau quanh mốc đổi frame, pause/seek/loop/khác trang atlas. Với hiệu năng, lưu hashAPK, thiết bị, workload, thời gian đo, FPS trung bình/p95 và nhiệt; không thay kết quả thiết bị bằng Editor hoặc targetFrameRate.

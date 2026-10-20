@@ -1,3 +1,5 @@
+\
+
 # Arena3Q – Cấp, sao, kỹ năng, phe và cân bằng chỉ số tướng
 
 Phiên bản: v0.1 · 2026-10-17 · Trạng thái: **🟡 thiết kế chờ duyệt** (plan tạm trong `docs/KeHoach/`; duyệt xong chuyển sang `docs/Tuong/`) · code ⏳ (spec §11). Chỉ số trong asset prototype **giữ nguyên**: tinh chỉnh độ khó vẫn để giai đoạn sắp phát hành (spec §13); tài liệu này là **khung** cho hệ thống cấp / sao khi làm.

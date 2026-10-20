@@ -88,9 +88,8 @@ namespace Arena3Q.Gameplay
         public void SetAfterimage(Sprite sprite, Material shared, int order, Material glowMaterial = null, float glow = 1f, Color glowTint = default)
         {
             if (sprite == null) return;
-            _spatial?.Stop();transform.rotation=Quaternion.identity;transform.localScale=Vector3.one;
-            // The ghost is the whole effect: the mesh layers (three concentric rings) read as hard drawn lines.
-            if (_layers != null) foreach (var layer in _layers) layer.gameObject.SetActive(false);
+            ClearCapturedPose();
+            PrepareAfterimage();
             if (_ghost == null)
             {
                 var go = new GameObject("Character afterimage"); go.transform.SetParent(transform, false);
@@ -123,9 +122,18 @@ namespace Arena3Q.Gameplay
         private Color _ghostGlowTint;
         public void SetCapturedAfterimage(GameObject pose,Action cleanup)
         {
-            ClearCapturedPose();_spatial?.Stop();transform.rotation=Quaternion.identity;transform.localScale=Vector3.one;
+            ClearCapturedPose();PrepareAfterimage();
             _capturedPose=pose;_clearCapturedPose=cleanup;pose.transform.SetParent(transform,false);
             _capturedRenderer=pose.GetComponent<Renderer>();ApplyPoseFade(0);
+        }
+        private void PrepareAfterimage()
+        {
+            _spatial?.Stop();
+            transform.rotation=Quaternion.identity;transform.localScale=Vector3.one;
+            // Both snapshot routes replace the complete legacy effect. Begin restores the mesh layers on reuse.
+            if(_layers!=null)foreach(var layer in _layers)layer.gameObject.SetActive(false);
+            if(_ghost!=null)_ghost.gameObject.SetActive(false);
+            if(_ghostGlow!=null)_ghostGlow.gameObject.SetActive(false);
         }
         private void ClearCapturedPose()
         {

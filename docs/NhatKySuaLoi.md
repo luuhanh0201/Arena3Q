@@ -1,5 +1,27 @@
 # Nhật ký sửa lỗi – Arena3Q
 
+## Mặc Ảnh A3: flipbook VFX giật giữa các khung nguồn (2026-10-21, Claude)
+
+- Nguyên nhân: `MacAnhVfxPlayer` chọn `floor(tuổi × fps)` cho `SpriteRenderer`, nên ở 60 FPS một flipbook 12–24 khung/giây đứng yên 3–5 khung hình rồi nhảy (WindSlash: 34/60 bước 1/60 s không đổi gì).
+- Sửa: mỗi lớp là một `MeshRenderer` với tứ giác phủ hợp của khung hiện tại và khung kế (khác trang atlas, khác vùng cắt, khác pivot đều được), mỗi khung có bộ UV riêng (`uv`, `uv2`) và bị che theo vùng atlas của nó (`_RectA/_RectB`); shader hoà theo `_FrameBlend` = phần lẻ của khung trên đồng hồ hiệu ứng. Loop hoà khung cuối → đầu, không loop giữ khung cuối. Lưới mỗi cặp khung được tạo một lần rồi giữ trong bộ nhớ đệm. Màu / độ mờ của lớp chuyển từ màu đỉnh sang `_Tint` (property block). Shader thêm pass `UniversalForward` dùng chung code để chạy trên renderer 3D.
+- Kiểm: `MacAnhFlipbookBlendTests` 2/2 (trước: lệch tối đa 99/255 ở giữa hai khung), toàn bộ PlayMode 110/111 (1 test bằng chứng tuỳ chọn bỏ qua), EditMode 250/250. Ảnh trước–sau 60 Hz: `AgentComms/claude/NghiemThu/A3_FrameBlend/A3_before_after.png`; sau sửa WindSlash còn 1/60 bước đứng yên.
+- Phòng lặp: kiểm hoà khung bằng điểm ảnh (khung giữa = trộn tuyến tính hai đầu, hai đầu = sprite gốc vẽ riêng), không chỉ đọc chỉ số khung. Test nào tìm `SpriteRenderer` trong hiệu ứng flipbook phải đổi sang `MeshRenderer` tên `Frames`.
+
+## MặcẢnh A2: bóng realtime còn vòng trắng (2026-10-21)
+
+- Nguyên nhân: SetAfterimage đã ẩn các lớp mesh prefab, SetCapturedAfterimage chưa ẩn. Gom PrepareAfterimage dùng cho cảhai đường; reset phép chiếu và ẩn snapshot cũ, Begin phục hồi lớp mesh theoquality khi reuse.
+- Kiểm trước: capture2route pass, testcapturedfail với3mesh cònactive. Sau:2/2pass, capturedẩn hếtmesh, reuseLow phục hồi2layer, callbackcleanup đúng1lần. Ảnh cùngcamera/t0,420s trong NghiemThu/MacAnh/XemTruoc_Afterimage3D_20261021; XMLLogs/CodexFix/20261021/AfterAfterimage.xml. Phònglặp: không dùng nhánhsprite đãđạt thay kiểm nhánhcaptured3D.
+
+## MặcẢnh A1: shader chạy khi trận dừng (2026-10-21)
+
+- Nguyên nhân: pool/flipbook theo BattleTime nhưng drift trong MacAnhFlipbook.shader dùng_Time.y. Sửa shader dùng_EffectTime, MacAnhVfxPlayer truyền_seconds của instance qua propertyblock.
+- Kiểm cùngcamera/pose/battleTime0,3/seed, đợi0,5s thực: trước4488kênh đổi>2/255 (max15), sau0kênh/max0. UnityBeforeShader.xml FAIL, AfterShader.xml PASS trong Logs/CodexFix/20261021. Phòng lặp: kiểm pixel shader khi pause, không chỉ kiểm lifetime/pool; seek/reuse mở rộng kiểm cùng frameblendA3. Chưa coi lỗi này hết là toàn bộVFXđạt.
+
+## Android Development: cấp tối đa để test đủ skill (2026-10-20)
+
+- Theo yêu cầu mới, asset FrontendConfig đặt developmentLordLevel=60 (mức tối đa hiện hành); trước đó15 chỉ đủ mở4chiêu. Override chỉ ở battle lineup của Development player, không ghi đè cấp hồ sơ. Editor/release giữ cấp đã lưu. Cấp kỹ năng không bị ép max; bốn slot mở từ cấp2/5/10/15, tuyệt kỹ vẫn cần nộ.
+- Kiểm: Unity PlayMode nạp config thật, maxLevel=60, triệu hồi và xác nhận4slot khả dụng với stored skillLevels=0; ảnh cùng camera/t=0 Lv15/Lv60 tại NghiemThu/MacAnh/XemTruoc_Cap60_20261020. Khi đổi maxLevel cần đối chiếu mức dev trước build, không đồng nhất cấp mở đủ kỹ năng với cấp tối đa.
+
 Mỗi mục: **triệu chứng → nguyên nhân → cách sửa → cách tránh lặp lại → kiểm chứng**. Đọc file này trước khi sửa code gameplay hoặc chạy build/test bằng dòng lệnh.
 
 ## Mặc Ảnh VFX flipbook: các lỗi khi chuyển sang hiệu ứng vẽ sẵn (2026-10-20, Claude)

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Arena3Q.Data;
 using UnityEngine;
 
@@ -22,7 +23,10 @@ namespace Arena3Q.Gameplay
         private static Sprite _dimSprite;
 
         private Transform[] _roots, _spins;
-        private SpriteRenderer[] _renderers;
+        // Mesh layers, not SpriteRenderers: each draws the current and the next frame in one quad (frame blending).
+        private MeshRenderer[] _renderers;
+        private MeshFilter[] _filters;
+        private Dictionary<int, Mesh>[] _pairs;
         private SpriteRenderer _dim;
         private MaterialPropertyBlock _block;
         private MacAnhFxQuality _quality;
@@ -37,6 +41,13 @@ namespace Arena3Q.Gameplay
         private static readonly int BreathId = Shader.PropertyToID("_Breath");
         private static readonly int NoiseScaleId = Shader.PropertyToID("_NoiseScale");
         private static readonly int SeedId = Shader.PropertyToID("_Seed");
+        private static readonly int EffectTimeId = Shader.PropertyToID("_EffectTime");
+        private static readonly int MainTexId = Shader.PropertyToID("_MainTex");
+        private static readonly int NextTexId = Shader.PropertyToID("_NextTex");
+        private static readonly int FrameBlendId = Shader.PropertyToID("_FrameBlend");
+        private static readonly int RectAId = Shader.PropertyToID("_RectA");
+        private static readonly int RectBId = Shader.PropertyToID("_RectB");
+        private static readonly int TintId = Shader.PropertyToID("_Tint");
 
         public MacAnhVfxRecipe Recipe => recipe;
 
@@ -53,7 +64,9 @@ namespace Arena3Q.Gameplay
             var count = recipe.layers.Length;
             _roots = new Transform[count];
             _spins = new Transform[count];
-            _renderers = new SpriteRenderer[count];
+            _renderers = new MeshRenderer[count];
+            _filters = new MeshFilter[count];
+            _pairs = new Dictionary<int, Mesh>[count];
             _block = new MaterialPropertyBlock();
             for (var i = 0; i < count; i++)
             {
@@ -61,13 +74,20 @@ namespace Arena3Q.Gameplay
                 root.SetParent(transform, false);
                 var spin = new GameObject("Spin").transform;
                 spin.SetParent(root, false);
-                var sprite = new GameObject("Frames", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
-                sprite.transform.SetParent(spin, false);
-                sprite.sharedMaterial = material;
-                sprite.enabled = false;
+                var frames = new GameObject("Frames", typeof(MeshFilter), typeof(MeshRenderer));
+                frames.transform.SetParent(spin, false);
+                var r = frames.GetComponent<MeshRenderer>();
+                r.sharedMaterial = material;
+                r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                r.receiveShadows = false;
+                r.lightProbeUsage = UnityEngine.Rendering.LightProbeUsage.Off;
+                r.reflectionProbeUsage = UnityEngine.Rendering.ReflectionProbeUsage.Off;
+                r.enabled = false;
                 _roots[i] = root;
                 _spins[i] = spin;
-                _renderers[i] = sprite;
+                _renderers[i] = r;
+                _filters[i] = frames.GetComponent<MeshFilter>();
+                _pairs[i] = new Dictionary<int, Mesh>();
             }
             if (recipe.screenDim > 0f)
             {
@@ -212,14 +232,40 @@ namespace Arena3Q.Gameplay
                 var fadeOut = layer.fadeOut <= 0f ? 0f : Mathf.Min(Mathf.Max(layer.fadeOut, MinFadeOut), life * .5f);
                 var fade = Mathf.Min(fadeIn > 0f ? Mathf.SmoothStep(0f, 1f, age / fadeIn) : 1f,
                     fadeOut > 0f ? Mathf.SmoothStep(0f, 1f, (end - _seconds) / fadeOut) : 1f) * vanish;
-                var index = Mathf.FloorToInt(age * layer.framesPerSecond);
-                index = layer.loop ? index % layer.frames.Length : Mathf.Min(index, layer.frames.Length - 1);
-                r.sprite = layer.frames[index];
+                // Blend each frame into the next on the effect clock (spec §1): a 12-24 fps flipbook still moves
+                // smoothly at 60 fps. Looping layers blend the last frame into the first; others hold the last.
+                var count = layer.frames.Length;
+                var position = Mathf.Max(0f, age * layer.framesPerSecond);
+                var index = Mathf.FloorToInt(position);
+                var blend = position - index;
+                int next;
+                if (layer.loop)
+                {
+                    index %= count;
+                    next = (index + 1) % count;
+                }
+                else if (index >= count - 1)
+                {
+                    index = next = count - 1;
+                    blend = 0f;
+                }
+                else
+                    next = index + 1;
+                if (next == index)
+                    blend = 0f;
+                var current = layer.frames[index];
+                var following = layer.frames[next];
+                _filters[i].sharedMesh = PairMesh(i, index, next, current, following);
                 // Dissolving layers erode along the noise; a little alpha fade on top keeps the edges soft.
                 var alpha = layer.dissolve ? Mathf.Lerp(.55f, 1f, fade) * (fade > 0f ? 1f : 0f) : fade;
-                r.color = new Color(layer.tint.r, layer.tint.g, layer.tint.b, layer.tint.a * alpha);
                 r.sortingOrder = (layer.plane == MacAnhVfxPlane.Ground ? -4990 : _order) + layer.sortingOffset;
                 _block.Clear();
+                _block.SetColor(TintId, new Color(layer.tint.r, layer.tint.g, layer.tint.b, layer.tint.a * alpha));
+                _block.SetTexture(MainTexId, current.texture);
+                _block.SetTexture(NextTexId, following.texture);
+                _block.SetVector(RectAId, AtlasRect(current));
+                _block.SetVector(RectBId, AtlasRect(following));
+                _block.SetFloat(FrameBlendId, blend);
                 _block.SetFloat(GlowId, layer.glow);
                 _block.SetFloat(UnderlayId, layer.underlay);
                 _block.SetColor(UnderlayColourId, layer.underlayColour);
@@ -227,6 +273,7 @@ namespace Arena3Q.Gameplay
                 _block.SetFloat(BreathId, layer.breath);
                 _block.SetFloat(NoiseScaleId, layer.noiseScale);
                 _block.SetFloat(SeedId, _seed + i * 17.3f);
+                _block.SetFloat(EffectTimeId, _seconds);
                 r.SetPropertyBlock(_block);
 
                 var size = _scale * Mathf.Lerp(layer.scaleFrom, layer.scaleTo, Mathf.SmoothStep(0f, 1f, age / life));
@@ -249,6 +296,70 @@ namespace Arena3Q.Gameplay
             }
         }
 
+        /// <summary>The frame's area on its atlas page, in UV (min xy, max zw): the shader masks each frame to it.</summary>
+        private static Vector4 AtlasRect(Sprite sprite)
+        {
+            var rect = sprite.textureRect;
+            var size = new Vector2(sprite.texture.width, sprite.texture.height);
+            return new Vector4(rect.xMin / size.x, rect.yMin / size.y, rect.xMax / size.x, rect.yMax / size.y);
+        }
+
+        /// <summary>One quad over the union of both frames' rects (pivots and crops may differ), with each frame's
+        /// atlas UVs in its own channel. Cached per layer and frame pair, so a running effect builds no meshes.</summary>
+        private Mesh PairMesh(int layer, int index, int next, Sprite a, Sprite b)
+        {
+            var key = index * 4096 + next;
+            if (_pairs[layer].TryGetValue(key, out var mesh))
+                return mesh;
+            LocalRect(a, out var minA, out var maxA);
+            LocalRect(b, out var minB, out var maxB);
+            var min = Vector2.Min(minA, minB);
+            var max = Vector2.Max(maxA, maxB);
+            var corners = new[] { min, new Vector2(max.x, min.y), new Vector2(min.x, max.y), max };
+            var vertices = new Vector3[4];
+            var uvA = new Vector2[4];
+            var uvB = new Vector2[4];
+            for (var c = 0; c < 4; c++)
+            {
+                vertices[c] = corners[c];
+                uvA[c] = AtlasUv(a, corners[c]);
+                uvB[c] = AtlasUv(b, corners[c]);
+            }
+            mesh = new Mesh { name = $"{recipe.layers[layer].name} {index}>{next}", hideFlags = HideFlags.DontSave };
+            mesh.vertices = vertices;
+            mesh.uv = uvA;
+            mesh.uv2 = uvB;
+            mesh.colors32 = new[] { new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255),
+                new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };
+            mesh.triangles = new[] { 0, 2, 1, 1, 2, 3 };
+            mesh.RecalculateBounds();
+            mesh.UploadMeshData(true);
+            _pairs[layer][key] = mesh;
+            return mesh;
+        }
+
+        private static void LocalRect(Sprite sprite, out Vector2 min, out Vector2 max)
+        {
+            var ppu = sprite.pixelsPerUnit;
+            min = (sprite.textureRectOffset - sprite.pivot) / ppu;
+            max = min + sprite.textureRect.size / ppu;
+        }
+
+        private static Vector2 AtlasUv(Sprite sprite, Vector2 local)
+        {
+            var pixel = local * sprite.pixelsPerUnit + sprite.pivot - sprite.textureRectOffset + sprite.textureRect.position;
+            return new Vector2(pixel.x / sprite.texture.width, pixel.y / sprite.texture.height);
+        }
+
         private void OnDisable() => Stop();
+
+        private void OnDestroy()
+        {
+            if (_pairs == null)
+                return;
+            foreach (var cache in _pairs)
+                foreach (var mesh in cache.Values)
+                    if (Application.isPlaying) Destroy(mesh); else DestroyImmediate(mesh);
+        }
     }
 }

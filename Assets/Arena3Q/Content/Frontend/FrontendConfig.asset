@@ -64,3 +64,4 @@ MonoBehaviour:
   defaultStage: {fileID: 11400000, guid: 8a7039988c475614984e3c7114bd74f8, type: 2}
   battleSceneName: Battle
   frontendSceneName: Frontend
+  developmentLordLevel: 60
