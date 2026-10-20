@@ -13,6 +13,7 @@ Quy ước sắp xếp:
 | **`KeHoach/`** | **Plan chờ duyệt** |
 | `KeHoach/VaoGame.md` | Luồng vào game: biểu tượng → intro 3 s (logo + banner) → đăng nhập / Chơi ngay → chọn máy chủ → chọn chủ tướng + đặt tên → cốt truyện mở đầu; kèm prompt ảnh, video, tiếng, nhạc. |
 | `KeHoach/HeroProgression.md` | Cấp (tối đa 60), chủ tướng học kỹ năng theo cấp, sao, đột phá, phe Thục / Ngụy / Ngô / Quần, bảng chỉ số và cách cân bằng các hệ. |
+| `KeHoach/ChuyenSang3D.md` | Kế hoạch chuyển hiển thị sang 3D (logic giữ mặt phẳng 2D): ngân sách 60 FPS trên Redmi Note 8 Pro, camera, 7 giai đoạn (P0 làm thử → map → nhân vật → VFX → Frontend → test → tài liệu), model cần cung cấp, rủi ro, câu hỏi cần chốt. |
 | **`Tuong/`** | **Tướng** |
 | `Tuong/Model3D_Rules.md` | Quy tắc bắt buộc khi sửa model 3D, skinning, animation và VFX; lỗi đã gặp và các bước tự kiểm tra trước bàn giao. |
 | `Tuong/LordHeroes.md` | 4 chủ tướng (Cung thủ, Kiếm sĩ, Mưu sĩ, Thống soái): vai trò, chỉ số, bộ kỹ năng. |
