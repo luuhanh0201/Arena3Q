@@ -16,6 +16,8 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 - Chế độ hiện tại: **PvE đánh ải**, gồm hai loại ải **Công** và **Thủ**. PvP làm sau.
 - Người chơi triệu hồi **tối đa 5 tướng mỗi trận**. Mỗi tướng dẫn một đội lính riêng.
 - Góc nhìn nghiêng từ trên xuống kiểu Clash of Clans (2.5D); logic chạy trên mặt phẳng 2D.
+- ✅ (người dùng chốt 2026-10-21) **Tốc độ khung hình tối thiểu 60 FPS** trên mọi nền tảng (Android, iOS, PC), cả trong trận lẫn ngoài trận. Game đặt khung hình mục tiêu 60 (Unity trên Android mặc định chỉ 30 nếu không đặt); con số mục tiêu nằm trong dữ liệu cấu hình, không viết cứng. Không có lựa chọn hạ xuống 30. Mọi thay đổi đồ họa / VFX phải đo lại FPS trên thiết bị thật (Redmi Note 8 Pro là máy thử hiện tại) với cùng workload trận (5 tướng + lính + địch + VFX) và báo FPS trung bình / p95.
+- ✅ (người dùng chốt 2026-10-21) **Hiệu ứng vẽ sẵn (flipbook) phải chuyển khung liền mạch:** shader hòa hai khung kề nhau theo thời gian (không nhảy khung), nên khói / khí / phép chạy mượt ở 60 FPS mà không phải render thêm khung. Áp cho hiệu ứng (khói, khí, vòng trận…), **không** áp cho sprite nhân vật (hòa khung nhân vật gây bóng mờ). Thời gian hòa theo đồng hồ hiệu ứng / trận (dừng khi tạm dừng trận), không theo đồng hồ thực.
 
 ## 2. Chủ tướng
 - ✅ (người dùng chốt 2026-10-17, thay luật "chọn phe" cũ) Khi bắt đầu chơi game, người chơi **chọn 1 trong 4 chủ tướng** – **Cung thủ**, **Kiếm sĩ**, **Mưu sĩ**, **Thống soái**. Chủ tướng là **nhân vật cố định** của người chơi suốt game.
