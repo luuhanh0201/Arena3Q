@@ -92,6 +92,29 @@ namespace Arena3Q.Gameplay
             LayoutMarkers();
         }
 
+        // 3D map prop standing for the picture (castles): turned by its yaw on the ground, tinted by the hit flash.
+        private Transform _prop;
+        private MeshRenderer _propRenderer;
+        private float _propYaw, _propHeight;
+        private MaterialPropertyBlock _propBlock;
+        private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
+
+        /// <summary>Shows a 3D map prop instead of the picture (3D presentation); the picture stays as the reference.</summary>
+        internal void UsePropModel(MapProps3DLibrary.Prop prop, float yaw, float shadowAlpha)
+        {
+            _prop = MapProp3D.Create("Body3D Prop", _root, prop);
+            _propRenderer = _prop.GetComponentInChildren<MeshRenderer>();
+            _propYaw = yaw;
+            _propHeight = MapProp3D.Height(prop);
+            _body.enabled = false;
+            if (_shadow == null)
+            {
+                _shadow = MapProp3D.CreateShadow(_root, prop, shadowAlpha);
+                _shadow.transform.localRotation = _groundFromRoot;
+            }
+            SetGroundRotation(_groundFromRoot);
+        }
+
         public void SetHealth(float fraction, bool isEnemy)
         {
             fraction = Mathf.Clamp01(fraction);
@@ -196,6 +219,8 @@ namespace Arena3Q.Gameplay
             if (_outline != null && _model != null)
                 _outline.transform.localRotation = local;
             _model?.SetGroundFromRoot(local);
+            if (_prop != null)
+                _prop.localRotation = local * MapProp3D.Rotation(_propYaw);
             LayoutMarkers();
         }
 
@@ -203,13 +228,15 @@ namespace Arena3Q.Gameplay
         private void LayoutMarkers()
         {
             var top = _artTop;
+            var screenUp = Quaternion.Inverse(_groundFromRoot) * Vector3.up;
+            var sinTilt = Mathf.Clamp01(-screenUp.z);
             if (_model != null)
             {
                 // A body of height h shows h · sin(tilt) tall; its round top adds a little.
-                var screenUp = Quaternion.Inverse(_groundFromRoot) * Vector3.up;
-                var sinTilt = Mathf.Clamp01(-screenUp.z);
                 top = _model.Height * sinTilt + _diameter * 0.4f * Mathf.Sqrt(1f - sinTilt * sinTilt);
             }
+            else if (_prop != null)
+                top = Mathf.Max(_propHeight * sinTilt + _diameter * 0.5f * Mathf.Sqrt(1f - sinTilt * sinTilt), 0.5f);
             var barY = top + 0.18f;
             _healthBack.transform.localPosition = new Vector3(0f, barY, 0f);
             _healthFill.transform.localPosition = new Vector3(_healthFill.transform.localPosition.x, barY, 0f);
@@ -231,6 +258,12 @@ namespace Arena3Q.Gameplay
                 _body.color = _flash > 0f ? Color.Lerp(_color, Color.white, 0.7f) : resting;
             }
             _model?.SetColor(_body.color);
+            if (_propRenderer != null)
+            {
+                _propBlock ??= new MaterialPropertyBlock();
+                _propBlock.SetColor(BaseColorId, _body.color);
+                _propRenderer.SetPropertyBlock(_propBlock);
+            }
             if (_stun != null && _stun.enabled)
                 _stun.transform.Rotate(0f, 0f, 240f * deltaTime);
 

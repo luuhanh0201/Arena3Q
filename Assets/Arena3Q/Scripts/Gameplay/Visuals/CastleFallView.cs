@@ -43,6 +43,7 @@ namespace Arena3Q.Gameplay
             _logic = logic;
             _random = new System.Random(seed);
             _body = PlaceholderArt.CreateRenderer("Castle", transform, art.IntactSprite, Color.white, Vector2.one);
+            UseModel(art.IntactSprite);
             _battle.ViewChanged += Place;
             Place();
             if (art.ShakeSeconds <= 0f)
@@ -68,6 +69,7 @@ namespace Arena3Q.Gameplay
                 var shake = _art.ShakeAmplitude * t;
                 _body.transform.localPosition = basePosition + new Vector3(Range(-shake, shake), Range(-shake, shake) * 0.5f, 0f);
                 _body.color = Color.Lerp(Color.white, _art.FlashColor, 0.5f + 0.5f * Mathf.Sin(_time * (12f + 30f * t)));
+                ShowModel(_body.transform.localPosition, _body.color);
                 if (_time >= _art.ShakeSeconds)
                     Collapse();
             }
@@ -78,6 +80,7 @@ namespace Arena3Q.Gameplay
                 var drop = _art.CollapseDrop * Mathf.Sin(settle * Mathf.PI) * (1f - settle * 0.5f);
                 _body.transform.localPosition = basePosition - new Vector3(0f, drop, 0f);
                 _body.color = Color.white;
+                ShowModel(_body.transform.localPosition, _body.color);
 
                 var smokeAge = _time - _art.ShakeSeconds;
                 if (smokeAge < _art.SmokeSeconds && _time >= _nextSmoke)
@@ -115,7 +118,10 @@ namespace Arena3Q.Gameplay
         {
             _collapsed = true;
             if (_art.DestroyedSprite != null)
+            {
                 _body.sprite = _art.DestroyedSprite;
+                UseModel(_art.DestroyedSprite);
+            }
             var basePosition = Vector3.zero; // local: the view sits on the castle and faces the camera
             var width = _art.IntactSprite.bounds.size.x * 0.5f;
 
@@ -154,6 +160,39 @@ namespace Arena3Q.Gameplay
             transform.rotation = _battle.UprightRotation;
             _body.transform.localPosition = Vector3.zero;
             _body.sortingOrder = Mathf.RoundToInt(-view.y * 20f) * 4;
+            ShowModel(Vector3.zero, Color.white);
+        }
+
+        // 3D: the command post model shakes and flashes in place of the picture, then the ruin model replaces it.
+        private Transform _model;
+        private MeshRenderer _modelRenderer;
+        private float _modelYaw;
+        private MaterialPropertyBlock _block;
+        private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
+
+        private void UseModel(Sprite sprite)
+        {
+            if (!MapProp3D.TryFind(_battle, sprite, out var prop, out var yaw))
+                return;
+            if (_model != null)
+                Destroy(_model.gameObject);
+            _model = MapProp3D.Create("Castle 3D", transform, prop);
+            _modelRenderer = _model.GetComponentInChildren<MeshRenderer>();
+            _modelYaw = yaw;
+            _body.enabled = false;
+            ShowModel(_body.transform.localPosition, _body.color);
+        }
+
+        // Same screen-plane offset as the picture would get (the view faces the camera), standing on the ground.
+        private void ShowModel(Vector3 offset, Color tint)
+        {
+            if (_model == null)
+                return;
+            _model.localPosition = offset;
+            _model.rotation = MapProp3D.Rotation(_modelYaw);
+            _block ??= new MaterialPropertyBlock();
+            _block.SetColor(BaseColorId, tint);
+            _modelRenderer.SetPropertyBlock(_block);
         }
 
         private Vector3 Offset(float x, float yMin, float yMax) => new Vector3(Range(-x, x), Range(yMin, yMax), 0f);

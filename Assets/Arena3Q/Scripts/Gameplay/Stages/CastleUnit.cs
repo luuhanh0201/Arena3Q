@@ -26,7 +26,12 @@ namespace Arena3Q.Gameplay
                 withSelectionRing: false);
             _art = config.Art;
             if (_art != null)
+            {
                 Visual.UseArt(_art.IntactSprite);
+                // 3D: the command post model stands there instead of its picture.
+                if (MapProp3D.TryFind(battle, _art.IntactSprite, out var prop, out var yaw))
+                    Visual.UsePropModel(prop, yaw, battle.View.PropShadowAlpha);
+            }
             SetCombat(config.Damage, config.AttackRange, config.AttackInterval, 0f, 0f, config.AttackRange);
             SetPosition(config.Position);
         }

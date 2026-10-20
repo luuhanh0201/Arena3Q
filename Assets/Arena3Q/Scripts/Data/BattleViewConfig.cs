@@ -27,8 +27,8 @@ namespace Arena3Q.Data
         [Tooltip("Direction the sunlight travels in battle space (ground = XY, up = -Z): Euler angles of the light.")]
         [SerializeField] private Vector3 lightEulerAngles = new Vector3(-40f, 25f, 0f);
         [SerializeField] private Color lightColour = new Color(1f, 0.96f, 0.9f, 1f);
-        [SerializeField, Min(0f)] private float lightIntensity = 1.15f;
-        [SerializeField] private Color ambientColour = new Color(0.56f, 0.56f, 0.62f, 1f);
+        [SerializeField, Min(0f)] private float lightIntensity = 0.85f;
+        [SerializeField] private Color ambientColour = new Color(0.5f, 0.49f, 0.52f, 1f);
 
         [Header("Placeholder bodies (units without a model or a picture)")]
         [Tooltip("Lit material of the placeholder capsules (tinted per unit). Empty = the pipeline's default material.")]
@@ -38,6 +38,14 @@ namespace Arena3Q.Data
         [Tooltip("Darkness of the soft round shadow under every unit (no realtime shadows).")]
         [SerializeField, Range(0f, 1f)] private float blobShadowAlpha = 0.35f;
 
+        [Header("Map")]
+        [Tooltip("3D models standing in for the map's prop pictures (pillars, slabs, altar, castles, decorations).")]
+        [SerializeField] private MapProps3DLibrary mapProps;
+        [Tooltip("Darkness of the soft shadow under 3D map props.")]
+        [SerializeField, Range(0f, 1f)] private float propShadowAlpha = 0.3f;
+
+        public MapProps3DLibrary MapProps => mapProps;
+        public float PropShadowAlpha => propShadowAlpha;
         public bool Presentation3D => presentation3D;
         public Material UnitMaterial => unitMaterial;
         public float PlaceholderHeight => placeholderHeight;

@@ -172,6 +172,11 @@ namespace Arena3Q.Gameplay
         private void PlaceSlab(int gate, float raise)
         {
             var slab = _slabs[gate];
+            if (PlaceSlabModel(slab, raise))
+            {
+                _slabMasks[gate].enabled = false;
+                return;
+            }
             var logic = _formation.Geometry.Gates[gate].Position;
             var basePosition = _battle.ToView(logic);
             // Heights show at sin(view angle) on screen; seen straight from above the slab only fades.
@@ -216,7 +221,34 @@ namespace Arena3Q.Gameplay
         {
             var renderer = PlaceholderArt.CreateRenderer(objectName, transform, sprite, Color.white, Vector2.one, order);
             _standing.Add((renderer, logic));
+            // 3D: the prop's model stands there instead; the picture stays (disabled) as the data reference.
+            if (MapProp3D.TryFind(_battle, sprite, out var prop, out var yaw))
+            {
+                var model = MapProp3D.Create(objectName + " 3D", transform, prop);
+                model.SetPositionAndRotation(_battle.ToView(logic), MapProp3D.Rotation(yaw));
+                var shadow = MapProp3D.CreateShadow(transform, prop, _battle.View.PropShadowAlpha);
+                shadow.transform.position = _battle.ToView(logic);
+                _models[renderer] = (model, shadow, prop.scale);
+                renderer.enabled = false;
+            }
             return renderer;
+        }
+
+        private readonly Dictionary<SpriteRenderer, (Transform model, SpriteRenderer shadow, float scale)> _models =
+            new Dictionary<SpriteRenderer, (Transform, SpriteRenderer, float)>();
+
+        // A 3D slab grows out of the ground (its height scales with the raise) and is gone when fully down.
+        private bool PlaceSlabModel(SpriteRenderer slab, float raise)
+        {
+            if (!_models.TryGetValue(slab, out var model))
+                return false;
+            slab.enabled = false;
+            var up = Mathf.SmoothStep(0f, 1f, raise);
+            model.model.gameObject.SetActive(raise > 0f);
+            model.model.localScale = new Vector3(model.scale, model.scale * Mathf.Max(0.001f, up), model.scale);
+            model.shadow.enabled = raise > 0f;
+            model.shadow.color = new Color(0f, 0f, 0f, _battle.View.PropShadowAlpha * up);
+            return true;
         }
 
         private static SpriteRenderer AddGround(string objectName, Transform groundRoot, Sprite sprite, Color color,

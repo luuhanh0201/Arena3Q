@@ -24,6 +24,15 @@ namespace Arena3Q.Gameplay
                 var renderer = PlaceholderArt.CreateRenderer($"Decor {index++} {piece.sprite.name}", transform,
                     piece.sprite, Color.white, Vector2.one);
                 _pieces.Add((renderer, piece.position));
+                // 3D: the prop's model stands there instead of its picture.
+                if (MapProp3D.TryFind(battle, piece.sprite, out var prop, out var yaw))
+                {
+                    var model = MapProp3D.Create(renderer.name + " 3D", transform, prop);
+                    model.SetPositionAndRotation(battle.ToView(piece.position), MapProp3D.Rotation(yaw));
+                    var shadow = MapProp3D.CreateShadow(transform, prop, battle.View.PropShadowAlpha);
+                    shadow.transform.position = battle.ToView(piece.position);
+                    renderer.enabled = false;
+                }
             }
             _battle.ViewChanged += Reposition;
             Reposition();

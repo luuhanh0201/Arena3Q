@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2108ac0d42d00b4ba96e570209dcb3b, type: 3}
+  m_Name: MapProps3D
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.MapProps3DLibrary
+  props:
+  - name: BaguaRoundStoneAltar
+    mesh: {fileID: 5461320835613783329, guid: 3fcf41ba16f948d4eae64bd3b8252ab4, type: 3}
+    material: {fileID: 2100000, guid: 8f1fa853020bb2d4fba834642fca6d21, type: 2}
+    meshPosition: {x: 0, y: 0, z: 0}
+    meshRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+    meshScale: {x: 100, y: 99.99999, z: 99.99999}
+    scale: 1.6033317
+    groundCentre: {x: -0.0016745329, y: -0.0005415231, z: -0.0032401085}
+    footprint: 4
+  - name: BaguaStonePillar
+    mesh: {fileID: 5461320835613783329, guid: dd2ec97d9200c19489353fa606b77e70, type: 3}
+    material: {fileID: 2100000, guid: 165acded55b019a439ae8ab66e7cfdaf, type: 2}
+    meshPosition: {x: 0, y: 0, z: 0}
+    meshRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+    meshScale: {x: 100, y: 99.99999, z: 99.99999}
+    scale: 0.93814695
+    groundCentre: {x: -0.0004348755, y: -0.0060697794, z: 0.024723649}
+    footprint: 2
+  - name: BaguaWideStoneSlab
+    mesh: {fileID: 5461320835613783329, guid: 4166cb5d9b7476447bb43a9edef1a28a, type: 3}
+    material: {fileID: 2100000, guid: 50b907b9f56331b4f9e6039f1abae07e, type: 2}
+    meshPosition: {x: 0, y: 0, z: 0}
+    meshRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+    meshScale: {x: 100, y: 99.99999, z: 99.99999}
+    scale: 0.7970376
+    groundCentre: {x: 0.00019991398, y: 0.0009753704, z: 0.00021785498}
+    footprint: 2.5
+  - name: MilitaryFlagpoleBanner
+    mesh: {fileID: 5461320835613783329, guid: bc80e0ee07a28b540b463958db1068ba, type: 3}
+    material: {fileID: 2100000, guid: 00c54e05965c2e64aa4169ccbc64b635, type: 2}
+    meshPosition: {x: 0, y: 0, z: 0}
+    meshRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+    meshScale: {x: 100, y: 99.99999, z: 99.99999}
+    scale: 0.9995543
+    groundCentre: {x: 0.0039779544, y: 0.00062298775, z: 0.010524422}
+    footprint: 1.3224897
+  - name: ThreeKingdomsCommand_1
+    mesh: {fileID: 5461320835613783329, guid: 3935aabe0f39451498f1e3f483bb4855, type: 3}
+    material: {fileID: 2100000, guid: 33fa6761c12a85749a099191f8341e89, type: 2}
+    meshPosition: {x: 0, y: 0, z: 0}
+    meshRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+    meshScale: {x: 100, y: 99.99999, z: 99.99999}
+    scale: 0.86731106
+    groundCentre: {x: 0.002278328, y: 0.0018341541, z: 0.004556656}
+    footprint: 3.5
+  - name: ThreeKingdomsCommand_2
+    mesh: {fileID: 5461320835613783329, guid: 22769e43d8385414cbea5f69c3c0f5d6, type: 3}
+    material: {fileID: 2100000, guid: 64775f5a22e43984cac65cbcc135d3b9, type: 2}
+    meshPosition: {x: 0, y: 0, z: 0}
+    meshRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+    meshScale: {x: 100, y: 99.99999, z: 99.99999}
+    scale: 0.9984963
+    groundCentre: {x: -0.00016725063, y: 0.008609295, z: 0.0040180683}
+    footprint: 3.5
+  - name: ThreeKingdomsSquare
+    mesh: {fileID: 5461320835613783329, guid: 91b717ca29a3d134eb7723ed80418281, type: 3}
+    material: {fileID: 2100000, guid: a15865db3acf1f54eaef16a735421341, type: 2}
+    meshPosition: {x: 0, y: 0, z: 0}
+    meshRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+    meshScale: {x: 100, y: 99.99999, z: 99.99999}
+    scale: 1.4483747
+    groundCentre: {x: 0.004179597, y: -0.004354477, z: -0.008806109}
+    footprint: 3.5000002
+  - name: WoodenCampWatchtower
+    mesh: {fileID: 5461320835613783329, guid: 73544008ced0226448ef83d7af12e562, type: 3}
+    material: {fileID: 2100000, guid: 0423e2d063f0faf4a8feb46e1f71b5f9, type: 2}
+    meshPosition: {x: 0, y: 0, z: 0}
+    meshRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+    meshScale: {x: 100, y: 99.99999, z: 99.99999}
+    scale: 0.9932075
+    groundCentre: {x: 0.006043136, y: -0.0016117096, z: 0.0037558675}
+    footprint: 1.5673633
+  - name: WoodenPalisadeFence
+    mesh: {fileID: 5461320835613783329, guid: 9439751f7ca2a6346b51716efa2cd8f7, type: 3}
+    material: {fileID: 2100000, guid: af7bb7d8cd0365540a3648a12cc6679f, type: 2}
+    meshPosition: {x: 0, y: 0, z: 0}
+    meshRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+    meshScale: {x: 100, y: 99.99999, z: 99.99999}
+    scale: 1.0822219
+    groundCentre: {x: 0.0013910532, y: -0.0012051463, z: -0.0020121485}
+    footprint: 2.9999998

@@ -903,6 +903,41 @@ namespace Arena3Q.Tests.PlayMode
 
         /// <summary>Renders the battle (world + HUD) to Logs/Screenshots for a visual check of the placeholder look.</summary>
         [UnityTest]
+        public IEnumerator Screenshot_Props3D_CloseUps()
+        {
+            Assume.That(_battle.Presentation3D, Is.True, "3D presentation is the shipped default");
+            _battle.StartBattle(0);
+            yield return null;
+            var geometry = _battle.Formation.Geometry;
+            // A closed gate shows its slab standing between two pillars.
+            _battle.DevToggleGate(0);
+            Run(2f);
+            yield return null;
+            var cam = Camera.main;
+            var controller = cam.GetComponent<BattleCameraController>();
+            var size = cam.orthographicSize;
+            controller.enabled = false;
+            try
+            {
+                cam.orthographicSize = 3.2f;
+                foreach (var (file, point) in new[]
+                         {
+                             ("props3d_gate.png", geometry.Gates[0].Position), ("props3d_altar.png", geometry.AltarCenter),
+                             ("props3d_castle.png", Stage(0).EnemyCastle.Position)
+                         })
+                {
+                    BattleView3D.PlaceCamera(cam.transform, _battle, point + Vector2.up * 0.8f);
+                    Capture(file);
+                }
+            }
+            finally
+            {
+                cam.orthographicSize = size;
+                controller.enabled = true;
+            }
+        }
+
+        [UnityTest]
         public IEnumerator Screenshot_AttackAndDefense()
         {
             _battle.StartBattle(0);
