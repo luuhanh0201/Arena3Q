@@ -63,7 +63,7 @@ namespace Arena3Q.Editor
                 Debug.Log($"[MacAnh Flipbook] {name}: {recipe.layers.Length} layers, {recipe.layers.Sum(l => l.frames.Length)} frames.");
             }
             if (bind)
-                Bind(prefabs);
+                Bind(prefabs, material);
             AssetDatabase.SaveAssets();
         }
 
@@ -176,17 +176,33 @@ namespace Arena3Q.Editor
             return prefab;
         }
 
-        private static void Bind(Dictionary<string, GameObject> prefabs)
+        private static void Bind(Dictionary<string, GameObject> prefabs, Material material)
         {
             var profile = AssetDatabase.LoadAssetAtPath<MacAnhPerformance>(PerformancePath);
             var data = new SerializedObject(profile);
             var effects = data.FindProperty("effects");
+            var bound = new HashSet<string>();
             for (var i = 0; i < effects.arraySize; i++)
             {
                 var item = effects.GetArrayElementAtIndex(i);
-                if (prefabs.TryGetValue(item.FindPropertyRelative("key").stringValue, out var prefab))
+                var key = item.FindPropertyRelative("key").stringValue;
+                if (prefabs.TryGetValue(key, out var prefab))
+                {
                     item.FindPropertyRelative("prefab").objectReferenceValue = prefab;
+                    bound.Add(key);
+                }
             }
+            // Effects that only exist as flipbooks (UltimateAura, DodgeStreak) get a new entry.
+            foreach (var pair in prefabs)
+            {
+                if (bound.Contains(pair.Key))
+                    continue;
+                effects.arraySize++;
+                var item = effects.GetArrayElementAtIndex(effects.arraySize - 1);
+                item.FindPropertyRelative("key").stringValue = pair.Key;
+                item.FindPropertyRelative("prefab").objectReferenceValue = pair.Value;
+            }
+            data.FindProperty("afterimageGlowMaterial").objectReferenceValue = material;
             var skills = data.FindProperty("skills");
             for (var i = 0; i < skills.arraySize; i++)
             {

@@ -16,8 +16,9 @@ namespace Arena3Q.Gameplay
         private static readonly int UnderlayId = Shader.PropertyToID("_Underlay");
         private static readonly int UnderlayColourId = Shader.PropertyToID("_UnderlayColor");
 
-        /// <summary>Above every unit and ground decoration; the effect's layers go above it while the dim is on.</summary>
-        private const int DimOrder = 20000;
+        /// <summary>Above the painted ground (-32000..-31970), below units, decorations and the effect layers, so only
+        /// the ground darkens and everything standing on it stays lit like a stage.</summary>
+        private const int DimOrder = -6000;
         private static Sprite _dimSprite;
 
         private Transform[] _roots, _spins;
@@ -167,7 +168,7 @@ namespace Arena3Q.Gameplay
                 return;
             // Projectiles are spawned rotated towards their screen direction; keep "up" up when they fly left.
             var flip = Mathf.Cos(transform.eulerAngles.z * Mathf.Deg2Rad) < 0f ? -1f : 1f;
-            var dimmed = ApplyDim() > 0f;
+            ApplyDim();
             for (var i = 0; i < _renderers.Length; i++)
             {
                 var layer = recipe.layers[i];
@@ -187,7 +188,7 @@ namespace Arena3Q.Gameplay
                 index = layer.loop ? index % layer.frames.Length : Mathf.Min(index, layer.frames.Length - 1);
                 r.sprite = layer.frames[index];
                 r.color = new Color(layer.tint.r, layer.tint.g, layer.tint.b, layer.tint.a * fade);
-                r.sortingOrder = (dimmed ? DimOrder + 10 : layer.plane == MacAnhVfxPlane.Ground ? -4990 : _order) + layer.sortingOffset;
+                r.sortingOrder = (layer.plane == MacAnhVfxPlane.Ground ? -4990 : _order) + layer.sortingOffset;
                 _block.Clear();
                 _block.SetFloat(GlowId, layer.glow);
                 _block.SetFloat(UnderlayId, layer.underlay);

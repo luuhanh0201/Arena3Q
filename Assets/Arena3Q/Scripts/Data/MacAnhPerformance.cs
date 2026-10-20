@@ -75,8 +75,22 @@ namespace Arena3Q.Data
         [SerializeField, Min(0f)] private float visualSmoothSeconds = .045f;
         [SerializeField, Min(0f)] private float maxVisualOffset = .15f;
         [SerializeField, Min(0f)] private float transitionSeconds = .07f;
+        [Header("Flipbook extras (spec §12 f31–45, §13 f8–13)")]
+        [Tooltip("Flipbook material for a glowing violet copy of the DodgeAttack afterimage; empty = plain tinted ghost.")]
+        [SerializeField] private Material afterimageGlowMaterial;
+        [SerializeField, Range(0f, 4f)] private float afterimageGlow = .9f;
+        [SerializeField] private Color afterimageGlowTint = new Color(.75f, .5f, 1f, 1f);
+        [Tooltip("Seconds into the Ultimate cast when the rune circle behind Mặc Ảnh appears (frame 31 = 1.03 s).")]
+        [SerializeField, Min(0f)] private float ultimateAuraStart = 31f / 30f;
+        [Tooltip("Seconds into DodgeAttack when the dash streak is spawned (frame 8).")]
+        [SerializeField, Min(0f)] private float dodgeStreakStart = 8f / 30f;
         public int DirectionCount => directionCount;
         public Material SpriteMaterial => spriteMaterial;
+        public Material AfterimageGlowMaterial => afterimageGlowMaterial;
+        public float AfterimageGlow => afterimageGlow;
+        public Color AfterimageGlowTint => afterimageGlowTint;
+        public float UltimateAuraStart => ultimateAuraStart;
+        public float DodgeStreakStart => dodgeStreakStart;
         public bool EnableBattle3DTrial => enableBattle3DTrial;
         /// <summary>Session-only selection; saving the default remains an Editor data decision.</summary>
         public void SetBattle3DTrial(bool enabled) => enableBattle3DTrial=enabled;

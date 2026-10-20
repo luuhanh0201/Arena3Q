@@ -18,7 +18,8 @@ namespace Arena3Q.Gameplay
         private bool _basic;
         private MacAnhFx _shield;
         private MacAnhFx _charge;
-        private int _shieldGeneration, _chargeGeneration;
+        private MacAnhFx _aura;
+        private int _shieldGeneration, _chargeGeneration, _auraGeneration;
         private MacAnhPerformance.SkillBinding _skill;
         private SkillAim _skillAim;
         private float _dodgeTravel;
@@ -46,10 +47,16 @@ namespace Arena3Q.Gameplay
             }
             if (_timer >= .8f) { _basic = false; _gate.Cancel(); _view.Cancel(); }
         }
-        private MacAnhFx Spawn(string key, Vector3 position, Vector3 scale, float duration, float angle = 0, Transform follow = null)
+        private MacAnhFx Spawn(string key, Vector3 position, Vector3 scale, float duration, float angle = 0, Transform follow = null,
+            int orderOffset = 3)
         {
             return MacAnhFxPool.For(_hero.Battle).Spawn(_set.Effect(key), position, scale, Quaternion.Euler(0, 0, angle),
-                (MacAnhFxQuality)_set.EffectQuality, duration, _view.Body.sortingOrder + 3, follow);
+                (MacAnhFxQuality)_set.EffectQuality, duration, _view.Body.sortingOrder + orderOffset, follow);
+        }
+        /// <summary>Optional extras (UltimateAura, DodgeStreak): skipped quietly when the profile has no prefab for them.</summary>
+        private MacAnhFx SpawnExtra(string key, Vector3 position, float duration, float angle, Transform follow, int orderOffset)
+        {
+            return _set.Effect(key) == null ? null : Spawn(key, position, Vector3.one, duration, angle, follow, orderOffset);
         }
         private void Projectile(string key, Vector2 direction, System.Action<UnitBase> hit, float range, float targetRadius, int combo=0)
         {
@@ -86,6 +93,19 @@ namespace Arena3Q.Gameplay
                     new Vector3(r, r * _hero.Battle.ViewYScale, 1), _skill.skill.CastTime - time);
                 if (_charge != null) { _chargeGeneration = _charge.Generation; _charge.SetCharge(); }
             }
+            // Rune circle behind Mặc Ảnh from frame 31 until the release (spec §12), following the caster.
+            if (action == MacAnhAction.Ultimate && time >= _set.UltimateAuraStart && time < _skill.skill.CastTime &&
+                _gate.TryAccept(_cast, "UltimateAura"))
+            {
+                _aura = SpawnExtra("UltimateAura", _view.transform.position, _skill.skill.CastTime - time + .6f, 0, _view.transform, -2);
+                if (_aura != null) _auraGeneration = _aura.Generation;
+            }
+            // Dash streak along the dodge (spec §13 "vệt thân lướt"): points back along the backstep.
+            if (action == MacAnhAction.DodgeAttack && time >= _set.DodgeStreakStart && _gate.TryAccept(_cast, "DodgeStreak"))
+            {
+                var back = _hero.Battle.ToView(_hero.Position - _skillAim.Direction) - _hero.Battle.ToView(_hero.Position);
+                SpawnExtra("DodgeStreak", _view.transform.position, .4f, Mathf.Atan2(back.y, back.x) * Mathf.Rad2Deg, null, -1);
+            }
             if (action == MacAnhAction.DodgeAttack && time >= 8f / 30f && time <= 13f / 30f &&
                 _gate.TryAccept(_cast, "Afterimage" + Mathf.FloorToInt(time * 15)))
             {
@@ -99,6 +119,8 @@ namespace Arena3Q.Gameplay
             var action = binding.action;
             if (!_gate.TryAccept(_cast, action + ":" + combo)) return;
             StopOwned(ref _charge, _chargeGeneration);
+            // Released: the rune circle fades out on its own clock; a later cancel/end must not cut it.
+            if (action == MacAnhAction.Ultimate) _aura = null;
             if (action == MacAnhAction.Attack02 || action == MacAnhAction.DodgeAttack)
             {
                 var context = SkillContext.Of(_hero, _hero.Battle.Rules.SkillValueMultiplier(_hero.Skills.Get(skill.Slot).Level));
@@ -128,6 +150,7 @@ namespace Arena3Q.Gameplay
         {
             _basic = false; _skill = null; _gate.Cancel();
             StopOwned(ref _charge, _chargeGeneration);
+            StopOwned(ref _aura, _auraGeneration);
             if (_view != null) _view.Cancel();
         }
         private static void StopOwned(ref MacAnhFx fx, int generation)
@@ -135,6 +158,5 @@ namespace Arena3Q.Gameplay
             if (fx != null && fx.Generation == generation) fx.Stop();
             fx = null;
         }
-        public void Die() { Cancel(); StopOwned(ref _shield, _shieldGeneration); }
-    }
+        public void Die() { Cancel(); StopOwned(ref _shield, _shieldGeneration); }    }
 }

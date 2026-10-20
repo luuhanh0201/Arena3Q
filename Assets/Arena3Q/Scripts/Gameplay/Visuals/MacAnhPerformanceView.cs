@@ -52,7 +52,8 @@ namespace Arena3Q.Gameplay
         public void ApplyAfterimage(MacAnhFx effect)
         {
             int order=_body.sortingOrder-1;
-            if(_realtime==null||!_realtime.CaptureAfterimage(effect,order))effect.SetAfterimage(_body.sprite,_body.sharedMaterial,order);
+            if(_realtime==null||!_realtime.CaptureAfterimage(effect,order))
+                effect.SetAfterimage(_body.sprite,_body.sharedMaterial,order,_set.AfterimageGlowMaterial,_set.AfterimageGlow,_set.AfterimageGlowTint);
         }
         private static bool IsGait(MacAnhPerformance.Clip clip) => clip != null && (clip.action == MacAnhAction.Run || clip.action == MacAnhAction.Walk);
         public bool TrySocket(MacAnhSocket socket, out Vector3 position)

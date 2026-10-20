@@ -12053,3 +12053,8 @@ MonoBehaviour:
   visualSmoothSeconds: 0.045
   maxVisualOffset: 0.15
   transitionSeconds: 0.07
+  afterimageGlowMaterial: {fileID: 2100000, guid: 4acfcb84ab866b1409a8a2682cd4dc04, type: 2}
+  afterimageGlow: 0.9
+  afterimageGlowTint: {r: 0.75, g: 0.5, b: 1, a: 1}
+  ultimateAuraStart: 1.0333333
+  dodgeStreakStart: 0.26666668

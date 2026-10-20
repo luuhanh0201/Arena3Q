@@ -66,7 +66,7 @@ namespace Arena3Q.Data
 
         [Header("Screen dim (cinematic)")]
         [Tooltip("Darkens the whole battlefield behind the effect while it plays, so the light reads like the concept " +
-                 "art on a dark ground. 0 = off. The effect's own layers are drawn above the dim.")]
+                 "art on a dark ground; units, decorations and effects stay above it (only the ground darkens). 0 = off.")]
         [Range(0f, 1f)] public float screenDim;
         public Color dimColour = new Color(.06f, .02f, .12f, 1f);
         [Min(0f)] public float dimFadeIn = .25f;

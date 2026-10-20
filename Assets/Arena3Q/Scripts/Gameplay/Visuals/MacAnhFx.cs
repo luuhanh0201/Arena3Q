@@ -85,7 +85,7 @@ namespace Arena3Q.Gameplay
             }
             ApplyFade(0f);
         }
-        public void SetAfterimage(Sprite sprite, Material shared, int order)
+        public void SetAfterimage(Sprite sprite, Material shared, int order, Material glowMaterial = null, float glow = 1f, Color glowTint = default)
         {
             if (sprite == null) return;
             _spatial?.Stop();transform.rotation=Quaternion.identity;transform.localScale=Vector3.one;
@@ -97,8 +97,28 @@ namespace Arena3Q.Gameplay
             _ghost.sprite = sprite; _ghost.sharedMaterial = shared; _ghost.sortingOrder = order;
             _ghost.transform.localPosition=Vector3.zero;_ghost.transform.localRotation=Quaternion.identity;_ghost.transform.localScale=Vector3.one;
             _ghost.gameObject.SetActive(true);
+            // Glowing violet copy (flipbook shader: the sprite's colours become added light, a soft violet underlay).
+            if (glowMaterial != null)
+            {
+                if (_ghostGlow == null)
+                {
+                    var go = new GameObject("Afterimage glow"); go.transform.SetParent(_ghost.transform, false);
+                    _ghostGlow = go.AddComponent<SpriteRenderer>();
+                }
+                _ghostGlow.sprite = sprite; _ghostGlow.sharedMaterial = glowMaterial; _ghostGlow.sortingOrder = order;
+                _ghostGlow.transform.localScale = Vector3.one * 1.04f;
+                _block = _block ?? new MaterialPropertyBlock(); _block.Clear();
+                _block.SetFloat("_Glow", glow); _block.SetFloat("_Underlay", .35f);
+                _block.SetColor("_UnderlayColor", new Color(.25f, .08f, .5f, 1f));
+                _ghostGlow.SetPropertyBlock(_block);
+                _ghostGlowTint = glowTint;
+                _ghostGlow.gameObject.SetActive(true);
+            }
+            else if (_ghostGlow != null) _ghostGlow.gameObject.SetActive(false);
             ApplyPoseFade(0);
         }
+        private SpriteRenderer _ghostGlow;
+        private Color _ghostGlowTint;
         public void SetCapturedAfterimage(GameObject pose,Action cleanup)
         {
             ClearCapturedPose();_spatial?.Stop();transform.rotation=Quaternion.identity;transform.localScale=Vector3.one;
@@ -112,6 +132,7 @@ namespace Arena3Q.Gameplay
         private void ApplyPoseFade(float fade)
         {
             if(_ghost!=null)_ghost.color=new Color(.84f,.67f,1,fade*.65f);
+            if(_ghostGlow!=null)_ghostGlow.color=new Color(_ghostGlowTint.r,_ghostGlowTint.g,_ghostGlowTint.b,fade);
             if(_capturedRenderer!=null)
             {
                 _block=_block??new MaterialPropertyBlock();_block.Clear();_block.SetFloat("_Opacity",fade);_capturedRenderer.SetPropertyBlock(_block);
@@ -159,6 +180,7 @@ namespace Arena3Q.Gameplay
             _running = false; _follow = null;
             if(_spatial!=null) _spatial.Stop();
             if (_ghost != null) _ghost.sprite = null;
+            if (_ghostGlow != null) _ghostGlow.sprite = null;
             ClearCapturedPose();
             var source = GetComponent<AudioSource>();
             if (source != null) source.Stop();

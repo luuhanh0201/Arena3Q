@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace Arena3Q.Gameplay
 {
-    public enum MacAnhFxKind { WindSlash, TripleFeather, MagicArray, Cyclone, Shield, Ultimate, Afterimage, CounterSlash, Impact }
+    // Append only: prefabs store the kind as its number.
+    public enum MacAnhFxKind { WindSlash, TripleFeather, MagicArray, Cyclone, Shield, Ultimate, Afterimage, CounterSlash, Impact, UltimateAura, DodgeStreak }
     public enum MacAnhFxQuality { Low, Medium, High }
 
     /// <summary>Small native 2D meshes. No combat rules, physics or full-screen alpha cards.</summary>

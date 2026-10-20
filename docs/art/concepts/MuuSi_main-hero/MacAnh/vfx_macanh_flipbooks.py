@@ -507,37 +507,30 @@ def blade_widths(n, width, power=1.3):
 def build_wind_slash(scale=1.0, frames_count=12, seed=3):
     """Attack01 Phiến Phong Trảm (and the smaller CounterSlash): crescent wind blade flying towards +X."""
     rnd = random.Random(seed)
+    # The blade itself is a solid crescent of light (no streak pattern); the wind behind it is noise smoke, not
+    # evenly spaced arcs (Model3D_Rules 28–29, review 2026-10-20).
     core = glow_material('SlashCore', [(0, CORE, 3.6), (.07, CORE2, 2.5), (.28, BAND, 1.55), (.65, DEEP, .6), (1, DEEP, 0)],
-                         [(0, 1), (.4, .95), (.75, .55), (1, 0)], 1.0, noise=(6, .4, 1))
-    # The sweep: a wide, soft fan of light behind the blade (the comet tail of the storyboard's Attack01).
-    sweep = glow_material('SlashSweep', [(0, BAND, 1.0), (.35, BAND, .55), (1, DEEP, 0)], [(0, .5), (.45, .22), (1, 0)], 1.0,
-                          noise=(4, .6, 1))
-    trail = glow_material('SlashTrail', [(0, CORE2, 1.5), (.3, BAND, 1.1), (1, DEEP, .15)], [(0, .75), (.5, .4), (1, 0)], 1.0,
-                          noise=(9, .75, 1))
-    gold = glow_material('SlashGold', [(0, GOLD, 1.8), (1, GOLD, .8)], [(0, .9), (1, .2)], 1.0, noise=(14, .8, 1))
-    R = .5 * scale
-    n = 56
-    pts, us = crescent_points(R, 150, -R * .55, n)
+                         [(0, 1), (.4, .95), (.75, .55), (1, 0)], 1.0)
+    R = .56 * scale
+    n = 64
+    pts, us = crescent_points(R, 165, -R * .55, n)
     ribbon('Blade', pts, blade_widths(n, .2 * scale), Vector((0, 1, 0)), core, us)
-    sp, su = crescent_points(R * .97, 138, -R * .55 - .27 * scale, n)
-    o = ribbon('Sweep', sp, blade_widths(n, .55 * scale, 1.1), Vector((0, 1, 0)), sweep, su)
+    smoke = smoke_ribbon_material('SlashSmoke', 1.7, contrast=(.34, .7))
+    sp, su = crescent_points(R * .9, 158, -R * .55 - .3 * scale, n)
+    o = ribbon('Smoke', sp, blade_widths(n, .62 * scale, 1.0), Vector((0, 1, 0)), smoke, su)
     o.location = (0, .02, 0)
-    # Wind strands sweeping back from the blade: longer, thinner, fading - the motion of the fan stroke.
-    for k, (dx, gain) in enumerate(((-.09, .7), (-.19, .5), (-.3, .34), (-.43, .2), (-.57, .1))):
-        p2, u2 = crescent_points(R * (1 - .05 * (k + 1)), 146 - 10 * k, -R * .55 + dx * scale, n)
-        o = ribbon(f'Trail{k}', p2, blade_widths(n, .1 * scale * (1 - .13 * k), 1.6), Vector((0, 1, 0)), trail.copy(), u2)
-        set_gain(o.data.materials[0], gain)
-    for k, (rr, sweep) in enumerate(((.92, 118), (.82, 96))):
-        p3, u3 = crescent_points(R * rr, sweep, -R * .55 - .03 * scale, n)
-        ribbon(f'Gold{k}', p3, [ .012 * scale] * n, Vector((0, 1, 0)), gold.copy(), u3)
+    wisp = smoke_ribbon_material('SlashWisp', 1.1, scale=(5.0, 2.0), contrast=(.42, .76))
+    wp, wu = crescent_points(R * .78, 140, -R * .55 - .62 * scale, n)
+    o = ribbon('Wisp', wp, blade_widths(n, .42 * scale, 1.2), Vector((0, 1, 0)), wisp, wu)
+    o.location = (0, .03, 0)
     # Spirit dust: small glowing motes drifting backwards, recycled every loop (seamless).
     mote = glow_material('Mote', [(0, CORE, 6), (.6, CORE2, 3), (1, BAND, 0)], [(0, 1), (.7, .6), (1, 0)], 1.0, tips=False)
     motes = []
     for i in range(18):
         o = disc(f'Mote{i}', rnd.uniform(.008, .02) * scale, mote, segments=10)
         motes.append((o, rnd.uniform(0, 1), rnd.uniform(-.85, .55), rnd.uniform(.25, .7) * scale, rnd.uniform(.6, 1.0)))
-    width, height, ppu = 1.75 * scale, 1.25 * scale, 110
-    set_view('front', width, height, ppu, (-.3 * scale, 0, 0))
+    width, height, ppu = 1.95 * scale, 1.45 * scale, 110
+    set_view('front', width, height, ppu, (-.4 * scale, 0, 0))
     set_glare(7, .4, 1.0)
     frames = []
     for f in range(frames_count):
@@ -896,57 +889,270 @@ def build_magic_array(seed=21):
     return outer, inner, fill, spike_frames, ppu_top, ppu
 
 
-def build_cyclone(frames_count=16, seed=31):
-    """Skill02 Phong Vũ Khốn Trận: funnel of glowing wind bands with feathers and golden runes (game view, loop);
-    spiral vortex on the ground (top view)."""
+class Graph:
+    """Small helper to wire shader math: arguments are sockets or numbers."""
+
+    def __init__(self, tree):
+        self.nt = tree
+
+    def _in(self, socket_in, value):
+        if isinstance(value, (int, float)):
+            socket_in.default_value = value
+        else:
+            self.nt.links.new(value, socket_in)
+
+    def math(self, op, a, b=0.0, c=None):
+        n = self.nt.nodes.new('ShaderNodeMath')
+        n.operation = op
+        self._in(n.inputs[0], a)
+        self._in(n.inputs[1], b)
+        if c is not None:
+            self._in(n.inputs[2], c)
+        return n.outputs[0]
+
+    def vec(self, op, a, b=None):
+        n = self.nt.nodes.new('ShaderNodeVectorMath')
+        n.operation = op
+        self.nt.links.new(a, n.inputs[0])
+        if b is not None:
+            if isinstance(b, (tuple, list)):
+                n.inputs[1].default_value = b
+            else:
+                self.nt.links.new(b, n.inputs[1])
+        return n.outputs['Value'] if op in ('LENGTH', 'DOT_PRODUCT', 'DISTANCE') else n.outputs['Vector']
+
+    def rotate_z(self, vector, angle):
+        n = self.nt.nodes.new('ShaderNodeVectorRotate')
+        n.rotation_type = 'Z_AXIS'
+        self.nt.links.new(vector, n.inputs['Vector'])
+        self._in(n.inputs['Angle'], angle)
+        return n.outputs['Vector']
+
+    def noise(self, vector, scale, detail=4.0, roughness=.55, distortion=0.0):
+        n = self.nt.nodes.new('ShaderNodeTexNoise')
+        n.inputs['Scale'].default_value = scale
+        n.inputs['Detail'].default_value = detail
+        n.inputs['Roughness'].default_value = roughness
+        n.inputs['Distortion'].default_value = distortion
+        self.nt.links.new(vector, n.inputs['Vector'])
+        return n.outputs['Fac']
+
+    def remap(self, value, a, b, c=0.0, d=1.0, smooth=True):
+        n = self.nt.nodes.new('ShaderNodeMapRange')
+        n.interpolation_type = 'SMOOTHSTEP' if smooth else 'LINEAR'
+        n.clamp = True
+        self._in(n.inputs['Value'], value)
+        for name, v in (('From Min', a), ('From Max', b), ('To Min', c), ('To Max', d)):
+            self._in(n.inputs[name], v)
+        return n.outputs['Result']
+
+    def xyz(self, vector):
+        n = self.nt.nodes.new('ShaderNodeSeparateXYZ')
+        self.nt.links.new(vector, n.inputs['Vector'])
+        return n.outputs['X'], n.outputs['Y'], n.outputs['Z']
+
+    def ramp(self, value, stops):
+        n = self.nt.nodes.new('ShaderNodeValToRGB')
+        el = n.color_ramp.elements
+        el[0].position, el[0].color = stops[0][0], lin(stops[0][1])
+        el[1].position, el[1].color = stops[-1][0], lin(stops[-1][1])
+        for pos, colour in stops[1:-1]:
+            el.new(pos).color = lin(colour)
+        self._in(n.inputs['Fac'], value)
+        return n.outputs['Color']
+
+
+def cyclone_volume_material(height=2.5, r0=.16, r1=.9, lean=.3, twist=2.6, density_scale=7.5):
+    """Glowing wind as a density field (Model3D_Rules 28–29): no ribbons, no periodic helix. Two noise fields twisted
+    with height and turned about the axis at different speeds (1 and 2 turns per loop, so the loop is seamless but
+    the pattern changes); funnel radius varies with height, angle and noise; the axis leans and precesses; the crown
+    and the foot erode with noise instead of a flat cut. The 'Phase' value (0..1) drives one loop."""
+    m = bpy.data.materials.new('CycloneVolume')
+    m.use_nodes = True
+    nt = m.node_tree
+    nt.nodes.clear()
+    g = Graph(nt)
+    out = nt.nodes.new('ShaderNodeOutputMaterial')
+    phase_n = nt.nodes.new('ShaderNodeValue')
+    phase_n.name = 'Phase'
+    phase = phase_n.outputs[0]
+    co = nt.nodes.new('ShaderNodeTexCoord').outputs['Object']
+    x, y, z = g.xyz(co)
+    t = g.math('DIVIDE', z, height)                                  # 0 at the foot, 1 at the crown
+    tc = g.math('MINIMUM', g.math('MAXIMUM', t, 0.0), 1.0)
+    turn1 = g.math('MULTIPLY', phase, -2 * math.pi)
+    turn2 = g.math('MULTIPLY', phase, -4 * math.pi)
+    # Leaning, precessing axis: offset grows with height and turns once per loop.
+    lean_v = nt.nodes.new('ShaderNodeCombineXYZ')
+    g._in(lean_v.inputs['X'], g.math('MULTIPLY', g.math('POWER', tc, 1.4), lean))
+    axis = g.rotate_z(lean_v.outputs['Vector'], g.math('MULTIPLY_ADD', tc, 1.3, g.math('MULTIPLY', phase, 2 * math.pi)))
+    rel = g.vec('SUBTRACT', co, axis)
+    flat = g.vec('MULTIPLY', rel, (1, 1, 0))
+    d = g.vec('LENGTH', flat)
+    # Two twisted, turning noise fields.
+    p1 = g.rotate_z(co, g.math('MULTIPLY_ADD', z, twist, turn1))
+    p2 = g.rotate_z(co, g.math('MULTIPLY_ADD', z, twist * 1.35, turn2))
+    n1 = g.noise(g.vec('MULTIPLY', p1, (1, 1, .55)), 1.6, 5, .6, .3)
+    n2 = g.noise(g.vec('MULTIPLY', p2, (1, 1, .8)), 4.2, 3, .5, .2)
+    # Funnel radius: widens with height, breathes with the large noise.
+    radius = g.math('MULTIPLY_ADD', g.math('POWER', tc, 1.25), r1 - r0, r0)
+    radius = g.math('MULTIPLY', radius, g.math('MULTIPLY_ADD', n1, .55, .72))
+    width = g.math('MULTIPLY_ADD', tc, .2, .06)
+    off = g.math('DIVIDE', g.math('SUBTRACT', d, radius), width)
+    wall = g.math('EXPONENT', g.math('MULTIPLY', g.math('POWER', g.math('ABSOLUTE', off), 2.0), -1.0))
+    core = g.math('MULTIPLY', g.remap(g.math('DIVIDE', d, radius), 1.0, 0.0), .1)
+    shape = g.math('MAXIMUM', wall, core)
+    # Streaky wisps: contrast on the product of the two fields.
+    wisps = g.remap(g.math('MULTIPLY_ADD', n2, .45, g.math('MULTIPLY', n1, .75)), .52, .82)
+    # Foot and crown eroded with noise.
+    erode = g.math('MULTIPLY_ADD', n2, .35, -.17)
+    foot = g.remap(g.math('ADD', t, erode), 0.0, .12)
+    crown = g.remap(g.math('ADD', t, erode), 1.02, .72)
+    density = g.math('MULTIPLY', g.math('MULTIPLY', shape, wisps), g.math('MULTIPLY', foot, crown))
+    density = g.math('MULTIPLY', density, density_scale)
+    colour = g.ramp(g.math('MULTIPLY_ADD', wisps, .7, g.math('MULTIPLY', wall, .3)),
+                    [(0, DEEP), (.45, BAND), (.8, CORE2), (1, CORE)])
+    vol = nt.nodes.new('ShaderNodeVolumePrincipled')
+    vol.inputs['Color'].default_value = lin(DEEP)
+    nt.links.new(density, vol.inputs['Density'])
+    nt.links.new(colour, vol.inputs['Emission Color'])
+    nt.links.new(g.math('MULTIPLY', density, .85), vol.inputs['Emission Strength'])
+    nt.links.new(vol.outputs['Volume'], out.inputs['Volume'])
+    return m
+
+
+def swirl_surface_material(name, strength=1.6):
+    """Ground vortex: noise swirled by radius (polar twist) - soft smoky arms, no drawn spirals."""
+    m = bpy.data.materials.new(name)
+    m.use_nodes = True
+    m.surface_render_method = 'BLENDED'
+    nt = m.node_tree
+    nt.nodes.clear()
+    g = Graph(nt)
+    out = nt.nodes.new('ShaderNodeOutputMaterial')
+    co = nt.nodes.new('ShaderNodeTexCoord').outputs['Object']
+    r = g.vec('LENGTH', g.vec('MULTIPLY', co, (1, 1, 0)))
+    p = g.rotate_z(co, g.math('MULTIPLY', r, 3.2))
+    n1 = g.noise(g.vec('MULTIPLY', p, (1.0, 2.6, 1)), 2.4, 5, .6, .4)
+    n2 = g.noise(co, 7.0, 3, .5, 0)
+    arms = g.remap(g.math('MULTIPLY_ADD', n2, .3, g.math('MULTIPLY', n1, .85)), .45, .8)
+    ringmask = g.math('MULTIPLY', g.remap(r, .05, .35), g.remap(r, 1.05, .7))
+    a = g.math('MULTIPLY', arms, ringmask)
+    colour = g.ramp(arms, [(0, DEEP), (.5, BAND), (.85, CORE2), (1, CORE)])
+    emis = nt.nodes.new('ShaderNodeEmission')
+    nt.links.new(colour, emis.inputs['Color'])
+    nt.links.new(g.math('MULTIPLY', a, strength), emis.inputs['Strength'])
+    mix = nt.nodes.new('ShaderNodeMixShader')
+    transp = nt.nodes.new('ShaderNodeBsdfTransparent')
+    nt.links.new(g.math('MINIMUM', g.math('MULTIPLY', a, 1.2), 1.0), mix.inputs['Fac'])
+    nt.links.new(transp.outputs[0], mix.inputs[1])
+    nt.links.new(emis.outputs[0], mix.inputs[2])
+    nt.links.new(mix.outputs[0], out.inputs['Surface'])
+    return m
+
+
+def smoke_ribbon_material(name, strength=1.4, scale=(3.2, 1.3), contrast=(.42, .78), lead=1.0):
+    """Wind smoke for ribbons: 4D noise over the UVs, looped by cross-fading W (no streaks at fixed intervals).
+    lead: the v of the bright leading edge (0 or 1, depends on the strip direction); u fades at both tips.
+    'Phase' (0..1) drives one loop."""
+    m = bpy.data.materials.new(name)
+    m.use_nodes = True
+    m.surface_render_method = 'BLENDED'
+    m.use_backface_culling = False
+    nt = m.node_tree
+    nt.nodes.clear()
+    g = Graph(nt)
+    out = nt.nodes.new('ShaderNodeOutputMaterial')
+    phase_n = nt.nodes.new('ShaderNodeValue')
+    phase_n.name = 'Phase'
+    phase = phase_n.outputs[0]
+    uv = nt.nodes.new('ShaderNodeUVMap').outputs['UV']
+    u, v, _ = g.xyz(uv)
+    p = g.vec('MULTIPLY', uv, (scale[0], scale[1], 1))
+
+    def noise4(w):
+        n = nt.nodes.new('ShaderNodeTexNoise')
+        n.noise_dimensions = '4D'
+        n.inputs['Scale'].default_value = 1.0
+        n.inputs['Detail'].default_value = 5.0
+        n.inputs['Roughness'].default_value = .6
+        n.inputs['Distortion'].default_value = .35
+        nt.links.new(p, n.inputs['Vector'])
+        g._in(n.inputs['W'], w)
+        return n.outputs['Fac']
+    # Seamless loop: blend the field at W = phase and W = phase - 1 with weights (1 - phase, phase).
+    a = noise4(g.math('MULTIPLY', phase, 1.2))
+    b = noise4(g.math('MULTIPLY', g.math('SUBTRACT', phase, 1.0), 1.2))
+    n = g.math('ADD', g.math('MULTIPLY', a, g.math('SUBTRACT', 1.0, phase)), g.math('MULTIPLY', b, phase))
+    smoke = g.remap(n, contrast[0], contrast[1])
+    edge = g.remap(v, 1.0 - lead, .05 + .9 * lead)  # strongest at the leading edge, gone at the back
+    tips = g.math('MULTIPLY', g.remap(u, 0.0, .2), g.remap(u, 1.0, .8))
+    mask = g.math('MULTIPLY', g.math('MULTIPLY', smoke, edge), tips)
+    colour = g.ramp(g.math('MULTIPLY', smoke, edge), [(0, DEEP), (.45, BAND), (.8, CORE2), (1, CORE)])
+    emis = nt.nodes.new('ShaderNodeEmission')
+    nt.links.new(colour, emis.inputs['Color'])
+    nt.links.new(g.math('MULTIPLY', mask, strength), emis.inputs['Strength'])
+    mix = nt.nodes.new('ShaderNodeMixShader')
+    transp = nt.nodes.new('ShaderNodeBsdfTransparent')
+    nt.links.new(g.math('MINIMUM', g.math('MULTIPLY', mask, 1.3), 1.0), mix.inputs['Fac'])
+    nt.links.new(transp.outputs[0], mix.inputs[1])
+    nt.links.new(emis.outputs[0], mix.inputs[2])
+    nt.links.new(mix.outputs[0], out.inputs['Surface'])
+    return m
+
+
+def setup_volumes():
+    e = scene.eevee
+    for attr, value in (('volumetric_tile_size', '2'), ('volumetric_samples', 96), ('volumetric_start', 6.0),
+                        ('volumetric_end', 14.0), ('use_volumetric_shadows', False), ('volumetric_sample_distribution', .6)):
+        try:
+            setattr(e, attr, value)
+        except Exception:
+            pass
+
+
+def build_cyclone(frames_count=24, seed=31):
+    """Skill02 Phong Vũ Khốn Trận: a glowing wind funnel made of noise in a volume (no ribbons), with feathers and a
+    few golden runes caught in it at random radii and heights (game view, seamless loop); a smoky swirl on the ground
+    (top view, the game spins it)."""
     rnd = random.Random(seed)
-    # Ground vortex.
-    arm = glow_material('Arm', [(0, DEEP, 0), (.5, CORE2, 2.2), (1, DEEP, 0)], [(0, 0), (.5, .9), (1, 0)], 1.0)
-    for k in range(5):
-        a0 = 2 * math.pi * k / 5
-        pts = []
-        for t in np.linspace(0, 1, 40):
-            r = .12 + .95 * t
-            a = a0 + 2.6 * t
-            pts.append(Vector((math.cos(a) * r, math.sin(a) * r, 0)))
-        ribbon(f'Arm{k}', pts, [.03 + .07 * math.sin(math.pi * t) for t in np.linspace(0, 1, 40)], Vector((0, 0, 1)), arm.copy())
-    ring('VRing', 1.0, .02, line_material('VRingM', BAND, 1.6))
-    disc('VFill', 1.08, fill_material('VFill', .5), normal_axis='Z', segments=64)
+    disc('Swirl', 1.1, swirl_surface_material('SwirlM'), normal_axis='Z', segments=96)
     set_glare(6, .45, .8)
     vortex = render_static('top', 2.3, 260)
     clear_effect()
-    # Column.
-    band_m = glow_material('Band', [(0, DEEP, .2), (.35, BAND, 1.25), (.5, CORE2, 2.2), (.65, BAND, 1.25), (1, DEEP, .2)],
-                           [(0, .1), (.5, .85), (1, .1)], 1.0, noise=(5, .55, 1))
-    height = 2.2
-    bands = []
-    for k in range(10):
-        bands.append((2 * math.pi * k / 10 + rnd.uniform(-.2, .2), rnd.uniform(1.2, 1.9), rnd.uniform(.22, .38), rnd.uniform(.65, 1.0),
-                      band_m.copy()))
+    setup_volumes()
+    height = 2.5
+    vol_m = cyclone_volume_material(height=height)
+    bpy.ops.mesh.primitive_cube_add(size=1)
+    cage = bpy.context.active_object
+    cage.name = 'CycloneCage'
+    cage.scale = (3.8, 3.8, 3.2)                # cage clearly larger than the density (rule: no flat cut)
+    cage.location = (0, 0, 1.25)
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    cage.data.materials.append(vol_m)
+    _objects.append(cage)
+    # The material reads Object coordinates; keep them metric with the origin on the ground.
+    cage.location = (0, 0, 0)
+    for v in cage.data.vertices:
+        v.co.z += 1.25
     feather_m = glow_material('CFeather', [(0, CORE, 2.4), (.5, CORE2, 1.5), (1, BAND, .5)], [(0, .9), (1, .1)], 1.0)
-    rune_m = flat_glow('CRune', GOLD, 2.0, .9)
-    orbiters = [(rnd.uniform(.25, 2.0), rnd.random(), rnd.choice((1, 2)), rnd.random() < .3) for _ in range(28)]
+    rune_m = flat_glow('CRune', GOLD, 1.6, .85)
+    # Caught debris: random height, radius jitter, speed (1 or 2 turns per loop keeps the loop seamless) and tilt.
+    orbiters = [(rnd.uniform(.25, 2.3), rnd.random(), rnd.choice((1, 1, 2)), rnd.random() < .22, rnd.uniform(-.18, .22),
+                 rnd.uniform(-.6, .6)) for _ in range(22)]
     ppu = 110
-    set_view('game', 3.1, 3.3, ppu, (0, 0, 1.05))
+    set_view('game', 3.3, 4.3, ppu, (0, 0, 1.45))
     set_glare(7, .4, 1.0)
     frames = []
     for f in range(frames_count):
         phase = f / frames_count
-        clear_effect()
-        for k, (a0, turns, width, gain, m) in enumerate(bands):
-            set_phase(m, phase)
-            pts, sides, widths = [], [], []
-            for t in np.linspace(0, 1, 60):
-                z = .05 + height * t
-                r = .25 + 1.0 * t ** 1.3
-                a = a0 + turns * 2 * math.pi * t + phase * 2 * math.pi
-                pts.append(Vector((math.cos(a) * r, math.sin(a) * r, z)))
-                sides.append(Vector((0, 0, 1)))
-                widths.append(width * (.5 + t) * math.sin(math.pi * min(1, t * 1.1 + .05)))
-            o = ribbon_sides(f'Band{k}', pts, sides, widths, m)
-            set_gain(m, gain)
-        for i, (z, start, revs, is_rune) in enumerate(orbiters):
-            r = .25 + 1.0 * (z / height) ** 1.3 + .08
+        set_phase(vol_m, phase)
+        debris = [o for o in _objects if o.name.startswith(('Feather', 'Rune'))]
+        _objects[:] = [o for o in _objects if o not in debris]
+        for o in debris:
+            bpy.data.objects.remove(o, do_unlink=True)
+        for i, (z, start, revs, is_rune, dr, tilt) in enumerate(orbiters):
+            r = .16 + .74 * (z / height) ** 1.25 + dr
             a = 2 * math.pi * (start + revs * phase)
             p = Vector((math.cos(a) * r, math.sin(a) * r, z))
             if is_rune:
@@ -956,8 +1162,8 @@ def build_cyclone(frames_count=16, seed=31):
                         o.rotation_euler = (math.radians(90), 0, 0)
                         o.location = p
             else:
-                d = Vector((-math.sin(a), math.cos(a), 0)) * .07
-                polyline(f'Feather{i}', [p - d, p + d + Vector((0, 0, .02))], .022, feather_m, normal=Vector((0, 1, 0)), steps=6)
+                d = Vector((-math.sin(a), math.cos(a), tilt)).normalized() * .075
+                polyline(f'Feather{i}', [p - d, p + d], .024, feather_m, normal=Vector((0, 1, 0)), steps=6)
         frames.append((render_frame(.85), anchor_pixel((0, 0, 0))))
     clear_effect()
     return vortex, frames, ppu
@@ -1133,7 +1339,7 @@ def cyclone_layers():
     return [
         layer('Vortex', vortex, ppu, plane='Ground', framesPerSecond=1, spin=-240, fadeIn=.2, fadeOut=.5, scaleFrom=.7 * k,
               scaleTo=1 * k, glow=1.0, underlay=.7),
-        layer('Column', column, ppu, framesPerSecond=20, loop=True, fadeIn=.35, fadeOut=.5, glow=1.1, underlay=.75, sortingOffset=1),
+        layer('Column', column, ppu, framesPerSecond=20, loop=True, fadeIn=.35, fadeOut=.5, glow=1.25, underlay=.95, sortingOffset=1),
     ]
 
 
