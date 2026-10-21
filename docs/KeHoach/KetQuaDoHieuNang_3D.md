@@ -25,6 +25,15 @@ APK dev: 141,4 MB lần build đầu, 156,2 MB các lần sau (xem mục còn m�
 
 Ngưỡng: FPS TB ≥ 60 (≥ 59,5 sau làm tròn khung), p95 ≤ 18 ms, ≥ 55 sau 15 phút, lượt vẽ ≤ 150, tam giác ≤ 600–800 nghìn.
 
+**Bloom (21/10 tối, commit d691c27; cùng một bản build, `--es bloom 1/0`, APK 141,2 MB):**
+
+| Lượt | Thời gian đo | FPS TB | trung vị | p95 | p99 | Khung > 16,7 ms | Lượt vẽ TB | Nhiệt pin cuối | Đạt |
+|---|---|---|---|---|---|---|---|---|---|
+| bloom1 (có bloom) | 60 s | 59,9 | 16,66 ms | 16,8 ms | 16,9 ms | 0,17 % | 87 | 38,6 °C | ✅ |
+| bloom0 (tắt bloom) | 60 s | 59,9 | 16,67 ms | 16,8 ms | 17,0 ms | 0,39 % | 68 | 38,2 °C | ✅ |
+
+Bloom thêm khoảng 19 lượt vẽ (các bước thu nhỏ / làm mờ của URP), không làm rớt khung trên máy này. Màn 60 Hz vẫn khoá khung nên chưa biết còn dư bao nhiêu. Bộ tướng thử chưa có Mặc Ảnh 3D thật; đo lại khi đủ model. Số gốc: `AgentComms/claude/NghiemThu/P3_Bloom/arena3q_bench_bloom*.json`.
+
 **Giới hạn của lượt đo này (chưa đại diện bản cuối):**
 - Tướng trong trận vẫn là khối tạm 3D. Lữ Bố còn là sprite. Mặc Ảnh 3D thật không có trong bộ tướng thử.
 - Khi đủ model thật (khoảng 40 nghìn tam giác mỗi tướng, skin 4 xương) phải đo lại.
