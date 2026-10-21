@@ -62,6 +62,9 @@ namespace Arena3Q.Data
             [Tooltip("Appear / vanish by eroding along the noise (with a glowing edge) instead of a flat alpha fade.")]
             public bool dissolve = true;
             [Tooltip("Skipped at the Low quality level.")] public bool highQualityOnly;
+            [Tooltip("3D: an upright layer of an area effect drawn behind the units standing in it (the far half of a " +
+                     "cyclone) instead of in front of them (BattleViewConfig.effectDepthBias).")]
+            public bool behindUnits;
         }
 
         [Tooltip("Ground radius the frames were authored for; the battle radius divided by this scales the effect.")]

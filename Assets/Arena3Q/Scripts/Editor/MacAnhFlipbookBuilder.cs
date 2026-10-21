@@ -33,6 +33,7 @@ namespace Arena3Q.Editor
             // Qi look; recipes written before these fields keep the defaults (JsonUtility keeps initialisers).
             public float breath = .45f, noiseScale = 2.5f;
             public bool dissolve = true;
+            public bool behindUnits;
             public FrameJson[] frames;
         }
 
@@ -159,6 +160,7 @@ namespace Arena3Q.Editor
                 underlayColour = ToColour(l.underlayColour, new Color(.17f, .05f, .36f, 1f)),
                 tint = ToColour(l.tint, Color.white), sortingOffset = l.sortingOffset, highQualityOnly = l.highQualityOnly,
                 breath = Mathf.Clamp01(l.breath), noiseScale = Mathf.Max(.1f, l.noiseScale), dissolve = l.dissolve,
+                behindUnits = l.behindUnits,
             }).ToArray();
             EditorUtility.SetDirty(recipe);
             return recipe;

@@ -262,6 +262,14 @@ namespace Arena3Q.Gameplay
                 attacker.Skills.OnSkillHit(context);
         }
 
+        /// <summary>Pictures only: the enemies in the area sway in its wind (SkillAreaDefinition.ZoneSway) for a while.</summary>
+        public static void SwayCaught(SkillAreaDefinition skill, SkillContext context, SkillAim aim, float seconds)
+        {
+            Select(skill, context, aim, SkillAffects.Enemies, Scratch);
+            foreach (var unit in Scratch)
+                unit.Sway(skill.ZoneSway, seconds);
+        }
+
         public static int CountInArea(UnitBase caster, SkillAreaDefinition skill, SkillAim aim)
         {
             Select(skill, SkillContext.Of(caster, 1f), aim, SkillAffects.Enemies, Scratch);
@@ -455,6 +463,8 @@ namespace Arena3Q.Gameplay
             if (_tick <= 0f)
             {
                 SkillExecutor.Hit(_skill, _context, _aim, 1f, _skill.TickInterval * 1.5f);
+                if (_skill.ZoneSway > 0f)
+                    SkillExecutor.SwayCaught(_skill, _context, _aim, _skill.TickInterval * 1.5f);
                 _tick += _skill.TickInterval;
             }
             _remaining -= deltaTime;

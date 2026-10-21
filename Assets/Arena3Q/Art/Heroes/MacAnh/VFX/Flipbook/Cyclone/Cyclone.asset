@@ -15,6 +15,32 @@ MonoBehaviour:
   referenceRadius: 1
   renderProjection: 0.75
   layers:
+  - name: GroundStain
+    frames:
+    - {fileID: 6708786056773015127, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 0
+    start: 0
+    end: 0
+    fadeIn: 0.2
+    fadeOut: 0.5
+    scaleFrom: 0.5192308
+    scaleTo: 0.66346157
+    spinDegreesPerSecond: -90
+    stretchToGround: 0
+    height: 0
+    glow: 0
+    underlay: 0.45
+    underlayColour: {r: 0.36, g: 0.26, b: 0.15, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: -1
+    breath: 0.6
+    noiseScale: 2.5
+    dissolve: 1
+    highQualityOnly: 0
+    behindUnits: 0
   - name: Vortex
     frames:
     - {fileID: -4623170486315005958, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
@@ -28,11 +54,11 @@ MonoBehaviour:
     fadeOut: 0.5
     scaleFrom: 0.40384614
     scaleTo: 0.5769231
-    spinDegreesPerSecond: -240
+    spinDegreesPerSecond: -200
     stretchToGround: 0
     height: 0
     glow: 1
-    underlay: 0.7
+    underlay: 0.55
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
     sortingOffset: 0
@@ -40,32 +66,108 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
-  - name: Column
+    behindUnits: 0
+  - name: VortexInner
     frames:
-    - {fileID: -8156990981834051547, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: -1080747056483739448, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: 2735527558343660357, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: -2613058775519328290, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: 3763595727101776764, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: 4537539701152713619, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: -2241054390904308657, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: 1171517909243612074, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: -1185457193053010764, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: -623380563890996946, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: -8328353814758730896, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: -234230300307492154, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: 3781041669496648148, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: -7513751691392370523, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: 7195334146484328493, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
-    - {fileID: 5073274036790231005, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
-    - {fileID: -3795459019838433504, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
-    - {fileID: -4159871257028858629, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
-    - {fileID: -6884264905516766229, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
-    - {fileID: -443876315865130576, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
-    - {fileID: -8089611022909069370, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
-    - {fileID: -4766120398727889419, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
-    - {fileID: -56831905834595927, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
-    - {fileID: 7923496903242025283, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: 6663550636621140724, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    framesPerSecond: 1
+    loop: 0
+    plane: 1
+    phase: 0
+    start: 0
+    end: 0
+    fadeIn: 0.2
+    fadeOut: 0.5
+    scaleFrom: 0.20192307
+    scaleTo: 0.31730768
+    spinDegreesPerSecond: -560
+    stretchToGround: 0
+    height: 0
+    glow: 0.9
+    underlay: 0.4
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 1
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
+    highQualityOnly: 0
+    behindUnits: 0
+  - name: DustBack
+    frames:
+    - {fileID: -9208656141253697337, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: 1524718348348029965, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -2499427206710620392, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -281607993249761819, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -854421482386651737, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: 6128374652552223128, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: 9197925796383553718, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -2174511896703794926, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: 5931807317240661217, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: 3922621681466866390, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -7168525431492841283, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: 2889475670875738832, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -4091425593203683103, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -2458789798813600396, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -2929873668018052476, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -8334548912931635945, guid: 0d74f5ebecfd47d4f9beb01d1e7ebb0c, type: 3}
+    - {fileID: -4150021890384683359, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: 4686186748799559330, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: 1307973620506693573, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: -3331148970645359711, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: 5877567356934886434, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: 7585469845390196252, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: 1385953781130977021, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: -6950024822628157674, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    framesPerSecond: 20
+    loop: 1
+    plane: 0
+    phase: 0
+    start: 0
+    end: 0
+    fadeIn: 0.35
+    fadeOut: 0.5
+    scaleFrom: 1
+    scaleTo: 1
+    spinDegreesPerSecond: 0
+    stretchToGround: 0
+    height: 0
+    glow: 0.2
+    underlay: 0.75
+    underlayColour: {r: 0.92, g: 0.84, b: 0.68, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 2
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
+    highQualityOnly: 0
+    behindUnits: 1
+  - name: ColumnBack
+    frames:
+    - {fileID: -2942051165290693188, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: 2141175229292708768, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: 7968543733173863978, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: -7729115959755224819, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: 5301020161345171938, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: 6906558487151526176, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: 265955941983316880, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: 1311747637998883270, guid: 0fef5382493cdf0468fd5f1e856f2c2c, type: 3}
+    - {fileID: 897124116208934873, guid: 8bf13d2ef014d9a41b9ad573cfce3269, type: 3}
+    - {fileID: 6453399226941398327, guid: 8bf13d2ef014d9a41b9ad573cfce3269, type: 3}
+    - {fileID: 2985190279628366957, guid: 8bf13d2ef014d9a41b9ad573cfce3269, type: 3}
+    - {fileID: 8335571586526517716, guid: 8bf13d2ef014d9a41b9ad573cfce3269, type: 3}
+    - {fileID: -8899365223781037016, guid: 8bf13d2ef014d9a41b9ad573cfce3269, type: 3}
+    - {fileID: -430171136353704540, guid: 8bf13d2ef014d9a41b9ad573cfce3269, type: 3}
+    - {fileID: 7054701782844846179, guid: 8bf13d2ef014d9a41b9ad573cfce3269, type: 3}
+    - {fileID: -3737538345419116957, guid: 8bf13d2ef014d9a41b9ad573cfce3269, type: 3}
+    - {fileID: -8267921946425794761, guid: 8bf13d2ef014d9a41b9ad573cfce3269, type: 3}
+    - {fileID: -1513693379001194746, guid: 8bf13d2ef014d9a41b9ad573cfce3269, type: 3}
+    - {fileID: -6821973540116250311, guid: 8bf13d2ef014d9a41b9ad573cfce3269, type: 3}
+    - {fileID: -8295762075753278419, guid: 8bf13d2ef014d9a41b9ad573cfce3269, type: 3}
+    - {fileID: 6574647235652646145, guid: 8bf13d2ef014d9a41b9ad573cfce3269, type: 3}
+    - {fileID: -2369347532371397003, guid: 8bf13d2ef014d9a41b9ad573cfce3269, type: 3}
+    - {fileID: -844789427789345063, guid: 8bf13d2ef014d9a41b9ad573cfce3269, type: 3}
+    - {fileID: 1069667841251565086, guid: 8bf13d2ef014d9a41b9ad573cfce3269, type: 3}
     framesPerSecond: 20
     loop: 1
     plane: 0
@@ -80,14 +182,113 @@ MonoBehaviour:
     stretchToGround: 0
     height: 0
     glow: 1.25
-    underlay: 0.95
+    underlay: 0.55
     underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
     tint: {r: 1, g: 1, b: 1, a: 1}
-    sortingOffset: 1
+    sortingOffset: 3
     breath: 0.45
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 1
+  - name: ColumnFront
+    frames:
+    - {fileID: -4771468127993685790, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: -3650457049203484346, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: 1978498892939356368, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: -7601296642154472046, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: -1617478358044542112, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: 2933441737499119008, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: -2289439434630171522, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: 4496368553077963978, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: -3453865414920222261, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: 5644966938026022173, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: -4509328371412379446, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: -4818363626079225322, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: -8255604979884988007, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: 8777817591342990624, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: -1033930102428360941, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: 3222198593576802334, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: -3127343440703444176, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: 5360205171425886599, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: -584314170407190310, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: 8985378704342216843, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: -5931897251219571694, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: 5939853634728743108, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: 8374686980968180526, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    - {fileID: -6280445909430756551, guid: a09cce467d21e03409b76e236044306a, type: 3}
+    framesPerSecond: 20
+    loop: 1
+    plane: 0
+    phase: 0
+    start: 0
+    end: 0
+    fadeIn: 0.35
+    fadeOut: 0.5
+    scaleFrom: 1
+    scaleTo: 1
+    spinDegreesPerSecond: 0
+    stretchToGround: 0
+    height: 0
+    glow: 1.25
+    underlay: 0.6
+    underlayColour: {r: 0.22, g: 0.07, b: 0.45, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 4
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
+    highQualityOnly: 0
+    behindUnits: 0
+  - name: DustFront
+    frames:
+    - {fileID: 4582207686190503981, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: -1710879398839974023, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: -7431362351528101840, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: -29215186447331904, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: 7529505994112028917, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: -8271367470621266409, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: -7157263741202512319, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: -5370733518366321446, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: -4266869621591586284, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: -7040586629734407639, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: -8968489102987169008, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: 4816512285774192535, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: 981379405239633358, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: 1804584368224994320, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: -8361814379836695430, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: 7782088553797496929, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: 2648216929260076534, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: -6555405292359946459, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: -5910322341601820737, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: -532625373899575129, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: 808229553970980306, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: -168739180749235976, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: 8184682558736516524, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    - {fileID: 6245461228482938428, guid: 502dbc54e26f4244c977ea5a68d2fe9a, type: 3}
+    framesPerSecond: 20
+    loop: 1
+    plane: 0
+    phase: 0
+    start: 0
+    end: 0
+    fadeIn: 0.35
+    fadeOut: 0.5
+    scaleFrom: 1
+    scaleTo: 1
+    spinDegreesPerSecond: 0
+    stretchToGround: 0
+    height: 0
+    glow: 0.2
+    underlay: 0.45
+    underlayColour: {r: 0.92, g: 0.84, b: 0.68, a: 1}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    sortingOffset: 5
+    breath: 0.45
+    noiseScale: 2.5
+    dissolve: 1
+    highQualityOnly: 0
+    behindUnits: 0
   screenDim: 0
   dimColour: {r: 0.06, g: 0.02, b: 0.12, a: 1}
   dimFadeIn: 0.25

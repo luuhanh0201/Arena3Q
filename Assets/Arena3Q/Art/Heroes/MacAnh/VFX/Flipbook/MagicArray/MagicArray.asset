@@ -40,6 +40,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   - name: ChargeOuter
     frames:
     - {fileID: -814387887842996093, guid: faca55f502989204497251356ce8c280, type: 3}
@@ -65,6 +66,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   - name: ChargeInner
     frames:
     - {fileID: -1918804137529237135, guid: faca55f502989204497251356ce8c280, type: 3}
@@ -90,6 +92,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   - name: Fill
     frames:
     - {fileID: -574499184621248550, guid: faca55f502989204497251356ce8c280, type: 3}
@@ -115,6 +118,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   - name: Outer
     frames:
     - {fileID: 4131938407050362064, guid: faca55f502989204497251356ce8c280, type: 3}
@@ -140,6 +144,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   - name: Inner
     frames:
     - {fileID: 7912395054927761079, guid: faca55f502989204497251356ce8c280, type: 3}
@@ -165,6 +170,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   - name: Spikes
     frames:
     - {fileID: 4154087185498944568, guid: faca55f502989204497251356ce8c280, type: 3}
@@ -213,6 +219,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   screenDim: 0
   dimColour: {r: 0.06, g: 0.02, b: 0.12, a: 1}
   dimFadeIn: 0.25

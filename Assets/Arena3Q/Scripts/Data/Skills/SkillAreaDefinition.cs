@@ -67,6 +67,9 @@ namespace Arena3Q.Data
         [Tooltip("Seconds the area stays on the ground, hitting every tick; 0 = one hit.")]
         [SerializeField, Min(0f)] private float zoneDuration;
         [SerializeField, Min(0.05f)] private float tickInterval = 0.5f;
+        [Tooltip("Pictures only: enemies caught in the zone are lifted and swayed by up to this many metres (the wind of " +
+                 "a cyclone). 0 = none.")]
+        [SerializeField, Min(0f)] private float zoneSway;
         [Tooltip("The area moves with the caster (spinning blades, auras).")]
         [SerializeField] private bool followCaster;
         [Tooltip("The hit repeats this many times (3 arrows, 6 slashes); the caster keeps still meanwhile.")]
@@ -100,6 +103,7 @@ namespace Arena3Q.Data
         public float ExecuteBonus => executeBonus;
         public float ZoneDuration => zoneDuration;
         public float TickInterval => tickInterval;
+        public float ZoneSway => zoneSway;
         public bool FollowCaster => followCaster;
         public int RepeatCount => Mathf.Max(1, repeatCount);
         public float RepeatInterval => repeatInterval;

@@ -446,12 +446,24 @@ namespace Arena3Q.Gameplay
 
         private void ApplyViewTransform()
         {
-            transform.position = Battle != null ? Battle.ToView(_position) + Battle.WorldUp * _lift
+            transform.position = Battle != null ? Battle.ToView(_position) + Battle.WorldUp * _lift + new Vector3(_swaySide, 0f, 0f)
                 : new Vector3(_position.x, _position.y, 0f);
         }
 
         private Vector2 _lastFacingPosition;
         private float _lift;
+
+        // Caught in a wind zone (SkillAreaDefinition.ZoneSway): lifted a little and rocked sideways. Pictures only.
+        private float _swayMetres, _swaySeconds, _swaySide, _swayPhase;
+
+        /// <summary>Sways the unit's picture in a zone's wind for <paramref name="seconds"/> (refreshed every tick).</summary>
+        public void Sway(float metres, float seconds)
+        {
+            if (_swaySeconds <= 0f)
+                _swayPhase = UnityEngine.Random.Range(0f, 100f);      // each unit rocks out of step with the others
+            _swayMetres = _swaySeconds > 0f ? Mathf.Max(_swayMetres, metres) : metres;
+            _swaySeconds = Mathf.Max(_swaySeconds, seconds);
+        }
 
         protected virtual void LateUpdate()
         {
@@ -466,8 +478,19 @@ namespace Arena3Q.Gameplay
             var lift = Battle != null && Statuses.Has(StatusKind.Airborne)
                 ? Mathf.Sin(Mathf.PI * Statuses.Progress(StatusKind.Airborne)) * Battle.View.KnockUpHeight
                 : 0f;
-            if (lift <= 0f && _lift <= 0f)
+            // Wind: an uneven bob and rock (two unrelated rates, own phase per unit) that eases out when the zone ends.
+            var side = 0f;
+            if (_swaySeconds > 0f && IsAlive)
+            {
+                _swaySeconds -= Time.deltaTime;
+                var strength = _swayMetres * Mathf.Clamp01(_swaySeconds / .3f);
+                var phase = Time.time + _swayPhase;
+                lift += strength * (.6f + .4f * Mathf.Sin(phase * 6.3f));
+                side = strength * .45f * Mathf.Sin(phase * 4.1f + 1.3f);
+            }
+            if (lift <= 0f && _lift <= 0f && side == 0f && _swaySide == 0f)
                 return;
+            _swaySide = side;
             _lift = Mathf.Max(0f, lift);
             ApplyViewTransform();
             Visual?.SetGroundOffset(Quaternion.Inverse(transform.rotation) * (-Battle.WorldUp * _lift));

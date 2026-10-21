@@ -311,11 +311,12 @@ namespace Arena3Q.Gameplay
                     var roll = transform.rotation;
                     root.localRotation = Quaternion.Inverse(roll) * _upright * roll;
                     root.localPosition = root.localRotation * new Vector3(0f, layer.height * _scale, 0f);
-                    // Moved towards the camera along the view: with the orthographic camera it stays in the same place
-                    // on screen, but a 3D model at the target (a command post) no longer cuts it off with a straight line.
+                    // Moved along the view (towards the camera, or away for a layer behind the units): with the orthographic
+                    // camera it stays in the same place on screen, but a 3D model at the target (a command post) no longer
+                    // cuts it off with a straight line, and the units inside stand between the far and the near half.
                     if (_depthBias > 0f)
                         root.localPosition += transform.InverseTransformVector(
-                            _upright * Vector3.back * (_depthBias * _scale * recipe.referenceRadius));
+                            _upright * Vector3.back * ((layer.behindUnits ? -1f : 1f) * _depthBias * _scale * recipe.referenceRadius));
                     // Ground is foreshortened by the tilted camera; the billboard itself is not.
                     // Identity upright retains the legacy flat-camera projection.
                     var cameraProjection = Mathf.Abs((_upright * Vector3.forward).z);

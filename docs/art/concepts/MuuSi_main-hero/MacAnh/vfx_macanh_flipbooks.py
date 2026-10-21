@@ -36,6 +36,7 @@ PROJECTION = .75            # same ground projection as export_macanh_sprites.py
 HALO_COVER = float(argv[argv.index('--halo') + 1]) if '--halo' in argv else .9
 
 CORE = '#F3ECFF'; CORE2 = '#D6B9FF'; BAND = '#9657EF'; DEEP = '#552C91'; GOLD = '#E6C47C'
+SAND_HEX = '#C9A46C'           # battlefield sand, for dust (the game paints it with the layer underlay)
 
 
 def lin(hex_colour, a=1.0):
@@ -483,7 +484,8 @@ def layer(name, frames, ppu, **kw):
     d = {'name': name, 'ppu': ppu, 'framesPerSecond': 24, 'loop': False, 'plane': 'Upright', 'phase': 'Release',
          'start': 0, 'end': 0, 'fadeIn': .06, 'fadeOut': .15, 'scaleFrom': 1, 'scaleTo': 1, 'spin': 0, 'height': 0,
          'glow': .85, 'underlay': .9, 'underlayColour': [.22, .07, .45, 1], 'tint': [1, 1, 1, 1], 'sortingOffset': 0,
-         'highQualityOnly': False, 'stretchToGround': False, 'breath': .45, 'noiseScale': 2.5, 'dissolve': True}
+         'highQualityOnly': False, 'stretchToGround': False, 'breath': .45, 'noiseScale': 2.5, 'dissolve': True,
+         'behindUnits': False}
     d.update(kw)
     d['_frames'] = frames
     return d
@@ -1019,6 +1021,7 @@ def cyclone_volume_material(height=2.5, r0=.16, r1=.9, lean=.3, twist=2.6, densi
     crown = g.remap(g.math('ADD', t, erode), 1.02, .72)
     density = g.math('MULTIPLY', g.math('MULTIPLY', shape, wisps), g.math('MULTIPLY', foot, crown))
     density = g.math('MULTIPLY', density, density_scale)
+    density = g.math('MULTIPLY', density, near_far_half(nt, g, rel))
     colour = g.ramp(g.math('MULTIPLY_ADD', wisps, .7, g.math('MULTIPLY', wall, .3)),
                     [(0, DEEP), (.45, BAND), (.8, CORE2), (1, CORE)])
     vol = nt.nodes.new('ShaderNodeVolumePrincipled')
@@ -1026,6 +1029,65 @@ def cyclone_volume_material(height=2.5, r0=.16, r1=.9, lean=.3, twist=2.6, densi
     nt.links.new(density, vol.inputs['Density'])
     nt.links.new(colour, vol.inputs['Emission Color'])
     nt.links.new(g.math('MULTIPLY', density, .85), vol.inputs['Emission Strength'])
+    nt.links.new(vol.outputs['Volume'], out.inputs['Volume'])
+    return m
+
+
+def near_far_half(nt, g, rel):
+    """Weight of the near or far half of a volume about its axis (the game camera looks along +y): live values
+    'Front' and 'Back' (1 and 1 = the whole thing). The far half is drawn behind the units standing in the effect and
+    the near half in front of them, so they stand inside it instead of behind a coloured sheet; the seam is soft."""
+    weights = []
+    for label in ('Front', 'Back'):
+        n = nt.nodes.new('ShaderNodeValue')
+        n.name = label
+        n.outputs[0].default_value = 1.0
+        weights.append(n.outputs[0])
+    _, ry, _ = g.xyz(rel)
+    near = g.remap(ry, .14, -.14)
+    return g.math('ADD', g.math('MULTIPLY', near, weights[0]), g.math('MULTIPLY', g.math('SUBTRACT', 1.0, near), weights[1]))
+
+
+def set_half(material, front, back):
+    set_values(material, Front=front, Back=back)
+
+
+def dust_volume_material(height=1.0, r0=.32, r1=1.2, twist=3.0, density_scale=3.0):
+    """Sand kicked up by the wind at the foot of the funnel: a low ring of dust that widens as it rises, torn into
+    uneven puffs by two noise fields turned with the funnel (1 and 2 turns per loop, seamless), its top eroded. Sand
+    coloured and barely lit: in the game the layer's sand underlay paints it, so it reads as dust, not as light."""
+    m = bpy.data.materials.new('CycloneDust')
+    m.use_nodes = True
+    nt = m.node_tree
+    nt.nodes.clear()
+    g = Graph(nt)
+    out = nt.nodes.new('ShaderNodeOutputMaterial')
+    phase_n = nt.nodes.new('ShaderNodeValue')
+    phase_n.name = 'Phase'
+    phase = phase_n.outputs[0]
+    co = nt.nodes.new('ShaderNodeTexCoord').outputs['Object']
+    _, _, z = g.xyz(co)
+    t = g.math('MINIMUM', g.math('MAXIMUM', g.math('DIVIDE', z, height), 0.0), 1.0)
+    p1 = g.rotate_z(co, g.math('MULTIPLY_ADD', z, twist, g.math('MULTIPLY', phase, -2 * math.pi)))
+    p2 = g.rotate_z(co, g.math('MULTIPLY_ADD', z, twist * 1.3, g.math('MULTIPLY', phase, -4 * math.pi)))
+    n1 = g.noise(g.vec('MULTIPLY', p1, (1, 1, .8)), 2.2, 5, .6, .4)
+    n2 = g.noise(g.vec('MULTIPLY', p2, (1, 1, .6)), 5.0, 3, .5, .2)
+    d = g.vec('LENGTH', g.vec('MULTIPLY', co, (1, 1, 0)))
+    radius = g.math('MULTIPLY', g.math('MULTIPLY_ADD', g.math('POWER', t, .7), r1 - r0, r0), g.math('MULTIPLY_ADD', n1, .5, .75))
+    width = g.math('MULTIPLY_ADD', t, .25, .18)
+    band = g.math('EXPONENT', g.math('MULTIPLY', g.math('POWER', g.math('DIVIDE', g.math('SUBTRACT', d, radius), width), 2.0), -1.0))
+    fill = g.math('MULTIPLY', g.remap(d, radius, 0.0), .25)
+    shape = g.math('MAXIMUM', band, fill)
+    puffs = g.remap(g.math('MULTIPLY_ADD', n2, .5, g.math('MULTIPLY', n1, .6)), .45, .82)
+    ground = g.remap(z, -.02, .06)
+    top = g.remap(g.math('ADD', z, g.math('MULTIPLY', g.math('SUBTRACT', n2, .5), .3)), height, height * .35)
+    density = g.math('MULTIPLY', g.math('MULTIPLY', shape, puffs), g.math('MULTIPLY', ground, top))
+    density = g.math('MULTIPLY', g.math('MULTIPLY', density, density_scale), near_far_half(nt, g, co))
+    vol = nt.nodes.new('ShaderNodeVolumePrincipled')
+    vol.inputs['Color'].default_value = lin(SAND_HEX)
+    vol.inputs['Emission Color'].default_value = lin(SAND_HEX)
+    nt.links.new(density, vol.inputs['Density'])
+    nt.links.new(g.math('MULTIPLY', density, .12), vol.inputs['Emission Strength'])
     nt.links.new(vol.outputs['Volume'], out.inputs['Volume'])
     return m
 
@@ -1227,22 +1289,37 @@ def build_cyclone(frames_count=24, seed=31):
     cage.location = (0, 0, 0)
     for v in cage.data.vertices:
         v.co.z += 1.25
+    # Sand torn up at the foot (a second, low volume; sand coloured, drawn with a sand underlay in the game).
+    dust_m = dust_volume_material()
+    bpy.ops.mesh.primitive_cube_add(size=1)
+    dust_cage = bpy.context.active_object
+    dust_cage.name = 'DustCage'
+    dust_cage.scale = (4.2, 4.2, 1.6)
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    for v in dust_cage.data.vertices:
+        v.co.z += .7
+    dust_cage.data.materials.append(dust_m)
+    _objects.append(dust_cage)
     feather_m = glow_material('CFeather', [(0, CORE, 2.4), (.5, CORE2, 1.5), (1, BAND, .5)], [(0, .9), (1, .1)], 1.0)
     rune_m = flat_glow('CRune', GOLD, 1.6, .85)
     # Caught debris: random height, radius jitter, speed (1 or 2 turns per loop keeps the loop seamless) and tilt.
     orbiters = [(rnd.uniform(.25, 2.3), rnd.random(), rnd.choice((1, 1, 2)), rnd.random() < .22, rnd.uniform(-.18, .22),
-                 rnd.uniform(-.6, .6)) for _ in range(22)]
+                 rnd.uniform(-.6, .6)) for _ in range(14)]
     ppu = 150
     set_view('game', 3.3, 4.3, ppu, (0, 0, 1.45))
     set_glare(7, .4, 1.0)
-    frames = []
+    # Far and near halves of the funnel and of the dust (near_far_half): the game draws the far ones behind the units
+    # caught in the cyclone and the near ones in front, so they stand inside it.
+    column_back, column_front, dust_back, dust_front = [], [], [], []
     for f in range(frames_count):
         phase = f / frames_count
         set_phase(vol_m, phase)
+        set_phase(dust_m, phase)
         debris = [o for o in _objects if o.name.startswith(('Feather', 'Rune'))]
         _objects[:] = [o for o in _objects if o not in debris]
         for o in debris:
             bpy.data.objects.remove(o, do_unlink=True)
+        near = {}
         for i, (z, start, revs, is_rune, dr, tilt) in enumerate(orbiters):
             r = .16 + .74 * (z / height) ** 1.25 + dr
             a = 2 * math.pi * (start + revs * phase)
@@ -1253,12 +1330,26 @@ def build_cyclone(frames_count=24, seed=31):
                     if o.name.startswith(f'Rune{i}'):
                         o.rotation_euler = (math.radians(90), 0, 0)
                         o.location = p
+                        near[o] = p.y < 0
             else:
                 d = Vector((-math.sin(a), math.cos(a), tilt)).normalized() * .075
-                polyline(f'Feather{i}', [p - d, p + d], .024, feather_m, normal=Vector((0, 1, 0)), steps=6)
-        frames.append((render_frame(.85), anchor_pixel((0, 0, 0))))
+                near[polyline(f'Feather{i}', [p - d, p + d], .024, feather_m, normal=Vector((0, 1, 0)), steps=6)] = p.y < 0
+        anchor = anchor_pixel((0, 0, 0))
+        cage.hide_render, dust_cage.hide_render = False, True
+        for front, into in ((False, column_back), (True, column_front)):
+            set_half(vol_m, 1.0 if front else 0.0, 0.0 if front else 1.0)
+            for o, is_near in near.items():
+                o.hide_render = is_near != front
+            into.append((render_frame(.85), anchor))
+        cage.hide_render, dust_cage.hide_render = True, False
+        for o in near:
+            o.hide_render = True
+        for front, into in ((False, dust_back), (True, dust_front)):
+            set_half(dust_m, 1.0 if front else 0.0, 0.0 if front else 1.0)
+            into.append((render_frame(1.0), anchor))
+        cage.hide_render = False
     clear_effect()
-    return vortex, frames, ppu
+    return vortex, column_back, column_front, dust_back, dust_front, ppu
 
 
 def build_shield(frames_count=16):
@@ -1497,12 +1588,26 @@ def magic_array_layers():
 
 
 def cyclone_layers():
-    vortex, column, ppu = build_cyclone()
+    vortex, column_back, column_front, dust_back, dust_front, ppu = build_cyclone()
     k = ppu / 260
+    ground = dict(plane='Ground', framesPerSecond=1, fadeIn=.2, fadeOut=.5)
+    upright = dict(framesPerSecond=20, loop=True, fadeIn=.35, fadeOut=.5)
+    dust = [.92, .84, .68, 1]       # dust in the air is paler and greyer than the sand it comes from
     return [
-        layer('Vortex', vortex, ppu, plane='Ground', framesPerSecond=1, spin=-240, fadeIn=.2, fadeOut=.5, scaleFrom=.7 * k,
-              scaleTo=1 * k, glow=1.0, underlay=.7),
-        layer('Column', column, ppu, framesPerSecond=20, loop=True, fadeIn=.35, fadeOut=.5, glow=1.25, underlay=.95, sortingOffset=1),
+        # Sand scoured into a darker swirl under the wind: the vortex picture as a stain, without light.
+        layer('GroundStain', vortex, ppu, spin=-90, scaleFrom=.9 * k, scaleTo=1.15 * k, glow=0, underlay=.45,
+              underlayColour=[.36, .26, .15, 1], breath=.6, sortingOffset=-1, **ground),
+        # Inner swirl faster than the outer one, as in a real vortex (not one rigid disc turning).
+        layer('Vortex', vortex, ppu, spin=-200, scaleFrom=.7 * k, scaleTo=1 * k, glow=1.0, underlay=.55, **ground),
+        layer('VortexInner', vortex, ppu, spin=-560, scaleFrom=.35 * k, scaleTo=.55 * k, glow=.9, underlay=.4, sortingOffset=1,
+              **ground),
+        # Far halves behind the units caught in the cyclone, near halves in front (behindUnits); a lighter underlay
+        # than the old single sheet, which tinted everything inside it violet.
+        layer('DustBack', dust_back, ppu, glow=.2, underlay=.75, underlayColour=dust, behindUnits=True, sortingOffset=2, **upright),
+        layer('ColumnBack', column_back, ppu, glow=1.25, underlay=.55, behindUnits=True, sortingOffset=3, **upright),
+        layer('ColumnFront', column_front, ppu, glow=1.25, underlay=.6, sortingOffset=4, **upright),
+        # Lighter in front: the units inside are hazed by the dust, not greyed out.
+        layer('DustFront', dust_front, ppu, glow=.2, underlay=.45, underlayColour=dust, sortingOffset=5, **upright),
     ]
 
 

@@ -40,6 +40,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   - name: Dome
     frames:
     - {fileID: 7971292586829096535, guid: 436ad7fd4e7483a4bb000781170d62ad, type: 3}
@@ -80,6 +81,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   screenDim: 0
   dimColour: {r: 0.06, g: 0.02, b: 0.12, a: 1}
   dimFadeIn: 0.25

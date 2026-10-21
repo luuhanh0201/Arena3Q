@@ -40,6 +40,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   - name: ChargeSkyFill
     frames:
     - {fileID: 3157881070480901374, guid: 9854345c13e337a4399b76546c039d18, type: 3}
@@ -65,6 +66,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   - name: ChargeSkyOuter
     frames:
     - {fileID: -785667913408247012, guid: 9854345c13e337a4399b76546c039d18, type: 3}
@@ -90,6 +92,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   - name: ChargeSkyInner
     frames:
     - {fileID: -604723177434443521, guid: 9854345c13e337a4399b76546c039d18, type: 3}
@@ -115,6 +118,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   - name: SkyFill
     frames:
     - {fileID: 9167908390720296403, guid: 9854345c13e337a4399b76546c039d18, type: 3}
@@ -140,6 +144,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   - name: SkyOuter
     frames:
     - {fileID: 7759204150393053564, guid: 9854345c13e337a4399b76546c039d18, type: 3}
@@ -165,6 +170,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   - name: SkyInner
     frames:
     - {fileID: 2509929168050536320, guid: 9854345c13e337a4399b76546c039d18, type: 3}
@@ -190,6 +196,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   - name: Beams
     frames:
     - {fileID: 633636200049959121, guid: 9854345c13e337a4399b76546c039d18, type: 3}
@@ -244,6 +251,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   - name: Shockwave
     frames:
     - {fileID: 3662782875852378307, guid: 85ad9783d93570642b6acee359a02302, type: 3}
@@ -269,6 +277,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   - name: Target
     frames:
     - {fileID: 7354363820186073546, guid: 85ad9783d93570642b6acee359a02302, type: 3}
@@ -294,6 +303,7 @@ MonoBehaviour:
     noiseScale: 2.5
     dissolve: 1
     highQualityOnly: 0
+    behindUnits: 0
   screenDim: 0.6
   dimColour: {r: 0.06, g: 0.02, b: 0.12, a: 1}
   dimFadeIn: 0.35

@@ -198,6 +198,8 @@ namespace Arena3Q.Editor
             var ultimate = Skill("Lord_Swordsman/Skill_van_kiem_quy_tong", "van_tuong_thien_co", "Vạn Tượng Thiên Cơ", SkillSlot.Ultimate, 75);
             var counter = Skill("Hero_Swordsman/Skill_dao_khi", "anh_bo_phan_kich", "Ảnh Bộ Phản Kích", SkillSlot.Skill2, 24);
             var t = new SerializedObject(triple); t.FindProperty("repeatInterval").floatValue = .3f; t.ApplyModifiedPropertiesWithoutUndo();
+            // Enemies caught in the cyclone sway in its wind (pictures only).
+            var c = new SerializedObject(cyclone); c.FindProperty("zoneSway").floatValue = .12f; c.ApplyModifiedPropertiesWithoutUndo();
             var s = new SerializedObject(shield);
             foreach (var i in Enumerable.Range(0, s.FindProperty("effects").arraySize))
                 s.FindProperty("effects").GetArrayElementAtIndex(i).FindPropertyRelative("affects").enumValueIndex = (int)SkillAffects.Self;

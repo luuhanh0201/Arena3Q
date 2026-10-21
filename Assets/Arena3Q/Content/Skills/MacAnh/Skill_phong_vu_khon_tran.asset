@@ -32,6 +32,7 @@ MonoBehaviour:
   castleMultiplier: 1
   zoneDuration: 6
   tickInterval: 0.5
+  zoneSway: 0.12
   followCaster: 0
   repeatCount: 1
   repeatInterval: 0.25
