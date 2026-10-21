@@ -1,5 +1,7 @@
 # Arena3Q – Bốn chủ tướng (thiết kế nháp)
 
+> **VFX (người dùng 2026-10-22):** hiệu ứng kỹ năng lấy từ gói có sẵn rồi chỉnh cho hợp dự án (`docs/QuyTac/QuyTacLamViec.md` §3). Việc chính của agent với tướng: **sửa chuyển động cho khớp từng chiêu** (đà, mốc sự kiện, hướng, theo đà, thu về) và **kiểm lỗi kỹ**.
+
 Phiên bản: v0.3 · 2026-10-17 · Trạng thái: **🟡 bản nháp chờ duyệt** (ngoại hình, kỹ năng, con số). Kỹ năng **đã có trong code** (2026-10-17, hình tạm; con số = bảng dưới, asset ở `Assets/Arena3Q/Content/Skills/`). Chủ tướng **không có tên riêng** – mang tên người chơi, đặt ngay sau khi chọn chủ tướng, mỗi máy chủ một tên (✅ spec §2). Skin: ⏳ sau này.
 
 Đã chốt ✅ (spec §2): người chơi chọn **1 trong 4 chủ tướng** khi vào game – nhân vật cố định; không chọn phe; bối cảnh **Đông Á cổ trang**; mỗi chủ tướng (như mọi tướng) có **kỹ năng 1 = nội tại (bị động) + kỹ năng 2, 3 (phụ, tự dùng) + tuyệt kỹ (thanh nộ)**; 2 nam + 2 nữ; animation **skeletal từ PSD tách bộ phận**, vẽ **2 hướng (trước-phải, sau-phải) + lật gương**.

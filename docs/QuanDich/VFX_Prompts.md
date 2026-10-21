@@ -1,5 +1,7 @@
 # Quân địch – prompt hiệu ứng (VFX) (dán nguyên văn)
 
+> **Hướng mới (người dùng 2026-10-22):** VFX lấy từ **gói hiệu ứng có sẵn** (Asset Store, gói miễn phí) rồi chỉnh cho hợp dự án (URP, trục trận, đồng hồ trận, màu / nhịp theo tướng), không tự dựng từ đầu. Các prompt / mô tả dưới đây giữ làm **mô tả "look" cần đạt** khi chọn và chỉnh gói. Quy trình: `docs/QuyTac/QuyTacLamViec.md` §3.
+
 Phong cách: **A – render 3D stylised** cùng tông với `docs/art/concepts/chutuong1.png`. Kỹ năng và mốc sự kiện: `Animation.md` (cùng thư mục) và các file chương.
 Quy tắc chung **giống VFX của tướng** (`docs/art/concepts/VFX_Prompts.md`): một tấm nhiều mảnh, **nền trong suốt** (hoặc **nền đen tuyệt đối**, không dùng nền trắng), hình nằm trên đất vẽ **nhìn thẳng từ trên xuống**, mảnh 128–256 px (vòng lớn 512 px), mình dựng bằng hệ thống hạt của Unity.
 

@@ -1,5 +1,7 @@
 # Arena3Q – Animation, xương và mốc kỹ năng của 4 chủ tướng
 
+> **VFX (người dùng 2026-10-22):** hiệu ứng kỹ năng lấy từ gói có sẵn rồi chỉnh cho hợp dự án (`docs/QuyTac/QuyTacLamViec.md` §3). Việc chính của agent với tướng: **sửa chuyển động cho khớp từng chiêu** (đà, mốc sự kiện, hướng, theo đà, thu về) và **kiểm lỗi kỹ**.
+
 Phiên bản: v0.1 · 2026-10-17 · **🟡 bản nháp** (thời lượng, mốc sự kiện, tốc độ đạn là gợi ý để chơi thử). Đi kèm:
 - Kỹ năng: `docs/Tuong/LordHeroes.md` §2 · luật kỹ năng: spec §3 "Kỹ năng trên thẻ".
 - Quy trình mẫu (Krita, Skinning Editor, phần mình code): `docs/Tuong/StrategistArtGuide.md` §3, §4, §6.

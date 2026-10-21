@@ -22,6 +22,15 @@ Gom các quy tắc người dùng đã nói rải rác qua các phiên, để **
 - File 3D (blend, script Blender) của tướng nào được người dùng **chốt** thì chuyển ra khỏi `docs/` (đề xuất `ArtSource/Heroes/<Tướng>/`) và sửa mọi đường dẫn.
 
 ## 3. Hình ảnh, 3D, VFX
+- **Nguồn VFX: tận dụng hiệu ứng có sẵn, không tự dựng từ đầu** (người dùng 2026-10-22): lấy từ gói VFX có sẵn (Asset Store, gói miễn phí / người dùng mua), rồi **chỉnh cho hợp dự án**:
+  - chuyển vật liệu sang URP (`ParticleUpgrader` của Unity), xoay từ trục lên Y sang trục lên −Z của trận, chạy theo đồng hồ trận, cỡ theo bán kính chiêu (`ParticleFxPresenter`, `ThirdPartyVfxBuilder`);
+  - sau đó mới chỉnh màu, nhịp, độ lớn theo style của tướng (bảng màu, "khí" của Mưu Sĩ).
+  - Người dùng chọn hiệu ứng (gửi ảnh / video từng hiệu ứng để xác nhận trước khi thay).
+  - File của gói để trong `Assets/ThirdParty/` (đã `.gitignore`: giấy phép Asset Store không cho phát tán lại, repo đang **công khai**). Dữ liệu tướng trỏ tới chúng qua `MacAnhPerformance.thirdPartyEffects`; máy không có file thì tự về hiệu ứng cũ.
+  - Chỉ tự dựng (script Blender → flipbook) khi không gói nào dùng được. Các flipbook tự làm hiện có giữ làm phương án dự phòng.
+- **Việc chính của agent hiện nay** (người dùng 2026-10-22): **sửa chuyển động / hoạt ảnh của tướng cho hợp với chiêu** và **kiểm tra kỹ để không có lỗi**:
+  - mỗi chiêu: đà, thời điểm ra đòn khớp mốc sự kiện (event) và hiệu ứng, hướng nhìn, theo đà, thu về; chuyển clip mượt, chân không trượt khi đi / chạy (test chân chạm đất);
+  - kiểm bằng test, ảnh / chuỗi khung trong trận theo pha, và trên máy thật; ghi mọi lỗi vào `NhatKyVanHanh_3D.md`.
 - **Mọi chỉnh sửa nhỏ về hình** đều có ảnh **trước – sau** cùng góc, cùng khung. Lưu ảnh vào `AgentComms/claude/NghiemThu/…` hoặc `NghiemThu/<Tướng>/XemTruoc_<Việc>_<NgàyThángNăm>/`, và **mở cho người dùng xem** trước khi làm phần tiếp theo (2026-10-20).
 - **Tối thiểu 60 FPS** mọi nền tảng (spec §1, 2026-10-21). Đo trên máy thật mới tính; FPS Editor hoặc con số target không phải bằng chứng. Hiện người dùng **chỉ test trong Unity**, chưa build điện thoại.
 - Flipbook hiệu ứng hoà khung theo đồng hồ hiệu ứng; sprite nhân vật không hoà khung.

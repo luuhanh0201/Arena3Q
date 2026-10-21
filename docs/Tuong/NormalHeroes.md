@@ -1,5 +1,7 @@
 # Arena3Q – Bốn tướng thường (thiết kế nháp)
 
+> **VFX (người dùng 2026-10-22):** hiệu ứng kỹ năng lấy từ gói có sẵn rồi chỉnh cho hợp dự án (`docs/QuyTac/QuyTacLamViec.md` §3). Việc chính của agent với tướng: **sửa chuyển động cho khớp từng chiêu** (đà, mốc sự kiện, hướng, theo đà, thu về) và **kiểm lỗi kỹ**.
+
 Phiên bản: v0.1 · 2026-10-17 · Trạng thái: **🟡 bản nháp chờ duyệt** (tên, ngoại hình, kỹ năng, con số). Kỹ năng **đã có trong code** (2026-10-17, hình tạm; con số = bảng dưới, asset ở `Assets/Arena3Q/Content/Skills/`).
 
 Đã chốt ✅ (spec §3 "Kỹ năng trên thẻ"): mọi tướng có **kỹ năng 1 = nội tại + kỹ năng 2, 3 (tự dùng, 2 trước 3) + tuyệt kỹ (thanh nộ, dùng bằng thẻ)**; luật nộ, vận chiêu, tự nhắm giống hệt chủ tướng (`docs/Tuong/LordHeroes.md` §2, §3). Animation **skeletal từ PSD tách bộ phận**, 2 hướng + lật gương, phong cách **A** (chibi ~2.5 đầu, render 3D).

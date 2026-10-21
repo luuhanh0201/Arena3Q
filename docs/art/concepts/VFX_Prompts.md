@@ -1,5 +1,7 @@
 # Hiệu ứng kỹ năng (VFX) – prompt tạo ảnh (dán nguyên văn)
 
+> **Hướng mới (người dùng 2026-10-22):** VFX lấy từ **gói hiệu ứng có sẵn** (Asset Store, gói miễn phí) rồi chỉnh cho hợp dự án (URP, trục trận, đồng hồ trận, màu / nhịp theo tướng), không tự dựng từ đầu. Các prompt / mô tả dưới đây giữ làm **mô tả "look" cần đạt** khi chọn và chỉnh gói. Quy trình: `docs/QuyTac/QuyTacLamViec.md` §3.
+
 Phong cách: **A – render 3D stylised** cùng tông với ảnh mẫu `chutuong1.png`; kỹ năng của từng chủ tướng: `docs/Tuong/LordHeroes.md` §2; tướng thường: `docs/Tuong/NormalHeroes.md` §2.
 Hiệu ứng **không** vẽ từng khung: mình dựng bằng **hệ thống hạt (particle) của Unity** từ các **mảnh hiệu ứng** dưới đây (xoay, phóng to, mờ dần, lặp lại).
 
