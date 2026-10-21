@@ -874,6 +874,32 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator StoreEffect_StandsInForSkill01_OnTheBattleClock_FlatOnTheGround()
+        {
+            Assume.That(_battle.Presentation3D, Is.True, "3D presentation is the shipped default");
+            _battle.StartBattle(0);
+            yield return null;
+            var set = AssetDatabase.FindAssets("t:HeroDefinition")
+                .Select(g => AssetDatabase.LoadAssetAtPath<HeroDefinition>(AssetDatabase.GUIDToAssetPath(g)))
+                .First(h => h != null && h.MacAnhPerformance != null).MacAnhPerformance;
+            Assert.That(set.OwnEffect("MagicArray").GetComponentInChildren<MacAnhVfxPlayer>(), Is.Not.Null, "the own flipbook stays");
+            var store = set.Effect("MagicArray");
+            Assume.That(store.GetComponent<ParticleFxPresenter>(), Is.Not.Null,
+                "Hovl Studio's files are on this machine (Assets/ThirdParty, not in the repository); without them the own effect plays");
+            var fx = MacAnhFxPool.For(_battle).Spawn(store, Vector3.zero, new Vector3(2f, 2f, 1f), Quaternion.identity,
+                MacAnhFxQuality.Medium, 3f, 100);
+            var systems = fx.GetComponentsInChildren<ParticleSystem>(true);
+            fx.Advance(.5f);
+            var count = systems.Sum(p => p.particleCount);
+            Assert.That(count, Is.GreaterThan(0), "played by the battle clock");
+            yield return null;
+            Assert.That(systems.Sum(p => p.particleCount), Is.EqualTo(count), "it does not run on its own (battle pause, speed)");
+            var turned = fx.transform.Find("Y up to battle up");
+            Assert.That((turned.rotation * Vector3.up - Vector3.back).magnitude, Is.LessThan(1e-3f), "authored Y up, stands on the battle ground");
+            fx.Stop();
+        }
+
+        [UnityTest]
         public IEnumerator WindZone_SwaysTheCaughtUnitsPicture_ThenItSettles()
         {
             _battle.StartBattle(0);

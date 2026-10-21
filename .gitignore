@@ -71,3 +71,8 @@ Thumbs.db
 /NghiemThu/**
 !/NghiemThu/**/
 !/NghiemThu/**/README.md
+
+# Third-party store assets (e.g. Hovl Studio "Magic Effects FREE"): usable in the game under the Asset Store EULA but
+# not to be redistributed, and this repository is public. Kept local; the game falls back to its own effects without them.
+/[Aa]ssets/ThirdParty/
+/[Aa]ssets/ThirdParty.meta

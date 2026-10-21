@@ -57,6 +57,10 @@ namespace Arena3Q.Data
         private MacAnhSpriteLibrary _spriteLibrary;
         [SerializeField] private SkillBinding[] skills = Array.Empty<SkillBinding>();
         [SerializeField] private EffectPrefab[] effects = Array.Empty<EffectPrefab>();
+        [Tooltip("Store effects played instead of the effect with the same key (Hovl Studio's Magic circle 2 for " +
+                 "MagicArray, ...). They live in Assets/ThirdParty, which is not in the public repository: where they " +
+                 "are missing, the key's own effect plays.")]
+        [SerializeField] private EffectPrefab[] thirdPartyEffects = Array.Empty<EffectPrefab>();
         [SerializeField] private Material spriteMaterial;
         [Tooltip("Experiment approved 2026-10-20; keep off until the user chooses the rendering route.")]
         [SerializeField] private bool enableBattle3DTrial;
@@ -138,6 +142,20 @@ namespace Arena3Q.Data
         public void ConfigureSpriteStorage(string resource,Clip[] metadata)
         {spriteLibraryResource=resource;clips=metadata;_spriteLibrary=null;}
         public SkillBinding Find(SkillDefinition skill) => Array.Find(skills, b => b != null && b.skill == skill);
-        public GameObject Effect(string key) => Array.Find(effects, b => b != null && b.key == key)?.prefab;
+        public GameObject Effect(string key)
+        {
+            var store = Find(thirdPartyEffects, key);
+            return store != null ? store : Find(effects, key);
+        }
+
+        /// <summary>The key's own effect, ignoring a store effect that stands in for it (checks of the own effects).</summary>
+        public GameObject OwnEffect(string key) => Find(effects, key);
+
+        // Unity's null: a reference to a missing asset (a store effect not on this machine) reads as null.
+        private static GameObject Find(EffectPrefab[] list, string key)
+        {
+            var prefab = Array.Find(list, b => b != null && b.key == key && b.prefab != null)?.prefab;
+            return prefab != null ? prefab : null;
+        }
     }
 }

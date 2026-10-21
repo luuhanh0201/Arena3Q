@@ -174,6 +174,7 @@ namespace Arena3Q.Gameplay
             if (!_running) return;
             _follow = null;
             if (_spatial is MacAnhVfxPlayer player) player.Vanish(seconds);
+            else if (_spatial is ParticleFxPresenter particles) particles.Vanish(seconds);
             _duration = Mathf.Min(_duration, _seconds + Mathf.Max(.01f, seconds));
         }
         public void SetGroundLayers()

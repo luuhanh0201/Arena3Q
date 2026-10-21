@@ -156,7 +156,8 @@ namespace Arena3Q.Tests.PlayMode
 
         [Test] public void GroundAnchoredBillboardsUseCameraProjection()
         {
-            var prefab = _hero.Definition.MacAnhPerformance.Effect("MagicArray");
+            // The own flipbook (a store effect may stand in for MagicArray on this machine).
+            var prefab = _hero.Definition.MacAnhPerformance.OwnEffect("MagicArray");
             var fx = MacAnhFxPool.For(_battle).Spawn(prefab, Vector3.zero, new Vector3(2, 2 * _battle.ViewYScale, 1),
                 Quaternion.identity, MacAnhFxQuality.Medium, 3, 100);
             fx.Advance(.5f);
