@@ -405,6 +405,11 @@ namespace Arena3Q.Gameplay
                 case SkillEffectKind.Heal:
                     unit.Heal(unit.MaxHealth * value);
                     break;
+                case SkillEffectKind.RageGain:
+                    // Other heroes only: a hero filling its own bar with its ultimate would chain it.
+                    if (unit is HeroUnit ally && ally != context.Caster)
+                        ally.Skills.Rage.Add(ally.Skills.Rage.Max * value);
+                    break;
                 case SkillEffectKind.Pull:
                 {
                     // Towards the caster, stopping next to it (Câu Hồn Tỏa); forbidden zones stop the pull (spec §8).

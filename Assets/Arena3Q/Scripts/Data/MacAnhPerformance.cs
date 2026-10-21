@@ -92,6 +92,12 @@ namespace Arena3Q.Data
         [SerializeField, Min(0f)] private float ultimateAuraStart = 31f / 30f;
         [Tooltip("Seconds into DodgeAttack when the dash streak is spawned (frame 8).")]
         [SerializeField, Min(0f)] private float dodgeStreakStart = 8f / 30f;
+        [Tooltip("Seconds the Ultimate's rune circle stays on the ground after the release (it spreads, holds, fades).")]
+        [SerializeField, Min(.6f)] private float ultimateCircleSeconds = 2.5f;
+        [Tooltip("Size of the purple streaks around each hero the Ultimate buffs (effect radius in metres).")]
+        [SerializeField, Min(.1f)] private float ultimateBuffAuraRadius = .8f;
+        public float UltimateCircleSeconds => ultimateCircleSeconds;
+        public float UltimateBuffAuraRadius => ultimateBuffAuraRadius;
         public int DirectionCount => directionCount;
         public Material SpriteMaterial => spriteMaterial;
         public Material AfterimageGlowMaterial => afterimageGlowMaterial;

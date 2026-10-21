@@ -19,6 +19,10 @@ namespace Arena3Q.Gameplay
         [SerializeField, Min(.01f)] private float referenceRadius = 1.7f;
         [Tooltip("Seconds over which the effect fades at its end (and when it is told to disperse).")]
         [SerializeField, Min(.01f)] private float fadeSeconds = .45f;
+        [Tooltip("Seconds over which it fades in when it starts (nothing pops in).")]
+        [SerializeField, Min(.01f)] private float fadeInSeconds = .15f;
+        [Tooltip("Particle systems (object names) shown during the wind-up; empty = the effect's root system only.")]
+        [SerializeField] private string[] chargeParts = System.Array.Empty<string>();
 
         private ParticleSystem _root;
         private ParticleSystemRenderer[] _renderers;
@@ -27,11 +31,14 @@ namespace Arena3Q.Gameplay
         private float _seconds, _duration, _vanishAt = float.MaxValue, _vanishSeconds;
         private bool _running, _charge;
 
-        public void Configure(Transform turned, float radius)
+        public void Configure(Transform turned, float radius, params string[] windUpParts)
         {
             content = turned;
             referenceRadius = radius;
+            chargeParts = windUpParts ?? System.Array.Empty<string>();
         }
+
+        private readonly List<ParticleSystem> _chargeSystems = new List<ParticleSystem>();
 
         private void Ensure()
         {
@@ -55,7 +62,7 @@ namespace Arena3Q.Gameplay
             content.gameObject.SetActive(true);
             // Restarted and paused: from now on only Advance moves it.
             _root.Simulate(0f, true, true, false);
-            ApplyFade(1f);
+            ApplyFade(0f);       // fades in from nothing (Advance)
         }
 
         public void SetBattlePresentation(float radius, int order, float groundProjection, MacAnhFxKind kind)
@@ -66,13 +73,19 @@ namespace Arena3Q.Gameplay
                 _renderers[i].sortingOrder = order + i;
         }
 
-        /// <summary>Wind-up before the release: only the circle itself, without the bursts around it.</summary>
+        /// <summary>Wind-up before the release: only the chosen parts (else the root), without the bursts around them.</summary>
         public void SetCharge()
         {
             _charge = true;
+            _chargeSystems.Clear();
             foreach (var system in _root.GetComponentsInChildren<ParticleSystem>(true))
-                if (system != _root)
+            {
+                var shown = chargeParts.Length == 0 ? system == _root : System.Array.IndexOf(chargeParts, system.name) >= 0;
+                if (shown)
+                    _chargeSystems.Add(system);
+                else
                     system.Clear(false);
+            }
         }
 
         /// <summary>Disperse over <paramref name="seconds"/> (the charge handed over to the release).</summary>
@@ -89,10 +102,15 @@ namespace Arena3Q.Gameplay
             if (!_running || delta <= 0f)
                 return;
             _seconds += delta;
-            _root.Simulate(delta, !_charge, false, false);
+            if (_charge)
+                foreach (var system in _chargeSystems)
+                    system.Simulate(delta, false, false, false);
+            else
+                _root.Simulate(delta, true, false, false);
             var end = Mathf.Clamp01((_duration - _seconds) / fadeSeconds);
             var vanish = _seconds >= _vanishAt ? 1f - Mathf.Clamp01((_seconds - _vanishAt) / _vanishSeconds) : 1f;
-            ApplyFade(Mathf.Min(end, vanish));
+            var start = Mathf.Clamp01(_seconds / fadeInSeconds);
+            ApplyFade(Mathf.Min(start, Mathf.Min(end, vanish)));
         }
 
         public void Stop()

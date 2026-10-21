@@ -87,7 +87,9 @@ namespace Arena3Q.Core
         /// Adds value stacks to the caster's stacking passive (<see cref="PassiveKind.FrenzyStacks"/>); with
         /// minimumTargets only when the hit reached that many enemies. Not scaled by the skill level.
         /// </summary>
-        FrenzyStacks
+        FrenzyStacks,
+        /// <summary>value = share of the target hero's rage bar added at once; never the caster's own bar.</summary>
+        RageGain
     }
 
     /// <summary>Always-on effects of a passive skill (kỹ năng 1).</summary>

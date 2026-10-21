@@ -874,6 +874,51 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator MacAnhUltimate_BuffsAlliesAroundHer_HealsAndFillsOthersRage_WithoutDamage()
+        {
+            var macAnh = AssetDatabase.FindAssets("t:HeroDefinition")
+                .Select(g => AssetDatabase.LoadAssetAtPath<HeroDefinition>(AssetDatabase.GUIDToAssetPath(g)))
+                .First(h => h != null && h.MacAnhPerformance != null);
+            var ultimate = macAnh.GetSkill(SkillSlot.Ultimate);
+            Assert.That(ultimate.Targeting, Is.EqualTo(SkillTargeting.Self), "centred on Mặc Ảnh");
+            Assert.That(ultimate.Radius, Is.EqualTo(5f));
+            Assert.That(ultimate.Effects.Any(e => e.kind == SkillEffectKind.Damage), Is.False, "no damage any more");
+            var other = Stage(0).TestLoadout.GetLineup().First(e => e.Hero.MacAnhPerformance == null && e.Hero.Kind != HeroKind.Lord);
+            _battle.StartBattle(Stage(0), new[] { new LineupEntry(macAnh, 60), other });
+            Assert.That(_battle.TrySummon(SummonRequest.Quick(0)).Accepted, Is.True);
+            Assert.That(_battle.TrySummon(SummonRequest.Quick(1)).Accepted, Is.True);
+            var caster = _battle.GetHero(_battle.State.Cards[0].Hero);
+            var ally = _battle.GetHero(_battle.State.Cards[1].Hero);
+            foreach (var unit in _battle.Registry.Units)
+                if (unit != null && unit.Team != caster.Team)
+                    unit.ApplyStatus(StatusKind.Stun, 1, 30);
+            yield return null;
+            // The ally stands 2 m away, hurt, with an empty bar, and holds still (no rage from its own hits).
+            ally.SetPosition(caster.Position + Vector2.right * 2f);
+            ally.ApplyStatus(StatusKind.Stun, 1, 10);
+            ally.TakeDamage(ally.MaxHealth * .5f, null, true);
+            ally.Skills.Rage.Reset();
+            var hurt = ally.Health;
+            caster.Skills.Rage.Add(caster.Skills.Rage.Max);
+            Assert.That(_battle.TryUseUltimate(0).Accepted, Is.True);
+            for (var i = 0; i < 200; i++)
+            {
+                _battle.Simulate(1f / 60f);
+                if (i % 10 == 0)
+                    yield return null;
+            }
+            Assert.That(ally.Statuses.Has(StatusKind.DamageUp), Is.True, "+Công");
+            Assert.That(caster.Statuses.Has(StatusKind.DamageUp), Is.True, "Mặc Ảnh stands in her own circle");
+            Assert.That(ally.Health, Is.EqualTo(Mathf.Min(ally.MaxHealth, hurt + ally.MaxHealth * .2f)).Within(ally.MaxHealth * .01f), "heals 20 %");
+            Assert.That(ally.Skills.Rage.Fraction, Is.EqualTo(.3f).Within(.02f), "the other hero gets 30 % of its bar");
+            Assert.That(caster.Skills.Rage.Fraction, Is.LessThan(.3f), "not her own bar");
+            var troops = Object.FindObjectsByType<TroopUnit>(FindObjectsSortMode.None)
+                .Where(t => t.Team == caster.Team && Vector2.Distance(t.Position, caster.Position) <= 5f).ToArray();
+            Assume.That(troops, Is.Not.Empty, "soldiers stood in the circle");
+            Assert.That(troops.All(t => t.Statuses.Has(StatusKind.DamageUp)), Is.True, "soldiers get the buff too");
+        }
+
+        [UnityTest]
         public IEnumerator StoreEffect_StandsInForSkill01_OnTheBattleClock_FlatOnTheGround()
         {
             Assume.That(_battle.Presentation3D, Is.True, "3D presentation is the shipped default");

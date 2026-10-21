@@ -28,6 +28,7 @@ Gom các quy tắc người dùng đã nói rải rác qua các phiên, để **
   - Người dùng chọn hiệu ứng (gửi ảnh / video từng hiệu ứng để xác nhận trước khi thay).
   - File của gói để trong `Assets/ThirdParty/` (đã `.gitignore`: giấy phép Asset Store không cho phát tán lại, repo đang **công khai**). Dữ liệu tướng trỏ tới chúng qua `MacAnhPerformance.thirdPartyEffects`; máy không có file thì tự về hiệu ứng cũ.
   - Chỉ tự dựng (script Blender → flipbook) khi không gói nào dùng được. Các flipbook tự làm hiện có giữ làm phương án dự phòng.
+- **Hiệu ứng hiện và tan tự nhiên** (người dùng 2026-10-22): mọi hiệu ứng, từ lúc xuất hiện tới lúc mất đi, phải có chuyển động hiện / tan (mờ dần, tan theo noise, thu nhỏ…), **không bao giờ bật / tắt cái rụp**, kể cả khi chiêu bị huỷ, tướng chết, buff hết hay hiệu ứng được trả về pool (dùng `MacAnhFx.FadeOut`, không `Stop`). Khi kiểm, chụp cả khung đầu và khung cuối của hiệu ứng.
 - **Việc chính của agent hiện nay** (người dùng 2026-10-22): **sửa chuyển động / hoạt ảnh của tướng cho hợp với chiêu** và **kiểm tra kỹ để không có lỗi**:
   - mỗi chiêu: đà, thời điểm ra đòn khớp mốc sự kiện (event) và hiệu ứng, hướng nhìn, theo đà, thu về; chuyển clip mượt, chân không trượt khi đi / chạy (test chân chạm đất);
   - kiểm bằng test, ảnh / chuỗi khung trong trận theo pha, và trên máy thật; ghi mọi lỗi vào `NhatKyVanHanh_3D.md`.

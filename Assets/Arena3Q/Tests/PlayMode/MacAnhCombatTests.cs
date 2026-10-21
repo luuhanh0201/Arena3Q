@@ -85,16 +85,18 @@ namespace Arena3Q.Tests.PlayMode
             _hero.Skills.Tick(.3f); Assert.That(pool.ActiveCount, Is.EqualTo(3));
             _hero.Skills.Tick(0); Assert.That(pool.ActiveCount, Is.EqualTo(3), "Re-entering the cast tick must not duplicate events.");
         }
-        [Test] public void ShieldWaitsForFrame27_AndVisualStopsWhenShieldBreaks()
+        [UnityTest] public IEnumerator ShieldWaitsForFrame27_AndVisualStopsWhenShieldBreaks()
         {
             Equip(SkillSlot.Skill3, "thien_muu_ho_tran"); _battle.Simulate(.01f);
             _hero.Skills.Tick(.89f); Assert.That(_hero.Statuses.Shield, Is.Zero);
             _hero.Skills.Tick(.011f); Assert.That(_hero.Statuses.Shield, Is.GreaterThan(0));
             var pool = MacAnhFxPool.For(_battle); Assert.That(pool.ActiveCount, Is.EqualTo(1));
             _hero.TakeDamage(_hero.Statuses.Shield + 1, null, true); _hero.Performance.Tick(0);
+            Assert.That(pool.ActiveCount, Is.EqualTo(1), "the dome fades out, it is not cut off (user 2026-10-22)");
+            _battle.Simulate(.35f); yield return null;
             Assert.That(pool.ActiveCount, Is.Zero);
         }
-        [Test] public void UltimateCannotDealDamageBeforeFrame75_StunPreservesRage()
+        [UnityTest] public IEnumerator UltimateCannotDealDamageBeforeFrame75_StunPreservesRage()
         {
             _hero.Skills.Rage.Add(1000); var health = _target.Health;
             Assert.That(_hero.Skills.TryUltimate(_target.Position), Is.EqualTo(RejectReason.None));
@@ -102,16 +104,18 @@ namespace Arena3Q.Tests.PlayMode
             Assert.That(_target.Health, Is.EqualTo(health)); Assert.That(_hero.Skills.Rage.IsFull, Is.True);
             _hero.ApplyStatus(StatusKind.Stun, 1, 1); _hero.Skills.Tick(.02f);
             Assert.That(_target.Health, Is.EqualTo(health)); Assert.That(_hero.Skills.Rage.IsFull, Is.True);
+            _battle.Simulate(.35f); yield return null;   // the cancelled telegraph fades out first (never cut off)
             Assert.That(MacAnhFxPool.For(_battle).ActiveCount, Is.Zero, "Cancelled telegraph must be reclaimed.");
         }
-        [Test] public void UltimateHitsAtFrame75OnceAndConsumesRage()
+        // Redesigned by the user 2026-10-22: no damage; at frame 75 the allies around Mặc Ảnh (herself included) are buffed.
+        [Test] public void UltimateBuffsAtFrame75OnceAndConsumesRage()
         {
             _hero.Skills.Rage.Add(1000); var health = _target.Health;
             Assert.That(_hero.Skills.TryUltimate(_target.Position), Is.EqualTo(RejectReason.None));
-            _hero.Skills.Tick(2.49f); Assert.That(_target.Health, Is.EqualTo(health));
-            _hero.Skills.Tick(.011f); Assert.That(_target.Health, Is.LessThan(health));
+            _hero.Skills.Tick(2.49f); Assert.That(_hero.Statuses.Has(StatusKind.DamageUp), Is.False);
+            _hero.Skills.Tick(.011f); Assert.That(_hero.Statuses.Has(StatusKind.DamageUp), Is.True, "buff at the release");
+            Assert.That(_target.Health, Is.EqualTo(health), "the enemy is not hurt");
             Assert.That(_hero.Skills.Rage.Value, Is.Zero);
-            var after = _target.Health; _hero.Skills.Tick(0); Assert.That(_target.Health, Is.EqualTo(after));
         }
         [UnityTest] public IEnumerator ReleasedProjectileRemainsSafeAfterCasterDies()
         {

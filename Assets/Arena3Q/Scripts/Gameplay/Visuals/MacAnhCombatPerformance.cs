@@ -148,8 +148,27 @@ namespace Arena3Q.Gameplay
                 _shield = Spawn("Shield", _hero.transform.position, Vector3.one, seconds, 0, _hero.transform);
                 if (_shield != null) _shieldGeneration = _shield.Generation;
             }
-            else Spawn(action == MacAnhAction.Skill01 ? "MagicArray" : action == MacAnhAction.Skill02 ? "Cyclone" : "Ultimate",
-                position, new Vector3(radius, radius * (_hero.Battle.ToView(Vector2.up).y), 1), duration);
+            else
+            {
+                // The Ultimate's buff is instant; its rune circle spreads from Mặc Ảnh's feet and stays a while.
+                if (action == MacAnhAction.Ultimate) duration = Mathf.Max(duration, _set.UltimateCircleSeconds);
+                Spawn(action == MacAnhAction.Skill01 ? "MagicArray" : action == MacAnhAction.Skill02 ? "Cyclone" : "Ultimate",
+                    position, new Vector3(radius, radius * (_hero.Battle.ToView(Vector2.up).y), 1), duration);
+                if (action == MacAnhAction.Ultimate) BuffAuras(skill, aim, radius);
+            }
+        }
+        // Purple streaks around every allied hero the Ultimate buffed, as long as its buff lasts (soldiers get the buff
+        // without them: dozens of particle auras would cost the frame rate).
+        private void BuffAuras(SkillDefinition skill, SkillAim aim, float radius)
+        {
+            var seconds = 0f;
+            foreach (var effect in skill.Effects) if (effect != null) seconds = Mathf.Max(seconds, effect.duration);
+            if (seconds <= 0f || _set.Effect("UltimateBuff") == null) return;
+            var size = Vector3.one * _set.UltimateBuffAuraRadius;
+            foreach (var unit in _hero.Battle.Registry.Units)
+                if (unit is HeroUnit ally && ally.IsAlive && ally.Team == _hero.Team &&
+                    Vector2.Distance(ally.Position, aim.Point) <= radius + ally.Radius)
+                    Spawn("UltimateBuff", ally.transform.position, size, seconds, 0, ally.transform);
         }
         public void EndSkill() { Cancel(); }
         public void Cancel()
@@ -159,9 +178,10 @@ namespace Arena3Q.Gameplay
             StopOwned(ref _aura, _auraGeneration);
             if (_view != null) _view.Cancel();
         }
+        // Never cut an effect off (user 2026-10-22): a cancelled or ended one disperses over a short fade.
         private static void StopOwned(ref MacAnhFx fx, int generation)
         {
-            if (fx != null && fx.Generation == generation) fx.Stop();
+            if (fx != null && fx.Generation == generation) fx.FadeOut(.3f);
             fx = null;
         }
         public void Die() { Cancel(); StopOwned(ref _shield, _shieldGeneration); }    }

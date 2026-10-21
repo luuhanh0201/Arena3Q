@@ -189,6 +189,44 @@ namespace Arena3Q.Editor
             so.FindProperty("iconColor").colorValue = new Color(.65f, .35f, .9f);
             so.ApplyModifiedPropertiesWithoutUndo(); return asset;
         }
+        [MenuItem("Arena3Q/Mac Anh/Apply Ultimate Buff Design")]
+        public static void ApplyUltimateBuffToAsset()
+        {
+            ApplyUltimateBuff(AssetDatabase.LoadAssetAtPath<SkillDefinition>(Content + "/Skills/MacAnh/Skill_van_tuong_thien_co.asset"));
+            AssetDatabase.SaveAssets();
+        }
+
+        /// <summary>
+        /// Vạn Tượng Thiên Cơ as the user redesigned it (2026-10-22): no damage; a rune circle spreads from Mặc Ảnh's feet
+        /// and every ally inside 5 m (heroes and soldiers, not castles) gets +25 % Công for 8 s and 20 % of its max
+        /// health back; the other heroes also get 30 % of their rage bar. 🟡 numbers, balance check before release.
+        /// </summary>
+        private static void ApplyUltimateBuff(SkillDefinition ultimate)
+        {
+            var u = new SerializedObject(ultimate);
+            u.FindProperty("description").stringValue =
+                "Vạn Tượng Thiên Cơ: vòng trận lan ra từ chân Mặc Ảnh; quân ta trong 5 m +25 % Công 8 giây, hồi 20 % máu, " +
+                "các tướng khác +30 % nộ.";
+            u.FindProperty("followCaster").boolValue = false;
+            u.FindProperty("shape").enumValueIndex = (int)SkillShape.Circle;
+            u.FindProperty("radius").floatValue = 5f;
+            u.FindProperty("targeting").enumValueIndex = (int)SkillTargeting.Self;
+            u.FindProperty("range").floatValue = 0f;     // always centred on Mặc Ảnh: a dragged card does not move it
+            var effects = u.FindProperty("effects");
+            var specs = new[] { (SkillEffectKind.DamageUp, .25f, 8f), (SkillEffectKind.Heal, .2f, 0f), (SkillEffectKind.RageGain, .3f, 0f) };
+            effects.arraySize = specs.Length;
+            for (var i = 0; i < specs.Length; i++)
+            {
+                var e = effects.GetArrayElementAtIndex(i);
+                e.FindPropertyRelative("kind").enumValueIndex = (int)specs[i].Item1;
+                e.FindPropertyRelative("affects").enumValueIndex = (int)SkillAffects.Allies;
+                e.FindPropertyRelative("value").floatValue = specs[i].Item2;
+                e.FindPropertyRelative("duration").floatValue = specs[i].Item3;
+                e.FindPropertyRelative("minimumTargets").intValue = 0;
+            }
+            u.ApplyModifiedPropertiesWithoutUndo();
+        }
+
         private static void BindFinalContent(MacAnhPerformance profile, Sprite portrait)
         {
             var array = Skill("Lord_Strategist/Skill_hoa_ke", "huyen_co_tran", "Huyền Cơ Trận", SkillSlot.Skill2, 33);
@@ -204,9 +242,7 @@ namespace Arena3Q.Editor
             foreach (var i in Enumerable.Range(0, s.FindProperty("effects").arraySize))
                 s.FindProperty("effects").GetArrayElementAtIndex(i).FindPropertyRelative("affects").enumValueIndex = (int)SkillAffects.Self;
             s.ApplyModifiedPropertiesWithoutUndo();
-            var u = new SerializedObject(ultimate); u.FindProperty("followCaster").boolValue = false;
-            u.FindProperty("shape").enumValueIndex = (int)SkillShape.Circle;
-            u.FindProperty("targeting").enumValueIndex = (int)SkillTargeting.Point; u.ApplyModifiedPropertiesWithoutUndo();
+            ApplyUltimateBuff(ultimate);
             var k = new SerializedObject(counter); k.FindProperty("shape").enumValueIndex = (int)SkillShape.Single;
             k.FindProperty("targeting").enumValueIndex = (int)SkillTargeting.CurrentTarget; k.ApplyModifiedPropertiesWithoutUndo();
             var bindings = new[] { triple, array, cyclone, shield, ultimate, counter };

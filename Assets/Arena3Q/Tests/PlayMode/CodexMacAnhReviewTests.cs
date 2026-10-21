@@ -127,7 +127,9 @@ public IEnumerator SetUp()
             for(int i=0;i<90;i++)_battle.Simulate(1f/60f);yield return null;
             var aura=Object.FindObjectsByType<MacAnhFx>(FindObjectsSortMode.None).FirstOrDefault(f=>f.IsRunning&&f.Kind==MacAnhFxKind.UltimateAura);
             Assert.That(aura,Is.Not.Null,"Cancel must be tested after the aura actually exists");
-            int oldGeneration=aura.Generation;_hero.ApplyStatus(StatusKind.Stun,1,2);_battle.Simulate(.02f);yield return null;
+            int oldGeneration=aura.Generation;_hero.ApplyStatus(StatusKind.Stun,1,2);_battle.Simulate(.02f);
+            // It disperses over a short fade (never cut off, user 2026-10-22), then the pool has it back.
+            for(int i=0;i<24;i++)_battle.Simulate(1f/60f);yield return null;
             Assert.That(aura.IsRunning&&aura.Generation==oldGeneration,Is.False,"Stun/cancel must reclaim the spawned aura");
             var reused=MacAnhFxPool.For(_battle).Spawn(_hero.Definition.MacAnhPerformance.Effect("UltimateAura"),Vector3.zero,
                 Vector3.one,Quaternion.identity,MacAnhFxQuality.Medium,1f,100);

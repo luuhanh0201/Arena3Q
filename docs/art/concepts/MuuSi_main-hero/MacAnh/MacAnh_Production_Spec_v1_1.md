@@ -429,6 +429,9 @@ Khiên bán trong suốt tím nhạt, viền vàng, gợn lục giác và vòng 
 
 ## 12  /  Ultimate — VẠN TƯỢNG THIÊN CƠ
 
+> **Thiết kế mới (người dùng 2026-10-22) — thay phần gameplay và hiệu ứng bên dưới:** không còn sát thương. Ở khung 75, một **vòng trận lan ra từ chân Mặc Ảnh** (tâm luôn là Mặc Ảnh, kéo thẻ không dời được), bán kính **5 m**. Mọi quân ta trong vòng (tướng và lính, không tính thành): **+25 % Công trong 8 giây**, **hồi 20 % máu tối đa**; các **tướng khác** (không phải Mặc Ảnh) nhận thêm **30 % thanh nộ** (🟡 số liệu, kiểm cân bằng trước khi phát hành). Tướng được buff có **tia tím xoáy quanh người** suốt 8 giây; lính được buff nhưng không có tia (giữ 60 FPS).
+> Hiệu ứng lấy từ gói có sẵn (quy tắc `docs/QuyTac/QuyTacLamViec.md` §3): vòng = "Laser AOE" của Hovl Studio bỏ tia chiếu xuống, đổi màu tím Mặc Ảnh; tia quanh người = "Star aura" của Hovl. Chuyển động 105 khung và mốc khung 75 giữ nguyên; vòng phép sau lưng (khung 31) giữ nguyên. Dữ liệu: `Skill_van_tuong_thien_co.asset` (`MacAnhContentBuilder.ApplyUltimateBuff`).
+
 **Tuyệt kỹ nhiều pha  ·  1–105 (≈3,5 giây)**
 
 | Frame | Chuyển động & diễn xuất |

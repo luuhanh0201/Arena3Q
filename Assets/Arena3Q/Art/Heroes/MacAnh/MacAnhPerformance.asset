@@ -12044,6 +12044,10 @@ MonoBehaviour:
   thirdPartyEffects:
   - key: MagicArray
     prefab: {fileID: 8403457273852222868, guid: b1c6cb9e0cf646d44b3a473dda04dce7, type: 3}
+  - key: Ultimate
+    prefab: {fileID: 3135415120829412688, guid: 7c82370937104a9439662a1cb918d7b8, type: 3}
+  - key: UltimateBuff
+    prefab: {fileID: 32533624244587023, guid: 51c1fd01302f384458f66fa4258fd7ca, type: 3}
   spriteMaterial: {fileID: 2100000, guid: 96f74d60c424c1f45a9cfc09968d7209, type: 2}
   enableBattle3DTrial: 0
   battle3DViewPrefab: {fileID: 0}
@@ -12067,3 +12071,5 @@ MonoBehaviour:
   afterimageGlowTint: {r: 0.75, g: 0.5, b: 1, a: 1}
   ultimateAuraStart: 1.0333333
   dodgeStreakStart: 0.26666668
+  ultimateCircleSeconds: 2.5
+  ultimateBuffAuraRadius: 0.8
