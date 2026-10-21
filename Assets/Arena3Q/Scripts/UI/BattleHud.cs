@@ -151,6 +151,11 @@ namespace Arena3Q.UI
                     battle.ViewTiltDegrees = value;
                 _tiltLabel.text = $"Góc nhìn: {Mathf.RoundToInt(value)}°";
             });
+            // Spec §9 / MapSpecification 8.3: the view angle is a debugging aid (Editor and Development builds);
+            // release builds keep the art's angle and do not show the slider.
+            var debugTools = Application.isEditor || Debug.isDebugBuild;
+            sliderRect.gameObject.SetActive(debugTools);
+            _tiltLabel.gameObject.SetActive(debugTools);
         }
 
         public void FocusSelectedHero()
