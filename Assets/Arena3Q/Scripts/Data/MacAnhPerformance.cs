@@ -69,6 +69,10 @@ namespace Arena3Q.Data
         [SerializeField, Min(.1f)] private float projectileLifetime = 2f;
         [SerializeField, Min(.1f)] private float projectileVisualScale = 1.15f;
         [SerializeField, Min(1f)] private float finalFeatherVisualScale = 1.18f;
+        [Tooltip("Size of the basic attack's wind blade and its hit flash next to the skill projectiles (user 2026-10-21: half).")]
+        [SerializeField, Range(.1f, 2f)] private float basicAttackVisualScale = .5f;
+        [Tooltip("Size of the hit flash where a projectile lands.")]
+        [SerializeField, Min(.05f)] private float impactVisualScale = .5f;
         [SerializeField, Min(0f)] private float dodgeBackstepDistance = .6f;
         [SerializeField, Min(.01f)] private float walkStrideLength = .3387097f;
         [SerializeField, Min(.01f)] private float runStrideLength = .9069767f;
@@ -109,6 +113,8 @@ namespace Arena3Q.Data
         public float ProjectileLifetime => projectileLifetime;
         public float ProjectileVisualScale => projectileVisualScale;
         public float FinalFeatherVisualScale => finalFeatherVisualScale;
+        public float BasicAttackVisualScale => basicAttackVisualScale;
+        public float ImpactVisualScale => impactVisualScale;
         public float DodgeBackstepDistance => dodgeBackstepDistance;
         public float WalkStrideLength => walkStrideLength;
         public float RunStrideLength => runStrideLength;

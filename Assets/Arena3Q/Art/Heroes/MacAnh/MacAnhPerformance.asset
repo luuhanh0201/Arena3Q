@@ -12051,6 +12051,8 @@ MonoBehaviour:
   projectileLifetime: 2
   projectileVisualScale: 1.15
   finalFeatherVisualScale: 1.18
+  basicAttackVisualScale: 0.5
+  impactVisualScale: 0.5
   dodgeBackstepDistance: 0.6
   walkStrideLength: 0.33870965
   runStrideLength: 0.9069767

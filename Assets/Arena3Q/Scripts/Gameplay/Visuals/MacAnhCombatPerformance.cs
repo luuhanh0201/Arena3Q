@@ -43,7 +43,7 @@ namespace Arena3Q.Gameplay
             _timer += delta; _view.SetCastTime(_timer);
             if (_timer >= 14f / 30f && _gate.TryAccept(_cast, "SpawnWindSlash"))
             {
-                if (_target != null && _target.IsAlive) Projectile("WindSlash", _aim, _hero.CreateMacAnhBasicHit(_target), _hero.AttackRange, _target.Radius);
+                if (_target != null && _target.IsAlive) Projectile("WindSlash", _aim, _hero.CreateMacAnhBasicHit(_target), _hero.AttackRange, _target.Radius, basic: true);
             }
             if (_timer >= .8f) { _basic = false; _gate.Cancel(); _view.Cancel(); }
         }
@@ -58,15 +58,18 @@ namespace Arena3Q.Gameplay
         {
             return _set.Effect(key) == null ? null : Spawn(key, position, Vector3.one, duration, angle, follow, orderOffset);
         }
-        private void Projectile(string key, Vector2 direction, System.Action<UnitBase> hit, float range, float targetRadius, int combo=0)
+        private void Projectile(string key, Vector2 direction, System.Action<UnitBase> hit, float range, float targetRadius, int combo=0,
+            bool basic=false)
         {
             if (!_view.TrySocket(MacAnhSocket.FanTip, out var socket))
             { Debug.LogError("[MacAnh] Missing sampled FanTip socket; cast cancelled."); return; }
             var projected = _hero.Battle.ToScreenPlane(_hero.Position + direction) - _hero.Battle.ToScreenPlane(_hero.Position);
             var angle = Mathf.Atan2(projected.y, projected.x) * Mathf.Rad2Deg;
-            float scale=_set.ProjectileVisualScale*(key=="TripleFeather"&&combo==2?_set.FinalFeatherVisualScale:1);
+            // The basic attack's blade and hit flash are drawn smaller than the skills' (pictures only).
+            float size=basic?_set.BasicAttackVisualScale:1;
+            float scale=_set.ProjectileVisualScale*size*(key=="TripleFeather"&&combo==2?_set.FinalFeatherVisualScale:1);
             var fx = Spawn(key, socket, Vector3.one * scale, _set.ProjectileLifetime, angle);
-            MacAnhProjectiles.For(_hero.Battle).Launch(_hero, direction, socket, fx, hit, range + _hero.Radius + targetRadius);
+            MacAnhProjectiles.For(_hero.Battle).Launch(_hero, direction, socket, fx, hit, range + _hero.Radius + targetRadius, size);
         }
         public void BeginSkill(SkillDefinition skill, SkillAim aim)
         {

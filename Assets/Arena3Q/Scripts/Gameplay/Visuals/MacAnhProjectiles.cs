@@ -20,6 +20,7 @@ namespace Arena3Q.Gameplay
             public int FxGeneration;
             public bool OwnsFx => Fx != null && Fx.IsRunning && Fx.Generation == FxGeneration;
             public GameObject Impact;
+            public float ImpactScale;
             public MacAnhFxQuality Quality;
             public Action<UnitBase> Hit;
         }
@@ -33,7 +34,9 @@ namespace Arena3Q.Gameplay
             battle.BattleStarted += system.Clear; battle.Finished += system.Finish;
             return system;
         }
-        public void Launch(HeroUnit caster, Vector2 direction, Vector3 visualStart, MacAnhFx fx, Action<UnitBase> hit, float maxDistance)
+        /// <param name="impactSize">Hit flash size over MacAnhPerformance.ImpactVisualScale (the basic attack's is smaller).</param>
+        public void Launch(HeroUnit caster, Vector2 direction, Vector3 visualStart, MacAnhFx fx, Action<UnitBase> hit, float maxDistance,
+            float impactSize = 1f)
         {
             var config = caster.Definition.MacAnhPerformance;
             _flights.Add(new Flight { Position = caster.Position, Start = caster.Position,
@@ -42,7 +45,8 @@ namespace Arena3Q.Gameplay
                 Velocity = direction.normalized * config.ProjectileSpeed, VisualStart = visualStart,
                 Radius = config.ProjectileRadius, Remaining = Mathf.Min(config.ProjectileLifetime, maxDistance / config.ProjectileSpeed), Fx = fx, Hit = hit,
                 FxGeneration = fx != null ? fx.Generation : 0,
-                Impact = config.Effect("Impact"), Quality = (MacAnhFxQuality)config.EffectQuality });
+                Impact = config.Effect("Impact"), ImpactScale = config.ImpactVisualScale * impactSize,
+                Quality = (MacAnhFxQuality)config.EffectQuality });
         }
         public void Simulate(float delta)
         {
@@ -73,7 +77,7 @@ namespace Arena3Q.Gameplay
                     {
                         // Mesh (3D / native) and sprite (flipbook) effects are both Renderers.
                         var renderer = flight.Fx.GetComponentInChildren<Renderer>(true);
-                        MacAnhFxPool.For(_battle).Spawn(flight.Impact, flight.Fx.transform.position, Vector3.one * .5f,
+                        MacAnhFxPool.For(_battle).Spawn(flight.Impact, flight.Fx.transform.position, Vector3.one * flight.ImpactScale,
                             Quaternion.identity, flight.Quality, .3f, renderer != null ? renderer.sortingOrder : 0);
                     }
                 }
