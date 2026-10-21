@@ -874,6 +874,40 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator WindZone_SwaysTheCaughtUnitsPicture_ThenItSettles()
+        {
+            _battle.StartBattle(0);
+            yield return null;
+            var enemy = _battle.Registry.Units.First(u => u != null && u is EnemyUnit && u.IsAlive);
+            var start = enemy.Position;
+            enemy.Sway(.12f, .6f);
+            var largest = 0f;
+            for (var i = 0; i < 20; i++)
+            {
+                yield return null;
+                largest = Mathf.Max(largest, (enemy.transform.position - _battle.ToView(enemy.Position)).magnitude);
+            }
+            Assert.That(largest, Is.GreaterThan(.02f).And.LessThan(.25f), "lifted and rocked a little, not thrown");
+            Assert.That(enemy.Position, Is.EqualTo(start), "pictures only: the unit does not move");
+            yield return new WaitForSeconds(.8f);
+            Assert.That((enemy.transform.position - _battle.ToView(enemy.Position)).magnitude, Is.LessThan(1e-3f), "settles when the wind stops");
+        }
+
+        [UnityTest]
+        public IEnumerator FullRageTestOption_HeroesComeOnWithAFullBar_OnlyWhenTheLaunchAsks()
+        {
+            _battle.StartBattle(0);
+            var normal = SummonQuick(0);
+            yield return null;
+            Assert.That(normal.Skills.Rage.Value, Is.Zero, "a battle played as is starts with empty rage");
+
+            _battle.Launch(new BattleLaunchRequest { Stage = Stage(0), FullRageAtStart = true });
+            var tester = SummonQuick(0);
+            yield return null;
+            Assert.That(tester.Skills.Rage.IsFull, Is.True, "Development test option: the ultimate is ready at once");
+        }
+
+        [UnityTest]
         public IEnumerator Presentation3D_MacAnhRunning_PlantedFeetDoNotSlide()
         {
             Assume.That(_battle.Presentation3D, Is.True, "3D presentation is the shipped default");
@@ -980,6 +1014,12 @@ namespace Arena3Q.Tests.PlayMode
                 Is.EqualTo(_battle.View.EffectDepthBias * 2f).Within(1e-3f), "the same for the circle's rising qi");
             Assert.That(Forward("FX_MacAnh_UltimateAuraFlipbook_Battle.prefab", "Circle"), Is.EqualTo(0f).Within(1e-3f),
                 "the rune circle behind the caster stays behind");
+            // The cyclone's far half goes behind the units caught in it, its near half in front: they stand inside it.
+            Assert.That(Forward("FX_MacAnh_CycloneFlipbook_Battle.prefab", "ColumnFront"),
+                Is.EqualTo(_battle.View.EffectDepthBias * 2f).Within(1e-3f));
+            Assert.That(Forward("FX_MacAnh_CycloneFlipbook_Battle.prefab", "ColumnBack"),
+                Is.EqualTo(-_battle.View.EffectDepthBias * 2f).Within(1e-3f));
+            Assert.That(Forward("FX_MacAnh_CycloneFlipbook_Battle.prefab", "DustBack"), Is.LessThan(0f));
         }
 
         [UnityTest]

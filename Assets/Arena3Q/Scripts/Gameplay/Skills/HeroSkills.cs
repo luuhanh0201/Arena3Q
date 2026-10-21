@@ -56,6 +56,8 @@ namespace Arena3Q.Gameplay
             foreach (SkillSlot slot in Enum.GetValues(typeof(SkillSlot)))
                 _slots[(int)slot] = new Slot { Definition = card.Hero.GetSkill(slot), Level = card.SkillLevel(slot, rules) };
             Rage = new RageMeter(card.Hero.RageMax);
+            if (hero.Battle.StartWithFullRage)
+                Rage.Add(Rage.Max);
             _lastPosition = hero.Position;
         }
 

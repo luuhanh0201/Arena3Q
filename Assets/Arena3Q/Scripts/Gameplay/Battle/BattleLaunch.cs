@@ -22,6 +22,9 @@ namespace Arena3Q.Gameplay
 
         /// <summary>Called right before going back to <see cref="ReturnScene"/>.</summary>
         public Action OnReturn;
+
+        /// <summary>Test option of Development builds (FrontendConfig): heroes are summoned with a full rage bar.</summary>
+        public bool FullRageAtStart;
     }
 
     /// <summary>Hands a <see cref="BattleLaunchRequest"/> from one scene to the next.</summary>

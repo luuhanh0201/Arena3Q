@@ -83,9 +83,13 @@ namespace Arena3Q.Data
                  "(skills unlock at levels 2/5/10/15). 0 = off. The Editor (use Play Combat Test) and release builds " +
                  "always use the saved level.")]
         [SerializeField, Min(0)] private int developmentLordLevel = 15;
+        [Tooltip("Heroes come onto the field with a full rage bar, so Development players on a device can try the " +
+                 "ultimates at once. The Editor and release builds always start empty.")]
+        [SerializeField] private bool developmentFullRage = true;
 
         public IReadOnlyList<FrontendStep> Steps => steps;
         public int DevelopmentLordLevel => developmentLordLevel;
+        public bool DevelopmentFullRage => developmentFullRage;
         public string GameTitle => gameTitle;
         public float IntroSeconds => introSeconds;
         public VideoClip IntroVideo => introVideo;

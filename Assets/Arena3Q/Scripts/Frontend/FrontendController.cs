@@ -249,7 +249,9 @@ namespace Arena3Q.Frontend
                 ReturnScene = config.FrontendSceneName,
                 OnFinished = (playedStage, decision) =>
                     BattleRewards.Apply(store, profile, character, playedStage == tutorialStage, decision, rewardLevel, rules, lord),
-                OnReturn = () => ResumeAt = FrontendStep.ServerSelect
+                OnReturn = () => ResumeAt = FrontendStep.ServerSelect,
+                // Like the lord level: Development players on a device only.
+                FullRageAtStart = !Application.isEditor && Debug.isDebugBuild && config.DevelopmentFullRage
             });
             SceneManager.LoadScene(config.BattleSceneName);
         }

@@ -222,6 +222,9 @@ namespace Arena3Q.Gameplay
         /// <summary>Scene the result screen can go back to (set by the game flow), or empty.</summary>
         public string ReturnSceneName => _launch?.ReturnScene ?? "";
 
+        /// <summary>Heroes come onto the field with a full rage bar (test option of the game flow's Development builds).</summary>
+        public bool StartWithFullRage => _launch?.FullRageAtStart ?? false;
+
         /// <summary>Note of the last result (rewards from the game flow), or empty.</summary>
         public string LastResultNote { get; private set; } = "";
 
