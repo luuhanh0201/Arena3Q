@@ -18,5 +18,7 @@ namespace Arena3Q.Gameplay
         void SetUpright(Quaternion upright);
         /// <summary>How many effect radii nearer the camera upright pictures are drawn (BattleViewConfig.EffectDepthBias).</summary>
         void SetDepthBias(float effectRadii);
+        /// <summary>How far the hottest light is pushed past 1 for the battle's bloom (BattleViewConfig.EffectBloomBoost).</summary>
+        void SetBloomBoost(float boost);
     }
 }

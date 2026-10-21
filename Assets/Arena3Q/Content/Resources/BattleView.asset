@@ -28,4 +28,11 @@ MonoBehaviour:
   decorModelScale: 1.5
   heroModelScale: 1.3
   effectDepthBias: 1.25
+  bloom: 1
+  bloomThreshold: 1.1
+  bloomIntensity: 1.2
+  bloomScatter: 0.65
+  effectBloomBoost: 0.5
+  bloomTint: {r: 0.85, g: 0.75, b: 1, a: 1}
+  bloomQuarterResolution: 1
   groundMaterial: {fileID: 2100000, guid: 03564c41ad1c40dc9f753a0a7af9b75d, type: 2}

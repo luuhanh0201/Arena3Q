@@ -39,6 +39,7 @@ namespace Arena3Q.Gameplay
         private const float MinFadeIn = .1f, MinFadeOut = .16f;
         private static readonly int DissolveId = Shader.PropertyToID("_Dissolve");
         private static readonly int BreathId = Shader.PropertyToID("_Breath");
+        private static readonly int EffectBloomId = Shader.PropertyToID("_EffectBloom");
         private static readonly int NoiseScaleId = Shader.PropertyToID("_NoiseScale");
         private static readonly int SeedId = Shader.PropertyToID("_Seed");
         private static readonly int EffectTimeId = Shader.PropertyToID("_EffectTime");
@@ -147,6 +148,11 @@ namespace Arena3Q.Gameplay
 
         /// <summary>3D: upright layers are drawn this many effect radii nearer the camera (see Apply).</summary>
         public void SetDepthBias(float effectRadii) => _depthBias = Mathf.Max(0f, effectRadii);
+
+        private float _bloomBoost;
+
+        /// <summary>3D battle bloom: how far the hottest light is pushed past 1 (0 = as painted, outside the battle).</summary>
+        public void SetBloomBoost(float boost) => _bloomBoost = Mathf.Max(0f, boost);
 
         public void SetCharge()
         {
@@ -283,6 +289,7 @@ namespace Arena3Q.Gameplay
                 _block.SetFloat(BreathId, layer.breath);
                 _block.SetFloat(NoiseScaleId, layer.noiseScale);
                 _block.SetFloat(SeedId, _seed + i * 17.3f);
+                _block.SetFloat(EffectBloomId, _bloomBoost);
                 _block.SetFloat(EffectTimeId, _seconds);
                 r.SetPropertyBlock(_block);
 

@@ -17,7 +17,7 @@ namespace Arena3Q.Gameplay
     /// Device benchmark of a full 3D battle (docs/KeHoach/ChuyenSang3D.md §2, spec §1: at least 60 FPS). Development
     /// builds only, started with an Android intent extra (or a PC command-line argument):
     /// <c>adb shell am start -n com.Arena3Q.Arena3Q/&lt;activity&gt; --es arena3q_bench 1 [--es seconds 60]
-    /// [--es warmup 8] [--es render_scale 0.75] [--es target_fps 120] [--es tag name]</c>.
+    /// [--es warmup 8] [--es render_scale 0.75] [--es target_fps 120] [--es bloom 0] [--es tag name]</c>.
     /// It opens the Battle scene, summons every card again and again, fires ultimates every few seconds (effects),
     /// restarts the battle when it ends, measures frame times, render counters and memory, writes
     /// <c>persistentDataPath/arena3q_bench_&lt;tag&gt;.json</c>, logs a <c>[Arena3Q] BENCH</c> line and quits.
@@ -38,7 +38,7 @@ namespace Arena3Q.Gameplay
             public float drawCallsAverage, batchesAverage, setPassAverage, trianglesAverage;
             public long allocatedBytes, reservedBytes, graphicsDriverBytes;
             public float batteryCelsiusStart, batteryCelsiusEnd;
-            public bool passedAverageFps, passedP95;
+            public bool passedAverageFps, passedP95, bloom;
         }
 
         private Dictionary<string, string> _args;
@@ -83,6 +83,9 @@ namespace Arena3Q.Gameplay
                     pipeline.renderScale = Mathf.Clamp(Number("render_scale", 1f), 0.25f, 2f);
                 result.renderScale = pipeline.renderScale;
             }
+            // "bloom" 0 / 1 compares the battle without / with bloom on one build.
+            if (_args.ContainsKey("bloom"))
+                BattleView3D.BloomOverride = Number("bloom", 1f) > .5f;
 
             SceneManager.LoadScene("Battle");
             BattleController battle = null;
@@ -91,6 +94,7 @@ namespace Arena3Q.Gameplay
                 yield return null;
                 battle = FindAnyObjectByType<BattleController>();
             }
+            result.bloom = BattleView3D.BloomOn(battle.View);
 
             // The battle scene applies the configured frame rate again on load; the benchmark's own cap wins.
             if (_args.ContainsKey("target_fps"))
@@ -207,7 +211,7 @@ namespace Arena3Q.Gameplay
                 using var player = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
                 using var activity = player.GetStatic<AndroidJavaObject>("currentActivity");
                 using var intent = activity.Call<AndroidJavaObject>("getIntent");
-                foreach (var key in new[] { Flag, "seconds", "warmup", "render_scale", "tag", "target_fps" })
+                foreach (var key in new[] { Flag, "seconds", "warmup", "render_scale", "tag", "target_fps", "bloom" })
                 {
                     var value = intent.Call<string>("getStringExtra", key);
                     if (value != null)

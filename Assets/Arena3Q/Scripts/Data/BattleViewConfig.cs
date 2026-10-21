@@ -72,6 +72,31 @@ namespace Arena3Q.Data
                  "The camera is orthographic, so they stay in the same place on screen.")]
         [SerializeField, Min(0f)] private float effectDepthBias = 1.25f;
 
+        [Header("Bloom (light of the effects spreading into the scene; post-processing, measure FPS on the device)")]
+        [Tooltip("Soft glow around the brightest light of the effects (URP bloom). Off = no post-processing at all.")]
+        [SerializeField] private bool bloom = true;
+        [Tooltip("Brightness (gamma) above which light spreads. Above 1 only light pushed past 1 by effectBloomBoost " +
+                 "blooms (the effects), not the sand or the lit models.")]
+        [SerializeField, Min(0f)] private float bloomThreshold = 1.1f;
+        [SerializeField, Range(0f, 5f)] private float bloomIntensity = 1.2f;
+        [Tooltip("How far the glow spreads (0..1).")]
+        [SerializeField, Range(0f, 1f)] private float bloomScatter = 0.65f;
+        [Tooltip("How far the hottest light of the effect pictures is pushed past 1 (light below about half stays as " +
+                 "painted), so that the bloom picks up the effects only. 0 = effects do not bloom.")]
+        [SerializeField, Min(0f)] private float effectBloomBoost = 0.5f;
+        [Tooltip("Colour of the glow (the qi of the effects is violet).")]
+        [SerializeField] private Color bloomTint = new Color(0.85f, 0.75f, 1f, 1f);
+        [Tooltip("Bloom works on a quarter-size picture (cheaper on phones) instead of a half-size one.")]
+        [SerializeField] private bool bloomQuarterResolution = true;
+
+        public bool Bloom => bloom;
+        public float BloomThreshold => bloomThreshold;
+        public float BloomIntensity => bloomIntensity;
+        public float BloomScatter => bloomScatter;
+        public float EffectBloomBoost => effectBloomBoost;
+        public Color BloomTint => bloomTint;
+        public bool BloomQuarterResolution => bloomQuarterResolution;
+
         [Header("Motion")]
         [Tooltip("How high a knocked-up unit rises at the top of its arc (metres).")]
         [SerializeField, Min(0f)] private float knockUpHeight = 0.9f;

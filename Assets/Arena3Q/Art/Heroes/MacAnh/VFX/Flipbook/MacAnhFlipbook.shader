@@ -30,6 +30,7 @@ Shader "Arena3Q/MacAnh Flipbook 2D"
         [PerRendererData] _RectA("Current frame atlas rect (min xy, max zw)", Vector) = (-1,-1,2,2)
         [PerRendererData] _RectB("Next frame atlas rect (min xy, max zw)", Vector) = (-1,-1,2,2)
         [PerRendererData] _Tint("Tint and fade (mesh layers; sprites use the vertex colour)", Color) = (1,1,1,1)
+        [PerRendererData] _EffectBloom("Bloom push of the hottest light (battle, BattleViewConfig.effectBloomBoost)", Float) = 0
     }
     SubShader
     {
@@ -43,7 +44,7 @@ Shader "Arena3Q/MacAnh Flipbook 2D"
         CBUFFER_START(UnityPerMaterial)
         half _Glow; half _Underlay; half4 _UnderlayColor; half _Fade;
         half _Dissolve; half _Breath; float _NoiseScale; float _Drift; half _EdgeGlow; half4 _EdgeColor; float _Seed; float _EffectTime;
-        half _FrameBlend; float4 _RectA; float4 _RectB; half4 _Tint;
+        half _FrameBlend; float4 _RectA; float4 _RectB; half4 _Tint; half _EffectBloom;
         CBUFFER_END
 
         float Hash(float2 p)
@@ -94,6 +95,11 @@ Shader "Arena3Q/MacAnh Flipbook 2D"
             half cover = t.a * _Underlay * fade * density;
             half3 light = t.rgb * input.color.rgb * _Glow * fade * density
                         + _EdgeColor.rgb * edge * _EdgeGlow * t.a * _Fade * input.color.a;
+            // Brightest channel: a moderate push lifts violet past 1 in blue first, red and green stay below, so it keeps
+            // its colour (a strong push burns it to white).
+            half hot = saturate((max(light.r, max(light.g, light.b)) - 0.6) / 0.4);
+            // Bloom push (battle only): the hottest light goes past 1 so the bloom picks up the effects, not the sand.
+            light *= 1.0 + _EffectBloom * hot * hot;
             return half4(light + _UnderlayColor.rgb * cover, cover);
         }
         ENDHLSL

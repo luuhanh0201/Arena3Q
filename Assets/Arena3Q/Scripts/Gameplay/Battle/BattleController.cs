@@ -318,7 +318,10 @@ namespace Arena3Q.Gameplay
             _worldRoot = new GameObject("World").transform;
             _worldRoot.SetParent(transform, false);
             if (Presentation3D)
+            {
                 BattleView3D.CreateLight(_worldRoot, View);
+                BattleView3D.CreateBloom(_worldRoot, View);
+            }
             BuildMapVisuals();
             _formation?.BuildView(_worldRoot, _groundRoot);
             if (stage.Decorations != null)
@@ -367,7 +370,12 @@ namespace Arena3Q.Gameplay
             _groundRoot = null;
         }
 
-        private void OnDestroy() => ClearWorld();
+        private void OnDestroy()
+        {
+            ClearWorld();
+            // The effects' bloom push is a shader global: it must not outlive the battle (other scenes, tests).
+            BattleView3D.ClearBloom();
+        }
 
         // ---- Simulation ----
 
