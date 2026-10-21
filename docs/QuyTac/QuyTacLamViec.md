@@ -26,6 +26,7 @@ Gom các quy tắc người dùng đã nói rải rác qua các phiên, để **
 - **Tối thiểu 60 FPS** mọi nền tảng (spec §1, 2026-10-21). Đo trên máy thật mới tính; FPS Editor hoặc con số target không phải bằng chứng. Hiện người dùng **chỉ test trong Unity**, chưa build điện thoại.
 - Flipbook hiệu ứng hoà khung theo đồng hồ hiệu ứng; sprite nhân vật không hoà khung.
 - **VFX phép của Mưu Sĩ là "khí"**: đậm nhạt, xuất hiện / trúng / tan tự nhiên, không phải nét vẽ. Gió / khói **không bao giờ** là xoắn tuần hoàn hay các đường đều nhau; chỉ hình học trận pháp được đều (`Model3D_Rules.md`).
+- **Luồng khí đi lên không làm thành tia / đường line** (2026-10-21): không có lõi sáng sắc, không có mép cứng, không thẳng tắp. Làm thành dòng khí mờ: bề rộng thay đổi theo chiều cao, mép tan bằng noise, đậm ở chân rồi loãng và tan dần khi lên cao, cuộn nhẹ theo gió. Nhìn ở zoom trận phải đọc ra "khí bốc lên", không phải "tia sáng".
 - Mọi việc model / rig / animation / VFX theo `Model3D_Rules.md`. Bắt buộc đo bề mặt sau skinning và xem ảnh thật. Test transform pass không đủ để bàn giao.
 - **Gặp hướng sai, lỗi, bug khi làm 3D / animation / VFX: ghi ngay vào `NhatKyVanHanh_3D.md`** (2026-10-21, cả hai agent).
 - Hiển thị 3D (2026-10-21): camera orthographic nghiêng 41,4°, mặt đất mesh + texture. Model các tướng khác do người dùng tự làm (agent chỉ làm khi được giao trực tiếp).
