@@ -39,12 +39,15 @@ namespace Arena3Q.Gameplay
         /// <summary>World rotation of a prop turned by <paramref name="yaw"/> (degrees about the vertical, as rendered).</summary>
         public static Quaternion Rotation(float yaw) => StandUp * Quaternion.Euler(0f, yaw, 0f);
 
-        /// <summary>The model under <paramref name="parent"/>; its own transform is the ground pivot (place and turn it).</summary>
-        public static Transform Create(string name, Transform parent, MapProps3DLibrary.Prop prop)
+        /// <summary>
+        /// The model under <paramref name="parent"/>; its own transform is the ground pivot (place and turn it).
+        /// <paramref name="size"/> enlarges it beyond its sprite size (decorations: BattleViewConfig.DecorModelScale).
+        /// </summary>
+        public static Transform Create(string name, Transform parent, MapProps3DLibrary.Prop prop, float size = 1f)
         {
             var root = new GameObject(name).transform;
             root.SetParent(parent, false);
-            root.localScale = Vector3.one * prop.scale;
+            root.localScale = Vector3.one * (prop.scale * size);
             var go = new GameObject("Mesh", typeof(MeshFilter), typeof(MeshRenderer));
             go.transform.SetParent(root, false);
             go.transform.localPosition = prop.meshPosition - prop.groundCentre;
@@ -61,16 +64,16 @@ namespace Arena3Q.Gameplay
         }
 
         /// <summary>Soft round shadow lying on the ground under a prop (no realtime shadows).</summary>
-        public static SpriteRenderer CreateShadow(Transform parent, MapProps3DLibrary.Prop prop, float alpha)
+        public static SpriteRenderer CreateShadow(Transform parent, MapProps3DLibrary.Prop prop, float alpha, float scale = 1f)
         {
-            var size = prop.footprint * 1.15f;
+            var size = prop.footprint * scale * 1.15f;
             var shadow = PlaceholderArt.CreateRenderer("Prop shadow", parent, PlaceholderArt.Blob, new Color(0f, 0f, 0f, alpha),
                 new Vector2(size, size), ShadowOrder);
             return shadow;
         }
 
         /// <summary>Height of the placed model above the ground (world units).</summary>
-        public static float Height(MapProps3DLibrary.Prop prop)
+        public static float Height(MapProps3DLibrary.Prop prop, float size = 1f)
         {
             var bounds = prop.mesh.bounds;
             var matrix = Matrix4x4.TRS(prop.meshPosition, prop.meshRotation, prop.meshScale);
@@ -81,7 +84,7 @@ namespace Arena3Q.Gameplay
                     (i & 4) == 0 ? bounds.min.z : bounds.max.z);
                 top = Mathf.Max(top, matrix.MultiplyPoint3x4(corner).y);
             }
-            return (top - prop.groundCentre.y) * prop.scale;
+            return (top - prop.groundCentre.y) * prop.scale * size;
         }
     }
 }

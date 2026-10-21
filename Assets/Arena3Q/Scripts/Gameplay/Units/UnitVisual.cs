@@ -100,16 +100,16 @@ namespace Arena3Q.Gameplay
         private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
 
         /// <summary>Shows a 3D map prop instead of the picture (3D presentation); the picture stays as the reference.</summary>
-        internal void UsePropModel(MapProps3DLibrary.Prop prop, float yaw, float shadowAlpha)
+        internal void UsePropModel(MapProps3DLibrary.Prop prop, float yaw, float shadowAlpha, float size = 1f)
         {
-            _prop = MapProp3D.Create("Body3D Prop", _root, prop);
+            _prop = MapProp3D.Create("Body3D Prop", _root, prop, size);
             _propRenderer = _prop.GetComponentInChildren<MeshRenderer>();
             _propYaw = yaw;
-            _propHeight = MapProp3D.Height(prop);
+            _propHeight = MapProp3D.Height(prop, size);
             _body.enabled = false;
             if (_shadow == null)
             {
-                _shadow = MapProp3D.CreateShadow(_root, prop, shadowAlpha);
+                _shadow = MapProp3D.CreateShadow(_root, prop, shadowAlpha, size);
                 _shadow.transform.localRotation = _groundFromRoot;
             }
             SetGroundRotation(_groundFromRoot);

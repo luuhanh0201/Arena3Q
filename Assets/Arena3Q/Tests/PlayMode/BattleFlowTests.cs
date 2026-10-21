@@ -851,6 +851,29 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator Presentation3D_DecorAndCommandPostsAreEnlarged_TheFormationKeepsItsSize()
+        {
+            Assume.That(_battle.Presentation3D, Is.True, "3D presentation is the shipped default");
+            _battle.StartBattle(0);
+            yield return null;
+            var size = _battle.View.DecorModelScale;
+            Assert.That(size, Is.GreaterThan(1f), "the decorations are drawn larger than their sprites");
+            var props = _battle.View.MapProps.Props;
+            float SpriteScale(Transform model) =>
+                props.Single(p => p.mesh == model.GetComponentInChildren<MeshFilter>().sharedMesh).scale;
+            var models = _battle.GetComponentsInChildren<Transform>()
+                .Where(t => t.name.EndsWith(" 3D") || t.name == "Body3D Prop").ToArray();
+            var decor = models.Where(t => t.name.StartsWith("Decor ") || t.name == "Body3D Prop").ToArray();
+            var formation = models.Where(t => t.name.StartsWith("Pillar ") || t.name.StartsWith("Altar")).ToArray();
+            Assert.That(decor.Length, Is.GreaterThan(2), "decorations and both command posts");
+            Assert.That(formation.Length, Is.EqualTo(9), "8 pillars and the altar");
+            foreach (var model in decor)
+                Assert.That(model.localScale.x, Is.EqualTo(SpriteScale(model) * size).Within(1e-4f), model.name);
+            foreach (var model in formation)
+                Assert.That(model.localScale.x, Is.EqualTo(SpriteScale(model)).Within(1e-4f), $"{model.name} matches its obstacle");
+        }
+
+        [UnityTest]
         public IEnumerator MapArt_CoversTheMap_AndHidesPlaceholderTerrain()
         {
             _battle.StartBattle(0);

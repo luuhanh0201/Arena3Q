@@ -33,7 +33,7 @@ namespace Arena3Q.Gameplay
                 {
                     if (_art.FaceOpponent)
                         yaw = MapProp3D.YawFacing(prop, MapProp3D.TowardOpponent(battle, config.Position));
-                    Visual.UsePropModel(prop, yaw, battle.View.PropShadowAlpha);
+                    Visual.UsePropModel(prop, yaw, battle.View.PropShadowAlpha, battle.View.DecorModelScale);
                 }
             }
             SetCombat(config.Damage, config.AttackRange, config.AttackInterval, 0f, 0f, config.AttackRange);

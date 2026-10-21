@@ -29,9 +29,10 @@ namespace Arena3Q.Gameplay
                 {
                     if (piece.faceOpponent)
                         yaw = MapProp3D.YawFacing(prop, MapProp3D.TowardOpponent(battle, piece.position));
-                    var model = MapProp3D.Create(renderer.name + " 3D", transform, prop);
+                    var size = battle.View.DecorModelScale;
+                    var model = MapProp3D.Create(renderer.name + " 3D", transform, prop, size);
                     model.SetPositionAndRotation(battle.ToView(piece.position), MapProp3D.Rotation(yaw));
-                    var shadow = MapProp3D.CreateShadow(transform, prop, battle.View.PropShadowAlpha);
+                    var shadow = MapProp3D.CreateShadow(transform, prop, battle.View.PropShadowAlpha, size);
                     shadow.transform.position = battle.ToView(piece.position);
                     renderer.enabled = false;
                 }

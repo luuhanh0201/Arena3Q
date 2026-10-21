@@ -25,4 +25,5 @@ MonoBehaviour:
   blobShadowAlpha: 0.35
   mapProps: {fileID: 11400000, guid: 2bd3d298abf638e4da2038db7fab2722, type: 2}
   propShadowAlpha: 0.3
+  decorModelScale: 1.5
   groundMaterial: {fileID: 2100000, guid: 03564c41ad1c40dc9f753a0a7af9b75d, type: 2}

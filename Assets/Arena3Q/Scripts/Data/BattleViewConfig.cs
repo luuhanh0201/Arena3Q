@@ -61,6 +61,9 @@ namespace Arena3Q.Data
         [SerializeField] private MapProps3DLibrary mapProps;
         [Tooltip("Darkness of the soft shadow under 3D map props.")]
         [SerializeField, Range(0f, 1f)] private float propShadowAlpha = 0.3f;
+        [Tooltip("Extra size of the decoration and command post models (tents, watchtowers, flags, drum) on top of " +
+                 "their sprite size. Not the formation (pillars, slabs, altar): those match their obstacles.")]
+        [SerializeField, Min(0.1f)] private float decorModelScale = 1.5f;
 
         [Header("Motion")]
         [Tooltip("How high a knocked-up unit rises at the top of its arc (metres).")]
@@ -69,6 +72,7 @@ namespace Arena3Q.Data
         public float KnockUpHeight => knockUpHeight;
         public MapProps3DLibrary MapProps => mapProps;
         public float PropShadowAlpha => propShadowAlpha;
+        public float DecorModelScale => decorModelScale;
         public bool Presentation3D => presentation3D;
         public Material UnitMaterial => unitMaterial;
         public float PlaceholderHeight => placeholderHeight;
