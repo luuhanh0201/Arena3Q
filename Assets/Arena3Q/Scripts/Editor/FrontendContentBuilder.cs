@@ -114,7 +114,7 @@ namespace Arena3Q.Editor
         public static void BuildScene(FrontendConfig config)
         {
             // Opening a scene in Single mode unloads saved assets nothing references, which turns C# references taken
-            // before into fake nulls: remember the path and load the asset again after opening (docs/NhatKySuaLoi.md).
+            // before into fake nulls: remember the path and load the asset again after opening (docs/QuyTac/NhatKySuaLoi.md).
             var configPath = AssetDatabase.GetAssetPath(config);
             if (AssetDatabase.LoadAssetAtPath<SceneAsset>(FrontendScenePath) == null)
             {

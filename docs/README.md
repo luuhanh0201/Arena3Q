@@ -1,7 +1,7 @@
 # Arena3Q – mục lục tài liệu
 
 Quy ước sắp xếp:
-- **Gốc `docs/`** chỉ có mục lục này, spec gameplay và nhật ký sửa lỗi. Mọi tài liệu khác nằm trong **thư mục theo chủ đề**.
+- **Gốc `docs/`** chỉ có mục lục này và spec gameplay. **Mọi quy tắc và nhật ký** (quy tắc làm việc, luật 3D, nhật ký vận hành 3D, nhật ký sửa lỗi) nằm trong **`QuyTac/`**. Tài liệu khác nằm trong **thư mục theo chủ đề**.
 - **Plan mới** (chờ duyệt) để trong **`KeHoach/`**. Duyệt xong thì chuyển đi: luật vào spec, thiết kế vào thư mục chủ đề, prompt vào `art/concepts/`.
 - **Prompt dán sẵn** nằm cạnh ảnh mẫu trong `art/concepts/`; riêng quân địch để chung trong `QuanDich/` (theo yêu cầu lúc tạo thư mục đó).
 - Ký hiệu trong tài liệu: ✅ đã chốt · 🟡 mặc định tạm (là tuỳ chọn cấu hình) · ⏳ để sau.
@@ -9,14 +9,16 @@ Quy ước sắp xếp:
 | Đường dẫn | Nội dung |
 |---|---|
 | `GameplaySpecification.md` | **Spec gameplay – nguồn đúng duy nhất.** Mâu thuẫn với tài liệu khác thì theo file này. |
-| `NhatKySuaLoi.md` | Nhật ký sửa lỗi: nguyên nhân gốc và cách tránh lặp lại. |
+| **`QuyTac/`** | **Mọi quy tắc và nhật ký rút kinh nghiệm** (đọc `QuyTac/README.md` trước khi làm) |
+| `QuyTac/QuyTacLamViec.md` | Quy tắc làm việc người dùng đã giao cho mọi agent: giao tiếp, commit/push, dữ liệu dễ sửa, asset nhỏ / không LFS, lưu trữ thay vì xoá, ảnh trước–sau, 60 FPS, VFX "khí", hai agent, review / nghiệm thu. |
+| `QuyTac/Model3D_Rules.md` | Luật bắt buộc khi sửa model 3D, skinning, animation và VFX; lỗi đã gặp và các bước tự kiểm tra trước bàn giao. |
+| `QuyTac/NhatKyVanHanh_3D.md` | Nhật ký vận hành 3D / animation / VFX (mọi agent): hướng sai, lỗi, bug gặp khi làm – nguyên nhân, cách phát hiện, quy tắc phòng tránh. Ghi ngay khi gặp. |
+| `QuyTac/NhatKySuaLoi.md` | Nhật ký sửa lỗi gameplay / code: nguyên nhân gốc và cách tránh lặp lại. |
 | **`KeHoach/`** | **Plan chờ duyệt** |
 | `KeHoach/VaoGame.md` | Luồng vào game: biểu tượng → intro 3 s (logo + banner) → đăng nhập / Chơi ngay → chọn máy chủ → chọn chủ tướng + đặt tên → cốt truyện mở đầu; kèm prompt ảnh, video, tiếng, nhạc. |
 | `KeHoach/HeroProgression.md` | Cấp (tối đa 60), chủ tướng học kỹ năng theo cấp, sao, đột phá, phe Thục / Ngụy / Ngô / Quần, bảng chỉ số và cách cân bằng các hệ. |
 | `KeHoach/ChuyenSang3D.md` | Kế hoạch chuyển hiển thị sang 3D (logic giữ mặt phẳng 2D): ngân sách 60 FPS trên Redmi Note 8 Pro, camera, 7 giai đoạn (P0 làm thử → map → nhân vật → VFX → Frontend → test → tài liệu), model cần cung cấp, rủi ro, câu hỏi cần chốt. |
 | **`Tuong/`** | **Tướng** |
-| `Tuong/Model3D_Rules.md` | Quy tắc bắt buộc khi sửa model 3D, skinning, animation và VFX; lỗi đã gặp và các bước tự kiểm tra trước bàn giao. |
-| `Tuong/NhatKyVanHanh_3D.md` | **Nhật ký vận hành 3D / animation / VFX** (mọi agent): hướng sai, lỗi, bug gặp khi làm – nguyên nhân, cách phát hiện, quy tắc phòng tránh. Ghi ngay khi gặp. |
 | `Tuong/LordHeroes.md` | 4 chủ tướng (Cung thủ, Kiếm sĩ, Mưu sĩ, Thống soái): vai trò, chỉ số, bộ kỹ năng. |
 | `Tuong/NormalHeroes.md` | 4 tướng khởi đầu (Xạ Thủ, Kỵ Binh, Giáp Sĩ, Đao Khách): kỹ năng, lớp PSD, xương, clip. |
 | `Tuong/LuBu.md` | Lữ Bố: rig 73 xương, sửa weight/tư thế/da, chỗ cầm kích, 7 animation, sprite tám hướng (trang 2048) và cách đưa vào game. |

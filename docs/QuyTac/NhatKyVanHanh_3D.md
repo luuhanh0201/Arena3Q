@@ -15,8 +15,8 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
   - bằng chứng (commit, ảnh, log, test).
 - Mục mới thêm **trên cùng** của bảng tương ứng. Không xoá mục cũ. Nếu quy tắc thay đổi, ghi mục mới và dẫn tới mục cũ.
 - Khác với các file khác:
-  - `docs/Tuong/Model3D_Rules.md` là **luật bắt buộc** đã chắt lọc. Khi một bài học ở đây thành luật chung, chép thêm vào đó.
-  - `docs/NhatKySuaLoi.md` là nhật ký sửa lỗi gameplay/code chung. Lỗi gameplay vẫn ghi ở đó; lỗi thuộc 3D / animation / VFX / pipeline đồ hoạ ghi ở đây.
+  - `docs/QuyTac/Model3D_Rules.md` là **luật bắt buộc** đã chắt lọc. Khi một bài học ở đây thành luật chung, chép thêm vào đó.
+  - `docs/QuyTac/NhatKySuaLoi.md` là nhật ký sửa lỗi gameplay/code chung. Lỗi gameplay vẫn ghi ở đó; lỗi thuộc 3D / animation / VFX / pipeline đồ hoạ ghi ở đây.
 - Trước khi bắt đầu một phần việc 3D / animation / VFX: đọc lướt file này cùng `Model3D_Rules.md`.
 
 ## 1. Model, rig, weight, LOD

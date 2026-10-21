@@ -121,7 +121,7 @@ namespace Arena3Q.Core
         void Delete();
     }
 
-    /// <summary>Keeps the profile in memory only (tests must never write files, docs/NhatKySuaLoi.md).</summary>
+    /// <summary>Keeps the profile in memory only (tests must never write files, docs/QuyTac/NhatKySuaLoi.md).</summary>
     public sealed class InMemoryProfileStore : IPlayerProfileStore
     {
         private PlayerProfile _profile;

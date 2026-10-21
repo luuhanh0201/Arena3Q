@@ -13,7 +13,7 @@ namespace Arena3Q.Tests.PlayMode
 {
     /// <summary>
     /// The game flow in the real Frontend scene (spec §2 "Luồng vào game"): screens, profile, and the hand-over to the
-    /// Battle scene. The profile lives in memory: tests never write files (docs/NhatKySuaLoi.md).
+    /// Battle scene. The profile lives in memory: tests never write files (docs/QuyTac/NhatKySuaLoi.md).
     /// </summary>
     public class FrontendFlowTests
     {

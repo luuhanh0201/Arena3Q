@@ -1,5 +1,7 @@
 # AgentComms – kênh giao việc và phối hợp giữa các agent
 
+> Mọi quy tắc làm việc và nhật ký rút kinh nghiệm của dự án (quy tắc người dùng giao, luật 3D, nhật ký vận hành 3D, nhật ký sửa lỗi): **`docs/QuyTac/`** (mục lục `docs/QuyTac/README.md`). File này chỉ là giao thức trao đổi giữa hai agent.
+
 Folder này nằm ở gốc repo, ngoài `Assets/` (Unity không import). Người dùng giao việc cho **từng agent** qua đây; các agent báo cáo và phối hợp với nhau cũng qua đây.
 
 ```
@@ -35,13 +37,13 @@ AgentComms/
 - **Không sửa file / folder mà agent kia đang giữ.** Cần sửa thì ghi yêu cầu vào inbox của agent kia, hoặc hỏi người dùng.
 - Unity Editor và batch mode không chạy song song trên cùng project: agent cần chạy Unity batch thì giữ mục `Unity` trong `STATUS.md`; agent kia không mở Unity cho tới khi mục đó được nhả.
 - Git: mỗi agent chỉ `git add` đúng file của việc mình làm (không `git add -A`), không commit thay đổi của agent kia, commit xong thì push (quy ước của repo). Không `reset`, `checkout --`, `stash` hay xoá thay đổi chưa commit của người khác.
-- Vẫn tuân thủ `CLAUDE.md`, `docs/Tuong/Model3D_Rules.md` và các tài liệu của repo.
+- Vẫn tuân thủ `CLAUDE.md`, `docs/QuyTac/Model3D_Rules.md` và các tài liệu của repo.
 
 ## 5. Git và folder này
 Chỉ `README.md`, `STATUS.md` và các `.gitkeep` được commit; file việc và báo cáo trong inbox / outbox bị `.gitignore` bỏ qua (giao tiếp tạm thời, tránh hai agent xung đột khi commit).
 
 ## 6. Nghiệm thu
-Khi agent làm báo `Trạng thái: xong` cho một phần việc, agent review (từ 2026-10-20: **Codex review, Claude làm**) kiểm tra (test Unity, đo bề mặt, chụp trận thật nhiều góc). **Chỉ khi đạt**, agent review tạo một đợt trong `NghiemThu/<Tướng>/<NN>_<TênĐợt>_<YYYYMMDD>/` với ảnh chụp chi tiết và % so với tài liệu để người dùng tự kiểm (`NghiemThu/README.md`). Chưa đạt thì chỉ có phản hồi trong inbox của agent làm.
+Khi agent làm báo `Trạng thái: xong` cho một phần việc, agent review (từ 2026-10-21 06:40 theo chia việc của người dùng: **Codex làm Mặc Ảnh + Lữ Bố, Claude review phần đó và làm phần chuyển 3D còn lại**; luôn xem ghi chú chia việc / DOI-VAI mới nhất) kiểm tra (test Unity, đo bề mặt, chụp trận thật nhiều góc). **Chỉ khi đạt**, agent review tạo một đợt trong `NghiemThu/<Tướng>/<NN>_<TênĐợt>_<YYYYMMDD>/` với ảnh chụp chi tiết và % so với tài liệu để người dùng tự kiểm (`NghiemThu/README.md`). Chưa đạt thì chỉ có phản hồi trong inbox của agent làm.
 
 ## 7. Ảnh trước – sau cho mỗi chỉnh sửa (bắt buộc, từ 2026-10-20)
 Mỗi lần sửa một phần, dù nhỏ (weight một vùng, một clip, một VFX, đóng gói atlas, thông số nhập ảnh…), agent làm phải:

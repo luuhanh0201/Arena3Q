@@ -1,6 +1,6 @@
 # Quy tắc bắt buộc cho model 3D, animation và VFX
 
-Áp dụng cho mọi nhân vật; Mặc Ảnh là ca hồi quy đầu tiên. Đọc trước khi sửa rig, weight, action, exporter, importer, material hoặc hiệu ứng. Mỗi lỗi mới phải bổ sung nguyên nhân, cách phòng tránh và bằng chứng kiểm tra vào đây cùng `docs/NhatKySuaLoi.md`.
+Áp dụng cho mọi nhân vật; Mặc Ảnh là ca hồi quy đầu tiên. Đọc trước khi sửa rig, weight, action, exporter, importer, material hoặc hiệu ứng. Mỗi lỗi mới phải bổ sung nguyên nhân, cách phòng tránh và bằng chứng kiểm tra vào đây cùng `docs/QuyTac/NhatKySuaLoi.md`.
 
 ## Điều kiện bàn giao
 

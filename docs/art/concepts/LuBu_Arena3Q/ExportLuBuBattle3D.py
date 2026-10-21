@@ -9,7 +9,7 @@ Works on copies in memory; the .blend is never saved.
    (dual quaternion) plus the Corrective Smooth on CS_Zone. New linear 4-bone weights are fitted per vertex so the
    LOD follows that look over every clip: least squares over all sampled frames, weights >= 0 summing to 1, a small
    pull towards the old weights; candidates are the vertex's own bones and its neighbours' bones.
-3. Surface audit per clip (docs/Tuong/Model3D_Rules.md, same metric as DiagnoseLuBuSkin.py): edges stretched > 1.35
+3. Surface audit per clip (docs/QuyTac/Model3D_Rules.md, same metric as DiagnoseLuBuSkin.py): edges stretched > 1.35
    or squashed < 0.65 by more than 0.4 % of the height, for the Blender look, plain top-4 linear skinning and the fit.
 4. FBX: rig + both meshes + the 7 clips (Unity units, no 100x scale); the weapon's images are saved next to it.
 Writes <out>/LuBu_Battle_Audit.json and prints LUBU_EXPORT_DONE at the end.

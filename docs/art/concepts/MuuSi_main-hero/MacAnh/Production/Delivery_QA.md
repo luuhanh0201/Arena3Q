@@ -114,7 +114,7 @@ còn thấy ở ảnh cận 8 mẫu là đặc tính Eevee của mọi bề mặ
 
 ## VFX flipbook – các vòng sau (Claude, 2026-10-20)
 
-Thứ tự sửa và lý do (chi tiết lỗi trong `docs/NhatKySuaLoi.md`, ảnh trước–sau trong `AgentComms/claude/NghiemThu/MacAnh/XemTruoc_*`):
+Thứ tự sửa và lý do (chi tiết lỗi trong `docs/QuyTac/NhatKySuaLoi.md`, ảnh trước–sau trong `AgentComms/claude/NghiemThu/MacAnh/XemTruoc_*`):
 
 1. **Kích thước, độ sáng** (vòng 2–3): lưỡi gió dài hơn (cung 165°), 22 gai + cột giữa cho Skill01, 40 tia + đầu tia + 2 sóng xung kích cho Ultimate, viền/lưới/phù hiệu khiên.
 2. **Gió/khói tự nhiên** (người dùng + review Codex, Model3D_Rules 28–29): lốc Skill02 là volume Eevee (`cyclone_volume_material`: 2 trường nhiễu xoắn theo độ cao quay 1 và 2 vòng/chu kỳ, bán kính thở, trục nghiêng tuế sai, chân/đỉnh tan bằng nhiễu, cage lớn hơn density; tile 1, 160 mẫu, 150 ppu); xoáy đất là nhiễu xoắn theo bán kính; đuôi gió là khói nhiễu 4D lặp bằng cross-fade W (`smoke_ribbon_material`). Gai Skill01 và tia Ultimate: vị trí, độ nghiêng, độ cong, độ dày, độ sáng và nhịp nhấp nháy riêng từng cái. Chỉ hình học trận pháp (vòng phù văn, sao) đều theo chủ ý.

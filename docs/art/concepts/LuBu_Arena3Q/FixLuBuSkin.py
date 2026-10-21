@@ -1,4 +1,4 @@
-"""Repairs Lữ Bố's skin weights where the cloth tears (docs/Tuong/Model3D_Rules.md, review C1–C4 of 2026-10-20).
+"""Repairs Lữ Bố's skin weights where the cloth tears (docs/QuyTac/Model3D_Rules.md, review C1–C4 of 2026-10-20).
 
 blender -b LuBu_Arena3Q_Smooth.blend --python FixLuBuSkin.py -- [--save OUT.blend] [--arm-radius 0.075]
         [--seam 0.6] [--rings 6] [--iterations 30] [--alpha 0.5] [--report OUT.json]
