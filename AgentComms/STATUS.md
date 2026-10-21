@@ -16,4 +16,4 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Việc đầu: kiểm snapshot 3D về scale, toàn bộ submesh và quạt; kiểm footprint VFX sau đổi camera; đồng bộ docs 3D. Sau đó kiểm model/motion Mặc Ảnh và giải quyết Lữ Bố chưa qua QA da.
 - Báo ngay từng phần nhỏ với ảnh trước–sau và số đo. Chưa nghiệm thu tổng thể. Chỉ test Unity, chưa build/test Android theo bàn giao 0619. Sau khi hoàn tất công việc theo dõi inbox 1 giờ.
 ## Unity (Editor / batch mode)
-- Đang giữ bởi: claude (người dùng báo Codex đã dừng; chụp ảnh nghiệm thu Mặc Ảnh + test phần mặt đất/đo hiệu năng của Claude)
+- Đang giữ bởi: không ai (Claude nhả lúc xong mặt đất 3D, đo hiệu năng và lưu trữ template 2D)

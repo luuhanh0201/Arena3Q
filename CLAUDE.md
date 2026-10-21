@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project state
 
-Arena3Q is a Unity **6000.6.6f1** project (2D URP template) with a playable PvE prototype: Attack and Defense stages, hero summoning, squads, commands, camera and HUD with placeholder art, hero levels / stars / factions, hero skills (passive, auto-cast skills, rage ultimates), and the game flow (intro → login → server → lord select → name → opening story → tutorial battle). The startup scene is `Assets/Arena3Q/Scenes/Frontend.unity` (the game flow), which hands the battle to `Assets/Arena3Q/Scenes/Battle.unity`; Battle can still be played on its own in the Editor (it then uses the stage's test loadout). The template's `Assets/Welcome/` and `Assets/Scenes/SampleScene.unity` are untouched leftovers.
+Arena3Q is a Unity **6000.6.6f1** project (2D URP template) with a playable PvE prototype: Attack and Defense stages, hero summoning, squads, commands, camera and HUD with placeholder art, hero levels / stars / factions, hero skills (passive, auto-cast skills, rage ultimates), and the game flow (intro → login → server → lord select → name → opening story → tutorial battle). The startup scene is `Assets/Arena3Q/Scenes/Frontend.unity` (the game flow), which hands the battle to `Assets/Arena3Q/Scenes/Battle.unity`; Battle can still be played on its own in the Editor (it then uses the stage's test loadout). The template's `Assets/Welcome/` and `Assets/Scenes/SampleScene.unity` were moved out of the repo to `D:\UnityProjects\Arena3Q_Archive_2D` (2D-only files are archived there, not deleted; see its README).
 
 **Current direction (2026-10-21): 3D presentation.** Battle uses the Universal Forward renderer (index 1), a tilted orthographic camera and direct skinned models. The 2D-template description above is project history. Read `docs/KeHoach/ChuyenSang3D.md` §12: ground is XY at z=0, world up is −Z, logic remains Vector2. Work split since 06:40: Codex makes Mặc Ảnh and Lữ Bố (and Claude reviews them), Claude makes the non-hero rest of the conversion (see `AgentComms/STATUS.md`); validate in Unity for now, Android build/device testing is deferred by the user. Do not claim the device performance gate has passed.
 
@@ -56,8 +56,6 @@ Assets/
     Scenes/Frontend.unity       startup scene (first in Build Settings): the game flow
     Scenes/Battle.unity         the battle (second in Build Settings; also playable on its own)
   Settings/                     URP / 2D renderer, input actions, scene template, Build Profiles/ (Android Dev)
-  Scenes/SampleScene.unity      template leftover, still in Build Settings after Battle
-  Welcome/                      template Unity Learn welcome page (Unity.2D.Welcome asmdef)
 Packages/, ProjectSettings/     Unity-managed
 ```
 
@@ -87,7 +85,7 @@ All game code is under `Assets/Arena3Q/Scripts`, one asmdef per folder, dependen
 - Unity generates `.csproj`/`.slnx` files and everything under `Library/`, `Temp/`, `Logs/`, and `UserSettings/`. Don't edit these by hand; they're gitignored or regenerated.
 - Every asset under `Assets/` needs its `.meta` file committed alongside it. When creating, moving, or deleting assets outside the Editor, keep the `.meta` file in sync (moving it with the asset keeps its GUID, so scene and prefab references survive).
 - Scenes, prefabs, and `.asset` files are YAML referencing GUIDs/fileIDs. Avoid hand-editing them except for trivial, well-understood changes.
-- New gameplay code should live in its own assembly definition so it compiles separately from the template's `Unity.2D.Welcome` assembly. Tests need a separate test asmdef that references `UnityEngine.TestRunner`/`UnityEditor.TestRunner` (Test Framework 1.8).
+- New gameplay code should live in its own assembly definition so it compiles separately from other assemblies. Tests need a separate test asmdef that references `UnityEngine.TestRunner`/`UnityEditor.TestRunner` (Test Framework 1.8).
 
 ## Command-line build and test
 
