@@ -205,7 +205,8 @@ namespace Arena3Q.Gameplay
                     (_clip?.state == HeroAnimationState.Walk ? 0.08f : 0f));
                 var walk = speed < walkLimit;
                 Play(walk ? HeroAnimationState.Walk : HeroAnimationState.Run);
-                var stride = walk ? _set.WalkStrideLength : _set.RunStrideLength;
+                // Stride of the drawn picture (heroes are drawn larger than their size): keeps the feet planted.
+                var stride = (walk ? _set.WalkStrideLength : _set.RunStrideLength) * _hero.DrawnSize;
                 rate = speed * (_clip?.duration ?? 1f) / Mathf.Max(0.01f, stride);
                 _gaitRate = rate;
             }

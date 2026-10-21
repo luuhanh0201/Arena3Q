@@ -98,7 +98,8 @@ namespace Arena3Q.Gameplay
                 var walk = speed < _hero.MoveSpeed * (Action == MacAnhAction.Walk ? .62f : .54f);
                 Play(moving ? (walk ? MacAnhAction.Walk : MacAnhAction.Run) : MacAnhAction.Idle,
                     moving ? _hero.LocomotionVelocity : Vector2.zero);
-                var stride = walk ? _set.WalkStrideLength : _set.RunStrideLength;
+                // Stride of the drawn model (heroes are drawn larger than their size): keeps the feet planted.
+                var stride = (walk ? _set.WalkStrideLength : _set.RunStrideLength) * _hero.DrawnSize;
                 _seconds += delta * (moving ? speed * _clip.duration / stride : 1f);
             }
             _angle = Mathf.MoveTowardsAngle(_angle, _targetAngle, 720f * delta);

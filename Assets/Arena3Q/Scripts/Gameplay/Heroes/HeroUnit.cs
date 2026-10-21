@@ -102,6 +102,12 @@ namespace Arena3Q.Gameplay
 
         public void SetSelected(bool selected) => Visual.SetSelected(selected);
 
+        /// <summary>
+        /// How much larger than its own size the hero is drawn (BattleViewConfig.HeroModelScale): its steps on screen are
+        /// that much longer, so the walk and run clips must play that much slower to keep the feet planted.
+        /// </summary>
+        public float DrawnSize => Visual.BodySize;
+
         public override float CurrentAttackInterval =>
             base.CurrentAttackInterval / Skills.AttackSpeedMultiplier(Health / MaxHealth);
 

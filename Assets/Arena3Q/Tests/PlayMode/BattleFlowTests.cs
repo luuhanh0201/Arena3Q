@@ -874,6 +874,88 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator Presentation3D_MacAnhRunning_PlantedFeetDoNotSlide()
+        {
+            Assume.That(_battle.Presentation3D, Is.True, "3D presentation is the shipped default");
+            var definition = AssetDatabase.FindAssets("t:HeroDefinition")
+                .Select(g => AssetDatabase.LoadAssetAtPath<HeroDefinition>(AssetDatabase.GUIDToAssetPath(g)))
+                .First(h => h != null && h.MacAnhPerformance != null);
+            foreach (var (distance, gait) in new[] { (8f, "run") })
+            {
+                _battle.StartBattle(Stage(0), new[] { new LineupEntry(definition, 1) });
+                Assert.That(_battle.TrySummon(SummonRequest.Quick(0)).Accepted, Is.True);
+                var hero = _battle.GetHero(_battle.State.Cards[0].Hero);
+                foreach (var unit in _battle.Registry.Units)
+                    if (unit != null && unit.Team != hero.Team)
+                        unit.ApplyStatus(StatusKind.Stun, 1, 30);
+                _battle.TrySelectHero(hero.Id);
+                yield return null;
+                var toes = hero.GetComponentsInChildren<Transform>(true).Where(t => t.name == "LeftToe" || t.name == "RightToe")
+                    .ToArray();
+                Assert.That(toes.Length, Is.EqualTo(2), "the 3D model is in the battle");
+                _battle.MoveSelectedHero(hero.Position + Vector2.left * distance);
+                const float dt = 1f / 60f;
+                // Ground velocity of each toe along the run direction (+ = with the body = gliding, - = backwards).
+                var direction = Vector2.left;
+                var samples = new List<(int toe, float height, float groundSpeed, float bodySpeed)>();
+                var last = toes.Select(t => t.position).ToArray();
+                var lastBody = hero.transform.position;
+                var lastClip = hero.Performance.View.Seconds;
+                for (var frame = 0; frame < 80; frame++)
+                {
+                    _battle.Simulate(dt);
+                    yield return null;
+                    var body = ((Vector2)(hero.transform.position - lastBody)).magnitude / dt;
+                    if (frame == 40)
+                        Debug.Log($"[Arena3Q] FEET diag: body {body:0.00} m/s, locomotion {hero.LocomotionVelocity.magnitude:0.00}, " +
+                                  $"clip rate {(hero.Performance.View.Seconds - lastClip) / dt:0.00} s/s, action {hero.Performance.View.Action}, " +
+                                  $"drawn {hero.DrawnSize}, toe scale {toes[0].lossyScale.x:0.000}");
+                    lastBody = hero.transform.position;
+                    lastClip = hero.Performance.View.Seconds;
+                    for (var i = 0; i < toes.Length; i++)
+                    {
+                        var p = toes[i].position;
+                        // Ground = XY, up = -Z; only once the gait has settled.
+                        if (frame >= 15 && body > .05f)
+                            samples.Add((i, -p.z, Vector2.Dot(new Vector2(p.x - last[i].x, p.y - last[i].y), direction) / dt, body));
+                        last[i] = p;
+                    }
+                }
+                Assert.That(samples, Is.Not.Empty, $"{gait}: the hero moved");
+                // A planted toe (within 5 mm of its lowest point, at the drawn size) must stay put while the body moves.
+                var planted = samples.Where(s => s.height < samples.Where(o => o.toe == s.toe).Min(o => o.height) + .005f * hero.DrawnSize)
+                    .ToArray();
+                var slip = planted.Average(s => s.groundSpeed) / planted.Average(s => s.bodySpeed);
+                Debug.Log($"[Arena3Q] FEET {gait}: planted toe moves at {slip:P0} of the body speed ({planted.Length} samples)");
+                Assert.That(Mathf.Abs(slip), Is.LessThan(.12f), $"{gait}: planted feet slide (+ gliding, - moonwalking)");
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator Presentation3D_Bloom_FollowsTheViewData()
+        {
+            Assume.That(_battle.Presentation3D, Is.True, "3D presentation is the shipped default");
+            _battle.StartBattle(0);
+            yield return null;
+            var view = _battle.View;
+            var data = Camera.main.GetComponent<UnityEngine.Rendering.Universal.UniversalAdditionalCameraData>();
+            Assert.That(data.renderPostProcessing, Is.EqualTo(view.Bloom), "post-processing only when the data asks for bloom");
+            var volumes = _battle.GetComponentsInChildren<UnityEngine.Rendering.Volume>();
+            Assert.That(volumes.Length, Is.EqualTo(view.Bloom ? 1 : 0), "one bloom volume per battle");
+            if (!view.Bloom)
+                yield break;
+            Assert.That(volumes[0].isGlobal, Is.True);
+            Assert.That(volumes[0].sharedProfile.TryGet<UnityEngine.Rendering.Universal.Bloom>(out var bloom), Is.True);
+            Assert.That(bloom.intensity.value, Is.EqualTo(view.BloomIntensity));
+            Assert.That(bloom.threshold.value, Is.EqualTo(view.BloomThreshold));
+            Assert.That(BattleView3D.EffectBloomBoost, Is.EqualTo(view.EffectBloomBoost), "effects push their light");
+            // A second battle reuses the profile and does not pile up volumes.
+            _battle.StartBattle(0);
+            yield return null;
+            Assert.That(_battle.GetComponentsInChildren<UnityEngine.Rendering.Volume>().Length, Is.EqualTo(1));
+        }
+
+        [UnityTest]
         public IEnumerator Presentation3D_AreaEffectPicturesComeForward_TheCasterAuraStaysBehind()
         {
             Assume.That(_battle.Presentation3D, Is.True, "3D presentation is the shipped default");

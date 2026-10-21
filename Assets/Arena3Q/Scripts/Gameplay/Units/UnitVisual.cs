@@ -130,6 +130,9 @@ namespace Arena3Q.Gameplay
         /// Draws the body (picture, the model attached to it, or the placeholder body and its shadow) larger than the
         /// unit's gameplay size; the markers move above it. Pictures only: radius and reach do not change.
         /// </summary>
+        /// <summary>Drawn size of the body over the unit's gameplay size (1 unless SetBodySize).</summary>
+        public float BodySize => _bodySize;
+
         public void SetBodySize(float size)
         {
             if (_shadow != null)
