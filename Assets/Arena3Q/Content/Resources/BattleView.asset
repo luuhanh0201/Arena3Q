@@ -27,4 +27,5 @@ MonoBehaviour:
   propShadowAlpha: 0.3
   decorModelScale: 1.5
   heroModelScale: 1.3
+  effectDepthBias: 1.25
   groundMaterial: {fileID: 2100000, guid: 03564c41ad1c40dc9f753a0a7af9b75d, type: 2}

@@ -41,6 +41,7 @@ namespace Arena3Q.Gameplay
             fx.gameObject.SetActive(true); _active.Add(fx);
             _lastEffectTime[fx]=_battle.BattleTime;
             fx.SetUpright(_battle.UprightRotation);
+            fx.SetDepthBias(_battle.Presentation3D ? _battle.View.EffectDepthBias : 0f);
             fx.Begin(quality, seconds, sortingOrder, Release, follow);
             fx.ManualClock = true;
             fx.SetGroundLayers();

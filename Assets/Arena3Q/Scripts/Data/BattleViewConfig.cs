@@ -67,6 +67,10 @@ namespace Arena3Q.Data
         [Tooltip("Drawn size of the heroes (picture, 3D model or placeholder body) over their gameplay size; troops and " +
                  "enemies keep theirs. Pictures only: body radius and reach do not change.")]
         [SerializeField, Min(0.1f)] private float heroModelScale = 1.3f;
+        [Tooltip("Upright pictures of area effects at a target (Mặc Ảnh flipbooks) are drawn this many effect radii nearer the camera along " +
+                 "the view, so a 3D model at the target (a command post) does not cut them off with a straight line. " +
+                 "The camera is orthographic, so they stay in the same place on screen.")]
+        [SerializeField, Min(0f)] private float effectDepthBias = 1.25f;
 
         [Header("Motion")]
         [Tooltip("How high a knocked-up unit rises at the top of its arc (metres).")]
@@ -77,6 +81,7 @@ namespace Arena3Q.Data
         public float PropShadowAlpha => propShadowAlpha;
         public float DecorModelScale => decorModelScale;
         public float HeroModelScale => heroModelScale;
+        public float EffectDepthBias => effectDepthBias;
         public bool Presentation3D => presentation3D;
         public Material UnitMaterial => unitMaterial;
         public float PlaceholderHeight => placeholderHeight;

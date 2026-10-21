@@ -16,5 +16,7 @@ namespace Arena3Q.Gameplay
     public interface IMacAnhBillboard
     {
         void SetUpright(Quaternion upright);
+        /// <summary>How many effect radii nearer the camera upright pictures are drawn (BattleViewConfig.EffectDepthBias).</summary>
+        void SetDepthBias(float effectRadii);
     }
 }

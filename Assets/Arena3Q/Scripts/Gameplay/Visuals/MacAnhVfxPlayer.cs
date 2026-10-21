@@ -143,6 +143,11 @@ namespace Arena3Q.Gameplay
         /// <summary>3D: upright layers face the camera with this rotation; ground layers stay on the ground.</summary>
         public void SetUpright(Quaternion upright) => _upright = upright;
 
+        private float _depthBias;
+
+        /// <summary>3D: upright layers are drawn this many effect radii nearer the camera (see Apply).</summary>
+        public void SetDepthBias(float effectRadii) => _depthBias = Mathf.Max(0f, effectRadii);
+
         public void SetCharge()
         {
             _phase = MacAnhVfxPhase.Charge;
@@ -299,6 +304,11 @@ namespace Arena3Q.Gameplay
                     var roll = transform.rotation;
                     root.localRotation = Quaternion.Inverse(roll) * _upright * roll;
                     root.localPosition = root.localRotation * new Vector3(0f, layer.height * _scale, 0f);
+                    // Moved towards the camera along the view: with the orthographic camera it stays in the same place
+                    // on screen, but a 3D model at the target (a command post) no longer cuts it off with a straight line.
+                    if (_depthBias > 0f)
+                        root.localPosition += transform.InverseTransformVector(
+                            _upright * Vector3.back * (_depthBias * _scale * recipe.referenceRadius));
                     // Ground is foreshortened by the tilted camera; the billboard itself is not.
                     // Identity upright retains the legacy flat-camera projection.
                     var cameraProjection = Mathf.Abs((_upright * Vector3.forward).z);

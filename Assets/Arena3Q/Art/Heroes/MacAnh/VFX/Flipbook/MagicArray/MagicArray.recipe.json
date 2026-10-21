@@ -1,526 +1,547 @@
-﻿{
-    "name":  "MagicArray",
-    "referenceRadius":  1.0,
-    "renderProjection":  0.75,
-    "pages":  [
-                  "MagicArray_p00.png",
-                  "MagicArray_p01.png"
-              ],
-    "layers":  [
-                   {
-                       "name":  "ChargeFill",
-                       "ppu":  120,
-                       "framesPerSecond":  1,
-                       "loop":  false,
-                       "plane":  "Ground",
-                       "phase":  "Charge",
-                       "start":  0,
-                       "end":  0,
-                       "fadeIn":  0.25,
-                       "fadeOut":  0,
-                       "scaleFrom":  1.2,
-                       "scaleTo":  0.95,
-                       "spin":  0,
-                       "height":  0,
-                       "glow":  0.7,
-                       "underlay":  0.85,
-                       "underlayColour":  [
-                                              0.22,
-                                              0.07,
-                                              0.45,
-                                              1
-                                          ],
-                       "tint":  [
-                                    1,
-                                    1,
-                                    1,
-                                    1
-                                ],
-                       "sortingOffset":  0,
-                       "highQualityOnly":  false,
-                       "stretchToGround":  false,
-                       "frames":  [
-                                      {
-                                          "page":  0,
-                                          "x":  0,
-                                          "y":  0,
-                                          "width":  264,
-                                          "height":  264,
-                                          "pivot_x":  0.5,
-                                          "pivot_y":  0.5
-                                      }
-                                  ]
-                   },
-                   {
-                       "name":  "ChargeOuter",
-                       "ppu":  120,
-                       "framesPerSecond":  1,
-                       "loop":  false,
-                       "plane":  "Ground",
-                       "phase":  "Charge",
-                       "start":  0,
-                       "end":  0,
-                       "fadeIn":  0.25,
-                       "fadeOut":  0,
-                       "scaleFrom":  0.46875,
-                       "scaleTo":  0.35624999999999996,
-                       "spin":  60,
-                       "height":  0,
-                       "glow":  0.85,
-                       "underlay":  0.9,
-                       "underlayColour":  [
-                                              0.22,
-                                              0.07,
-                                              0.45,
-                                              1
-                                          ],
-                       "tint":  [
-                                    1,
-                                    1,
-                                    1,
-                                    1
-                                ],
-                       "sortingOffset":  1,
-                       "highQualityOnly":  false,
-                       "stretchToGround":  false,
-                       "frames":  [
-                                      {
-                                          "page":  0,
-                                          "x":  266,
-                                          "y":  0,
-                                          "width":  720,
-                                          "height":  720,
-                                          "pivot_x":  0.5,
-                                          "pivot_y":  0.5
-                                      }
-                                  ]
-                   },
-                   {
-                       "name":  "ChargeInner",
-                       "ppu":  120,
-                       "framesPerSecond":  1,
-                       "loop":  false,
-                       "plane":  "Ground",
-                       "phase":  "Charge",
-                       "start":  0,
-                       "end":  0,
-                       "fadeIn":  0.3,
-                       "fadeOut":  0,
-                       "scaleFrom":  0.48750000000000004,
-                       "scaleTo":  0.3375,
-                       "spin":  -90,
-                       "height":  0,
-                       "glow":  0.85,
-                       "underlay":  0.9,
-                       "underlayColour":  [
-                                              0.22,
-                                              0.07,
-                                              0.45,
-                                              1
-                                          ],
-                       "tint":  [
-                                    1,
-                                    1,
-                                    1,
-                                    1
-                                ],
-                       "sortingOffset":  2,
-                       "highQualityOnly":  false,
-                       "stretchToGround":  false,
-                       "frames":  [
-                                      {
-                                          "page":  0,
-                                          "x":  988,
-                                          "y":  0,
-                                          "width":  464,
-                                          "height":  464,
-                                          "pivot_x":  0.5,
-                                          "pivot_y":  0.5
-                                      }
-                                  ]
-                   },
-                   {
-                       "name":  "Fill",
-                       "ppu":  120,
-                       "framesPerSecond":  1,
-                       "loop":  false,
-                       "plane":  "Ground",
-                       "phase":  "Release",
-                       "start":  0,
-                       "end":  0,
-                       "fadeIn":  0.05,
-                       "fadeOut":  0.35,
-                       "scaleFrom":  1.0,
-                       "scaleTo":  1.0,
-                       "spin":  0,
-                       "height":  0,
-                       "glow":  0.7,
-                       "underlay":  0.85,
-                       "underlayColour":  [
-                                              0.22,
-                                              0.07,
-                                              0.45,
-                                              1
-                                          ],
-                       "tint":  [
-                                    1,
-                                    1,
-                                    1,
-                                    1
-                                ],
-                       "sortingOffset":  0,
-                       "highQualityOnly":  false,
-                       "stretchToGround":  false,
-                       "frames":  [
-                                      {
-                                          "page":  0,
-                                          "x":  1454,
-                                          "y":  0,
-                                          "width":  264,
-                                          "height":  264,
-                                          "pivot_x":  0.5,
-                                          "pivot_y":  0.5
-                                      }
-                                  ]
-                   },
-                   {
-                       "name":  "Outer",
-                       "ppu":  120,
-                       "framesPerSecond":  1,
-                       "loop":  false,
-                       "plane":  "Ground",
-                       "phase":  "Release",
-                       "start":  0,
-                       "end":  0,
-                       "fadeIn":  0.05,
-                       "fadeOut":  0.35,
-                       "scaleFrom":  0.35624999999999996,
-                       "scaleTo":  0.375,
-                       "spin":  18,
-                       "height":  0,
-                       "glow":  0.85,
-                       "underlay":  0.9,
-                       "underlayColour":  [
-                                              0.22,
-                                              0.07,
-                                              0.45,
-                                              1
-                                          ],
-                       "tint":  [
-                                    1,
-                                    1,
-                                    1,
-                                    1
-                                ],
-                       "sortingOffset":  1,
-                       "highQualityOnly":  false,
-                       "stretchToGround":  false,
-                       "frames":  [
-                                      {
-                                          "page":  0,
-                                          "x":  0,
-                                          "y":  722,
-                                          "width":  720,
-                                          "height":  720,
-                                          "pivot_x":  0.5,
-                                          "pivot_y":  0.5
-                                      }
-                                  ]
-                   },
-                   {
-                       "name":  "Inner",
-                       "ppu":  120,
-                       "framesPerSecond":  1,
-                       "loop":  false,
-                       "plane":  "Ground",
-                       "phase":  "Release",
-                       "start":  0,
-                       "end":  0,
-                       "fadeIn":  0.05,
-                       "fadeOut":  0.35,
-                       "scaleFrom":  0.3375,
-                       "scaleTo":  0.375,
-                       "spin":  -28,
-                       "height":  0,
-                       "glow":  0.85,
-                       "underlay":  0.9,
-                       "underlayColour":  [
-                                              0.22,
-                                              0.07,
-                                              0.45,
-                                              1
-                                          ],
-                       "tint":  [
-                                    1,
-                                    1,
-                                    1,
-                                    1
-                                ],
-                       "sortingOffset":  2,
-                       "highQualityOnly":  false,
-                       "stretchToGround":  false,
-                       "frames":  [
-                                      {
-                                          "page":  0,
-                                          "x":  722,
-                                          "y":  722,
-                                          "width":  464,
-                                          "height":  464,
-                                          "pivot_x":  0.5,
-                                          "pivot_y":  0.5
-                                      }
-                                  ]
-                   },
-                   {
-                       "name":  "Spikes",
-                       "ppu":  120,
-                       "framesPerSecond":  30,
-                       "loop":  false,
-                       "plane":  "Upright",
-                       "phase":  "Release",
-                       "start":  0,
-                       "end":  0.82,
-                       "fadeIn":  0,
-                       "fadeOut":  0.15,
-                       "scaleFrom":  1,
-                       "scaleTo":  1,
-                       "spin":  0,
-                       "height":  0,
-                       "glow":  1.2,
-                       "underlay":  0.7,
-                       "underlayColour":  [
-                                              0.22,
-                                              0.07,
-                                              0.45,
-                                              1
-                                          ],
-                       "tint":  [
-                                    1,
-                                    1,
-                                    1,
-                                    1
-                                ],
-                       "sortingOffset":  3,
-                       "highQualityOnly":  false,
-                       "stretchToGround":  true,
-                       "frames":  [
-                                      {
-                                          "page":  0,
-                                          "x":  1188,
-                                          "y":  722,
-                                          "width":  144,
-                                          "height":  140,
-                                          "pivot_x":  0.5,
-                                          "pivot_y":  0.49756171703338625
-                                      },
-                                      {
-                                          "page":  0,
-                                          "x":  1334,
-                                          "y":  722,
-                                          "width":  176,
-                                          "height":  191,
-                                          "pivot_x":  0.4715909090909091,
-                                          "pivot_y":  0.40658974023389566
-                                      },
-                                      {
-                                          "page":  0,
-                                          "x":  1512,
-                                          "y":  722,
-                                          "width":  273,
-                                          "height":  254,
-                                          "pivot_x":  0.42857142857142855,
-                                          "pivot_y":  0.3372387416719452
-                                      },
-                                      {
-                                          "page":  0,
-                                          "x":  0,
-                                          "y":  1444,
-                                          "width":  299,
-                                          "height":  337,
-                                          "pivot_x":  0.4782608695652174,
-                                          "pivot_y":  0.29572296850051655
-                                      },
-                                      {
-                                          "page":  0,
-                                          "x":  301,
-                                          "y":  1444,
-                                          "width":  300,
-                                          "height":  356,
-                                          "pivot_x":  0.48,
-                                          "pivot_y":  0.338928765125489
-                                      },
-                                      {
-                                          "page":  0,
-                                          "x":  603,
-                                          "y":  1444,
-                                          "width":  312,
-                                          "height":  363,
-                                          "pivot_x":  0.5,
-                                          "pivot_y":  0.33239294871811037
-                                      },
-                                      {
-                                          "page":  0,
-                                          "x":  917,
-                                          "y":  1444,
-                                          "width":  312,
-                                          "height":  368,
-                                          "pivot_x":  0.5,
-                                          "pivot_y":  0.32787674017574475
-                                      },
-                                      {
-                                          "page":  0,
-                                          "x":  1231,
-                                          "y":  1444,
-                                          "width":  312,
-                                          "height":  358,
-                                          "pivot_x":  0.5,
-                                          "pivot_y":  0.3370353083370784
-                                      },
-                                      {
-                                          "page":  0,
-                                          "x":  1545,
-                                          "y":  1444,
-                                          "width":  312,
-                                          "height":  356,
-                                          "pivot_x":  0.5,
-                                          "pivot_y":  0.338928765125489
-                                      },
-                                      {
-                                          "page":  1,
-                                          "x":  0,
-                                          "y":  0,
-                                          "width":  312,
-                                          "height":  353,
-                                          "pivot_x":  0.5,
-                                          "pivot_y":  0.3418091795599832
-                                      },
-                                      {
-                                          "page":  1,
-                                          "x":  314,
-                                          "y":  0,
-                                          "width":  308,
-                                          "height":  341,
-                                          "pivot_x":  0.4935064935064935,
-                                          "pivot_y":  0.34797255244772457
-                                      },
-                                      {
-                                          "page":  1,
-                                          "x":  624,
-                                          "y":  0,
-                                          "width":  312,
-                                          "height":  337,
-                                          "pivot_x":  0.5,
-                                          "pivot_y":  0.3521027904589735
-                                      },
-                                      {
-                                          "page":  1,
-                                          "x":  938,
-                                          "y":  0,
-                                          "width":  312,
-                                          "height":  331,
-                                          "pivot_x":  0.5,
-                                          "pivot_y":  0.33733728212892466
-                                      },
-                                      {
-                                          "page":  1,
-                                          "x":  1252,
-                                          "y":  0,
-                                          "width":  280,
-                                          "height":  323,
-                                          "pivot_x":  0.46785714285714286,
-                                          "pivot_y":  0.34878836032406835
-                                      },
-                                      {
-                                          "page":  1,
-                                          "x":  1534,
-                                          "y":  0,
-                                          "width":  287,
-                                          "height":  302,
-                                          "pivot_x":  0.4738675958188153,
-                                          "pivot_y":  0.2935716569028943
-                                      },
-                                      {
-                                          "page":  1,
-                                          "x":  0,
-                                          "y":  355,
-                                          "width":  283,
-                                          "height":  309,
-                                          "pivot_x":  0.4734982332155477,
-                                          "pivot_y":  0.3192836258403692
-                                      },
-                                      {
-                                          "page":  1,
-                                          "x":  285,
-                                          "y":  355,
-                                          "width":  276,
-                                          "height":  285,
-                                          "pivot_x":  0.4601449275362319,
-                                          "pivot_y":  0.26196014170061077
-                                      },
-                                      {
-                                          "page":  1,
-                                          "x":  563,
-                                          "y":  355,
-                                          "width":  276,
-                                          "height":  287,
-                                          "pivot_x":  0.4601449275362319,
-                                          "pivot_y":  0.2705875971591431
-                                      },
-                                      {
-                                          "page":  1,
-                                          "x":  841,
-                                          "y":  355,
-                                          "width":  276,
-                                          "height":  284,
-                                          "pivot_x":  0.4601449275362319,
-                                          "pivot_y":  0.2628825365657538
-                                      },
-                                      {
-                                          "page":  1,
-                                          "x":  1119,
-                                          "y":  355,
-                                          "width":  276,
-                                          "height":  284,
-                                          "pivot_x":  0.4601449275362319,
-                                          "pivot_y":  0.2628825365657538
-                                      },
-                                      {
-                                          "page":  1,
-                                          "x":  1397,
-                                          "y":  355,
-                                          "width":  276,
-                                          "height":  260,
-                                          "pivot_x":  0.4601449275362319,
-                                          "pivot_y":  0.28714861686413107
-                                      },
-                                      {
-                                          "page":  1,
-                                          "x":  1675,
-                                          "y":  355,
-                                          "width":  267,
-                                          "height":  259,
-                                          "pivot_x":  0.4419475655430712,
-                                          "pivot_y":  0.2843962949215215
-                                      },
-                                      {
-                                          "page":  1,
-                                          "x":  0,
-                                          "y":  666,
-                                          "width":  266,
-                                          "height":  242,
-                                          "pivot_x":  0.44360902255639095,
-                                          "pivot_y":  0.2341266131598102
-                                      },
-                                      {
-                                          "page":  1,
-                                          "x":  268,
-                                          "y":  666,
-                                          "width":  212,
-                                          "height":  242,
-                                          "pivot_x":  0.5518867924528302,
-                                          "pivot_y":  0.2341266131598102
-                                      }
-                                  ]
-                   }
-               ]
+{
+ "name": "MagicArray",
+ "referenceRadius": 1.0,
+ "renderProjection": 0.75,
+ "pages": [
+  "MagicArray_p00.png",
+  "MagicArray_p01.png"
+ ],
+ "layers": [
+  {
+   "name": "ChargeFill",
+   "ppu": 120,
+   "framesPerSecond": 1,
+   "loop": false,
+   "plane": "Ground",
+   "phase": "Charge",
+   "start": 0,
+   "end": 0,
+   "fadeIn": 0.25,
+   "fadeOut": 0,
+   "scaleFrom": 1.2,
+   "scaleTo": 0.95,
+   "spin": 0,
+   "height": 0,
+   "glow": 0.7,
+   "underlay": 0.85,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 0,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "breath": 0.45,
+   "noiseScale": 2.5,
+   "dissolve": true,
+   "frames": [
+    {
+     "page": 0,
+     "x": 0,
+     "y": 0,
+     "width": 264,
+     "height": 264,
+     "pivot_x": 0.5,
+     "pivot_y": 0.5
+    }
+   ]
+  },
+  {
+   "name": "ChargeOuter",
+   "ppu": 120,
+   "framesPerSecond": 1,
+   "loop": false,
+   "plane": "Ground",
+   "phase": "Charge",
+   "start": 0,
+   "end": 0,
+   "fadeIn": 0.25,
+   "fadeOut": 0,
+   "scaleFrom": 0.46875,
+   "scaleTo": 0.35624999999999996,
+   "spin": 60,
+   "height": 0,
+   "glow": 0.85,
+   "underlay": 0.9,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 1,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "breath": 0.45,
+   "noiseScale": 2.5,
+   "dissolve": true,
+   "frames": [
+    {
+     "page": 0,
+     "x": 266,
+     "y": 0,
+     "width": 720,
+     "height": 720,
+     "pivot_x": 0.5,
+     "pivot_y": 0.5
+    }
+   ]
+  },
+  {
+   "name": "ChargeInner",
+   "ppu": 120,
+   "framesPerSecond": 1,
+   "loop": false,
+   "plane": "Ground",
+   "phase": "Charge",
+   "start": 0,
+   "end": 0,
+   "fadeIn": 0.3,
+   "fadeOut": 0,
+   "scaleFrom": 0.48750000000000004,
+   "scaleTo": 0.3375,
+   "spin": -90,
+   "height": 0,
+   "glow": 0.85,
+   "underlay": 0.9,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 2,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "breath": 0.45,
+   "noiseScale": 2.5,
+   "dissolve": true,
+   "frames": [
+    {
+     "page": 0,
+     "x": 988,
+     "y": 0,
+     "width": 464,
+     "height": 464,
+     "pivot_x": 0.5,
+     "pivot_y": 0.5
+    }
+   ]
+  },
+  {
+   "name": "Fill",
+   "ppu": 120,
+   "framesPerSecond": 1,
+   "loop": false,
+   "plane": "Ground",
+   "phase": "Release",
+   "start": 0,
+   "end": 0,
+   "fadeIn": 0.05,
+   "fadeOut": 0.35,
+   "scaleFrom": 1.0,
+   "scaleTo": 1.0,
+   "spin": 0,
+   "height": 0,
+   "glow": 0.7,
+   "underlay": 0.85,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 0,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "breath": 0.45,
+   "noiseScale": 2.5,
+   "dissolve": true,
+   "frames": [
+    {
+     "page": 0,
+     "x": 1454,
+     "y": 0,
+     "width": 264,
+     "height": 264,
+     "pivot_x": 0.5,
+     "pivot_y": 0.5
+    }
+   ]
+  },
+  {
+   "name": "Outer",
+   "ppu": 120,
+   "framesPerSecond": 1,
+   "loop": false,
+   "plane": "Ground",
+   "phase": "Release",
+   "start": 0,
+   "end": 0,
+   "fadeIn": 0.05,
+   "fadeOut": 0.35,
+   "scaleFrom": 0.35624999999999996,
+   "scaleTo": 0.375,
+   "spin": 18,
+   "height": 0,
+   "glow": 0.85,
+   "underlay": 0.9,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 1,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "breath": 0.45,
+   "noiseScale": 2.5,
+   "dissolve": true,
+   "frames": [
+    {
+     "page": 0,
+     "x": 0,
+     "y": 722,
+     "width": 720,
+     "height": 720,
+     "pivot_x": 0.5,
+     "pivot_y": 0.5
+    }
+   ]
+  },
+  {
+   "name": "Inner",
+   "ppu": 120,
+   "framesPerSecond": 1,
+   "loop": false,
+   "plane": "Ground",
+   "phase": "Release",
+   "start": 0,
+   "end": 0,
+   "fadeIn": 0.05,
+   "fadeOut": 0.35,
+   "scaleFrom": 0.3375,
+   "scaleTo": 0.375,
+   "spin": -28,
+   "height": 0,
+   "glow": 0.85,
+   "underlay": 0.9,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 2,
+   "highQualityOnly": false,
+   "stretchToGround": false,
+   "breath": 0.45,
+   "noiseScale": 2.5,
+   "dissolve": true,
+   "frames": [
+    {
+     "page": 0,
+     "x": 722,
+     "y": 722,
+     "width": 464,
+     "height": 464,
+     "pivot_x": 0.5,
+     "pivot_y": 0.5
+    }
+   ]
+  },
+  {
+   "name": "Spikes",
+   "ppu": 120,
+   "framesPerSecond": 30,
+   "loop": false,
+   "plane": "Upright",
+   "phase": "Release",
+   "start": 0,
+   "end": 0.82,
+   "fadeIn": 0,
+   "fadeOut": 0.15,
+   "scaleFrom": 1,
+   "scaleTo": 1,
+   "spin": 0,
+   "height": 0,
+   "glow": 1.2,
+   "underlay": 0.7,
+   "underlayColour": [
+    0.22,
+    0.07,
+    0.45,
+    1
+   ],
+   "tint": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sortingOffset": 3,
+   "highQualityOnly": false,
+   "stretchToGround": true,
+   "breath": 0.45,
+   "noiseScale": 2.5,
+   "dissolve": true,
+   "frames": [
+    {
+     "page": 0,
+     "x": 1188,
+     "y": 722,
+     "width": 62,
+     "height": 41,
+     "pivot_x": 0.5,
+     "pivot_y": 0.4833050006773414
+    },
+    {
+     "page": 0,
+     "x": 1252,
+     "y": 722,
+     "width": 152,
+     "height": 184,
+     "pivot_x": 0.5328947368421053,
+     "pivot_y": 0.4446494838465815
+    },
+    {
+     "page": 0,
+     "x": 1406,
+     "y": 722,
+     "width": 174,
+     "height": 244,
+     "pivot_x": 0.5402298850574713,
+     "pivot_y": 0.3558012501138156
+    },
+    {
+     "page": 0,
+     "x": 1582,
+     "y": 722,
+     "width": 191,
+     "height": 295,
+     "pivot_x": 0.5497382198952879,
+     "pivot_y": 0.29767967806024065
+    },
+    {
+     "page": 0,
+     "x": 1775,
+     "y": 722,
+     "width": 223,
+     "height": 338,
+     "pivot_x": 0.5515695067264574,
+     "pivot_y": 0.26868492611766565
+    },
+    {
+     "page": 0,
+     "x": 0,
+     "y": 1444,
+     "width": 253,
+     "height": 372,
+     "pivot_x": 0.5454545454545454,
+     "pivot_y": 0.2521922178165887
+    },
+    {
+     "page": 0,
+     "x": 255,
+     "y": 1444,
+     "width": 268,
+     "height": 387,
+     "pivot_x": 0.5373134328358209,
+     "pivot_y": 0.25016926363765113
+    },
+    {
+     "page": 0,
+     "x": 525,
+     "y": 1444,
+     "width": 283,
+     "height": 388,
+     "pivot_x": 0.5300353356890459,
+     "pivot_y": 0.24952449749425515
+    },
+    {
+     "page": 0,
+     "x": 810,
+     "y": 1444,
+     "width": 302,
+     "height": 392,
+     "pivot_x": 0.5364238410596026,
+     "pivot_y": 0.2546313903769668
+    },
+    {
+     "page": 0,
+     "x": 1114,
+     "y": 1444,
+     "width": 311,
+     "height": 390,
+     "pivot_x": 0.5401929260450161,
+     "pivot_y": 0.2559371923789
+    },
+    {
+     "page": 0,
+     "x": 1427,
+     "y": 1444,
+     "width": 312,
+     "height": 390,
+     "pivot_x": 0.5384615384615384,
+     "pivot_y": 0.2559371923789
+    },
+    {
+     "page": 1,
+     "x": 0,
+     "y": 0,
+     "width": 313,
+     "height": 391,
+     "pivot_x": 0.536741214057508,
+     "pivot_y": 0.2527250767973683
+    },
+    {
+     "page": 1,
+     "x": 315,
+     "y": 0,
+     "width": 314,
+     "height": 390,
+     "pivot_x": 0.535031847133758,
+     "pivot_y": 0.25080898725069484
+    },
+    {
+     "page": 1,
+     "x": 631,
+     "y": 0,
+     "width": 315,
+     "height": 386,
+     "pivot_x": 0.5333333333333333,
+     "pivot_y": 0.24563602338800777
+    },
+    {
+     "page": 1,
+     "x": 948,
+     "y": 0,
+     "width": 315,
+     "height": 369,
+     "pivot_x": 0.5333333333333333,
+     "pivot_y": 0.20546207324599186
+    },
+    {
+     "page": 1,
+     "x": 1265,
+     "y": 0,
+     "width": 316,
+     "height": 366,
+     "pivot_x": 0.5316455696202531,
+     "pivot_y": 0.1989494672889918
+    },
+    {
+     "page": 1,
+     "x": 1583,
+     "y": 0,
+     "width": 317,
+     "height": 358,
+     "pivot_x": 0.5299684542586751,
+     "pivot_y": 0.1950153771725447
+    },
+    {
+     "page": 1,
+     "x": 0,
+     "y": 393,
+     "width": 316,
+     "height": 351,
+     "pivot_x": 0.5316455696202531,
+     "pivot_y": 0.1932065670306866
+    },
+    {
+     "page": 1,
+     "x": 318,
+     "y": 393,
+     "width": 315,
+     "height": 325,
+     "pivot_x": 0.5333333333333333,
+     "pivot_y": 0.19635540008544922
+    },
+    {
+     "page": 1,
+     "x": 635,
+     "y": 393,
+     "width": 312,
+     "height": 319,
+     "pivot_x": 0.5384615384615384,
+     "pivot_y": 0.19064421638799686
+    },
+    {
+     "page": 1,
+     "x": 949,
+     "y": 393,
+     "width": 269,
+     "height": 318,
+     "pivot_x": 0.5799256505576208,
+     "pivot_y": 0.1849544183263239
+    },
+    {
+     "page": 1,
+     "x": 1220,
+     "y": 393,
+     "width": 165,
+     "height": 188,
+     "pivot_x": 0.32727272727272727,
+     "pivot_y": -0.37864093070334576
+    },
+    {
+     "page": 1,
+     "x": 1387,
+     "y": 393,
+     "width": 149,
+     "height": 188,
+     "pivot_x": 0.348993288590604,
+     "pivot_y": -0.37332178176717556
+    },
+    {
+     "page": 1,
+     "x": 1538,
+     "y": 393,
+     "width": 102,
+     "height": 177,
+     "pivot_x": 0.45098039215686275,
+     "pivot_y": -0.4304208755493164
+    }
+   ]
+  }
+ ]
 }

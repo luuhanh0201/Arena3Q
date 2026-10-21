@@ -852,66 +852,47 @@ def build_magic_array(seed=21):
     disc('Fill', 1.08, fill_material('Fill', .55), normal_axis='Z', segments=64)
     fill = render_static('top', 2.3, 120, cover=1.0)
     clear_effect()
-    # Energy spikes (game view): erupt in a ripple, then thin out and fade.
-    spike_m = glow_material('Spike', [(0, DEEP, .2), (.3, BAND, 1.4), (.5, CORE, 3.2), (.7, BAND, 1.4), (1, DEEP, .2)],
-                            [(0, .2), (.5, 1), (1, .2)], 1.0)
-    burst_m = glow_material('SpikeBase', [(0, CORE, 3), (.4, CORE2, 1.6), (1, BAND, 0)], [(0, 1), (1, 0)], 1.0, tips=False)
-    # Shards of energy, not a picket fence (Model3D_Rules 29): random places (not on a circle), each leans outward
-    # by its own angle, bends a little, has an uneven width along its length and its own timing and flicker.
-    spikes = []
-    for i in range(23):
-        centre = i == 22
+    # Qi bursting up out of the circle (game view). Not shards or rays (user 2026-10-21): soft columns of density
+    # that swell as they rise, sway, thin out and dissolve from the top; random places (not on a circle), sizes,
+    # leans and timing (Model3D_Rules 29).
+    setup_volumes()
+    glow_m = glow_material('QiFoot', [(0, CORE2, .9), (.5, BAND, .6), (1, DEEP, 0)], [(0, .6), (1, 0)], 1.0, tips=False)
+    columns = []
+    for i in range(16):
+        centre = i == 0
         a = rnd.uniform(0, 2 * math.pi)
-        r = 0.0 if centre else math.sqrt(rnd.uniform(.02, 1.0)) * .95
+        r = 0.0 if centre else math.sqrt(rnd.uniform(.03, 1.0)) * .9
         base = Vector((math.cos(a) * r, math.sin(a) * r, 0))
-        h = 2.6 if centre else rnd.uniform(.7, 2.2) * (1.1 - .45 * r)
-        out = Vector((math.cos(a), math.sin(a), 0))
-        side = Vector((-out.y, out.x, 0))
-        lean = 0.0 if centre else rnd.uniform(.03, .28)
-        bend = rnd.uniform(-.06, .06)
-        width = .21 if centre else rnd.uniform(.06, .13)
-        knots = [rnd.uniform(.7, 1.3) for _ in range(5)]
-        ts = np.linspace(0, 1, 16)
-        pts = [base + Vector((0, 0, h * t)) + out * (lean * h * t ** 1.5) + side * (bend * h * math.sin(math.pi * t)) for t in ts]
-        widths = [width * (1 - t) ** .6 * float(np.interp(t, np.linspace(0, 1, 5), knots)) + .008 for t in ts]
-        o = ribbon(f'Spike{i}', pts, widths, Vector((0, 1, 0)), spike_m.copy())
-        b = disc(f'Base{i}', .3 if centre else rnd.uniform(.09, .18), burst_m.copy(), location=base + Vector((0, -.01, .02)), segments=16)
-        spikes.append((o, b, 0.0 if centre else rnd.uniform(0, .3), rnd.uniform(.07, .14), rnd.uniform(.35, .65),
-                       rnd.uniform(6, 14), rnd.random()))
-    # Spirit vapour rising from the circle between the shards.
-    vapour = []
-    for i in range(6):
-        a = rnd.uniform(0, 2 * math.pi)
-        r = rnd.uniform(.2, .85)
-        base = Vector((math.cos(a) * r, math.sin(a) * r, 0))
-        m = smoke_ribbon_material(f'Vapour{i}', 1.0, scale=(1.6, 2.4), contrast=(.4, .75), lead=None)
-        pts = [base + Vector((rnd.uniform(-.05, .05), 0, 1.3 * t)) for t in np.linspace(0, 1, 12)]
-        o = ribbon(f'Vapour{i}', pts, [.32 * math.sin(math.pi * min(1.0, .1 + t)) + .02 for t in np.linspace(0, 1, 12)],
-                   Vector((0, 1, 0)), m)
-        vapour.append((o, m, rnd.uniform(0, .25)))
+        h = 2.7 if centre else rnd.uniform(1.3, 2.3) * (1.1 - .35 * r)
+        r0 = .13 if centre else rnd.uniform(.06, .1)
+        r1 = .38 if centre else rnd.uniform(.16, .27)
+        lean = 0.0 if centre else rnd.uniform(.06, .32)
+        m = qi_column_material(f'Qi{i}', h, r0, r1, lean, seed=i + 1, density_scale=4.5 if centre else 5.5, emission=1.1)
+        cage = volume_cage(f'QiCage{i}', m, r1 * 1.9 + lean + .35, -.05, h + .9)
+        cage.location = base
+        cage.rotation_euler = (0, 0, a)                      # +x of the column (its lean) points outwards
+        foot = disc(f'QiFoot{i}', .4 if centre else rnd.uniform(.18, .28), glow_m.copy(), location=base + Vector((0, -.01, .02)),
+                    segments=24)
+        delay = 0.0 if centre else rnd.uniform(0, .17)
+        columns.append((cage, m, foot, h, delay, rnd.uniform(.17, .27), rnd.uniform(.3, .38), rnd.uniform(1.7, 2.6)))
     frames_count = 24
     ppu = 120
-    set_view('game', 2.6, 3.4, ppu, (0, 0, 1.05))
-    set_glare(7, .4, 1.0)
+    set_view('game', 2.8, 4.0, ppu, (0, 0, 1.3))           # roomy: the taller qi must not touch the frame edge
+    set_glare(7, .45, .9)
     spike_frames = []
     for f in range(frames_count):
         t = f / 30.0
-        for o, b, delay, rise, life, freq, ph in spikes:
+        for cage, m, foot, h, delay, rise, life, speed in columns:
             age = t - delay
-            grow = min(1.0, max(0.0, age / rise))
-            o.scale = (1, 1, max(.001, grow))
-            o.location = (0, 0, 0)
-            fade = 0.0 if age < 0 else max(0.0, 1 - max(0.0, age - rise) / life)
-            flicker = .78 + .22 * math.sin(2 * math.pi * (age * freq + ph))
-            set_gain(o.data.materials[0], fade * flicker)
-            b.scale = Vector((1, 1, 1)) * (.6 + 1.2 * min(1, max(0, age) / .15))
-            set_gain(b.data.materials[0], 0 if age < 0 else max(0, 1 - age / .25))
-        for o, m, delay in vapour:
-            age = t - delay
-            set_phase(m, (age * 1.3) % 1.0)
-            o.scale = (1, 1, max(.001, min(1.0, max(0.0, age) / .35)))
-            set_gain_smoke = math.sin(math.pi * min(1.0, max(0.0, age) / .8))
-            o.hide_render = age < 0 or set_gain_smoke <= 0
+            grow = 1 - (1 - min(1.0, max(0.0, age / rise))) ** 2      # eases out: the burst slows as it rises
+            after = max(0.0, age - rise)
+            fade = 0.0 if age < 0 else (1 - min(1.0, after / life)) ** 1.3
+            # The qi leaves the ground once it has risen: the foot lifts and the top keeps drifting up.
+            set_values(m, Low=after * speed * .55, High=h * grow + after * speed * .35, Flow=max(0.0, age) * speed,
+                       Gain=fade * min(1.0, max(0.0, age) / .05))
+            cage.hide_render = fade <= 0
+            foot.scale = Vector((1, 1, 1)) * (.6 + 1.0 * min(1, max(0, age) / .18))
+            set_gain(foot.data.materials[0], 0 if age < 0 else max(0, 1 - age / .4) ** 1.5)
         spike_frames.append((render_frame(.8), anchor_pixel((0, 0, 0))))
     clear_effect()
     return outer, inner, fill, spike_frames, ppu_top, ppu
@@ -1130,6 +1111,88 @@ def smoke_ribbon_material(name, strength=1.4, scale=(3.2, 1.3), contrast=(.42, .
     return m
 
 
+def qi_column_material(name, height, r0, r1, lean=0.0, bulge=0.0, seed=0, density_scale=5.0, emission=1.0):
+    """Qi rising (or pouring) as a density field (user 2026-10-21: rising streams are soft qi, never rays or lines):
+    no bright core line, no hard edge, no straight bar. Object coordinates in metres, origin at the foot, z up.
+    The width grows from r0 at the foot to r1 at `height` (bulge > 0 swells the middle instead), breathes with a large
+    noise and the axis leans by `lean` towards +x and sways; the density is uneven puffs, thicker near the foot.
+    Live values (set_values): 'Low' / 'High' = the metres of the column that hold qi (both edges eroded by noise),
+    'Flow' = how far the noise has travelled up (negative = down), 'Gain' = density and light."""
+    m = bpy.data.materials.new(name)
+    m.use_nodes = True
+    nt = m.node_tree
+    nt.nodes.clear()
+    g = Graph(nt)
+    out = nt.nodes.new('ShaderNodeOutputMaterial')
+
+    def live(label, value):
+        n = nt.nodes.new('ShaderNodeValue')
+        n.name = label
+        n.outputs[0].default_value = value
+        return n.outputs[0]
+    low, high, flow, gain = live('Low', 0.0), live('High', height), live('Flow', 0.0), live('Gain', 1.0)
+    co = nt.nodes.new('ShaderNodeTexCoord').outputs['Object']
+    x, y, z = g.xyz(co)
+    t = g.math('MINIMUM', g.math('MAXIMUM', g.math('DIVIDE', z, height), 0.0), 1.0)
+    # The noise travels with the qi (up, or down for a pouring column); each column has its own part of the field.
+    shift = nt.nodes.new('ShaderNodeCombineXYZ')
+    g._in(shift.inputs['Z'], flow)
+    p = g.vec('ADD', g.vec('SUBTRACT', co, shift.outputs['Vector']), (seed * 7.31, seed * 3.17, seed * 1.93))
+    big = g.noise(g.vec('MULTIPLY', p, (1.2, 1.2, .7)), 1.3, 3, .5, .2)
+    big2 = g.noise(g.vec('ADD', g.vec('MULTIPLY', p, (1.2, 1.2, .7)), (11.3, 4.1, 2.7)), 1.3, 3, .5, .2)
+    # Wisps drawn out along the flow (not round beads), still broken up across.
+    puffs = g.remap(g.noise(g.vec('MULTIPLY', p, (1, 1, .55)), 4.2, 5, .62, .45), .3, .76)
+    # Leaning, swaying axis; the sway grows with height (the foot stays where the qi comes out).
+    sway = g.math('MULTIPLY', t, .32)
+    ax = g.math('MULTIPLY_ADD', g.math('SUBTRACT', big, .5), sway, g.math('MULTIPLY', g.math('POWER', t, 1.4), lean))
+    ay = g.math('MULTIPLY', g.math('SUBTRACT', big2, .5), sway)
+    d = g.math('SQRT', g.math('ADD', g.math('POWER', g.math('SUBTRACT', x, ax), 2.0), g.math('POWER', g.math('SUBTRACT', y, ay), 2.0)))
+    radius = g.math('MULTIPLY_ADD', g.math('POWER', t, .8), r1 - r0, r0)
+    if bulge:
+        swell = g.math('MULTIPLY_ADD', g.math('SINE', g.math('MULTIPLY', t, math.pi)), bulge, 1.0 - bulge * .6)
+        radius = g.math('MULTIPLY', radius, swell)
+    radius = g.math('MULTIPLY', radius, g.math('MULTIPLY_ADD', big, .6, .7))
+    radial = g.math('EXPONENT', g.math('MULTIPLY', g.math('POWER', g.math('DIVIDE', d, radius), 2.0), -2.2))
+    # Where the column holds qi: soft, noise-eroded edges at both ends (no flat cut, no pointed tip).
+    erode = g.math('MULTIPLY', g.math('SUBTRACT', puffs, .5), .35)
+    ze = g.math('ADD', z, erode)
+    lower = g.remap(ze, g.math('SUBTRACT', low, .04), g.math('ADD', low, .22))
+    upper = g.remap(ze, g.math('ADD', high, .04), g.math('SUBTRACT', high, .55))
+    ground = g.remap(z, -.02, .07)
+    thin = g.math('MULTIPLY_ADD', t, -.45, 1.0)
+    shape = g.math('MULTIPLY', g.math('MULTIPLY', radial, puffs), g.math('MULTIPLY', g.math('MULTIPLY', lower, upper), ground))
+    dens = g.math('MULTIPLY', g.math('MULTIPLY', shape, thin), g.math('MULTIPLY', gain, density_scale))
+    tone = g.math('MULTIPLY', g.math('MULTIPLY', radial, puffs), g.math('MULTIPLY_ADD', t, -.35, 1.0))
+    colour = g.ramp(tone, [(0, DEEP), (.4, BAND), (.78, CORE2), (1, CORE)])
+    vol = nt.nodes.new('ShaderNodeVolumePrincipled')
+    vol.inputs['Color'].default_value = lin(DEEP)
+    nt.links.new(dens, vol.inputs['Density'])
+    nt.links.new(colour, vol.inputs['Emission Color'])
+    nt.links.new(g.math('MULTIPLY', dens, emission), vol.inputs['Emission Strength'])
+    nt.links.new(vol.outputs['Volume'], out.inputs['Volume'])
+    return m
+
+
+def set_values(material, **values):
+    for label, value in values.items():
+        material.node_tree.nodes[label].outputs[0].default_value = value
+
+
+def volume_cage(name, material, half_width, z0, z1):
+    """Box for a volume that reads Object coordinates in metres with the origin at the foot; larger than the density
+    it holds (Model3D_Rules: no flat cut)."""
+    bpy.ops.mesh.primitive_cube_add(size=1)
+    cage = bpy.context.active_object
+    cage.name = name
+    for v in cage.data.vertices:
+        v.co.x *= 2 * half_width
+        v.co.y *= 2 * half_width
+        v.co.z = z0 if v.co.z < 0 else z1
+    cage.data.materials.append(material)
+    _objects.append(cage)
+    return cage
+
+
 def setup_volumes():
     e = scene.eevee
     for attr, value in (('volumetric_tile_size', '1'), ('volumetric_samples', 160), ('volumetric_start', 6.0),
@@ -1301,51 +1364,46 @@ def build_ultimate(seed=51):
     ring('T2', .97, .008, pale)
     target = render_static('top', 2.2, 220)
     clear_effect()
-    # Beams: feather-shaped light falling from the formation, flash + ring where they land.
-    beam_m = glow_material('Beam', [(0, DEEP, .2), (.3, BAND, 1.5), (.5, CORE, 3.4), (.7, BAND, 1.5), (1, DEEP, .2)],
-                           [(0, .2), (.5, 1), (1, .2)], 1.0)
-    hit_m = glow_material('BeamHit', [(0, CORE, 3.4), (.35, CORE2, 1.8), (1, BAND, 0)], [(0, 1), (1, 0)], 1.0, tips=False)
+    # Qi pouring down from the formation (spec §12 "tia năng lượng đổ xuống"), soft streams and not rays (user
+    # 2026-10-21): each is a density column swollen in the middle like a feather, its noise flowing down; the front
+    # falls, the tail drains into the ground and it dissolves. Own lean, width, strength and landing time (in loose
+    # waves, Model3D_Rules 29); a soft flash where it lands.
+    setup_volumes()
+    hit_m = glow_material('BeamHit', [(0, CORE2, 1.2), (.45, BAND, .8), (1, DEEP, 0)], [(0, .65), (1, 0)], 1.0, tips=False)
     top_z = 2.4
     beams = []
-    head_m = glow_material('BeamHead', [(0, CORE, 4.0), (.4, CORE2, 2.2), (1, BAND, 0)], [(0, 1), (1, 0)], 1.0, tips=False)
-    # Not a fence of identical bars (Model3D_Rules 29): each beam leans by its own small angle, has its own width
-    # profile, brightness, landing time (in loose waves) and flicker; impacts differ in size.
-    for i in range(40):
-        r = math.sqrt(rnd.random()) * 1.12
+    for i in range(26):
+        r = math.sqrt(rnd.random()) * 1.1
         a = rnd.uniform(0, 2 * math.pi)
         x, y = math.cos(a) * r, math.sin(a) * r
-        width = rnd.uniform(.07, .17)
-        knots = [rnd.uniform(.65, 1.35) for _ in range(4)]
-        ts = np.linspace(0, 1, 18)
-        o = ribbon(f'Beam{i}', [Vector((0, 0, top_z * t)) for t in ts],
-                   [width * (.75 + .35 * math.sin(math.pi * t)) * float(np.interp(t, np.linspace(0, 1, 4), knots)) for t in ts],
-                   Vector((0, 1, 0)), beam_m.copy())
-        o.location = (x, y, 0)
-        o.rotation_euler = (rnd.uniform(-.12, .12), rnd.uniform(-.16, .16), 0)
-        h = disc(f'Hit{i}', rnd.uniform(.18, .4), hit_m.copy(), location=(x, y - .01, .03), segments=20)
-        hd = disc(f'Head{i}', .08 + width * .4, head_m.copy(), location=(x, y - .02, top_z), segments=16)
+        width = rnd.uniform(.09, .17)
+        m = qi_column_material(f'Pour{i}', top_z, width * .8, width, rnd.uniform(-.12, .12), bulge=.5, seed=40 + i,
+                               density_scale=5.0, emission=1.15)
+        cage = volume_cage(f'PourCage{i}', m, width * 2.4 + .4, -.05, top_z + .6)
+        cage.location = (x, y, 0)
+        cage.rotation_euler = (rnd.uniform(-.1, .1), rnd.uniform(-.13, .13), rnd.uniform(0, 2 * math.pi))
+        h = disc(f'Hit{i}', rnd.uniform(.3, .5), hit_m.copy(), location=(x, y - .01, .03), segments=24)
         wave = rnd.choice((0.0, .12, .26, .4))
-        beams.append((o, h, hd, (x, y), wave + rnd.uniform(0, .1), rnd.uniform(.7, 1.0), rnd.uniform(8, 16), rnd.random()))
+        beams.append((cage, m, h, wave + rnd.uniform(0, .1), rnd.uniform(.75, 1.0), rnd.uniform(4.5, 6.5)))
     ppu = 100
     set_view('game', 3.0, 3.6, ppu, (0, 0, 1.15))
-    set_glare(7, .4, 1.0)
+    set_glare(7, .45, .9)
     frames = []
+    fall_time = .16
     for f in range(30):
         t = f / 30.0
-        for o, h, hd, (x, y), delay, gain, freq, ph in beams:
+        for cage, m, h, delay, gain, speed in beams:
             age = t - delay
-            # The beam front falls from the formation in 0.12 s along the beam's own (tilted) axis, then fades.
-            fall = min(1.0, max(0.0, age / .12))
-            axis = o.rotation_euler.to_matrix() @ Vector((0, 0, 1))
-            o.scale = (1, 1, max(.001, fall))
-            o.location = Vector((x, y, 0)) + axis * (top_z * (1 - fall))
-            hd.location = Vector((x, y - .02, 0)) + axis * (top_z * (1 - fall) + .02)
-            set_gain(hd.data.materials[0], 0 if age < 0 or fall >= 1 else gain)
-            flicker = .8 + .2 * math.sin(2 * math.pi * (age * freq + ph))
-            set_gain(o.data.materials[0], 0 if age < 0 else gain * flicker * max(0, 1 - max(0, age - .12) / .3))
-            land = age - .12
-            h.scale = Vector((1, 1, 1)) * (.4 + 1.4 * min(1, max(0, land) / .15))
-            set_gain(h.data.materials[0], 0 if land < 0 else max(0, 1 - land / .3))
+            fall = 1 - (1 - min(1.0, max(0.0, age / fall_time))) ** 1.6
+            land = age - fall_time
+            fade = 0.0 if age < 0 else (1 - min(1.0, max(0.0, land) / .32)) ** 1.2
+            # Front falls from the formation; once landed the tail drains down into the ground.
+            set_values(m, Low=top_z * (1 - fall) - .1, High=top_z + .2 - max(0.0, land) * speed * .6,
+                       Flow=-max(0.0, age) * speed, Gain=gain * fade)
+            cage.hide_render = fade <= 0
+            h.scale = Vector((1, 1, 1)) * (.8 + .9 * min(1, max(0, land) / .2))
+            # A soft splash that swells in (no bright point at the moment of landing).
+            set_gain(h.data.materials[0], 0 if land < 0 else min(1.0, land / .07) * max(0, 1 - land / .35))
         frames.append((render_frame(.75), anchor_pixel((0, 0, 0))))
     clear_effect()
     return sky_outer, sky_inner, sky_fill, shock, target, frames, ppu

@@ -874,6 +874,33 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator Presentation3D_AreaEffectPicturesComeForward_TheCasterAuraStaysBehind()
+        {
+            Assume.That(_battle.Presentation3D, Is.True, "3D presentation is the shipped default");
+            _battle.StartBattle(0);
+            yield return null;
+            const string folder = "Assets/Arena3Q/Art/Heroes/MacAnh/VFX/Flipbook/";
+            var forward = _battle.UprightRotation * Vector3.forward;
+            // Distance towards the camera of the first upright layer, along the view (the screen position does not move).
+            float Forward(string prefab, string layerName)
+            {
+                var fx = MacAnhFxPool.For(_battle).Spawn(AssetDatabase.LoadAssetAtPath<GameObject>(folder + prefab), Vector3.zero,
+                    new Vector3(2f, 2f, 1f), Quaternion.identity, MacAnhFxQuality.Medium, 3f, 100);
+                fx.Advance(.5f);
+                var root = fx.GetComponentInChildren<MacAnhVfxPlayer>().transform.Find(layerName);
+                var toward = -Vector3.Dot(root.position - fx.transform.position, forward);
+                fx.Stop();
+                return toward;
+            }
+            Assert.That(Forward("FX_MacAnh_UltimateFlipbook_Battle.prefab", "Beams"),
+                Is.EqualTo(_battle.View.EffectDepthBias * 2f).Within(1e-3f), "the qi over a target is drawn in front of its model");
+            Assert.That(Forward("FX_MacAnh_MagicArrayFlipbook_Battle.prefab", "Spikes"),
+                Is.EqualTo(_battle.View.EffectDepthBias * 2f).Within(1e-3f), "the same for the circle's rising qi");
+            Assert.That(Forward("FX_MacAnh_UltimateAuraFlipbook_Battle.prefab", "Circle"), Is.EqualTo(0f).Within(1e-3f),
+                "the rune circle behind the caster stays behind");
+        }
+
+        [UnityTest]
         public IEnumerator Presentation3D_HeroesAreDrawnLarger_TroopsKeepTheirSize()
         {
             Assume.That(_battle.Presentation3D, Is.True, "3D presentation is the shipped default");

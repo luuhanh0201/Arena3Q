@@ -31,6 +31,9 @@ namespace Arena3Q.Gameplay
         private Quaternion _upright=Quaternion.identity;
         /// <summary>3D: rotation that makes upright pictures face the camera; set by the pool before <see cref="Begin"/>.</summary>
         public void SetUpright(Quaternion upright) => _upright = upright;
+        private float _depthBias;
+        /// <summary>3D: effect radii by which upright pictures are drawn nearer the camera; set by the pool before Begin.</summary>
+        public void SetDepthBias(float effectRadii) => _depthBias = effectRadii;
         public void Configure(MacAnhFxKind type, Material shared, Mesh[] highMeshes, Mesh[] mediumMeshes, Mesh[] lowMeshes)
         {
             kind = type; material = shared; high = highMeshes; medium = mediumMeshes; low = lowMeshes;
@@ -67,7 +70,8 @@ namespace Arena3Q.Gameplay
                 bool ground=kind==MacAnhFxKind.MagicArray||kind==MacAnhFxKind.Cyclone||kind==MacAnhFxKind.Ultimate;
                 float projection=ground?transform.localScale.y/Mathf.Max(.001f,radius):.819152f;
                 transform.localScale=Vector3.one;
-                if(_spatial is IMacAnhBillboard billboard)billboard.SetUpright(_upright);
+                // Only the area effects at a target come forward; the aura behind the caster must stay behind it.
+                if(_spatial is IMacAnhBillboard billboard){billboard.SetUpright(_upright);billboard.SetDepthBias(ground?_depthBias:0f);}
                 _spatial.Begin(quality,_duration);_spatial.SetBattlePresentation(radius,order,projection,kind);return;
             }
             EnsureLayers(); _seconds = 0f; _duration = Mathf.Max(.05f, seconds); _release = release; _follow = follow; _running = true; _charge = false;
