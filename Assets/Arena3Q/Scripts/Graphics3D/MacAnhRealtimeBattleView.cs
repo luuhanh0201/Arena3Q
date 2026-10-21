@@ -57,6 +57,7 @@ namespace Arena3Q.Graphics3D
         public void Configure(GameObject character,ActionClip[] animations,Material composite,int rendererIndex)
         {characterPrefab=character;clips=animations;compositeMaterial=composite;forwardRendererIndex=rendererIndex;}
         public void ConfigureFacing(float offset,float sign){yawOffset=offset;yawSign=sign;}
+        public void ConfigureAfterimage(Material surface){afterimageMaterial=surface;}
         public bool Initialize(HeroUnit hero,SpriteRenderer sprite)
         {
             if(characterPrefab==null||clips.Length!=11)return false;
@@ -219,7 +220,10 @@ namespace Arena3Q.Graphics3D
             var parts=new CombineInstance[skins.Length];var baked=new Mesh[skins.Length];
             for(int i=0;i<skins.Length;i++)
             {
-                baked[i]=new Mesh();skins[i].BakeMesh(baked[i],false);
+                baked[i]=new Mesh();skins[i].BakeMesh(baked[i],true);
+                // Flatten all material submeshes into the shared qi silhouette.
+                // BakeMesh(true) + localToWorld is checked against native bone matrices by imported QA.
+                baked[i].triangles=baked[i].triangles;
                 parts[i]=new CombineInstance{mesh=baked[i],transform=skins[i].transform.localToWorldMatrix};
             }
             var mesh=new Mesh{name="MacAnh baked afterimage",indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};
@@ -228,6 +232,23 @@ namespace Arena3Q.Graphics3D
             var pose=new GameObject("Baked 3D pose",typeof(MeshFilter),typeof(MeshRenderer));
             pose.GetComponent<MeshFilter>().sharedMesh=mesh;var renderer=pose.GetComponent<MeshRenderer>();
             renderer.sharedMaterial=material;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
+            // Rigid fan meshes are GPU-only assets. Borrow them without reading or cloning their vertices.
+            // Their transforms are captured in world space while the pose root is still identity.
+            foreach(var source in _model.GetComponentsInChildren<MeshFilter>())
+            {
+                var sourceRenderer=source.GetComponent<MeshRenderer>();
+                if(sourceRenderer==null||!sourceRenderer.enabled||source.sharedMesh==null)continue;
+                var part=new GameObject(source.name,typeof(MeshFilter),typeof(MeshRenderer));
+                part.transform.SetParent(pose.transform,false);
+                part.transform.SetPositionAndRotation(source.transform.position,source.transform.rotation);
+                part.transform.localScale=source.transform.lossyScale;
+                part.GetComponent<MeshFilter>().sharedMesh=source.sharedMesh;
+                var copy=part.GetComponent<MeshRenderer>();
+                var materials=new Material[source.sharedMesh.subMeshCount];
+                for(int i=0;i<materials.Length;i++)materials[i]=material;
+                copy.sharedMaterials=materials;copy.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
+                copy.receiveShadows=false;
+            }
             effect.SetCapturedAfterimage(pose,()=>{Destroy(mesh);Destroy(material);Destroy(pose);});
             // The mesh is already in world space.
             pose.transform.SetPositionAndRotation(Vector3.zero,Quaternion.identity);

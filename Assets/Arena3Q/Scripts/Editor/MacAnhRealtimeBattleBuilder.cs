@@ -266,6 +266,9 @@ namespace Arena3Q.Editor
             int rendererIndex=AddForwardRenderer();
             var go=new GameObject("MacAnh_RealtimeBattleView");
             var view=go.AddComponent<MacAnhRealtimeBattleView>();view.Configure(character,animations,material,rendererIndex);
+            var afterimage=AssetDatabase.LoadAssetAtPath<Material>(Root+"/Materials/AfterimageSurface.mat");
+            if(afterimage==null)throw new InvalidOperationException("Missing model afterimage surface material (do not use the sprite atlas material).");
+            view.ConfigureAfterimage(afterimage);
             var facing=CalibrateFacing(character,animations.First(c=>c.action==MacAnhAction.Idle).clip,
                 AssetDatabase.LoadAssetAtPath<MacAnhPerformance>("Assets/Arena3Q/Art/Heroes/MacAnh/MacAnhPerformance.asset"));
             view.ConfigureFacing(facing.x,facing.y);

@@ -22,7 +22,7 @@ namespace Arena3Q.Gameplay
         public bool ManualClock { get; set; }
         private SpriteRenderer _ghost;
         private GameObject _capturedPose;
-        private Renderer _capturedRenderer;
+        private Renderer[] _capturedRenderers;
         private Action _clearCapturedPose;
         public MacAnhFxKind Kind => kind;
         public bool IsRunning => _running;
@@ -128,7 +128,7 @@ namespace Arena3Q.Gameplay
         {
             ClearCapturedPose();PrepareAfterimage();
             _capturedPose=pose;_clearCapturedPose=cleanup;pose.transform.SetParent(transform,false);
-            _capturedRenderer=pose.GetComponent<Renderer>();ApplyPoseFade(0);
+            _capturedRenderers=pose.GetComponentsInChildren<Renderer>(true);ApplyPoseFade(0);
         }
         private void PrepareAfterimage()
         {
@@ -141,15 +141,18 @@ namespace Arena3Q.Gameplay
         }
         private void ClearCapturedPose()
         {
-            _clearCapturedPose?.Invoke();_clearCapturedPose=null;_capturedPose=null;_capturedRenderer=null;
+            // Destroy is deferred in play mode; a returned pool instance must not render the old pose this frame.
+            if(_capturedPose!=null)_capturedPose.SetActive(false);
+            _clearCapturedPose?.Invoke();_clearCapturedPose=null;_capturedPose=null;_capturedRenderers=null;
         }
         private void ApplyPoseFade(float fade)
         {
             if(_ghost!=null)_ghost.color=new Color(.84f,.67f,1,fade*.65f);
             if(_ghostGlow!=null)_ghostGlow.color=new Color(_ghostGlowTint.r,_ghostGlowTint.g,_ghostGlowTint.b,fade);
-            if(_capturedRenderer!=null)
+            if(_capturedRenderers!=null)
             {
-                _block=_block??new MaterialPropertyBlock();_block.Clear();_block.SetFloat("_Opacity",fade);_capturedRenderer.SetPropertyBlock(_block);
+                _block=_block??new MaterialPropertyBlock();_block.Clear();_block.SetFloat("_Opacity",fade);
+                foreach(var renderer in _capturedRenderers)if(renderer!=null)renderer.SetPropertyBlock(_block);
             }
         }
         private void Update()

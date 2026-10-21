@@ -1,5 +1,11 @@
 # Nhật ký sửa lỗi – Arena3Q
 
+## Mặc Ảnh direct3D: bóng ảnh phóng100 lần, thiếu quạt và thủng do atlas sprite (21/10/2026, Codex)
+
+- `BakeMesh(false)` kết hợp localToWorld áp scale FBX lần nữa; CombineMeshes mặc định chỉ lấy submesh0 và bỏ sáu mesh quạt cứng. Sửa theo quy ước native audit: BakeMesh(true)+localToWorld, gộp tất cả index thân; quạt dùng mesh chia sẻ với transform chụp tại thời điểm sinh. Fade mọi renderer và tắt pose trước Destroy cuối frame khi trả pool.
+- Lượt đầu3/3test số đo qua nhưng ảnh còn vỡ: material lấy alpha atlas sprite DodgeAttack qua UV model3D. Tạo material surface riêng, mask trắng và blend alpha; builder bắt buộc gắn material này. Giữ material sprite cũ cho đường sprite.
+- Hồi quy: ảnh sáu góc đo silhouette, không chỉ bounds/index; trước thấp nhất39,813%, sau100%. Index130.848/130.848, tỷ lệ chiều cao0,99999988; pool và capture trận qua3/3 trong `Logs/CodexFix/20261021/MaskAfter_1735.xml`. Ảnh trước–sau `NghiemThu/MacAnh/XemTruoc_DirectAfterimage_20261021`. Chờ review độc lập, không thay nghiệm thu toàn bộ model.
+
 ## Lữ Bố: tầng Cuồng Huyết làm lệch sát thương giữa các mục tiêu và ngưỡng 30 % bị số thực đánh lừa (2026-10-21, Claude)
 
 - Nguyên nhân 1: tầng "mỗi lần tung chiêu" được cộng ngay trong vòng gây sát thương, nên mục tiêu thứ hai của cùng một chiêu đã nhận thêm 3 %. Sửa: `SkillExecutor.Hit` cộng tầng (`HeroSkills.OnSkillHit`) **sau** khi đánh xong mọi mục tiêu.
