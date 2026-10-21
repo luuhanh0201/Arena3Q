@@ -178,7 +178,8 @@ namespace Arena3Q.Gameplay
                 Destroy(_model.gameObject);
             _model = MapProp3D.Create("Castle 3D", transform, prop);
             _modelRenderer = _model.GetComponentInChildren<MeshRenderer>();
-            _modelYaw = yaw;
+            // The ruin keeps the side the standing command post faced.
+            _modelYaw = _art.FaceOpponent ? MapProp3D.YawFacing(prop, MapProp3D.TowardOpponent(_battle, _logic)) : yaw;
             _body.enabled = false;
             ShowModel(_body.transform.localPosition, _body.color);
         }

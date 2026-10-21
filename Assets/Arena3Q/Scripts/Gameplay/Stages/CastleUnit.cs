@@ -30,7 +30,11 @@ namespace Arena3Q.Gameplay
                 Visual.UseArt(_art.IntactSprite);
                 // 3D: the command post model stands there instead of its picture.
                 if (MapProp3D.TryFind(battle, _art.IntactSprite, out var prop, out var yaw))
+                {
+                    if (_art.FaceOpponent)
+                        yaw = MapProp3D.YawFacing(prop, MapProp3D.TowardOpponent(battle, config.Position));
                     Visual.UsePropModel(prop, yaw, battle.View.PropShadowAlpha);
+                }
             }
             SetCombat(config.Damage, config.AttackRange, config.AttackInterval, 0f, 0f, config.AttackRange);
             SetPosition(config.Position);

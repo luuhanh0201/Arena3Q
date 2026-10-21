@@ -18,6 +18,9 @@ namespace Arena3Q.Data
             public Sprite sprite;
             [Tooltip("Logic position of the pivot.")]
             public Vector2 position;
+            [Tooltip("3D: turn the model's front (its door, its drum) towards the other side of the map: pieces left of the " +
+                     "centre face right (the enemy), pieces right of it face left. Off = the yaw its picture was rendered at.")]
+            public bool faceOpponent;
         }
 
         [SerializeField] private Piece[] pieces = Array.Empty<Piece>();

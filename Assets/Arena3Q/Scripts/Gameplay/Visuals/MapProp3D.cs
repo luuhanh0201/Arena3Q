@@ -25,6 +25,17 @@ namespace Arena3Q.Gameplay
                    battle.View.MapProps.TryFind(sprite, out prop, out yaw);
         }
 
+        /// <summary>
+        /// Yaw that turns the prop's front towards <paramref name="direction"/> on the logic ground (east = +x, north = +y).
+        /// Yaw 0 + <c>frontYaw</c> faces south (towards the camera); the yaw turns about the model's up axis.
+        /// </summary>
+        public static float YawFacing(MapProps3DLibrary.Prop prop, Vector2 direction) =>
+            direction.sqrMagnitude < 1e-6f ? prop.frontYaw : prop.frontYaw - Mathf.Atan2(direction.x, -direction.y) * Mathf.Rad2Deg;
+
+        /// <summary>Towards the other side of the map: right for things left of its centre, left for the others.</summary>
+        public static Vector2 TowardOpponent(BattleController battle, Vector2 position) =>
+            new Vector2(position.x <= battle.Stage.MapBounds.center.x ? 1f : -1f, 0f);
+
         /// <summary>World rotation of a prop turned by <paramref name="yaw"/> (degrees about the vertical, as rendered).</summary>
         public static Quaternion Rotation(float yaw) => StandUp * Quaternion.Euler(0f, yaw, 0f);
 

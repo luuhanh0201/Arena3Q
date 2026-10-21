@@ -830,6 +830,27 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator Presentation3D_TentsAndCommandPostsFaceTheOpponent()
+        {
+            Assume.That(_battle.Presentation3D, Is.True, "3D presentation is the shipped default");
+            _battle.StartBattle(0);
+            yield return null;
+            var centre = Stage(0).MapBounds.center.x;
+            // The Meshy props' front (door, drum) is the model's -Z at yaw 0.
+            var faced = _battle.GetComponentsInChildren<Transform>()
+                .Where(t => (t.name.Contains("ThreeKingdomsSquare") && t.name.EndsWith(" 3D")) || t.name == "Body3D Prop")
+                .ToArray();
+            Assert.That(faced.Count(t => t.name.EndsWith(" 3D")), Is.EqualTo(4), "the four tents");
+            Assert.That(faced.Count(t => t.name == "Body3D Prop"), Is.EqualTo(2), "both command posts");
+            foreach (var model in faced)
+            {
+                var front = model.rotation * Vector3.back;
+                var toward = model.position.x <= centre ? 1f : -1f;
+                Assert.That(front.x * toward, Is.GreaterThan(0.99f), $"{model.name} at x={model.position.x:0.0} faces the other side");
+            }
+        }
+
+        [UnityTest]
         public IEnumerator MapArt_CoversTheMap_AndHidesPlaceholderTerrain()
         {
             _battle.StartBattle(0);

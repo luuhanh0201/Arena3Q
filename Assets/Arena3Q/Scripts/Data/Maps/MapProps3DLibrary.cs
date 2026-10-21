@@ -28,6 +28,9 @@ namespace Arena3Q.Data
             public Vector3 groundCentre;
             [Tooltip("Width of the footprint after scaling (soft shadow size).")]
             public float footprint = 1f;
+            [Tooltip("Yaw at which the model's front (door, drum) faces the camera side (south); used to turn it towards a " +
+                     "direction. The Meshy props face south at 0.")]
+            public float frontYaw;
         }
 
         [SerializeField] private Prop[] props = Array.Empty<Prop>();

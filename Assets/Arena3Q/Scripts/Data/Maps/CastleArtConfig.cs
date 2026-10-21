@@ -14,6 +14,8 @@ namespace Arena3Q.Data
         [SerializeField] private Sprite intactSprite;
         [Tooltip("What is left after it falls (same pivot).")]
         [SerializeField] private Sprite destroyedSprite;
+        [Tooltip("3D: the command post turns its front (the drum) towards the other side of the map.")]
+        [SerializeField] private bool faceOpponent = true;
 
         [Header("Destruction animation (seconds, logic units)")]
         [SerializeField, Min(0f)] private float shakeSeconds = 0.8f;
@@ -34,6 +36,7 @@ namespace Arena3Q.Data
 
         public Sprite IntactSprite => intactSprite;
         public Sprite DestroyedSprite => destroyedSprite;
+        public bool FaceOpponent => faceOpponent;
         public float ShakeSeconds => shakeSeconds;
         public float ShakeAmplitude => shakeAmplitude;
         public float CollapseDrop => collapseDrop;

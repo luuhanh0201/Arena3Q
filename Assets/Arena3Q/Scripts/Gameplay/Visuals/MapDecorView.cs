@@ -27,6 +27,8 @@ namespace Arena3Q.Gameplay
                 // 3D: the prop's model stands there instead of its picture.
                 if (MapProp3D.TryFind(battle, piece.sprite, out var prop, out var yaw))
                 {
+                    if (piece.faceOpponent)
+                        yaw = MapProp3D.YawFacing(prop, MapProp3D.TowardOpponent(battle, piece.position));
                     var model = MapProp3D.Create(renderer.name + " 3D", transform, prop);
                     model.SetPositionAndRotation(battle.ToView(piece.position), MapProp3D.Rotation(yaw));
                     var shadow = MapProp3D.CreateShadow(transform, prop, battle.View.PropShadowAlpha);
