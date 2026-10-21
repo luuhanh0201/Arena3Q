@@ -53,6 +53,9 @@ namespace Arena3Q.Gameplay
                 Visual.UseArt(definition.Sprite);
                 Performance = new MacAnhCombatPerformance(this, Visual.BodyRenderer);
             }
+            // 3D: heroes are drawn larger than the troops around them (the picture and what hangs on it).
+            if (battle.Presentation3D)
+                Visual.SetBodySize(battle.View.HeroModelScale);
 
             // Passive range bonus (e.g. Ưng Nhãn +15 %): the reach the hero fights and aims with.
             var rangeBonus = Skills.AttackRangeBonus;

@@ -87,6 +87,9 @@ namespace Arena3Q.Gameplay
                 renderer.SetPropertyBlock(_block);
         }
 
+        /// <summary>Draws the body larger than its gameplay size (heroes); the unit keeps its footprint.</summary>
+        public void SetSize(float size) => _transform.localScale = Vector3.one * size;
+
         public void Destroy()
         {
             if (_transform == null)

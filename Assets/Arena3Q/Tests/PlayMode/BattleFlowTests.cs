@@ -874,6 +874,29 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator Presentation3D_HeroesAreDrawnLarger_TroopsKeepTheirSize()
+        {
+            Assume.That(_battle.Presentation3D, Is.True, "3D presentation is the shipped default");
+            _battle.StartBattle(0);
+            var heroes = Enumerable.Range(0, _battle.State.Cards.Count).Select(SummonQuick).ToArray();
+            yield return null;
+            var size = _battle.View.HeroModelScale;
+            Assert.That(size, Is.GreaterThan(1f), "heroes stand out from their troops");
+            // The drawn body: the placeholder body if the hero has no picture, else the picture (its model hangs on it).
+            Transform Drawn(Component unit) =>
+                unit.transform.Find("Body3D") ?? unit.transform.Find("Body");
+            foreach (var hero in heroes)
+            {
+                Assert.That(Drawn(hero).localScale.x, Is.EqualTo(size).Within(1e-4f), hero.name);
+                Assert.That(hero.Radius, Is.EqualTo(HeroUnit.BodyRadius).Within(1e-4f), "gameplay size unchanged");
+            }
+            var troops = Object.FindObjectsByType<TroopUnit>(FindObjectsSortMode.None);
+            Assert.That(troops, Is.Not.Empty);
+            foreach (var troop in troops)
+                Assert.That(Drawn(troop).localScale.x, Is.EqualTo(1f).Within(1e-4f), troop.name);
+        }
+
+        [UnityTest]
         public IEnumerator MapArt_CoversTheMap_AndHidesPlaceholderTerrain()
         {
             _battle.StartBattle(0);

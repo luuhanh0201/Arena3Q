@@ -64,6 +64,9 @@ namespace Arena3Q.Data
         [Tooltip("Extra size of the decoration and command post models (tents, watchtowers, flags, drum) on top of " +
                  "their sprite size. Not the formation (pillars, slabs, altar): those match their obstacles.")]
         [SerializeField, Min(0.1f)] private float decorModelScale = 1.5f;
+        [Tooltip("Drawn size of the heroes (picture, 3D model or placeholder body) over their gameplay size; troops and " +
+                 "enemies keep theirs. Pictures only: body radius and reach do not change.")]
+        [SerializeField, Min(0.1f)] private float heroModelScale = 1.3f;
 
         [Header("Motion")]
         [Tooltip("How high a knocked-up unit rises at the top of its arc (metres).")]
@@ -73,6 +76,7 @@ namespace Arena3Q.Data
         public MapProps3DLibrary MapProps => mapProps;
         public float PropShadowAlpha => propShadowAlpha;
         public float DecorModelScale => decorModelScale;
+        public float HeroModelScale => heroModelScale;
         public bool Presentation3D => presentation3D;
         public Material UnitMaterial => unitMaterial;
         public float PlaceholderHeight => placeholderHeight;

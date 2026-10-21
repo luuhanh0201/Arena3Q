@@ -30,6 +30,8 @@ namespace Arena3Q.Gameplay
         private Quaternion _groundFromRoot = Quaternion.identity;
         // Top of the picture above the unit's ground point, in screen-plane units (where the markers start).
         private float _artTop;
+        // Drawn size of the body over its gameplay size (heroes: BattleViewConfig.HeroModelScale).
+        private float _bodySize = 1f;
 
         internal UnitBody3D Model => _model;
 
@@ -77,7 +79,7 @@ namespace Arena3Q.Gameplay
             _color = Color.white;
             _body.sprite = sprite;
             _body.color = Color.white;
-            _body.transform.localScale = Vector3.one;
+            _body.transform.localScale = Vector3.one * _bodySize;
             _body.transform.localPosition = Vector3.zero;
             _body.enabled = true;
             if (_model != null)
@@ -122,6 +124,22 @@ namespace Arena3Q.Gameplay
             t.localScale = new Vector3(_barWidth * fraction, t.localScale.y, 1f);
             t.localPosition = new Vector3(-_barWidth * (1f - fraction) * 0.5f, t.localPosition.y, 0f);
             _healthFill.color = isEnemy ? new Color(1f, 0.35f, 0.3f) : new Color(0.3f, 1f, 0.35f);
+        }
+
+        /// <summary>
+        /// Draws the body (picture, the model attached to it, or the placeholder body and its shadow) larger than the
+        /// unit's gameplay size; the markers move above it. Pictures only: radius and reach do not change.
+        /// </summary>
+        public void SetBodySize(float size)
+        {
+            if (_shadow != null)
+                _shadow.transform.localScale *= size / _bodySize;
+            _bodySize = size;
+            if (_model != null)
+                _model.SetSize(size);
+            else
+                _body.transform.localScale = Vector3.one * size;
+            LayoutMarkers();
         }
 
         public void SetSelected(bool selected)
@@ -263,13 +281,13 @@ namespace Arena3Q.Gameplay
         // Health bar, stun star, taunt mark and shield ring sit above the top of the body as seen on screen.
         private void LayoutMarkers()
         {
-            var top = _artTop;
+            var top = _artTop * _bodySize;
             var screenUp = Quaternion.Inverse(_groundFromRoot) * Vector3.up;
             var sinTilt = Mathf.Clamp01(-screenUp.z);
             if (_model != null)
             {
                 // A body of height h shows h · sin(tilt) tall; its round top adds a little.
-                top = _model.Height * sinTilt + _diameter * 0.4f * Mathf.Sqrt(1f - sinTilt * sinTilt);
+                top = (_model.Height * sinTilt + _diameter * 0.4f * Mathf.Sqrt(1f - sinTilt * sinTilt)) * _bodySize;
             }
             else if (_prop != null)
                 top = Mathf.Max(_propHeight * sinTilt + _diameter * 0.5f * Mathf.Sqrt(1f - sinTilt * sinTilt), 0.5f);
