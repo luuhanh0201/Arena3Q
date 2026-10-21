@@ -1,5 +1,11 @@
 # Nhật ký sửa lỗi – Arena3Q
 
+## Mặc Ảnh A2: billboard kéo cao33% khi đổi sang camera nghiêng (21/10/2026, Codex)
+
+- Nhánh `stretchToGround` dùng scale mặt đất/renderProjection nhưng bỏ hệ số foreshortening của camera; billboard đối diện camera nên không tự bị nén. Nhân thêm hình chiếu của pháp tuyến camera; không sửa scale lớp ground.
+- Kiểm camera0°,41,40962°,60° và legacy; tại camera trận hệ số1,333333→1. XML `AfterA2_1738`:22pass/0fail/1skip (test xuất chuỗi60Hz tuỳ chọn). Ảnh cùng frame/camera `NghiemThu/MacAnh/XemTruoc_Footprint3D_20261021`.
+- Phòng lặp: kiểm ảnh chân tia/vòng logic khi đổi phép chiếu, không chỉ xoay billboard. Độ tự nhiên của các tia Ultimate vẫn là mục riêng chưa đạt.
+
 ## Mặc Ảnh direct3D: bóng ảnh phóng100 lần, thiếu quạt và thủng do atlas sprite (21/10/2026, Codex)
 
 - `BakeMesh(false)` kết hợp localToWorld áp scale FBX lần nữa; CombineMeshes mặc định chỉ lấy submesh0 và bỏ sáu mesh quạt cứng. Sửa theo quy ước native audit: BakeMesh(true)+localToWorld, gộp tất cả index thân; quạt dùng mesh chia sẻ với transform chụp tại thời điểm sinh. Fade mọi renderer và tắt pose trước Destroy cuối frame khi trả pool.

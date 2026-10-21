@@ -299,7 +299,10 @@ namespace Arena3Q.Gameplay
                     var roll = transform.rotation;
                     root.localRotation = Quaternion.Inverse(roll) * _upright * roll;
                     root.localPosition = root.localRotation * new Vector3(0f, layer.height * _scale, 0f);
-                    var stretch = layer.stretchToGround ? _projection / recipe.renderProjection : 1f;
+                    // Ground is foreshortened by the tilted camera; the billboard itself is not.
+                    // Identity upright retains the legacy flat-camera projection.
+                    var cameraProjection = Mathf.Abs((_upright * Vector3.forward).z);
+                    var stretch = layer.stretchToGround ? _projection * cameraProjection / recipe.renderProjection : 1f;
                     root.localScale = new Vector3(1f, flip * stretch, 1f);
                     _spins[i].localRotation = Quaternion.identity;
                     _spins[i].localScale = Vector3.one * size;
