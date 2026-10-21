@@ -976,6 +976,13 @@ namespace Arena3Q.Gameplay
                 var bounds = Stage.BackgroundArtArea;
                 art.transform.localPosition = bounds.center;
                 art.transform.localScale = new Vector3(bounds.width / artSize.x, bounds.height / artSize.y, 1f);
+                // 3D: the painting lies on a ground mesh (flat under the units, low hills outside the map); the
+                // sprite stays as the reference of the painted area.
+                if (Presentation3D && View.GroundMaterial != null)
+                {
+                    Ground3DView.Create(_groundRoot, Stage.BackgroundArt, bounds, Stage.MapBounds, View);
+                    art.enabled = false;
+                }
             }
             else
             {

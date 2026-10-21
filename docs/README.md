@@ -23,7 +23,7 @@ Quy ước sắp xếp:
 | `Tuong/LordArtPrompts.md` | Tổng quan làm hình chủ tướng: công cụ, quy trình, khối phong cách, đặt tên lớp, link tới các file prompt. |
 | `Tuong/StrategistArtGuide.md` | Mẫu quy trình cho mọi chủ tướng (làm trên Mưu sĩ): Krita, tách lớp, gắn xương, phần mình code. |
 | **`BanDo/`** | **Bản đồ** |
-| `BanDo/MapSpecification.md` | Kích thước, bố cục, vùng cấm, sông và cầu, quy cách art bản đồ. |
+| `BanDo/MapSpecification.md` | Kích thước, bố cục, vùng cấm, sông và cầu, quy cách art bản đồ; mục 8.7 = hiển thị 3D (mặt đất mesh + ảnh nền vẽ nhìn thẳng, đạo cụ 3D). |
 | `BanDo/BatQuaiTran.md` | **Map Bát Quái Trận** (bản đồ hiện hành của mọi ải): vòng 8 cột, 8 cửa Bát Môn (Sinh / Khai / Tử / Đỗ), xoay trận mỗi 20 s, đài tâm chiếm trận nhãn, hình ảnh, debug và test. |
 | `BanDo/MapArtGuide.md` | Cách gửi file và viết yêu cầu vẽ bản đồ: file đính kèm, kích thước mảnh, hậu kỳ. |
 | **`QuanDich/`** | **Quân địch khi đi ải** – `README.md` (cấp bậc, luật hình ảnh), `Chuong1_SonTac.md`, `Chuong2_HoangCan.md`, `Chuong3_YeuQuai.md` (từng loại địch, chỉ số, kỹ năng, prompt), `Animation.md` (khung xương, clip, mốc cảnh báo / ra đòn), `VFX_Prompts.md`; ảnh lưu trong `QuanDich/art/`. |

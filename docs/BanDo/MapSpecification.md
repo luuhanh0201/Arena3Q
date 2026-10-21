@@ -166,6 +166,14 @@ Số đo theo **toạ độ logic** (toạ độ trong `StageConfig`); vì góc 
 ### 8.6 Thứ tự lớp (Sorting Layer) đề xuất 🟡
 `Ground` → `GroundDetail` → `Obstacles` (nước) → `Bridges` → `GroundUI` (vùng triệu hồi, điểm triệu hồi, marker lệnh, vòng chọn) → `Units` (sắp theo Y) → `Effects` → (uGUI HUD luôn trên cùng).
 
+### 8.7 Hiển thị 3D (người dùng chốt 2026-10-21, `docs/KeHoach/ChuyenSang3D.md` §12) ✅
+**Thay 8.3–8.6 cho bản 3D** (các mục trên giữ làm lịch sử của đường 2.5D):
+- **Camera orthographic nghiêng** đúng góc 41,4° (tỉ lệ 0,75 của 8.3): chính camera nén chiều dọc. Logic vẫn là mặt phẳng XY tại z = 0, chiều lên là −Z.
+- **Mặt đất = mesh 3D + texture** (`Ground3DView`, shader `Arena3Q/Ground 3D`). Ảnh nền vẽ **nhìn thẳng từ trên xuống, đúng tỉ lệ** (một ô logic 1 × 1 là ô vuông trên ảnh). **Không vẽ nén 0,75 như 8.3/8.4** nữa, vì camera đã nén. Ảnh phủ `StageConfig.backgroundArtArea`. Trong `mapBounds` mặt đất phẳng tuyệt đối, vì quân đứng ở z = 0. Ngoài biên là đồi thấp, cao tối đa 🟡 0,8 m, và một dải viền lặp mép ảnh. Chỗ phẳng hiện đúng màu tranh, chỉ sườn đồi sáng/tối theo mặt trời.
+- **Vật thể đứng = model 3D** (đạo cụ Meshy giảm lưới trong `Art/Maps/batQuaiTran/Props3D/`, **Arena3Q > Build 3D Map Props**). Kích thước theo 8.5 / `PropSprites.asset` (`size` theo bề ngang hoặc chiều cao). Pivot là tâm chân trên mặt đất, hướng quay là `rotY` của layout. Ngân sách: tổng đạo cụ một map ≤ 150 nghìn tam giác (hiện ~130 nghìn); texture 1024 màu + normal.
+- **Thứ tự vẽ:** model 3D dùng chiều sâu. Mặt đất vẽ đầu tiên và không ghi độ sâu, nên không che gì. Vòng chọn, bóng, đĩa phù trận… nằm trên mặt đất theo `sortingOrder`. Thanh máu và sprite còn lại là billboard quay về camera.
+- Sprite đạo cụ cũ (`Sprites/`) chỉ giữ làm dữ liệu tham chiếu (đã tắt hiển thị) cho tới khi gỡ đường 2.5D.
+
 ## 9. Bảng thông số tổng hợp cho một ải mới (copy khi tạo ải) 🟡
 
 | Trường `StageConfig` | Cỡ M – ải Công | Cỡ M – ải Thủ |

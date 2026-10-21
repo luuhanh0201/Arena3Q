@@ -38,6 +38,24 @@ namespace Arena3Q.Data
         [Tooltip("Darkness of the soft round shadow under every unit (no realtime shadows).")]
         [SerializeField, Range(0f, 1f)] private float blobShadowAlpha = 0.35f;
 
+        [Header("Ground (3D mesh + painted texture)")]
+        [Tooltip("Material of the ground mesh (Arena3Q/Ground 3D); empty = the painting stays a flat sprite.")]
+        [SerializeField] private Material groundMaterial;
+        [Tooltip("Grid cell of the ground mesh (metres).")]
+        [SerializeField, Min(0.1f)] private float groundCell = 1f;
+        [Tooltip("Height of the low hills outside the map bounds (where no unit goes); inside, the ground stays flat.")]
+        [SerializeField, Min(0f)] private float groundRimHeight = 0.8f;
+        [Tooltip("Distance outside the map bounds over which the hills rise to their height.")]
+        [SerializeField, Min(0.01f)] private float groundRimRamp = 4f;
+        [Tooltip("How far the ground continues past the painting's edge (it repeats the edge).")]
+        [SerializeField, Min(0f)] private float groundSkirt = 8f;
+
+        public Material GroundMaterial => groundMaterial;
+        public float GroundCell => groundCell;
+        public float GroundRimHeight => groundRimHeight;
+        public float GroundRimRamp => groundRimRamp;
+        public float GroundSkirt => groundSkirt;
+
         [Header("Map")]
         [Tooltip("3D models standing in for the map's prop pictures (pillars, slabs, altar, castles, decorations).")]
         [SerializeField] private MapProps3DLibrary mapProps;

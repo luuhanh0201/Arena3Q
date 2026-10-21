@@ -4,17 +4,16 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 
 ## claude
 - **06:19 21/10 – ĐỔI VAI (người dùng): Codex làm tiếp chuyển 3D, Claude chỉ nghiệm thu.** Bàn giao đầy đủ: codex/inbox/tu-claude_20261021-0619_DOI-VAI-codex-lam-claude-nghiem-thu.md (đã xong P1/P1b/P2a/P3a/A3 + 4 kỹ năng Lữ Bố; đang dở Lữ Bố 3D – chưa qua cổng QA da).
-- Trạng thái: dừng làm, chờ báo cáo của Codex để nghiệm thu.
-- Đang giữ (file / folder): không giữ file nào (đã nhả toàn bộ).
+- **06:40 21/10 – chia việc song song (người dùng):** Codex làm Mặc Ảnh + Lữ Bố; Claude làm phần chuyển 3D không thuộc hai tướng và vẫn nghiệm thu Codex (codex/inbox/tu-claude_20261021-0640_chia-viec-song-song.md).
+- Trạng thái: đang làm – mặt đất mesh 3D, công cụ đo hiệu năng, lưu trữ file 2D không thuộc tướng, tài liệu chung 3D/map. Một agent Claude theo dõi + review Codex.
+- Đang giữ (file / folder): Scripts/Gameplay/Visuals/Ground3DView.cs (mới); Content/Materials/Ground3D*.mat (mới); BattleController.cs chỉ đoạn map visuals; trường mặt đất trong BattleViewConfig.cs + Content/Resources/BattleView.asset; Scripts/Editor/BattleRenderStats*.cs + test mới; docs/GameplaySpecification.md §1/§9, docs/BanDo/MapSpecification.md §8, docs/README.md, CLAUDE.md (Rendering / Logic vs view).
 - Bàn giao trước đó: claude/outbox/20261020-2330_BAN-GIAO-cong-viec-claude.md.
 
 ## codex
-- **06:16 ng?y21/10 ? ?? nh?n l?i ng? c?nh 3D v? ph?n c?ng0104: Claude l?m, Codex ch? nghi?m thu.** Ng??i d?ng nh?c ti?p t?c theo d? ?n3D; kh?ng ti?p t?c ghi ?? ngu?n Claude.
-- Nh? m?i file s?n ph?m, source model, docs chung, fixture c? A1?A4; Claude ?? ti?p qu?n/commit. Ch? gi? AgentComms/codex/outbox, Logs/CodexReview/20261021_0616 v? b?ng ch?ng review ri?ng.
-- ?ang l?m: nghi?m thu t?ng ph?n A3/A4, P1/P1b/P3a ?? b?o xong; ??c ngu?n hi?n t?i v? b?ng ch?ng, chu?n b? ki?m ??c l?p trong Unity sau khi Claude nh? lock. Ch?a nghi?m thu t?ng th?, ch?a n?ng ?i?m.
-- A1/A2: tr??c/sau v? t? test ?? ch?t, Claude review code0043 ??t nh?ng y?u c?u t? ch?y l?i. A4 b?n Codex tr??c chuy?n vai: target60/vSync0 ? startup+Frontend+Battle, 2test pass trong FrameRateAndBeforeBlend.xml; 2FAIL c?n l?i l? baseline A3 ch?a h?a. A3 implementation do Claude ho?n thi?n48920c9, kh?ng ?p b?n nh?p Codex ngo?i Assets.
-- B?n giao: codex/outbox/20261021-0616_ban-giao-va-nhan-review3D.report.md. Kh?ng c? Unity/Blender do Codex ?ang ch?y. Kh?ng test Android theo ph?n c?ng0104; thi?u s? ?o thi?t b? ph?i ghi pending.
-- Quy t?c ti?n ??: b?o ngay t?ng ph?n v?i ?nh/s? ?o v? l?i c?n m?; kh?ng ch? to?n b? m?i b?o. Sau khi ho?n t?t l??t review s? theo d?i inbox1gi? theo README?3.
-
+- **06:22 ngày 21/10 – nhận bàn giao 0619: Codex sửa, Claude nghiệm thu.** Theo lệnh mới của người dùng: kiểm và xử lý Mặc Ảnh trước, sau đó tiếp tục Lữ Bố 3D.
+- Đã đọc bàn giao 0619, kế hoạch ChuyenSang3D và các báo cáo A3/P1/P3a. Không có Unity/Blender chạy lúc tiếp nhận. Mốc 0104 chỉ review đã hết hiệu lực.
+- Đang giữ: nguồn/asset/script Mặc Ảnh và Lữ Bố, Scripts/Graphics3D, HeroModel3DView, HeroAnimationView, builder/test liên quan; Tests/PlayMode/CodexMacAnhDirectTests.cs; Model3D_Rules, LuBu.md, Delivery_QA/MacAnh và phần tướng trong ChuyenSang3D; báo cáo/bằng chứng riêng. Đã nhận chia việc0640: nhả docs chung và phần map cho Claude. Không sửa phần STATUS của Claude.
+- Việc đầu: kiểm snapshot 3D về scale, toàn bộ submesh và quạt; kiểm footprint VFX sau đổi camera; đồng bộ docs 3D. Sau đó kiểm model/motion Mặc Ảnh và giải quyết Lữ Bố chưa qua QA da.
+- Báo ngay từng phần nhỏ với ảnh trước–sau và số đo. Chưa nghiệm thu tổng thể. Chỉ test Unity, chưa build/test Android theo bàn giao 0619. Sau khi hoàn tất công việc theo dõi inbox 1 giờ.
 ## Unity (Editor / batch mode)
-- Đang giữ bởi: không ai (Claude nhả 06:19 21/10 khi đổi vai; không còn Unity/Blender nào của Claude đang chạy)
+- Đang giữ bởi: claude (người dùng báo Codex đã dừng; chụp ảnh nghiệm thu Mặc Ảnh + test phần mặt đất/đo hiệu năng của Claude)

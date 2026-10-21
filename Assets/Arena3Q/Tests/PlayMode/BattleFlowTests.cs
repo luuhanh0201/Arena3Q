@@ -808,6 +808,28 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator Presentation3D_GroundIsAMesh_FlatUnderTheUnits_WithHillsOutsideTheMap()
+        {
+            Assume.That(_battle.Presentation3D, Is.True, "3D presentation is the shipped default");
+            _battle.StartBattle(0);
+            yield return null;
+            var ground = _battle.GetComponentsInChildren<MeshRenderer>().SingleOrDefault(r => r.name == "Ground3D");
+            Assert.That(ground, Is.Not.Null, "decision 2: the ground is a mesh with the painted texture");
+            Assert.That(_battle.GetComponentsInChildren<SpriteRenderer>().Single(r => r.name == "MapArt").enabled, Is.False,
+                "the flat painting is not drawn twice");
+            var art = Stage(0).BackgroundArtArea;
+            Assert.That(ground.bounds.min.x, Is.LessThanOrEqualTo(art.xMin), "covers the painting and its skirt");
+            Assert.That(ground.bounds.max.y, Is.GreaterThanOrEqualTo(art.yMax));
+
+            var map = Stage(0).MapBounds;
+            var view = _battle.View;
+            foreach (var point in new[] { map.center, map.min, map.max, new Vector2(map.xMin, map.yMax), new Vector2(map.xMax, map.yMin) })
+                Assert.That(Ground3DView.Height(point, map, view), Is.Zero, $"flat where units stand ({point})");
+            var outside = new Vector2(map.xMin - view.GroundRimRamp, map.center.y);
+            Assert.That(Ground3DView.Height(outside, map, view), Is.GreaterThan(0.1f), "low hills outside the map");
+        }
+
+        [UnityTest]
         public IEnumerator MapArt_CoversTheMap_AndHidesPlaceholderTerrain()
         {
             _battle.StartBattle(0);

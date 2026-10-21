@@ -12,10 +12,11 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 ---
 
 ## 1. Tổng quan ✅
-- Engine Unity 6.6, 2D URP, C#. Nền tảng Android, iOS, PC. Màn hình ngang.
+- Engine Unity 6.6, URP 3D (Universal Forward), C#. Nền tảng Android, iOS, PC. Màn hình ngang. Quyết định chuyển hiển thị sang 3D ngày 21/10/2026.
 - Chế độ hiện tại: **PvE đánh ải**, gồm hai loại ải **Công** và **Thủ**. PvP làm sau.
 - Người chơi triệu hồi **tối đa 5 tướng mỗi trận**. Mỗi tướng dẫn một đội lính riêng.
-- Góc nhìn nghiêng từ trên xuống kiểu Clash of Clans (2.5D); logic chạy trên mặt phẳng 2D.
+- Camera orthographic nghiêng từ trên xuống kiểu Clash of Clans; nhân vật và đạo cụ hiển thị 3D. Logic vẫn trên mặt phẳng 2D: (x,y) → world (x,y,0), chiều cao hướng −Z. Mặt đất dùng mesh + texture; phần chưa chuyển xong phải ghi rõ khi báo cáo.
+- ✅ (cập nhật bàn giao 06:19 ngày 21/10) Hiện chỉ test trong Unity, chưa build/test điện thoại theo người dùng. Yêu cầu 60 FPS dưới đây giữ nguyên; số đo thiết bị đang chờ, không thay bằng FPS Editor hoặc cấu hình target.
 - ✅ (người dùng chốt 2026-10-21) **Tốc độ khung hình tối thiểu 60 FPS** trên mọi nền tảng (Android, iOS, PC), cả trong trận lẫn ngoài trận. Game đặt khung hình mục tiêu 60 (Unity trên Android mặc định chỉ 30 nếu không đặt); con số mục tiêu nằm trong dữ liệu cấu hình, không viết cứng. Không có lựa chọn hạ xuống 30. Mọi thay đổi đồ họa / VFX phải đo lại FPS trên thiết bị thật (Redmi Note 8 Pro là máy thử hiện tại) với cùng workload trận (5 tướng + lính + địch + VFX) và báo FPS trung bình / p95.
 - ✅ (người dùng chốt 2026-10-21) **Hiệu ứng vẽ sẵn (flipbook) phải chuyển khung liền mạch:** shader hòa hai khung kề nhau theo thời gian (không nhảy khung), nên khói / khí / phép chạy mượt ở 60 FPS mà không phải render thêm khung. Áp cho hiệu ứng (khói, khí, vòng trận…), **không** áp cho sprite nhân vật (hòa khung nhân vật gây bóng mờ). Thời gian hòa theo đồng hồ hiệu ứng / trận (dừng khi tạm dừng trận), không theo đồng hồ thực.
 
@@ -206,8 +207,8 @@ Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng
 - 🟡 Có hai loại vùng cấm (người dùng chốt 2026-10-16): **hình chữ nhật** và **sông**. Sông = đường tâm uốn khúc + bề rộng, chỉ qua được ở **chỗ qua sông (cầu)**; một dòng sông có thể cắt ngang cả bản đồ, miễn là còn cầu để đi. Bản đồ chuẩn: một con sông cắt ngang giữa bản đồ từ mép trên xuống mép dưới, có 2 cầu → 2 làn đường. Thông số chi tiết ở `docs/BanDo/MapSpecification.md`.
 - ✅ (người dùng chốt 2026-10-18) **Bản đồ hiện hành của mọi ải: Bát Quái Trận** (thay sông + 2 cầu; sau này chỉnh từng ải bằng admin panel). Thêm hai loại vùng cấm: **vật cản tròn** (8 cụm cột, không bao giờ mất) và **phiến đá bật / tắt** (cửa Đỗ đóng khe); 8 cửa Bát Môn đổi loại mỗi 20 s, đài tâm là vùng chiếm (không chặn). Luật đầy đủ: `docs/BanDo/BatQuaiTran.md`.
 - ✅ Góc nhìn kiểu Clash of Clans; bản đồ **rộng hơn màn hình**.
-- 🟡 Góc nghiêng 2.5D **điều chỉnh được từ 0° (nhìn thẳng từ trên xuống) tới 45°** bằng thanh trượt trong HUD (và `viewTiltDegrees` trên `BattleController`); **mặc định 0°** (người dùng chốt 2026-10-16). Chỉ phần hiển thị đổi (mặt đất nén theo `cos(góc)`, unit vẫn đứng thẳng); luật trận chạy trên mặt phẳng logic không đổi.
-- ✅ (cập nhật 2026-10-17) Art thật sẽ **vẽ sẵn ở góc nghiêng 3/4 cố định** (không phải isometric hình thoi; trục bản đồ giữ nguyên). Khi có art: góc mặc định = góc của art (🟡 tỉ lệ nén 0.75 ≈ 41.4°), thanh "Góc nhìn" **chỉ giữ để debug** (Editor / bản Development), bản phát hành khoá góc. Chi tiết: `docs/BanDo/MapSpecification.md` mục 8.
+- ✅ (21/10/2026, thay cách nén 2.5D cũ) Camera orthographic thật nghiêng theo art, hiện khoảng 41,4°. Camera tạo phép chiếu; `ToView` không nén thêm Y trong đường 3D. Chạm/kéo dùng tia chiếu xuống mặt đất z=0. Góc nhìn chỉ điều chỉnh trong debug; luật trận không đổi.
+- ✅ (cập nhật 2026-10-17) Art thật sẽ **vẽ sẵn ở góc nghiêng 3/4 cố định** (không phải isometric hình thoi; trục bản đồ giữ nguyên). Khi có art: góc mặc định = góc của art (🟡 tỉ lệ nén 0.75 ≈ 41.4°), thanh "Góc nhìn" **chỉ giữ để debug** (Editor / bản Development), bản phát hành khoá góc. Chi tiết: `docs/BanDo/MapSpecification.md` mục 8. **Bản 3D (21/10/2026):** ảnh nền vẽ nhìn thẳng từ trên xuống, đúng tỉ lệ, trên mesh mặt đất; camera tạo độ nén (mục 8.7).
 - ✅ Camera **kéo theo** (🟡: kéo theo tướng đang được chọn khi tướng di chuyển; người chơi kéo tay thì tạm ngưng theo cho tới khi chọn lại tướng).
 - 🟡 Người chơi kéo màn hình để di chuyển camera, hai ngón (hoặc con lăn chuột) để zoom; giới hạn camera trong biên bản đồ.
 - ✅ Tướng nằm ngoài màn hình → hiện **icon tướng ở mép màn hình** theo hướng của tướng đó. Chạm icon → chọn tướng và 🟡 đưa camera tới tướng.
