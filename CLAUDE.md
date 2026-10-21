@@ -22,7 +22,7 @@ The gameplay specification lives in `docs/GameplaySpecification.md` (tracked in 
 
 Bugs fixed so far, with root causes and how to avoid repeating them, are logged in `docs/NhatKySuaLoi.md`. Read it before changing gameplay code or running batch builds/tests, and add an entry for every bug you fix.
 
-For all 3D model, skinning, animation and VFX work, read and follow `docs/Tuong/Model3D_Rules.md` before editing. Surface deformation and visual checks are mandatory; passing transform-only tests does not authorize delivery.
+For all 3D model, skinning, animation and VFX work, read and follow `docs/Tuong/Model3D_Rules.md` before editing. Surface deformation and visual checks are mandatory; passing transform-only tests does not authorize delivery. Every wrong direction, error or bug met during that work (any agent) goes **at once** into `docs/Tuong/NhatKyVanHanh_3D.md` (what happened, root cause, how it was found, the prevention rule; user request 2026-10-21); read it before starting such work.
 
 ## Repository layout
 

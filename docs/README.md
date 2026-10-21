@@ -16,6 +16,7 @@ Quy ước sắp xếp:
 | `KeHoach/ChuyenSang3D.md` | Kế hoạch chuyển hiển thị sang 3D (logic giữ mặt phẳng 2D): ngân sách 60 FPS trên Redmi Note 8 Pro, camera, 7 giai đoạn (P0 làm thử → map → nhân vật → VFX → Frontend → test → tài liệu), model cần cung cấp, rủi ro, câu hỏi cần chốt. |
 | **`Tuong/`** | **Tướng** |
 | `Tuong/Model3D_Rules.md` | Quy tắc bắt buộc khi sửa model 3D, skinning, animation và VFX; lỗi đã gặp và các bước tự kiểm tra trước bàn giao. |
+| `Tuong/NhatKyVanHanh_3D.md` | **Nhật ký vận hành 3D / animation / VFX** (mọi agent): hướng sai, lỗi, bug gặp khi làm – nguyên nhân, cách phát hiện, quy tắc phòng tránh. Ghi ngay khi gặp. |
 | `Tuong/LordHeroes.md` | 4 chủ tướng (Cung thủ, Kiếm sĩ, Mưu sĩ, Thống soái): vai trò, chỉ số, bộ kỹ năng. |
 | `Tuong/NormalHeroes.md` | 4 tướng khởi đầu (Xạ Thủ, Kỵ Binh, Giáp Sĩ, Đao Khách): kỹ năng, lớp PSD, xương, clip. |
 | `Tuong/LuBu.md` | Lữ Bố: rig 73 xương, sửa weight/tư thế/da, chỗ cầm kích, 7 animation, sprite tám hướng (trang 2048) và cách đưa vào game. |
