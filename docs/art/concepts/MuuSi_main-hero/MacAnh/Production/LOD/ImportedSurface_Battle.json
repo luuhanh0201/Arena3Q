@@ -1,11 +1,14 @@
 {
     "lod": "Battle",
     "units": "world metres; BakeMesh(useScale:true), then localToWorld",
-    "vertices": 61474,
-    "edges": 85041,
+    "vertices": 62083,
+    "edges": 88471,
     "height": 1.6968761682510376,
     "absoluteDelta": 0.006787505000829697,
     "passed": true,
+    "maxInfluences": 3,
+    "maxWeightSumError": 1.1920928955078125e-7,
+    "skinQuality": "Bone4",
     "clips": [
         {
             "name": "Attack01",
@@ -14,11 +17,11 @@
             "stretched": 0,
             "compressed": 0,
             "heightErrors": 0,
-            "maxRatio": 1.2620172500610352,
-            "minRatio": 0.7162565588951111,
-            "worstTime": 0.38333332538604736,
-            "minHeight": 1.6958446502685547,
-            "maxHeight": 1.6979831457138062
+            "maxRatio": 1.2600271701812744,
+            "minRatio": 0.7070870399475098,
+            "worstTime": 0.30000001192092896,
+            "minHeight": 1.6957547664642334,
+            "maxHeight": 1.7001967430114746
         },
         {
             "name": "Attack02",
@@ -27,11 +30,11 @@
             "stretched": 0,
             "compressed": 0,
             "heightErrors": 0,
-            "maxRatio": 1.2252072095870972,
-            "minRatio": 0.7514020204544067,
-            "worstTime": 0.7333333492279053,
-            "minHeight": 1.6957749128341675,
-            "maxHeight": 1.6978135108947754
+            "maxRatio": 1.3292171955108643,
+            "minRatio": 0.7203128933906555,
+            "worstTime": 1.100000023841858,
+            "minHeight": 1.6957018375396729,
+            "maxHeight": 1.6991357803344727
         },
         {
             "name": "Dodge",
@@ -66,8 +69,8 @@
             "stretched": 0,
             "compressed": 0,
             "heightErrors": 0,
-            "maxRatio": 1.1161835193634033,
-            "minRatio": 0.8895893096923828,
+            "maxRatio": 1.1161818504333496,
+            "minRatio": 0.8895888328552246,
             "worstTime": 0.5166666507720947,
             "minHeight": 1.6966837644577026,
             "maxHeight": 1.6970351934432983
@@ -92,11 +95,11 @@
             "stretched": 0,
             "compressed": 0,
             "heightErrors": 0,
-            "maxRatio": 1.1886945962905884,
-            "minRatio": 0.8189627528190613,
-            "worstTime": 0.9833333492279053,
-            "minHeight": 1.6957504749298096,
-            "maxHeight": 1.698015809059143
+            "maxRatio": 1.242165207862854,
+            "minRatio": 0.7948316931724548,
+            "worstTime": 0.9166666865348816,
+            "minHeight": 1.695595145225525,
+            "maxHeight": 1.7014834880828857
         },
         {
             "name": "Skill02",
@@ -105,11 +108,11 @@
             "stretched": 0,
             "compressed": 0,
             "heightErrors": 0,
-            "maxRatio": 1.2335424423217773,
-            "minRatio": 0.796075165271759,
-            "worstTime": 0.8833333253860474,
-            "minHeight": 1.6957494020462036,
-            "maxHeight": 1.6980209350585938
+            "maxRatio": 1.2922930717468262,
+            "minRatio": 0.744337797164917,
+            "worstTime": 1.0,
+            "minHeight": 1.6960859298706055,
+            "maxHeight": 1.7002400159835815
         },
         {
             "name": "Skill03",
@@ -118,11 +121,11 @@
             "stretched": 0,
             "compressed": 0,
             "heightErrors": 0,
-            "maxRatio": 1.2141852378845215,
-            "minRatio": 0.8010082840919495,
-            "worstTime": 0.8833333253860474,
-            "minHeight": 1.6957367658615112,
-            "maxHeight": 1.6980088949203491
+            "maxRatio": 1.2363747358322144,
+            "minRatio": 0.8027040362358093,
+            "worstTime": 0.8999999761581421,
+            "minHeight": 1.6959580183029175,
+            "maxHeight": 1.7009657621383667
         },
         {
             "name": "Ultimate",
@@ -131,11 +134,11 @@
             "stretched": 0,
             "compressed": 0,
             "heightErrors": 0,
-            "maxRatio": 1.2365483045578003,
-            "minRatio": 0.7840832471847534,
-            "worstTime": 0.9666666388511658,
-            "minHeight": 1.6957502365112305,
-            "maxHeight": 1.6978532075881958
+            "maxRatio": 1.2776614427566528,
+            "minRatio": 0.6755054593086243,
+            "worstTime": 2.7333333492279053,
+            "minHeight": 1.6956692934036255,
+            "maxHeight": 1.7021912336349487
         },
         {
             "name": "Walk",
@@ -144,8 +147,8 @@
             "stretched": 0,
             "compressed": 0,
             "heightErrors": 0,
-            "maxRatio": 1.1154794692993164,
-            "minRatio": 0.8888247609138489,
+            "maxRatio": 1.115481972694397,
+            "minRatio": 0.8888245224952698,
             "worstTime": 0.5166666507720947,
             "minHeight": 1.6965093612670898,
             "maxHeight": 1.697060465812683

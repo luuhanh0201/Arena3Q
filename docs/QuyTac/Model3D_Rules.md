@@ -12,6 +12,8 @@
 
 ## Lỗi đã gặp và phòng tránh
 
+Đường nối giữa các mảng rời cũng phải được kiểm: audit cạnh trong từng island không phát hiện tay rời tay áo. Phân biệt biên tiếp xúc được phép tách với chỗ nối cơ thể; kiểm áo trong che kín cổ tay/vai/khuỷu qua toàn clip. Khi bổ sung hình học phải kiểm lại va xuyên **cả cán quạt**, không loại toàn bộ cán vì có tiếp xúc lòng bàn tay. Ảnh trước/sau phải dùng baseline lưu trước chỉnh sửa, không tái tạo baseline bằng cách giấu một submesh sau khi đã sửa phần khác.
+
 | Lỗi | Nguyên nhân đã biết / điều phải kiểm tra | Quy tắc hồi quy |
 | --- | --- | --- |
 | Model co xuống 1/10 | Parent inverse còn scale tạm của heat solver | Cập nhật dependency graph; kiểm matrix basis/inverse, scale rig/mesh và chiều cao rest. Mặc Ảnh 1,70 m. |

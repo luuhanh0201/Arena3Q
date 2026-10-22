@@ -312,3 +312,11 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 - Redmi Note8Pro đã kết nối ADB/shell, APK riêng cài thành công. Lần đầu2340×1080:13,30/13,02/14,92FPS Low/Medium/High; chưa đạt mục tiêu. Bản cập nhật và chẩn đoán8 workload đang đo, xem báo cáo sống tại `art/concepts/MuuSi_main-hero/MacAnh/Production/GraphicsUpgrade/Graphics_QA.md`.
 - Bổ sung Android: phát hiện CopyDepth shader bị build stripper loại khi các quality của platform vẫn trỏ Renderer2D. Builder dùng preview pipeline tạm thời cho default/mọi quality, rồi nạp lại pipeline gốc theo đường dẫn trong finally (tham chiếu object có thể bị unload khi build). GPU skinning giữ nguyên nguồn. Bài đo GPU mới còn chờ người dùng mở khóa màn hình; không công bố FPS chưa đo. PlayMode sau sửa benchmark/JNI12/12; SHA model nguồn khớp manifest.
 - Bản cuối Android144,4MB đã cài; GPU skinning và fix build depth, clamp shader pow. Đã xác nhận khôi phục pipeline2D của cả6 quality sau build bằng cách nạp lại asset theo đường dẫn. Unity mở preview Skill02. Android FPS mới còn chờ mở khóa; không lấy số bản đầu làm kết quả của bản sửa.
+
+## 23/10/2026 – Mặc Ảnh: cổ tay rời, lót thân phẳng và tay áo quật gắt
+- Lưới đã chia mảng nhưng thiếu áo trong che kín joint; nắp lót thân cũ là các mặt rộng bám pelvis. Skeleton nối đúng, audit cạnh trong từng island không thấy khe giữa các mảng.
+- Thay nắp lót bằng thân áo ôm sát, bổ sung đoạn tay trong chồng kín ở khớp tới cổ tay; thu cổ tay để tránh cán quạt. Làm dịu chuyển động tay áo có trễ 0,75 frame, giữ đầu/cuối action và event; giữ riêng đường tay phải Skill01 vì cần khoảng trống quạt.
+- Không hàn tự động mọi cặp đỉnh trùng rest, không lấy surface pass thay kiểm ảnh/va xuyên. Bản bridge skin tuyến tính bị ép và bản cổ tay quá to đã loại.
+- Battle sau import 985 mẫu/11 clip không vượt ngưỡng giãn/ép/gai; quạt nguồn đủ 6 phần 985 mẫu không xuyên ngoài palm; PlayMode 28 pass/0 fail/1 skip. Trang 6972 ảnh, 154 trạng thái và controls kiểm trên Edge.
+- Bằng chứng và giới hạn: NghiemThu/MacAnh/XemTruoc_ArmBridges_20261022/README.md. Chưa port geometry sang Portrait, chưa đo thiết bị, không tuyên bố nghiệm thu nghệ thuật tổng thể.
+

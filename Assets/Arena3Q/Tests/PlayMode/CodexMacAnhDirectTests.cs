@@ -55,6 +55,42 @@ namespace Arena3Q.Tests.PlayMode
             public string[] staticPartNames;
         }
 
+        [Test] public void AllActionsAndInterruptionsKeepTheSkinnedBodyContinuousInTime()
+        {
+            var realtime = _hero.GetComponentsInChildren<MonoBehaviour>().First(c => c is IMacAnhRealtimeView);
+            var runtime = (IMacAnhRealtimeView)realtime;
+            var model = (GameObject)realtime.GetType().GetField("_model", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(realtime);
+            var skin = model.GetComponentInChildren<SkinnedMeshRenderer>();
+            var baked = new Mesh(); _owned.Add(baked);
+            Vector3[] SampleSurface()
+            {
+                skin.BakeMesh(baked,true);
+                return baked.vertices.Select(v => skin.transform.TransformPoint(v)).ToArray();
+            }
+            runtime.Sample(MacAnhAction.Idle,0,0);
+            foreach(MacAnhAction action in Enum.GetValues(typeof(MacAnhAction)))
+            {
+                if(action==MacAnhAction.Idle)continue;
+                var before=SampleSurface();
+                runtime.Sample(action,.15f,0);
+                var first=SampleSurface();
+                Assert.That(first.Length,Is.EqualTo(before.Length));
+                for(int i=0;i<first.Length;i++)
+                    Assert.That(Vector3.Distance(first[i],before[i]),Is.LessThan(.0001f),action+" pops at transition start, vertex "+i);
+                for(int step=1;step<=12;step++)
+                {
+                    _battle.Simulate(1f/120f);
+                    runtime.Sample(action,.15f+step/120f,0);
+                    var posed=SampleSurface();
+                    Assert.That(posed.All(v=>float.IsFinite(v.x)&&float.IsFinite(v.y)&&float.IsFinite(v.z)),Is.True,action+" nonfinite skin");
+                    // Check the rendered surface, including clothes/hair, on each blend frame.
+                    var height=posed.Max(v=>Vector3.Dot(v,Vector3.back))-posed.Min(v=>Vector3.Dot(v,Vector3.back));
+                    Assert.That(height,Is.InRange(1.0f,3.5f),action+" collapsed/exploded during blend");
+                }
+                runtime.Sample(MacAnhAction.Idle,0,0); // interrupt back to idle, then interrupt again
+            }
+        }
+
         [Test] public void DirectSnapshotPreservesWorldScaleAndEveryMeshPart()
         {
             var realtime = _hero.GetComponentsInChildren<MonoBehaviour>().First(c => c is IMacAnhRealtimeView);

@@ -1,89 +1,101 @@
 {
-  "status": "working candidate; not approved for delivery",
-  "lod": "Battle",
-  "source": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\LOD\\MacAnh_Battle_FanClearance.blend",
-  "source_sha256": "655a6ed7b51b7a67fed28c311145b99043b6de169b46a0b7316831838a11588e",
-  "vertices": 17929,
-  "bones": 87,
-  "max_influences": 3,
-  "body_triangles": 36356,
-  "fan_triangles": 7268,
-  "total_triangles": 43624,
-  "lining_materials": [],
-  "inner_materials": [
-    {
-      "name": "MacAnh_Battle_InnerRobe",
-      "colour": [
-        0.62,
-        0.59,
-        0.68,
-        1
-      ],
-      "roughness": 0.85
-    },
-    {
-      "name": "MacAnh_Battle_RightSleeveLining",
-      "colour": [
-        0.065,
-        0.025,
-        0.12,
-        1
-      ],
-      "roughness": 0.85
-    },
-    {
-      "name": "MacAnh_Battle_LeftSleeveLining",
-      "colour": [
-        0.065,
-        0.025,
-        0.12,
-        1
-      ],
-      "roughness": 0.85
-    },
-    {
-      "name": "MacAnh_Battle_RightWristInterior",
-      "colour": [
-        0.62,
-        0.45,
-        0.37,
-        1
-      ],
-      "roughness": 0.85
-    },
-    {
-      "name": "MacAnh_Battle_LeftWristInterior",
-      "colour": [
-        0.62,
-        0.45,
-        0.37,
-        1
-      ],
-      "roughness": 0.85
-    },
-    {
-      "name": "MacAnh_Battle_RightBootInterior",
-      "colour": [
-        0.055,
-        0.04,
-        0.035,
-        1
-      ],
-      "roughness": 0.85
-    },
-    {
-      "name": "MacAnh_Battle_LeftBootInterior",
-      "colour": [
-        0.055,
-        0.04,
-        0.035,
-        1
-      ],
-      "roughness": 0.85
-    }
-  ],
-  "body_material": "MacAnh_Battle_DualUvBody.001",
-  "cap_material": "",
-  "dual_uv": true,
-  "atlas": true
+    "status":  "working candidate; not approved for delivery",
+    "lod":  "Battle",
+    "source":  "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\LOD\\MacAnh_Battle_ClothRepair.blend",
+    "source_sha256":  "4bf0451188eb0993ed0b355b272dc6e43ed7bd8526d85c9336286a7f60d5560f",
+    "vertices":  19534,
+    "bones":  87,
+    "max_influences":  3,
+    "body_triangles":  39016,
+    "fan_triangles":  7268,
+    "total_triangles":  46284,
+    "lining_materials":  [
+
+                         ],
+    "inner_materials":  [
+                            {
+                                "name":  "MacAnh_Battle_InnerRobe",
+                                "colour":  [
+                                               0.62,
+                                               0.59,
+                                               0.68,
+                                               1
+                                           ],
+                                "roughness":  0.85
+                            },
+                            {
+                                "name":  "MacAnh_Battle_RightSleeveLining",
+                                "colour":  [
+                                               0.065,
+                                               0.025,
+                                               0.12,
+                                               1
+                                           ],
+                                "roughness":  0.85
+                            },
+                            {
+                                "name":  "MacAnh_Battle_LeftSleeveLining",
+                                "colour":  [
+                                               0.065,
+                                               0.025,
+                                               0.12,
+                                               1
+                                           ],
+                                "roughness":  0.85
+                            },
+                            {
+                                "name":  "MacAnh_Battle_RightWristInterior",
+                                "colour":  [
+                                               0.62,
+                                               0.45,
+                                               0.37,
+                                               1
+                                           ],
+                                "roughness":  0.85
+                            },
+                            {
+                                "name":  "MacAnh_Battle_LeftWristInterior",
+                                "colour":  [
+                                               0.62,
+                                               0.45,
+                                               0.37,
+                                               1
+                                           ],
+                                "roughness":  0.85
+                            },
+                            {
+                                "name":  "MacAnh_Battle_RightBootInterior",
+                                "colour":  [
+                                               0.055,
+                                               0.04,
+                                               0.035,
+                                               1
+                                           ],
+                                "roughness":  0.85
+                            },
+                            {
+                                "name":  "MacAnh_Battle_LeftBootInterior",
+                                "colour":  [
+                                               0.055,
+                                               0.04,
+                                               0.035,
+                                               1
+                                           ],
+                                "roughness":  0.85
+                            },
+                            {
+                                "name":  "MacAnh_ContinuousInnerSleeves",
+                                "colour":  [
+                                               0.1599999964237213,
+                                               0.11999999731779099,
+                                               0.23999999463558197,
+                                               1.0
+                                           ],
+                                "roughness":  0.85
+                            }
+                        ],
+    "body_material":  "MacAnh_Battle_DualUvBody.001",
+    "cap_material":  "",
+    "dual_uv":  true,
+    "atlas":  true
 }

@@ -60,8 +60,28 @@ namespace Arena3Q.Editor
             Capture(poses, SequenceViews, "Seq_");
         }
 
+        public static void RunFullReview()
+        {
+            var lengths = new (string name,int last)[] { ("Idle",40),("Walk",36),("Run",24),("Dodge",24),
+                ("Attack01",24),("Attack02",45),("Skill01",54),("Skill02",60),("Skill03",42),("Ultimate",105),("DodgeAttack",33) };
+            var poses = lengths.SelectMany(c => Enumerable.Range(0,c.last+1).Select(f => (c.name,f))).ToArray();
+            var views = new (string,Focus,Vector3,float)[] {
+                ("Front",Focus.Body,new Vector3(0,.15f,-1),1.03f),
+                ("Back",Focus.Body,new Vector3(0,.15f,1),1.03f),
+                ("Left",Focus.Body,new Vector3(1,.15f,0),1.03f),
+                ("Right",Focus.Body,new Vector3(-1,.15f,0),1.03f),
+                ("Battle",Focus.Body,Quaternion.Euler(41.4f,0,0)*Vector3.back,1.03f),
+                ("RightArm",Focus.RightArm,new Vector3(-.75f,.35f,-1),.42f),
+                ("LeftArm",Focus.LeftArm,new Vector3(.75f,.35f,-1),.42f) };
+            const string output = "NghiemThu/MacAnh/XemTruoc_ArmBridges_20261022/frames";
+            // Baseline frames were captured before the cloth/action repair. Never
+            // regenerate them by hiding submeshes on the changed geometry.
+            Capture(poses,views,"after_",output,512,true);
+        }
+
         private static void Capture(IEnumerable<(string clip, int frame)> poses,
-            (string name, Focus focus, Vector3 toCamera, float size)[] views, string prefix)
+            (string name, Focus focus, Vector3 toCamera, float size)[] views, string prefix,
+            string output = Output,int resolution = 900,bool review = false)
         {
             var view = AssetDatabase.LoadAssetAtPath<GameObject>(ViewPrefab);
             var serialized = new SerializedObject(view.GetComponents<MonoBehaviour>().First(m => m != null && m.GetType().Name == "MacAnhRealtimeBattleView"));
@@ -70,7 +90,7 @@ namespace Arena3Q.Editor
             var model = UnityEngine.Object.Instantiate(character);
             var lightObject = new GameObject("CaptureSun");
             var cameraObject = new GameObject("CaptureCamera");
-            var target = new RenderTexture(900, 900, 24, RenderTextureFormat.ARGB32) { antiAliasing = 4 };
+            var target = new RenderTexture(resolution, resolution, 24, RenderTextureFormat.ARGB32) { antiAliasing = 4 };
             // Shaders compiled asynchronously draw nothing on their first use (the first frame lost its body).
             var asyncShaders = ShaderUtil.allowAsyncCompilation;
             ShaderUtil.allowAsyncCompilation = false;
@@ -108,7 +128,7 @@ namespace Arena3Q.Editor
                 // "Marked" views show where the hand bone (red) and the fan grip (cyan) really are.
                 var markers = new[] { (Bone("RightHand"), Color.red), (Bone("Fan_Handle"), Color.cyan), (Bone("RightLowerArm"), Color.yellow) }
                     .Select(m => { var s = GameObject.CreatePrimitive(PrimitiveType.Sphere); UnityEngine.Object.DestroyImmediate(s.GetComponent<Collider>()); s.transform.SetParent(m.Item1, false); s.transform.localScale = Vector3.one * .03f / m.Item1.lossyScale.x; s.GetComponent<Renderer>().sharedMaterial = new Material(Shader.Find("Universal Render Pipeline/Unlit")) { color = m.Item2 }; return s; }).ToArray();
-                Directory.CreateDirectory(Output);
+                Directory.CreateDirectory(output);
                 // A newly made renderer is missing from the very first render: draw one throwaway frame.
                 foreach (var (skin, proxy) in proxies)
                     skin.BakeMesh(proxy, true);
@@ -123,12 +143,14 @@ namespace Arena3Q.Editor
                             clip = candidate;
                     }
                     if (clip == null)
-                        continue;
+                        throw new InvalidOperationException("Missing review clip: " + clipName);
                     clip.SampleAnimation(model, Mathf.Min(clip.length, frame / 30f));
                     // Camera.Render in the Editor (batch) does not re-skin after SampleAnimation: the skinned body kept an
                     // old pose while the rigid fan moved (2026-10-22). Draw CPU-baked copies of the skin instead.
                     foreach (var (skin, proxy) in proxies)
+                    {
                         skin.BakeMesh(proxy, true);
+                    }
                     // The size and body centre come from the rest-height so every frame of a sequence is framed alike.
                     var bounds = renderers.Select(r => r.bounds).Aggregate((a, b) => { a.Encapsulate(b); return a; });
                     var height = Bone("Head").position.y - model.transform.position.y;
@@ -144,20 +166,22 @@ namespace Arena3Q.Editor
                             _ => new Vector3(model.transform.position.x, bounds.center.y, model.transform.position.z),
                         };
                         var look = -toCamera.normalized;
+                        if(review && focus==Focus.Body)point=new Vector3(0,.85f,0);
                         camera.transform.position = point - look * 10f;
                         camera.transform.rotation = Quaternion.LookRotation(look, Vector3.up);
-                        camera.orthographicSize = height * size;
+                        camera.orthographicSize = review ? size : height * size;
                         camera.Render();
                         RenderTexture.active = target;
                         var image = new Texture2D(target.width, target.height, TextureFormat.RGB24, false);
                         image.ReadPixels(new Rect(0, 0, target.width, target.height), 0, 0);
                         image.Apply();
                         RenderTexture.active = null;
-                        File.WriteAllBytes($"{Output}/{prefix}{clipName}_{frame:000}_{name}.png", image.EncodeToPNG());
+                        File.WriteAllBytes($"{output}/{prefix}{clipName}_{frame:000}_{name}."+(review?"jpg":"png"),
+                            review?image.EncodeToJPG(90):image.EncodeToPNG());
                         UnityEngine.Object.DestroyImmediate(image);
                     }
                 }
-                Debug.Log("[Arena3Q] MACANH_POSES_CAPTURED " + Output);
+                Debug.Log("[Arena3Q] MACANH_POSES_CAPTURED " + output + " " + prefix);
             }
             finally
             {
