@@ -43,6 +43,7 @@ namespace Arena3Q.Editor
         {
             ("Front", Focus.Body, new Vector3(0f, .25f, -1f), .72f),
             ("Side", Focus.Body, new Vector3(1f, .2f, -.35f), .72f),
+            ("FrontMarked", Focus.Body, new Vector3(0f, .25f, -1f), .72f),
             ("Battle", Focus.Body, Quaternion.Euler(41.4f, 0f, 0f) * Vector3.back, 1.15f),
         };
 
@@ -70,6 +71,9 @@ namespace Arena3Q.Editor
             var lightObject = new GameObject("CaptureSun");
             var cameraObject = new GameObject("CaptureCamera");
             var target = new RenderTexture(900, 900, 24, RenderTextureFormat.ARGB32) { antiAliasing = 4 };
+            // Shaders compiled asynchronously draw nothing on their first use (the first frame lost its body).
+            var asyncShaders = ShaderUtil.allowAsyncCompilation;
+            ShaderUtil.allowAsyncCompilation = false;
             try
             {
                 model.transform.position = Vector3.zero;
@@ -91,7 +95,24 @@ namespace Arena3Q.Editor
                 var bones = model.GetComponentsInChildren<Transform>(true);
                 Transform Bone(string name) => bones.First(t => t.name == name);
                 var renderers = model.GetComponentsInChildren<Renderer>();
+                var proxies = model.GetComponentsInChildren<SkinnedMeshRenderer>().Select(skin =>
+                {
+                    var copy = new GameObject(skin.name + "_Baked");
+                    copy.transform.SetParent(skin.transform, false);
+                    var mesh = new Mesh();
+                    copy.AddComponent<MeshFilter>().sharedMesh = mesh;
+                    copy.AddComponent<MeshRenderer>().sharedMaterials = skin.sharedMaterials;
+                    skin.enabled = false;
+                    return (skin, mesh);
+                }).ToArray();
+                // "Marked" views show where the hand bone (red) and the fan grip (cyan) really are.
+                var markers = new[] { (Bone("RightHand"), Color.red), (Bone("Fan_Handle"), Color.cyan), (Bone("RightLowerArm"), Color.yellow) }
+                    .Select(m => { var s = GameObject.CreatePrimitive(PrimitiveType.Sphere); UnityEngine.Object.DestroyImmediate(s.GetComponent<Collider>()); s.transform.SetParent(m.Item1, false); s.transform.localScale = Vector3.one * .03f / m.Item1.lossyScale.x; s.GetComponent<Renderer>().sharedMaterial = new Material(Shader.Find("Universal Render Pipeline/Unlit")) { color = m.Item2 }; return s; }).ToArray();
                 Directory.CreateDirectory(Output);
+                // A newly made renderer is missing from the very first render: draw one throwaway frame.
+                foreach (var (skin, proxy) in proxies)
+                    skin.BakeMesh(proxy, true);
+                camera.Render();
                 foreach (var (clipName, frame) in poses)
                 {
                     AnimationClip clip = null;
@@ -104,11 +125,17 @@ namespace Arena3Q.Editor
                     if (clip == null)
                         continue;
                     clip.SampleAnimation(model, Mathf.Min(clip.length, frame / 30f));
+                    // Camera.Render in the Editor (batch) does not re-skin after SampleAnimation: the skinned body kept an
+                    // old pose while the rigid fan moved (2026-10-22). Draw CPU-baked copies of the skin instead.
+                    foreach (var (skin, proxy) in proxies)
+                        skin.BakeMesh(proxy, true);
                     // The size and body centre come from the rest-height so every frame of a sequence is framed alike.
                     var bounds = renderers.Select(r => r.bounds).Aggregate((a, b) => { a.Encapsulate(b); return a; });
                     var height = Bone("Head").position.y - model.transform.position.y;
                     foreach (var (name, focus, toCamera, size) in views)
                     {
+                        foreach (var marker in markers)
+                            marker.SetActive(name.EndsWith("Marked", StringComparison.Ordinal));
                         var point = focus switch
                         {
                             Focus.Chest => Bone("Chest").position + Vector3.up * height * .1f,
@@ -134,6 +161,7 @@ namespace Arena3Q.Editor
             }
             finally
             {
+                ShaderUtil.allowAsyncCompilation = asyncShaders;
                 UnityEngine.Object.DestroyImmediate(model);
                 UnityEngine.Object.DestroyImmediate(lightObject);
                 UnityEngine.Object.DestroyImmediate(cameraObject);
