@@ -2,6 +2,43 @@
 import bpy,math
 from mathutils import Vector,Matrix,Quaternion,Euler
 
+# Motion4 (2026-10-22): body and free-hand acting of the casts. Yaw > 0 brings the right (fan) shoulder
+# forward, lean > 0 bends forward, crouch drops the pelvis (m), tilt > 0 bends towards the left side.
+# Releases: Attack01 14 · Attack02 15/24/33 · Skill01 33 · Skill02 30 · Skill03 27 · Ultimate 75.
+def _body(*keys):return [(f,(y,l,c),None,(s,0,0)) for f,y,l,c,s in keys]
+MOTION4_BODY={
+  'Attack01':_body((0,0,0,0,0),(4,3,-1,.004,0),(9,-17,-3,.018,3),(13,8,5,.034,-1),(16,13,5,.03,-3),(20,5,2,.014,-1),(24,0,0,0,0)),
+  'Attack02':_body((0,0,0,0,0),(8,-16,-2,.015,3),(15,10,6,.03,-2),(19,-10,2,.02,2),(24,12,6,.03,-2),
+                   (28,-12,1,.02,3),(33,18,9,.04,-3),(38,8,4,.02,-1),(45,0,0,0,0)),
+  'Skill01':_body((0,0,0,0,0),(12,-6,-4,.006,3),(28,-8,-7,.004,4),(33,6,10,.05,-2),(38,6,11,.055,-2),(44,4,7,.04,-1),(54,0,0,0,0)),
+  'Skill02':_body((0,0,0,0,0),(10,-15,2,.03,3),(22,9,0,.012,0),(30,17,-4,.004,-3),(36,12,-3,.006,-2),(48,6,-1,.004,-1),(60,0,0,0,0)),
+  'Skill03':_body((0,0,0,0,0),(10,-8,3,.025,2),(22,-4,-2,.01,1),(27,6,-4,.03,-1),(35,4,-3,.03,-1),(42,0,0,0,0)),
+  'Ultimate':_body((0,0,0,0,0),(15,-4,-3,.01,1),(30,-6,-7,.002,2),(45,-10,-8,.002,3),(60,-12,-8,.003,3),(67,-16,-10,.01,4),
+                   (75,10,9,.06,-2),(82,12,11,.065,-2),(90,6,7,.045,-1),(105,0,0,0,0))}
+_REST_LEFT=((.335,-.19,.67),(.12,-.05,.99))
+def _left(*keys):return [(f,p,u or _REST_LEFT[1]) for f,p,u in keys]
+MOTION4_LEFT={
+  # Reaches towards the target while the fan winds up, pulls back to the hip as it strikes.
+  'Attack01':_left((0,_REST_LEFT[0],None),(4,_REST_LEFT[0],None),(9,(.25,-.36,.84),(0,-.3,.95)),(14,(.38,-.11,.74),None),
+                   (18,(.40,-.09,.75),None),(24,_REST_LEFT[0],None)),
+  # Guard before the chest, a short pull back on every throw, opened wide on the last.
+  'Attack02':_left((0,_REST_LEFT[0],None),(8,(.24,-.34,.84),(0,-.3,.95)),(15,(.31,-.25,.80),None),(19,(.25,-.33,.84),(0,-.3,.95)),
+                   (24,(.31,-.25,.80),None),(28,(.25,-.33,.84),(0,-.3,.95)),(33,(.37,-.15,.78),None),(38,(.37,-.16,.77),None),
+                   (45,_REST_LEFT[0],None)),
+  # A sign before the chest while the fan rises, flung open to the side as the array falls.
+  'Skill01':_left((0,_REST_LEFT[0],None),(12,(.23,-.35,.88),(0,-.3,.95)),(28,(.22,-.36,.92),(0,-.3,.95)),(33,(.42,-.13,.86),(.4,-.1,.9)),
+                  (44,(.41,-.14,.84),(.4,-.1,.9)),(54,_REST_LEFT[0],None)),
+  # Low with the coil, rising out to the side with the upward swirl.
+  'Skill02':_left((0,_REST_LEFT[0],None),(10,(.30,-.30,.74),None),(22,(.36,-.24,.86),(.3,-.1,.95)),(30,(.44,-.11,.98),(.5,0,.85)),
+                  (36,(.44,-.12,.96),(.5,0,.85)),(48,(.40,-.15,.86),(.3,-.05,.95)),(60,_REST_LEFT[0],None)),
+  # Palm forward beside the raised fan: a two-handed guard.
+  'Skill03':_left((0,_REST_LEFT[0],None),(10,(.22,-.33,.82),(0,-.3,.95)),(27,(.22,-.37,.91),(0,-.3,.95)),
+                  (35,(.22,-.37,.90),(0,-.3,.95)),(42,_REST_LEFT[0],None)),
+  # Raised while the power gathers, swept open and down as the circle lands.
+  'Ultimate':_left((0,_REST_LEFT[0],None),(15,(.30,-.30,.86),None),(30,(.40,-.20,1.02),(.3,0,.95)),(45,(.44,-.18,1.06),(.3,0,.95)),
+                   (60,(.44,-.18,1.06),(.3,0,.95)),(67,(.40,-.22,1.08),(.2,-.1,.97)),(75,(.46,-.08,.86),(.5,0,.85)),
+                   (90,(.44,-.10,.82),(.4,0,.9)),(105,_REST_LEFT[0],None))}
+
 class MacAnhMotion:
     def __init__(self):
         self.rig=bpy.data.objects['MacAnh_Rig']
@@ -84,6 +121,9 @@ class MacAnhMotion:
         relaxed=(forearm.matrix @ forearm.bone.matrix_local.inverted() @ hand.bone.matrix_local).to_quaternion()
         requested=hand_rotation.to_quaternion()
         relative=relaxed.rotation_difference(requested)
+        # Shortest way round: past 180 degrees the clamp below turned the long way and the hand flipped
+        # (Motion4 Skill01, 2026-10-22).
+        if relative.w<0: relative.negate()
         # The fan path used to force 85–106 degree wrist bends. Let the arm
         # carry the gesture and keep wrist articulation inside a natural range.
         if relative.angle>math.radians(40):
@@ -141,7 +181,7 @@ class MacAnhMotion:
         t=frame/max(1,last); cycle=math.sin(t*math.tau)
         right=Vector((-.36,-.30,.82)); right_up=Vector((-.43,-.04,.90))
         left=Vector((.335,-.19,.67)); left_up=Vector((.12,-.05,.99))
-        yaw=0; lean=0; crouch=0; gait=name in ('Walk','Run')
+        yaw=0; lean=0; crouch=0; tilt=0; gait=name in ('Walk','Run')
         if name=='Idle':
             self.rotate('Spine',(0.45*cycle,0,.30*cycle)); self.rotate('Head',(.4*cycle,0,-.3*cycle))
             right.z+=.0025*cycle; left.z+=.003*cycle
@@ -164,7 +204,7 @@ class MacAnhMotion:
             paths={
               'Attack01':[(0,tuple(right),tuple(right_up)),(4,tuple(right),tuple(right_up)),
                  (7,(-.43,-.25,.91),(-.65,.05,.76)),
-                 (14,(-.25,-.40,.72),(.95,-.26,.10)),(19,(-.17,-.35,.74),(.88,-.10,.35)),(24,tuple(right),tuple(right_up))],
+                 (14,(-.25,-.40,.72),(.95,-.26,.10)),(19,(-.22,-.36,.70),(.88,-.10,.35)),(24,tuple(right),tuple(right_up))],
               'Attack02':[(0,tuple(right),tuple(right_up)),(8,(-.38,-.28,.95),(-.55,0,.83)),
                  (15,(-.26,-.39,.74),(.95,-.22,.15)),(19,(-.37,-.28,.83),(.3,-.35,.88)),
                  (24,(-.25,-.39,.73),(.95,-.2,.18)),(28,(-.37,-.27,.87),(.35,-.1,.93)),
@@ -182,24 +222,19 @@ class MacAnhMotion:
                  (60,(-.44,-.25,.96),(-.3,0,.95)),(67,(-.39,-.30,1.00),(-.5,0,.86)),
                  (75,(-.28,-.40,.74),(.8,-.55,.15)),(90,(-.31,-.37,.80),(-.2,-.6,.77)),(105,tuple(right),tuple(right_up))]}
             right=self.sample(paths[name],frame,1); right_up=self.sample(paths[name],frame,2)
-            active=math.sin(math.pi*t)**2
-            yaw=(-12 if name in ('Attack01','Attack02') else 4)*active
-            lean=3*active; crouch=.015*active
-            releases={'Attack01':[14],'Attack02':[15,24,33],'Skill01':[33],
-                      'Skill02':[30],'Skill03':[27],'Ultimate':[75]}[name]
-            # Hips initiate the wind-up; chest and free arm follow through after
-            # release. Small unequal offsets retain the composed strategist pose.
-            drive=sum(math.exp(-((frame-f+2)/4.5)**2)-.52*math.exp(-((frame-f-4)/6)**2) for f in releases)
-            yaw+=-5.5*drive
-            lean+=2.5*drive
-            crouch+=.009*abs(drive)
-            left=Vector((.29,-.33,.84)) if name!='Ultimate' else Vector((.40,-.23,.96))
-            left=Vector((.335,-.19,.67)).lerp(left,min(1,active*2))
-            left+=Vector((.008,-.015,.012))*drive
-            self.rotate('Head',(-lean*.28,0,-yaw*.38))
-        self.rotate('Pelvis',(lean*.25,0,yaw*.45))
+            # Whole-body acting (user 2026-10-22: the casts were "almost only movement"). Per clip:
+            # anticipation (coil away, rise or dip), the action (hips lead, chest follows, weight drops
+            # into the release), follow-through past it, settle back to the stance. Keys are
+            # (frame, (yaw deg, lean deg forward, crouch m), None, (side tilt deg, 0, 0)); the release
+            # frames of the events stay where they were. The free hand counterbalances or forms a sign.
+            body=MOTION4_BODY[name]
+            yaw,lean,crouch=self.sample(body,frame,1)
+            tilt=self.sample(body,frame,3).x
+            left=self.sample(MOTION4_LEFT[name],frame,1); left_up=self.sample(MOTION4_LEFT[name],frame,2)
+            self.rotate('Head',(-lean*.3,-tilt*.4,-yaw*.4))
+        self.rotate('Pelvis',(lean*.25,tilt*.2,yaw*.45))
         self.rig.pose.bones['Pelvis'].location=Vector((0,-crouch,0))
-        self.rotate('Spine',(lean*.4,0,yaw*.35)); self.rotate('Chest',(lean*.35,0,yaw*.2))
+        self.rotate('Spine',(lean*.4,tilt*.45,yaw*.35)); self.rotate('Chest',(lean*.35,tilt*.35,yaw*.2))
         self.update()
         self.arm('Right',right,right_up); self.arm('Left',left,left_up)
         self.fingers('Right',.65); self.fingers('Left',.12 if name in ('Idle','Walk','Run') else .03)

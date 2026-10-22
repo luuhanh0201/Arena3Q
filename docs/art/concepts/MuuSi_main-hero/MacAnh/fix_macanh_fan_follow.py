@@ -13,7 +13,7 @@ copy, frame by frame:
   - the share is smoothed over time (no jerks), never above what was clear; the grip stays in the palm.
 
 blender -b Production/LOD/MacAnh_Battle_FanClearance.blend -P fix_macanh_fan_follow.py -- --lod Battle [--swing 35]
-Writes Production/LOD/MacAnh_<lod>_FanFollow.blend and FanFollowRevision_<lod>.json; then run
+Writes Production/LOD/MacAnh_<lod>_FanFollow.blend (or --out <blend>) and FanFollowRevision_<lod or out name>.json; then run
 audit_macanh_fan_contacts.py on it (half frames) before exporting.
 """
 import bpy, sys, json, math
@@ -203,8 +203,8 @@ for action in sorted(bpy.data.actions, key=lambda a: a.name):
 
 rig.animation_data.action = bpy.data.actions['MacAnh_Idle']
 update(0)
-destination = root / 'Production/LOD' / ('MacAnh_' + label + '_FanFollow.blend')
+destination = Path(argv[argv.index('--out') + 1]).resolve() if '--out' in argv else root / 'Production/LOD' / ('MacAnh_' + label + '_FanFollow.blend')
 bpy.ops.wm.save_as_mainfile(filepath=str(destination), compress=True)
 report['destination'] = str(destination)
-(root / 'Production/LOD' / ('FanFollowRevision_' + label + '.json')).write_text(json.dumps(report, indent=2))
+(root / 'Production/LOD' / ('FanFollowRevision_' + (destination.stem.removeprefix('MacAnh_') if '--out' in argv else label) + '.json')).write_text(json.dumps(report, indent=2))
 print('FAN_FOLLOW_COMPLETE', label, flush=True)

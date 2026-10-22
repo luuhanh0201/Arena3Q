@@ -1,0 +1,128 @@
+{
+  "source": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\LOD\\MacAnh_Battle_Motion4.blend",
+  "edited_channel": "Socket_Hand_R",
+  "swing_degrees": 35.0,
+  "shares": [
+    1.0,
+    0.85,
+    0.7,
+    0.55,
+    0.4,
+    0.25,
+    0.1,
+    0.0
+  ],
+  "clips": [
+    {
+      "name": "MacAnh_Attack01",
+      "frames": [
+        0,
+        24
+      ],
+      "mean_share": 0.856,
+      "min_share": 0.55,
+      "fan_world_max_deg": 42.6
+    },
+    {
+      "name": "MacAnh_Attack02",
+      "frames": [
+        0,
+        45
+      ],
+      "mean_share": 0.726,
+      "min_share": 0.4,
+      "fan_world_max_deg": 30.4
+    },
+    {
+      "name": "MacAnh_Dodge",
+      "frames": [
+        0,
+        24
+      ],
+      "mean_share": 1.0,
+      "min_share": 1.0,
+      "fan_world_max_deg": 17.0
+    },
+    {
+      "name": "MacAnh_DodgeAttack",
+      "frames": [
+        0,
+        33
+      ],
+      "mean_share": 0.947,
+      "min_share": 0.7,
+      "fan_world_max_deg": 32.4
+    },
+    {
+      "name": "MacAnh_Idle",
+      "frames": [
+        0,
+        40
+      ],
+      "mean_share": 1.0,
+      "min_share": 1.0,
+      "fan_world_max_deg": 3.6
+    },
+    {
+      "name": "MacAnh_Run",
+      "frames": [
+        0,
+        24
+      ],
+      "mean_share": 1.0,
+      "min_share": 1.0,
+      "fan_world_max_deg": 5.8
+    },
+    {
+      "name": "MacAnh_Skill01",
+      "frames": [
+        0,
+        54
+      ],
+      "mean_share": 1.0,
+      "min_share": 1.0,
+      "fan_world_max_deg": 65.9
+    },
+    {
+      "name": "MacAnh_Skill02",
+      "frames": [
+        0,
+        60
+      ],
+      "mean_share": 0.897,
+      "min_share": 0.4,
+      "fan_world_max_deg": 28.1
+    },
+    {
+      "name": "MacAnh_Skill03",
+      "frames": [
+        0,
+        42
+      ],
+      "mean_share": 1.0,
+      "min_share": 1.0,
+      "fan_world_max_deg": 33.2
+    },
+    {
+      "name": "MacAnh_Ultimate",
+      "frames": [
+        0,
+        105
+      ],
+      "mean_share": 1.0,
+      "min_share": 1.0,
+      "fan_world_max_deg": 42.9
+    },
+    {
+      "name": "MacAnh_Walk",
+      "frames": [
+        0,
+        36
+      ],
+      "mean_share": 1.0,
+      "min_share": 1.0,
+      "fan_world_max_deg": 5.0
+    }
+  ],
+  "destination": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\LOD\\MacAnh_Battle_Motion4_FanFollow.blend"
+}

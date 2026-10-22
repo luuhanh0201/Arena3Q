@@ -25,7 +25,7 @@ namespace Arena3Q.Editor
 
         private static readonly (string clip, int from, int to)[] Sequences =
         {
-            ("Attack01", 2, 24), ("Attack02", 8, 40), ("Skill02", 16, 40), ("Ultimate", 60, 90)
+            ("Attack01", 2, 24), ("Attack02", 6, 40), ("Skill01", 6, 50), ("Skill02", 4, 52), ("Skill03", 4, 40), ("Ultimate", 10, 100)
         };
 
         private enum Focus { Body, Chest, LeftArm, RightArm }
@@ -41,7 +41,8 @@ namespace Arena3Q.Editor
 
         private static readonly (string name, Focus focus, Vector3 toCamera, float size)[] SequenceViews =
         {
-            ("Front", Focus.Chest, new Vector3(0f, .25f, -1f), .62f),
+            ("Front", Focus.Body, new Vector3(0f, .25f, -1f), .72f),
+            ("Side", Focus.Body, new Vector3(1f, .2f, -.35f), .72f),
             ("Battle", Focus.Body, Quaternion.Euler(41.4f, 0f, 0f) * Vector3.back, 1.15f),
         };
 
