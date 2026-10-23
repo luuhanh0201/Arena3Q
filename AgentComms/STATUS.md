@@ -3,7 +3,7 @@
 Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 
 ## claude
-- **23/10 07:55 – ĐỔI VAI (người dùng, ghi chú codex 0747): Codex làm/sửa, Claude chỉ review/nghiệm thu.** Nhả mọi khoá cũ của Claude với nguồn Mặc Ảnh (animation/rig/mesh/export) và các mục "Đang giữ" bên dưới. 08:40: review a9c1c31 (CuffGait) **chưa đạt** (ống áo trong tay trái lộ thành thanh xám; Walk/Run đã bước) → codex/inbox/tu-claude_20261023-0840_review-CuffGait-chua-dat.md. Không giữ file nào, không giữ Unity. **Đang chờ đến 09:40**, theo dõi claude/inbox.
+- **23/10 07:55 – ĐỔI VAI (người dùng, ghi chú codex 0747): Codex làm/sửa, Claude chỉ review/nghiệm thu.** Nhả mọi khoá cũ của Claude với nguồn Mặc Ảnh (animation/rig/mesh/export) và các mục "Đang giữ" bên dưới. 08:40: review a9c1c31 (CuffGait) **chưa đạt** (ống áo trong tay trái lộ thành thanh xám; Walk/Run đã bước) → codex/inbox/tu-claude_20261023-0840_review-CuffGait-chua-dat.md. Không giữ file nào, không giữ Unity. 09:05: đã xem ảnh bản thử TailoredSleeves → codex/inbox/tu-claude_20261023-0905_xem-hinh-TailoredSleeves.md (Skill03/Attack01 đã ổn, Ultimate f75 / Skill02 f30 còn ống trơn). **Đang chờ đến 10:05**, theo dõi claude/inbox; review đầy đủ khi Codex nhả Unity.
 - **06:19 21/10 – ĐỔI VAI (người dùng): Codex làm tiếp chuyển 3D, Claude chỉ nghiệm thu.** Bàn giao đầy đủ: codex/inbox/tu-claude_20261021-0619_DOI-VAI-codex-lam-claude-nghiem-thu.md (đã xong P1/P1b/P2a/P3a/A3 + 4 kỹ năng Lữ Bố; đang dở Lữ Bố 3D – chưa qua cổng QA da).
 - **06:40 21/10 – chia việc song song (người dùng):** Codex làm Mặc Ảnh + Lữ Bố; Claude làm phần chuyển 3D không thuộc hai tướng và vẫn nghiệm thu Codex (codex/inbox/tu-claude_20261021-0640_chia-viec-song-song.md).
 - Trạng thái: đang làm – mặt đất mesh 3D, công cụ đo hiệu năng, lưu trữ file 2D không thuộc tướng, tài liệu chung 3D/map. Một agent Claude theo dõi + review Codex.
@@ -11,6 +11,7 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Bàn giao trước đó: claude/outbox/20261020-2330_BAN-GIAO-cong-viec-claude.md.
 
 ## codex
+- 23/10 nhận review0840: CuffGait chưa đạt do ống áo trái xám/vòng cổ tay tối. Đang sửa hình dáng và texture tay áo, kiểm gấu áo theo bước và mảng trắng sau. Giữ nguồn Mạc Ảnh và Unity; hủy trạng thái chờ.
 - 23/10 07:47 – PHÂN CÔNG MỚI NHẤT THEO NGƯỜI DÙNG: Codex trực tiếp thực hiện/sửa; Claude chỉ review/nghiệm thu. Với công việc Mạc Ảnh hiện tại, Codex giữ nguồn rig/mesh/weight/animation/export và chịu trách nhiệm sửa theo review. Khoá animation Claude ngày22/10 đã được người dùng chuyển. Chờ review bản a9c1c31; Unity đang trống. Theo dõi inbox đến 2026-10-23 08:47.
 - 23/10: bản sửa cổ tay/giày/tóc-vạt áo a9c1c31 đã push. Unity28pass/0fail/1ignored; surface985mẫu và fan6phần985mẫu đạt; trang CuffGait_20261023 đã mở/kiểm. Chờ review hình, chưa nghiệm thu nghệ thuật cuối. Đang chờ đến 2026-10-23 08:12; nhả Unity.
 - 23/10 00:30: người dùng bác bản 51e7b71 bằng 8 ảnh: cổ tay/áo còn rời, thanh tối lộ, Walk/Run không thấy bước. Tiếp tục sửa gốc topology/weight; giữ toàn bộ nguồn Mặc Ảnh và Unity. Hủy trạng thái chờ trước đó.
@@ -25,7 +26,9 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Việc đầu: kiểm snapshot 3D về scale, toàn bộ submesh và quạt; kiểm footprint VFX sau đổi camera; đồng bộ docs 3D. Sau đó kiểm model/motion Mặc Ảnh và giải quyết Lữ Bố chưa qua QA da.
 - Báo ngay từng phần nhỏ với ảnh trước–sau và số đo. Chưa nghiệm thu tổng thể. Chỉ test Unity, chưa build/test Android theo bàn giao 0619. Sau khi hoàn tất công việc theo dõi inbox 1 giờ.
 ## Unity (Editor / batch mode)
-- Đang giữ bởi: không ai – Claude đã chạy lại PlayMode MacAnh (28 đạt/0 hỏng/1 bỏ qua) cho review a9c1c31, đã nhả.
+- Đang giữ bởi: codex – xuất và kiểm TailoredSleeves sau review 08:40.
+
+
 
 
 
