@@ -14,5 +14,12 @@ namespace Arena3Q.Editor
             MacAnhPoseCapture.Run();
             MacAnhImportedSurfaceQa.Capture("Battle");
         }
+
+        public static void BuildFullReview()
+        {
+            BuildAndCapture();
+            MacAnhGaitDiagnostic.Run();
+            MacAnhPoseCapture.RunFullReview();
+        }
     }
 }

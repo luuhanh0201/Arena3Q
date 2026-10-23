@@ -320,3 +320,10 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 - Battle sau import 985 mẫu/11 clip không vượt ngưỡng giãn/ép/gai; quạt nguồn đủ 6 phần 985 mẫu không xuyên ngoài palm; PlayMode 28 pass/0 fail/1 skip. Trang 6972 ảnh, 154 trạng thái và controls kiểm trên Edge.
 - Bằng chứng và giới hạn: NghiemThu/MacAnh/XemTruoc_ArmBridges_20261022/README.md. Chưa port geometry sang Portrait, chưa đo thiết bị, không tuyên bố nghiệm thu nghệ thuật tổng thể.
 
+
+## 23/10/2026 – Mặc Ảnh: bước chân đứng yên và cổ tay rời (review ảnh người dùng)
+- Giày bị phân vùng thiếu: xương Foot chạy nhưng phần lớn giày vẫn gán Pelvis. Sửa toàn bộ vùng giày, tách khỏi gấu áo; xác nhận BakeMesh Unity và ảnh Walk/Run.
+- Tay áo dồn Sleeve_2, xoay quanh điểm treo lệch cổ tay. Neo lại quanh cổ tay, blend trọng số, chỉnh hình học vải rủ và tua quạt; giữ hand/socket/event.
+- Khôi phục ảnh hưởng nhẹ tóc/vạt áo; không dùng audit xương làm bằng chứng bề mặt chuyển động.
+- Surface Unity 985 mẫu đạt; quạt6phần985 mẫu đạt; PlayMode28pass/0fail/1ignored. Trang/bằng chứng: NghiemThu/MacAnh/XemTruoc_CuffGait_20261023/README.md. Chưa port Portrait/chưa nghiệm thu nghệ thuật tổng thể.
+

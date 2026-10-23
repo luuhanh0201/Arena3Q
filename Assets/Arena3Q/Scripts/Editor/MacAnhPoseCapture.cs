@@ -73,7 +73,7 @@ namespace Arena3Q.Editor
                 ("Battle",Focus.Body,Quaternion.Euler(41.4f,0,0)*Vector3.back,1.03f),
                 ("RightArm",Focus.RightArm,new Vector3(-.75f,.35f,-1),.42f),
                 ("LeftArm",Focus.LeftArm,new Vector3(.75f,.35f,-1),.42f) };
-            const string output = "NghiemThu/MacAnh/XemTruoc_ArmBridges_20261022/frames";
+            const string output = "NghiemThu/MacAnh/XemTruoc_CuffGait_20261023/frames";
             // Baseline frames were captured before the cloth/action repair. Never
             // regenerate them by hiding submeshes on the changed geometry.
             Capture(poses,views,"after_",output,512,true);

@@ -90,3 +90,16 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
 - Bản bridge đầu tiên chưa đạt audit: 26–51 cạnh giãn, 30–44 cạnh ép ở 11 clip, chưa có spike. Không bàn giao; đang tăng phân đoạn dọc tại khớp để thể hiện uốn cong thay vì các cạnh dài bắc qua khớp. Log: Logs/MacAnh-arm-bridge-qa.log.
 - Trang test thử đầu: cột trước vẫn hiện áo trong mới do so tên Material runtime thay vì đường dẫn asset. Đã bắt qua ảnh trình duyệt; sửa nhận diện bằng AssetDatabase path, sẽ xuất lại. Không dùng trang thử này làm bằng chứng trước–sau.
 - Bản thử áo trong chạm cán quạt: 94–269 giao cắt không thuộc lòng bàn tay; nguồn là ống cổ tay vươn 35% chiều bàn tay cộng bán cầu 2,1 cm. Đã thu chiều dài còn 12% và bán kính cổ tay 1,6 cm / đầu 1,2 cm, kiểm lại toàn bộ 6 phần quạt. Không bỏ qua cán quạt trong audit.
+
+## 23/10 – người dùng bác bản áo trong 51e7b71
+- 8 ảnh cho thấy cổ tay và tay áo vẫn rời, cầu nối tối lộ thành thanh, mảng trắng phẳng vẫn lộ. Walk/Run nhìn không bước. Bản trước chỉ che khoảng trống, chưa sửa topology/weight ngoài; đánh giá ảnh thu nhỏ đã bỏ sót. Đã dừng chờ để sửa tiếp. Không coi test 28 pass hay audit cạnh/quạt đạt là nghiệm thu hình.
+- Phòng tránh: đo và kiểm trực tiếp vành cổ tay/ống tay, biên áo vai, bề mặt chân (không chỉ bone), phóng to các frame người dùng gửi; không dùng lớp cầu nối để thay việc gắn lại áo ngoài.
+
+
+## 23/10 – kiểm lại sau ảnh lỗi của người dùng
+- Bản 51e7b71 chưa đạt: tay áo/cổ tay vẫn rời, phần nối tối lộ rõ; người dùng chưa thấy bước Walk/Run. Thu hồi kết luận sửa xong.
+- Đo weight nguồn: phần thân chung chỉ chịu Pelvis/Chest/Head, không nhận Hair/Ribbon/Robe; audit chuyển động xương trước đó không chứng minh tóc/vải chuyển động. Tay áo gần như toàn bộ chịu Sleeve_2. Cần sửa liên kết bề mặt thực tế, kiểm imported foot mesh và ảnh sát vùng, không dùng ống che lỗi.
+
+
+- Chẩn đoán 23/10: tô màu GarmentRegion cho thấy chỉ một dải nhỏ của giày được gán Foot, phần giày còn lại là region0/Pelvis. Unity CSV xác nhận xương và dải nhỏ chuyển động nhưng toàn giày không đi theo. Bản thử tách đúng bề mặt giày, giữ vạt áo độc lập.
+- Các thử nghiệm cuff: dịch chain để né quạt tạo ép vải; gán hair theo màu texture tạo bước nhảy weight qua cạnh. Đã loại cả hai cách, chuyển sang sửa hình học rest và blend theo khoảng cách liên tục. Bản hiện tại qua surface nguồn 11 clip và quạt đủ6phần/985mẫu; đang render/kiểm Unity, chưa coi số đo này là nghiệm thu hình.
