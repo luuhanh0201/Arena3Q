@@ -113,3 +113,23 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
 - Tạo nếp hình học và UV texture áo gốc cho phần áo trong, thay hình trụ trơn. Giữ các đầu khớp kín và kiểm lại cả hai tay ở đúng frame review.
 - Thử tăng gấu áo Run 12 độ gây 3 cạnh giãn trong audit. Hạ còn 7 độ (Walk 5 độ), chạy lại toàn bộ clip: không còn cạnh lỗi. Không lấy độ vung lớn thay cho kiểm bề mặt.
 - Bản TailoredSleeves đang là candidate; ảnh cận Unity đã được mở, chưa coi test đạt là Claude nghiệm thu.
+- 23/10 · Claude · review: chấm "Vũ khí 9/10, quạt bám tay" khi bàn tay phải không hề nắm cán (ngón duỗi thẳng, cán nằm cạnh lòng bàn tay); người dùng chỉ ra. Nguyên nhân: chỉ xét quạt đi theo tay, không xét tư thế ngón. Phòng tránh: review vũ khí cầm tay phải xem ảnh cận bàn tay (≥ 2 góc) và xác nhận ngón cuộn quanh cán; "đi theo tay" và "không xuyên" chưa đủ. Cũng thêm: cầu vai cứng (không nghiêng theo cánh tay khi nâng tay) phải nằm trong danh sách kiểm vai, không chỉ kiểm tay áo.
+
+## 23/10 – review bổ sung cầu vai và nắm quạt
+- Claude bác TailoredSleeves ở Ultimate75/Skill02 vì áo trên còn thanh phẳng; cầu vai không xoay theo tay và ngón không nắm cán.
+- Chẩn đoán nguồn Idle20: toàn bộ15xương ngón phải có animation nhưng0đỉnh chịu weight>0,05; bàn tay858đỉnh đi theo Hand. Kiểm xương chuyển động trước đây bỏ sót bề mặt ngón. Cần kiểm weight và khoảng cách ngón–cán thực, không chỉ audit không xuyên quạt. Log Logs/MacAnh-grip-diagnostic.log.
+- Đang sửa, hủy chờ review; chưa nghiệm thu.
+
+- Thử phục hồi weight ngón theo khoảng cách gây1cạnh giãn ở biên ngón cái/lòng bàn tay (332–370); landmark xương không khớp hoàn toàn mesh thô. Chưa đưa vào runtime. Đang làm mượt weight theo cạnh mesh, vẫn giữ tối đa4influence.
+
+- Thử gán cầu vai bone riêng khi còn hàn chung với vải gây135–202cạnh giãn khi tung chiêu. Đã bắt bằng audit trước export. Tách biên tiếp xúc trang trí khỏi vải trước khi xoay rigid; cần kiểm ảnh khe tiếp giáp sau khi tách.
+
+- Fit ngón chỉ theo khoảng cách cán dẫn tới góc xoay cực đoan và ngón méo; đã loại bản thử. Thêm phạt biến dạng vẫn chưa đạt tiếp xúc (ngón cái khoảng20mm). Landmark mới giúp ngón út nhận weight nhưng chưa đủ sửa hình học. Không export các bản GripFit vào game.
+
+- Bản GripClosed qua audit surface và quạt nhưng ảnh cận Unity ngón còn góc cạnh/méo; audit tiếp xúc riêng báo khe tới10mm khi tung chiêu. Fan xoay tương đối với Hand theo clip nên khóa q ngón không đủ. Không bàn giao; khôi phục runtime TailoredSleeves. Thử topology bàn tay dạng tube đọc quá cơ học, loại. Phải kiểm cả ảnh4góc và tiếp xúc từng ngón/từngclip, không coi 'không xuyên' là 'đang nắm'.
+
+## 23/10 – mesh bàn tay chi tiết và tiếp xúc cán
+- Bản Battle giảm đa giác tạo tam giác ngón dài; đổi weight/ép tiếp xúc gây ngón nhọn. Phục hồi riêng vùng tay từ Portrait (không thay toàn thân), giữ UV màu gốc; phân loại thêm da bị gán nhầm sang region tay áo bằng vị trí và màu texture.
+- Quạt có quay tương đối với Hand; cho ngón đuổi riêng kéo méo lòng bàn tay. Candidate dùng dáng nắm cố định theo Socket_Hand_R, không phải chuyển động độc lập từng ngón. GripDigit lưu nhãn vùng ngón để audit tiếp xúc không phụ thuộc weight.
+- Candidate81aa0c07: surface nguồn đạt, quạt6phần đạt, tiếp xúc từng vùng ngón trên985mẫu đạt. Vẫn cần ảnh Unity cổ tay/vai/ngón cái và Claude review; không coi số đo là nghiệm thu.
+- Đọc image.pixels từng mặt gây rất chậm; dừng đúng tiến trình chẩn đoán và dùng foreach_get vào NumPy. Không dừng Blender giao diện người dùng.

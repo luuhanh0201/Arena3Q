@@ -333,3 +333,9 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 - Sửa thử: nếp hình học và UV từ texture gốc, builder hỗ trợ base_texture theo metadata; bổ sung trễ nhỏ cho Robe Inner2/3 ở Walk/Run.
 - Kiểm: surface nguồn/Unity và quạt đạt; đã mở ảnh cùng khung hai tay và Run, trang HTML kiểm đủ154 trạng thái/6972 file. Chưa nghiệm thu nghệ thuật: Ultimate75 còn phẳng và mảng sau còn cần review. Bằng chứng: NghiemThu/MacAnh/XemTruoc_TailoredSleeves_20261023/.
 - Phòng tránh: luôn đưa góc cận vùng lỗi vào ảnh trước–sau; không dùng test transform hay đổi màu để kết luận đã sửa hình dáng.
+
+## 23/10 – candidate bàn tay chi tiết/cầu vai Mạc Ảnh
+- Ngón không nhận weight, landmark ngón út ngoài mesh; LOD làm mặt ngón thành tam giác dài; một phần da bị nhầm vào tay áo. Đã phục hồi vùng tay từ Portrait, hiệu chỉnh vùng/weight và tạo dáng nắm cố định theo socket quạt.
+- Cầu vai cứng do theo ngực: thêm2bone rigid, blend góc cánh tay40%; tách biên hàn để không kéo méo vải. Thêm nếp chùng áo trên.
+- Nguồn81aa0c07: surface/quạt/tiếp xúc985mẫu đạt; khe gần nhất vùng ngón tối đa1,382mm. Unity28đạt/0lỗi/1bỏqua. Trang ShoulderHand có144ảnh cận và6972file chuyển động trước/sau đã kiểm. Chưa nghiệm thu nghệ thuật, cần Claude kiểm ngón cái/cổ tay/vai.
+- Phòng tránh: kiểm mesh thật sau skinning và riêng tiếp xúc cầm vũ khí, không đánh giá chỉ theo bone hoặc không xuyên.

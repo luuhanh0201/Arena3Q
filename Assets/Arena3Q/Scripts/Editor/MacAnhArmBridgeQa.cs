@@ -27,5 +27,11 @@ namespace Arena3Q.Editor
             BuildAndCapture();
             MacAnhPoseCapture.RunReviewerFrames();
         }
+
+        public static void BuildAnatomyReview()
+        {
+            BuildAndCapture();
+            MacAnhPoseCapture.RunAnatomyAfter();
+        }
     }
 }

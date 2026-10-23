@@ -28,7 +28,7 @@ namespace Arena3Q.Editor
             ("Attack01", 2, 24), ("Attack02", 6, 40), ("Skill01", 6, 50), ("Skill02", 4, 52), ("Skill03", 4, 40), ("Ultimate", 10, 100)
         };
 
-        private enum Focus { Body, Chest, LeftArm, RightArm }
+        private enum Focus { Body, Chest, LeftArm, RightArm, RightGrip, LeftShoulder, RightShoulder }
 
         // The model faces -Z: a camera in front stands on the -Z side. Offsets point from the focus to the camera.
         private static readonly (string name, Focus focus, Vector3 toCamera, float size)[] StillViews =
@@ -73,7 +73,7 @@ namespace Arena3Q.Editor
                 ("Battle",Focus.Body,Quaternion.Euler(41.4f,0,0)*Vector3.back,1.03f),
                 ("RightArm",Focus.RightArm,new Vector3(-.75f,.35f,-1),.42f),
                 ("LeftArm",Focus.LeftArm,new Vector3(.75f,.35f,-1),.42f) };
-            const string output = "NghiemThu/MacAnh/XemTruoc_TailoredSleeves_20261023/frames";
+            const string output = "NghiemThu/MacAnh/XemTruoc_ShoulderHand_20261023/frames";
             // Baseline frames were captured before the cloth/action repair. Never
             // regenerate them by hiding submeshes on the changed geometry.
             Capture(poses,views,"after_",output,512,true);
@@ -85,6 +85,24 @@ namespace Arena3Q.Editor
                 ("Ultimate",15),("Ultimate",75),("Walk",0),("Walk",9),("Walk",18),("Walk",27),
                 ("Run",0),("Run",6),("Run",12),("Run",18)};
             Capture(poses,StillViews,"Review_","Logs/MacAnhTailoredCloseups",900);
+        }
+
+        public static void RunAnatomyBefore() => CaptureAnatomy("before_");
+        public static void RunAnatomyAfter() => CaptureAnatomy("after_");
+        private static void CaptureAnatomy(string prefix)
+        {
+            var poses=new (string,int)[]{("Idle",20),("Attack01",8),("Skill02",30),("Skill02",40),
+                ("Skill03",21),("Ultimate",15),("Ultimate",60),("Ultimate",75),("Ultimate",90)};
+            var views=new (string,Focus,Vector3,float)[]{
+                ("GripFront",Focus.RightGrip,new Vector3(0,0,-1),.13f),
+                ("GripBack",Focus.RightGrip,new Vector3(0,0,1),.13f),
+                ("GripTop",Focus.RightGrip,new Vector3(0,1,-.15f),.13f),
+                ("GripPalm",Focus.RightGrip,new Vector3(-1,.2f,-.3f),.13f),
+                ("ShoulderFront",Focus.LeftShoulder,new Vector3(0,.1f,-1),.26f),
+                ("ShoulderSide",Focus.LeftShoulder,new Vector3(1,.1f,0),.26f),
+                ("ShoulderTop",Focus.LeftShoulder,new Vector3(0,1,-.15f),.26f),
+                ("RightShoulder",Focus.RightShoulder,new Vector3(-1,.2f,-.3f),.26f)};
+            Capture(poses,views,prefix,"NghiemThu/MacAnh/XemTruoc_ShoulderHand_20261023/closeups",900,true);
         }
 
         private static void Capture(IEnumerable<(string clip, int frame)> poses,
@@ -171,6 +189,9 @@ namespace Arena3Q.Editor
                             Focus.Chest => Bone("Chest").position + Vector3.up * height * .1f,
                             Focus.LeftArm => Bone("LeftLowerArm").position,
                             Focus.RightArm => Bone("RightLowerArm").position,
+                            Focus.RightGrip => Bone("Socket_Hand_R").position,
+                            Focus.LeftShoulder => Bone("LeftUpperArm").position + Vector3.up * .04f,
+                            Focus.RightShoulder => Bone("RightUpperArm").position + Vector3.up * .04f,
                             _ => new Vector3(model.transform.position.x, bounds.center.y, model.transform.position.z),
                         };
                         var look = -toCamera.normalized;

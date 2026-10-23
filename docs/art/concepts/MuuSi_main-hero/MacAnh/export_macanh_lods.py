@@ -8,7 +8,9 @@ out=project/'Assets/Arena3Q/Art/Heroes/MacAnh/Graphics3D/Source/LOD';out.mkdir(p
 stage=project/'Library/MacAnh3DExport';stage.mkdir(parents=True,exist_ok=True)
 source=Path(bpy.data.filepath);before=hashlib.file_digest(open(source,'rb'),'sha256').hexdigest()
 rig=bpy.data.objects['MacAnh_Rig'];body=bpy.data.objects[rig['source_body_object']]
-assert len(rig.data.bones)==87
+plate_bones={b.name for b in rig.data.bones if b.name.endswith('ShoulderPlate')}
+assert plate_bones in (set(),{'RightShoulderPlate','LeftShoulderPlate'})
+assert len(rig.data.bones)==87+len(plate_bones)
 max_influences=max(sum(g.weight>0 for g in v.groups) for v in body.data.vertices)
 assert max_influences<=4
 used=sorted({face.material_index for face in body.data.polygons})
