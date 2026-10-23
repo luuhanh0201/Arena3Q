@@ -1,8 +1,8 @@
-{
+﻿{
   "status": "working candidate; not approved for delivery",
   "lod": "Battle",
-  "source": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\LOD\\MacAnh_Battle_CuffGait.blend",
-  "source_sha256": "65863f495de25a157991649e25679e6a7d1c1854431f357618a026ab5b9721d7",
+  "source": "D:\\UnityProjects\\Arena3Q\\docs\\art\\concepts\\MuuSi_main-hero\\MacAnh\\Production\\LOD\\MacAnh_Battle_TailoredSleeves.blend",
+  "source_sha256": "f38c86cbda9bbaea23763841974dcc6667429a9b2327741ebc5ab4460ba247fb",
   "vertices": 19589,
   "bones": 87,
   "max_influences": 4,
@@ -24,9 +24,9 @@
     {
       "name": "MacAnh_Battle_RightSleeveLining",
       "colour": [
-        0.065,
-        0.025,
-        0.12,
+        0.2,
+        0.105,
+        0.32,
         1
       ],
       "roughness": 0.85
@@ -34,9 +34,9 @@
     {
       "name": "MacAnh_Battle_LeftSleeveLining",
       "colour": [
-        0.065,
-        0.025,
-        0.12,
+        0.2,
+        0.105,
+        0.32,
         1
       ],
       "roughness": 0.85
@@ -84,12 +84,13 @@
     {
       "name": "MacAnh_ContinuousInnerSleeves",
       "colour": [
-        0.62,
-        0.59,
-        0.68,
+        1,
+        1,
+        1,
         1
       ],
-      "roughness": 0.85
+      "roughness": 0.6,
+      "base_texture": "Battle_BaseColor.jpg"
     }
   ],
   "body_material": "MacAnh_Battle_DualUvBody.001",

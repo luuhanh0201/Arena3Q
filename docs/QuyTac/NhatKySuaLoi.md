@@ -327,3 +327,9 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 - Khôi phục ảnh hưởng nhẹ tóc/vạt áo; không dùng audit xương làm bằng chứng bề mặt chuyển động.
 - Surface Unity 985 mẫu đạt; quạt6phần985 mẫu đạt; PlayMode28pass/0fail/1ignored. Trang/bằng chứng: NghiemThu/MacAnh/XemTruoc_CuffGait_20261023/README.md. Chưa port Portrait/chưa nghiệm thu nghệ thuật tổng thể.
 
+
+## 23/10 – áo trong Mạc Ảnh sau review CuffGait (candidate)
+- Lỗi: cầu nối áo trong dùng màu phẳng, silhouette trơn nhìn như thanh cứng; gấu áo không phản ứng rõ theo bước.
+- Sửa thử: nếp hình học và UV từ texture gốc, builder hỗ trợ base_texture theo metadata; bổ sung trễ nhỏ cho Robe Inner2/3 ở Walk/Run.
+- Kiểm: surface nguồn/Unity và quạt đạt; đã mở ảnh cùng khung hai tay và Run, trang HTML kiểm đủ154 trạng thái/6972 file. Chưa nghiệm thu nghệ thuật: Ultimate75 còn phẳng và mảng sau còn cần review. Bằng chứng: NghiemThu/MacAnh/XemTruoc_TailoredSleeves_20261023/.
+- Phòng tránh: luôn đưa góc cận vùng lỗi vào ảnh trước–sau; không dùng test transform hay đổi màu để kết luận đã sửa hình dáng.

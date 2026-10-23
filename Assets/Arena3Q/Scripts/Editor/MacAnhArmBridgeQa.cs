@@ -21,5 +21,11 @@ namespace Arena3Q.Editor
             MacAnhGaitDiagnostic.Run();
             MacAnhPoseCapture.RunFullReview();
         }
+
+        public static void BuildReviewerFrames()
+        {
+            BuildAndCapture();
+            MacAnhPoseCapture.RunReviewerFrames();
+        }
     }
 }

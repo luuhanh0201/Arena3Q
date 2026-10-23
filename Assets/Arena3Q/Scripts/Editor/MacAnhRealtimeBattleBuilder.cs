@@ -14,7 +14,7 @@ namespace Arena3Q.Editor
         private const string Root=MacAnhGraphicsBuilder.Root;
         private const string Source=Root+"/Source/LOD";
         private const string Output=Root+"/LOD";
-        [Serializable] private class InnerMaterial {public string name;public float[] colour;public float roughness;}
+        [Serializable] private class InnerMaterial {public string name,base_texture;public float[] colour;public float roughness;}
         [Serializable] private class ExportInfo {public bool atlas,dual_uv;public string body_material,cap_material;public string[] lining_materials;public InnerMaterial[] inner_materials;}
         private static T Save<T>(T value,string path)where T:UnityEngine.Object
         {
@@ -135,6 +135,13 @@ namespace Arena3Q.Editor
             {
                 var material=new Material(Shader.Find("Arena3Q/MacAnh/Original PBR"));material.SetFloat("_Cull",0);
                 material.SetColor("_BaseColor",new Color(inner.colour[0],inner.colour[1],inner.colour[2],inner.colour[3]));
+                if(!string.IsNullOrEmpty(inner.base_texture))
+                {
+                    string texturePath=Source+"/"+Path.GetFileName(inner.base_texture);
+                    var texture=AssetDatabase.LoadAssetAtPath<Texture2D>(texturePath);
+                    if(texture==null)throw new InvalidOperationException("Missing cloth texture: "+texturePath);
+                    material.SetTexture("_BaseMap",texture);
+                }
                 material.SetFloat("_Smoothness",1-inner.roughness);material=Save(material,Output+"/"+inner.name+".mat");
                 importer.AddRemap(new AssetImporter.SourceAssetIdentifier(typeof(Material),inner.name),material);
             }

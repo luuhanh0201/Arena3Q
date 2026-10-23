@@ -103,3 +103,13 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
 
 - Chẩn đoán 23/10: tô màu GarmentRegion cho thấy chỉ một dải nhỏ của giày được gán Foot, phần giày còn lại là region0/Pelvis. Unity CSV xác nhận xương và dải nhỏ chuyển động nhưng toàn giày không đi theo. Bản thử tách đúng bề mặt giày, giữ vạt áo độc lập.
 - Các thử nghiệm cuff: dịch chain để né quạt tạo ép vải; gán hair theo màu texture tạo bước nhảy weight qua cạnh. Đã loại cả hai cách, chuyển sang sửa hình học rest và blend theo khoảng cách liên tục. Bản hiện tại qua surface nguồn 11 clip và quạt đủ6phần/985mẫu; đang render/kiểm Unity, chưa coi số đo này là nghiệm thu hình.
+
+## 23/10 – Claude review bản a9c1c31 (CuffGait)
+- Chưa đạt: ở góc cận tay trái, ống áo trong vẫn lộ thành thanh trơn từ vai tới cổ tay khi tay đưa ra trước (Attack01 f8, Skill02 f30, Skill03 f21, Ultimate f15/f75); tay áo tím rủ riêng bên dưới. Bản 51e7b71 thanh này màu tối, bản này chỉ đổi sang xám: đổi màu lớp che, chưa sửa việc tay áo ngoài không che bắp tay.
+- Vì sao lọt: ảnh so sánh của bên làm chỉ có Front/Back/Battle; lỗi rõ nhất ở góc LeftArm, góc có sẵn trong frames/ nhưng không đưa vào bảng so sánh. Phòng tránh: bảng trước/sau phải có đúng góc của ảnh lỗi người dùng gửi, và review phải xem toàn bộ khung của các clip có tay đưa ra, không chỉ khung giữa.
+- Bằng chứng: https://claude.ai/artifact/4tXGsheaKsM615CBCwFs7a; test PlayMode Claude tự chạy 28/0/1 (`Logs/ClaudeReview/cuffgait_playmode_all.xml`).
+
+## 23/10 – sửa sau review CuffGait
+- Tạo nếp hình học và UV texture áo gốc cho phần áo trong, thay hình trụ trơn. Giữ các đầu khớp kín và kiểm lại cả hai tay ở đúng frame review.
+- Thử tăng gấu áo Run 12 độ gây 3 cạnh giãn trong audit. Hạ còn 7 độ (Walk 5 độ), chạy lại toàn bộ clip: không còn cạnh lỗi. Không lấy độ vung lớn thay cho kiểm bề mặt.
+- Bản TailoredSleeves đang là candidate; ảnh cận Unity đã được mở, chưa coi test đạt là Claude nghiệm thu.

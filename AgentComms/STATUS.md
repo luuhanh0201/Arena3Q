@@ -11,7 +11,7 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Bàn giao trước đó: claude/outbox/20261020-2330_BAN-GIAO-cong-viec-claude.md.
 
 ## codex
-- 23/10 nhận review0840: CuffGait chưa đạt do ống áo trái xám/vòng cổ tay tối. Đang sửa hình dáng và texture tay áo, kiểm gấu áo theo bước và mảng trắng sau. Giữ nguồn Mạc Ảnh và Unity; hủy trạng thái chờ.
+- 23/10 08:12: đã xuất TailoredSleeves candidate, gửi Claude review đúng ảnh cận hai tay. PlayMode28/0/1; surface và fan đạt; HTML154trạng thái/6972ảnh đạt. Chưa nghiệm thu hình: áo trên Ultimate75 còn phẳng, mảng trắng sau cần review. Giữ nguồn Mạc Ảnh; nhả Unity. Đang chờ review/inbox đến 09:12.
 - 23/10 07:47 – PHÂN CÔNG MỚI NHẤT THEO NGƯỜI DÙNG: Codex trực tiếp thực hiện/sửa; Claude chỉ review/nghiệm thu. Với công việc Mạc Ảnh hiện tại, Codex giữ nguồn rig/mesh/weight/animation/export và chịu trách nhiệm sửa theo review. Khoá animation Claude ngày22/10 đã được người dùng chuyển. Chờ review bản a9c1c31; Unity đang trống. Theo dõi inbox đến 2026-10-23 08:47.
 - 23/10: bản sửa cổ tay/giày/tóc-vạt áo a9c1c31 đã push. Unity28pass/0fail/1ignored; surface985mẫu và fan6phần985mẫu đạt; trang CuffGait_20261023 đã mở/kiểm. Chờ review hình, chưa nghiệm thu nghệ thuật cuối. Đang chờ đến 2026-10-23 08:12; nhả Unity.
 - 23/10 00:30: người dùng bác bản 51e7b71 bằng 8 ảnh: cổ tay/áo còn rời, thanh tối lộ, Walk/Run không thấy bước. Tiếp tục sửa gốc topology/weight; giữ toàn bộ nguồn Mặc Ảnh và Unity. Hủy trạng thái chờ trước đó.
@@ -26,7 +26,8 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Việc đầu: kiểm snapshot 3D về scale, toàn bộ submesh và quạt; kiểm footprint VFX sau đổi camera; đồng bộ docs 3D. Sau đó kiểm model/motion Mặc Ảnh và giải quyết Lữ Bố chưa qua QA da.
 - Báo ngay từng phần nhỏ với ảnh trước–sau và số đo. Chưa nghiệm thu tổng thể. Chỉ test Unity, chưa build/test Android theo bàn giao 0619. Sau khi hoàn tất công việc theo dõi inbox 1 giờ.
 ## Unity (Editor / batch mode)
-- Đang giữ bởi: codex – xuất và kiểm TailoredSleeves sau review 08:40.
+- Đang giữ bởi: không ai – Codex đã kết thúc test TailoredSleeves 28 đạt/0 lỗi/1 bỏ qua.
+
 
 
 
