@@ -68,6 +68,7 @@ namespace Arena3Q.Frontend
                 canvas.GetComponent<CanvasScaler>().referenceResolution = config.StartupUi.referenceSize;
                 var audio = gameObject.AddComponent<UIAudio>(); audio.Configure(config.StartupUi);
                 StartupUi = new StartupUi(config.StartupUi, audio);
+                SceneTransition.Configure(config.StartupUi.screenSeconds);
                 var music = new GameObject("FrontendMusic"); music.transform.SetParent(transform, false);
                 Music = music.AddComponent<FrontendMusic>(); Music.Configure(config.StartupUi);
             }
@@ -137,7 +138,7 @@ namespace Arena3Q.Frontend
 
         private void Show(FrontendStep step)
         {
-            Screen?.Hide();
+            Screen?.Hide(transition: step != FrontendStep.Done);
             Screen = null;
             Step = step;
             if (step != FrontendStep.Intro && step != FrontendStep.Done && Music != null) Music.Play();
@@ -287,7 +288,7 @@ namespace Arena3Q.Frontend
                 // Like the lord level: Development players on a device only.
                 FullRageAtStart = !Application.isEditor && Debug.isDebugBuild && config.DevelopmentFullRage
             });
-            SceneManager.LoadScene(config.BattleSceneName);
+            SceneTransition.Load(config.BattleSceneName);
         }
     }
 

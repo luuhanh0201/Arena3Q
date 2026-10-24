@@ -23,6 +23,8 @@ namespace Arena3Q.Tests.PlayMode
         [TearDown]
         public void TearDown()
         {
+            var transition = Object.FindAnyObjectByType<Arena3Q.UI.SceneTransition>();
+            if (transition != null) Object.Destroy(transition.gameObject);
             FrontendServiceLocator.Reset();
             BattleLaunch.Clear();
             FrontendController.ResumeAt = null;
@@ -70,7 +72,8 @@ namespace Arena3Q.Tests.PlayMode
         private static IEnumerator WaitForBattle(System.Action<BattleController> found)
         {
             BattleController battle = null;
-            for (var i = 0; i < 30 && (battle == null || battle.State == null); i++)
+            var deadline = Time.realtimeSinceStartup + 10;
+            while (Time.realtimeSinceStartup < deadline && (battle == null || battle.State == null))
             {
                 yield return null;
                 battle = Object.FindAnyObjectByType<BattleController>();
@@ -106,7 +109,11 @@ namespace Arena3Q.Tests.PlayMode
                 story.Advance();
             Assert.That(story.CurrentText, Is.EqualTo("Ta là Lâm Tử Yên, phụng mệnh dẹp loạn vùng này. Ai cần giúp, cứ nói!"));
             Assert.That(story.CurrentSpeaker, Is.EqualTo("Lâm Tử Yên"), "the lord speaks with the player's name");
+            yield return new WaitForSecondsRealtime(_flow.Config.StartupUi.screenSeconds + .1f);
+            var outgoingStory = story.Root.gameObject;
             story.Skip();
+            Assert.That(outgoingStory.activeInHierarchy, Is.True, "the story stays visible until the scene cover is opaque");
+            Assert.That(outgoingStory.GetComponent<CanvasGroup>().blocksRaycasts, Is.False);
             Assert.That(character.storySeen, Is.True);
             Assert.That(_flow.Step, Is.EqualTo(FrontendStep.Battle));
 

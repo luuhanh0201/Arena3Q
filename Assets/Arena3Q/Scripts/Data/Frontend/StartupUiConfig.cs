@@ -25,7 +25,8 @@ namespace Arena3Q.Data
         [Header("Audio: enum order Tap, Tab, Confirm, Enter, Back, Error")]
         public AudioClip[] sounds = new AudioClip[6];
         public AudioClip music;
-        [Range(0, 1)] public float musicVolume = .12f;
+        [Range(0, 1)] public float musicVolume = .65f;
+        [Range(0, 1)] public float introVolume = 1f;
         [Range(0, 1)] public float soundVolume = .65f;
         [Min(.01f)] public float sameClipInterval = .08f;
         [Header("Design tokens")]
@@ -39,8 +40,8 @@ namespace Arena3Q.Data
         public Rect registerPanel = new Rect(380, 134, 520, 414);
         public Rect bindPanel = new Rect(380, 116, 520, 510);
         public Rect serverPanel = new Rect(76, 46, 1128, 650);
-        public Rect networkPanel = new Rect(360, 168, 560, 380);
-        public float modalSeconds = .25f, screenSeconds = .2f, tipSeconds = 3.5f;
+        public Rect networkPanel = new Rect(360, 168, 560, 354);
+        public float modalSeconds = .3f, screenSeconds = .45f, tipSeconds = 3.5f;
         public float statusSeconds = 15f, verificationSeconds = 60f;
         [Header("Offline resource preparation (seconds, no download is simulated)")]
         [Min(.05f)] public float localPreparationSeconds = 2f;

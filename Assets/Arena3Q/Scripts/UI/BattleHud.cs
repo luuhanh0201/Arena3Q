@@ -391,7 +391,7 @@ namespace Arena3Q.UI
                     new Vector2((count - 1) * (width + 16f) + width * 0.5f + 8f, 0f), new Vector2(width, 100f),
                     "Về màn chính", new Color(0.45f, 0.3f, 0.15f));
                 back.GetComponentInChildren<Text>().fontSize = 26;
-                back.onClick.AddListener(() => battle.ReturnToMenu());
+                back.onClick.AddListener(() => SceneTransition.Run(battle.ReturnToMenu));
             }
             // A falling castle is shown first (its animation runs behind an empty screen, not behind the panel).
             _resultDelay = battle.ResultDelaySeconds;

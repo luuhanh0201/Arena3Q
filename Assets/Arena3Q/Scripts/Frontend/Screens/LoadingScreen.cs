@@ -12,6 +12,7 @@ namespace Arena3Q.Frontend
     {
         private IStartupPreparation _preparation;
         private Image _fill, _download; private RectTransform _cart; private RectTransform[] _wheels;
+        private UiGradient _fillGradient;
         private RectTransform _flag; private Image[] _dust;
         private TMP_Text _stage, _speed, _tip, _percent;
         private RectTransform _notice; private StartupNetState? _noticeState;
@@ -28,7 +29,8 @@ namespace Arena3Q.Frontend
             var bar = Kit.Image(Design, "ProgressTrack", Art.rounded, new Rect(206, 570, 868, 16), StartupUiConfig.Hex("B8893A"), true);
             Kit.Image(bar.transform, "TrackInner", Art.rounded, new Rect(2, 2, 864, 12), StartupUiConfig.Hex("160707"), true);
             _fill = Kit.Image(bar.transform, "ProgressFill", null, new Rect(3, 3, 0, 10));
-            _fill.gameObject.AddComponent<UiGradient>().Configure(StartupUiConfig.Hex("8A0F2E"), StartupUiConfig.Hex("FF4F7A"));
+            _fillGradient = _fill.gameObject.AddComponent<UiGradient>();
+            _fillGradient.Configure(StartupUiConfig.Hex("8A0F2E"), StartupUiConfig.Hex("FF4F7A"));
             Kit.Image(Design, "SpearLeft", Art.spear, new Rect(150, 560, 72, 36));
             var spearRight = Kit.Image(Design, "SpearRight", Art.spear, new Rect(1130, 560, 72, 36));
             spearRight.rectTransform.localScale = new Vector3(-1, 1, 1);
@@ -87,6 +89,7 @@ namespace Arena3Q.Frontend
             }
             _fill.rectTransform.sizeDelta = new Vector2(862 * progress.Progress, 10);
             _fill.color = progress.IsPaused ? Art.off : Color.white;
+            _fillGradient.enabled = !progress.IsPaused;
             var cartX = 206 + Mathf.Clamp(868 * progress.Progress - 118, -6, 868 - 124);
             _cart.anchoredPosition = new Vector2(cartX, -480 + (progress.IsPaused ? 0 : Mathf.Sin(_time * 16) * 1.2f));
             foreach (var wheel in _wheels) if (!progress.IsPaused) wheel.localRotation = Quaternion.Euler(0, 0, -_time * 655);
@@ -97,9 +100,9 @@ namespace Arena3Q.Frontend
                 _dust[i].color = new Color(1, .8f, .5f, progress.IsPaused ? 0 : (1 - t) * .55f);
                 _dust[i].rectTransform.anchoredPosition = new Vector2(-10 - 34 * t, -70 + 8 * t);
             }
-            _stage.text = Kit.C(progress.State == StartupNetState.Weak ? "loadingWeak" : progress.IsLocal ? "loadingLocal"
+            _stage.text = Kit.C(progress.IsPaused ? "loadingWaiting" : progress.State == StartupNetState.Weak ? "loadingWeak" : progress.IsLocal ? "loadingLocal"
                 : pct < 20 ? "loadingVersion" : pct < 90 ? "loadingResources" : pct < 100 ? "loadingConnect" : "loadingDone");
-            if (pct == 100) _stage.text = Kit.C("loadingDone");
+            if (pct == 100 && !progress.IsPaused) _stage.text = Kit.C("loadingDone");
             _percent.text = pct + "%";
             var stageWidth = _stage.preferredWidth;
             var pairWidth = stageWidth + _percent.preferredWidth + 12;
@@ -132,7 +135,7 @@ namespace Arena3Q.Frontend
         private void RebuildNotice(StartupProgress progress)
         {
             _noticeState = progress.State;
-            if (_notice != null) { _notice.gameObject.SetActive(false); Object.Destroy(_notice.gameObject); }
+            Kit.Close(_notice);
             _notice = null;
             if (progress.State == StartupNetState.Good) return;
             if (progress.State == StartupNetState.Weak)
@@ -153,13 +156,15 @@ namespace Arena3Q.Frontend
             }
             var timeout = progress.State == StartupNetState.ServerTimeout;
             var panel = Kit.Panel(_notice, "ConnectionProblem", Art.networkPanel, tassels: false, animate: true);
-            Kit.Image(panel, "ErrorIcon", timeout ? Art.serverOff : Art.wifiOff, new Rect(248, 40, 64, 64), Art.bad);
-            Kit.Text(panel, "Title", Kit.C(timeout ? "timeoutTitle" : "lostTitle"), new Rect(48, 112, 464, 34), 22, Art.gold, TextAlignmentOptions.Center, 800);
-            Kit.Text(panel, "Explanation", Kit.C(timeout ? "timeoutMessage" : "lostMessage"), new Rect(50, 152, 460, 72), 14, Art.dim, TextAlignmentOptions.Center);
-            Kit.Text(panel, "ResumeProgress", string.Format(Kit.C("resumeProgress"), Mathf.RoundToInt(progress.Progress * 100)), new Rect(50, 230, 460, 28), 13, Art.good, TextAlignmentOptions.Center);
-            Kit.Text(panel, "ErrorCode", Kit.C(timeout ? "timeoutCode" : "lostCode"), new Rect(50, 262, 460, 24), 12, Art.muted, TextAlignmentOptions.Center);
-            Kit.Button(panel, "Quit", Kit.C("quit"), new Rect(50, 300, 222, 50), Quit, sound: UiSound.Back);
-            Kit.Button(panel, "Retry", Kit.C("retry"), new Rect(286, 300, 224, 50), Retry, GameButtonStyle.Gold, UiSound.Confirm, 18);
+            Kit.DismissOutside(_notice, () => Kit.Close(_notice));
+            Kit.CircleBadge(panel, "ErrorIcon", timeout ? Art.serverOff : Art.wifiOff, new Rect(246, 40, 68, 68),
+                StartupUiConfig.Hex("2A0F12"), StartupUiConfig.Hex("E5484D"), StartupUiConfig.Hex("FCA5A5"), 32);
+            Kit.Text(panel, "Title", Kit.C(timeout ? "timeoutTitle" : "lostTitle"), new Rect(48, 120, 464, 28), 22, Art.gold, TextAlignmentOptions.Center, 800);
+            Kit.Text(panel, "Explanation", Kit.C(timeout ? "timeoutMessage" : "lostMessage"), new Rect(50, 160, 460, 45), 14.5f, Art.dim, TextAlignmentOptions.Center, 400).lineSpacing = 4;
+            Kit.Text(panel, "ResumeProgress", string.Format(Kit.C("resumeProgress"), Mathf.RoundToInt(progress.Progress * 100)), new Rect(50, 217, 460, 18), 13, Art.good, TextAlignmentOptions.Center, 400);
+            Kit.Text(panel, "ErrorCode", Kit.C(timeout ? "timeoutCode" : "lostCode"), new Rect(50, 240, 460, 25), 12, Art.muted, TextAlignmentOptions.Center, 400);
+            Kit.Button(panel, "Quit", Kit.C("quit"), new Rect(50, 276, 222, 50), Quit, sound: UiSound.Back);
+            Kit.Button(panel, "Retry", Kit.C("retry"), new Rect(286, 276, 224, 50), Retry, GameButtonStyle.Gold, UiSound.Confirm, 18);
         }
 
         public void Retry() { _preparation.Retry(); _noticeState = null; Apply(); }

@@ -15,7 +15,7 @@ MonoBehaviour:
   steps: 0000000008000000010000000200000003000000040000000500000006000000i
   gameTitle: Arena3Q
   introSeconds: 3
-  introVideo: {fileID: 32900000, guid: 4604f1b3daa427b4ca4c112b9f6efdfd, type: 3}
+  introVideo: {fileID: 32900000, guid: 00a5633de80c4d13ad5902c060c7da34, type: 3}
   logo: {fileID: 21300000, guid: f79074f0e331f9245a1b874814065e64, type: 3}
   banner: {fileID: 21300000, guid: 46818626d1753844d9f58e82f5d35b8f, type: 3}
   theme:

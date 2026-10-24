@@ -28,6 +28,8 @@ namespace Arena3Q.Frontend
 
         protected override void BuildScreen()
         {
+            // Full-screen dialogs cover the start chrome, including the player chip near Back.
+            Edge.SetAsFirstSibling();
             Backdrop();
             Selected = StaticServerDirectory.PickDefault(Flow.Servers, Flow.Profile.lastServerId);
             _confirmed = Selected;
@@ -40,11 +42,11 @@ namespace Arena3Q.Frontend
             _start = UiFactory.Stretch("StartScreen", Design);
             Kit.BottomShade(_start, 280);
             Kit.Logo(_start, 390, 16, 500); Kit.Footer(_start);
-            var chip = Kit.Image(_start, "PlayerChip", Art.panel, new Rect(16, 14, 288, 64), sliced: true);
+            var previousChip = Edge.Find("PlayerChip");
+            if (previousChip != null) { previousChip.gameObject.SetActive(false); Object.Destroy(previousChip.gameObject); }
+            var chip = Kit.Image(Edge, "PlayerChip", Art.panel, new Rect(16, 14, 288, 64), sliced: true);
             chip.pixelsPerUnitMultiplier = 2;
-            var avatar = Kit.Image(chip.transform, "AvatarBorder", Art.circle, new Rect(12, 12, 40, 40), Art.goldLine);
-            Kit.Image(avatar.transform, "AvatarBackground", Art.circle, new Rect(2, 2, 36, 36), StartupUiConfig.Hex("13284A"));
-            Kit.Image(avatar.transform, "Avatar", Art.user, new Rect(9, 9, 22, 22), Art.gold);
+            Kit.CircleBadge(chip.transform, "AvatarBorder", Art.user, new Rect(12, 12, 40, 40), StartupUiConfig.Hex("13284A"), Art.goldLine, Art.gold, 22);
             var guest = Flow.Profile.accountKind == AccountKind.Guest;
             var suffix = Flow.Profile.accountId.Length > 6 ? Flow.Profile.accountId.Substring(Flow.Profile.accountId.Length - 5) : "";
             Kit.Text(chip.transform, "AccountName", guest ? Kit.C("guest") + " #" + suffix : Flow.Profile.accountLabel,
@@ -72,6 +74,7 @@ namespace Arena3Q.Frontend
         {
             CloseOverlay(); PickerOpen = true; _confirmed = Selected;
             _overlay = Kit.ModalBackdrop(Design, "ServerOverlay", .45f, true);
+            Kit.DismissOutside(_overlay, CancelPicker);
             Kit.IconButton(_overlay, "Back", Art.backIcon, new Rect(14, 14, 52, 52), CancelPicker, UiSound.Back);
             _panel = Kit.Panel(_overlay, "ServerSelectPopup", Art.serverPanel, big: true, tassels: false, animate: true);
             Kit.Text(_panel, "Title", Kit.C("chooseServer"), new Rect(40, 30, 1048, 36), 22, Art.gold, TextAlignmentOptions.Center, 800).characterSpacing = 3;
@@ -224,12 +227,14 @@ namespace Arena3Q.Frontend
         }
         private void CloseOverlay()
         {
-            if (_overlay != null) { _overlay.gameObject.SetActive(false); Object.Destroy(_overlay.gameObject); }
+            if (_overlay != null && _overlay.name == "SettingsOverlay") PlayerPrefs.Save();
+            Kit.Close(_overlay);
             _overlay = null; _linkForm = null; PickerOpen = false;
         }
         public void OpenBind()
         {
             CloseOverlay(); _overlay = Kit.ModalBackdrop(Design, "BindOverlay", .66f);
+            Kit.DismissOutside(_overlay, CloseOverlay);
             Kit.IconButton(_overlay, "Back", Art.backIcon, new Rect(14, 14, 52, 52), CloseOverlay, UiSound.Back);
             var panel = Kit.Panel(_overlay, "BindAccountPopup", Art.bindPanel, animate: true);
             Kit.Text(panel, "Title", Kit.C("linkTitle"), new Rect(48, 36, 424, 36), 22, Art.gold, TextAlignmentOptions.Center, 800);
@@ -252,6 +257,8 @@ namespace Arena3Q.Frontend
             FrontendServiceLocator.AccountActions.Link(Flow.Profile.accountId, provider, null, null, null, result =>
             {
                 if (Root == null || overlay == null || !overlay.gameObject.activeInHierarchy) return;
+                var group = overlay.GetComponent<CanvasGroup>();
+                if (group != null && !group.blocksRaycasts) return;
                 if (result == null || !result.Success) { Kit.Audio.Play(UiSound.Error); Flow.ShowMessage(result?.Message ?? Kit.C("loginFailed")); return; }
                 if (result.AccountId != Flow.Profile.accountId) { Flow.ShowMessage(Kit.C("linkIdentityMismatch")); return; }
                 Flow.SignIn(result); CloseOverlay(); BuildStart();
@@ -260,6 +267,7 @@ namespace Arena3Q.Frontend
         public void OpenLinkForm()
         {
             CloseOverlay(); _overlay = Kit.ModalBackdrop(Design, "LinkFormOverlay", .66f);
+            Kit.DismissOutside(_overlay, CloseOverlay);
             var bounds = Art.registerPanel;
             var panel = Kit.Panel(_overlay, "LinkFormPanel", bounds, animate: true);
             _linkForm = new AccountForm(Flow, panel, true, true, register => { if (register) OpenLinkForm(); else OpenBind(); },
@@ -269,6 +277,7 @@ namespace Arena3Q.Frontend
         public void OpenSettings()
         {
             CloseOverlay(); _overlay = Kit.Dim(Design, "SettingsOverlay", .6f);
+            Kit.DismissOutside(_overlay, () => { CloseOverlay(); BuildStart(); });
             var panel = Kit.Panel(_overlay, "SettingsPanel", new Rect(400, 140, 480, 440), animate: true);
             Kit.Text(panel, "Title", Kit.C("settings"), new Rect(40, 32, 400, 40), 22, Art.gold, TextAlignmentOptions.Center, 800);
             var volumeLabel = Kit.Text(panel, "MusicVolumeLabel", string.Format(Kit.C("musicVolume"), Mathf.RoundToInt(Flow.Music.Volume * 100)), new Rect(40, 82, 400, 30), 16, Art.gold);
@@ -287,6 +296,7 @@ namespace Arena3Q.Frontend
         private void ConfirmSignOut()
         {
             CloseOverlay(); _overlay = Kit.Dim(Design, "SignOutOverlay", .65f);
+            Kit.DismissOutside(_overlay, CloseOverlay);
             var panel = Kit.Panel(_overlay, "ConfirmSignOut", new Rect(360, 220, 560, 260), animate: true);
             Kit.Text(panel, "Warning", Kit.C(Flow.Profile.accountKind == AccountKind.Guest ? "guestSignOutWarning" : "signOutWarning"),
                 new Rect(50, 44, 460, 110), 16, Art.text, TextAlignmentOptions.Center);

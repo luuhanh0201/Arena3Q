@@ -76,7 +76,7 @@ namespace Arena3Q.Editor
             var audio = so.FindProperty("sounds"); audio.arraySize = 6;
             var sounds = new[] { "tap", "tab", "confirm", "enter", "back", "error" };
             for (var i = 0; i < sounds.Length; i++) audio.GetArrayElementAtIndex(i).objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>(ArtRoot + "/Audio/SFX/ui_" + sounds[i] + ".wav");
-            var musicPath = ArtRoot + "/Video/OGG - in-game loop file.ogg";
+            var musicPath = ArtRoot + "/Video/BGM_From45s.wav";
             var musicImporter = AssetImporter.GetAtPath(musicPath) as AudioImporter;
             if (musicImporter != null)
             {
@@ -89,6 +89,7 @@ namespace Arena3Q.Editor
             so.ApplyModifiedPropertiesWithoutUndo(); EditorUtility.SetDirty(config);
             // Migrate only the first local draft's panel height, without resetting edited layouts.
             if (Mathf.Approximately(config.loginPanel.height, 566)) config.loginPanel.height = 512;
+            if (Mathf.Approximately(config.networkPanel.height, 380)) config.networkPanel.height = 354;
             var tmpSettings = new SerializedObject(Resources.Load<TMP_Settings>("TMP Settings"));
             tmpSettings.FindProperty("m_defaultFontAsset").objectReferenceValue = config.regular;
             tmpSettings.FindProperty("m_defaultSpriteAsset").objectReferenceValue = null;
@@ -101,7 +102,7 @@ namespace Arena3Q.Editor
             flow.FindProperty("banner").objectReferenceValue = config.background;
             flow.FindProperty("logo").objectReferenceValue = config.logo;
             flow.FindProperty("theme").FindPropertyRelative("font").objectReferenceValue = AssetDatabase.LoadAssetAtPath<Font>(ArtRoot + "/Fonts/BeVietnamPro-Regular.ttf");
-            flow.FindProperty("introVideo").objectReferenceValue = AssetDatabase.LoadAssetAtPath<UnityEngine.Video.VideoClip>(ArtRoot + "/Video/Arena3Q_Splash_fire_sound.mp4");
+            flow.FindProperty("introVideo").objectReferenceValue = AssetDatabase.LoadAssetAtPath<UnityEngine.Video.VideoClip>(ArtRoot + "/Video/Arena3Q_Splash_loud.mp4");
             var steps = flow.FindProperty("steps");
             if (!Enumerable.Range(0, steps.arraySize).Any(i => steps.GetArrayElementAtIndex(i).intValue == (int)FrontendStep.Loading))
             {

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Arena3Q.Core;
 using Arena3Q.Data;
 using Arena3Q.UI;
@@ -118,7 +119,25 @@ namespace Arena3Q.Frontend
             var rect = UiFactory.Stretch(name, parent);
             var shade = UiFactory.Stretch("DimBackdrop", rect);
             UiFactory.AddImage(shade, new Color(.02f, .01f, .01f, DimAlpha(alpha)));
-            shade.gameObject.AddComponent<CanvasBackdrop>(); return rect;
+            shade.gameObject.AddComponent<CanvasBackdrop>();
+            rect.gameObject.AddComponent<UiReveal>().Configure(Config.modalSeconds);
+            return rect;
+        }
+
+        public void DismissOutside(RectTransform overlay, Action close)
+        {
+            var shade = overlay.GetComponentsInChildren<CanvasBackdrop>().FirstOrDefault(x => x.name == "DimBackdrop");
+            if (shade == null) return;
+            var image = shade.GetComponent<Image>(); image.raycastTarget = true;
+            var button = shade.gameObject.AddComponent<Button>(); button.targetGraphic = image;
+            button.transition = Selectable.Transition.None;
+            button.onClick.AddListener(() => { Audio.Play(UiSound.Back); close(); });
+        }
+
+        public void Close(RectTransform overlay)
+        {
+            if (overlay == null) return;
+            UiReveal.Exit(overlay.gameObject, Config.modalSeconds);
         }
 
         // The HTML handoff blends in sRGB. Compensate dark overlays in this project's linear renderer.
@@ -129,7 +148,9 @@ namespace Arena3Q.Frontend
             var rect = UiFactory.Stretch(name, parent);
             Image(rect, "KeyArt", blur ? Config.blurredBackground : Config.background, new Rect(0, 0, 1280, 720))
                 .gameObject.AddComponent<CanvasBackdrop>().coverSprite = true;
-            Dim(rect, "Dim", dim); return rect;
+            Dim(rect, "Dim", dim);
+            rect.gameObject.AddComponent<UiReveal>().Configure(Config.modalSeconds);
+            return rect;
         }
 
         public void BottomShade(Transform parent, float height)
@@ -142,6 +163,14 @@ namespace Arena3Q.Frontend
         {
             var sprite = Config.logo;
             if (sprite != null) Image(parent, "Arena3QLogo", sprite, new Rect(x, y, width, width * sprite.rect.height / sprite.rect.width));
+        }
+
+        public RectTransform CircleBadge(Transform parent, string name, Sprite icon, Rect bounds, Color background, Color border, Color iconColor, float iconSize)
+        {
+            var badge = Image(parent, name, Config.circle, bounds, border).rectTransform;
+            Image(badge, "Background", Config.circle, new Rect(2, 2, bounds.width - 4, bounds.height - 4), background);
+            Image(badge, "Icon", icon, new Rect((bounds.width - iconSize) / 2, (bounds.height - iconSize) / 2, iconSize, iconSize), iconColor);
+            return badge;
         }
 
         public StartupField Field(Transform parent, string name, string placeholder, Rect bounds, bool password = false, int limit = 254)
@@ -229,7 +258,11 @@ namespace Arena3Q.Frontend
         public TMP_InputField Input { get; }
         public string Value { get => Input.text; set => Input.text = value ?? ""; }
         public void Focus(bool focused) { if (string.IsNullOrEmpty(_error.text)) _border.color = focused ? _config.goldLine : _config.inputBorder; }
-        public void Error(string message) { _error.text = message; _border.color = string.IsNullOrEmpty(message) ? _config.inputBorder : _config.bad; }
+        public void Error(string message)
+        {
+            _error.text = message;
+            _border.color = string.IsNullOrEmpty(message) ? Input.isFocused ? _config.goldLine : _config.inputBorder : _config.bad;
+        }
     }
 
     /// <summary>Only startup screens use the new 1280 layout; gameplay menus keep their own coordinate system.</summary>
@@ -238,6 +271,7 @@ namespace Arena3Q.Frontend
         protected StartupUi Kit => Flow.StartupUi;
         protected StartupUiConfig Art => Kit.Config;
         public RectTransform Design { get; private set; }
+        protected RectTransform Edge { get; private set; }
         protected sealed override void Build()
         {
             if (Flow.Config.StartupUi == null) throw new InvalidOperationException("Run Arena3Q > UI > Import Startup Handoff first.");
@@ -245,8 +279,8 @@ namespace Arena3Q.Frontend
             Design = UiFactory.CreateRect("Design1280", safe, FrontendUi.Center, FrontendUi.Center,
                 FrontendUi.Center, Vector2.zero, Art.referenceSize);
             Design.gameObject.AddComponent<DesignFrame>().Configure(Art.referenceSize);
+            Edge = UiFactory.Stretch("EdgeControls", safe);
             BuildScreen();
-            Root.gameObject.AddComponent<UiReveal>().Configure(Art.screenSeconds);
         }
         protected abstract void BuildScreen();
         protected void Backdrop(bool form = false, bool blur = false)
@@ -266,15 +300,17 @@ namespace Arena3Q.Frontend
         {
             foreach (var name in new[] { "Sound", "Language", "Settings" })
             {
-                var previous = Design.Find(name);
+                var previous = Edge.Find(name);
                 if (previous != null) { previous.gameObject.SetActive(false); UnityEngine.Object.Destroy(previous.gameObject); }
             }
             Image slash = null;
-            var sound = Kit.IconButton(Design, "Sound", Art.soundIcon, new Rect(settings != null && !language ? 1148 : 1208, 40, 52, 52), ToggleSound);
+            var sound = Kit.IconButton(Edge, "Sound", Art.soundIcon, new Rect(settings != null && !language ? -132 : -72, 40, 52, 52), ToggleSound);
+            sound.GetComponent<RectTransform>().anchorMin = sound.GetComponent<RectTransform>().anchorMax = Vector2.one;
             slash = Kit.Image(sound.transform, "Muted", Art.slash, new Rect(9, 9, 34, 34), Art.bad);
             slash.enabled = Kit.Audio.Muted && (Flow.Music == null || Flow.Music.Muted);
-            if (language) Kit.IconButton(Design, "Language", Art.language, new Rect(1018, 35, 180, 62), () => Flow.ShowMessage(Kit.C("vietnameseOnly")));
-            else if (settings != null) Kit.IconButton(Design, "Settings", Art.settingsIcon, new Rect(1210, 40, 52, 52), settings);
+            if (language) AnchorRight(Kit.IconButton(Edge, "Language", Art.language, new Rect(-262, 35, 180, 62), () => Flow.ShowMessage(Kit.C("vietnameseOnly"))));
+            else if (settings != null) AnchorRight(Kit.IconButton(Edge, "Settings", Art.settingsIcon, new Rect(-70, 40, 52, 52), settings));
+            void AnchorRight(Button button) { var rect = (RectTransform)button.transform; rect.anchorMin = rect.anchorMax = Vector2.one; }
             void ToggleSound()
             {
                 var mute = !(Kit.Audio.Muted && (Flow.Music == null || Flow.Music.Muted));

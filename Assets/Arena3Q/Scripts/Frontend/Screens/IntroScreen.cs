@@ -30,7 +30,7 @@ namespace Arena3Q.Frontend
             var view = UiFactory.Stretch("SplashVideo", Root); view.SetSiblingIndex(1);
             _view = view.gameObject.AddComponent<RawImage>(); _view.texture = _texture; _view.raycastTarget = false; _view.enabled = false;
             _audio = Root.gameObject.AddComponent<AudioSource>(); _audio.playOnAwake = false; _audio.spatialBlend = 0;
-            _audio.mute = Kit.Audio.Muted;
+            _audio.mute = Kit.Audio.Muted; _audio.volume = Art.introVolume;
             _video = Root.gameObject.AddComponent<VideoPlayer>();
             _video.playOnAwake = false; _video.clip = clip; _video.renderMode = VideoRenderMode.RenderTexture;
             _video.targetTexture = _texture; _video.isLooping = false; _video.waitForFirstFrame = true;
@@ -62,9 +62,9 @@ namespace Arena3Q.Frontend
         }
         protected override void OnHide()
         {
-            if (_video != null) { _video.loopPointReached -= OnEnd; _video.frameReady -= OnFrame; _video.errorReceived -= OnError; _video.Stop(); _video.targetTexture = null; }
+            if (_video != null) { _video.loopPointReached -= OnEnd; _video.frameReady -= OnFrame; _video.errorReceived -= OnError; _video.Pause(); _video.targetTexture = null; }
             if (_audio != null) _audio.Stop();
-            if (_texture != null) { _texture.Release(); Object.Destroy(_texture); _texture = null; }
+            if (_texture != null) { Object.Destroy(_texture, Art.screenSeconds); _texture = null; }
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Arena3Q.Frontend
     /// <summary>Login and registration use the same reusable account form as guest linking.</summary>
     public sealed class LoginScreen : StartupScreen
     {
-        private RectTransform _panel;
+        private RectTransform _panel, _formLayer, _reopen;
         private AccountForm _form;
         private bool _register;
         public bool IsReturning => Flow.Profile.IsSignedIn;
@@ -17,15 +17,28 @@ namespace Arena3Q.Frontend
         {
             Backdrop(form: true); Kit.Logo(Design, 495, 8, 290);
             CornerButtons(language: true); Kit.Footer(Design, false);
+            _reopen = Kit.Rect(Design, "LoginActions", new Rect(400, 510, 480, 150));
+            Kit.Button(_reopen, "OpenLogin", Kit.C("login"), new Rect(0, 0, 480, 64), () => ShowAccountForm(false), Arena3Q.Data.GameButtonStyle.Red);
+            Kit.Button(_reopen, "PlayNow", Kit.C("playNow"), new Rect(0, 80, 480, 64), PlayAsGuest, Arena3Q.Data.GameButtonStyle.Gold);
             Rebuild();
         }
         private void Rebuild()
         {
-            if (_panel != null) { _panel.gameObject.SetActive(false); Object.Destroy(_panel.gameObject); }
+            if (_formLayer != null) { _formLayer.gameObject.SetActive(false); Object.Destroy(_formLayer.gameObject); }
+            _reopen.gameObject.SetActive(false);
+            _formLayer = Kit.Dim(Design, "AccountFormOverlay", 0);
+            Kit.DismissOutside(_formLayer, CloseForm);
             var bounds = _register ? Art.registerPanel : Art.loginPanel;
-            _panel = Kit.Panel(Design, _register ? "RegisterPanel" : "LoginPanel", bounds);
+            _panel = Kit.Panel(_formLayer, _register ? "RegisterPanel" : "LoginPanel", bounds, animate: true);
             _form = new AccountForm(Flow, _panel, _register, false, ShowAccountForm, PlayAsGuest, Enter);
             if (_register) Back(() => ShowAccountForm(false));
+        }
+        public void CloseForm()
+        {
+            Kit.Close(_formLayer); _formLayer = null; _panel = null; _form = null;
+            var back = Design.Find("Back"); if (back != null) { back.gameObject.SetActive(false); Object.Destroy(back.gameObject); }
+            _reopen.gameObject.SetActive(true);
+            _reopen.gameObject.AddComponent<UiReveal>().Configure(Art.modalSeconds);
         }
         public override void Tick(float deltaTime) => _form?.Tick();
         public void ShowAccountForm(bool register)
@@ -40,7 +53,7 @@ namespace Arena3Q.Frontend
             Flow.Accounts.SignIn(AccountKind.Guest, null, null, result =>
             {
                 if (Root == null) return;
-                if (result == null || !result.Success) { _form.ShowError(result?.Message ?? Kit.C("loginFailed")); return; }
+                if (result == null || !result.Success) { Flow.ShowMessage(result?.Message ?? Kit.C("loginFailed")); return; }
                 Flow.SignIn(result); Enter();
             });
         }

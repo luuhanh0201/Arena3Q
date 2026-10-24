@@ -25,15 +25,22 @@ namespace Arena3Q.Frontend
                 Root.gameObject.AddComponent<DesignFrame>().Configure(Root.sizeDelta);
             }
             Build();
+            if (Root != null && flow.Config.StartupUi != null)
+                Root.gameObject.AddComponent<UiReveal>().Configure(flow.Config.StartupUi.screenSeconds);
         }
 
-        internal void Hide()
+        internal void Hide(bool transition = false)
         {
             OnHide();
             if (Root != null)
             {
-                Root.gameObject.SetActive(false);
-                Object.Destroy(Root.gameObject);
+                if (transition && Flow.Config.StartupUi != null)
+                    UiReveal.Exit(Root.gameObject, Flow.Config.StartupUi.screenSeconds, fade: false);
+                else
+                {
+                    Root.gameObject.SetActive(false);
+                    Object.Destroy(Root.gameObject);
+                }
             }
             Root = null;
         }

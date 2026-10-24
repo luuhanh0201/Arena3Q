@@ -119,6 +119,11 @@ namespace Arena3Q.Frontend
             Cancel();
             var entry = Selected;
             _confirm = Ui.Modal(Root, "Confirm", new Vector2(900f, 640f));
+            var outside = _confirm.parent.gameObject.AddComponent<Button>();
+            outside.transition = Selectable.Transition.None; outside.onClick.AddListener(Cancel);
+            var inside = _confirm.gameObject.AddComponent<Button>(); inside.transition = Selectable.Transition.None;
+            if (Flow.Config.StartupUi != null)
+                _confirm.parent.gameObject.AddComponent<UiReveal>().Configure(Flow.Config.StartupUi.modalSeconds);
             Ui.Portrait(_confirm, "Splash", entry.splash != null ? entry.splash : entry.portrait, entry.lord.PlaceholderColor,
                 new Vector2(0.5f, 1f), new Vector2(0f, -170f), new Vector2(260f, 260f));
             Ui.Label(_confirm, "Question", $"Chủ tướng là nhân vật cố định, KHÔNG đổi được.\nChọn {entry.lord.DisplayName}?", 32,
@@ -133,7 +138,7 @@ namespace Arena3Q.Frontend
         {
             // The modal is the panel's parent (dim layer + panel).
             if (_confirm != null)
-                UnityEngine.Object.Destroy(_confirm.parent.gameObject);
+                UiReveal.Exit(_confirm.parent.gameObject, Flow.Config.StartupUi != null ? Flow.Config.StartupUi.modalSeconds : .3f);
             _confirm = null;
         }
 

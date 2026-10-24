@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Arena3Q.Core;
 using Arena3Q.Data;
 using TMPro;
@@ -80,7 +81,8 @@ namespace Arena3Q.Frontend
             Refresh();
         }
 
-        private bool Alive => _root != null && _root.gameObject.activeInHierarchy;
+        private bool Alive => _root != null && _root.gameObject.activeInHierarchy
+            && _root.GetComponentsInParent<CanvasGroup>().All(group => group.blocksRaycasts);
         public void Tick()
         {
             if (_send == null || !Alive) return;

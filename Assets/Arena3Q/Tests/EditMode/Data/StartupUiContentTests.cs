@@ -47,11 +47,12 @@ namespace Arena3Q.Tests.EditMode
             }
         }
         [Test]
-        public void Music_IsBoundQuietAndStreamed_AndFlowKeepsSerializedStepValues()
+        public void Music_IsBoundAudibleAndStreamed_AndFlowKeepsSerializedStepValues()
         {
             Assert.That(Config.music, Is.Not.Null, "restore the user's local OGG before testing/building");
-            Assert.That(Config.musicVolume, Is.InRange(.01f, .2f));
+            Assert.That(Config.musicVolume, Is.InRange(.6f, .8f));
             Assert.That(Config.music.loadType, Is.EqualTo(AudioClipLoadType.Streaming));
+            Assert.That(Config.music.length, Is.EqualTo(255).Within(.02), "the 300-second source starts at 45 seconds on every loop");
             var flow = AssetDatabase.LoadAssetAtPath<FrontendConfig>("Assets/Arena3Q/Content/Frontend/FrontendConfig.asset");
             Assert.That(flow.Steps.Take(3), Is.EqualTo(new[] { FrontendStep.Intro, FrontendStep.Loading, FrontendStep.Login }));
             Assert.That((int)FrontendStep.Login, Is.EqualTo(1));

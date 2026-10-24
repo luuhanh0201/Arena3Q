@@ -1,5 +1,14 @@
 # Nhật ký sửa lỗi – Arena3Q
 
+## UI neo mép, đóng form và chuyển màn (24/10/2026, Codex)
+
+- Loa/ngôn ngữ và thẻ Khách đặt trong DesignFrame 1280 nên trôi vào giữa trên màn rộng. Tách EdgeControls stretch theo SafeArea, neo cụm phải bằng anchor phải và thẻ người chơi vào mép trái; giữ nội dung trung tâm trong DesignFrame. Đối chiếu 16:9, 2340×1080 và vùng khuyết giả lập bằng bounds cùng ảnh thật.
+- Form chỉ có nút đóng, chạm nền không xử lý. Gắn nút nhận raycast vào lớp nền phủ toàn canvas; panel vẫn chắn chạm bên trong. Đóng/hủy server khôi phục lựa chọn đã xác nhận; đăng nhập có nút mở lại và Chơi ngay. Popup liên kết, đăng ký liên kết, cài đặt, đăng xuất và lỗi kết nối cùng cơ chế. Callback dịch vụ phải bỏ qua form đã đóng, kể cả lúc hình đang tan.
+- Hide xóa màn cũ ngay rồi màn mới hiện từ alpha 0, gây hụt hình; fade tuyến tính 0,2 s quá gấp. Giữ ảnh cũ không nhận chạm trong lúc màn mới hiện 0,45 s theo smoothstep; popup hiện/tan 0,3 s. SceneTransition giữ lớp đen xuyên lúc nạp scene vào/ra Battle, chặn yêu cầu trùng và chờ layout trước khi tan. Không ép scale=1 trên DesignFrame của các màn 1920.
+- Trong lượt kiểm đầu, dùng `?.` với CanvasGroup thiếu component gây MissingComponentException do fake null của Unity. Đổi sang so sánh `!= null` rõ ràng và thêm CanvasGroup cho toàn ModalBackdrop. Test chuyển scene cũng phải dọn đối tượng DontDestroyOnLoad giữa các ca và chờ theo thời gian thực, không đếm 30/120 frame khi có fade theo giây.
+- Âm lượng BGM mặc định 12% quá nhỏ: đổi thành 65%, vẫn giữ preference người dùng tự chỉnh. Intro dùng bản dẫn xuất audio ×2 có limiter, video copy nguyên; không sửa nguồn. Toàn bộ 90 hash khung giải mã giống trước; nguồn có sẵn cảnh báo WindowsMediaFoundation frame đầu 2 vẫn được ghi nhận.
+- Bằng chứng và log riêng: `NghiemThu/UI/XemTruoc_Polish_20261024`, `Logs/UI-polish-*`. Kết quả cuối ghi trong README của đợt và `docs/UI/Implementation.md`.
+
 ## Mặc Ảnh A2: billboard kéo cao33% khi đổi sang camera nghiêng (21/10/2026, Codex)
 
 - Nhánh `stretchToGround` dùng scale mặt đất/renderProjection nhưng bỏ hệ số foreshortening của camera; billboard đối diện camera nên không tự bị nén. Nhân thêm hình chiếu của pháp tuyến camera; không sửa scale lớp ground.
@@ -379,3 +388,11 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 - Inline legal links dùng chung UiLegalLinks/TMP link, không lặp câu/links. Register trở về panel414px, gap10. Server legend4chấmmàu vàselected cùnghàngnút, chipcircle40px/tagcam, loa nằm trước bánh răng.
 - Bản mockup Loading phụ chỉ là dc-import Loading; adapter đã render trắng do chưa mở component con. Render trực tiếp Loading.dc.html với scenario của wrapper, dừng CSS ở khung nhìn thấy được; không thay đổi tài liệu nguồn.
 - Bằng chứng vòng2 giữ riêng XemTruoc_Startup_Review2_20261024, không ghi đè vòng1.
+
+## 24/10 - Codex tự kiểm theo lệnh mới, không dùng Claude
+- Người dùng yêu cầu trực tiếp: Codex tự kiểm và báo cáo, không dùng Claude trong ngày24/10. Đã hủy yêu cầu review2, không chờ kết luận hoặc yêu cầu build từ Claude.
+- Tự đối chiếu Loading với HTML và số đo DOM: bar khi pause còn tint đỏ do UiGradient vẫn hoạt động, nhãn vẫn nói tải tài nguyên. Tắt gradient lúc pause, dùng màu off và chữ chờ kết nối; resume khôi phục gradient.
+- Icon mất mạng/timeout chưa có vòng đỏ và glyph quá lớn; dùng CircleBadge chung với avatar, icon32 trong vòng68; panel354px theo DOM gốc353,9375px thay vì380px. Bổ sung gạch đỏ offline trên StatusBar.
+- Focus ô nhập bị trở lại viền xanh mỗi lần gõ vì Error("") luôn chọn inputBorder. Giữ goldLine khi Input.isFocused. Thêm test focus/typing và pause/resume.
+- Ảnh đối chiếu phát hiện mã lỗi biến mất khi dùng box15px theo CSS: line metrics của TMP khác trình duyệt, Ellipsis loại cả dòng. Tăng box25px quanh cùng tâm, thêm kiểm tra overflow và glyph thật trước retry; không sao chép chiều cao CSS mà bỏ qua font metrics Unity.
+- Bằng chứng tự kiểm giữ riêng NghiemThu/UI/XemTruoc_Startup_TuKiem_20261024, không ghi đè các bản trước.
