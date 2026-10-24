@@ -109,8 +109,8 @@ MonoBehaviour:
     y: 168
     width: 560
     height: 354
-  modalSeconds: 0.3
-  screenSeconds: 0.45
+  modalSeconds: 0.24
+  screenSeconds: 0.35
   tipSeconds: 3.5
   statusSeconds: 15
   verificationSeconds: 60

@@ -8,6 +8,7 @@
 - Trong lượt kiểm đầu, dùng `?.` với CanvasGroup thiếu component gây MissingComponentException do fake null của Unity. Đổi sang so sánh `!= null` rõ ràng và thêm CanvasGroup cho toàn ModalBackdrop. Test chuyển scene cũng phải dọn đối tượng DontDestroyOnLoad giữa các ca và chờ theo thời gian thực, không đếm 30/120 frame khi có fade theo giây.
 - Âm lượng BGM mặc định 12% quá nhỏ: đổi thành 65%, vẫn giữ preference người dùng tự chỉnh. Intro dùng bản dẫn xuất audio ×2 có limiter, video copy nguyên; không sửa nguồn. Toàn bộ 90 hash khung giải mã giống trước; nguồn có sẵn cảnh báo WindowsMediaFoundation frame đầu 2 vẫn được ghi nhận.
 - Bằng chứng và log riêng: `NghiemThu/UI/XemTruoc_Polish_20261024`, `Logs/UI-polish-*`. Kết quả cuối ghi trong README của đợt và `docs/UI/Implementation.md`.
+- Bổ sung cuối phiên: bỏ đúng 45 s đầu BGM theo mẫu, còn 255 s và loop chỉ trong clip đã cắt. Không copy packet OGG vì thử nghiệm kéo theo preroll 0,41 s; giải mã/cắt bằng atrim thành WAV nguồn local, nhập Vorbis streaming. Theo yêu cầu đẩy nhanh thêm: screenSeconds 0,35, modalSeconds 0,24; UI/Frontend chạy lại 26/26.
 
 ## Mặc Ảnh A2: billboard kéo cao33% khi đổi sang camera nghiêng (21/10/2026, Codex)
 

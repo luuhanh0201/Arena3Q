@@ -41,7 +41,7 @@ namespace Arena3Q.Data
         public Rect bindPanel = new Rect(380, 116, 520, 510);
         public Rect serverPanel = new Rect(76, 46, 1128, 650);
         public Rect networkPanel = new Rect(360, 168, 560, 354);
-        public float modalSeconds = .3f, screenSeconds = .45f, tipSeconds = 3.5f;
+        public float modalSeconds = .24f, screenSeconds = .35f, tipSeconds = 3.5f;
         public float statusSeconds = 15f, verificationSeconds = 60f;
         [Header("Offline resource preparation (seconds, no download is simulated)")]
         [Min(.05f)] public float localPreparationSeconds = 2f;

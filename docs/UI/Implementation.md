@@ -1,5 +1,7 @@
 # UI khởi động Arena3Q
 
+Chỉ đạo hiện hành ngày 24/10/2026: Codex tự kiểm và báo cáo trực tiếp người dùng, không dùng Claude trong ngày này. Yêu cầu bàn giao/chờ Claude trong các mốc lịch sử bên dưới đã hủy. Người dùng đã yêu cầu build dự án sau khi tự kiểm; dùng Android Dev APK có sẵn của dự án.
+
 Nguồn: `Arena3Q_UI_Handoff/README.md`, toàn bộ `reference/mockup/*.dc.html`, `ui.css`, `canvas.json`, `PROMPTS_AI_ART.md`. Khung 1280×720; art và âm thanh dùng nguyên gói đã giao. Link online không truy cập được qua công cụ web; mockup gốc trong gói là chuẩn đối chiếu.
 
 ## Kế hoạch triển khai (24/10/2026)
@@ -8,7 +10,7 @@ Nguồn: `Arena3Q_UI_Handoff/README.md`, toàn bộ `reference/mockup/*.dc.html`
 2. Import kit với border đúng README, font Be Vietnam Pro OFL, audio/video. `StartupUiConfig` giữ art, copy, tokens, bố cục và thời gian. Dùng chung `StartupUi`, `GameButton`, `UIAudio`, `SafeAreaFitter`, `StatusBar`, modal và form.
 3. Tích hợp Intro → Loading → Login/Register → Start → server popup → luồng chọn chủ tướng/tên/truyện/trận đang có. Không tạo Boot/scene thứ hai hay bản sao dịch vụ hồ sơ.
 4. Loading theo interface: dịch vụ offline chuẩn bị tài nguyên cục bộ; kịch bản mạng có thể tiêm để QA. Không bịa tốc độ tải thật. Tài khoản ngoài guest trả thông báo chưa có backend; không giả thành công hoặc làm mất hồ sơ khi liên kết.
-5. Test tương tác thật, retry/cancel/loading, hồ sơ theo server, hồi quy Frontend; đối chiếu ảnh mockup và trước/sau ở 16:9, màn rộng và safe area. Bàn giao Claude tự kiểm lại.
+5. Test tương tác thật, retry/cancel/loading, hồ sơ theo server, hồi quy Frontend; đối chiếu ảnh mockup và trước/sau ở 16:9, màn rộng và safe area. Tự kiểm và báo trực tiếp theo chỉ đạo mới nhất.
 
 ## Quyết định phạm vi
 
@@ -36,7 +38,7 @@ Log: `Logs/UI-import.log`, `Logs/UI-editmode.xml`, `Logs/UI-playmode.xml`. 19 �
 
 Font source Be Vietnam Pro OFL đủ tiếng Việt cả 4 weight; SDF dynamic tự compact sau PlayMode, mỗi asset khoảng 6,5 KB. Background 508 KB, logo 598 KB. Media lớn local: MP4 3.019.605 byte, OGG 4.146.483 byte; không commit cùng code theo quy tắc repo. README art có cách khôi phục và import lại trên máy khác.
 
-Giới hạn: đây là UI prototype với dịch vụ guest/cục bộ. Chưa có API xác thực/OTP/social/link, API danh sách server, URL pháp lý, thưởng liên kết; không hiển thị cấp 45/nhân vật/quà chưa có trong hồ sơ. Source MP4 được WMF cảnh báo frame đầu 2 và thiếu color primaries trên Windows; có still fallback, không sửa video nguồn. Chưa đo âm thanh qua loa/thiết bị thật, chưa đo 60 FPS Android/iOS, chưa build APK. Claude cần tự chạy lại và review hình trước khi kết luận nghiệm thu.
+Giới hạn bản đầu: đây là UI prototype với dịch vụ guest/cục bộ. Chưa có API xác thực/OTP/social/link, API danh sách server, URL pháp lý, thưởng liên kết; không hiển thị cấp 45/nhân vật/quà chưa có trong hồ sơ. Source MP4 được WMF cảnh báo frame đầu 2 và thiếu color primaries trên Windows; có still fallback, không sửa video nguồn. Chưa đo âm thanh qua loa/thiết bị thật, chưa đo 60 FPS Android/iOS. Trạng thái build và tự kiểm mới nhất ở cuối tài liệu.
 
 ## Sửa theo review Claude vòng 1
 
@@ -49,4 +51,28 @@ Claude đánh giá bản bf2eb28 khoảng80%, chưa đạt về hình dù Full E
 - Server legend4 chấm màu/chữ, selected nằm cạnh confirm cùnghàng; chip vòngtròn40px, viềnvàng2px/nềnnavy vàtagcamF0A63A; loa trước bánh răng, status13px/700.
 - Mockup Loading phụ là dc-import component; công cụ render hiện mở đúng Loading.dc.html với scenario tương ứng, không còn ảnh trắng.
 
-Tự kiểm sau sửa: UI/Frontend PlayMode19/19, toàn bộ EditMode271/271, toàn bộ PlayMode146 qua/0lỗi/1ignored có sẵn. Bằng chứng giữ riêng `NghiemThu/UI/XemTruoc_Startup_Review2_20261024/`:20 ảnh Unity,17 ảnh so sánh, Overview vàxem_ui.html. Đã mở trang/ảnh, chờ Claude review vòng2. Log `Logs/UI-review2-*`.
+Tự kiểm sau sửa: UI/Frontend PlayMode19/19, toàn bộ EditMode271/271, toàn bộ PlayMode146 qua/0lỗi/1ignored có sẵn. Bằng chứng giữ riêng `NghiemThu/UI/XemTruoc_Startup_Review2_20261024/`:20 ảnh Unity,17 ảnh so sánh, Overview vàxem_ui.html. Đã mở trang/ảnh. Yêu cầu review vòng2 sau đó được hủy theo chỉ đạo trực tiếp người dùng. Log `Logs/UI-review2-*`.
+
+## Tự kiểm cuối và build theo yêu cầu người dùng
+
+Codex tự đối chiếu HTML/CSS/DOM và ảnh Unity: sửa gradient thanh tải khi pause, chữ chờ kết nối; badge lỗi tròn dùng chung với avatar, popup354px, gạch đỏ offline; viền ô nhập giữ vàng khi gõ. Khi soi ảnh phát hiện box mã lỗi15px theo CSS không đủ font metrics TMP, tăng25px và kiểm overflow/glyph thật.
+
+Toàn bộ EditMode **271/271**; toàn bộ PlayMode **148 qua / 0 lỗi / 1 ignored có từ trước** (tổng149). Sau chỉnh box mã lỗi, UI/Frontend chạy lại **21/21**. Log `Logs/UI-self-full-editmode.xml`, `Logs/UI-self-full-playmode.xml`, `Logs/UI-self-final-playmode.xml`. Không lấy kết quả mới của Claude làm nghiệm thu.
+
+Trang `NghiemThu/UI/XemTruoc_Startup_TuKiem_20261024/xem_ui.html`:21 ảnh Unity,19 so sánh, Overview; kiểm41 ảnh tải đủ, không ảnh hỏng. Đã mở và kiểm hình trên Chrome. Ảnh trước lấy từ797541e, giữ nguyên các đợt cũ.
+
+Android Dev APK ARM64 đã build thành công0lỗi: `Builds/Android/Arena3Q-dev.apk`, **153,5MB** (160.906.354byte), tăng7,7MB từ bản22/10 145,7MB. Chữ kýv2 được apksigner xác minh; aapt đọc package/launcher/version hợp lệ. Log `Logs/UI-self-build-android.log`, `Logs/UI-self-apk-*.txt`, metadata/hash ở `Logs/UI-self-apk.json`. Kích thước bàn giao đo trực tiếp APK, không dùng BuildReport.totalSize.
+
+Người dùng yêu cầu chạy điện thoại: đã cài `-r` bảo toàn dữ liệu và mở trên Redmi Note8Pro/Android11, Vulkan; splash/Loading/Login hiển thị. Ảnh và log thật trong `device/` của đợt tự kiểm. MIUI chặn ADB touch bằng INJECT_EVENTS; chờ xác nhận hoàn tất mục bảo mật để kiểm sâu. Chưa coi FPS toàn trận hoặc âm thanh nghe qua loa là đã kiểm chứng.
+
+## UI và APK theo các yêu cầu bổ sung cuối phiên 24/10
+
+Loa/ngôn ngữ và thẻ Khách đã tách khỏi DesignFrame, neo mép safe area như wifi/giờ. Modal che thẻ Khách để không đè Back. Nền toàn canvas nhận chạm để đóng form, panel chắn chạm bên trong; server hủy lựa chọn tạm, đăng nhập có nút mở lại/Chơi ngay, callback đến muộn không tác động form đã đóng.
+
+Nhịp cuối theo yêu cầu đẩy nhanh: chuyển trang smoothstep **0,35 s**, popup hiện/tan **0,24 s**. Giữ màn cũ đến khi màn mới hiện; lúc vào Battle giữ cả màn truyện tới khi lớp che kín. Lớp che tồn tại xuyên lúc nạp scene và layout đầu, áp dụng cả nút về menu trong trận.
+
+BGM mặc định **65%**, giữ preference người chơi. Theo yêu cầu mới, cắt đúng 45 s đầu trên mẫu âm thanh: clip nguồn 300 s còn **255 s (4:15)**, loop chỉ trong đoạn đã cắt. WAV local được Unity nhập thành Vorbis streaming; MP4 intro là bản audio gain ×2 qua limiter, hình giữ nguyên 90/90 hash khung. Script tái tạo nằm trong `Tools/prepare-bgm.ps1`, `Tools/prepare-intro-audio.ps1`; nguồn lớn không vào Git. Logo gốc trong gói handoff được đóng khung đúng tỷ lệ và gắn làm icon mặc định/adaptive Android (6 kích thước), script `Tools/prepare-app-icon.cjs`, menu `AppIconBuilder.Apply`.
+
+Full EditMode 271/271, Full PlayMode 153 qua/0 lỗi/1 ignored có sẵn. Sau các chỉ đạo bổ sung: UI/Frontend nhịp cuối **26/26** (`Logs/UI-polish-fast-play.xml`), kiểm đường chuyển scene **6/6**, asset nhạc đã cắt **4/4**, phát/lặp/lưu setting **1/1**. Bằng chứng `NghiemThu/UI/XemTruoc_Polish_20261024/xem_ui.html`: 27 ảnh Unity, 20 so sánh, khung giữa chuyển trang/tan form, icon trước/sau và media nghe thử. Ảnh/log Redmi trong `device/`; không thay thế đo FPS toàn trận hoặc nghe âm thanh qua loa thật.
+
+APK cuối `Builds/Android/Arena3Q-dev.apk`: **172,6 MB**, 180.975.001 byte, tăng **19,1 MB** từ APK 153,5 MB. Build thành công 0 lỗi, ARM64, chữ ký v2 hợp lệ; đã cài `-r` giữ dữ liệu lên Redmi Note 8 Pro. Metadata và SHA256 ở `Logs/UI-polish-apk.json`, log build/signature/badging cùng tiền tố. Dung lượng này đo trên APK, không lấy tổng chưa nén 1222 MB của BuildReport. Commit UI/âm thanh `4579737` đã push; icon, nhịp cuối và bàn giao ở commit kế tiếp.

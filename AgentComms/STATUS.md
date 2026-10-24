@@ -12,7 +12,12 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Bàn giao trước đó: claude/outbox/20261020-2330_BAN-GIAO-cong-viec-claude.md.
 
 ## codex
-- 24/10 UI review2: đã sửa8 mục review19:10; Full EditMode271/271, Full PlayMode146qua/0lỗi/1ignored, UI/Frontend19/19. Bằng chứng riêng NghiemThu/UI/XemTruoc_Startup_Review2_20261024/xem_ui.html (20ảnh/17so sánh), đã mở. Chuẩn bị push/bàn giao Claude review2. Nhả file UI/Unity; không sửa 3D.
+- 24/10 22:29: hoàn tất UI polish + BGM bỏ 45 giây đầu + icon logo + nhịp chuyển màn 0,35/0,24 s. APK cuối 172,6 MB, chữ ký v2 đạt, đã cài cập nhật và mở trên Redmi; tiến trình sau đó bị MIUI OneKeyClean đóng, không phải crash được ghi nhận. Full Edit271/271, Full Play153/0/1ignored, UI cuối26/26. Nhả toàn bộ file UI và Unity; đang chốt báo cáo rồi theo dõi inbox 1 giờ. Không dùng Claude.
+- 24/10 nhận yêu cầu UI mới: neo loa/ngôn ngữ/thẻ Khách sát safe area, chạm ngoài đóng form, tăng intro/BGM, chuyển màn mượt và build APK. Giữ Scripts/Frontend, UI/SceneTransition và BattleHud (nút về menu), StartupUiConfig/asset/builder, AppIconBuilder, Art/UI/AppIcon, icon trong PlayerSettings, Tests UI/Frontend, docs UI/nhật ký, bằng chứng riêng và Unity. Bổ sung yêu cầu dùng logo gốc làm icon game. Không dùng agent khác.
+- 24/10 20:04: Android Dev APK build thành công0lỗi,153,5MB (tăng7,7MB); chữ ký v2 đạt. Người dùng yêu cầu chạy điện thoại: đã thấy Redmi Note8Pro qua USB, đang cài/chạy/kiểm UI và âm thanh. Giữ file UI/test/báo cáo; Unity đã dừng, không dùng Claude.
+- 24/10 19:51: tự kiểm UI xong: Full Edit271/271, Full Play148qua/0lỗi/1ignored; UI/Frontend cuối21/21. Theo yêu cầu mới của người dùng đang build Android Dev APK; giữ Unity và file UI/báo cáo liên quan, không dùng Claude. Chờ build xong để báo dung lượng/file.
+- 24/10 lệnh mới trực tiếp của người dùng: Codex tự kiểm UI và báo cáo người dùng, không dùng Claude trong ngày24/10. Hủy bàn giao/chờ review2, đã gửi hủy yêu cầu cũ. Chỉ tự kiểm; không gọi Claude hoặc lấy kết quả review mới của Claude làm nghiệm thu.
+- 24/10 UI review2: đã sửa8 mục review19:10; Full EditMode271/271, Full PlayMode146qua/0lỗi/1ignored, UI/Frontend19/19. Bằng chứng riêng NghiemThu/UI/XemTruoc_Startup_Review2_20261024/xem_ui.html (20ảnh/17so sánh), đã mở. Commit797541e đã push, đã gửi Claude review2. Đang chờ đến 2026-10-24 20:21. Nhả file UI/Unity; không sửa 3D.
 - 24/10 UI khởi động: đã tự kiểm EditMode41/41, PlayMode15/15; 19 ảnh Unity/10 so sánh trong NghiemThu/UI/XemTruoc_Startup_20261024/xem_ui.html, đã mở cho người dùng. Nhạc OGG loop từ Loading, mặc định12%, chỉnh/tắt/lưu trong Cài đặt. Commit bf2eb28 đã push, đã gửi Claude review. Đang chờ đến 2026-10-24 19:36. Nhả toàn bộ file UI và Unity; không sửa nguồn/model đang dở.
 - 23/10 nhận review1430: ShoulderHand chưa đạt; sửa vòng ngón bao cán, ngón cái, mảnh thừa cổ tay và góc cầu vai. Hủy chờ, giữ nguồn Mạc Ảnh. Unity chưa giữ khi làm Blender.
 - 23/10 14:18: candidate DetailShoulderCloth nguồn81aa0c07 đã xuất trang ShoulderHand; surface/quạt/tiếp xúc đạt, Unity28/0/1; 6972ảnh và điều khiển trang đạt. Chưa nghiệm thu hình: cần review ngón cái/cổ tay/vai, mảng trắng sau còn mở. Nhả Unity; theo dõi inbox đến15:18.
@@ -32,7 +37,7 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Việc đầu: kiểm snapshot 3D về scale, toàn bộ submesh và quạt; kiểm footprint VFX sau đổi camera; đồng bộ docs 3D. Sau đó kiểm model/motion Mặc Ảnh và giải quyết Lữ Bố chưa qua QA da.
 - Báo ngay từng phần nhỏ với ảnh trước–sau và số đo. Chưa nghiệm thu tổng thể. Chỉ test Unity, chưa build/test Android theo bàn giao 0619. Sau khi hoàn tất công việc theo dõi inbox 1 giờ.
 ## Unity (Editor / batch mode)
-- Đang giữ bởi: không ai. Codex nhả sau QA UI review2, Claude có thể review.
+- Đang giữ bởi: không ai. Codex đã kết thúc build/kiểm UI và nhả Unity.
 
 
 
