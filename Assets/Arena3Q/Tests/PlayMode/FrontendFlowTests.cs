@@ -44,9 +44,20 @@ namespace Arena3Q.Tests.PlayMode
             return (T)_flow.Screen;
         }
 
-        private void GoToNameEntry(int lordIndex)
+        private void FinishIntro()
         {
             ScreenAs<IntroScreen>().Finish();
+            FinishLoading();
+        }
+
+        private void FinishLoading()
+        {
+            if (_flow.Screen is LoadingScreen loading) loading.Tick(_flow.Config.StartupUi.localPreparationSeconds + 1);
+        }
+
+        private void GoToNameEntry(int lordIndex)
+        {
+            FinishIntro();
             ScreenAs<LoginScreen>().PlayAsGuest();
             ScreenAs<ServerSelectScreen>().Enter();
             var lords = ScreenAs<LordSelectScreen>();
@@ -134,7 +145,7 @@ namespace Arena3Q.Tests.PlayMode
         public IEnumerator Login_UnsupportedProviders_Explain_GuestButtonWorks()
         {
             yield return LoadFrontend();
-            ScreenAs<IntroScreen>().Finish();
+            FinishIntro();
             var login = ScreenAs<LoginScreen>();
 
             login.SignIn(AccountKind.Google);
@@ -143,7 +154,7 @@ namespace Arena3Q.Tests.PlayMode
 
             login.ShowAccountForm(register: true);
             login.SubmitAccount("abc", "12345678", "12345678");
-            Assert.That(login.Error, Does.Contain("Tên đăng nhập"));
+            Assert.That(login.Error, Does.Contain("email"));
 
             // The real button, not just the method behind it.
             login.SwitchAccount();
@@ -173,6 +184,7 @@ namespace Arena3Q.Tests.PlayMode
             var intro = ScreenAs<IntroScreen>();
             Assert.That(intro.CanSkip, Is.True, "a tap skips an intro already seen");
             intro.Finish();
+            FinishLoading();
             var login = ScreenAs<LoginScreen>();
             Assert.That(login.IsReturning, Is.True);
             login.Enter();
@@ -196,7 +208,7 @@ namespace Arena3Q.Tests.PlayMode
             _flow.Screen.Tick(1.5f);
             yield return null;
             Capture("frontend_1_intro.png");
-            ScreenAs<IntroScreen>().Finish();
+            FinishIntro();
             yield return null;
             Capture("frontend_2_login.png");
             ScreenAs<LoginScreen>().PlayAsGuest();

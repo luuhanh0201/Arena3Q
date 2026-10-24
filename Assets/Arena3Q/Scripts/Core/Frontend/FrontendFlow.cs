@@ -14,7 +14,9 @@ namespace Arena3Q.Core
         Story,
         Battle,
         /// <summary>Nothing left to show.</summary>
-        Done
+        Done,
+        // Appended to preserve existing serialized enum values.
+        Loading
     }
 
     /// <summary>What the flow knows about the player at the moment it picks the next screen.</summary>

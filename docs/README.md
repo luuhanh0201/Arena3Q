@@ -14,6 +14,7 @@ Quy ước sắp xếp:
 | `QuyTac/Model3D_Rules.md` | Luật bắt buộc khi sửa model 3D, skinning, animation và VFX; lỗi đã gặp và các bước tự kiểm tra trước bàn giao. |
 | `QuyTac/NhatKyVanHanh_3D.md` | Nhật ký vận hành 3D / animation / VFX (mọi agent): hướng sai, lỗi, bug gặp khi làm – nguyên nhân, cách phát hiện, quy tắc phòng tránh. Ghi ngay khi gặp. |
 | `QuyTac/NhatKySuaLoi.md` | Nhật ký sửa lỗi gameplay / code: nguyên nhân gốc và cách tránh lặp lại. |
+| **`UI/`** | **UI khởi động**: gói `Arena3Q_UI_Handoff`, mockup HTML/CSS, `Implementation.md` (kiến trúc, QA, giới hạn API), `StartupCopy.tsv` và công cụ chuẩn bị/đối chiếu ảnh. Nhạc nền bắt đầu từ Loading, chỉnh/tắt trong Cài đặt. |
 | **`KeHoach/`** | **Plan chờ duyệt** |
 | `KeHoach/VaoGame.md` | Luồng vào game: biểu tượng → intro 3 s (logo + banner) → đăng nhập / Chơi ngay → chọn máy chủ → chọn chủ tướng + đặt tên → cốt truyện mở đầu; kèm prompt ảnh, video, tiếng, nhạc. |
 | `KeHoach/HeroProgression.md` | Cấp (tối đa 60), chủ tướng học kỹ năng theo cấp, sao, đột phá, phe Thục / Ngụy / Ngô / Quần, bảng chỉ số và cách cân bằng các hệ. |

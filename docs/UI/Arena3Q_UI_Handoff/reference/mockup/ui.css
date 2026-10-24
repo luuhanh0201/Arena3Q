@@ -1,0 +1,82 @@
+/* Arena3Q UI kit – nút, khung, ô nhập, hiệu ứng nhấn */
+.ui-btn{display:flex;align-items:center;justify-content:center;box-sizing:border-box;border-style:solid;border-width:0;border-image-repeat:stretch;background:transparent;cursor:pointer;font-family:inherit;font-weight:800;text-decoration:none;user-select:none;-webkit-tap-highlight-color:transparent;position:relative;padding:0;transition:transform .08s ease-out,filter .12s ease-out}
+.ui-btn:focus-visible{outline:2px solid #ffe7a8;outline-offset:3px}
+
+/* Mỗi màu dùng MỘT sprite cố định: hover/nhấn chỉ đổi độ sáng + quầng sáng, khung không đổi cỡ nên chữ luôn nằm giữa */
+/* Sprite đã cắt sát thân nút (không còn quầng sáng lệch); quầng sáng thêm bằng CSS nên đều 4 phía.
+   Viền trái/phải = chiều cao nút × tỉ lệ (--r) để hoa văn hai đầu không méo ở mọi cỡ. */
+.ui-btn{border-image-width:50% calc(var(--h,50px) * var(--r,.8))}
+.b-gold{--r:.947;border-image-source:url(../../Assets/UI/Sprites/Buttons/btn_gold.png);border-image-slice:38 72 38 72 fill;color:#3a1804;text-shadow:0 1px 0 rgba(255,240,200,.7);letter-spacing:.08em;padding-left:.08em;filter:drop-shadow(0 0 6px rgba(255,170,40,.5))}
+.b-blue{--r:.898;border-image-source:url(../../Assets/UI/Sprites/Buttons/btn_blue.png);border-image-slice:24 44 24 44 fill;color:#f2f7ff;text-shadow:0 1px 2px rgba(0,0,0,.8)}
+.b-red{--r:.846;border-image-source:url(../../Assets/UI/Sprites/Buttons/btn_red.png);border-image-slice:26 44 26 44 fill;color:#fff3dc;text-shadow:0 1px 2px rgba(0,0,0,.8)}
+
+.b-gold:hover{filter:brightness(1.1) drop-shadow(0 0 10px rgba(255,200,90,.8))}
+.b-blue:hover{filter:brightness(1.2) drop-shadow(0 0 7px rgba(110,170,255,.7))}
+.b-red:hover{filter:brightness(1.15) drop-shadow(0 0 7px rgba(255,90,60,.65))}
+.ui-btn.is-on{filter:brightness(1.12) drop-shadow(0 0 8px rgba(255,216,119,.85))}
+.ui-btn:active{transform:scale(.94) translateY(2px);filter:brightness(.8) saturate(1.1);transition:transform .04s,filter .04s}
+
+.s-xl{--h:76px;height:76px;font-size:28px}
+.s-lg{--h:64px;height:64px;font-size:22px}
+.s-md{--h:50px;height:50px;font-size:16px}
+.s-sm{--h:44px;height:44px;font-size:14px}
+
+.ui-round{width:52px;height:52px;border:0;padding:0;background:transparent;cursor:pointer;border-radius:50%;transition:transform .08s,filter .12s;display:block}
+.ui-round img{width:52px;height:52px;display:block}
+.ui-round:hover{filter:brightness(1.12)}
+.ui-round:active{transform:scale(.9);filter:brightness(.85)}
+.ui-round:focus-visible{outline:2px solid #ffe7a8;outline-offset:2px}
+
+.ui-frame{box-sizing:border-box;border-style:solid;border-width:0;border-image-source:url(../../Assets/UI/Sprites/Frames/frame_panel.png);border-image-slice:44 fill;border-image-width:44px;border-image-repeat:stretch}
+.ui-frame-big{box-sizing:border-box;border-style:solid;border-width:0;border-image-source:url(../../Assets/UI/Sprites/Frames/frame_panel_big.png);border-image-slice:56 fill;border-image-width:64px;border-image-repeat:stretch}
+
+.ui-input{height:44px;box-sizing:border-box;padding:0 14px;border-radius:4px;background:linear-gradient(180deg,#0a1424,#132a49 50%,#0a1424);border:1px solid #2f5584;box-shadow:inset 0 0 14px rgba(80,140,220,.18);color:#eef3ff;font:inherit;font-size:15px;width:100%;min-width:0}
+.ui-input::placeholder{color:#7f93b0}
+.ui-input:focus{outline:none;border-color:#e2b85c;box-shadow:0 0 0 2px rgba(226,184,92,.35),inset 0 0 14px rgba(80,140,220,.18)}
+
+.ui-tab{flex:1 1 0;height:42px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;text-decoration:none;color:#9fb1cc;border-bottom:2px solid rgba(226,184,92,.2);transition:color .12s}
+.ui-tab:hover{color:#e8d3a0}
+.ui-tab.is-on{color:#ffd877;border-bottom:3px solid #e2b85c}
+
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ui-crest{position:absolute;width:238px;height:59px;background-image:url(../../Assets/UI/Sprites/Ornaments/crest_dragon.png);background-size:100% 100%;pointer-events:none}
+.ui-tassel{position:absolute;width:24px;height:150px;background-image:url(../../Assets/UI/Sprites/Ornaments/tassel.png);background-size:100% 100%;pointer-events:none}
+.ui-lang{width:180px;height:62px;border:0;padding:0;background:transparent;cursor:pointer;transition:transform .08s,filter .12s}
+.ui-lang img{width:180px;height:62px;display:block}
+.ui-lang:hover{filter:brightness(1.12)}
+.ui-lang:active{transform:scale(.94);filter:brightness(.85)}
+.ui-link{color:#ffd877;text-decoration:none;font-weight:600}
+.ui-link:hover{color:#fff0bf;text-decoration:underline}
+
+/* ===== Loading ===== */
+@keyframes a3qcart{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-2px) rotate(-1deg)}75%{transform:translateY(-1px) rotate(1deg)}}
+@keyframes a3qspin{to{transform:rotate(360deg)}}
+@keyframes a3qspinr{to{transform:rotate(-360deg)}}
+@keyframes a3qflag{0%,100%{transform:skewY(0)}50%{transform:skewY(-8deg)}}
+@keyframes a3qdust{0%{opacity:.85;transform:translate(0,0) scale(.5)}100%{opacity:0;transform:translate(-34px,-8px) scale(1.6)}}
+@keyframes a3qspark{0%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(-30px,-16px)}}
+@keyframes a3qsheen{0%{transform:translateX(-80px)}100%{transform:translateX(900px)}}
+@keyframes a3qtipA{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes a3qtipB{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes a3qcore{0%,100%{transform:rotate(45deg) scale(.82);opacity:.7}50%{transform:rotate(45deg) scale(1.05);opacity:1}}
+@keyframes a3qtoast{0%{opacity:0;transform:translateY(-12px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes a3qpop{0%{opacity:0;transform:scale(.9)}100%{opacity:1;transform:scale(1)}}
+@keyframes a3qblink{0%,100%{opacity:1}50%{opacity:.35}}
+.a3q-cart{animation:a3qcart .4s ease-in-out infinite}
+.a3q-wheel{animation:a3qspin .55s linear infinite;transform-box:fill-box;transform-origin:center}
+.a3q-flag{animation:a3qflag .9s ease-in-out infinite;transform-box:fill-box;transform-origin:left center}
+.a3q-d1{animation:a3qdust .45s ease-out infinite}
+.a3q-d2{animation:a3qdust .55s ease-out infinite .2s}
+.a3q-sp{animation:a3qspark .5s linear infinite .1s}
+.a3q-sheen{animation:a3qsheen 2s linear infinite}
+.a3q-tipA{animation:a3qtipA .45s ease-out both}
+.a3q-tipB{animation:a3qtipB .45s ease-out both}
+.a3q-cloud{width:96px;height:32px;background-image:url(../../Assets/UI/Sprites/Ornaments/cloud_swirl.png);background-size:contain;background-repeat:no-repeat;background-position:center;flex-shrink:0}
+.is-paused,.is-paused *{animation-play-state:paused!important}
+.is-paused .a3q-d1,.is-paused .a3q-d2,.is-paused .a3q-sp,.is-paused .a3q-sheen{opacity:0}
+.net-ring1{animation:a3qspin 1s linear infinite}
+.net-ring2{animation:a3qspinr 3.2s linear infinite}
+.net-core{animation:a3qcore 1.2s ease-in-out infinite}
+.net-toast{animation:a3qtoast .35s ease-out both}
+.net-pop{animation:a3qpop .25s ease-out both}
+.net-blink{animation:a3qblink 1s ease-in-out infinite}

@@ -1,7 +1,7 @@
 {
     "name": "Arena3Q.Frontend",
     "rootNamespace": "Arena3Q.Frontend",
-    "references": ["Arena3Q.Core", "Arena3Q.Data", "Arena3Q.Gameplay", "Arena3Q.UI", "Unity.InputSystem", "UnityEngine.UI"],
+    "references": ["Arena3Q.Core", "Arena3Q.Data", "Arena3Q.Gameplay", "Arena3Q.UI", "Unity.InputSystem", "UnityEngine.UI", "Unity.TextMeshPro"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

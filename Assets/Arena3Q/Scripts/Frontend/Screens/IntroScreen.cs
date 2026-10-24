@@ -1,108 +1,70 @@
+﻿using Arena3Q.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
 namespace Arena3Q.Frontend
 {
-    /// <summary>
-    /// The ~3-second intro (docs/KeHoach/VaoGame.md §5): the video when one is assigned, otherwise the logo appears and
-    /// the banner fades in. The first time it plays to the end; afterwards a tap skips it.
-    /// </summary>
-    public sealed class IntroScreen : FrontendScreen
+    public sealed class IntroScreen : StartupScreen
     {
-        private Text _title;
-        private Image _logo;
-        private Image _banner;
         private VideoPlayer _video;
-        private RenderTexture _videoTexture;
+        private RenderTexture _texture;
+        private AudioSource _audio;
+        private RawImage _view;
         private float _elapsed;
         private bool _finished;
-
         public bool CanSkip => Flow.Profile.introSeen;
         public bool IsFinished => _finished;
 
-        protected override void Build()
+        protected override void BuildScreen()
         {
-            Ui.Fill(Root, "Black", Color.black);
-            var config = Flow.Config;
-            AddTapCatcher(() =>
-            {
-                if (CanSkip)
-                    Finish();
-            });
-
-            if (config.IntroVideo != null)
-            {
-                BuildVideo(config.IntroVideo);
-                return;
-            }
-
-            _banner = Ui.Fill(Root, "Banner", config.Banner != null ? Color.white : Ui.Theme.panel, config.Banner);
-            if (config.Logo != null)
-                _logo = Ui.Portrait(Root, "Logo", config.Logo, Color.white, FrontendUi.Center, Vector2.zero, new Vector2(900f, 400f));
-            else
-                _title = Ui.Label(Root, "Title", config.GameTitle, 140, TextAnchor.MiddleCenter, FrontendUi.Center, Vector2.zero,
-                    new Vector2(1400f, 240f), Ui.Theme.accent);
-            Apply(0f);
-        }
-
-        private void BuildVideo(VideoClip clip)
-        {
-            _videoTexture = new RenderTexture((int)clip.width, (int)clip.height, 0);
-            var raw = Root.gameObject.AddComponent<RawImage>();
-            raw.texture = _videoTexture;
-            raw.raycastTarget = false;
+            var still = UiFactory.Stretch("SplashStill", Root); still.SetAsFirstSibling();
+            UiFactory.AddImage(still, Color.white, Art.splashStill, false);
+            var catcher = UiFactory.Stretch("SkipSplash", Root); catcher.SetSiblingIndex(1);
+            var hit = UiFactory.AddImage(catcher, Color.clear); hit.raycastTarget = true;
+            hit.gameObject.AddComponent<Button>().onClick.AddListener(() => { if (CanSkip) Finish(); });
+            if (Flow.Config.IntroVideo == null) return;
+            var clip = Flow.Config.IntroVideo;
+            _texture = new RenderTexture((int)clip.width, (int)clip.height, 0);
+            _texture.Create();
+            var view = UiFactory.Stretch("SplashVideo", Root); view.SetSiblingIndex(1);
+            _view = view.gameObject.AddComponent<RawImage>(); _view.texture = _texture; _view.raycastTarget = false; _view.enabled = false;
+            _audio = Root.gameObject.AddComponent<AudioSource>(); _audio.playOnAwake = false; _audio.spatialBlend = 0;
+            _audio.mute = Kit.Audio.Muted;
             _video = Root.gameObject.AddComponent<VideoPlayer>();
-            _video.clip = clip;
-            _video.renderMode = VideoRenderMode.RenderTexture;
-            _video.targetTexture = _videoTexture;
-            _video.isLooping = false;
-            _video.loopPointReached += _ => Finish();
+            _video.playOnAwake = false; _video.clip = clip; _video.renderMode = VideoRenderMode.RenderTexture;
+            _video.targetTexture = _texture; _video.isLooping = false; _video.waitForFirstFrame = true;
+            _video.audioOutputMode = VideoAudioOutputMode.AudioSource;
+            if (clip.audioTrackCount > 0) { _video.EnableAudioTrack(0, true); _video.SetTargetAudioSource(0, _audio); }
+            _video.loopPointReached += OnEnd;
+            _video.sendFrameReadyEvents = true; _video.frameReady += OnFrame;
+            _video.errorReceived += OnError;
             _video.Play();
         }
-
+        private void OnEnd(VideoPlayer _) => Finish();
+        private void OnFrame(VideoPlayer _, long frame) { if (_view != null) _view.enabled = true; }
+        private void OnError(VideoPlayer _, string message)
+        {
+            Debug.LogWarning("[Arena3Q UI] Splash video unavailable, using supplied still: " + message);
+            if (_video != null) _video.Stop();
+            if (_view != null) _view.enabled = false;
+        }
         public override void Tick(float deltaTime)
         {
-            if (_finished)
-                return;
             _elapsed += deltaTime;
-            if (_video == null)
-                Apply(_elapsed / Mathf.Max(0.5f, Flow.Config.IntroSeconds));
-            // The video ends through loopPointReached; the timer is a safety net for both.
-            if (_elapsed >= Flow.Config.IntroSeconds + (_video != null ? 1f : 0f))
-                Finish();
+            if (_elapsed >= Flow.Config.IntroSeconds + (_video != null ? 2 : 0)) Finish();
         }
-
-        // Storyboard (§5): logo appears at ~1/3, banner fades in during the middle third, logo settles at the top.
-        private void Apply(float t)
-        {
-            var logoAlpha = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.2f, 0.45f, t));
-            var bannerAlpha = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.45f, 0.75f, t));
-            var rise = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.5f, 0.8f, t));
-            if (_banner != null)
-                _banner.color = new Color(_banner.color.r, _banner.color.g, _banner.color.b, bannerAlpha);
-            Graphic logo = _logo != null ? (Graphic)_logo : _title;
-            if (logo != null)
-            {
-                logo.color = new Color(logo.color.r, logo.color.g, logo.color.b, logoAlpha);
-                logo.rectTransform.anchoredPosition = new Vector2(0f, Mathf.Lerp(0f, 380f, rise));
-                logo.rectTransform.localScale = Vector3.one * Mathf.Lerp(1.15f, 0.7f, rise);
-            }
-        }
-
-        /// <summary>Ends the intro (end of the timer or video, or a tap once it has been seen).</summary>
         public void Finish()
         {
-            if (_finished)
-                return;
+            if (_finished) return;
             _finished = true;
-            if (_video != null)
-                _video.Stop();
-            if (_videoTexture != null)
-                _videoTexture.Release();
-            Flow.Profile.introSeen = true;
-            Flow.Save();
-            Flow.Complete();
+            Flow.Profile.introSeen = true; Flow.Save(); Flow.Complete();
+        }
+        protected override void OnHide()
+        {
+            if (_video != null) { _video.loopPointReached -= OnEnd; _video.frameReady -= OnFrame; _video.errorReceived -= OnError; _video.Stop(); _video.targetTexture = null; }
+            if (_audio != null) _audio.Stop();
+            if (_texture != null) { _texture.Release(); Object.Destroy(_texture); _texture = null; }
         }
     }
 }

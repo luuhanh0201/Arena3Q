@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="a3q-cart" width="132" height="84" viewBox="0 0 132 84" aria-hidden="true" style="position: absolute; left: 0; top: 0; overflow: visible;">
+<line x1="22" y1="2" x2="22" y2="44" stroke="#4a220c" stroke-width="3"></line>
+
+<circle cx="33" cy="11" r="4.5" fill="#3a0806" stroke="#e2b85c" stroke-width="1"></circle>
+<line x1="110" y1="6" x2="110" y2="42" stroke="#4a220c" stroke-width="3"></line>
+<path class="a3q-flag" d="M110 6 H130 V20 L124 17 L110 20 Z" fill="#9e1b17" stroke="#e2b85c" stroke-width="1.5" stroke-linejoin="round"></path>
+<ellipse cx="54" cy="40" rx="18" ry="9" fill="#d9b77a" stroke="#7a5a2c" stroke-width="1.5"></ellipse>
+<ellipse cx="80" cy="37" rx="16" ry="8.5" fill="#e6c88e" stroke="#7a5a2c" stroke-width="1.5"></ellipse>
+<ellipse cx="67" cy="30" rx="13" ry="7" fill="#cfa868" stroke="#7a5a2c" stroke-width="1.5"></ellipse>
+<path d="M4 42 L128 38 L120 64 L14 66 Z" fill="#b5652a" stroke="#4a220c" stroke-width="2.5" stroke-linejoin="round"></path>
+<path d="M10 52 L124 49 M12 59 L121 57" stroke="#7a3c14" stroke-width="1.5"></path>
+<path d="M4 42 L128 38" stroke="#f1c27a" stroke-width="2"></path>
+
+
+</svg>

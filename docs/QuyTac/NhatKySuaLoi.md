@@ -339,3 +339,34 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 - Cầu vai cứng do theo ngực: thêm2bone rigid, blend góc cánh tay40%; tách biên hàn để không kéo méo vải. Thêm nếp chùng áo trên.
 - Nguồn81aa0c07: surface/quạt/tiếp xúc985mẫu đạt; khe gần nhất vùng ngón tối đa1,382mm. Unity28đạt/0lỗi/1bỏqua. Trang ShoulderHand có144ảnh cận và6972file chuyển động trước/sau đã kiểm. Chưa nghiệm thu nghệ thuật, cần Claude kiểm ngón cái/cổ tay/vai.
 - Phòng tránh: kiểm mesh thật sau skinning và riêng tiếp xúc cầm vũ khí, không đánh giá chỉ theo bone hoặc không xuyên.
+
+## 24/10/2026 - UI khởi động, kiểm tra compile lần đầu (Codex)
+- Lỗi: callback nút âm thanh tham chiếu biến sprite gạch tắt tiếng trước khi biến được khởi tạo; `Object` mơ hồ giữa System và UnityEngine ở popup server.
+- Sửa: khai báo biến trước callback, gán sprite sau; dùng alias UnityEngine.Object rõ ràng. Bỏ directive DEVELOPMENT_BUILD mới phát sinh để tránh cảnh báo deprecated của Unity 6.6.
+- Phòng tránh: compile sau khi ghép lớp widget, dùng alias khi import cả System và UnityEngine. Kết quả xác nhận ghi trong docs/UI/Implementation.md.
+
+### UI import: TMP và SVG (24/10/2026)
+- `AssetDatabase.ImportPackage` trả về trước khi TMP Settings sẵn sàng trong batch, tạo font gây NullReferenceException. Thay bằng bước chuẩn bị tài nguyên TMP từ unitypackage đi kèm uGUI, giữ GUID, rồi mới chạy importer đồng bộ.
+- SVG Lucide dùng currentColor, importer SVG của Unity không hỗ trợ và ghi lỗi. Chuẩn hóa SVG bản runtime thành màu trắng trước import; PNG vẫn là sprite dùng trong game, giấy phép được giữ.
+- Công cụ npm đặt trong Temp bị Unity dọn khi khởi động. Chuyển dependency QA sang AgentComms/codex/staging/ui-tools, không commit node_modules.
+
+### UI sprite: chế độ Single bị ghi đè (24/10/2026)
+- Lỗi phát hiện khi kiểm meta: TextureImporterSettings đọc từ import ban đầu còn spriteMode Multiple. Gán lại settings sau spriteImportMode đã khôi phục Multiple dù code yêu cầu Single.
+- Sửa: đặt spriteImportMode Single sau SetTextureSettings; tính cả mode vào điều kiện reimport. Bind lại tham chiếu Sprite sau reimport để fileID đúng.
+- Phòng tránh: xác nhận mode/border trong meta và test content sau importer, không chỉ xem ảnh sprite.
+
+### UI PlayMode vòng 1: modal và thanh tải (24/10/2026)
+- Kết quả: 8/13 qua; 5 lỗi cùng nguyên nhân ở UiReveal. GetComponent trả Unity fake-null, toán tử ?? không thêm CanvasGroup. Sửa bằng kiểm tra == null rõ ràng. Các test bấm popup đã bắt lỗi trước bàn giao.
+- Ảnh thật cho thấy thanh tải màu đen vì dùng sprite gradient đen của nền làm fill. Thay fill bằng gradient vertex đỏ/hồng riêng; căn lại trạng thái/% cùng hàng và tốc độ về giữa thanh.
+- Splash đầu đen vì RawImage hiện trước frame video đầu. Chỉ hiện RawImage khi frameReady, vẫn dùng ảnh splash được giao làm fallback.
+- Phòng tránh: không dùng ?? / ?. để kiểm null của Unity Object; kiểm ảnh thật bên cạnh test hành vi.
+
+### UI đối chiếu ảnh vòng 2 (24/10/2026)
+- 13/13 bài Frontend + UI mới qua trước tinh chỉnh hình.
+- Phát hiện qua ảnh: slider kéo dọc thành 62 px vì Slider ép handleRect stretch theo trục Y; thu handle area về 22 px và sizeDelta Y = 0. Checkbox tròn đặc khó phân biệt đã/chưa chọn; dùng ô vuông viền với Lucide check.
+- Overlay Unity linear sáng hơn mockup CSS sRGB; bù alpha cho dải tối/vignette và modal, không đổi art nguồn. Popup liên kết che các phần Start phía sau bằng cùng keyart đúng mockup. Dời link pháp lý khỏi viền dưới, căn tên/status server cùng đường giữa.
+- Thêm fade 0,2 giây cho màn, modal scale từ tâm và glow focus/hover cùng sprite. Kiểm lại raycast sau fade và kích thước khi nhấn.
+
+### UI màn rộng và font cache (24/10/2026)
+- 14/14 bài qua sau tinh chỉnh; ảnh cutout cho thấy nền popup chỉ tối/blur trong khung thiết kế, mép ngoài vẫn sáng. Tách nền phủ canvas thật (CanvasBackdrop) khỏi khung điều khiển safe area.
+- TMP tự ghi glyph/atlas runtime vào asset khi thoát PlayMode, tăng mỗi file lên 1,6-7 MB. Thêm cleanup khi EnteredEditMode và menu Compact Startup Font Atlases; lưu asset SDF rỗng nhỏ, giữ font nguồn OFL và tự điền glyph khi chạy.

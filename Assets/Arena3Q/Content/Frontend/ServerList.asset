@@ -17,11 +17,119 @@ MonoBehaviour:
     displayName: "S1 H\u1ED5 Lao"
     status: 2
     recommended: 0
+    isNew: 0
+    isHot: 0
   - serverId: s2
     displayName: "S2 X\xEDch B\xEDch"
     status: 1
     recommended: 0
+    isNew: 0
+    isHot: 0
   - serverId: s3
     displayName: "S3 Tr\u01B0\u1EDDng B\u1EA3n"
     status: 0
     recommended: 1
+    isNew: 0
+    isHot: 0
+  - serverId: s4
+    displayName: "S4 \xB7 Ki\u1EBFn Nghi\u1EC7p"
+    status: 3
+    recommended: 0
+    isNew: 0
+    isHot: 0
+  - serverId: s5
+    displayName: "S5 \xB7 Th\xE0nh \u0110\xF4"
+    status: 3
+    recommended: 0
+    isNew: 0
+    isHot: 0
+  - serverId: s6
+    displayName: "S6 \xB7 H\u1ED5 Lao Quan"
+    status: 3
+    recommended: 0
+    isNew: 0
+    isHot: 0
+  - serverId: s7
+    displayName: "S7 \xB7 Tr\u01B0\u1EDDng B\u1EA3n"
+    status: 1
+    recommended: 0
+    isNew: 0
+    isHot: 0
+  - serverId: s8
+    displayName: "S8 \xB7 X\xEDch B\xEDch"
+    status: 3
+    recommended: 1
+    isNew: 0
+    isHot: 1
+  - serverId: s9
+    displayName: "S9 \xB7 Quan \u0110\u1ED9"
+    status: 3
+    recommended: 0
+    isNew: 0
+    isHot: 0
+  - serverId: s10
+    displayName: "S10 \xB7 Ph\xE0n Th\xE0nh"
+    status: 3
+    recommended: 0
+    isNew: 0
+    isHot: 0
+  - serverId: s11
+    displayName: "S11 \xB7 Kinh Ch\xE2u"
+    status: 3
+    recommended: 0
+    isNew: 0
+    isHot: 1
+  - serverId: s12
+    displayName: "S12 \xB7 \xCDch Ch\xE2u"
+    status: 2
+    recommended: 0
+    isNew: 0
+    isHot: 0
+  - serverId: s13
+    displayName: "S13 \xB7 T\u01B0\u01A1ng D\u01B0\u01A1ng"
+    status: 1
+    recommended: 0
+    isNew: 0
+    isHot: 0
+  - serverId: s14
+    displayName: "S14 \xB7 H\xE1n Trung"
+    status: 4
+    recommended: 0
+    isNew: 0
+    isHot: 0
+  - serverId: s15
+    displayName: "S15 \xB7 Nhai \u0110\xECnh"
+    status: 3
+    recommended: 0
+    isNew: 0
+    isHot: 0
+  - serverId: s16
+    displayName: "S16 \xB7 H\u1EE3p Ph\xEC"
+    status: 3
+    recommended: 0
+    isNew: 0
+    isHot: 0
+  - serverId: s17
+    displayName: "S17 \xB7 Di L\u0103ng"
+    status: 3
+    recommended: 0
+    isNew: 0
+    isHot: 0
+  - serverId: s18
+    displayName: "S18 \xB7 \u0110\u1ECBnh Qu\xE2n S\u01A1n"
+    status: 3
+    recommended: 0
+    isNew: 1
+    isHot: 0
+  - serverId: s19
+    displayName: "S19 \xB7 Ng\u0169 Tr\u01B0\u1EE3ng Nguy\xEAn"
+    status: 1
+    recommended: 0
+    isNew: 1
+    isHot: 0
+  - serverId: s20
+    displayName: "S20 \xB7 B\u1EA1ch \u0110\u1EBF Th\xE0nh"
+    status: 3
+    recommended: 1
+    isNew: 1
+    isHot: 0

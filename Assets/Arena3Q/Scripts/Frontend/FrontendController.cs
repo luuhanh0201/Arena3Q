@@ -31,15 +31,20 @@ namespace Arena3Q.Frontend
 
         public FrontendConfig Config => config;
         public FrontendUi Ui { get; private set; }
+        public StartupUi StartupUi { get; private set; }
+        public StatusBar StatusBar { get; private set; }
+        public FrontendMusic Music { get; private set; }
         public PlayerProfile Profile { get; private set; }
         public ProgressionRules Rules { get; private set; }
         public IReadOnlyList<ServerInfo> Servers { get; private set; } = Array.Empty<ServerInfo>();
+        public event Action ServersChanged;
         public ServerInfo Server { get; private set; }
         public CharacterRecord Character => Server != null ? Profile.FindCharacter(Server.Id) : null;
         public FrontendStep Step { get; private set; } = FrontendStep.Done;
         public FrontendScreen Screen { get; private set; }
         public IAccountService Accounts => FrontendServiceLocator.Accounts;
         public AccountRules AccountRules { get; private set; }
+        public float VerificationReadyAt { get; set; }
 
         /// <summary>The last message shown to the player (for tests and logs).</summary>
         public string LastMessage { get; private set; } = "";
@@ -58,6 +63,14 @@ namespace Arena3Q.Frontend
         {
             UiFactory.EnsureEventSystem();
             var canvas = UiFactory.CreateCanvas(transform, "FrontendCanvas", 10);
+            if (config != null && config.StartupUi != null)
+            {
+                canvas.GetComponent<CanvasScaler>().referenceResolution = config.StartupUi.referenceSize;
+                var audio = gameObject.AddComponent<UIAudio>(); audio.Configure(config.StartupUi);
+                StartupUi = new StartupUi(config.StartupUi, audio);
+                var music = new GameObject("FrontendMusic"); music.transform.SetParent(transform, false);
+                Music = music.AddComponent<FrontendMusic>(); Music.Configure(config.StartupUi);
+            }
             var root = (RectTransform)canvas.transform;
             Ui = new FrontendUi(config != null ? config.Theme : null);
             Ui.Fill(root, "Background", Ui.Theme.background);
@@ -66,6 +79,17 @@ namespace Arena3Q.Frontend
                 new Vector2(1400f, 120f), Ui.Theme.accent);
             _message.gameObject.AddComponent<Outline>().effectColor = new Color(0f, 0f, 0f, 0.8f);
             _message.enabled = false;
+            if (StartupUi != null)
+            {
+                // Corner chrome stays above every screen and popup, inside the actual device safe area.
+                var statusRoot = UiFactory.Stretch("StatusSafeArea", root);
+                statusRoot.gameObject.AddComponent<SafeAreaFitter>().Apply();
+                StatusBar = statusRoot.gameObject.AddComponent<StatusBar>(); StatusBar.Configure(StartupUi);
+                _message.fontSize = 18;
+                _message.rectTransform.sizeDelta = new Vector2(700, 74);
+                _message.rectTransform.anchoredPosition = new Vector2(0, 80);
+                _message.transform.SetAsLastSibling();
+            }
         }
 
         private void Start()
@@ -89,7 +113,11 @@ namespace Arena3Q.Frontend
             Rules = config.CreateProgressionRules();
             AccountRules = config.CreateAccountRules();
             _planner = new FrontendFlowPlanner(config.Steps);
-            FrontendServiceLocator.ServersFor(config).Fetch(list => Servers = list ?? Array.Empty<ServerInfo>());
+            FrontendServiceLocator.ServersFor(config).Fetch(list =>
+            {
+                if (this == null) return;
+                Servers = list ?? Array.Empty<ServerInfo>(); ServersChanged?.Invoke();
+            });
 
             var resume = ResumeAt;
             ResumeAt = null;
@@ -112,9 +140,11 @@ namespace Arena3Q.Frontend
             Screen?.Hide();
             Screen = null;
             Step = step;
+            if (step != FrontendStep.Intro && step != FrontendStep.Done && Music != null) Music.Play();
             switch (step)
             {
                 case FrontendStep.Intro: Screen = new IntroScreen(); break;
+                case FrontendStep.Loading: Screen = new LoadingScreen(); break;
                 case FrontendStep.Login: Screen = new LoginScreen(); break;
                 case FrontendStep.ServerSelect: Screen = new ServerSelectScreen(); break;
                 case FrontendStep.LordSelect: Screen = new LordSelectScreen(); break;
@@ -125,6 +155,10 @@ namespace Arena3Q.Frontend
             }
             Screen.Show(this, _screens);
         }
+
+        public void ReturnToLogin() => Show(FrontendStep.Login);
+
+        private void OnDestroy() { Screen?.Hide(); Screen = null; }
 
         private void Update()
         {

@@ -1,7 +1,7 @@
 {
     "name": "Arena3Q.Tests.EditMode",
     "rootNamespace": "Arena3Q.Tests.EditMode",
-    "references": ["Arena3Q.Core", "Arena3Q.Data", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
+    "references": ["Arena3Q.Core", "Arena3Q.Data", "Unity.TextMeshPro", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
     "includePlatforms": ["Editor"],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

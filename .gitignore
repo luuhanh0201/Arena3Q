@@ -76,3 +76,10 @@ Thumbs.db
 # not to be redistributed, and this repository is public. Kept local; the game falls back to its own effects without them.
 /[Aa]ssets/ThirdParty/
 /[Aa]ssets/ThirdParty.meta
+
+# UI handoff sources and long media stay local (user rule: code and small assets only).
+/docs/UI/Arena3Q_UI_Handoff/Assets/
+/docs/UI/Arena3Q_UI_Handoff/reference/source_images/
+/Assets/Arena3Q/Art/UI/Startup/Video/*.mp4*
+/Assets/Arena3Q/Art/UI/Startup/Video/*.ogg*
+/AgentComms/codex/staging/ui-tools/

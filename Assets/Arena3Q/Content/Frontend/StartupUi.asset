@@ -1,0 +1,334 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bfd7ba2589d22944ad5ea3a6d347ac6, type: 3}
+  m_Name: StartupUi
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.StartupUiConfig
+  background: {fileID: 21300000, guid: 46818626d1753844d9f58e82f5d35b8f, type: 3}
+  blurredBackground: {fileID: 21300000, guid: d7b547d8d53b01d45a5db01381b595c4, type: 3}
+  logo: {fileID: 21300000, guid: f79074f0e331f9245a1b874814065e64, type: 3}
+  splashStill: {fileID: 21300000, guid: d2160440f442e9841b1df3709598f5f6, type: 3}
+  goldButton: {fileID: 21300000, guid: 965e2a9159bb8c346beb2a0a5d322f40, type: 3}
+  blueButton: {fileID: 21300000, guid: 8d61bab6950ec554a99365c04f2cde46, type: 3}
+  redButton: {fileID: 21300000, guid: d0fc9954b8f41dc478472d7a08cea327, type: 3}
+  panel: {fileID: 21300000, guid: 84e2aac06dc3a204aa3fe5851f0b6670, type: 3}
+  largePanel: {fileID: 21300000, guid: d1934240efa8bee41879ebc146d17145, type: 3}
+  crest: {fileID: 21300000, guid: 333f28c2bf6778e4d9fde51c1cd4fa94, type: 3}
+  tassel: {fileID: 21300000, guid: 8b7bf0a0646299e45b4e1b6d37c10938, type: 3}
+  cloud: {fileID: 21300000, guid: 6d64e8464f559a24aabac00bff0ccc7c, type: 3}
+  backIcon: {fileID: 21300000, guid: 8965d7ed815bef844b8c063d2e1711a8, type: 3}
+  soundIcon: {fileID: 21300000, guid: 6d0c6ad20a006af418425043d980d4cf, type: 3}
+  settingsIcon: {fileID: 21300000, guid: 6aea267fc5d9ea349a7fb93ed135f813, type: 3}
+  language: {fileID: 21300000, guid: 435061379bf25234c9a90f751ae0de67, type: 3}
+  cart: {fileID: 21300000, guid: 13003024465a5ae4195a2f0148e6b3ce, type: 3}
+  wheel: {fileID: 21300000, guid: fd6dded7cfa01ed4faf81544a8492088, type: 3}
+  flag: {fileID: 21300000, guid: 582e96bf0307e2d45b600b79838731d8, type: 3}
+  spear: {fileID: 21300000, guid: 9b8b79e35eff4c842a49149f2fa62f44, type: 3}
+  gradient: {fileID: 21300000, guid: 223f609f52dd23c4295e6a85abd523ff, type: 3}
+  vignette: {fileID: 21300000, guid: 28201f170ee5bb84fb3ae255d40826e4, type: 3}
+  rounded: {fileID: 21300000, guid: 432a83ad644142643b26ba686822e216, type: 3}
+  wifi: {fileID: 21300000, guid: ecd0a3e8db74e9c489a12363a05a6654, type: 3}
+  wifiLow: {fileID: 21300000, guid: 2a31b77cad79b5a459e320f28255c018, type: 3}
+  wifiOff: {fileID: 21300000, guid: 743c047450ae36b43a5b93ff39e09212, type: 3}
+  serverOff: {fileID: 21300000, guid: dd3d1a98e739aa5479e69aea37414f5a, type: 3}
+  warning: {fileID: 21300000, guid: 7cb93778467f74f488406a228766e4d3, type: 3}
+  download: {fileID: 21300000, guid: d2abd06289b0ca64eb44165937d27401, type: 3}
+  check: {fileID: 21300000, guid: 12488bf15a32f634abd988442f39a95a, type: 3}
+  user: {fileID: 21300000, guid: f42f9e29c6dcd7742b276e8922ae6003, type: 3}
+  gift: {fileID: 21300000, guid: fd255c99e94f672409f5dc8202506ac9, type: 3}
+  slash: {fileID: 21300000, guid: 30db2e8f101e1404e80d2ffaaec0e7d9, type: 3}
+  regular: {fileID: 11400000, guid: 681bba9837eeadf4283e6f2be6c7fe89, type: 2}
+  semiBold: {fileID: 11400000, guid: bbc8e9aa6d054ee4cad402dc6a902740, type: 2}
+  bold: {fileID: 11400000, guid: c8ff34b3e7552d947991d2fd969bd3c7, type: 2}
+  extraBold: {fileID: 11400000, guid: f86e8b3a390d1164c9924c26268d1548, type: 2}
+  sounds:
+  - {fileID: 8300000, guid: 37294e8f4f68f5e478abecfcf97e04d5, type: 3}
+  - {fileID: 8300000, guid: 98d4bb4cb121d3047911fffba09fb80d, type: 3}
+  - {fileID: 8300000, guid: 2b6c62d930f71764c876efc6cd0b2980, type: 3}
+  - {fileID: 8300000, guid: 050ba890128c32b4daf7166b82387308, type: 3}
+  - {fileID: 8300000, guid: 8a36a3e85e14f174a8d59ee0126a6665, type: 3}
+  - {fileID: 8300000, guid: c1f518cff1590bb4186936e9be560ced, type: 3}
+  music: {fileID: 8300000, guid: 9c3750f8995977a498dfc4425d252a44, type: 3}
+  musicVolume: 0.12
+  soundVolume: 0.65
+  sameClipInterval: 0.08
+  gold: {r: 1, g: 0.84705883, b: 0.46666667, a: 1}
+  goldLine: {r: 0.8862745, g: 0.72156864, b: 0.36078432, a: 1}
+  ink: {r: 0.22745098, g: 0.09411765, b: 0.015686275, a: 1}
+  text: {r: 0.9019608, g: 0.9254902, b: 0.9607843, a: 1}
+  dim: {r: 0.6627451, g: 0.72156864, b: 0.8117647, a: 1}
+  muted: {r: 0.56078434, g: 0.63529414, b: 0.7490196, a: 1}
+  good: {r: 0.2901961, g: 0.87058824, b: 0.5019608, a: 1}
+  weak: {r: 0.9607843, g: 0.61960787, b: 0.043137256, a: 1}
+  bad: {r: 0.8627451, g: 0.14901961, b: 0.14901961, a: 1}
+  off: {r: 0.41960785, g: 0.44705883, b: 0.5019608, a: 1}
+  input: {r: 0.039215688, g: 0.078431375, b: 0.14117648, a: 1}
+  inputBorder: {r: 0.18431373, g: 0.33333334, b: 0.5176471, a: 1}
+  placeholder: {r: 0.49803922, g: 0.5764706, b: 0.6901961, a: 1}
+  referenceSize: {x: 1280, y: 720}
+  loginPanel:
+    serializedVersion: 2
+    x: 380
+    y: 134
+    width: 520
+    height: 512
+  registerPanel:
+    serializedVersion: 2
+    x: 380
+    y: 134
+    width: 520
+    height: 414
+  bindPanel:
+    serializedVersion: 2
+    x: 380
+    y: 116
+    width: 520
+    height: 510
+  serverPanel:
+    serializedVersion: 2
+    x: 76
+    y: 46
+    width: 1128
+    height: 650
+  networkPanel:
+    serializedVersion: 2
+    x: 360
+    y: 168
+    width: 560
+    height: 380
+  modalSeconds: 0.25
+  screenSeconds: 0.2
+  tipSeconds: 3.5
+  statusSeconds: 15
+  verificationSeconds: 60
+  localPreparationSeconds: 2
+  network:
+    weakPingMs: 150
+    weakBytesPerSecond: 307200
+    stalledSeconds: 3
+    requestTimeoutSeconds: 5
+    retrySeconds:
+    - 2
+    - 4
+    - 8
+  tips:
+  - "Thu th\u1EADp v\xE0 b\u1ED3i d\u01B0\u1EE1ng danh t\u01B0\u1EDBng, s\u1EAFp x\u1EBFp \u0111\u1ED9i h\xECnh h\u1EE3p l\xFD \u0111\u1EC3 l\xE0m ch\u1EE7 chi\u1EBFn tr\u01B0\u1EDDng!"
+  - "Ch\u1ECDn m\u1ED9t t\u01B0\u1EDBng r\u1ED3i ch\u1EA1m v\xE0o b\u1EA3n \u0111\u1ED3 \u0111\u1EC3 ra l\u1EC7nh di chuy\u1EC3n!"
+  - "M\u1ED7i tr\u1EADn tri\u1EC7u h\u1ED3i t\u1ED1i \u0111a 5 t\u01B0\u1EDBng, m\u1ED7i t\u01B0\u1EDBng d\u1EABn theo m\u1ED9t \u0111\u1ED9i qu\xE2n!"
+  - "Ph\xE1 h\u1EE7y nh\xE0 ch\xEDnh c\u1EE7a \u0111\u1ED1i ph\u01B0\u01A1ng \u0111\u1EC3 gi\xE0nh chi\u1EBFn th\u1EAFng trong \u1EA3i C\xF4ng!"
+  - "Gi\u1EEF th\u1EBB c\u1EE7a t\u01B0\u1EDBng \u0111\xE3 ra s\xE2n 1,5 gi\xE2y \u0111\u1EC3 ch\u1ECDn t\u01B0\u1EDBng \u0111\xF3!"
+  - "Li\xEAn k\u1EBFt t\xE0i kho\u1EA3n \u0111\u1EC3 gi\u1EEF ti\u1EBFn tr\xECnh khi \u0111\u1ED5i m\xE1y ho\u1EB7c c\xE0i l\u1EA1i game!"
+  - "Ch\u1ECDn m\xE1y ch\u1EE7 c\xF3 tr\u1EA1ng th\xE1i T\u1ED1t \u0111\u1EC3 b\u1EAFt \u0111\u1EA7u h\xE0nh tr\xECnh!"
+  healthNotice: "Ch\u01A1i qu\xE1 180 ph\xFAt m\u1ED9t ng\xE0y s\u1EBD \u1EA3nh h\u01B0\u1EDFng x\u1EA5u \u0111\u1EBFn s\u1EE9c kh\u1ECFe."
+  ageLabel: 16+
+  copy:
+  - key: version
+    value: "Phi\xEAn b\u1EA3n"
+  - key: vietnameseOnly
+    value: "Hi\u1EC7n h\u1ED7 tr\u1EE3 Ti\u1EBFng Vi\u1EC7t."
+  - key: good
+    value: "T\u1ED1t"
+  - key: busy
+    value: "\u0110\xF4ng"
+  - key: full
+    value: "\u0110\u1EA7y"
+  - key: maintenance
+    value: "B\u1EA3o tr\xEC"
+  - key: loginTab
+    value: "\u0110\u0103ng nh\u1EADp"
+  - key: registerTab
+    value: "\u0110\u0103ng k\xFD"
+  - key: address
+    value: "Email ho\u1EB7c s\u1ED1 \u0111i\u1EC7n tho\u1EA1i"
+  - key: password
+    value: "M\u1EADt kh\u1EA9u"
+  - key: newPassword
+    value: "M\u1EADt kh\u1EA9u (t\u1EEB 8 k\xFD t\u1EF1)"
+  - key: confirmPassword
+    value: "Nh\u1EADp l\u1EA1i m\u1EADt kh\u1EA9u"
+  - key: remember
+    value: "Ghi nh\u1EDB \u0111\u0103ng nh\u1EADp"
+  - key: forgot
+    value: "Qu\xEAn m\u1EADt kh\u1EA9u?"
+  - key: login
+    value: "\u0110\u0102NG NH\u1EACP"
+  - key: quickLogin
+    value: "ho\u1EB7c \u0111\u0103ng nh\u1EADp nhanh"
+  - key: playNow
+    value: "CH\u01A0I NGAY"
+  - key: guestCaption
+    value: "V\xE0o game kh\xF4ng c\u1EA7n t\xE0i kho\u1EA3n \xB7 C\xF3 th\u1EC3 li\xEAn k\u1EBFt sau"
+  - key: termsCaption
+    value: "Khi ti\u1EBFp t\u1EE5c, b\u1EA1n \u0111\u1ED3ng \xFD v\u1EDBi"
+  - key: terms
+    value: "\u0110i\u1EC1u kho\u1EA3n d\u1ECBch v\u1EE5"
+  - key: privacy
+    value: "Ch\xEDnh s\xE1ch b\u1EA3o m\u1EADt"
+  - key: verification
+    value: "M\xE3 x\xE1c minh (6 s\u1ED1)"
+  - key: sendCode
+    value: "G\u1EEDi m\xE3"
+  - key: agree
+    value: "T\xF4i \u0111\u1ED3ng \xFD v\u1EDBi \u0111i\u1EC1u kho\u1EA3n d\u1ECBch v\u1EE5 v\xE0 ch\xEDnh s\xE1ch b\u1EA3o m\u1EADt."
+  - key: linkAccount
+    value: "LI\xCAN K\u1EBET T\xC0I KHO\u1EA2N"
+  - key: createAccount
+    value: "T\u1EA0O T\xC0I KHO\u1EA2N"
+  - key: haveAccount
+    value: "\u0110\xE3 c\xF3 t\xE0i kho\u1EA3n? \u0110\u0103ng nh\u1EADp"
+  - key: playNowSmall
+    value: "Ch\u01A1i ngay"
+  - key: resendCountdown
+    value: "G\u1EEDi l\u1EA1i {0}s"
+  - key: invalidAddress
+    value: "Nh\u1EADp email ho\u1EB7c s\u1ED1 \u0111i\u1EC7n tho\u1EA1i h\u1EE3p l\u1EC7."
+  - key: verificationSent
+    value: "\u0110\xE3 g\u1EEDi m\xE3 x\xE1c minh. Vui l\xF2ng ki\u1EC3m tra h\u1ED9p th\u01B0 ho\u1EB7c tin nh\u1EAFn."
+  - key: resetSent
+    value: "\u0110\xE3 g\u1EEDi h\u01B0\u1EDBng d\u1EABn \u0111\u1EB7t l\u1EA1i m\u1EADt kh\u1EA9u."
+  - key: passwordMismatch
+    value: "Hai l\u1EA7n nh\u1EADp m\u1EADt kh\u1EA9u kh\xF4ng kh\u1EDBp."
+  - key: passwordShort
+    value: "M\u1EADt kh\u1EA9u c\u1EA7n \xEDt nh\u1EA5t {0} k\xFD t\u1EF1."
+  - key: termsRequired
+    value: "Vui l\xF2ng \u0111\u1ED3ng \xFD v\u1EDBi \u0111i\u1EC1u kho\u1EA3n v\xE0 ch\xEDnh s\xE1ch b\u1EA3o m\u1EADt."
+  - key: invalidCode
+    value: "M\xE3 x\xE1c minh ph\u1EA3i g\u1ED3m 6 ch\u1EEF s\u1ED1."
+  - key: loginFailed
+    value: "\u0110\u0103ng nh\u1EADp th\u1EA5t b\u1EA1i. Vui l\xF2ng th\u1EED l\u1EA1i."
+  - key: linkIdentityMismatch
+    value: "Kh\xF4ng th\u1EC3 li\xEAn k\u1EBFt t\xE0i kho\u1EA3n n\xE0y. Ti\u1EBFn tr\xECnh kh\xE1ch v\u1EABn \u0111\u01B0\u1EE3c gi\u1EEF l\u1EA1i."
+  - key: legalUnavailable
+    value: "N\u1ED9i dung n\xE0y s\u1EBD \u0111\u01B0\u1EE3c c\u1EADp nh\u1EADt tr\u01B0\u1EDBc khi ph\xE1t h\xE0nh."
+  - key: loginRequired
+    value: "Vui l\xF2ng \u0111\u0103ng nh\u1EADp ho\u1EB7c ch\u1ECDn Ch\u01A1i ngay."
+  - key: guest
+    value: "Kh\xE1ch"
+  - key: unlinked
+    value: "Ch\u01B0a li\xEAn k\u1EBFt \xB7 Li\xEAn k\u1EBFt ngay"
+  - key: linked
+    value: "\u0110\xE3 li\xEAn k\u1EBFt t\xE0i kho\u1EA3n"
+  - key: noOpenServers
+    value: "Ch\u01B0a c\xF3 m\xE1y ch\u1EE7 \u0111ang m\u1EDF. Vui l\xF2ng th\u1EED l\u1EA1i sau."
+  - key: changeServer
+    value: "\u0110\u1ED5i m\xE1y ch\u1EE7"
+  - key: enterGame
+    value: "V\xC0O GAME"
+  - key: chooseServer
+    value: "CH\u1ECCN M\xC1Y CH\u1EE6"
+  - key: myServers
+    value: "M\xE1y ch\u1EE7 c\u1EE7a t\xF4i"
+  - key: recommended
+    value: "\u0110\u1EC1 xu\u1EA5t"
+  - key: range1
+    value: S1 - S10
+  - key: range2
+    value: S11 - S20
+  - key: recentServer
+    value: "\u0110\u0102NG NH\u1EACP G\u1EA6N \u0110\xC2Y"
+  - key: noRecentServer
+    value: "B\u1EA1n ch\u01B0a \u0111\u0103ng nh\u1EADp m\xE1y ch\u1EE7 n\xE0o."
+  - key: select
+    value: "Ch\u1ECDn"
+  - key: serverLegend
+    value: "T\u1ED1t: c\xF3 th\u1EC3 v\xE0o  \xB7  \u0110\xF4ng: nhi\u1EC1u ng\u01B0\u1EDDi ch\u01A1i  \xB7  \u0110\u1EA7y: ch\u01B0a th\u1EC3 v\xE0o  \xB7  B\u1EA3o tr\xEC: t\u1EA1m \u0111\xF3ng"
+  - key: confirm
+    value: "X\xC1C NH\u1EACN"
+  - key: noCharacters
+    value: "B\u1EA1n ch\u01B0a c\xF3 nh\xE2n v\u1EADt \u1EDF m\xE1y ch\u1EE7 n\xE0o."
+  - key: noServers
+    value: "Kh\xF4ng c\xF3 m\xE1y ch\u1EE7 trong danh s\xE1ch n\xE0y."
+  - key: allServers
+    value: "T\u1EA5t c\u1EA3 m\xE1y ch\u1EE7"
+  - key: serverCount
+    value: "{0} m\xE1y ch\u1EE7"
+  - key: newBadge
+    value: "M\u1EDAI"
+  - key: hotBadge
+    value: HOT
+  - key: selectedServer
+    value: "\u0110\xE3 ch\u1ECDn:"
+  - key: noSelection
+    value: "Ch\u01B0a ch\u1ECDn m\xE1y ch\u1EE7"
+  - key: chooseAnotherServer
+    value: "Vui l\xF2ng ch\u1ECDn m\xE1y ch\u1EE7 kh\xE1c."
+  - key: linkTitle
+    value: "Li\xEAn k\u1EBFt t\xE0i kho\u1EA3n"
+  - key: linkExplanation
+    value: "B\u1EA1n \u0111ang ch\u01A1i b\u1EB1ng t\xE0i kho\u1EA3n kh\xE1ch. Li\xEAn k\u1EBFt \u0111\u1EC3 gi\u1EEF ti\u1EBFn tr\xECnh khi \u0111\u1ED5i m\xE1y ho\u1EB7c c\xE0i l\u1EA1i game."
+  - key: linkReward
+    value: "Th\u01B0\u1EDFng li\xEAn k\u1EBFt l\u1EA7n \u0111\u1EA7u"
+  - key: linkProvider
+    value: "Li\xEAn k\u1EBFt"
+  - key: emailOrPhone
+    value: "Email / S\u1ED1 \u0111i\u1EC7n tho\u1EA1i"
+  - key: later
+    value: "\u0110\u1EC3 sau"
+  - key: settings
+    value: "C\xE0i \u0111\u1EB7t"
+  - key: musicVolume
+    value: "\xC2m l\u01B0\u1EE3ng nh\u1EA1c n\u1EC1n: {0}%"
+  - key: muteMusic
+    value: "T\u1EAFt nh\u1EA1c n\u1EC1n"
+  - key: muteUi
+    value: "T\u1EAFt \xE2m thanh giao di\u1EC7n"
+  - key: account
+    value: "T\xE0i kho\u1EA3n"
+  - key: switchAccount
+    value: "\u0110\u1ED5i t\xE0i kho\u1EA3n"
+  - key: close
+    value: "\u0110\xF3ng"
+  - key: guestSignOutWarning
+    value: "T\xE0i kho\u1EA3n kh\xE1ch ch\u01B0a li\xEAn k\u1EBFt. \u0110\u1ED5i t\xE0i kho\u1EA3n s\u1EBD x\xF3a ti\u1EBFn tr\xECnh kh\xE1ch tr\xEAn m\xE1y n\xE0y. B\u1EA1n mu\u1ED1n ti\u1EBFp t\u1EE5c?"
+  - key: signOutWarning
+    value: "B\u1EA1n mu\u1ED1n \u0111\u0103ng xu\u1EA5t kh\u1ECFi t\xE0i kho\u1EA3n n\xE0y?"
+  - key: cancel
+    value: "H\u1EE7y"
+  - key: loadingWeak
+    value: "M\u1EA1ng y\u1EBFu, \u0111ang t\u1EA3i ch\u1EADm\u2026"
+  - key: loadingLocal
+    value: "\u0110ang chu\u1EA9n b\u1ECB t\xE0i nguy\xEAn\u2026"
+  - key: loadingVersion
+    value: "\u0110ang ki\u1EC3m tra phi\xEAn b\u1EA3n\u2026"
+  - key: loadingResources
+    value: "\u0110ang t\u1EA3i t\xE0i nguy\xEAn\u2026"
+  - key: loadingConnect
+    value: "\u0110ang k\u1EBFt n\u1ED1i m\xE1y ch\u1EE7\u2026"
+  - key: loadingDone
+    value: "Ho\xE0n t\u1EA5t! \u0110ang v\xE0o game\u2026"
+  - key: localResources
+    value: "T\xE0i nguy\xEAn tr\xEAn thi\u1EBFt b\u1ECB"
+  - key: weakToast
+    value: "K\u1EBFt n\u1ED1i m\u1EA1ng kh\xF4ng \u1ED5n \u0111\u1ECBnh, t\u1ED1c \u0111\u1ED9 t\u1EA3i c\xF3 th\u1EC3 ch\u1EADm."
+  - key: retrying
+    value: "\u0110ang th\u1EED k\u1EBFt n\u1ED1i l\u1EA1i\u2026"
+  - key: stalled
+    value: "M\u1EA1ng kh\xF4ng \u1ED5n \u0111\u1ECBnh, \u0111ang k\u1EBFt n\u1ED1i l\u1EA1i\u2026"
+  - key: retryAttempt
+    value: "L\u1EA7n th\u1EED {0}/3 \xB7 Vui l\xF2ng kh\xF4ng t\u1EAFt game"
+  - key: timeoutTitle
+    value: "M\xE1y ch\u1EE7 kh\xF4ng ph\u1EA3n h\u1ED3i"
+  - key: lostTitle
+    value: "M\u1EA5t k\u1EBFt n\u1ED1i m\u1EA1ng"
+  - key: timeoutMessage
+    value: "K\u1EBFt n\u1ED1i t\u1EDBi m\xE1y ch\u1EE7 b\u1ECB gi\xE1n \u0111o\u1EA1n ho\u1EB7c qu\xE1 th\u1EDDi gian ch\u1EDD. Vui l\xF2ng th\u1EED l\u1EA1i sau \xEDt ph\xFAt."
+  - key: lostMessage
+    value: "Kh\xF4ng th\u1EC3 k\u1EBFt n\u1ED1i Internet. Vui l\xF2ng ki\u1EC3m tra Wi-Fi ho\u1EB7c d\u1EEF li\u1EC7u di \u0111\u1ED9ng r\u1ED3i th\u1EED l\u1EA1i."
+  - key: resumeProgress
+    value: "Ti\u1EBFn tr\xECnh \u0111\u01B0\u1EE3c gi\u1EEF l\u1EA1i, s\u1EBD t\u1EA3i ti\u1EBFp t\u1EEB {0}%."
+  - key: timeoutCode
+    value: "M\xE3 l\u1ED7i: NET-2002"
+  - key: lostCode
+    value: "M\xE3 l\u1ED7i: NET-1001"
+  - key: quit
+    value: "Tho\xE1t game"
+  - key: retry
+    value: "TH\u1EEC L\u1EA0I"

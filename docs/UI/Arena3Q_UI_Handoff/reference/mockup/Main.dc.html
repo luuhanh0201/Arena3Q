@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Arena3Q – Splash</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#f1d58a}a:hover{color:#ffe7a8}
+</style>
+</helmet>
+<div style="width: 1280px; height: 720px; position: relative; overflow: hidden; background: #050302; font-family: 'Be Vietnam Pro', system-ui, sans-serif; color: #f3e9d2;">
+<img src="../../Assets/UI/Backgrounds/splash_lastframe.jpg" alt="Logo Arena3Q bùng cháy trên nền than hồng" style="position: absolute; left: 0; top: 0; width: 1280px; height: 720px; object-fit: cover;">
+<a href="Loading.dc.html" aria-label="Tiếp tục tới màn hình tải" style="position: absolute; left: 0; top: 0; width: 1280px; height: 720px; display: block;"></a>
+<div style="position: absolute; right: 12px; top: 6px; z-index: 50;"><dc-import name="StatusBar" signal="3" hint-size="120px,26px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

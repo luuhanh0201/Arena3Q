@@ -62,24 +62,30 @@ namespace Arena3Q.Core
     {
         New,
         Busy,
-        Maintenance
+        Maintenance,
+        Good,
+        Full
     }
 
     public sealed class ServerInfo
     {
-        public ServerInfo(string id, string name, ServerStatus status, bool recommended)
+        public ServerInfo(string id, string name, ServerStatus status, bool recommended, bool isNew = false, bool isHot = false)
         {
             Id = id;
             Name = name;
             Status = status;
             Recommended = recommended;
+            IsNew = isNew || status == ServerStatus.New;
+            IsHot = isHot;
         }
 
         public string Id { get; }
         public string Name { get; }
         public ServerStatus Status { get; }
         public bool Recommended { get; }
-        public bool CanEnter => Status != ServerStatus.Maintenance;
+        public bool IsNew { get; }
+        public bool IsHot { get; }
+        public bool CanEnter => Status != ServerStatus.Maintenance && Status != ServerStatus.Full;
     }
 
     /// <summary>The server list. Prototype: from an asset; later: fetched from the backend.</summary>

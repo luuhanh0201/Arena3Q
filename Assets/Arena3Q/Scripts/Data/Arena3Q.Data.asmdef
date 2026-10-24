@@ -1,7 +1,7 @@
 {
     "name": "Arena3Q.Data",
     "rootNamespace": "Arena3Q.Data",
-    "references": ["Arena3Q.Core"],
+    "references": ["Arena3Q.Core", "Unity.TextMeshPro"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

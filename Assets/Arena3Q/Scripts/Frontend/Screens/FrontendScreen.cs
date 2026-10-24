@@ -18,17 +18,28 @@ namespace Arena3Q.Frontend
         {
             Flow = flow;
             Root = UiFactory.Stretch(GetType().Name, parent);
+            if (flow.Config.StartupUi != null && !(this is StartupScreen))
+            {
+                Root.anchorMin = Root.anchorMax = Root.pivot = FrontendUi.Center;
+                Root.sizeDelta = new Vector2(1920, 1080);
+                Root.gameObject.AddComponent<DesignFrame>().Configure(Root.sizeDelta);
+            }
             Build();
         }
 
         internal void Hide()
         {
+            OnHide();
             if (Root != null)
+            {
+                Root.gameObject.SetActive(false);
                 Object.Destroy(Root.gameObject);
+            }
             Root = null;
         }
 
         protected abstract void Build();
+        protected virtual void OnHide() { }
 
         public virtual void Tick(float deltaTime)
         {

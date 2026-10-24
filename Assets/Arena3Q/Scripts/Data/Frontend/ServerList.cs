@@ -16,6 +16,7 @@ namespace Arena3Q.Data
             public string displayName = "S1";
             public ServerStatus status = ServerStatus.New;
             public bool recommended;
+            public bool isNew, isHot;
         }
 
         [SerializeField] private Entry[] servers = Array.Empty<Entry>();
@@ -26,7 +27,7 @@ namespace Arena3Q.Data
             foreach (var entry in servers)
             {
                 if (entry != null)
-                    list.Add(new ServerInfo(entry.serverId, entry.displayName, entry.status, entry.recommended));
+                    list.Add(new ServerInfo(entry.serverId, entry.displayName, entry.status, entry.recommended, entry.isNew, entry.isHot));
             }
             return list;
         }
@@ -45,7 +46,7 @@ namespace Arena3Q.Data
                 }
                 if (!ids.Add(entry.serverId))
                     errors.Add($"{owner}: '{entry.serverId}' is listed twice.");
-                open |= entry.status != ServerStatus.Maintenance;
+                open |= entry.status != ServerStatus.Maintenance && entry.status != ServerStatus.Full;
             }
             if (!open)
                 errors.Add($"{owner}: no server is open.");

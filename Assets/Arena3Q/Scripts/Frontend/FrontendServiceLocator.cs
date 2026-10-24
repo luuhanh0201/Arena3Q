@@ -15,9 +15,13 @@ namespace Arena3Q.Frontend
         private static IPlayerProfileStore _profiles;
         private static IAccountService _accounts;
         private static IServerDirectory _servers;
+        private static IAccountActions _accountActions;
+        private static Func<StartupUiConfig, IStartupPreparation> _preparation;
 
         public static IPlayerProfileStore Profiles => _profiles ?? (_profiles = new JsonFileProfileStore(JsonFileProfileStore.DefaultPath));
         public static IAccountService Accounts => _accounts ?? (_accounts = new OfflineAccountService());
+        public static IAccountActions AccountActions => _accountActions ?? (_accountActions = new OfflineAccountActions());
+        public static IStartupPreparation Prepare(StartupUiConfig config) => _preparation != null ? _preparation(config) : new LocalStartupPreparation(config);
 
         public static IServerDirectory ServersFor(FrontendConfig config) =>
             _servers ?? new StaticServerDirectory(config != null && config.ServerList != null
@@ -26,11 +30,14 @@ namespace Arena3Q.Frontend
 
         /// <summary>Replaces some services (null = keep the current one).</summary>
         public static void Override(IPlayerProfileStore profiles = null, IAccountService accounts = null,
-            IServerDirectory servers = null)
+            IServerDirectory servers = null, IAccountActions accountActions = null,
+            Func<StartupUiConfig, IStartupPreparation> preparation = null)
         {
             if (profiles != null) _profiles = profiles;
             if (accounts != null) _accounts = accounts;
             if (servers != null) _servers = servers;
+            if (accountActions != null) _accountActions = accountActions;
+            if (preparation != null) _preparation = preparation;
         }
 
         /// <summary>Back to the defaults.</summary>
@@ -39,6 +46,8 @@ namespace Arena3Q.Frontend
             _profiles = null;
             _accounts = null;
             _servers = null;
+            _accountActions = null;
+            _preparation = null;
         }
     }
 

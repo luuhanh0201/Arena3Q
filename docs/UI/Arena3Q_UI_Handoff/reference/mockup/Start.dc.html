@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Arena3Q – Vào game</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./ui.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#ffd877}a:hover{color:#fff0bf}
+.srv-pill{transition:transform .08s,filter .12s}
+.srv-pill:hover{filter:brightness(1.12)}
+.srv-pill:active{transform:scale(.96);filter:brightness(.88)}
+</style>
+</helmet>
+<div style="width: 1280px; height: 720px; position: relative; overflow: hidden; background: #0a0604; font-family: 'Be Vietnam Pro', system-ui, sans-serif; color: #e6ecf5;">
+<img src="../../Assets/UI/Backgrounds/keyart_3heroes.png" alt="Key art Arena3Q: ba tướng chibi xông trận" style="position: absolute; left: 0; top: 0; width: 1280px; height: 720px; object-fit: cover;">
+<div style="position: absolute; left: 0; top: 0; width: 1280px; height: 110px; background: linear-gradient(to bottom, rgba(8,4,2,0.65), rgba(8,4,2,0));"></div>
+<div style="position: absolute; left: 0; bottom: 0; width: 1280px; height: 280px; background: linear-gradient(to bottom, rgba(8,4,2,0), rgba(8,4,2,0.82) 60%, rgba(8,4,2,0.94));"></div>
+<img src="../../Assets/UI/Logo/logo_arena3q.png" alt="Arena3Q – Tam Quốc Chiến Thuật" style="position: absolute; left: 390px; top: 16px; width: 500px; height: auto;">
+
+<a href="BindAccount.dc.html" class="ui-frame srv-pill" onClick="{{tap}}" style="position: absolute; left: 16px; top: 14px; border-image-width: 22px; padding: 10px 18px 10px 12px; display: flex; align-items: center; gap: 10px; text-decoration: none;">
+<span style="width: 40px; height: 40px; border-radius: 50%; background: #13284a; border: 2px solid #e2b85c; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffd877" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg>
+</span>
+<span style="display: flex; flex-direction: column; gap: 3px;">
+<span style="font-size: 14px; font-weight: 700; color: #f2f5fa;">Khách #83921</span>
+<span style="font-size: 11.5px; font-weight: 700; color: #1d0f05; background: #f0a63a; border-radius: 4px; padding: 1px 6px; align-self: flex-start;">Chưa liên kết · Liên kết ngay</span>
+</span>
+</a>
+
+<div style="position: absolute; right: 12px; top: 6px; z-index: 50;"><dc-import name="StatusBar" signal="3" hint-size="120px,26px"></dc-import></div>
+<div style="position: absolute; right: 18px; top: 40px; display: flex; gap: 10px;">
+<button type="button" class="ui-round" aria-label="{{soundLabel}}" aria-pressed="{{mutedStr}}" onClick="{{toggleSound}}" style="position: relative;">
+<img src="../../Assets/UI/Sprites/Icons/icon_sound.png" alt="">
+<sc-if value="{{muted}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; left: 8px; top: 24px; width: 36px; height: 4px; border-radius: 2px; background: #e5484d; transform: rotate(-45deg); box-shadow: 0 0 0 1px #000;"></span></sc-if>
+</button>
+<button type="button" class="ui-round" aria-label="Cài đặt" onClick="{{tap}}"><img src="../../Assets/UI/Sprites/Icons/icon_settings.png" alt=""></button>
+</div>
+
+<div style="position: absolute; left: 340px; bottom: 44px; width: 600px; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+<a href="ServerSelect.dc.html" class="ui-frame srv-pill" onClick="{{tap}}" style="border-image-width: 22px; height: 62px; padding: 0 30px 0 22px; display: flex; align-items: center; gap: 12px; text-decoration: none;">
+<span style="width: 12px; height: 12px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80;"></span>
+<span style="font-size: 13px; font-weight: 700; color: #86efac;">Tốt</span>
+<span style="width: 1px; height: 22px; background: rgba(226,184,92,0.4);"></span>
+<span style="font-size: 17px; font-weight: 700; color: #f2f5fa; margin-right: 6px;">S8 · Xích Bích</span>
+<span class="ui-btn b-blue" style="--h: 40px; height: 40px; width: 150px; font-size: 14px;">Đổi máy chủ ›</span>
+</a>
+<a href="#" class="ui-btn b-gold s-xl" style="width: 360px;" onClick="{{enter}}">VÀO GAME</a>
+</div>
+
+<div style="position: absolute; left: 24px; bottom: 12px; font-size: 12px; color: #bfae8c;">Phiên bản [0.1.0]</div>
+<div style="position: absolute; right: 24px; bottom: 10px; display: flex; align-items: center; gap: 10px;">
+<span style="font-size: 12px; color: #bfae8c;">Chơi quá 180 phút một ngày sẽ ảnh hưởng xấu đến sức khỏe.</span>
+<span style="font-size: 12px; font-weight: 800; color: #120a07; background: #f1d58a; border-radius: 4px; padding: 2px 6px;">16+</span>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { muted: false }; }
+sfx(kind, force) {
+if (!force && this.state && this.state.muted) return;
+try {
+const C = window.AudioContext || window.webkitAudioContext;
+if (!this.ac) this.ac = new C();
+const ac = this.ac; if (ac.state === 'suspended') ac.resume();
+const t = ac.currentTime, sr = ac.sampleRate, out = ac.createGain(); out.gain.value = 0.6; out.connect(ac.destination);
+const env = (node, vol, d, dur) => { const g = ac.createGain(); g.gain.setValueAtTime(0.0001, t + d); g.gain.exponentialRampToValueAtTime(vol, t + d + 0.005); g.gain.exponentialRampToValueAtTime(0.0001, t + d + dur); node.connect(g); g.connect(out); };
+const tone = (type, f1, f2, dur, vol, d) => { const o = ac.createOscillator(); o.type = type; o.frequency.setValueAtTime(f1, t + d); o.frequency.exponentialRampToValueAtTime(f2, t + d + dur); env(o, vol, d, dur); o.start(t + d); o.stop(t + d + dur + 0.05); };
+const noise = (dur, vol, d, type, f, f2) => { const n = Math.floor(sr * dur), b = ac.createBuffer(1, n, sr), x = b.getChannelData(0); for (let i = 0; i < n; i++) x[i] = Math.random() * 2 - 1; const s = ac.createBufferSource(), fl = ac.createBiquadFilter(); s.buffer = b; fl.type = type; fl.Q.value = 1.2; fl.frequency.setValueAtTime(f, t + d); if (f2) fl.frequency.exponentialRampToValueAtTime(f2, t + d + dur); s.connect(fl); env(fl, vol, d, dur); s.start(t + d); };
+const pluck = (f, dur, vol, d) => { const n = Math.floor(sr * dur), b = ac.createBuffer(1, n, sr), x = b.getChannelData(0), p = Math.max(2, Math.round(sr / f)), r = new Float32Array(p); for (let i = 0; i < p; i++) r[i] = Math.random() * 2 - 1; let k = 0; for (let i = 0; i < n; i++) { const v = r[k], w = r[(k + 1) % p]; r[k] = (v + w) * 0.4985; x[i] = v; k = (k + 1) % p; } const s = ac.createBufferSource(), hp = ac.createBiquadFilter(), g = ac.createGain(); hp.type = 'highpass'; hp.frequency.value = 180; s.buffer = b; g.gain.value = vol; s.connect(hp); hp.connect(g); g.connect(out); s.start(t + d); };
+const drum = (d, vol) => { tone('sine', 140, 48, 0.45, vol, d); noise(0.07, vol * 0.5, d, 'lowpass', 900); };
+const gong = (d, vol) => { [1, 1.48, 2.1, 2.6, 3.4, 4.2].forEach((m, i) => { const o = ac.createOscillator(); o.type = 'sine'; o.frequency.setValueAtTime(110 * m * 1.01, t + d); o.frequency.exponentialRampToValueAtTime(110 * m, t + d + 0.4); env(o, vol / (1 + i * 0.7), d, 2.2 - i * 0.25); o.start(t + d); o.stop(t + d + 2.4); }); noise(0.12, vol * 0.25, d, 'bandpass', 2500); };
+const wood = (f, d, vol) => { tone('sine', f, f * 0.92, 0.07, vol, d); tone('triangle', f * 2.7, f * 2.5, 0.03, vol * 0.35, d); noise(0.015, vol * 0.4, d, 'bandpass', f * 3); };
+const sword = (d, vol) => { noise(0.26, vol, d, 'bandpass', 1400, 7500); tone('sine', 2600, 2580, 0.6, vol * 0.12, d + 0.18); tone('sine', 3900, 3880, 0.5, vol * 0.08, d + 0.18); };
+const P = [293.66, 329.63, 369.99, 440, 493.88, 587.33, 659.25, 739.99, 880, 987.77, 1174.66];
+if (kind === 'enter') { drum(0, 0.9); drum(0.16, 0.7); sword(0.02, 0.35); gong(0.3, 0.35); }
+else if (kind === 'ok') { drum(0, 0.8); [5, 6, 7, 8, 10].forEach((n, i) => pluck(P[n], 0.7, 0.32, 0.03 + i * 0.045)); }
+else if (kind === 'tab') { wood(980, 0, 0.5); }
+else if (kind === 'back') { pluck(P[8], 0.4, 0.3, 0); pluck(P[5], 0.5, 0.3, 0.07); }
+else if (kind === 'err') { wood(420, 0, 0.6); wood(380, 0.12, 0.6); }
+else { pluck(P[8], 0.45, 0.35, 0); }
+} catch (e) {}
+}
+renderVals() {
+const muted = this.state.muted;
+return {
+muted,
+mutedStr: muted ? 'true' : 'false',
+soundLabel: muted ? 'Bật âm thanh' : 'Tắt âm thanh',
+toggleSound: () => { const m = !this.state.muted; this.setState({ muted: m }); if (!m) this.sfx('tap', true); },
+tap: () => this.sfx('tap'), ok: () => this.sfx('ok'), enter: () => this.sfx('enter'), back: () => this.sfx('back')
+};
+}
+}
+</script>
+</body>
+</html>

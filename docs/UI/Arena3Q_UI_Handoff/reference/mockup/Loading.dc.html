@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Arena3Q – Loading</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./ui.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1280px; height: 720px; position: relative; overflow: hidden; background: #0a0604; font-family: 'Be Vietnam Pro', system-ui, sans-serif; color: #f3e9d2;">
+<img src="../../Assets/UI/Backgrounds/keyart_3heroes.png" alt="Quan Vũ, Lữ Bố và Gia Cát Lượng chibi xông trận trước thành trì lúc hoàng hôn" style="position: absolute; left: 0; top: 0; width: 1280px; height: 720px; object-fit: cover;">
+<div style="position: absolute; left: 0; bottom: 0; width: 1280px; height: 330px; background: linear-gradient(to bottom, rgba(8,4,2,0), rgba(8,4,2,0.85) 42%, rgba(8,4,2,0.96));"></div>
+<img src="../../Assets/UI/Logo/logo_arena3q.png" alt="Arena3Q – Tam Quốc Chiến Thuật" style="position: absolute; left: 400px; top: 16px; width: 480px; height: auto;">
+
+<sc-if value="{{showToast}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 0; top: 204px; width: 1280px; display: flex; justify-content: center;">
+<div class="net-toast" role="status" style="display: flex; align-items: center; gap: 10px; padding: 10px 18px; border-radius: 8px; background: rgba(42,26,6,0.92); border: 1px solid #f0a63a; box-shadow: 0 8px 20px rgba(0,0,0,.5);">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fcd34d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3L2 20h20L12 3z"></path><path d="M12 10v4M12 17h.01"></path></svg>
+<span style="font-size: 14px; font-weight: 600; color: #fde8b0;">Kết nối mạng không ổn định, tốc độ tải có thể chậm.</span>
+</div>
+</div>
+</sc-if>
+
+<div style="position: absolute; left: 150px; top: 560px; width: 980px; height: 36px; display: flex; align-items: center;">
+<div style="position: absolute; left: 40px; right: 40px; top: 17px; height: 2px; background: linear-gradient(90deg, rgba(226,184,92,0), #e2b85c 10%, #e2b85c 90%, rgba(226,184,92,0));"></div>
+<svg width="72" height="36" viewBox="0 0 72 36" aria-hidden="true" style="flex-shrink: 0; margin-right: -16px; position: relative; z-index: 2;"><path d="M2 18 L30 6 L44 14 L72 16 L72 20 L44 22 L30 30 Z" fill="#7d110d" stroke="#f1c66a" stroke-width="2" stroke-linejoin="round"></path><path d="M14 18 L30 11 L38 18 L30 25 Z" fill="#f1c66a"></path><path d="M30 6 L22 0 M30 30 L22 36" stroke="#f1c66a" stroke-width="2" stroke-linecap="round"></path></svg>
+<div role="progressbar" aria-label="Tiến trình tải" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{pct}}" style="flex-shrink: 0; width: 868px; height: 16px; box-sizing: border-box; border-radius: 9px; background: #160707; border: 2px solid #b8893a; box-shadow: 0 0 0 1px #000, inset 0 2px 5px rgba(0,0,0,.9); overflow: hidden; position: relative; z-index: 1;">
+<div class="{{barCls}}" style="{{barStyle}}">
+<span style="position: absolute; left: 4px; right: 4px; top: 2px; height: 3px; border-radius: 2px; background: rgba(255,210,225,.55);"></span>
+<span class="a3q-sheen" style="position: absolute; top: 0; left: 0; width: 60px; height: 100%; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,235,240,.5), rgba(255,255,255,0));"></span>
+</div>
+</div>
+<svg width="72" height="36" viewBox="0 0 72 36" aria-hidden="true" style="flex-shrink: 0; margin-left: -16px; position: relative; z-index: 2; transform: scaleX(-1);"><path d="M2 18 L30 6 L44 14 L72 16 L72 20 L44 22 L30 30 Z" fill="#7d110d" stroke="#f1c66a" stroke-width="2" stroke-linejoin="round"></path><path d="M14 18 L30 11 L38 18 L30 25 Z" fill="#f1c66a"></path><path d="M30 6 L22 0 M30 30 L22 36" stroke="#f1c66a" stroke-width="2" stroke-linecap="round"></path></svg>
+</div>
+
+<div style="position: absolute; left: 206px; top: 480px; width: 868px; height: 90px;">
+<div style="{{textStyle}}">
+<span style="font-size: 21px; font-weight: 800; color: #fff4dc; text-shadow: 0 2px 0 #000, 0 0 6px rgba(0,0,0,.9);">{{stage}}</span>
+<span style="font-size: 21px; font-weight: 800; color: #ffd877; text-shadow: 0 2px 0 #000, 0 0 6px rgba(0,0,0,.9);">{{pct}}%</span>
+</div>
+<div class="{{cartCls}}" style="{{cartStyle}}">
+<span class="a3q-d1" style="position: absolute; left: -10px; top: 70px; width: 22px; height: 10px; border-radius: 50%; background: rgba(230,190,130,.6);"></span>
+<span class="a3q-d2" style="position: absolute; left: 4px; top: 74px; width: 16px; height: 8px; border-radius: 50%; background: rgba(255,230,190,.55);"></span>
+<span class="a3q-sp" style="position: absolute; left: 0; top: 58px; width: 5px; height: 5px; border-radius: 50%; background: #ffd27a; box-shadow: 0 0 8px #ff9a2e;"></span>
+<svg class="a3q-cart" width="132" height="84" viewBox="0 0 132 84" aria-hidden="true" style="position: absolute; left: 0; top: 0; overflow: visible;">
+<line x1="22" y1="2" x2="22" y2="44" stroke="#4a220c" stroke-width="3"></line>
+<path class="a3q-flag" d="M22 2 H48 V22 L40 18 L22 22 Z" fill="#9e1b17" stroke="#e2b85c" stroke-width="1.5" stroke-linejoin="round"></path>
+<circle cx="33" cy="11" r="4.5" fill="#3a0806" stroke="#e2b85c" stroke-width="1"></circle>
+<line x1="110" y1="6" x2="110" y2="42" stroke="#4a220c" stroke-width="3"></line>
+<path class="a3q-flag" d="M110 6 H130 V20 L124 17 L110 20 Z" fill="#9e1b17" stroke="#e2b85c" stroke-width="1.5" stroke-linejoin="round"></path>
+<ellipse cx="54" cy="40" rx="18" ry="9" fill="#d9b77a" stroke="#7a5a2c" stroke-width="1.5"></ellipse>
+<ellipse cx="80" cy="37" rx="16" ry="8.5" fill="#e6c88e" stroke="#7a5a2c" stroke-width="1.5"></ellipse>
+<ellipse cx="67" cy="30" rx="13" ry="7" fill="#cfa868" stroke="#7a5a2c" stroke-width="1.5"></ellipse>
+<path d="M4 42 L128 38 L120 64 L14 66 Z" fill="#b5652a" stroke="#4a220c" stroke-width="2.5" stroke-linejoin="round"></path>
+<path d="M10 52 L124 49 M12 59 L121 57" stroke="#7a3c14" stroke-width="1.5"></path>
+<path d="M4 42 L128 38" stroke="#f1c27a" stroke-width="2"></path>
+<g class="a3q-wheel"><circle cx="36" cy="70" r="12" fill="#6a3412" stroke="#f1c27a" stroke-width="2.5"></circle><path d="M36 58 V82 M24 70 H48 M27.5 61.5 L44.5 78.5 M44.5 61.5 L27.5 78.5" stroke="#f1c27a" stroke-width="1.5"></path><circle cx="36" cy="70" r="3" fill="#f1c27a"></circle></g>
+<g class="a3q-wheel"><circle cx="98" cy="70" r="12" fill="#6a3412" stroke="#f1c27a" stroke-width="2.5"></circle><path d="M98 58 V82 M86 70 H110 M89.5 61.5 L106.5 78.5 M106.5 61.5 L89.5 78.5" stroke="#f1c27a" stroke-width="1.5"></path><circle cx="98" cy="70" r="3" fill="#f1c27a"></circle></g>
+</svg>
+</div>
+</div>
+
+<div role="status" aria-label="Tốc độ tải" style="position: absolute; left: 206px; top: 604px; width: 868px; height: 24px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="{{speedColor}}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v14M6 12l6 6 6-6"></path></svg>
+<span class="{{statusCls}}" style="{{speedStyle}}">{{speed}}</span>
+</div>
+
+<div style="position: absolute; left: 140px; top: 642px; width: 1000px; height: 40px; display: flex; align-items: center; justify-content: center; gap: 14px;">
+<span class="a3q-cloud" aria-hidden="true"></span>
+<p class="{{tipClass}}" style="margin: 0; font-size: 18px; font-weight: 700; color: #f6d77e; text-shadow: 0 2px 0 #000, 0 0 6px rgba(0,0,0,.8); white-space: nowrap;">{{tip}}</p>
+<span class="a3q-cloud" aria-hidden="true" style="transform: scaleX(-1);"></span>
+</div>
+
+<div style="position: absolute; left: 24px; bottom: 6px; font-size: 12px; color: #bfae8c;">Phiên bản [0.1.0]</div>
+<div style="position: absolute; right: 24px; bottom: 4px; display: flex; align-items: center; gap: 10px;">
+<span style="font-size: 12px; color: #bfae8c;">Chơi quá 180 phút một ngày sẽ ảnh hưởng xấu đến sức khỏe.</span>
+<span style="font-size: 12px; font-weight: 800; color: #120a07; background: #f1d58a; border-radius: 4px; padding: 2px 6px;">16+</span>
+</div>
+
+<sc-if value="{{showSpinner}}" hint-placeholder-val="{{ false }}">
+<div role="status" aria-live="polite" style="position: absolute; left: 0; top: 0; width: 1280px; height: 720px; background: rgba(4,3,2,0.45); display: flex; flex-direction: column; align-items: center; padding-top: 222px; box-sizing: border-box; gap: 18px;">
+<div style="position: relative; width: 140px; height: 140px;">
+<div style="position: absolute; left: 0; top: 0; width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, rgba(19,40,73,0.92) 55%, rgba(19,40,73,0) 72%);"></div>
+<div class="net-ring1" style="position: absolute; left: 6px; top: 6px; width: 128px; height: 128px; box-sizing: border-box; border-radius: 50%; border: 5px solid rgba(226,184,92,0.18); border-top-color: #ffd877; border-right-color: #e2b85c; box-shadow: 0 0 18px rgba(255,200,90,.35);"></div>
+<div class="net-ring2" style="position: absolute; left: 26px; top: 26px; width: 88px; height: 88px; box-sizing: border-box; border-radius: 50%; border: 2px dashed rgba(226,184,92,0.7);"></div>
+<div class="net-core" style="position: absolute; left: 54px; top: 54px; width: 32px; height: 32px; background: linear-gradient(135deg, #ffe39a, #b7791f); border: 2px solid #fff0bf; box-shadow: 0 0 16px rgba(255,200,90,.8);"></div>
+</div>
+<span style="font-size: 20px; font-weight: 800; color: #fff4dc; text-shadow: 0 2px 0 #000;">{{spinTitle}}</span>
+<span style="font-size: 14px; color: #d8c8a6; text-shadow: 0 1px 2px #000;">{{spinSub}}</span>
+</div>
+</sc-if>
+
+<sc-if value="{{showPopup}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 0; top: 0; width: 1280px; height: 720px; background: rgba(4,3,2,0.6);"></div>
+<div role="alertdialog" aria-label="{{popTitle}}" class="ui-frame net-pop" style="position: absolute; left: 360px; top: 168px; width: 560px; padding: 40px 50px 28px; display: flex; flex-direction: column; align-items: center; gap: 12px; color: #e6ecf5;">
+<div class="ui-crest" style="left: 161px; top: -32px;"></div>
+<div style="width: 64px; height: 64px; border-radius: 50%; background: #2a0f12; border: 2px solid #e5484d; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 16px rgba(229,72,77,.45);">
+<sc-if value="{{isTimeout}}" hint-placeholder-val="{{ false }}">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fca5a5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="1.5"></rect><rect x="3" y="13" width="18" height="7" rx="1.5"></rect><path d="M7 7.5h.01M7 16.5h.01"></path><path d="M14 6l4 4M18 6l-4 4"></path></svg>
+</sc-if>
+<sc-if value="{{isLost}}" hint-placeholder-val="{{ true }}">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fca5a5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8.5a15 15 0 0 1 20 0"></path><path d="M5 12a10.5 10.5 0 0 1 14 0"></path><path d="M8.5 15.5a5.5 5.5 0 0 1 7 0"></path><path d="M12 19h.01"></path><path d="M3 3l18 18"></path></svg>
+</sc-if>
+</div>
+<h2 style="margin: 0; font-size: 22px; font-weight: 800; color: #ffd877; text-shadow: 0 2px 0 #000;">{{popTitle}}</h2>
+<p style="margin: 0; text-align: center; font-size: 14.5px; line-height: 1.55; color: #c9d6ea;">{{popMsg}}</p>
+<p style="margin: 0; text-align: center; font-size: 13px; color: #86efac;">Tiến trình được giữ lại, sẽ tải tiếp từ {{pct}}%.</p>
+<span style="font-size: 12px; color: #7f93b0;">{{popCode}}</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; width: 100%; margin-top: 4px;">
+<button type="button" class="ui-btn b-blue s-md" onClick="{{quit}}">Thoát game</button>
+<button type="button" class="ui-btn b-gold s-md" style="font-size: 18px;" onClick="{{retry}}">THỬ LẠI</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{done}}" hint-placeholder-val="{{ false }}">
+<a href="Login.dc.html" aria-label="Sang màn hình đăng nhập" style="position: absolute; left: 0; top: 0; width: 1280px; height: 720px; display: block;"></a>
+</sc-if>
+<div style="position: absolute; right: 12px; top: 6px; z-index: 50;"><dc-import name="StatusBar" signal="{{sig}}" hint-size="120px,26px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"scenario":{"editor":"enum","options":["auto","weak","stall","lost","timeout"],"default":"auto","section":"Kịch bản mạng"},"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic {
+constructor(p) {
+super(p);
+this.state = this.initState(p.scenario || 'auto');
+}
+initState(sc) {
+this.live = sc === 'auto';
+this.failed = false;
+return { pct: sc === 'auto' ? 0 : 63, phase: sc === 'auto' ? 'good' : sc, tipIdx: 0, stallT: 6, attempt: 2, speedV: 2.4, pingV: 32 };
+}
+componentDidMount() {
+this.t = setInterval(() => this.tick(), 120);
+this.tt = setInterval(() => this.setState({ tipIdx: this.state.tipIdx + 1 }), 3500);
+this.j = setInterval(() => this.jitter(), 700);
+this.jitter();
+}
+componentDidUpdate(prev) {
+if ((prev.scenario || 'auto') !== (this.props.scenario || 'auto')) this.setState(this.initState(this.props.scenario || 'auto'));
+}
+componentWillUnmount() { clearInterval(this.t); clearInterval(this.tt); clearInterval(this.j); }
+jitter() {
+const ph = this.state.phase, r = Math.random();
+if (ph === 'good') this.setState({ speedV: 2.1 + r * 0.5, pingV: 25 + Math.round(r * 22) });
+else if (ph === 'weak') this.setState({ speedV: 0.04 + r * 0.14, pingV: 300 + Math.round(r * 220) });
+}
+tick() {
+if (!this.live) return;
+const s = this.state;
+if (s.phase === 'good') {
+if (s.pct >= 100) return;
+const next = Math.min(100, s.pct + 1 + Math.floor(Math.random() * 2));
+this.setState({ pct: next, phase: (!this.failed && next >= 36) ? 'weak' : 'good' });
+} else if (s.phase === 'weak') {
+const next = Math.random() < 0.25 ? s.pct + 1 : s.pct;
+if (next >= 50) this.setState({ pct: 50, phase: 'stall', stallT: 0, attempt: 1 });
+else this.setState({ pct: next });
+} else if (s.phase === 'stall') {
+const st = s.stallT + 1;
+if (st >= 36) { this.failed = true; this.setState({ phase: 'lost' }); }
+else this.setState({ stallT: st, attempt: 1 + Math.floor(st / 12) });
+} else if (s.phase === 'retry') {
+const st = s.stallT + 1;
+if (st >= 14) this.setState({ phase: 'good' }); else this.setState({ stallT: st });
+}
+}
+sfx(kind, force) {
+if (!force && this.state && this.state.muted) return;
+try {
+const C = window.AudioContext || window.webkitAudioContext;
+if (!this.ac) this.ac = new C();
+const ac = this.ac; if (ac.state === 'suspended') ac.resume();
+const t = ac.currentTime, sr = ac.sampleRate, out = ac.createGain(); out.gain.value = 0.6; out.connect(ac.destination);
+const env = (node, vol, d, dur) => { const g = ac.createGain(); g.gain.setValueAtTime(0.0001, t + d); g.gain.exponentialRampToValueAtTime(vol, t + d + 0.005); g.gain.exponentialRampToValueAtTime(0.0001, t + d + dur); node.connect(g); g.connect(out); };
+const tone = (type, f1, f2, dur, vol, d) => { const o = ac.createOscillator(); o.type = type; o.frequency.setValueAtTime(f1, t + d); o.frequency.exponentialRampToValueAtTime(f2, t + d + dur); env(o, vol, d, dur); o.start(t + d); o.stop(t + d + dur + 0.05); };
+const noise = (dur, vol, d, type, f, f2) => { const n = Math.floor(sr * dur), b = ac.createBuffer(1, n, sr), x = b.getChannelData(0); for (let i = 0; i < n; i++) x[i] = Math.random() * 2 - 1; const s = ac.createBufferSource(), fl = ac.createBiquadFilter(); s.buffer = b; fl.type = type; fl.Q.value = 1.2; fl.frequency.setValueAtTime(f, t + d); if (f2) fl.frequency.exponentialRampToValueAtTime(f2, t + d + dur); s.connect(fl); env(fl, vol, d, dur); s.start(t + d); };
+const pluck = (f, dur, vol, d) => { const n = Math.floor(sr * dur), b = ac.createBuffer(1, n, sr), x = b.getChannelData(0), p = Math.max(2, Math.round(sr / f)), r = new Float32Array(p); for (let i = 0; i < p; i++) r[i] = Math.random() * 2 - 1; let k = 0; for (let i = 0; i < n; i++) { const v = r[k], w = r[(k + 1) % p]; r[k] = (v + w) * 0.4985; x[i] = v; k = (k + 1) % p; } const s = ac.createBufferSource(), hp = ac.createBiquadFilter(), g = ac.createGain(); hp.type = 'highpass'; hp.frequency.value = 180; s.buffer = b; g.gain.value = vol; s.connect(hp); hp.connect(g); g.connect(out); s.start(t + d); };
+const drum = (d, vol) => { tone('sine', 140, 48, 0.45, vol, d); noise(0.07, vol * 0.5, d, 'lowpass', 900); };
+const P = [293.66, 329.63, 369.99, 440, 493.88, 587.33, 659.25, 739.99, 880, 987.77, 1174.66];
+if (kind === 'ok') { drum(0, 0.8); [5, 6, 7, 8, 10].forEach((n, i) => pluck(P[n], 0.7, 0.32, 0.03 + i * 0.045)); }
+else if (kind === 'back') { pluck(P[8], 0.4, 0.3, 0); pluck(P[5], 0.5, 0.3, 0.07); }
+else { pluck(P[8], 0.45, 0.35, 0); }
+} catch (e) {}
+}
+renderVals() {
+const s = this.state, pct = s.pct, ph = s.phase;
+const vi = (n, d) => n.toFixed(d).replace('.', ',');
+const tips = [
+'Thu thập và bồi dưỡng danh tướng, sắp xếp đội hình hợp lý để làm chủ chiến trường!',
+'Chọn một tướng rồi chạm vào bản đồ để ra lệnh di chuyển!',
+'Mỗi trận triệu hồi tối đa 5 tướng, mỗi tướng dẫn theo một đội quân!',
+'Phá hủy nhà chính của đối phương để giành chiến thắng!',
+'Dùng tướng khắc hệ Kim, Mộc, Thủy, Hỏa, Thổ để chiếm ưu thế!',
+'Liên kết tài khoản để giữ tiến trình khi đổi máy hoặc cài lại game!',
+'Chọn máy chủ có trạng thái Tốt để vào trận mượt hơn!'
+];
+const paused = ph === 'stall' || ph === 'retry' || ph === 'lost' || ph === 'timeout';
+const NET = {
+good: { bars: 4, col: '#4ade80', type: 'Wi-Fi', ping: s.pingV + ' ms', speed: vi(s.speedV, 1) + ' MB/s', st: 'Ổn định', sc: '#86efac' },
+weak: { bars: 2, col: '#f59e0b', type: '4G', ping: s.pingV + ' ms', speed: Math.round(s.speedV * 1000) + ' KB/s', st: 'Mạng yếu', sc: '#fcd34d' },
+stall: { bars: 1, col: '#ef4444', type: '4G', ping: '—', speed: '0 KB/s', st: 'Đang kết nối lại…', sc: '#fca5a5', blink: true },
+retry: { bars: 1, col: '#f59e0b', type: 'Wi-Fi', ping: '—', speed: '0 KB/s', st: 'Đang thử lại…', sc: '#fcd34d', blink: true },
+lost: { bars: 0, col: '#ef4444', type: 'Không có mạng', ping: '—', speed: '0 KB/s', st: 'Mất kết nối', sc: '#fca5a5' },
+timeout: { bars: 3, col: '#f59e0b', type: 'Wi-Fi', ping: '> 5000 ms', speed: '0 KB/s', st: 'Máy chủ không phản hồi', sc: '#fca5a5' }
+};
+const n = NET[ph] || NET.good;
+const bars = [6, 9, 12, 14].map((h, i) => ({ style: 'display:inline-block;width:4px;border-radius:1px;height:' + h + 'px;background:' + (i < n.bars ? n.col : '#3a4558') + ';' }));
+const stage = ph === 'weak' ? 'Mạng yếu, đang tải chậm…' : paused ? (ph === 'lost' || ph === 'timeout' ? 'Tạm dừng tải' : 'Đang chờ kết nối…') : pct < 20 ? 'Đang kiểm tra phiên bản…' : pct < 90 ? 'Đang tải tài nguyên…' : pct < 100 ? 'Đang kết nối máy chủ…' : 'Hoàn tất! Đang vào game…';
+const W = 868, CW = 132, TW = 330;
+const fill = Math.round(W * pct / 100);
+const cartLeft = Math.min(W - CW + 8, Math.max(-6, fill - CW + 14));
+const leftSide = cartLeft - 14 - TW >= 0;
+const textLeft = leftSide ? cartLeft - 14 - TW : cartLeft + CW + 14;
+const i = s.tipIdx;
+const isTimeout = ph === 'timeout';
+return {
+pct, stage,
+loadedMb: vi(215 * pct / 100, 1),
+bars, netType: n.type, ping: n.ping, speed: n.speed, statusText: n.st,
+statusCls: n.blink ? 'net-blink' : '',
+statusStyle: 'font-weight:700;color:' + n.sc + ';',
+speedColor: ph === 'good' ? '#f2f5fa' : n.sc,
+speedStyle: 'font-size:16px;font-weight:800;text-shadow:0 1px 3px #000;color:' + (ph === 'good' ? '#f2f5fa' : n.sc) + ';',
+sig: ph === 'good' || ph === 'timeout' ? 3 : ph === 'lost' ? 0 : 1,
+showToast: ph === 'weak',
+showSpinner: ph === 'stall' || ph === 'retry',
+spinTitle: ph === 'retry' ? 'Đang thử kết nối lại…' : 'Mạng không ổn định, đang kết nối lại…',
+spinSub: ph === 'retry' ? 'Vui lòng chờ trong giây lát' : 'Lần thử ' + s.attempt + '/3 · Vui lòng không tắt game',
+showPopup: ph === 'lost' || isTimeout,
+isTimeout, isLost: !isTimeout,
+popTitle: isTimeout ? 'Máy chủ không phản hồi' : 'Mất kết nối mạng',
+popMsg: isTimeout ? 'Kết nối tới máy chủ bị gián đoạn hoặc quá thời gian chờ. Vui lòng thử lại sau ít phút.' : 'Không thể kết nối Internet. Vui lòng kiểm tra Wi-Fi hoặc dữ liệu di động rồi thử lại.',
+popCode: isTimeout ? 'Mã lỗi: [NET-2002]' : 'Mã lỗi: [NET-1001]',
+retry: () => { this.sfx('ok'); this.live = true; this.failed = true; this.setState({ phase: 'retry', stallT: 0 }); },
+quit: () => this.sfx('back'),
+tip: tips[i % tips.length],
+tipClass: i % 2 ? 'a3q-tipA' : 'a3q-tipB',
+done: pct >= 100 && ph === 'good',
+cartCls: paused ? 'is-paused' : '',
+barCls: paused ? 'is-paused' : '',
+barStyle: 'position:absolute;left:0;top:0;bottom:0;width:' + pct + '%;border-radius:7px;overflow:hidden;background:linear-gradient(90deg,#8a0f2e,#d61f4f 60%,#ff4f7a);box-shadow:0 0 10px rgba(255,60,110,.7);transition:width .12s linear,filter .3s;filter:' + (paused ? 'grayscale(.6) brightness(.8)' : 'none') + ';',
+cartStyle: 'position:absolute;top:0;width:132px;height:84px;left:' + cartLeft + 'px;transition:left .12s linear;',
+textStyle: 'position:absolute;top:44px;width:' + TW + 'px;display:flex;gap:10px;align-items:baseline;white-space:nowrap;justify-content:' + (leftSide ? 'flex-end' : 'flex-start') + ';left:' + textLeft + 'px;transition:left .12s linear;'
+};
+}
+}
+</script>
+</body>
+</html>

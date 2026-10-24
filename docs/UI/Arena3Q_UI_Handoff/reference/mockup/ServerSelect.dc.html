@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Arena3Q – Chọn máy chủ</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./ui.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#ffd877}a:hover{color:#fff0bf}
+.av{width:36px;height:36px;border-radius:50%;border:2px solid #e2b85c;box-sizing:border-box;background-image:url(../../Assets/UI/Backgrounds/keyart_3heroes.png);background-size:430px 242px;background-repeat:no-repeat;flex-shrink:0}
+.av-gv{background-position:-75px -87px}
+.av-lb{background-position:-195px -100px}
+.av-gcl{background-position:-350px -98px}
+.av-lg{width:56px;height:56px;border-radius:50%;border:2px solid #ffd877;box-sizing:border-box;background-image:url(../../Assets/UI/Backgrounds/keyart_3heroes.png);background-size:669px 376px;background-position:-544px -152px;background-repeat:no-repeat;flex-shrink:0}
+.srv{transition:transform .08s,filter .12s}
+.srv:hover{filter:brightness(1.18)}
+.srv:active{transform:scale(.96);filter:brightness(.88)}
+</style>
+</helmet>
+<div style="width: 1280px; height: 720px; position: relative; overflow: hidden; background: #0a0604; font-family: 'Be Vietnam Pro', system-ui, sans-serif; color: #e6ecf5;">
+<img src="../../Assets/UI/Backgrounds/keyart_3heroes.png" alt="" style="position: absolute; left: -20px; top: -20px; width: 1320px; height: 760px; object-fit: cover; filter: blur(6px) brightness(0.45);">
+
+<a href="Start.dc.html" class="ui-round" aria-label="Quay lại" onClick="{{back}}" style="position: absolute; left: 14px; top: 14px;"><img src="../../Assets/UI/Sprites/Icons/icon_back.png" alt=""></a>
+
+<div style="position: absolute; right: 12px; top: 6px; z-index: 50;"><dc-import name="StatusBar" signal="3" hint-size="120px,26px"></dc-import></div>
+<div role="dialog" aria-label="Chọn máy chủ" class="ui-frame-big" style="position: absolute; left: 76px; top: 46px; width: 1128px; height: 650px; padding: 30px 40px 22px; display: flex; flex-direction: column; gap: 10px;">
+<div class="ui-crest" style="left: 445px; top: -34px;"></div>
+<h1 style="margin: 0; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; letter-spacing: 3px; color: #ffd877; text-shadow: 0 2px 0 #000;">CHỌN MÁY CHỦ</h1>
+
+<div style="flex-grow: 1; min-height: 0; display: flex; gap: 18px;">
+<div style="width: 200px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px;">
+<sc-for list="{{tabs}}" as="tab" hint-placeholder-count="4">
+<button type="button" class="{{tab.cls}}" style="width: 100%;" onClick="{{tab.pick}}">{{tab.label}}</button>
+</sc-for>
+</div>
+
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; align-items: center; gap: 14px; padding: 8px 14px; border-radius: 8px; background: linear-gradient(90deg, rgba(226,184,92,0.22), rgba(19,40,73,0.6)); border: 1px solid rgba(226,184,92,0.6);">
+<span class="av-lg" role="img" aria-label="Ảnh đại diện Gia Cát Lượng"></span>
+<div style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1;">
+<span style="font-size: 12px; font-weight: 600; color: #e8d3a0; letter-spacing: 1px;">ĐĂNG NHẬP GẦN ĐÂY</span>
+<span style="font-size: 18px; font-weight: 700; color: #f2f5fa;">S8 · Xích Bích <span style="font-size: 14px; font-weight: 600; color: #ffd877;">· Lv.45</span></span>
+</div>
+<button type="button" class="ui-btn b-blue s-sm" style="width: 110px;" onClick="{{pickRecent}}">Chọn</button>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: baseline;">
+<span style="font-size: 15px; font-weight: 700; color: #e8d3a0;">{{tabTitle}}</span>
+<span style="font-size: 12px; color: #8fa2bf;">{{countText}}</span>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; align-content: start; flex-grow: 1; min-height: 0; overflow-y: auto; padding: 2px;">
+<sc-for list="{{servers}}" as="s" hint-placeholder-count="10">
+<button type="button" class="srv" onClick="{{s.pick}}" aria-pressed="{{s.selectedStr}}" style="{{s.cardStyle}}">
+<span style="{{s.dotStyle}}"></span>
+<span style="{{s.statusStyle}}">{{s.statusText}}</span>
+<span style="font-size: 16px; font-weight: 700; color: #f2f5fa; flex-grow: 1; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">S{{s.id}} · {{s.name}}</span>
+<sc-if value="{{s.isNew}}" hint-placeholder-val="{{ false }}"><span style="font-size: 11px; font-weight: 800; color: #052e12; background: #4ade80; border-radius: 4px; padding: 2px 6px;">MỚI</span></sc-if>
+<sc-if value="{{s.isHot}}" hint-placeholder-val="{{ false }}"><span style="font-size: 11px; font-weight: 800; color: #fff; background: #c4281c; border-radius: 4px; padding: 2px 6px;">HOT</span></sc-if>
+<sc-if value="{{s.hasChar}}" hint-placeholder-val="{{ false }}">
+<span style="display: flex; align-items: center; gap: 6px;"><span class="{{s.avClass}}" role="img" aria-label="Có nhân vật"></span><span style="font-size: 13px; font-weight: 700; color: #ffd877;">Lv.{{s.lv}}</span></span>
+</sc-if>
+</button>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div style="height: 56px; flex-shrink: 0; display: flex; align-items: center; gap: 18px; border-top: 1px solid rgba(226,184,92,0.35); padding-top: 8px;">
+<span style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #c9d6ea;"><span style="width: 10px; height: 10px; border-radius: 50%; background: #4ade80;"></span>Tốt</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #c9d6ea;"><span style="width: 10px; height: 10px; border-radius: 50%; background: #f59e0b;"></span>Đông</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #c9d6ea;"><span style="width: 10px; height: 10px; border-radius: 50%; background: #dc2626;"></span>Đầy</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #c9d6ea;"><span style="width: 10px; height: 10px; border-radius: 50%; background: #6b7280;"></span>Bảo trì</span>
+<span style="flex-grow: 1;"></span>
+<span style="font-size: 14px; color: #a9b8cf;">Đã chọn: <strong style="color: #ffd877;">{{selectedName}}</strong></span>
+<a href="Start.dc.html" class="ui-btn b-gold s-md" style="width: 210px; font-size: 18px;" onClick="{{ok}}">XÁC NHẬN</a>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { tab: 'rec', sel: 8 }; }
+sfx(kind, force) {
+if (!force && this.state && this.state.muted) return;
+try {
+const C = window.AudioContext || window.webkitAudioContext;
+if (!this.ac) this.ac = new C();
+const ac = this.ac; if (ac.state === 'suspended') ac.resume();
+const t = ac.currentTime, sr = ac.sampleRate, out = ac.createGain(); out.gain.value = 0.6; out.connect(ac.destination);
+const env = (node, vol, d, dur) => { const g = ac.createGain(); g.gain.setValueAtTime(0.0001, t + d); g.gain.exponentialRampToValueAtTime(vol, t + d + 0.005); g.gain.exponentialRampToValueAtTime(0.0001, t + d + dur); node.connect(g); g.connect(out); };
+const tone = (type, f1, f2, dur, vol, d) => { const o = ac.createOscillator(); o.type = type; o.frequency.setValueAtTime(f1, t + d); o.frequency.exponentialRampToValueAtTime(f2, t + d + dur); env(o, vol, d, dur); o.start(t + d); o.stop(t + d + dur + 0.05); };
+const noise = (dur, vol, d, type, f, f2) => { const n = Math.floor(sr * dur), b = ac.createBuffer(1, n, sr), x = b.getChannelData(0); for (let i = 0; i < n; i++) x[i] = Math.random() * 2 - 1; const s = ac.createBufferSource(), fl = ac.createBiquadFilter(); s.buffer = b; fl.type = type; fl.Q.value = 1.2; fl.frequency.setValueAtTime(f, t + d); if (f2) fl.frequency.exponentialRampToValueAtTime(f2, t + d + dur); s.connect(fl); env(fl, vol, d, dur); s.start(t + d); };
+const pluck = (f, dur, vol, d) => { const n = Math.floor(sr * dur), b = ac.createBuffer(1, n, sr), x = b.getChannelData(0), p = Math.max(2, Math.round(sr / f)), r = new Float32Array(p); for (let i = 0; i < p; i++) r[i] = Math.random() * 2 - 1; let k = 0; for (let i = 0; i < n; i++) { const v = r[k], w = r[(k + 1) % p]; r[k] = (v + w) * 0.4985; x[i] = v; k = (k + 1) % p; } const s = ac.createBufferSource(), hp = ac.createBiquadFilter(), g = ac.createGain(); hp.type = 'highpass'; hp.frequency.value = 180; s.buffer = b; g.gain.value = vol; s.connect(hp); hp.connect(g); g.connect(out); s.start(t + d); };
+const drum = (d, vol) => { tone('sine', 140, 48, 0.45, vol, d); noise(0.07, vol * 0.5, d, 'lowpass', 900); };
+const gong = (d, vol) => { [1, 1.48, 2.1, 2.6, 3.4, 4.2].forEach((m, i) => { const o = ac.createOscillator(); o.type = 'sine'; o.frequency.setValueAtTime(110 * m * 1.01, t + d); o.frequency.exponentialRampToValueAtTime(110 * m, t + d + 0.4); env(o, vol / (1 + i * 0.7), d, 2.2 - i * 0.25); o.start(t + d); o.stop(t + d + 2.4); }); noise(0.12, vol * 0.25, d, 'bandpass', 2500); };
+const wood = (f, d, vol) => { tone('sine', f, f * 0.92, 0.07, vol, d); tone('triangle', f * 2.7, f * 2.5, 0.03, vol * 0.35, d); noise(0.015, vol * 0.4, d, 'bandpass', f * 3); };
+const sword = (d, vol) => { noise(0.26, vol, d, 'bandpass', 1400, 7500); tone('sine', 2600, 2580, 0.6, vol * 0.12, d + 0.18); tone('sine', 3900, 3880, 0.5, vol * 0.08, d + 0.18); };
+const P = [293.66, 329.63, 369.99, 440, 493.88, 587.33, 659.25, 739.99, 880, 987.77, 1174.66];
+if (kind === 'enter') { drum(0, 0.9); drum(0.16, 0.7); sword(0.02, 0.35); gong(0.3, 0.35); }
+else if (kind === 'ok') { drum(0, 0.8); [5, 6, 7, 8, 10].forEach((n, i) => pluck(P[n], 0.7, 0.32, 0.03 + i * 0.045)); }
+else if (kind === 'tab') { wood(980, 0, 0.5); }
+else if (kind === 'back') { pluck(P[8], 0.4, 0.3, 0); pluck(P[5], 0.5, 0.3, 0.07); }
+else if (kind === 'err') { wood(420, 0, 0.6); wood(380, 0.12, 0.6); }
+else { pluck(P[8], 0.45, 0.35, 0); }
+} catch (e) {}
+}
+renderVals() {
+const ALL = [
+{ id: 1, name: 'Lạc Dương', st: 'full', ch: 'gv', lv: 62 },
+{ id: 2, name: 'Trường An', st: 'full' },
+{ id: 3, name: 'Hứa Xương', st: 'busy' },
+{ id: 4, name: 'Kiến Nghiệp', st: 'busy', ch: 'lb', lv: 38 },
+{ id: 5, name: 'Thành Đô', st: 'busy' },
+{ id: 6, name: 'Hổ Lao Quan', st: 'good' },
+{ id: 7, name: 'Trường Bản', st: 'good' },
+{ id: 8, name: 'Xích Bích', st: 'good', ch: 'gcl', lv: 45 },
+{ id: 9, name: 'Quan Độ', st: 'good', hot: true },
+{ id: 10, name: 'Phàn Thành', st: 'maint' },
+{ id: 11, name: 'Kinh Châu', st: 'busy' },
+{ id: 12, name: 'Ích Châu', st: 'busy' },
+{ id: 13, name: 'Tương Dương', st: 'good' },
+{ id: 14, name: 'Hán Trung', st: 'good' },
+{ id: 15, name: 'Nhai Đình', st: 'good' },
+{ id: 16, name: 'Hợp Phì', st: 'good' },
+{ id: 17, name: 'Di Lăng', st: 'good', hot: true },
+{ id: 18, name: 'Định Quân Sơn', st: 'good' },
+{ id: 19, name: 'Ngũ Trượng Nguyên', st: 'good', isNew: true },
+{ id: 20, name: 'Bạch Đế Thành', st: 'good', isNew: true }
+];
+const ST = {
+good: { t: 'Tốt', dot: '#4ade80', c: '#86efac' },
+busy: { t: 'Đông', dot: '#f59e0b', c: '#fcd34d' },
+full: { t: 'Đầy', dot: '#dc2626', c: '#fca5a5' },
+maint: { t: 'Bảo trì', dot: '#6b7280', c: '#c7c9cf' }
+};
+const TABS = [
+{ id: 'mine', label: 'Máy chủ của tôi', title: 'Máy chủ đã có nhân vật', ids: ALL.filter(s => s.ch).map(s => s.id) },
+{ id: 'rec', label: 'Đề xuất', title: 'Máy chủ đề xuất cho bạn', ids: [20, 19, 17, 9, 15, 16] },
+{ id: 'r1', label: 'S1 – S10', title: 'Máy chủ S1 – S10', ids: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1] },
+{ id: 'r2', label: 'S11 – S20', title: 'Máy chủ S11 – S20', ids: [20, 19, 18, 17, 16, 15, 14, 13, 12, 11] }
+];
+const cur = TABS.find(t => t.id === this.state.tab) || TABS[1];
+const tabs = TABS.map(t => ({
+label: t.label,
+cls: 'ui-btn s-md ' + (t.id === cur.id ? 'b-red is-on' : 'b-blue'),
+pick: () => { this.sfx('tab'); this.setState({ tab: t.id }); }
+}));
+const byId = {}; ALL.forEach(s => { byId[s.id] = s; });
+const servers = cur.ids.map(id => {
+const s = byId[id]; const st = ST[s.st];
+const sel = s.id === this.state.sel; const maint = s.st === 'maint';
+return {
+id: s.id, name: s.name, statusText: st.t, lv: s.lv || 0,
+isNew: !!s.isNew, isHot: !!s.hot, hasChar: !!s.ch, avClass: 'av av-' + (s.ch || 'gv'),
+selectedStr: sel ? 'true' : 'false',
+pick: () => { if (maint) { this.sfx('err'); return; } this.sfx('tap'); this.setState({ sel: s.id }); },
+dotStyle: 'width:12px;height:12px;border-radius:50%;flex-shrink:0;background:' + st.dot + ';box-shadow:0 0 6px ' + st.dot + ';',
+statusStyle: 'width:54px;flex-shrink:0;text-align:left;font-size:13px;font-weight:700;color:' + st.c + ';',
+cardStyle: 'height:56px;box-sizing:border-box;padding:0 14px;display:flex;align-items:center;gap:10px;border-radius:6px;font:inherit;cursor:' + (maint ? 'not-allowed' : 'pointer') + ';opacity:' + (maint ? '0.55' : '1') + ';' + (sel
+? 'background:linear-gradient(90deg,#3a2a10,#13284a);border:2px solid #ffd877;box-shadow:0 0 14px rgba(255,216,119,.5);'
+: 'background:linear-gradient(180deg,#0e1c33,#132a49);border:1px solid #2f5584;')
+};
+});
+const selS = byId[this.state.sel];
+return {
+tabs, servers,
+tabTitle: cur.title,
+countText: servers.length + ' máy chủ',
+selectedName: 'S' + selS.id + ' · ' + selS.name,
+pickRecent: () => { this.sfx('tap'); this.setState({ sel: 8 }); },
+ok: () => this.sfx('ok'), back: () => this.sfx('back')
+};
+}
+}
+</script>
+</body>
+</html>

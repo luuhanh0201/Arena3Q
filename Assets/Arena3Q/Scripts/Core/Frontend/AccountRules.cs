@@ -13,7 +13,8 @@ namespace Arena3Q.Core
         Guest,
         Password,
         Google,
-        Apple
+        Apple,
+        Facebook
     }
 
     public enum CredentialProblem
@@ -31,6 +32,30 @@ namespace Arena3Q.Core
         public int MinUsernameLength { get; set; } = 6;
         public int MaxUsernameLength { get; set; } = 20;
         public int MinPasswordLength { get; set; } = 8;
+
+        public static bool IsEmailOrPhone(string address)
+        {
+            address = (address ?? "").Trim();
+            if (address.Length == 0 || address.Length > 254) return false;
+            var at = address.IndexOf('@');
+            if (at > 0)
+            {
+                var dot = address.LastIndexOf('.');
+                return at == address.LastIndexOf('@') && dot > at + 1 && dot < address.Length - 1
+                    && address.IndexOf(' ') < 0 && address.IndexOfAny(new[] { '\r', '\n', '\t' }) < 0;
+            }
+            var start = address[0] == '+' ? 1 : 0;
+            if (address.Length - start < 9 || address.Length - start > 15) return false;
+            for (var i = start; i < address.Length; i++) if (address[i] < '0' || address[i] > '9') return false;
+            return true;
+        }
+
+        public static bool IsVerificationCode(string code)
+        {
+            if (code == null || code.Length != 6) return false;
+            foreach (var c in code) if (c < '0' || c > '9') return false;
+            return true;
+        }
 
         /// <summary>Letters without diacritics, digits and '_' only.</summary>
         public CredentialProblem ValidateUsername(string username)

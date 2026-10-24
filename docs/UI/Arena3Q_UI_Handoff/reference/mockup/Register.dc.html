@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Arena3Q – Đăng ký</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./ui.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#ffd877}a:hover{color:#fff0bf}
+</style>
+</helmet>
+<div style="width: 1280px; height: 720px; position: relative; overflow: hidden; background: #0a0604; font-family: 'Be Vietnam Pro', system-ui, sans-serif; color: #e6ecf5;">
+<img src="../../Assets/UI/Backgrounds/keyart_3heroes.png" alt="Key art Arena3Q: ba tướng chibi xông trận" style="position: absolute; left: 0; top: 0; width: 1280px; height: 720px; object-fit: cover;">
+<div style="position: absolute; left: 0; top: 0; width: 1280px; height: 720px; background: radial-gradient(ellipse 600px 440px at 640px 410px, rgba(6,4,3,0.7), rgba(6,4,3,0.3) 72%, rgba(6,4,3,0.5));"></div>
+<img src="../../Assets/UI/Logo/logo_arena3q.png" alt="Arena3Q – Tam Quốc Chiến Thuật" style="position: absolute; left: 495px; top: 8px; width: 290px; height: auto;">
+
+<a href="Login.dc.html" class="ui-round" aria-label="Quay lại đăng nhập" onClick="{{back}}" style="position: absolute; left: 20px; top: 18px;"><img src="../../Assets/UI/Sprites/Icons/icon_back.png" alt=""></a>
+<div style="position: absolute; right: 12px; top: 6px; z-index: 50;"><dc-import name="StatusBar" signal="3" hint-size="120px,26px"></dc-import></div>
+<div style="position: absolute; right: 20px; top: 40px; display: flex; gap: 10px; align-items: center;">
+<button type="button" class="ui-lang" aria-label="Ngôn ngữ: Tiếng Việt" onClick="{{tap}}"><img src="../../Assets/UI/Sprites/Icons/lang_selector_vi.png" alt=""></button>
+<button type="button" class="ui-round" aria-label="Bật/tắt âm thanh" onClick="{{tap}}"><img src="../../Assets/UI/Sprites/Icons/icon_sound.png" alt=""></button>
+</div>
+
+<div class="ui-frame" style="position: absolute; left: 380px; top: 134px; width: 520px; padding: 34px 44px 26px; display: flex; flex-direction: column; gap: 10px;">
+<div class="ui-tassel" style="left: -12px; top: 40px;"></div>
+<div class="ui-tassel" style="right: -12px; top: 40px; transform: scaleX(-1);"></div>
+<div class="ui-crest" style="left: 141px; top: -32px;"></div>
+
+<div style="display: flex;">
+<a href="Login.dc.html" class="ui-tab" onClick="{{tab}}">Đăng nhập</a>
+<span class="ui-tab is-on">Đăng ký</span>
+</div>
+<label for="r-acc" class="sr-only">Email hoặc số điện thoại</label>
+<input id="r-acc" class="ui-input" type="text" autocomplete="username" placeholder="Email hoặc số điện thoại">
+<div style="display: flex; gap: 8px;">
+<label for="r-otp" class="sr-only">Mã xác minh</label>
+<input id="r-otp" class="ui-input" type="text" inputmode="numeric" placeholder="Mã xác minh (6 số)" style="flex: 1 1 0; letter-spacing: 1px;">
+<button type="button" class="ui-btn b-blue s-sm" style="width: 120px; flex-shrink: 0;" onClick="{{tap}}">Gửi mã</button>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;">
+<label for="r-pw" class="sr-only">Mật khẩu</label>
+<input id="r-pw" class="ui-input" type="password" autocomplete="new-password" placeholder="Mật khẩu (tối thiểu 8 ký tự)">
+<label for="r-pw2" class="sr-only">Nhập lại mật khẩu</label>
+<input id="r-pw2" class="ui-input" type="password" autocomplete="new-password" placeholder="Nhập lại mật khẩu">
+</div>
+<label style="display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; line-height: 1.45; color: #c9d6ea;"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #e2b85c; margin: 1px 0 0; flex-shrink: 0;"><span>Tôi đồng ý với <a href="#" class="ui-link" onClick="{{tap}}">Điều khoản dịch vụ</a> và <a href="#" class="ui-link" onClick="{{tap}}">Chính sách bảo mật</a>.</span></label>
+<a href="Start.dc.html" class="ui-btn b-gold s-lg" onClick="{{ok}}">TẠO TÀI KHOẢN</a>
+<div style="display: flex; justify-content: space-between; font-size: 13px;">
+<span style="color: #a9b8cf;">Đã có tài khoản? <a href="Login.dc.html" class="ui-link" style="font-weight: 700;" onClick="{{tap}}">Đăng nhập</a></span>
+<a href="Start.dc.html" class="ui-link" onClick="{{tap}}">Chơi ngay ›</a>
+</div>
+</div>
+
+<div style="position: absolute; left: 24px; bottom: 12px; font-size: 12px; color: #e9dcc0; text-shadow: 0 1px 3px #000;">Phiên bản [0.1.0]</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic {
+sfx(kind, force) {
+if (!force && this.state && this.state.muted) return;
+try {
+const C = window.AudioContext || window.webkitAudioContext;
+if (!this.ac) this.ac = new C();
+const ac = this.ac; if (ac.state === 'suspended') ac.resume();
+const t = ac.currentTime, sr = ac.sampleRate, out = ac.createGain(); out.gain.value = 0.6; out.connect(ac.destination);
+const env = (node, vol, d, dur) => { const g = ac.createGain(); g.gain.setValueAtTime(0.0001, t + d); g.gain.exponentialRampToValueAtTime(vol, t + d + 0.005); g.gain.exponentialRampToValueAtTime(0.0001, t + d + dur); node.connect(g); g.connect(out); };
+const tone = (type, f1, f2, dur, vol, d) => { const o = ac.createOscillator(); o.type = type; o.frequency.setValueAtTime(f1, t + d); o.frequency.exponentialRampToValueAtTime(f2, t + d + dur); env(o, vol, d, dur); o.start(t + d); o.stop(t + d + dur + 0.05); };
+const noise = (dur, vol, d, type, f, f2) => { const n = Math.floor(sr * dur), b = ac.createBuffer(1, n, sr), x = b.getChannelData(0); for (let i = 0; i < n; i++) x[i] = Math.random() * 2 - 1; const s = ac.createBufferSource(), fl = ac.createBiquadFilter(); s.buffer = b; fl.type = type; fl.Q.value = 1.2; fl.frequency.setValueAtTime(f, t + d); if (f2) fl.frequency.exponentialRampToValueAtTime(f2, t + d + dur); s.connect(fl); env(fl, vol, d, dur); s.start(t + d); };
+const pluck = (f, dur, vol, d) => { const n = Math.floor(sr * dur), b = ac.createBuffer(1, n, sr), x = b.getChannelData(0), p = Math.max(2, Math.round(sr / f)), r = new Float32Array(p); for (let i = 0; i < p; i++) r[i] = Math.random() * 2 - 1; let k = 0; for (let i = 0; i < n; i++) { const v = r[k], w = r[(k + 1) % p]; r[k] = (v + w) * 0.4985; x[i] = v; k = (k + 1) % p; } const s = ac.createBufferSource(), hp = ac.createBiquadFilter(), g = ac.createGain(); hp.type = 'highpass'; hp.frequency.value = 180; s.buffer = b; g.gain.value = vol; s.connect(hp); hp.connect(g); g.connect(out); s.start(t + d); };
+const drum = (d, vol) => { tone('sine', 140, 48, 0.45, vol, d); noise(0.07, vol * 0.5, d, 'lowpass', 900); };
+const gong = (d, vol) => { [1, 1.48, 2.1, 2.6, 3.4, 4.2].forEach((m, i) => { const o = ac.createOscillator(); o.type = 'sine'; o.frequency.setValueAtTime(110 * m * 1.01, t + d); o.frequency.exponentialRampToValueAtTime(110 * m, t + d + 0.4); env(o, vol / (1 + i * 0.7), d, 2.2 - i * 0.25); o.start(t + d); o.stop(t + d + 2.4); }); noise(0.12, vol * 0.25, d, 'bandpass', 2500); };
+const wood = (f, d, vol) => { tone('sine', f, f * 0.92, 0.07, vol, d); tone('triangle', f * 2.7, f * 2.5, 0.03, vol * 0.35, d); noise(0.015, vol * 0.4, d, 'bandpass', f * 3); };
+const sword = (d, vol) => { noise(0.26, vol, d, 'bandpass', 1400, 7500); tone('sine', 2600, 2580, 0.6, vol * 0.12, d + 0.18); tone('sine', 3900, 3880, 0.5, vol * 0.08, d + 0.18); };
+const P = [293.66, 329.63, 369.99, 440, 493.88, 587.33, 659.25, 739.99, 880, 987.77, 1174.66];
+if (kind === 'enter') { drum(0, 0.9); drum(0.16, 0.7); sword(0.02, 0.35); gong(0.3, 0.35); }
+else if (kind === 'ok') { drum(0, 0.8); [5, 6, 7, 8, 10].forEach((n, i) => pluck(P[n], 0.7, 0.32, 0.03 + i * 0.045)); }
+else if (kind === 'tab') { wood(980, 0, 0.5); }
+else if (kind === 'back') { pluck(P[8], 0.4, 0.3, 0); pluck(P[5], 0.5, 0.3, 0.07); }
+else if (kind === 'err') { wood(420, 0, 0.6); wood(380, 0.12, 0.6); }
+else { pluck(P[8], 0.45, 0.35, 0); }
+} catch (e) {}
+}
+renderVals() {
+return { tap: () => this.sfx('tap'), tab: () => this.sfx('tab'), ok: () => this.sfx('ok'), enter: () => this.sfx('enter'), back: () => this.sfx('back') };
+}
+}
+</script>
+</body>
+</html>

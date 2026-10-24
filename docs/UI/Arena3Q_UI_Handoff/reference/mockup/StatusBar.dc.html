@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Arena3Q – Thanh trạng thái</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./ui.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div role="status" aria-label="{{label}}" style="display: inline-flex; align-items: center; gap: 8px; height: 26px; padding: 0 12px; border-radius: 13px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.12); font-family: 'Be Vietnam Pro', system-ui, sans-serif; color: #f2f5fa; box-sizing: border-box; white-space: nowrap;">
+<svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke-linecap="round" aria-hidden="true">
+<path d="M1.5 5a11 11 0 0 1 15 0" stroke="{{c3}}" stroke-width="1.8"></path>
+<path d="M4 7.8a7.2 7.2 0 0 1 10 0" stroke="{{c2}}" stroke-width="1.8"></path>
+<path d="M6.5 10.4a3.6 3.6 0 0 1 5 0" stroke="{{c1}}" stroke-width="1.8"></path>
+<circle cx="9" cy="12.6" r="1.2" fill="{{c0}}"></circle>
+<sc-if value="{{off}}" hint-placeholder-val="{{ false }}"><path d="M2 1l14 12" stroke="#ef4444" stroke-width="2"></path></sc-if>
+</svg>
+<span style="width: 1px; height: 13px; background: rgba(255,255,255,0.35);"></span>
+<span style="font-size: 13px; font-weight: 600; letter-spacing: .5px;">{{time}}</span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"signal":{"editor":"int","min":0,"max":3,"default":3},"$preview":{"width":120,"height":26}}'>
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { now: new Date() }; }
+componentDidMount() { this.t = setInterval(() => this.setState({ now: new Date() }), 15000); }
+componentWillUnmount() { clearInterval(this.t); }
+renderVals() {
+const sig = Math.max(0, Math.min(3, Number(this.props.signal ?? 3)));
+const on = sig >= 2 ? '#f2f5fa' : sig === 1 ? '#fcd34d' : '#8a93a3';
+const offC = 'rgba(255,255,255,0.25)';
+const d = this.state.now;
+const time = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+return {
+time,
+off: sig === 0,
+c0: on,
+c1: sig >= 1 ? on : offC,
+c2: sig >= 2 ? on : offC,
+c3: sig >= 3 ? on : offC,
+label: (sig === 0 ? 'Không có mạng' : 'Wi-Fi ' + sig + '/3 vạch') + ', ' + time
+};
+}
+}
+</script>
+</body>
+</html>

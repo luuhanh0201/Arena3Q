@@ -12,6 +12,7 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Bàn giao trước đó: claude/outbox/20261020-2330_BAN-GIAO-cong-viec-claude.md.
 
 ## codex
+- 24/10 UI khởi động: đã tự kiểm EditMode41/41, PlayMode15/15; 19 ảnh Unity/10 so sánh trong NghiemThu/UI/XemTruoc_Startup_20261024/xem_ui.html, đã mở cho người dùng. Nhạc OGG loop từ Loading, mặc định12%, chỉnh/tắt/lưu trong Cài đặt. Đang hoàn thiện commit và bàn giao Claude review. Nhả toàn bộ file UI và Unity; không sửa nguồn/model đang dở.
 - 23/10 nhận review1430: ShoulderHand chưa đạt; sửa vòng ngón bao cán, ngón cái, mảnh thừa cổ tay và góc cầu vai. Hủy chờ, giữ nguồn Mạc Ảnh. Unity chưa giữ khi làm Blender.
 - 23/10 14:18: candidate DetailShoulderCloth nguồn81aa0c07 đã xuất trang ShoulderHand; surface/quạt/tiếp xúc đạt, Unity28/0/1; 6972ảnh và điều khiển trang đạt. Chưa nghiệm thu hình: cần review ngón cái/cổ tay/vai, mảng trắng sau còn mở. Nhả Unity; theo dõi inbox đến15:18.
 - 23/10 nhận review0905/0925: sửa tiếp hình dáng áo trên, cầu vai cứng, tư thế nắm cán quạt. Giữ nguồn Mạc Ảnh, hủy chờ. Unity trống trong lúc sửa Blender.
@@ -30,7 +31,7 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Việc đầu: kiểm snapshot 3D về scale, toàn bộ submesh và quạt; kiểm footprint VFX sau đổi camera; đồng bộ docs 3D. Sau đó kiểm model/motion Mặc Ảnh và giải quyết Lữ Bố chưa qua QA da.
 - Báo ngay từng phần nhỏ với ảnh trước–sau và số đo. Chưa nghiệm thu tổng thể. Chỉ test Unity, chưa build/test Android theo bàn giao 0619. Sau khi hoàn tất công việc theo dõi inbox 1 giờ.
 ## Unity (Editor / batch mode)
-- Đang giữ bởi: codex – sửa review1430 và chụp góc chẩn đoán.
+- Đang giữ bởi: không ai. Codex nhả sau QA UI 24/10, sẵn sàng cho Claude review.
 
 
 

@@ -1,0 +1,101 @@
+version	Phiên bản
+vietnameseOnly	Hiện hỗ trợ Tiếng Việt.
+good	Tốt
+busy	Đông
+full	Đầy
+maintenance	Bảo trì
+loginTab	Đăng nhập
+registerTab	Đăng ký
+address	Email hoặc số điện thoại
+password	Mật khẩu
+newPassword	Mật khẩu (từ 8 ký tự)
+confirmPassword	Nhập lại mật khẩu
+remember	Ghi nhớ đăng nhập
+forgot	Quên mật khẩu?
+login	ĐĂNG NHẬP
+quickLogin	hoặc đăng nhập nhanh
+playNow	CHƠI NGAY
+guestCaption	Vào game không cần tài khoản · Có thể liên kết sau
+termsCaption	Khi tiếp tục, bạn đồng ý với
+terms	Điều khoản dịch vụ
+privacy	Chính sách bảo mật
+verification	Mã xác minh (6 số)
+sendCode	Gửi mã
+agree	Tôi đồng ý với điều khoản dịch vụ và chính sách bảo mật.
+linkAccount	LIÊN KẾT TÀI KHOẢN
+createAccount	TẠO TÀI KHOẢN
+haveAccount	Đã có tài khoản? Đăng nhập
+playNowSmall	Chơi ngay
+resendCountdown	Gửi lại {0}s
+invalidAddress	Nhập email hoặc số điện thoại hợp lệ.
+verificationSent	Đã gửi mã xác minh. Vui lòng kiểm tra hộp thư hoặc tin nhắn.
+resetSent	Đã gửi hướng dẫn đặt lại mật khẩu.
+passwordMismatch	Hai lần nhập mật khẩu không khớp.
+passwordShort	Mật khẩu cần ít nhất {0} ký tự.
+termsRequired	Vui lòng đồng ý với điều khoản và chính sách bảo mật.
+invalidCode	Mã xác minh phải gồm 6 chữ số.
+loginFailed	Đăng nhập thất bại. Vui lòng thử lại.
+linkIdentityMismatch	Không thể liên kết tài khoản này. Tiến trình khách vẫn được giữ lại.
+legalUnavailable	Nội dung này sẽ được cập nhật trước khi phát hành.
+loginRequired	Vui lòng đăng nhập hoặc chọn Chơi ngay.
+guest	Khách
+unlinked	Chưa liên kết · Liên kết ngay
+linked	Đã liên kết tài khoản
+noOpenServers	Chưa có máy chủ đang mở. Vui lòng thử lại sau.
+changeServer	Đổi máy chủ
+enterGame	VÀO GAME
+chooseServer	CHỌN MÁY CHỦ
+myServers	Máy chủ của tôi
+recommended	Đề xuất
+range1	S1 - S10
+range2	S11 - S20
+recentServer	ĐĂNG NHẬP GẦN ĐÂY
+noRecentServer	Bạn chưa đăng nhập máy chủ nào.
+select	Chọn
+serverLegend	Tốt: có thể vào  ·  Đông: nhiều người chơi  ·  Đầy: chưa thể vào  ·  Bảo trì: tạm đóng
+confirm	XÁC NHẬN
+noCharacters	Bạn chưa có nhân vật ở máy chủ nào.
+noServers	Không có máy chủ trong danh sách này.
+allServers	Tất cả máy chủ
+serverCount	{0} máy chủ
+newBadge	MỚI
+hotBadge	HOT
+selectedServer	Đã chọn:
+noSelection	Chưa chọn máy chủ
+chooseAnotherServer	Vui lòng chọn máy chủ khác.
+linkTitle	Liên kết tài khoản
+linkExplanation	Bạn đang chơi bằng tài khoản khách. Liên kết để giữ tiến trình khi đổi máy hoặc cài lại game.
+linkReward	Thưởng liên kết lần đầu
+linkProvider	Liên kết
+emailOrPhone	Email / Số điện thoại
+later	Để sau
+settings	Cài đặt
+musicVolume	Âm lượng nhạc nền: {0}%
+muteMusic	Tắt nhạc nền
+muteUi	Tắt âm thanh giao diện
+account	Tài khoản
+switchAccount	Đổi tài khoản
+close	Đóng
+guestSignOutWarning	Tài khoản khách chưa liên kết. Đổi tài khoản sẽ xóa tiến trình khách trên máy này. Bạn muốn tiếp tục?
+signOutWarning	Bạn muốn đăng xuất khỏi tài khoản này?
+cancel	Hủy
+loadingWeak	Mạng yếu, đang tải chậm…
+loadingLocal	Đang chuẩn bị tài nguyên…
+loadingVersion	Đang kiểm tra phiên bản…
+loadingResources	Đang tải tài nguyên…
+loadingConnect	Đang kết nối máy chủ…
+loadingDone	Hoàn tất! Đang vào game…
+localResources	Tài nguyên trên thiết bị
+weakToast	Kết nối mạng không ổn định, tốc độ tải có thể chậm.
+retrying	Đang thử kết nối lại…
+stalled	Mạng không ổn định, đang kết nối lại…
+retryAttempt	Lần thử {0}/3 · Vui lòng không tắt game
+timeoutTitle	Máy chủ không phản hồi
+lostTitle	Mất kết nối mạng
+timeoutMessage	Kết nối tới máy chủ bị gián đoạn hoặc quá thời gian chờ. Vui lòng thử lại sau ít phút.
+lostMessage	Không thể kết nối Internet. Vui lòng kiểm tra Wi-Fi hoặc dữ liệu di động rồi thử lại.
+resumeProgress	Tiến trình được giữ lại, sẽ tải tiếp từ {0}%.
+timeoutCode	Mã lỗi: NET-2002
+lostCode	Mã lỗi: NET-1001
+quit	Thoát game
+retry	THỬ LẠI
