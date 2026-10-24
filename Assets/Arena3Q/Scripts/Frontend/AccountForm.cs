@@ -35,7 +35,7 @@ namespace Arena3Q.Frontend
             _ui.Button(panel, "RegisterTab", _ui.C("registerTab"), new Rect(260, 30, 216, 42), () => switchTab(true), GameButtonStyle.Plain, UiSound.Tab, 16);
             panel.Find(register ? "LoginTab/Label" : "RegisterTab/Label").GetComponent<TMP_Text>().color = art.muted;
             _ui.Image(panel, "ActiveTabLine", null, new Rect(register ? 260 : 44, 70, 216, 3), art.goldLine);
-            _address = _ui.Field(panel, "EmailOrPhone", _ui.C("address"), new Rect(44, 89, 432, 44));
+            _address = _ui.Field(panel, "EmailOrPhone", _ui.C("address"), new Rect(44, register ? 86 : 89, 432, 44));
             if (!register)
             {
                 _password = _ui.Field(panel, "Password", _ui.C("password"), new Rect(44, 143, 432, 44), true, 128);
@@ -55,24 +55,24 @@ namespace Arena3Q.Frontend
                 _ui.Image(panel, "GoldDivider", null, new Rect(44, 370, 432, 1), art.goldLine);
                 _ui.Button(panel, "PlayNow", _ui.C("playNow"), new Rect(44, 382, 432, 64), guest, GameButtonStyle.Gold, UiSound.Enter);
                 _ui.Text(panel, "GuestCaption", _ui.C("guestCaption"), new Rect(44, 450, 432, 20), 12, art.gold, TextAlignmentOptions.Center);
-                _ui.Text(panel, "TermsCaption", _ui.C("termsCaption"), new Rect(44, 466, 432, 16), 11, art.muted, TextAlignmentOptions.Center);
-                LegalLinks(panel, 480, 11);
+                _ui.LegalText(panel, "LegalSentence", new Rect(44, 474, 432, 30), _flow);
                 _error = _ui.Text(panel, "FormError", "", new Rect(44, 518, 432, 32), 12, art.bad, TextAlignmentOptions.Center);
                 _error.enabled = false; // The shared toast handles service errors; field errors remain inline.
             }
             else
             {
-                _code = _ui.Field(panel, "VerificationCode", _ui.C("verification"), new Rect(44, 146, 304, 44), limit: 6);
+                _code = _ui.Field(panel, "VerificationCode", _ui.C("verification"), new Rect(44, 140, 304, 44), limit: 6);
                 _code.Input.contentType = TMP_InputField.ContentType.IntegerNumber;
-                _send = _ui.Button(panel, "SendCode", _ui.C("sendCode"), new Rect(356, 146, 120, 44), RequestVerification);
-                _password = _ui.Field(panel, "Password", _ui.C("newPassword"), new Rect(44, 206, 212, 44), true, 128);
-                _confirmation = _ui.Field(panel, "ConfirmPassword", _ui.C("confirmPassword"), new Rect(264, 206, 212, 44), true, 128);
-                _terms = _ui.Toggle(panel, "AcceptTerms", _ui.C("agree"), new Rect(44, 266, 432, 26));
-                LegalLinks(panel, 290, 11);
-                _submit = _ui.Button(panel, "Submit", _ui.C(link ? "linkAccount" : "createAccount"), new Rect(44, 322, 432, 64), Submit, GameButtonStyle.Gold, UiSound.Confirm, 20);
-                _ui.Button(panel, "ExistingAccount", _ui.C("haveAccount"), new Rect(44, 390, 290, 32), () => switchTab(false), GameButtonStyle.Plain, fontSize: 12);
-                _ui.Button(panel, "PlayNow", _ui.C(link ? "later" : "playNowSmall"), new Rect(342, 390, 134, 32), guest, GameButtonStyle.Plain, UiSound.Back, 12);
-                _error = _ui.Text(panel, "FormError", "", new Rect(44, 432, 432, 36), 12, art.bad, TextAlignmentOptions.Center);
+                _send = _ui.Button(panel, "SendCode", _ui.C("sendCode"), new Rect(356, 140, 120, 44), RequestVerification);
+                _password = _ui.Field(panel, "Password", _ui.C("newPassword"), new Rect(44, 194, 212, 44), true, 128);
+                _confirmation = _ui.Field(panel, "ConfirmPassword", _ui.C("confirmPassword"), new Rect(264, 194, 212, 44), true, 128);
+                _terms = _ui.Toggle(panel, "AcceptTerms", "", new Rect(44, 248, 432, 38));
+                _ui.LegalText(_terms.transform, "LegalSentence", new Rect(26, 0, 406, 38), _flow, _terms);
+                _submit = _ui.Button(panel, "Submit", _ui.C(link ? "linkAccount" : "createAccount"), new Rect(44, 296, 432, 64), Submit, GameButtonStyle.Gold, UiSound.Confirm, 20);
+                _ui.Button(panel, "ExistingAccount", _ui.C("haveAccount"), new Rect(44, 370, 290, 24), () => switchTab(false), GameButtonStyle.Plain, fontSize: 12);
+                _ui.Button(panel, "PlayNow", _ui.C(link ? "later" : "playNowSmall"), new Rect(342, 370, 134, 24), guest, GameButtonStyle.Plain, UiSound.Back, 12);
+                _error = _ui.Text(panel, "FormError", "", new Rect(44, 420, 432, 36), 12, art.bad, TextAlignmentOptions.Center);
+                _error.enabled = false;
                 _password.Input.onValueChanged.AddListener(_ => Refresh());
                 _confirmation.Input.onValueChanged.AddListener(_ => Refresh());
                 _terms.onValueChanged.AddListener(_ => Refresh());
@@ -165,16 +165,6 @@ namespace Arena3Q.Frontend
         {
             if (_error != null) _error.text = message;
             _ui.Audio.Play(UiSound.Error); _flow.ShowMessage(message);
-        }
-        private void LegalLinks(RectTransform parent, float y, float size)
-        {
-            _ui.Button(parent, "TermsLink", _ui.C("terms"), new Rect(44, y, 212, 24), () => OpenLegal(_flow.Config.TermsUrl), GameButtonStyle.Plain, fontSize: size);
-            _ui.Button(parent, "PrivacyLink", _ui.C("privacy"), new Rect(264, y, 212, 24), () => OpenLegal(_flow.Config.PrivacyUrl), GameButtonStyle.Plain, fontSize: size);
-        }
-        private void OpenLegal(string url)
-        {
-            if (Uri.TryCreate(url, UriKind.Absolute, out var uri) && (uri.Scheme == "https" || uri.Scheme == "http")) Application.OpenURL(url);
-            else _flow.ShowMessage(_ui.C("legalUnavailable"));
         }
     }
 }

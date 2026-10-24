@@ -27,6 +27,10 @@ svgPng('wheel', `<svg width="24" height="24" viewBox="24 58 24 24">${wheelGroup}
 svgPng('flag', `<svg width="26" height="20" viewBox="22 2 26 20">${flagPath}</svg>`);
 svgPng('spear', svgs.find(x=>x.includes('width="72"')));
 svgPng('rounded', '<svg width="32" height="32"><rect x="0" y="0" width="32" height="32" rx="14" fill="white"/></svg>', 1);
+svgPng('circle', '<svg width="64" height="64"><circle cx="32" cy="32" r="32" fill="white"/></svg>', 1);
+svgPng('ringOuter', '<svg width="128" height="128"><defs><linearGradient id="g"><stop stop-color="#ffd877"/><stop offset="1" stop-color="#e2b85c"/></linearGradient></defs><circle cx="64" cy="64" r="61" fill="none" stroke="#e2b85c" stroke-opacity=".18" stroke-width="5"/><path d="M64 3 A61 61 0 1 1 3 64" fill="none" stroke="url(#g)" stroke-width="5"/></svg>');
+svgPng('ringInner', '<svg width="88" height="88"><circle cx="44" cy="44" r="42" fill="none" stroke="#e2b85c" stroke-opacity=".7" stroke-width="2" stroke-dasharray="6 6"/></svg>');
+svgPng('spinnerDisc', '<svg width="140" height="140"><defs><radialGradient id="d"><stop offset=".75" stop-color="#132849" stop-opacity=".92"/><stop offset="1" stop-color="#132849" stop-opacity="0"/></radialGradient></defs><circle cx="70" cy="70" r="70" fill="url(#d)"/></svg>');
 svgPng('gradient', '<svg width="4" height="330"><defs><linearGradient id="g" x2="0" y2="1"><stop stop-color="#080402" stop-opacity="0"/><stop offset=".42" stop-color="#080402" stop-opacity=".85"/><stop offset="1" stop-color="#080402" stop-opacity=".96"/></linearGradient></defs><rect width="4" height="330" fill="url(#g)"/></svg>',1);
 svgPng('vignette', '<svg width="1280" height="720"><defs><radialGradient id="g" cx="50%" cy="57%" r="60%"><stop stop-color="#060403" stop-opacity=".7"/><stop offset=".72" stop-color="#060403" stop-opacity=".3"/><stop offset="1" stop-color="#060403" stop-opacity=".5"/></radialGradient></defs><rect width="1280" height="720" fill="url(#g)"/></svg>',1);
 async function main() {

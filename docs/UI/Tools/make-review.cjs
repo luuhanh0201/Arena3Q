@@ -1,7 +1,7 @@
 const fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'../../..');
 const sharp=require(path.join(root,'AgentComms/codex/staging/ui-tools/node_modules/sharp'));
-const review=path.join(root,'NghiemThu/UI/XemTruoc_Startup_20261024');
+const review=path.join(root,'NghiemThu/UI',process.argv[2] || 'XemTruoc_Startup_Review2_20261024');
 const compare=path.join(review,'comparisons');fs.mkdirSync(compare,{recursive:true});
 function title(text){return Buffer.from(`<svg width="1280" height="40"><rect width="1280" height="40" fill="#0a1424"/><text x="20" y="27" fill="#ffd877" font-size="20" font-family="Arial">${text}</text></svg>`)}
 async function pair(left,right,name,leftTitle='MOCKUP',rightTitle='UNITY'){
@@ -12,9 +12,9 @@ async function pair(left,right,name,leftTitle='MOCKUP',rightTitle='UNITY'){
  ]).png().toFile(path.join(compare,name+'.png'));
 }
 async function main(){
- await pair('before/frontend_2_login.png','after/03_login.png','BeforeAfter_Login','BEFORE','AFTER');
- await pair('before/frontend_3_servers.png','after/06_servers.png','BeforeAfter_Servers','BEFORE','AFTER');
- for(const [ref,shot] of [['Login','03_login'],['Register','04_register'],['Start','05_start'],['ServerSelect','06_servers'],['BindAccount','07_bind'],['LoadingLost','02_loading_Lost'],['LoadingStall','02_loading_Stalled'],['LoadingTimeout','02_loading_ServerTimeout']])
+ for(const [label,shot] of [['Login','03_login'],['Register','04_register'],['Servers','06_servers'],['Bind','07_bind'],['LoadingStall','02_loading_Stalled'],['Start','05_start'],['Wide','10_start_ultrawide']])
+  await pair('before/'+shot+'.png','after/'+shot+'.png','BeforeAfter_'+label,'BEFORE bf2eb28','AFTER');
+ for(const [ref,shot] of [['Login','03_login'],['Register','04_register'],['Start','05_start'],['ServerSelect','06_servers'],['BindAccount','07_bind'],['Loading','02_loading_Good'],['LoadingWeak','02_loading_Weak'],['LoadingLost','02_loading_Lost'],['LoadingStall','02_loading_Stalled'],['LoadingTimeout','02_loading_ServerTimeout']])
   await pair('reference/'+ref+'.png','after/'+shot+'.png','Reference_'+ref);
  const images=fs.readdirSync(path.join(review,'after')).filter(x=>x.endsWith('.png'));
  const width=1920,cellWidth=640,cellHeight=400;

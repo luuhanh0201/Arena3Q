@@ -15,6 +15,10 @@ namespace Arena3Q.Frontend
         public void Configure(Button button, UIAudio audio, UiSound sound, StartupUiConfig config, bool round = false)
         {
             _button = button; _audio = audio; _sound = sound; _rect = (RectTransform)transform; _image = button.targetGraphic;
+            // AddComponent<Button> may already have started a Disabled ColorTint under an entering modal.
+            // Cancel that renderer tween before this component takes ownership of all visual states.
+            button.transition = Selectable.Transition.None;
+            _image.CrossFadeColor(Color.white, 0, true, true);
             _position = _rect.anchoredPosition; _pressScale = round ? .9f : .94f;
             _transparent = _image.color.a == 0;
             _alpha = gameObject.AddComponent<CanvasGroup>();

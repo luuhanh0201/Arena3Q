@@ -17,6 +17,7 @@ namespace Arena3Q.Data
         public Sprite goldButton, blueButton, redButton, panel, largePanel;
         public Sprite crest, tassel, cloud, backIcon, soundIcon, settingsIcon, language;
         public Sprite cart, wheel, flag, spear, gradient, vignette, rounded;
+        public Sprite ringOuter, ringInner, spinnerDisc, circle;
         [Header("Lucide icons (ISC)")]
         public Sprite wifi, wifiLow, wifiOff, serverOff, warning, download, check, user, gift, slash;
         [Header("Typography: Be Vietnam Pro, OFL")]

@@ -132,6 +132,12 @@ namespace Arena3Q.Frontend
             Dim(rect, "Dim", dim); return rect;
         }
 
+        public void BottomShade(Transform parent, float height)
+        {
+            Image(parent, "BottomShade", Config.gradient, new Rect(0, 720 - height, 1280, height))
+                .gameObject.AddComponent<CanvasBackdrop>().bottomHeight = height;
+        }
+
         public void Logo(Transform parent, float x, float y, float width)
         {
             var sprite = Config.logo;
@@ -157,12 +163,24 @@ namespace Arena3Q.Frontend
             input.targetGraphic = inner; input.characterLimit = limit;
             input.lineType = TMP_InputField.LineType.SingleLine;
             if (password) { input.contentType = TMP_InputField.ContentType.Password; input.asteriskChar = '*'; }
-            var error = Text(parent, name + "Error", "", new Rect(bounds.x, bounds.y + bounds.height, bounds.width, 12), 10, Config.bad);
+            var error = Text(parent, name + "Error", "", new Rect(bounds.x, bounds.y + bounds.height, bounds.width, 10), 10, Config.bad);
             var field = new StartupField(input, frame, error, Config);
             input.onSelect.AddListener(_ => field.Focus(true));
             input.onDeselect.AddListener(_ => field.Focus(false));
             input.onValueChanged.AddListener(_ => field.Error(""));
             return field;
+        }
+
+        public TMP_Text LegalText(Transform parent, string name, Rect bounds, FrontendController flow, Toggle toggle = null)
+        {
+            var hex = ColorUtility.ToHtmlStringRGB(Config.gold);
+            var terms = "<link=\"terms\"><color=#" + hex + ">" + C("terms") + "</color></link>";
+            var privacy = "<link=\"privacy\"><color=#" + hex + ">" + C("privacy") + "</color></link>";
+            var content = string.Format(C(toggle == null ? "legalLogin" : "legalAgreement"), terms, privacy);
+            var text = Text(parent, name, content, bounds, toggle == null ? 11.5f : 12.5f, Config.dim,
+                toggle == null ? TextAlignmentOptions.Center : TextAlignmentOptions.MidlineLeft, 400);
+            text.richText = true; text.raycastTarget = true;
+            text.gameObject.AddComponent<UiLegalLinks>().Configure(flow, text, toggle); return text;
         }
 
         public Toggle Toggle(Transform parent, string name, string label, Rect bounds, bool initial = false)
@@ -196,7 +214,10 @@ namespace Arena3Q.Frontend
         {
             var color = StatusColor(server.Status);
             Image(parent, "StatusDot", Config.rounded, new Rect(x, y + 6, 8, 8), color, true);
-            Text(parent, "Status", StatusText(server.Status), new Rect(x + 14, y, 56, 22), 12, color);
+            var textColor = server.Status == ServerStatus.Busy ? StartupUiConfig.Hex("FCD34D")
+                : server.Status == ServerStatus.Full ? StartupUiConfig.Hex("FCA5A5")
+                : server.Status == ServerStatus.Maintenance ? StartupUiConfig.Hex("C7C9CF") : StartupUiConfig.Hex("86EFAC");
+            Text(parent, "Status", StatusText(server.Status), new Rect(x + 14, y, 56, 22), 13, textColor, weight: 700);
         }
     }
 
@@ -249,11 +270,11 @@ namespace Arena3Q.Frontend
                 if (previous != null) { previous.gameObject.SetActive(false); UnityEngine.Object.Destroy(previous.gameObject); }
             }
             Image slash = null;
-            var sound = Kit.IconButton(Design, "Sound", Art.soundIcon, new Rect(1208, 40, 52, 52), ToggleSound);
+            var sound = Kit.IconButton(Design, "Sound", Art.soundIcon, new Rect(settings != null && !language ? 1148 : 1208, 40, 52, 52), ToggleSound);
             slash = Kit.Image(sound.transform, "Muted", Art.slash, new Rect(9, 9, 34, 34), Art.bad);
             slash.enabled = Kit.Audio.Muted && (Flow.Music == null || Flow.Music.Muted);
             if (language) Kit.IconButton(Design, "Language", Art.language, new Rect(1018, 35, 180, 62), () => Flow.ShowMessage(Kit.C("vietnameseOnly")));
-            else if (settings != null) Kit.IconButton(Design, "Settings", Art.settingsIcon, new Rect(1146, 40, 52, 52), settings);
+            else if (settings != null) Kit.IconButton(Design, "Settings", Art.settingsIcon, new Rect(1210, 40, 52, 52), settings);
             void ToggleSound()
             {
                 var mute = !(Kit.Audio.Muted && (Flow.Music == null || Flow.Music.Muted));

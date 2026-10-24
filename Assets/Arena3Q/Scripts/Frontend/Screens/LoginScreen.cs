@@ -23,8 +23,6 @@ namespace Arena3Q.Frontend
         {
             if (_panel != null) { _panel.gameObject.SetActive(false); Object.Destroy(_panel.gameObject); }
             var bounds = _register ? Art.registerPanel : Art.loginPanel;
-            // AccountForm reserves space for inline validation and has a single layout for all consumers.
-            bounds.height = _register ? Mathf.Max(480, bounds.height) : bounds.height;
             _panel = Kit.Panel(Design, _register ? "RegisterPanel" : "LoginPanel", bounds);
             _form = new AccountForm(Flow, _panel, _register, false, ShowAccountForm, PlayAsGuest, Enter);
             if (_register) Back(() => ShowAccountForm(false));

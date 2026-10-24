@@ -1,41 +1,33 @@
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace Arena3Q.Frontend
 {
-    /// <summary>UI geometry, rather than font symbol characters. Both rings share the handoff centre.</summary>
-    public sealed class LoadingSpinner : MaskableGraphic
+    /// <summary>Two reusable alpha ring sprites from the handoff's CSS shapes, on the standard uGUI Image path.</summary>
+    public sealed class LoadingSpinner : MonoBehaviour
     {
-        private float _angle;
+        private RectTransform _outer, _inner, _core;
+        private float _time;
         public static void Create(StartupUi ui, Transform parent, Vector2 center)
         {
-            var rect = ui.Rect(parent, "LoadingSpinner", new Rect(center.x - 70, center.y - 70, 140, 140));
-            var spinner = rect.gameObject.AddComponent<LoadingSpinner>(); spinner.color = ui.Config.gold; spinner.raycastTarget = false;
-            ui.Image(rect, "Diamond", ui.Config.rounded, new Rect(54, 54, 32, 32), ui.Config.gold).rectTransform.localRotation = Quaternion.Euler(0, 0, 45);
+            var root = ui.Rect(parent, "LoadingSpinner", new Rect(center.x - 70, center.y - 70, 140, 140));
+            ui.Image(root, "NavyDisc", ui.Config.spinnerDisc, new Rect(0, 0, 140, 140));
+            var spinner = root.gameObject.AddComponent<LoadingSpinner>();
+            spinner._outer = Center(ui.Image(root, "OuterRing", ui.Config.ringOuter, new Rect(6, 6, 128, 128)).rectTransform);
+            spinner._inner = Center(ui.Image(root, "InnerRing", ui.Config.ringInner, new Rect(26, 26, 88, 88)).rectTransform);
+            spinner._core = Center(ui.Image(root, "Diamond", null, new Rect(54, 54, 32, 32), ui.Config.gold).rectTransform);
+            spinner._core.localRotation = Quaternion.Euler(0, 0, 45);
         }
-        private void Update() { _angle += Time.unscaledDeltaTime * 360; SetVerticesDirty(); }
-        protected override void OnPopulateMesh(VertexHelper vh)
+        private static RectTransform Center(RectTransform rect)
         {
-            vh.Clear();
-            Ring(vh, 64, 5, _angle, 280, false);
-            Ring(vh, 44, 2, -_angle / 3.2f, 360, true);
+            var size = rect.sizeDelta; rect.pivot = new Vector2(.5f, .5f);
+            rect.anchoredPosition += new Vector2(size.x / 2, -size.y / 2); return rect;
         }
-        private void Ring(VertexHelper vh, float radius, float width, float rotation, float arc, bool dashed)
+        private void Update()
         {
-            var center = rectTransform.rect.center;
-            for (var i = 0; i < 72; i++)
-            {
-                if (dashed && i % 4 >= 2) continue;
-                var a = i * 5f; if (a > arc) break;
-                var first = vh.currentVertCount;
-                for (var j = 0; j < 4; j++)
-                {
-                    var angle = (rotation + a + (j >= 2 ? 5 : 0)) * Mathf.Deg2Rad;
-                    var r = radius - (j == 1 || j == 2 ? width : 0);
-                    vh.AddVert(center + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * r, color, Vector2.zero);
-                }
-                vh.AddTriangle(first, first + 1, first + 2); vh.AddTriangle(first, first + 2, first + 3);
-            }
+            _time += Time.unscaledDeltaTime;
+            _outer.localRotation = Quaternion.Euler(0, 0, -_time * 360);
+            _inner.localRotation = Quaternion.Euler(0, 0, _time * 360 / 3.2f);
+            _core.localScale = Vector3.one * Mathf.Lerp(.82f, 1.05f, .5f + .5f * Mathf.Sin(_time * Mathf.PI * 2 / 1.2f));
         }
     }
 }

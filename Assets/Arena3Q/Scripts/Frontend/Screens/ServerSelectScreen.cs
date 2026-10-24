@@ -38,17 +38,22 @@ namespace Arena3Q.Frontend
         {
             if (_start != null) { _start.gameObject.SetActive(false); Object.Destroy(_start.gameObject); }
             _start = UiFactory.Stretch("StartScreen", Design);
-            Kit.Image(_start, "BottomShade", Art.gradient, new Rect(0, 390, 1280, 330));
+            Kit.BottomShade(_start, 280);
             Kit.Logo(_start, 390, 16, 500); Kit.Footer(_start);
-            var chip = Kit.Image(_start, "PlayerChip", Art.panel, new Rect(16, 14, 310, 78), sliced: true);
+            var chip = Kit.Image(_start, "PlayerChip", Art.panel, new Rect(16, 14, 288, 64), sliced: true);
             chip.pixelsPerUnitMultiplier = 2;
-            Kit.Image(chip.transform, "Avatar", Art.user, new Rect(16, 18, 40, 40), Art.gold);
+            var avatar = Kit.Image(chip.transform, "AvatarBorder", Art.circle, new Rect(12, 12, 40, 40), Art.goldLine);
+            Kit.Image(avatar.transform, "AvatarBackground", Art.circle, new Rect(2, 2, 36, 36), StartupUiConfig.Hex("13284A"));
+            Kit.Image(avatar.transform, "Avatar", Art.user, new Rect(9, 9, 22, 22), Art.gold);
             var guest = Flow.Profile.accountKind == AccountKind.Guest;
             var suffix = Flow.Profile.accountId.Length > 6 ? Flow.Profile.accountId.Substring(Flow.Profile.accountId.Length - 5) : "";
             Kit.Text(chip.transform, "AccountName", guest ? Kit.C("guest") + " #" + suffix : Flow.Profile.accountLabel,
-                new Rect(68, 14, 222, 26), 15, Art.text, weight: 700);
-            Kit.Button(chip.transform, "BindAccount", Kit.C(guest ? "unlinked" : "linked"), new Rect(58, 40, 238, 26),
-                guest ? OpenBind : (Action)(() => Flow.ShowMessage(Kit.C("linked"))), GameButtonStyle.Plain, fontSize: 11);
+                new Rect(62, 7, 208, 26), 14, Art.text, weight: 700);
+            var tag = Kit.Image(chip.transform, "AccountTag", Art.rounded, new Rect(62, 34, 208, 20), StartupUiConfig.Hex("F0A63A"), true);
+            tag.pixelsPerUnitMultiplier = 3.5f;
+            var link = Kit.Button(chip.transform, "BindAccount", Kit.C(guest ? "unlinked" : "linked"), new Rect(62, 34, 208, 20),
+                guest ? OpenBind : (Action)(() => Flow.ShowMessage(Kit.C("linked"))), GameButtonStyle.Plain, fontSize: 11.5f);
+            link.GetComponentInChildren<TMP_Text>().color = StartupUiConfig.Hex("1D0F05");
             CornerButtons(settings: OpenSettings);
             var serverBox = Kit.Image(_start, "ServerPill", Art.panel, new Rect(355, 524, 570, 62), sliced: true);
             serverBox.pixelsPerUnitMultiplier = 2;
@@ -95,8 +100,15 @@ namespace Arena3Q.Frontend
             var scroll = viewport.gameObject.AddComponent<ScrollRect>();
             scroll.viewport = viewport; scroll.content = _list; scroll.horizontal = false; scroll.vertical = true;
             scroll.movementType = ScrollRect.MovementType.Clamped; scroll.scrollSensitivity = 30;
-            Kit.Text(_panel, "Legend", Kit.C("serverLegend"), new Rect(40, 558, 1048, 30), 12, Art.dim);
-            _selectedLabel = Kit.Text(_panel, "Selected", "", new Rect(40, 600, 780, 30), 16, Art.gold);
+            Kit.Image(_panel, "FooterSeparator", null, new Rect(40, 558, 1048, 1), new Color(Art.goldLine.r, Art.goldLine.g, Art.goldLine.b, .35f));
+            var legend = Kit.Rect(_panel, "Legend", new Rect(40, 578, 340, 50));
+            var states = new[] { ServerStatus.Good, ServerStatus.Busy, ServerStatus.Full, ServerStatus.Maintenance };
+            for (var i = 0; i < states.Length; i++)
+            {
+                Kit.Image(legend, "Dot" + states[i], Art.circle, new Rect(i * 80, 20, 10, 10), Kit.StatusColor(states[i]));
+                Kit.Text(legend, "Label" + states[i], Kit.StatusText(states[i]), new Rect(i * 80 + 16, 0, 62, 50), 13, Art.dim);
+            }
+            _selectedLabel = Kit.Text(_panel, "Selected", "", new Rect(472, 578, 386, 50), 14, Art.gold, TextAlignmentOptions.MidlineRight);
             _confirm = Kit.Button(_panel, "ConfirmServer", Kit.C("confirm"), new Rect(878, 578, 210, 50), ConfirmServer, GameButtonStyle.Gold, UiSound.Confirm);
             ShowTab(CurrentTab);
         }
@@ -248,7 +260,7 @@ namespace Arena3Q.Frontend
         public void OpenLinkForm()
         {
             CloseOverlay(); _overlay = Kit.ModalBackdrop(Design, "LinkFormOverlay", .66f);
-            var bounds = Art.registerPanel; bounds.height = Mathf.Max(480, bounds.height);
+            var bounds = Art.registerPanel;
             var panel = Kit.Panel(_overlay, "LinkFormPanel", bounds, animate: true);
             _linkForm = new AccountForm(Flow, panel, true, true, register => { if (register) OpenLinkForm(); else OpenBind(); },
                 OpenBind, () => { CloseOverlay(); BuildStart(); });

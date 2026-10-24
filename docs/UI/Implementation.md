@@ -37,3 +37,16 @@ Log: `Logs/UI-import.log`, `Logs/UI-editmode.xml`, `Logs/UI-playmode.xml`. 19 �
 Font source Be Vietnam Pro OFL đủ tiếng Việt cả 4 weight; SDF dynamic tự compact sau PlayMode, mỗi asset khoảng 6,5 KB. Background 508 KB, logo 598 KB. Media lớn local: MP4 3.019.605 byte, OGG 4.146.483 byte; không commit cùng code theo quy tắc repo. README art có cách khôi phục và import lại trên máy khác.
 
 Giới hạn: đây là UI prototype với dịch vụ guest/cục bộ. Chưa có API xác thực/OTP/social/link, API danh sách server, URL pháp lý, thưởng liên kết; không hiển thị cấp 45/nhân vật/quà chưa có trong hồ sơ. Source MP4 được WMF cảnh báo frame đầu 2 và thiếu color primaries trên Windows; có still fallback, không sửa video nguồn. Chưa đo âm thanh qua loa/thiết bị thật, chưa đo 60 FPS Android/iOS, chưa build APK. Claude cần tự chạy lại và review hình trước khi kết luận nghiệm thu.
+
+## Sửa theo review Claude vòng 1
+
+Claude đánh giá bản bf2eb28 khoảng80%, chưa đạt về hình dù Full EditMode271/271 và PlayMode142/143 (1ignored). Đã sửa đủ8 điểm được yêu cầu, không lấy test xanh thay nghiệm thu:
+
+- Spinner chuyển sang sprite alpha dùng Image chuẩn (hai vòng, đĩa navy, kim cương); test pixel cô lập chứng minh cả hai vòng hiện thật.
+- Dải tối đáy phủ ngang toàn canvas, độc lập khung nội dung safe area; thêm test bounds khi design frame bị inset.
+- `UiLegalLinks` dùng chung câu TMP với hai link inline; chữ thường trong checkbox vẫn đổi trạng thái. Register về414px/gap10, bỏ câu lặp.
+- Nút popup xỉn do ColorTint Disabled đã chạy lúc Button được thêm dưới CanvasGroup đang khóa. Hủy tween/reset CanvasRenderer vềwhite trước GameButton điều khiển màu. Test kiểm cả renderer tint và Image color.
+- Server legend4 chấm màu/chữ, selected nằm cạnh confirm cùnghàng; chip vòngtròn40px, viềnvàng2px/nềnnavy vàtagcamF0A63A; loa trước bánh răng, status13px/700.
+- Mockup Loading phụ là dc-import component; công cụ render hiện mở đúng Loading.dc.html với scenario tương ứng, không còn ảnh trắng.
+
+Tự kiểm sau sửa: UI/Frontend PlayMode19/19, toàn bộ EditMode271/271, toàn bộ PlayMode146 qua/0lỗi/1ignored có sẵn. Bằng chứng giữ riêng `NghiemThu/UI/XemTruoc_Startup_Review2_20261024/`:20 ảnh Unity,17 ảnh so sánh, Overview vàxem_ui.html. Đã mở trang/ảnh, chờ Claude review vòng2. Log `Logs/UI-review2-*`.

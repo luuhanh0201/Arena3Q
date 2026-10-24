@@ -17,6 +17,8 @@ quickLogin	hoặc đăng nhập nhanh
 playNow	CHƠI NGAY
 guestCaption	Vào game không cần tài khoản · Có thể liên kết sau
 termsCaption	Khi tiếp tục, bạn đồng ý với
+legalLogin	Khi tiếp tục, bạn đồng ý với {0} và {1}.
+legalAgreement	Tôi đồng ý với {0} và {1}.
 terms	Điều khoản dịch vụ
 privacy	Chính sách bảo mật
 verification	Mã xác minh (6 số)

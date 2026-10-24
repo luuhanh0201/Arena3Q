@@ -35,6 +35,10 @@ MonoBehaviour:
   gradient: {fileID: 21300000, guid: 223f609f52dd23c4295e6a85abd523ff, type: 3}
   vignette: {fileID: 21300000, guid: 28201f170ee5bb84fb3ae255d40826e4, type: 3}
   rounded: {fileID: 21300000, guid: 432a83ad644142643b26ba686822e216, type: 3}
+  ringOuter: {fileID: 21300000, guid: a584dfaaaf33ed64ebb521c8c77c7cff, type: 3}
+  ringInner: {fileID: 21300000, guid: 62747d2b9743acb49b937b9844ec7b44, type: 3}
+  spinnerDisc: {fileID: 21300000, guid: f1b14e9bdac73b846a981c84528919ff, type: 3}
+  circle: {fileID: 21300000, guid: 6dd070f13bb059a409f169e62dbf077b, type: 3}
   wifi: {fileID: 21300000, guid: ecd0a3e8db74e9c489a12363a05a6654, type: 3}
   wifiLow: {fileID: 21300000, guid: 2a31b77cad79b5a459e320f28255c018, type: 3}
   wifiOff: {fileID: 21300000, guid: 743c047450ae36b43a5b93ff39e09212, type: 3}
@@ -332,3 +336,7 @@ MonoBehaviour:
     value: "Tho\xE1t game"
   - key: retry
     value: "TH\u1EEC L\u1EA0I"
+  - key: legalLogin
+    value: "Khi ti\u1EBFp t\u1EE5c, b\u1EA1n \u0111\u1ED3ng \xFD v\u1EDBi {0} v\xE0 {1}."
+  - key: legalAgreement
+    value: "T\xF4i \u0111\u1ED3ng \xFD v\u1EDBi {0} v\xE0 {1}."

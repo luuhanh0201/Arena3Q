@@ -24,7 +24,7 @@ namespace Arena3Q.Tests.PlayMode
         private readonly Dictionary<string, int?> _ints = new Dictionary<string, int?>();
         private float? _musicVolume; private string _rememberAddress;
         private bool _hadAddress;
-        private static string Output => Path.GetFullPath("NghiemThu/UI/XemTruoc_Startup_20261024/after");
+        private static string Output => Path.GetFullPath("NghiemThu/UI/XemTruoc_Startup_Review2_20261024/after");
 
         [UnitySetUp]
         public IEnumerator SetUp()
@@ -192,6 +192,75 @@ namespace Arena3Q.Tests.PlayMode
             }
         }
         [UnityTest]
+        public IEnumerator EnteringModal_DoesNotLeaveEnabledButtonsWithDisabledRendererTint()
+        {
+            var start = StartScreen(); start.OpenBind(); yield return new WaitForSecondsRealtime(.4f);
+            foreach (var button in start.Root.GetComponentsInChildren<Button>().Where(b => b.name.StartsWith("Link")))
+            {
+                Assert.That(button.IsInteractable(), Is.True, button.name);
+                var tint = button.targetGraphic.canvasRenderer.GetColor();
+                Assert.That(tint.r, Is.EqualTo(1).Within(.01), button.name + " renderer tint");
+                Assert.That(tint.a, Is.EqualTo(1).Within(.01), button.name + " renderer alpha");
+            }
+            start.OpenPicker(); yield return new WaitForSecondsRealtime(.4f);
+            var confirm = start.Root.GetComponentsInChildren<Button>().Single(b => b.name == "ConfirmServer");
+            Assert.That(confirm.IsInteractable(), Is.True);
+            Assert.That(confirm.targetGraphic.canvasRenderer.GetColor(), Is.EqualTo(Color.white));
+        }
+        [UnityTest]
+        public IEnumerator LegalSentence_HasTwoInlineLinks_AndCheckboxTextStillToggles()
+        {
+            var login = Login(); yield return new WaitForSecondsRealtime(.3f);
+            var legal = login.Root.GetComponentsInChildren<UiLegalLinks>().Single();
+            var text = legal.GetComponent<TMP_Text>(); text.ForceMeshUpdate();
+            Assert.That(text.textInfo.linkCount, Is.EqualTo(2));
+            Assert.That(text.GetParsedText(), Does.Contain("Khi tiếp tục, bạn đồng ý với Điều khoản dịch vụ và Chính sách bảo mật."));
+            legal.Open("terms"); Assert.That(_flow.LastMessage, Does.Contain("cập nhật"));
+            login.ShowAccountForm(true); yield return null;
+            legal = login.Root.GetComponentsInChildren<UiLegalLinks>().Single(); text = legal.GetComponent<TMP_Text>(); text.ForceMeshUpdate();
+            Assert.That(text.textInfo.linkCount, Is.EqualTo(2));
+            Assert.That(login.Form.TermsToggle.isOn, Is.False);
+            var point = text.rectTransform.TransformPoint(new Vector3(text.rectTransform.rect.xMin + 2, text.rectTransform.rect.center.y, 0));
+            legal.OnPointerClick(new PointerEventData(EventSystem.current) { position = point });
+            Assert.That(login.Form.TermsToggle.isOn, Is.True, "normal words in the sentence toggle the checkbox");
+            var panel = login.Root.GetComponentsInChildren<RectTransform>().Single(r => r.name == "RegisterPanel");
+            Assert.That(panel.rect.height, Is.EqualTo(414));
+        }
+        [UnityTest]
+        public IEnumerator BottomShade_CoversCanvasWidthOutsideTheSafeDesignFrame()
+        {
+            var start = StartScreen();
+            SafeAreaFitter.OverrideArea = new Rect(Screen.width * .06f, Screen.height * .02f, Screen.width * .88f, Screen.height * .96f);
+            foreach (var fitter in _flow.GetComponentsInChildren<SafeAreaFitter>()) fitter.Apply();
+            yield return new WaitForSecondsRealtime(.3f);
+            var strip = start.Root.GetComponentsInChildren<CanvasBackdrop>().Single(x => x.bottomHeight > 0);
+            var corners = new Vector3[4]; ((RectTransform)strip.transform).GetWorldCorners(corners);
+            Assert.That(corners[0].x, Is.LessThanOrEqualTo(1)); Assert.That(corners[2].x, Is.GreaterThanOrEqualTo(Screen.width - 1));
+            Assert.That(corners[0].y, Is.EqualTo(0).Within(1));
+        }
+        [UnityTest]
+        public IEnumerator Spinner_RendersGoldPixelsInBothRings_OnAnIsolatedNavyBackground()
+        {
+            Login();
+            var canvas = _flow.GetComponentInChildren<Canvas>();
+            var root = Arena3Q.UI.UiFactory.Stretch("IsolatedSpinner", canvas.transform);
+            Arena3Q.UI.UiFactory.AddImage(root, new Color(.02f, .04f, .08f), raycastTarget: false);
+            LoadingSpinner.Create(_flow.StartupUi, root, new Vector2(640, 360));
+            yield return Capture("qa_spinner_isolated");
+            var texture = new Texture2D(2, 2); texture.LoadImage(File.ReadAllBytes(Path.Combine(Output, "qa_spinner_isolated.png")));
+            var outer = 0; var inner = 0;
+            for (var x = -66; x <= 66; x++) for (var y = -66; y <= 66; y++)
+            {
+                var radius = x * x + y * y; var pixel = texture.GetPixel(640 + x, 360 + y);
+                if (pixel.r < .6f || pixel.g < .4f || pixel.b > .75f) continue;
+                if (radius >= 59 * 59 && radius <= 65 * 65) outer++;
+                if (radius >= 40 * 40 && radius <= 45 * 45) inner++;
+            }
+            Object.Destroy(texture); Object.Destroy(root.gameObject);
+            Assert.That(outer, Is.GreaterThan(100), "outer arc must be visible, not merely have geometry");
+            Assert.That(inner, Is.GreaterThan(60), "inner dashed ring must be visible");
+        }
+        [UnityTest]
         public IEnumerator Screenshot_AllStartupStates_AndSafeAreas()
         {
             Directory.CreateDirectory(Output);
@@ -248,6 +317,7 @@ namespace Arena3Q.Tests.PlayMode
             File.WriteAllBytes(Path.Combine(Output, name + ".png"), image.EncodeToPNG()); Object.Destroy(image);
             var widgetState = _flow.Screen.Root.GetComponentsInChildren<Button>().Select(button =>
                 button.name + " interactable=" + button.IsInteractable() + " image=" + button.targetGraphic.color
+                + " renderer=" + button.targetGraphic.canvasRenderer.GetColor()
                 + " alpha=" + (button.GetComponent<CanvasGroup>() != null ? button.GetComponent<CanvasGroup>().alpha.ToString() : "none"));
             File.WriteAllLines(Path.Combine(Output, name + "_widgets.txt"), widgetState);
             RenderTexture.active = previous; camera.targetTexture = oldTarget; canvas.renderMode = oldMode; target.Release(); Object.Destroy(target);

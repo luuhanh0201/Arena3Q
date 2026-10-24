@@ -8,6 +8,7 @@ namespace Arena3Q.Frontend
     {
         private readonly Vector3[] _corners = new Vector3[4];
         public bool coverSprite;
+        public float bottomHeight;
         private void LateUpdate()
         {
             var canvas = GetComponentInParent<Canvas>();
@@ -16,6 +17,13 @@ namespace Arena3Q.Frontend
             var min = parent.InverseTransformPoint(_corners[0]); var max = parent.InverseTransformPoint(_corners[2]);
             var rect = (RectTransform)transform; rect.anchorMin = rect.anchorMax = parent.pivot; rect.pivot = FrontendUi.Center;
             rect.anchoredPosition = (min + max) / 2; var size = (Vector2)(max - min);
+            if (bottomHeight > 0)
+            {
+                rect.pivot = new Vector2(.5f, 0);
+                rect.anchoredPosition = new Vector2((min.x + max.x) / 2, min.y);
+                rect.sizeDelta = new Vector2(size.x, bottomHeight);
+                return;
+            }
             if (coverSprite)
             {
                 var image = GetComponent<Image>();

@@ -22,7 +22,7 @@ namespace Arena3Q.Frontend
         protected override void BuildScreen()
         {
             Backdrop();
-            Kit.Image(Design, "BottomShade", Art.gradient, new Rect(0, 390, 1280, 330));
+            Kit.BottomShade(Design, 330);
             Kit.Logo(Design, 400, 16, 480);
             Kit.Footer(Design);
             var bar = Kit.Image(Design, "ProgressTrack", Art.rounded, new Rect(206, 570, 868, 16), StartupUiConfig.Hex("B8893A"), true);

@@ -370,3 +370,12 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 ### UI màn rộng và font cache (24/10/2026)
 - 14/14 bài qua sau tinh chỉnh; ảnh cutout cho thấy nền popup chỉ tối/blur trong khung thiết kế, mép ngoài vẫn sáng. Tách nền phủ canvas thật (CanvasBackdrop) khỏi khung điều khiển safe area.
 - TMP tự ghi glyph/atlas runtime vào asset khi thoát PlayMode, tăng mỗi file lên 1,6-7 MB. Thêm cleanup khi EnteredEditMode và menu Compact Startup Font Atlases; lưu asset SDF rỗng nhỏ, giữ font nguồn OFL và tự điền glyph khi chạy.
+
+## UI review Claude 19:10, vòng 2 (24/10/2026)
+- Claude chạy lại EditMode271/271 vàPlayMode142/143(1ignored), hìnhchỉ~80%: testhànhvi chưa bắt vòng chờ không vẽ, dải tối màn rộng cắt mép, câu pháp lý sai bố cục, nút popup xỉn, chip sai kiểu.
+- Xỉn popup: Button.AddComponent chạy trạng thái Disabled ColorTint dưới CanvasGroup đang khóa khi modal hiện. Đổi transition=None sau đó không hủy tween màu CanvasRenderer, dùImage.color và interactable đều đúng. Hủy tween/reset renderer về white trước GameButton tự điều khiển. Thêm test renderer tint.
+- Spinner custom mesh có gọi OnPopulateMesh nhưng không có vòng trong ảnh; thay biểu diễn bằng các alpha sprite vòng cung/nét đứt/đĩa navy từ hình CSS trong mockup, dùng Image chuẩn và xoay transform. Thêm test pixel cô lập để không lấy meshvertices thay bằng chứng nhìn thấy.
+- Dải tối đáy trước đây nằm trong DesignFrame16:9; thêm chế độ bottom strip phủ ngang canvas thật, giữ điều khiển trong safe area.
+- Inline legal links dùng chung UiLegalLinks/TMP link, không lặp câu/links. Register trở về panel414px, gap10. Server legend4chấmmàu vàselected cùnghàngnút, chipcircle40px/tagcam, loa nằm trước bánh răng.
+- Bản mockup Loading phụ chỉ là dc-import Loading; adapter đã render trắng do chưa mở component con. Render trực tiếp Loading.dc.html với scenario của wrapper, dừng CSS ở khung nhìn thấy được; không thay đổi tài liệu nguồn.
+- Bằng chứng vòng2 giữ riêng XemTruoc_Startup_Review2_20261024, không ghi đè vòng1.

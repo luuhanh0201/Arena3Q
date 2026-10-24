@@ -67,6 +67,7 @@ namespace Arena3Q.Editor
             Bind("backIcon", "UI/Sprites/Icons/icon_back.png"); Bind("soundIcon", "UI/Sprites/Icons/icon_sound.png");
             Bind("settingsIcon", "UI/Sprites/Icons/icon_settings.png"); Bind("language", "UI/Sprites/Icons/lang_selector_vi.png");
             foreach (var name in new[] { "cart", "wheel", "flag", "spear", "gradient", "vignette", "rounded" }) Bind(name, "Generated/" + name + ".png");
+            foreach (var name in new[] { "ringOuter", "ringInner", "spinnerDisc", "circle" }) Bind(name, "Generated/" + name + ".png");
             var icons = new[] { ("wifi", "wifi"), ("wifiLow", "wifi-low"), ("wifiOff", "wifi-off"), ("serverOff", "server-off"),
                 ("warning", "triangle-alert"), ("download", "arrow-down"), ("check", "check"), ("user", "user-round"), ("gift", "gift"), ("slash", "slash") };
             foreach (var icon in icons) Bind(icon.Item1, "Lucide/" + icon.Item2 + ".png");
@@ -84,7 +85,7 @@ namespace Arena3Q.Editor
                 musicImporter.defaultSampleSettings = sample; musicImporter.SaveAndReimport();
             }
             so.FindProperty("music").objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>(musicPath);
-            if (so.FindProperty("copy").arraySize == 0) FillCopy(so);
+            FillCopy(so, false);
             so.ApplyModifiedPropertiesWithoutUndo(); EditorUtility.SetDirty(config);
             // Migrate only the first local draft's panel height, without resetting edited layouts.
             if (Mathf.Approximately(config.loginPanel.height, 566)) config.loginPanel.height = 512;
@@ -179,15 +180,20 @@ namespace Arena3Q.Editor
             var asset = AssetDatabase.LoadAssetAtPath<StartupUiConfig>(ConfigPath);
             var so = new SerializedObject(asset); FillCopy(so); so.ApplyModifiedPropertiesWithoutUndo(); AssetDatabase.SaveAssets();
         }
-        private static void FillCopy(SerializedObject so)
+        private static void FillCopy(SerializedObject so, bool reset = true)
         {
             var lines = File.ReadAllLines("docs/UI/StartupCopy.tsv").Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
-            var copy = so.FindProperty("copy"); copy.arraySize = lines.Length;
-            for (var i = 0; i < lines.Length; i++)
+            var copy = so.FindProperty("copy");
+            if (reset) copy.arraySize = 0;
+            var known = new System.Collections.Generic.HashSet<string>();
+            for (var i = 0; i < copy.arraySize; i++) known.Add(copy.GetArrayElementAtIndex(i).FindPropertyRelative("key").stringValue);
+            foreach (var line in lines)
             {
-                var parts = lines[i].Split(new[] { '\t' }, 2);
-                if (parts.Length != 2) throw new InvalidDataException("Invalid startup copy line: " + lines[i]);
-                var entry = copy.GetArrayElementAtIndex(i); entry.FindPropertyRelative("key").stringValue = parts[0]; entry.FindPropertyRelative("value").stringValue = parts[1];
+                var parts = line.Split(new[] { '\t' }, 2);
+                if (parts.Length != 2) throw new InvalidDataException("Invalid startup copy line: " + line);
+                if (!known.Add(parts[0])) continue;
+                var index = copy.arraySize; copy.arraySize++;
+                var entry = copy.GetArrayElementAtIndex(index); entry.FindPropertyRelative("key").stringValue = parts[0]; entry.FindPropertyRelative("value").stringValue = parts[1];
             }
         }
         private static void ExpandSampleServers()
