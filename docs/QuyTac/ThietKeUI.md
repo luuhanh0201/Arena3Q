@@ -1,6 +1,8 @@
-# Quy tắc thiết kế UI và văn bản (mọi agent)
+# Quy tắc thiết kế UI trong game (mọi agent)
 
-Người dùng giao ngày 24/10/2026. Áp dụng cho UI trong game, tài liệu, Markdown và nội dung chat.
+Người dùng giao ngày 24/10/2026.
+
+**Phạm vi:** mọi chữ và icon hiển thị cho người chơi trong game: HUD trận đánh (`Scripts/UI`), các màn hình Frontend (`Scripts/Frontend`), chữ lấy từ asset nội dung (tên, mô tả kỹ năng, cốt truyện, thông báo...). Tài liệu trong `docs/`, comment trong code, công cụ Editor / dev và nội dung chat **không** thuộc phạm vi này.
 
 ## Định dạng và icon
 
@@ -11,7 +13,11 @@ Người dùng giao ngày 24/10/2026. Áp dụng cho UI trong game, tài liệu,
    - Lucide Icons
    - Heroicons
    - Material Symbols
-4. Ưu tiên icon dạng vector (SVG) hoặc monochrome, có thể tùy chỉnh màu sắc bằng CSS.
-5. Khi viết UI, sử dụng icon component từ thư viện đã cài đặt. Không thay thế icon bằng Emoji Unicode.
-6. Khi viết tài liệu, Markdown hoặc nội dung chat, ưu tiên văn bản thuần, không thêm biểu tượng trang trí không cần thiết.
-7. Giữ định dạng chuyên nghiệp, tối giản, nhất quán. Không lạm dụng icon trong tiêu đề hoặc danh sách.
+4. Ưu tiên icon dạng vector (SVG) hoặc monochrome, có thể tùy chỉnh màu sắc.
+5. Khi viết UI, sử dụng icon từ thư viện đã cài đặt. Không thay thế icon bằng Emoji Unicode.
+6. Giữ định dạng chuyên nghiệp, tối giản, nhất quán. Không lạm dụng icon trong tiêu đề hoặc danh sách.
+
+## Áp dụng trong Unity (uGUI)
+
+- HUD và Frontend dựng bằng uGUI từ code, không có CSS hay icon component. Icon lấy file SVG từ một thư viện ở trên, chuyển thành sprite trắng một màu (nền trong suốt) và đổi màu bằng `Image.color`; ghi rõ thư viện và giấy phép cạnh file icon (repo công khai).
+- Ký hiệu Unicode dùng làm icon (ví dụ `★`, `✓`, `⚠`) cũng tính là emoji / icon trang trí: thay bằng sprite icon.
