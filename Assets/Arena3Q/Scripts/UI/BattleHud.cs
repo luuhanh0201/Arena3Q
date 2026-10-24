@@ -442,7 +442,7 @@ namespace Arena3Q.UI
             {
                 Team.Player => "Ta",
                 Team.Enemy => "Địch",
-                _ => "—"
+                _ => "Chưa có"
             };
             var blessed = formation.BlessedTeam == Team.Player ? " · Trận nhãn phù hộ quân ta"
                 : formation.BlessedTeam == Team.Enemy ? " · Trận nhãn phù hộ quân địch" : "";

@@ -64,8 +64,13 @@ namespace Arena3Q.Frontend
                 new Vector2(600f, 80f), Ui.Theme.accent);
 
             Ui.Label(_info, "Role", entry.role, 28, TextAnchor.UpperLeft, new Vector2(0.5f, 1f), new Vector2(0f, -70f), new Vector2(700f, 90f));
-            Ui.Label(_info, "Difficulty", "Độ khó: " + new string('★', entry.difficulty) + new string('☆', 3 - entry.difficulty), 28,
+            // Difficulty out of 3 as star icons: lit up to the lord's difficulty, dim after it.
+            var difficulty = Ui.Label(_info, "Difficulty", "Độ khó:", 28,
                 TextAnchor.MiddleLeft, new Vector2(0.5f, 1f), new Vector2(0f, -140f), new Vector2(700f, 44f), Ui.Theme.accent);
+            var stars = UiFactory.AddStars("DifficultyStars", _info, new Vector2(0.5f, 1f),
+                new Vector2(-350f + difficulty.preferredWidth + 10f, -140f), 3, 28f, Ui.Theme.accent);
+            for (var i = entry.difficulty; i < stars.childCount; i++)
+                stars.GetChild(i).GetComponent<Image>().color = new Color(Ui.Theme.accent.r, Ui.Theme.accent.g, Ui.Theme.accent.b, 0.25f);
 
             // Level-1 stats as bars relative to the strongest lord in each stat.
             var rows = new (string label, Func<CombatNumbers, float> value)[]

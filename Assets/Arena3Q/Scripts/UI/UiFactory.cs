@@ -1,3 +1,4 @@
+using Arena3Q.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
@@ -64,6 +65,34 @@ namespace Arena3Q.UI
             image.sprite = sprite;
             image.raycastTarget = raycastTarget;
             return image;
+        }
+
+        /// <summary>
+        /// A white library icon tinted with <paramref name="color"/> (docs/QuyTac/ThietKeUI.md: icons, never Unicode
+        /// symbols). Pivot = anchor, so <paramref name="position"/> is the icon's edge or centre on that side.
+        /// </summary>
+        public static Image AddIcon(string name, Transform parent, Sprite sprite, Vector2 anchor, Vector2 position, float size, Color color)
+        {
+            var image = AddImage(CreateRect(name, parent, anchor, anchor, anchor, position, new Vector2(size, size)), color, sprite, false);
+            image.preserveAspect = true;
+            image.enabled = sprite != null;
+            return image;
+        }
+
+        /// <summary>
+        /// <paramref name="count"/> star icons in a row going right from <paramref name="position"/> (left middle of the
+        /// row). Returns the row, whose children are the stars.
+        /// </summary>
+        public static RectTransform AddStars(string name, Transform parent, Vector2 anchor, Vector2 position, int count, float size, Color color)
+        {
+            const float spacing = 1f;
+            var row = CreateRect(name, parent, anchor, anchor, new Vector2(0f, 0.5f), position,
+                new Vector2(Mathf.Max(0, count) * (size + spacing), size));
+            var icons = UiIconSet.Load();
+            var star = icons != null ? icons.Star : null;
+            for (var i = 0; i < count; i++)
+                AddIcon($"Star {i}", row, star, new Vector2(0f, 0.5f), new Vector2(i * (size + spacing), 0f), size, color);
+            return row;
         }
 
         public static Text AddText(RectTransform rect, string content, int fontSize, TextAnchor alignment, Color color)

@@ -84,6 +84,7 @@ namespace Arena3Q.Editor
 
             // Levels, stars, breakthroughs: the field defaults are the design numbers (docs/KeHoach/HeroProgression.md).
             progression = GetOrCreate<ProgressionConfig>(ContentRoot + "/Progression/ProgressionConfig.asset", _ => { });
+            BuildUiIcons();
             // Class growth (§4): strength grows faster, (1 + Công) × (1 + Máu) per level is the same for every class.
             var growthOffense = Growth("Growth_Offense", "offense", "Công kích", 0.036f, 0.024f);
             var growthBalanced = Growth("Growth_Balanced", "balanced", "Cân bằng", 0.033f, 0.027f);
@@ -424,6 +425,20 @@ namespace Arena3Q.Editor
             stats.FindPropertyRelative("reactionRange").floatValue = reaction;
             stats.FindPropertyRelative("aggroRange").floatValue = aggro;
         }
+
+        /// <summary>
+        /// The UI icon set (docs/QuyTac/ThietKeUI.md): library icons as white sprites in Art/UI/Icons.
+        /// Batch mode: -executeMethod Arena3Q.Editor.PrototypeContentBuilder.BuildUiIcons
+        /// </summary>
+        public static void BuildUiIcons()
+        {
+            EnsureFolder(ContentRoot + "/Resources");
+            GetOrCreate<UiIconSet>($"{ContentRoot}/Resources/{UiIconSet.ResourceName}.asset", so =>
+                so.FindProperty("star").objectReferenceValue = AssetDatabase.LoadAssetAtPath<Sprite>(UiIconsFolder + "/Star.png"));
+            AssetDatabase.SaveAssets();
+        }
+
+        private const string UiIconsFolder = "Assets/Arena3Q/Art/UI/Icons";
 
         internal static T GetOrCreate<T>(string path, Action<SerializedObject> fill) where T : ScriptableObject
         {

@@ -93,7 +93,7 @@ namespace Arena3Q.Frontend
             Ui.Label(_content, "Title", register ? "Đăng ký tài khoản" : "Đăng nhập tài khoản", 38, TextAnchor.MiddleCenter,
                 new Vector2(0.5f, 1f), new Vector2(0f, -50f), new Vector2(700f, 60f), Ui.Theme.accent);
             var y = register ? 140f : 100f;
-            _username = Ui.Input(_content, "Username", "Tên đăng nhập (6–20 ký tự)", FrontendUi.Center, new Vector2(0f, y), new Vector2(620f, 80f));
+            _username = Ui.Input(_content, "Username", "Tên đăng nhập (6-20 ký tự)", FrontendUi.Center, new Vector2(0f, y), new Vector2(620f, 80f));
             _password = Ui.Input(_content, "Password", "Mật khẩu (từ 8 ký tự)", FrontendUi.Center, new Vector2(0f, y - 95f), new Vector2(620f, 80f), password: true);
             _confirmation = register
                 ? Ui.Input(_content, "Confirm", "Nhập lại mật khẩu", FrontendUi.Center, new Vector2(0f, y - 190f), new Vector2(620f, 80f), password: true)
@@ -170,7 +170,7 @@ namespace Arena3Q.Frontend
         {
             switch (problem)
             {
-                case CredentialProblem.UsernameLength: return $"Tên đăng nhập cần {rules.MinUsernameLength}–{rules.MaxUsernameLength} ký tự.";
+                case CredentialProblem.UsernameLength: return $"Tên đăng nhập cần {rules.MinUsernameLength}-{rules.MaxUsernameLength} ký tự.";
                 case CredentialProblem.UsernameCharacters: return "Tên đăng nhập chỉ gồm chữ không dấu, số và dấu _.";
                 case CredentialProblem.PasswordLength: return $"Mật khẩu cần ít nhất {rules.MinPasswordLength} ký tự.";
                 case CredentialProblem.PasswordMismatch: return "Hai lần nhập mật khẩu không khớp.";

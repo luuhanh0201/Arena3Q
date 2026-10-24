@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Arena3Q.Core;
+using Arena3Q.Data;
 using Arena3Q.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -61,7 +62,13 @@ namespace Arena3Q.Frontend
                 var button = Ui.Button(_list, $"Server {server.Id}", Describe(server), new Vector2(0.5f, 1f),
                     new Vector2(0f, -60f - i * 100f), new Vector2(1080f, 86f), primary: server == Selected);
                 button.GetComponentInChildren<Text>().alignment = TextAnchor.MiddleLeft;
-                button.GetComponentInChildren<Text>().rectTransform.offsetMin = new Vector2(30f, 0f);
+                button.GetComponentInChildren<Text>().rectTransform.offsetMin = new Vector2(80f, 0f);
+                if (server.Recommended)
+                {
+                    var icons = UiIconSet.Load();
+                    UiFactory.AddIcon("Recommended", button.transform, icons != null ? icons.Star : null, new Vector2(0f, 0.5f),
+                        new Vector2(30f, 0f), 34f, new Color(1f, 0.85f, 0.3f));
+                }
                 button.interactable = server.CanEnter;
                 button.onClick.AddListener(() => Select(server));
             }
@@ -112,7 +119,7 @@ namespace Arena3Q.Frontend
         private string Describe(ServerInfo server)
         {
             var status = server.Status == ServerStatus.New ? "[Mới]" : server.Status == ServerStatus.Busy ? "[Đông]" : "[Bảo trì]";
-            var text = $"{(server.Recommended ? "★ " : "   ")}{server.Name}   {status}";
+            var text = $"{server.Name}   {status}";
             var character = Flow.Profile.FindCharacter(server.Id);
             if (character != null && character.HasLord)
                 text += $"   · {character.name} Lv{character.lordLevel}";

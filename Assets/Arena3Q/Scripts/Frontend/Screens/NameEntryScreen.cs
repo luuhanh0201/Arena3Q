@@ -38,7 +38,7 @@ namespace Arena3Q.Frontend
             var panel = Ui.Panel(Root, "Panel", new Vector2(0.62f, 0.5f), Vector2.zero, new Vector2(900f, 560f));
             Ui.Label(panel, "Title", "Đặt tên chủ tướng", 44, TextAnchor.MiddleCenter, new Vector2(0.5f, 1f), new Vector2(0f, -60f),
                 new Vector2(820f, 70f), Ui.Theme.accent);
-            Ui.Label(panel, "Hint", $"Tên của bạn trên máy chủ {Flow.Server?.Name}. {_rules.MinLength}–{_rules.MaxLength} ký tự, có dấu, không ký tự đặc biệt.",
+            Ui.Label(panel, "Hint", $"Tên của bạn trên máy chủ {Flow.Server?.Name}. {_rules.MinLength}-{_rules.MaxLength} ký tự, có dấu, không ký tự đặc biệt.",
                 24, TextAnchor.MiddleCenter, new Vector2(0.5f, 1f), new Vector2(0f, -130f), new Vector2(820f, 70f));
             _input = Ui.Input(panel, "Input", "Nhập tên…", FrontendUi.Center, new Vector2(-90f, 20f), new Vector2(560f, 90f),
                 characterLimit: _rules.MaxLength + 4);

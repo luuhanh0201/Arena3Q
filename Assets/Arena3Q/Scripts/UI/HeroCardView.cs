@@ -30,6 +30,7 @@ namespace Arena3Q.UI
             public GameObject Root;
             public Image Cooldown;
             public Text Label;
+            public Image LockStar;
         }
 
         public static readonly Vector2 CardSize = new Vector2(160f, 210f);
@@ -80,8 +81,11 @@ namespace Arena3Q.UI
             // Level, and stars for heroes that have them (lords break through by level instead).
             var levelRect = UiFactory.CreateRect("Level", rect, new Vector2(0f, 1f), new Vector2(0f, 1f),
                 new Vector2(0f, 1f), new Vector2(8f, -4f), new Vector2(144f, 30f));
-            var levelText = isLord ? $"Lv{card.Level}" : $"Lv{card.Level} {new string('★', card.Stars)}";
-            UiFactory.AddText(levelRect, levelText, 20, TextAnchor.UpperLeft, new Color(1f, 0.9f, 0.55f));
+            var levelColor = new Color(1f, 0.9f, 0.55f);
+            var level = UiFactory.AddText(levelRect, $"Lv{card.Level}", 20, TextAnchor.UpperLeft, levelColor);
+            if (!isLord)
+                UiFactory.AddStars("Stars", rect, new Vector2(0f, 1f), new Vector2(8f + level.preferredWidth + 4f, -16f),
+                    card.Stars, 16f, levelColor);
 
             var statusRect = UiFactory.CreateRect("Status", rect, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f),
                 new Vector2(0.5f, 0f), new Vector2(0f, 10f), new Vector2(150f, 34f));
@@ -111,7 +115,16 @@ namespace Arena3Q.UI
                 cooldown.fillClockwise = false;
                 var label = UiFactory.AddText(UiFactory.Stretch("Label", iconRect), "", 18, TextAnchor.MiddleCenter, Color.white);
                 label.gameObject.AddComponent<Outline>().effectColor = Color.black;
-                _skillIcons[i] = new SkillIcon { Slot = slots[i], Root = iconRect.gameObject, Cooldown = cooldown, Label = label };
+                // "2" + star icon: the stars a hero needs to learn this skill.
+                var icons = UiIconSet.Load();
+                var lockStar = UiFactory.AddIcon("LockStar", iconRect, icons != null ? icons.Star : null, new Vector2(1f, 0.5f),
+                    new Vector2(-2f, 0f), 14f, new Color(1f, 0.9f, 0.55f));
+                lockStar.gameObject.AddComponent<Outline>().effectColor = Color.black;
+                lockStar.gameObject.SetActive(false);
+                _skillIcons[i] = new SkillIcon
+                {
+                    Slot = slots[i], Root = iconRect.gameObject, Cooldown = cooldown, Label = label, LockStar = lockStar
+                };
                 iconRect.gameObject.SetActive(skill != null);
             }
 
@@ -162,9 +175,11 @@ namespace Arena3Q.UI
                 {
                     // Locked: the lord's unlock level or the stars needed (spec §3 🟡), shown before summoning too.
                     icon.Cooldown.fillAmount = 1f;
-                    icon.Label.text = LockLabel(icon.Slot);
+                    icon.Label.text = LockLabel(icon.Slot, out var needsStars);
+                    ShowLockStar(icon, needsStars);
                     continue;
                 }
+                ShowLockStar(icon, false);
                 var slot = hero?.Skills.Get(icon.Slot);
                 var cooldown = slot?.Definition != null ? slot.Definition.Cooldown : 0f;
                 var left = slot?.CooldownLeft ?? 0f;
@@ -184,8 +199,10 @@ namespace Arena3Q.UI
             }
         }
 
-        private string LockLabel(SkillSlot slot)
+        // Lords: "Lv5". Heroes: the star count, with the star icon beside it (needsStars).
+        private string LockLabel(SkillSlot slot, out bool needsStars)
         {
+            needsStars = false;
             var rules = _hud.Battle.Rules;
             var kind = _card.Hero.Kind;
             if (kind == HeroKind.Lord)
@@ -193,9 +210,21 @@ namespace Arena3Q.UI
             for (var stars = 1; stars <= rules.MaxStars; stars++)
             {
                 if (rules.IsSkillUnlocked(kind, slot, _card.Level, stars))
-                    return $"{stars}★";
+                {
+                    needsStars = true;
+                    return stars.ToString();
+                }
             }
             return "";
+        }
+
+        // The number moves left to make room for the star on the icon's right.
+        private static void ShowLockStar(SkillIcon icon, bool show)
+        {
+            if (icon.LockStar.gameObject.activeSelf == show)
+                return;
+            icon.LockStar.gameObject.SetActive(show);
+            icon.Label.rectTransform.anchoredPosition = new Vector2(show ? -6f : 0f, 0f);
         }
 
         // ---- Input ----

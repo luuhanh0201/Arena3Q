@@ -99,7 +99,11 @@ namespace Arena3Q.Tests.PlayMode
 
             var levelLabels = _hud.CardViews.Select(card => card.transform.Find("Level").GetComponent<Text>().text).ToList();
             Assert.That(levelLabels[0], Is.EqualTo("Lv10"), "lords show the level only");
-            Assert.That(levelLabels[1], Is.EqualTo("Lv1 ★★★"));
+            Assert.That(levelLabels[1], Is.EqualTo("Lv1"));
+            Assert.That(_hud.CardViews[0].transform.Find("Stars"), Is.Null, "lords show no stars");
+            var stars = _hud.CardViews[1].transform.Find("Stars");
+            Assert.That(stars.childCount, Is.EqualTo(3), "one star icon per star (no '★' characters, docs/QuyTac/ThietKeUI.md)");
+            Assert.That(stars.GetComponentsInChildren<Image>().All(star => star.sprite != null), "the stars use the icon sprite");
         }
 
         [UnityTest]

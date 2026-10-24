@@ -315,7 +315,11 @@ namespace Arena3Q.Tests.PlayMode
             var heroCard = _hud.CardViews[1];
 
             Assert.That(IconLabel(lordCard, SkillSlot.Skill2), Is.EqualTo("Lv5"), "a level-1 lord has not learned skill 2");
-            Assert.That(IconLabel(heroCard, SkillSlot.Skill3), Is.EqualTo("2★"));
+            Assert.That(IconLabel(heroCard, SkillSlot.Skill3), Is.EqualTo("2"));
+            Assert.That(heroCard.transform.Find($"Skill {SkillSlot.Skill3}/LockStar").gameObject.activeSelf, Is.True,
+                "the star icon follows the number");
+            Assert.That(lordCard.transform.Find($"Skill {SkillSlot.Skill2}/LockStar").gameObject.activeSelf, Is.False,
+                "lords unlock by level: no star");
             Assert.That(heroCard.transform.Find("Rage").gameObject.activeSelf, Is.False, "no ultimate learned: no rage bar");
             Assert.That(_battle.SelectedHero.CardIndex, Is.EqualTo(1));
 
