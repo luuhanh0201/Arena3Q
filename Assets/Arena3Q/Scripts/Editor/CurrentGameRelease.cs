@@ -5,12 +5,18 @@ using System.Linq;
 using Arena3Q.Core;
 using Arena3Q.Data;
 using UnityEditor;
+using UnityEditor.Build.Reporting;
 using UnityEngine;
 
 namespace Arena3Q.Editor
 {
     public static class CurrentGameRelease
     {
+        [Serializable] private sealed class PackedContent
+        {
+            public string platform, startupScene, battleScene;
+            public string[] requiredAssets, scenes;
+        }
         public const string Evidence = "NghiemThu/Release/Latest_20261025";
         public static GameReleaseSettings Settings => AssetDatabase.LoadAssetAtPath<GameReleaseSettings>(GameReleaseSettings.AssetPath)
             ?? throw new InvalidOperationException("Apply the current game release content first.");
@@ -68,6 +74,19 @@ namespace Arena3Q.Editor
                 var errors = new List<string>(); stage.Validate(errors);
                 if (errors.Count > 0) throw new InvalidOperationException(string.Join("\n", errors));
             }
+        }
+
+        public static void VerifyBuild(BuildReport report)
+        {
+            var config = Settings.frontend;
+            var required = new[] { AssetDatabase.GetAssetPath(config), AssetDatabase.GetAssetPath(config.TutorialStage), AssetDatabase.GetAssetPath(config.DefaultStage) };
+            var packed = new HashSet<string>(report.packedAssets.SelectMany(p => p.contents).Select(c => c.sourceAssetPath));
+            foreach (string asset in required)
+                if (!packed.Contains(asset)) throw new InvalidOperationException("Built player does not contain the current campaign content: " + asset);
+            Directory.CreateDirectory(Evidence);
+            var proof = new PackedContent { platform = report.summary.platform.ToString(), startupScene = config.FrontendSceneName,
+                battleScene = config.BattleSceneName, requiredAssets = required, scenes = ScenePaths };
+            File.WriteAllText(Evidence + "/" + proof.platform + "-content.json", JsonUtility.ToJson(proof, true));
         }
 
         private static StageConfig Adapt(StageConfig source, StageConfig layout, string folder)

@@ -12,6 +12,7 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Bàn giao trước đó: claude/outbox/20261020-2330_BAN-GIAO-cong-viec-claude.md.
 
 ## codex
+- 25/10 đã đồng bộ web/mobile mới nhất: Frontend mở Battlefield_HighQuality, stage campaign giữ luật/chỉ số/thưởng gốc; source c1b55a0 đã push. Edit 4/4 + Play 14/14; hai lượt browser chuột/bàn phím và chạm giả lập đều vào map mới/triệu hồi/lưu, 17 ảnh mỗi lượt. Web 339,7 MB và APK Latest 263,4 MB đều 0 lỗi/8 cảnh báo; APK có 3 asset campaign bắt buộc, 39 icon ASTC4x4, chữ ký v2 cùng signer/package. URL web có hash chống cache cũ; xem/tải http://127.0.0.1:4322 (PID32528). Báo cáo NghiemThu/Release/Latest_20261025/README.md. ADB rỗng, chưa cài/FPS máy thật. Nhả file/Unity, không theo dõi sau bàn giao.
 - 25/10 xong bản game web: http://127.0.0.1:4322 (Node PID29340), chọn Điện thoại/iPad/PC, giữ style mobile và luồng Frontend đầy đủ. WebGL339,7MB,0lỗi/8cảnh báo;15/15layout Unity +15/15UI, chuột/bàn phím và chạm giả lập đều vào trận/triệu hồi/lưuIndexedDB; video1080p42frame đã giải mã. Sửa font HUD tiếng Việt riêng cho web,42icon/8art giữSHA. Báo cáo docs/UI/GameWeb_20261025.md. Chưa Safari/thiết bị thật/FPS/hostingInternet. Nhảfile/Unity, khôngtheodõi sau bàngiao.
 - 25/10 icon mobile hoàn tất:42meta chỉ đổi platform, Android/iOS ASTC4x4 giữ1254px, WebGL/Standalone cấu hình riêng;42PNG/42SkillDefinition/42Sprite giữSHA/identity.4/4PlayMode,84ảnh web đạt. APKmobile263,4MB giảm117,1MB/30,8%,0lỗi/3cảnh báo,39icon build58,7MB raw, chữ kýv2cùng signer/nativecode nguyênSHA. Tạo góiGradle sạch bỏ vùngZIP cũ. Preview http://127.0.0.1:4311/app/icon-mobile.html (PID31420). iOS/WebGL chưabuild, ADBkhôngcóthiếtbị. Báo cáo docs/UI/SkillIconPlatforms_20261025.md. Nhảfile/Unity, khôngtheodõi sau bàngiao.
 - 25/10 audit dung lượng xong:172,6→365,1→380,5MB.39icon mớiRGBA32 tổng234MB raw/~154,4MB trongAPK, map84,9MB raw/~50,8MB trongAPK (compressed ước tính theo chunk). Có77asset chỉ do thư việnEditor kéo vào3,4MB raw; chưa đổi nén hoặc gameplay. Công cụ đọc BuildReport compile/chạy đạt, APK Feedback giữSHA/chữ ký. Báo cáo NghiemThu/Battlefield/AuditDungLuong_20261025/README.md. Nhả file/Unity, không theo dõi sau bàn giao.
@@ -61,7 +62,7 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Việc đầu: kiểm snapshot 3D về scale, toàn bộ submesh và quạt; kiểm footprint VFX sau đổi camera; đồng bộ docs 3D. Sau đó kiểm model/motion Mặc Ảnh và giải quyết Lữ Bố chưa qua QA da.
 - Báo ngay từng phần nhỏ với ảnh trước–sau và số đo. Chưa nghiệm thu tổng thể. Chỉ test Unity, chưa build/test Android theo bàn giao 0619. Sau khi hoàn tất công việc theo dõi inbox 1 giờ.
 ## Unity (Editor / batch mode)
-- Đang giữ bởi: không ai. Codex đã xong bản game web và kiểm trình duyệt; không theo dõi sau bàn giao.
+- Đang giữ bởi: không ai. Codex đã build/kiểm bản web và mobile đồng bộ nội dung mới nhất; không theo dõi sau bàn giao.
 
 
 

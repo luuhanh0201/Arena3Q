@@ -52,7 +52,7 @@ namespace Arena3Q.Editor
                 Directory.CreateDirectory(evidence);
                 File.WriteAllText(evidence+"/android-build.txt",result);Debug.Log("[Battlefield APK] "+result);
                 if(s.result!=BuildResult.Succeeded)throw new InvalidOperationException("Battlefield APK build failed: "+s.result);
-                if(releaseScenes!=null)SkillIconMobileQa.VerifyBuild(report,evidence);
+                if(releaseScenes!=null){SkillIconMobileQa.VerifyBuild(report,evidence);CurrentGameRelease.VerifyBuild(report);}
             }
             finally{EditorUserBuildSettings.buildAppBundle=bundle;}
         }

@@ -8,13 +8,17 @@ Người chơi chọn **Điện thoại** (20:9), **iPad** (4:3), **PC** (16:9),
 
 Unity 6000.6.6f1, cần Web Build Support. Không mở Editor khác cùng project.
 
+Khi cập nhật nội dung campaign, chạy menu **Arena3Q > Build > Apply Latest Game to Mobile and Web** hoặc CLI `-executeMethod Arena3Q.Editor.CurrentGameRelease.Apply` trước. Manifest chung: `Assets/Arena3Q/Scripts/Editor/GameRelease.asset`. Ba stage campaign dẫn xuất lấy bố cục map mới và giữ luật/chỉ số từ stage gốc; cả hai builder từ chối Frontend còn trỏ map cũ.
+
 ```powershell
 & 'C:/Program Files/Unity/Hub/Editor/6000.6.6f1/Editor/Unity.exe' -batchmode -nographics -quit -projectPath 'D:/UnityProjects/Arena3Q' -buildTarget WebGL -executeMethod Arena3Q.Editor.WebGameBuild.Build -logFile 'Logs/WebGame-build.log'
 ```
 
-Menu: **Arena3Q > Build > Web Game (Phone, iPad, PC)**. Cấu hình: [web-settings.json](web-settings.json). Người dùng chốt mở luồng game đầy đủ: Frontend (intro, tải, đăng nhập, chọn máy chủ, chọn tướng, đặt tên, truyện) rồi Battle theo hồ sơ hiện có. `Battlefield_HighQuality` cũng được đóng gói để dùng ở bước tích hợp map tiếp theo; không thay ải hướng dẫn hoặc chỉ số của game hiện tại. Build không đổi danh sách scene mobile hoặc override nén texture. RGBA32 của icon WebGL giữ chất lượng gốc; bộ ASTC mobile độc lập.
+Menu: **Arena3Q > Build > Web Game (Phone, iPad, PC)**. Cấu hình trang: [web-settings.json](web-settings.json). Luồng đầy đủ: Frontend (intro, tải, đăng nhập, máy chủ, chọn tướng, đặt tên, truyện) rồi **Battlefield_HighQuality** theo hồ sơ. Nhân vật mới chơi tutorial trên map mới; nhân vật cũ vào ải mặc định trên cùng map, giữ cấp/phần thưởng. Scene Battle cũ chỉ giữ làm nguồn/test. RGBA32 của icon WebGL giữ chất lượng gốc, độc lập ASTC mobile.
 
-Output: `Builds/WebGL/Arena3Q`. `build.json` được sinh theo tên file Unity thực tế; không đoán tên loader hoặc wasm. Gzip có bộ giải nén dự phòng của Unity, dùng được trên máy chủ tĩnh không thiết lập Content-Encoding. Video intro được chép vào `Player/StreamingAssets`, VideoPlayer bản web dùng URL thay cho VideoClip. Các thiết lập template/nén tạm thời được khôi phục sau build.
+Output: `Builds/WebGL/Arena3Q`. `build.json` ghi tên file Unity thực tế, hash nội dung, startupScene và battleScene; URL payload có hash để cache cũ không thay thế bản mới. Gzip có bộ giải nén dự phòng, dùng được trên máy chủ tĩnh không thiết lập Content-Encoding. Video intro được chép vào `Player/StreamingAssets`, VideoPlayer bản web dùng URL. Thiết lập template/nén tạm được khôi phục sau build.
+
+Mobile chung nội dung: `-executeMethod Arena3Q.Editor.BattlefieldAndroidBuild.BuildMobile` (hoặc BuildScripts.BuildAndroidDev), APK hiện tại `Builds/Android/Arena3Q-Latest-20261025.apk`. Menu thử map riêng vẫn là công cụ chẩn đoán.
 
 ## Chạy local
 
@@ -22,7 +26,7 @@ Output: `Builds/WebGL/Arena3Q`. `build.json` được sinh theo tên file Unity 
 node WebGame/server.cjs
 ```
 
-Mở **http://127.0.0.1:4322**. Máy chủ chỉ phục vụ thư mục build, có MIME wasm và HTTP Range cho video, không mở repo/Admin. Có thể đổi cổng bằng `ARENA_WEB_PORT`, bind địa chỉ mạng bằng `ARENA_WEB_HOST` khi cần thử thiết bị trong mạng LAN. Link loopback chỉ dùng trên chính PC; không phải đường dẫn Internet.
+Mở **http://127.0.0.1:4322**. Máy chủ phục vụ thư mục web build và đúng một APK được cấu hình tại `/download/Arena3Q-Latest-20261025.apk`, không mở repo/Admin. Có MIME wasm và HTTP Range. Có thể đổi cổng bằng `ARENA_WEB_PORT`, bind mạng bằng `ARENA_WEB_HOST` để thử LAN. Link loopback chỉ dùng trên PC này.
 
 Muốn cập nhật riêng trang bọc sau build, chép `index.html`, `style.css`, `player.mjs`, `web-settings.json` từ đây vào thư mục output; không cần build Unity lại.
 
@@ -37,6 +41,10 @@ node WebGame/flow-qa.cjs
 node WebGame/flow-qa.cjs --touch
 node WebGame/flow-qa.cjs --intro-only
 node WebGame/make-review.cjs
+node WebGame/flow-qa.cjs --latest
+node WebGame/flow-qa.cjs --latest --touch
+node WebGame/release-review.cjs
+node WebGame/verify-release.cjs
 ```
 
 Dùng Playwright hiện có trong Admin và Edge đã cài, không thêm package game. Bản `--ui` kiểm trang chọn màn hình trước khi chạy Unity. Bản đầy đủ đợi Unity khởi tạo thật, kiểm 15 kết hợp cửa sổ/tỷ lệ, canvas backing buffer, không tràn trang, giữ lựa chọn và chỉ tải loader một lần. Ảnh/JSON/log tại `NghiemThu/WebGame/20261025`.

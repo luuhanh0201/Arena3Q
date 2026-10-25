@@ -12,7 +12,8 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
 ---
 
 ## 1. Tổng quan ✅
-- Engine Unity 6.6, URP 3D (Universal Forward), C#. Nền tảng Android, iOS, PC. Màn hình ngang. Quyết định chuyển hiển thị sang 3D ngày 21/10/2026.
+- Engine Unity 6.6, URP 3D (Universal Forward), C#. Nền tảng Android, iOS, PC và Web (người dùng bổ sung 25/10/2026). Màn hình ngang. Quyết định chuyển hiển thị sang 3D ngày 21/10/2026.
+- ✅ (người dùng 25/10/2026) Bản web cho người chơi chọn hiển thị Điện thoại / iPad / PC; UI phát sinh dùng style mobile đã có. Cả web/mobile mở luồng khởi động, đăng nhập, chọn tướng đầy đủ rồi vào map mới nhất qua Frontend; bản thử map mở thẳng chỉ là công cụ test riêng.
 - Chế độ hiện tại: **PvE đánh ải**, gồm hai loại ải **Công** và **Thủ**. PvP làm sau.
 - Người chơi triệu hồi **tối đa 5 tướng mỗi trận**. Mỗi tướng dẫn một đội lính riêng.
 - Camera orthographic nghiêng từ trên xuống kiểu Clash of Clans; nhân vật và đạo cụ hiển thị 3D. Logic vẫn trên mặt phẳng 2D: (x,y) → world (x,y,0), chiều cao hướng −Z. Mặt đất dùng mesh + texture; phần chưa chuyển xong phải ghi rõ khi báo cáo.
