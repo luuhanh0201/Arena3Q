@@ -29,7 +29,7 @@ Web vẫn339,7MB như bản đầu, giảm8.370byte. APK vẫn263,4MB như bản
 
 `Android-content.json` xác nhận gói thật chứa FrontendConfig và cả hai stage campaign mới, không chỉ kiểm danh sách scene nguồn. `build-icons.json`:39icon được dùng có61.528.848byte ASTC4×4 trướcZIP;42PNG nguồn đúngSHA phê duyệt. Web vẫn dùng RGBA32 theo cấu hình riêng. `delivery-verification.json`: downloadHEAD200đúng dung lượng/MIME vàRange206đúng chữ kýZIP, chữ ký/package APK đạt. Máy chủ chỉ phục vụ buildweb và đúngAPK này; không mở thư mục Android hoặc repo.
 
-Máy chủ localPID32528 được giữ để xem/tải. Chưa đưa lên Internet. **ADB không nhận điện thoại**, nên chưa cài hoặc xác nhận render/FPS APK trên máy thật; chưa kiểm Safari/iPad thật. Không lấy kiểm trình duyệt giả lập hoặc target60 làm bằng chứng hiệu năng thiết bị.
+Máy chủ localPID32528 được giữ để xem/tải. Chưa đưa lên Internet. **Cập nhật19:55 ngày25/10: đã cài đè thành công lên Redmi Note8Pro theo yêu cầu "cài đi", mở COLD/ok509ms; ảnh máy thật xác nhận ải attack_01 trên map mới.** Chi tiết [device/README.md](device/README.md). Chưa đo FPS/toàn trận hoặc kiểm Safari/iPad thật; không lấy target60 làm bằng chứng hiệu năng thiết bị.
 
 Hướng dẫn build/chạy: [WebGame/README.md](../../../WebGame/README.md). Chỉnh EditorBuildSettings trong commit này là có chủ đích để profile Android/BuildScripts mở cùng luồng mới; các side effect ProjectSettings/URP khác không thuộc commit.
 
