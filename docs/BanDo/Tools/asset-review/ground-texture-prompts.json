@@ -1,0 +1,38 @@
+{
+  "status": "PENDING_APPROVAL",
+  "generator": "imagegen built-in",
+  "usage": "Ground albedo samples only; not applied to terrain or map",
+  "transparent_background": false,
+  "textures": [
+    {
+      "id": "DrySand",
+      "file": "NghiemThu/Battlefield/XemTruoc_Assets_20261025/textures/DrySand.png",
+      "prompt": "Create ONE production game ground albedo texture tile, asset name DrySand. Stylized hand-painted fantasy Three Kingdoms mobile strategy art. Subject: fine warm ochre dry sandy soil, tiny subtle grains, sparse naturally irregular hairline cracks, nearly uniform medium beige values. Flat orthographic top-down UV texture only, fills entire square edge to edge; perfectly seamless tiling at all four edges. Cohesive restrained painterly detail at close zoom, readable at distant tactical zoom. No lighting gradient, no cast shadows, no perspective, no ambient background, no model render, no vignette, no borders, no text, no watermark, no structures, no large rocks, no footprints, no weapons, no composition focal point. Neutral diffuse illumination and matte organic surface. This is a repeatable material texture, NOT an illustration of a battlefield."
+    },
+    {
+      "id": "PackedEarth",
+      "file": "NghiemThu/Battlefield/XemTruoc_Assets_20261025/textures/PackedEarth.png",
+      "prompt": "Create ONE production game ground albedo texture tile, asset name PackedEarth. Stylized hand-painted fantasy Three Kingdoms mobile strategy art. Subject: well worn compacted warm brown earth road surface, broad softly mottled patches, very sparse shallow wear scratches, no directional path, no road boundaries. Flat orthographic top-down UV texture only, fills entire square edge to edge; perfectly seamless tiling at all four edges. Cohesive restrained painterly detail at close zoom, readable at distant tactical zoom. No lighting gradient, no cast shadows, no perspective, no ambient background, no model render, no vignette, no borders, no text, no watermark, no structures, no large rocks, no footprints, no weapons, no composition focal point. Neutral diffuse illumination and matte organic surface. This is a repeatable material texture, NOT an illustration of a battlefield."
+    },
+    {
+      "id": "GravelSoil",
+      "file": "NghiemThu/Battlefield/XemTruoc_Assets_20261025/textures/GravelSoil.png",
+      "prompt": "Create ONE production game ground albedo texture tile, asset name GravelSoil. Stylized hand-painted fantasy Three Kingdoms mobile strategy art. Subject: dusty ochre soil mixed with a restrained scattering of tiny rounded warm grey and brown pebbles, visible earth between pebbles, not cobblestones. Flat orthographic top-down UV texture only, fills entire square edge to edge; perfectly seamless tiling at all four edges. Cohesive restrained painterly detail at close zoom, readable at distant tactical zoom. No lighting gradient, no cast shadows, no perspective, no ambient background, no model render, no vignette, no borders, no text, no watermark, no structures, no large rocks, no footprints, no weapons, no composition focal point. Neutral diffuse illumination and matte organic surface. This is a repeatable material texture, NOT an illustration of a battlefield."
+    },
+    {
+      "id": "OldPaving",
+      "file": "NghiemThu/Battlefield/XemTruoc_Assets_20261025/textures/OldPaving.png",
+      "prompt": "Create ONE production game ground albedo texture tile, asset name OldPaving. Stylized hand-painted fantasy Three Kingdoms mobile strategy art. Subject: worn irregular ancient warm grey stone paving slabs, varied sizes, softened chipped edges, hairline earth joints and restrained moss in cracks, no ornate symbols. Flat orthographic top-down UV texture only, fills entire square edge to edge; perfectly seamless tiling at all four edges. Cohesive restrained painterly detail at close zoom, readable at distant tactical zoom. No lighting gradient, no cast shadows, no perspective, no ambient background, no model render, no vignette, no borders, no text, no watermark, no structures, no large rocks, no footprints, no weapons, no composition focal point. Neutral diffuse illumination and matte organic surface. This is a repeatable material texture, NOT an illustration of a battlefield."
+    },
+    {
+      "id": "DryGrass",
+      "file": "NghiemThu/Battlefield/XemTruoc_Assets_20261025/textures/DryGrass.png",
+      "prompt": "Create ONE production game ground albedo texture tile, asset name DryGrass. Stylized hand-painted fantasy Three Kingdoms mobile strategy art. Subject: sparse short straw-gold dry grass tufts scattered over warm dusty olive-brown soil, more exposed soil than grass, very short hand-painted blades, no tall plants. Flat orthographic top-down UV texture only, fills entire square edge to edge; perfectly seamless tiling at all four edges. Cohesive restrained painterly detail at close zoom, readable at distant tactical zoom. No lighting gradient, no cast shadows, no perspective, no ambient background, no model render, no vignette, no borders, no text, no watermark, no structures, no large rocks, no footprints, no weapons, no composition focal point. Neutral diffuse illumination and matte organic surface. This is a repeatable material texture, NOT an illustration of a battlefield."
+    },
+    {
+      "id": "SparseGreenGrass",
+      "file": "NghiemThu/Battlefield/XemTruoc_Assets_20261025/textures/SparseGreenGrass.png",
+      "prompt": "Create ONE production game ground albedo texture tile, asset name SparseGreenGrass. Stylized hand-painted fantasy Three Kingdoms mobile strategy art. Subject: sparse small fresh sage-green and olive grass tufts on light warm earthen ground, natural uneven spacing, delicate short hand-painted blades, muted green. Flat orthographic top-down UV texture only, fills entire square edge to edge; perfectly seamless tiling at all four edges. Cohesive restrained painterly detail at close zoom, readable at distant tactical zoom. No lighting gradient, no cast shadows, no perspective, no ambient background, no model render, no vignette, no borders, no text, no watermark, no structures, no large rocks, no footprints, no weapons, no composition focal point. Neutral diffuse illumination and matte organic surface. This is a repeatable material texture, NOT an illustration of a battlefield."
+    }
+  ]
+}

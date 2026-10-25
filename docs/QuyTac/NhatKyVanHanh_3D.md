@@ -1,5 +1,13 @@
 # Nhật ký vận hành – thiết kế 3D, animation, VFX
 
+## 25/10/2026 · Codex · trang duyệt asset chiến trường
+
+- Nút xem texture lặp bị ẩn: CSS `#repeat { display:none }` vẫn hiệu lực khi JS gán style rỗng. Browser test bấm nút phát hiện, sửa thành display inline-block khi chọn texture; kiểm đủ6texture chuyển một ô/lặp3×3. Không chỉ kiểm URL ảnh trả200 rồi nhận UI hoạt động.
+- Ảnh kiểm lặp3×3 bị kéo chữ nhật do background-size theo khungviewer không vuông. Dùng vùng lặp vuông đặt giữa viewer, kiểm width=height; xem ảnh chụp để không đánh giá sai texel density/đường nối. Mẫu imagegen còn lộ nhịp lặp ở phóng xa, chưa nhận texture tile là vật liệu terrain cuối.
+- Đọc tên ThreeKingdomsSquare/Command để đặt nhãn ban đầu sai ý: hình thật là lều và đài trống, không phải một sân/cả doanh trại hoàn chỉnh. Xem preview mesh đã phát hiện; đặt nhãn theo vật thể thật, giữ ID/file nguồn nguyên. Thiếu cổng/vách/loài cây riêng phải ghi rõ, không suy diễn từ tên asset.
+- `spark_01` của Kenney là hình sét phân nhánh, không phải hạt bụi/đốm lửa nhỏ; nhìn screenshot đã phát hiện. Bỏ khỏi bộ môi trường đề xuất và chọn dirt_02. Tên file không thay cho kiểm hình từng texture nguồn.
+- Dung lượng glTF ban đầu chỉ tính JSON, bỏ .bin/texture nên hiện0,00MiB. Đếm URI ngoài duy nhất của buffer/ảnh để tính dung lượng đầy đủ, không dùng kích thước metadata làm ngân sách asset.
+
 Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight / LOD, animation, VFX, map 3D và đường hiển thị 3D. Yêu cầu của người dùng (21/10/2026):
 
 > Trong lúc sửa (bắt đầu từ Mặc Ảnh), hễ đi **hướng sai**, gặp **lỗi** hay **bất kỳ bug nào** thì phải ghi vào đây, để lần sau không dính lại.

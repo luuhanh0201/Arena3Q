@@ -1,0 +1,137 @@
+[
+  {
+    "id": "BaguaRoundStoneAltar",
+    "size": 4,
+    "heightSized": false,
+    "budget": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/BaguaRoundStoneAltar.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/BaguaRoundStoneAltar_BaseColor.jpg",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/BaguaRoundStoneAltar_Normal.jpg"
+    },
+    "source": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/BaguaRoundStoneAltar/Meshy_AI_bagua_round_stone_alt_1018052820_image-to-3d-texture.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/BaguaRoundStoneAltar/Meshy_AI_bagua_round_stone_alt_1018052820_image-to-3d-texture.png",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/BaguaRoundStoneAltar/Meshy_AI_bagua_round_stone_alt_1018052820_image-to-3d-texture_normal.png"
+    }
+  },
+  {
+    "id": "BaguaStonePillar",
+    "size": 2,
+    "heightSized": false,
+    "budget": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/BaguaStonePillar.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/BaguaStonePillar_BaseColor.jpg",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/BaguaStonePillar_Normal.jpg"
+    },
+    "source": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/BaguaStonePillar/Meshy_AI_Bagua_Stone_Pillar_3D_1018051554_image-to-3d-texture.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/BaguaStonePillar/Meshy_AI_Bagua_Stone_Pillar_3D_1018051554_image-to-3d-texture.png",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/BaguaStonePillar/Meshy_AI_Bagua_Stone_Pillar_3D_1018051554_image-to-3d-texture_normal.png"
+    }
+  },
+  {
+    "id": "BaguaWideStoneSlab",
+    "size": 2.5,
+    "heightSized": false,
+    "budget": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/BaguaWideStoneSlab.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/BaguaWideStoneSlab_BaseColor.jpg",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/BaguaWideStoneSlab_Normal.jpg"
+    },
+    "source": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/BaguaWideStoneSlab/Meshy_AI_bagua_wide_stone_slab_1018051839_image-to-3d-texture.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/BaguaWideStoneSlab/Meshy_AI_bagua_wide_stone_slab_1018051839_image-to-3d-texture.png",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/BaguaWideStoneSlab/Meshy_AI_bagua_wide_stone_slab_1018051839_image-to-3d-texture_normal.png"
+    }
+  },
+  {
+    "id": "MilitaryFlagpoleBanner",
+    "size": 3,
+    "heightSized": true,
+    "budget": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/MilitaryFlagpoleBanner.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/MilitaryFlagpoleBanner_BaseColor.jpg",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/MilitaryFlagpoleBanner_Normal.jpg"
+    },
+    "source": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/MilitaryFlagpoleBanner/Meshy_AI_military_flagpole_ban_1018052927_image-to-3d-texture.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/MilitaryFlagpoleBanner/Meshy_AI_military_flagpole_ban_1018052927_image-to-3d-texture.png",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/MilitaryFlagpoleBanner/Meshy_AI_military_flagpole_ban_1018052927_image-to-3d-texture_normal.png"
+    }
+  },
+  {
+    "id": "ThreeKingdomsCommand_1",
+    "size": 3.5,
+    "heightSized": false,
+    "budget": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/ThreeKingdomsCommand_1.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/ThreeKingdomsCommand_1_BaseColor.jpg",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/ThreeKingdomsCommand_1_Normal.jpg"
+    },
+    "source": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/ThreeKingdomsCommand_1/Meshy_AI_threekingdoms_command_1018052948_image-to-3d-texture.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/ThreeKingdomsCommand_1/Meshy_AI_threekingdoms_command_1018052948_image-to-3d-texture.png",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/ThreeKingdomsCommand_1/Meshy_AI_threekingdoms_command_1018052948_image-to-3d-texture_normal.png"
+    }
+  },
+  {
+    "id": "ThreeKingdomsCommand_2",
+    "size": 3.5,
+    "heightSized": false,
+    "budget": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/ThreeKingdomsCommand_2.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/ThreeKingdomsCommand_2_BaseColor.jpg",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/ThreeKingdomsCommand_2_Normal.jpg"
+    },
+    "source": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/ThreeKingdomsCommand_2/Meshy_AI_threekingdoms_command_1018053002_image-to-3d-texture.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/ThreeKingdomsCommand_2/Meshy_AI_threekingdoms_command_1018053002_image-to-3d-texture.png",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/ThreeKingdomsCommand_2/Meshy_AI_threekingdoms_command_1018053002_image-to-3d-texture_normal.png"
+    }
+  },
+  {
+    "id": "ThreeKingdomsSquare",
+    "size": 3.5,
+    "heightSized": false,
+    "budget": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/ThreeKingdomsSquare.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/ThreeKingdomsSquare_BaseColor.jpg",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/ThreeKingdomsSquare_Normal.jpg"
+    },
+    "source": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/ThreeKingdomsSquare/Meshy_AI_threekingdoms_square__1018052834_image-to-3d-texture.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/ThreeKingdomsSquare/Meshy_AI_threekingdoms_square__1018052834_image-to-3d-texture.png",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/ThreeKingdomsSquare/Meshy_AI_threekingdoms_square__1018052834_image-to-3d-texture_normal.png"
+    }
+  },
+  {
+    "id": "WoodenCampWatchtower",
+    "size": 4,
+    "heightSized": true,
+    "budget": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/WoodenCampWatchtower.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/WoodenCampWatchtower_BaseColor.jpg",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/WoodenCampWatchtower_Normal.jpg"
+    },
+    "source": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/WoodenCampWatchtower/Meshy_AI_wooden_camp_watchtowe_1018052902_image-to-3d-texture.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/WoodenCampWatchtower/Meshy_AI_wooden_camp_watchtowe_1018052902_image-to-3d-texture.png",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/WoodenCampWatchtower/Meshy_AI_wooden_camp_watchtowe_1018052902_image-to-3d-texture_normal.png"
+    }
+  },
+  {
+    "id": "WoodenPalisadeFence",
+    "size": 3,
+    "heightSized": false,
+    "budget": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/WoodenPalisadeFence.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/WoodenPalisadeFence_BaseColor.jpg",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/Props3D/WoodenPalisadeFence_Normal.jpg"
+    },
+    "source": {
+      "model": "Assets/Arena3Q/Art/Maps/batQuaiTran/WoodenPalisadeFence/Meshy_AI_wooden_palisade_fence_1018052848_image-to-3d-texture.fbx",
+      "baseColor": "Assets/Arena3Q/Art/Maps/batQuaiTran/WoodenPalisadeFence/Meshy_AI_wooden_palisade_fence_1018052848_image-to-3d-texture.png",
+      "normal": "Assets/Arena3Q/Art/Maps/batQuaiTran/WoodenPalisadeFence/Meshy_AI_wooden_palisade_fence_1018052848_image-to-3d-texture_normal.png"
+    }
+  }
+]

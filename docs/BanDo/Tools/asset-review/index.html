@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="vi">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  />
+  <title>Arena3Q · Duyệt asset chiến trường</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0c1420;
+      --panel: #152133;
+      --line: #2b3c52;
+      --text: #e6edf8;
+      --muted: #9aadc7;
+      --gold: #e8bb7a;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font:
+        14px/1.6 system-ui,
+        sans-serif;
+    }
+    button,
+    input,
+    select {
+      font: inherit;
+      color: inherit;
+      background: #1b2a40;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px 12px;
+    }
+    button {
+      cursor: pointer;
+    }
+    button:hover,
+    button.active {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    a {
+      color: var(--gold);
+    }
+    header {
+      padding: 26px 30px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0;
+      color: var(--gold);
+      font-size: 27px;
+    }
+    h2 {
+      font-size: 18px;
+      margin: 0 0 10px;
+    }
+    .sub {
+      color: var(--muted);
+      margin: 6px 0;
+    }
+    .notice {
+      padding: 12px 16px;
+      margin-top: 16px;
+      border: 1px solid #8c713e;
+      border-radius: 10px;
+      background: #ad843916;
+      color: #efd1a3;
+    }
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 17px;
+    }
+    .toolbar input {
+      flex: 1;
+      min-width: 180px;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(480px, 1fr) minmax(400px, 45%);
+      gap: 20px;
+      padding: 20px 30px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .card {
+      padding: 0;
+      text-align: left;
+      overflow: hidden;
+      background: var(--panel);
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      background: #111d2d;
+      display: block;
+    }
+    .card .meta {
+      padding: 10px;
+    }
+    .card strong {
+      font-size: 12px;
+      display: block;
+      line-height: 1.45;
+    }
+    .card small {
+      display: block;
+      font-size: 10px;
+      color: var(--muted);
+    }
+    .badge {
+      font-size: 10px;
+      color: #8bdbb6;
+      border: 1px solid #35624e;
+      padding: 2px 6px;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 5px;
+    }
+    .viewer {
+      position: sticky;
+      top: 16px;
+      align-self: start;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+      overflow: hidden;
+    }
+    .viewer header {
+      padding: 18px 20px;
+    }
+    .viewer header h2 {
+      margin: 0;
+    }
+    #stage {
+      height: 430px;
+      position: relative;
+      background: #111d2d;
+    }
+    #stage canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    #texture {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    #status {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      pointer-events: none;
+      color: #c3d2e8;
+      font-size: 12px;
+      padding: 8px;
+      background: #0c1420c9;
+      border-radius: 6px;
+    }
+    .controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 12px;
+      border-top: 1px solid var(--line);
+    }
+    .detail {
+      padding: 16px 20px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .detail p {
+      margin: 5px 0;
+    }
+    .detail code {
+      overflow-wrap: anywhere;
+      color: #aec1dd;
+    }
+    .count {
+      padding: 0 0 14px;
+      color: var(--muted);
+    }
+    .missing {
+      margin-top: 20px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel);
+    }
+    .missing li {
+      margin: 8px 0;
+    }
+    #error {
+      color: #ffb2ab;
+    }
+    #repeat {
+      display: none;
+    }
+    .empty {
+      grid-column: 1/-1;
+      padding: 40px;
+      color: var(--muted);
+    }
+    @media (min-width: 1700px) {
+      .grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 1000px) {
+      .layout {
+        grid-template-columns: 1fr;
+        padding: 16px;
+      }
+      .viewer {
+        position: relative;
+        grid-row: 1;
+      }
+      header {
+        padding: 20px;
+      }
+      .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .card img {
+        height: 125px;
+      }
+      #stage {
+        height: 340px;
+      }
+    }
+  </style>
+  <header>
+    <h1>Arena3Q · Bộ asset chiến trường chờ duyệt</h1>
+    <p class="sub" id="summary">Đang đọc danh mục...</p>
+    <div class="notice">
+      Chỉ xem từng asset và mẫu vật liệu. Chưa dựng map, chưa bố trí địa hình,
+      chưa thay scene hay prefab gốc. Sau khi bạn duyệt bộ asset, tôi mới bắt
+      đầu tạo chiến trường.
+    </div>
+    <div class="toolbar">
+      <input
+        id="search"
+        aria-label="Tìm asset"
+        placeholder="Tìm tên, ID hoặc loại asset..."
+      /><select id="category" aria-label="Nhóm asset">
+        <option value="">Tất cả nhóm</option></select
+      ><select id="selection" aria-label="Danh sách">
+        <option value="featured">Bộ đề xuất</option>
+        <option value="all">Toàn bộ thư viện</option>
+      </select>
+    </div>
+  </header>
+  <main class="layout">
+    <div>
+      <div id="count" class="count"></div>
+      <div id="cards" class="grid"></div>
+      <section class="missing">
+        <h2>Phạm vi và hạng mục cần chốt</h2>
+        <ul id="gaps"></ul>
+        <p class="sub">
+          Số polygon và dung lượng là thông số asset, chưa phải kết quả hiệu
+          năng map. Chưa có prefab Unity URP/gió/LOD từ bản trả phí.
+        </p>
+        <p>
+          <a href="/review/sources.json" target="_blank"
+            >Nguồn, giấy phép và checksum</a
+          >
+        </p>
+      </section>
+    </div>
+    <aside class="viewer">
+      <header>
+        <h2 id="name">Chọn asset để xem</h2>
+        <p class="sub" id="subtitle"></p>
+      </header>
+      <div id="stage">
+        <canvas id="canvas"></canvas><img id="texture" alt="Mẫu texture" />
+        <div id="status">
+          Kéo chuột xoay · Lăn chuột zoom · Chuột phải để dịch góc nhìn
+        </div>
+      </div>
+      <div class="controls">
+        <button id="reset">Về góc 3/4</button
+        ><button id="front">Chính diện</button
+        ><button id="wireframe">Lưới</button
+        ><select id="quality" aria-label="Chất lượng model">
+          <option value="source">Nguồn gốc</option>
+          <option value="budget">Bản nhẹ hiện có</option></select
+        ><button id="repeat">Xem lặp 3 × 3</button
+        ><a id="original" target="_blank">Mở file</a>
+      </div>
+      <div id="detail" class="detail"></div>
+      <div id="error" class="detail" role="alert"></div>
+    </aside>
+  </main>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "/vendor/three/build/three.module.js",
+        "three/addons/": "/vendor/three/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="/app/viewer.js"></script>
+</html>
