@@ -11,6 +11,7 @@ const mounts = new Map([
   ["/review/", review],
   ["/map-evidence/",path.join(root,"NghiemThu/Battlefield/XemTruoc_Map_20261025")],
   ["/map-feedback/",path.join(root,"NghiemThu/Battlefield/XemTruoc_ChinhSua_20261025")],
+  ["/icon-mobile/",path.join(root,"NghiemThu/Icons/Mobile_20261025")],
   ["/test-apk/",path.join(root,"Builds/Android")],
   [
     "/nature/",
@@ -59,7 +60,7 @@ const server = http.createServer(async (request, response) => {
     const [prefix, folder] = mount;
     const filename = path.resolve(folder, url.slice(prefix.length));
     const relative = path.relative(folder, filename);
-    if(prefix==="/test-apk/"&&!["Arena3Q-Battlefield-20261025.apk","Arena3Q-Battlefield-Feedback-20261025.apk"].includes(relative)){
+    if(prefix==="/test-apk/"&&!["Arena3Q-Battlefield-20261025.apk","Arena3Q-Battlefield-Feedback-20261025.apk","Arena3Q-Mobile-20261025.apk"].includes(relative)){
       response.writeHead(404).end();return;
     }
     const type = mime[path.extname(filename).toLowerCase()];

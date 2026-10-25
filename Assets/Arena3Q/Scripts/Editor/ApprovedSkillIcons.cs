@@ -51,6 +51,7 @@ namespace Arena3Q.Editor
             if (registry.status != "APPROVED" || registry.skills == null || registry.skills.Length != 42)
                 throw new InvalidOperationException("The complete user-approved icon registry is required.");
             var ids = new HashSet<string>();
+            var platforms = SkillIconPlatformSettings.Load(!verify);
             // Validate every source and target before importing textures.
             foreach (var entry in registry.skills)
             {
@@ -90,18 +91,20 @@ namespace Arena3Q.Editor
                     importer.crunchedCompression = false;
                     importer.filterMode = FilterMode.Bilinear;
                     importer.wrapMode = TextureWrapMode.Clamp;
-                    foreach (var platform in new[] { "Standalone", "Android", "iPhone" })
-                        importer.SetPlatformTextureSettings(new TextureImporterPlatformSettings
-                        {
-                            name = platform, overridden = true, maxTextureSize = 2048,
-                            format = TextureImporterFormat.RGBA32,
-                            textureCompression = TextureImporterCompression.Uncompressed
-                        });
+                    foreach (var platform in new[] { "Standalone", "Android", "iPhone", "WebGL" })
+                        importer.SetPlatformTextureSettings(platforms.For(platform));
                     importer.SaveAndReimport();
                 }
                 var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(entry.texturePath);
                 if (sprite == null || sprite.texture.width != entry.width || sprite.texture.height != entry.height)
                     throw new InvalidOperationException("Sprite missing or resized: " + entry.id);
+                var textureImporter=(TextureImporter)AssetImporter.GetAtPath(entry.texturePath);
+                foreach(var platform in new[]{"Standalone","Android","iPhone","WebGL"})
+                {
+                    var expected=platforms.For(platform);var actual=textureImporter.GetPlatformTextureSettings(platform);
+                    if(!actual.overridden||actual.format!=expected.format||actual.maxTextureSize!=expected.maxTextureSize||actual.compressionQuality!=expected.compressionQuality||actual.textureCompression!=expected.textureCompression)
+                        throw new InvalidOperationException("Icon platform mismatch: "+entry.id+" / "+platform);
+                }
                 if (!AssetDatabase.TryGetGUIDAndLocalFileIdentifier(sprite, out string guid, out long fileId))
                     throw new InvalidOperationException("Cannot resolve Sprite identity: " + entry.id);
                 foreach (var source in entry.skillPaths)

@@ -12,6 +12,7 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Bàn giao trước đó: claude/outbox/20261020-2330_BAN-GIAO-cong-viec-claude.md.
 
 ## codex
+- 25/10 icon mobile hoàn tất:42meta chỉ đổi platform, Android/iOS ASTC4x4 giữ1254px, WebGL/Standalone cấu hình riêng;42PNG/42SkillDefinition/42Sprite giữSHA/identity.4/4PlayMode,84ảnh web đạt. APKmobile263,4MB giảm117,1MB/30,8%,0lỗi/3cảnh báo,39icon build58,7MB raw, chữ kýv2cùng signer/nativecode nguyênSHA. Tạo góiGradle sạch bỏ vùngZIP cũ. Preview http://127.0.0.1:4311/app/icon-mobile.html (PID31420). iOS/WebGL chưabuild, ADBkhôngcóthiếtbị. Báo cáo docs/UI/SkillIconPlatforms_20261025.md. Nhảfile/Unity, khôngtheodõi sau bàngiao.
 - 25/10 audit dung lượng xong:172,6→365,1→380,5MB.39icon mớiRGBA32 tổng234MB raw/~154,4MB trongAPK, map84,9MB raw/~50,8MB trongAPK (compressed ước tính theo chunk). Có77asset chỉ do thư việnEditor kéo vào3,4MB raw; chưa đổi nén hoặc gameplay. Công cụ đọc BuildReport compile/chạy đạt, APK Feedback giữSHA/chữ ký. Báo cáo NghiemThu/Battlefield/AuditDungLuong_20261025/README.md. Nhả file/Unity, không theo dõi sau bàn giao.
 - 25/10 hoàn tất3/3 chỉnh map theo phản hồi: bỏ nền ngoài biên80×44, phe ta đỏ/địch xanh cả Công/Thủ, tướng và công trình x2, nhà chính dùng đúng Command_1 nguyên/Command_2 vỡ theo lifecycle thật. 15/15 PlayMode, web7ảnh đạt; APK Feedback380,5MB (+15,4MB),0lỗi/8cảnh báo, chữ kýv2cùng signer. Source1133172 đãpush; ảnh/download http://127.0.0.1:4311/app/feedback.html (PID24500). ADB sau build rỗng, chưa chạy bản sửa/FPS máy thật. Báo cáo docs/BanDo/BattlefieldFeedback_20261025.md. Nhả file/Unity; không theo dõi sau bàn giao.
 - 25/10 sửa theo phản hồi điện thoại: bỏ nền ngoài biên, phe ta đỏ/địch xanh, tướng x2, công trình x2 và trạng thái nhà chính nguyên/vỡ. Giữ Scripts Data/Battlefield, BattleViewConfig, Gameplay/Battlefield, UnitVisual/UnitBase, CastleUnit/CastleFallView, BaguaFormationView/BattleController, Editor/Battlefield, asset scene/config/prefab map và test tương ứng; Unity batch. Không sửa nguồn tướng hoặc model gốc. Không theo dõi sau bàn giao.
@@ -59,7 +60,7 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Việc đầu: kiểm snapshot 3D về scale, toàn bộ submesh và quạt; kiểm footprint VFX sau đổi camera; đồng bộ docs 3D. Sau đó kiểm model/motion Mặc Ảnh và giải quyết Lữ Bố chưa qua QA da.
 - Báo ngay từng phần nhỏ với ảnh trước–sau và số đo. Chưa nghiệm thu tổng thể. Chỉ test Unity, chưa build/test Android theo bàn giao 0619. Sau khi hoàn tất công việc theo dõi inbox 1 giờ.
 ## Unity (Editor / batch mode)
-- Đang giữ bởi: không ai. Codex đã xong audit dung lượng APK; không theo dõi sau bàn giao.
+- Đang giữ bởi: không ai. Codex đã xong icon mobile/APK riêng; không theo dõi sau bàn giao.
 
 
 

@@ -1,5 +1,11 @@
 # Nhật ký sửa lỗi – Arena3Q
 
+## Icon mobile và vùng dư trong APK (25/10/2026, Codex)
+
+- Importer cũ ép RGBA32 cho mobile,39icon chiếm234MB raw. Tách Android/iOS ASTC4x4 và WebGL/Standalone RGBA32 riêng, giữ1254px/Sprite/sourcePNG. BuildReport cuối xác nhận39texture61.528.848byte (58,7MB). 42meta chỉ đổi platform settings;42nguồn và skill assets/binding giữ nguyên.
+- Gradle incremental ZIP giữ vùng asset cũ sau đổi định dạng: file398.940.694byte dù payload276.011.465byte. Mobile build tạo lại duy nhất launcher-debug.apk trung gian trong Library/Bee/Android, giữ cachecode/nguồn và APK bàn giao. Gói cuối276.149.760byte/263,4MB, cùng signer/nativecode; không repack hoặc cắt padding tùy tiện.
+- QA packedSize ban đầu tính ceil(height/4) thiếu ngoặc, chặn bước bàn giao dù APK build đã Succeeded. Sửa tích hai ceil riêng, kiểm lại report và chạy build cuối: cả build vàQA thoát0. 4/4PlayMode và42cặp ảnh trước/sau đã kiểm.
+
 ## Nhà chính Battlefield bị vỡ ngay khi bắt đầu (25/10/2026, Codex)
 
 - Nguyên nhân: recipe đặt Command_2 (tàn tích) tĩnh ở hai trại, bridge lại tắt model CastleUnit live. Sửa preview Editor thành Command_1, ẩn preview trong Play và giữ lifecycle nguyên/vỡ của CastleUnit/CastleFallView; cả hai model dùng cùng tỉ lệ mới, màu phe giữ sau khi sập. Test phải phá thật nhà cả hai phe và đối chiếu mesh render, không chỉ tên object.

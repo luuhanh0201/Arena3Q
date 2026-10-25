@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arena3Q · Icon mobile</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#101820;color:#e5edf3}*{box-sizing:border-box}body{max-width:1500px;margin:auto;padding:24px}h1{font-size:26px}p{color:#b9c9d3;line-height:1.6}a{color:#91cefa}select{font:inherit;background:#1b2b37;color:white;padding:12px;border:1px solid #455764;border-radius:8px;max-width:100%}.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}figure{margin:0;border:1px solid #455764;border-radius:12px;overflow:hidden;background:#060a0d}img{display:block;width:100%;height:auto}figcaption{padding:12px;font-size:14px}small{color:#b9c9d3}details{margin:24px 0}#status{min-height:24px}@media(max-width:600px){body{padding:14px}h1{font-size:22px}.pair{gap:8px}figcaption{padding:8px;font-size:12px}}
+</style>
+<h1>Icon riêng cho mobile</h1>
+<p>42 icon giữ nguyên 1254 × 1254 px. Android dùng ASTC 4×4; PNG gốc và cấu hình web được giữ riêng. Hai ảnh dưới được đọc lại từ texture Unity trước và sau nén.</p>
+<p><a id="apk" href="/test-apk/Arena3Q-Mobile-20261025.apk" download>Tải APK mobile</a> <small id="size"></small> · <a href="/app/feedback.html">Xem map</a></p>
+<label for="skill">Chọn kỹ năng </label><select id="skill" aria-label="Kỹ năng"></select>
+<p id="status" role="status">Đang tải danh sách ảnh</p>
+<div class="pair">
+<figure><a id="original-link" target="_blank" rel="noopener"><img id="before" alt="Icon trước nén"></a><figcaption>Trước: RGBA32 · 1254 px</figcaption></figure>
+<figure><a id="mobile-link" target="_blank" rel="noopener"><img id="after" alt="Icon mobile sau nén"></a><figcaption>Mobile: ASTC 4×4 · 1254 px</figcaption></figure>
+</div>
+<p>Bấm vào ảnh để mở kích thước đầy đủ. PSNR đo sai khác pixel, không thay cho đánh giá hình ảnh. Ảnh PNG nguồn, dữ liệu kỹ năng và liên kết Sprite giữ nguyên. Bản web/iOS chưa được build trong lượt này.</p>
+<details><summary>Xem bảng so sánh đủ 42 icon (mỗi cặp: trước bên trái, mobile bên phải)</summary><a href="/icon-mobile/contact-before-after.png" target="_blank" rel="noopener"><img src="/icon-mobile/contact-before-after.png" alt="Bảng so sánh 42 cặp icon" loading="lazy"></a></details>
+<script>
+const select=document.querySelector('#skill'),status=document.querySelector('#status');let skills=[];
+function show(){const row=skills.find(s=>s.id===select.value);if(!row)return;document.querySelector('#before').src='/icon-mobile/before/'+row.id+'.png';document.querySelector('#after').src='/icon-mobile/after/'+row.id+'.png';document.querySelector('#original-link').href=document.querySelector('#before').src;document.querySelector('#mobile-link').href=document.querySelector('#after').src;status.textContent=row.name+' · PSNR '+row.psnr.toFixed(2)+' dB · ở cỡ HUD128: '+row.hudPsnr.toFixed(2)+' dB';}
+select.addEventListener('change',show);
+fetch('/icon-mobile/review.json').then(r=>{if(!r.ok)throw Error('Không tải được danh sách');return r.json();}).then(data=>{skills=data.skills;for(const row of skills){const option=document.createElement('option');option.value=row.id;option.textContent=row.name;select.appendChild(option);}select.value='lubu_phuong_thien_tram';show();}).catch(error=>status.textContent=error.message);
+fetch(document.querySelector('#apk').href,{method:'HEAD'}).then(r=>{document.querySelector('#size').textContent=r.ok?'('+ (Number(r.headers.get('content-length'))/1048576).toFixed(1)+' MB)':'(đang build)';}).catch(()=>{});
+</script>
+</html>
