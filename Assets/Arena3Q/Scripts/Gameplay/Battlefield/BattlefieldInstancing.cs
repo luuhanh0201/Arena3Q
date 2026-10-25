@@ -61,7 +61,7 @@ namespace Arena3Q.Gameplay
                 foreach(var renderer in root.GetComponentsInChildren<MeshRenderer>(true))
                 {
                     var filter=renderer.GetComponent<MeshFilter>();
-                    if(!renderer.enabled||filter==null||filter.sharedMesh==null)continue;
+                    if(!renderer.gameObject.activeInHierarchy||!renderer.enabled||filter==null||filter.sharedMesh==null)continue;
                     var mesh=filter.sharedMesh;var materials=renderer.sharedMaterials;bool compatible=materials.Length>=mesh.subMeshCount;
                     foreach(var material in materials)if(material==null||!material.enableInstancing||!material.shader.name.StartsWith("Arena3Q/Battlefield/"))compatible=false;
                     if(!compatible)continue;

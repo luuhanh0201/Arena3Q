@@ -19,8 +19,8 @@ namespace Arena3Q.Gameplay
         private const int AltarOrder = -31000;
         private const float RuneDiameter = 1.6f;
 
-        private static readonly Color PlayerColor = new Color(0.35f, 0.65f, 1f, 0.85f);
-        private static readonly Color EnemyColor = new Color(1f, 0.3f, 0.25f, 0.85f);
+        private Color PlayerColor { get { var c = _battle.View.PlayerColor; c.a = .85f; return c; } }
+        private Color EnemyColor { get { var c = _battle.View.EnemyColor; c.a = .85f; return c; } }
         private static readonly Color NeutralColor = new Color(1f, 1f, 1f, 0.45f);
         private static readonly Color StoneColor = new Color(0.55f, 0.53f, 0.5f);
 

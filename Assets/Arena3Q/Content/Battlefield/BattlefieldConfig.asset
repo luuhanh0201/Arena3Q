@@ -24,6 +24,8 @@ MonoBehaviour:
   cameraElevation: 50
   cameraOffset: {x: 0, y: -1}
   cameraPadding: 1.1
+  heroScaleMultiplier: 2
+  buildingScaleMultiplier: 2
   blue: {r: 0.2, g: 0.46, b: 0.82, a: 1}
   red: {r: 0.8, g: 0.19, b: 0.1, a: 1}
   sunColor: {r: 1, g: 0.85, b: 0.66, a: 1}

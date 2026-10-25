@@ -14,6 +14,12 @@ namespace Arena3Q.Data
     {
         public const string ResourceName = "BattleView";
 
+        [Header("Team identification")]
+        [SerializeField] private Color playerColor = new Color(.9f, .16f, .1f);
+        [SerializeField] private Color enemyColor = new Color(.2f, .46f, .95f);
+        public Color PlayerColor => playerColor;
+        public Color EnemyColor => enemyColor;
+
         [Tooltip("3D presentation (tilted orthographic camera, models, billboards). Off = the old flat 2.5D squash.")]
         [SerializeField] private bool presentation3D = true;
         [Tooltip("Camera tilt when the stage has no painted ground. 41.4° squashes the ground to 0.75 like the art.")]

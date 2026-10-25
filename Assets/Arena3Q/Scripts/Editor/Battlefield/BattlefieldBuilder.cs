@@ -21,7 +21,7 @@ namespace Arena3Q.Editor
         public const string ScenePath = "Assets/Arena3Q/Scenes/Battlefield_HighQuality.unity";
         public const string Content = "Assets/Arena3Q/Content/Battlefield";
         public const string Art = "Assets/Arena3Q/Art/Battlefield";
-        private const string Evidence = "NghiemThu/Battlefield/XemTruoc_Map_20261025";
+        private const string Evidence = "NghiemThu/Battlefield/XemTruoc_ChinhSua_20261025";
         private static BattlefieldConfig _config;
         private static BattlefieldAssetLibrary _library;
         private static readonly List<Rect> Obstacles = new List<Rect>();
@@ -208,7 +208,7 @@ namespace Arena3Q.Editor
             var details = Group("Decorations", world); environment.detailRoot = details;
             Terrain(terrain);
             var center = Group("BattleCenter", root.transform); Center(center);
-            var camps = Group("Camps", root.transform); Camp(Group("BlueCamp", camps), true); Camp(Group("RedCamp", camps), false);
+            var camps = Group("Camps", root.transform); Camp(Group("RedCamp", camps), true); Camp(Group("BlueCamp", camps), false);
             Scatter(trees, bushes, grass, flowers, rocks, cliffs, roads, details);
             Lighting(root.transform, environment);
             BuildQuality(environment);
@@ -216,7 +216,7 @@ namespace Arena3Q.Editor
             var camera = Object.FindAnyObjectByType<Camera>();
             environment.battleCamera = camera;
             if (camera == null) throw new InvalidOperationException("Original battle camera missing.");
-            camera.clearFlags = CameraClearFlags.SolidColor; camera.backgroundColor = new Color(.37f, .48f, .53f);
+            camera.clearFlags = CameraClearFlags.SolidColor; camera.backgroundColor = new Color(.09f, .12f, .15f);
             camera.GetUniversalAdditionalCameraData().renderPostProcessing = true;
             camera.GetUniversalAdditionalCameraData().renderShadows = true;
             camera.aspect = 1600f/900f;
@@ -291,8 +291,8 @@ namespace Arena3Q.Editor
 
         private static void Terrain(Transform parent)
         {
-            // Continue the landscape beyond the tactical frame so no rectangular mesh edge is visible.
-            float margin = _config.rimWidth + 18f;
+            // The user requested removal of the landscape extension beyond the map.
+            float margin = 0f;
             int nx = Mathf.CeilToInt((_config.size.x + margin * 2f) / _config.cellSize);
             int nz = Mathf.CeilToInt((_config.size.y + margin * 2f) / _config.cellSize);
             var vertices = new Vector3[(nx + 1) * (nz + 1)]; var colors = new Color[vertices.Length]; var uv = new Vector2[vertices.Length]; var uv2 = new Vector2[vertices.Length];
@@ -365,29 +365,31 @@ namespace Arena3Q.Editor
             }
         }
 
-        private static void Camp(Transform parent, bool blue)
+        private static void Camp(Transform parent, bool player)
         {
-            float side = blue ? -1f : 1f; float face = blue ? 90f : 270f; float x = _config.campX * side;
+            float side = player ? -1f : 1f; float face = player ? 90f : 270f; float x = _config.campX * side;
             void Add(string id, float dx, float z, float yaw, float scale = 1f, bool obstacle = false)
             {
-                var go = Place(id, parent, new Vector2(x + dx * side, z * side), yaw + (blue ? 0f : 180f), scale);
-                if (blue) Recolour(go, _config.blue);
+                var go = Place(id, parent, new Vector2(x + dx * side, z * side), yaw + (player ? 0f : 180f), scale);
+                if (!player) Recolour(go, _config.blue);
+                if (id == "ThreeKingdomsSquare" || id == "WoodenCampWatchtower" || id == "WoodenPalisadeFence")
+                    go.transform.localScale *= _config.buildingScaleMultiplier;
                 if (obstacle) AddObstacle(go);
             }
-            Add("ThreeKingdomsCommand_2", 0f, 0f, blue ? face : face - 180f, 1.45f);
-            Add("ThreeKingdomsSquare", 3.3f, 8f, 0f, 1.65f, true);
-            Add("ThreeKingdomsSquare", 4f, -8.3f, 18f, 1.2f, true);
-            Add("ThreeKingdomsSquare", 3.8f, -12.4f, 3f, .95f, true);
+            // Editor preview only; the live CastleUnit / CastleFallView own both runtime states.
+            Add("ThreeKingdomsCommand_1", 0f, 0f, player ? face : face - 180f, 1.45f * _config.buildingScaleMultiplier);
+            Add("ThreeKingdomsSquare", 1.8f, 11.5f, 0f, 1.35f, true);
+            Add("ThreeKingdomsSquare", 1.8f, -11.5f, 0f, 1.35f, true);
             Add("WoodenCampWatchtower", -6.5f, 12.7f, -90f, 1.45f, true);
             Add("WoodenCampWatchtower", -6.5f, -12.7f, -90f, 1.45f, true);
             Add("WoodenCampWatchtower", -6.8f, 5.3f, -90f, .85f, true);
             Add("WoodenCampWatchtower", -6.8f, -5.3f, -90f, .85f, true);
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 2; i++)
             {
-                Add("WoodenPalisadeFence", -6.8f, 5.4f + i * 2.15f, 90f, 1.05f, true);
-                Add("WoodenPalisadeFence", -6.8f, -5.4f - i * 2.15f, 90f, 1.05f, true);
-                Add("WoodenPalisadeFence", -4.5f + i * 2.2f, 15f, 0f, 1.05f, true);
-                Add("WoodenPalisadeFence", -4.5f + i * 2.2f, -15f, 0f, 1.05f, true);
+                Add("WoodenPalisadeFence", -6.8f, 7.4f + i * 4.3f, 90f, 1.05f, true);
+                Add("WoodenPalisadeFence", -6.8f, -7.4f - i * 4.3f, 90f, 1.05f, true);
+                Add("WoodenPalisadeFence", -4.5f + i * 4.4f, 17f, 0f, 1.05f, true);
+                Add("WoodenPalisadeFence", -4.5f + i * 4.4f, -17f, 0f, 1.05f, true);
             }
             Add("MilitaryFlagpoleBanner", -6f, 3.1f, face, 1.2f);
             Add("MilitaryFlagpoleBanner", -6f, -3.1f, face, 1.2f);
@@ -414,22 +416,22 @@ namespace Arena3Q.Editor
             int accepted = 0;
             for (int attempt = 0; accepted < _config.treePairs && attempt < 500; attempt++)
             {
-                var p = new Vector2(Rand(-_config.size.x*.5f-2f,_config.size.x*.5f+2f), Rand(_config.size.y*.5f+2.8f,_config.size.y*.5f+5f));
-                if (Mathf.Abs(p.x) < 7f) continue;
+                var p = new Vector2(Rand(-_config.size.x*.5f+3f,_config.size.x*.5f-3f), Rand(_config.size.y*.5f-3.7f,_config.size.y*.5f-2.2f));
+                if (Mathf.Abs(p.x) < 7f || Mathf.Abs(p.x) > _config.campX-9f) continue;
                 string id = treeIds[rng.Next(treeIds.Length)]; float scale = Rand(.65f, 1.2f), yaw = Rand(0f, 360f);
                 Pair(id, trees, p, yaw, scale); accepted++;
             }
-            // Side groves stay outside the walkable rectangle and leave the camp entrances clear.
-            for(int i=0;i<12;i++)Pair(treeIds[i%treeIds.Length],trees,new Vector2(Rand(_config.size.x*.5f+3f,_config.size.x*.5f+6f),Rand(-_config.size.y*.5f+1f,_config.size.y*.5f-1f)),Rand(0,360),Rand(.55f,.85f));
+            // Keep foliage rooted within the map and away from the enlarged camps.
+            for(int i=0;i<12;i++)Pair(treeIds[i%treeIds.Length],trees,new Vector2(Rand(_config.size.x*.5f-3f,_config.size.x*.5f-2f),Rand(-4f,4f)),Rand(0,360),Rand(.55f,.85f));
             for (int i = 0; i < 30; i++)
             {
-                var p = new Vector2(Rand(-_config.size.x*.5f-2f,_config.size.x*.5f+2f), Rand(_config.size.y*.5f+1.4f,_config.size.y*.5f+3.4f));
-                if (Mathf.Abs(p.x) < 7f) continue;
+                var p = new Vector2(Rand(-_config.size.x*.5f+3f,_config.size.x*.5f-3f), Rand(_config.size.y*.5f-2f,_config.size.y*.5f-1.4f));
+                if (Mathf.Abs(p.x) < 7f || Mathf.Abs(p.x) > _config.campX-8f) continue;
                 Pair("Rock_Medium_" + (1 + i % 3), cliffs, p, Rand(0, 360), Rand(.65f, 1.45f));
             }
             for (int i = 0; i < _config.bushPairs; i++)
             {
-                var p = new Vector2(Rand(-_config.size.x*.5f+1f,_config.size.x*.5f-1f), Rand(_config.size.y*.5f-4.2f,_config.size.y*.5f));
+                var p = new Vector2(Rand(-_config.size.x*.5f+2f,_config.size.x*.5f-2f), Rand(_config.size.y*.5f-4.2f,_config.size.y*.5f-1.5f));
                 if (_config.RoadDistance(p) < _config.roadWidth * .5f) continue;
                 Pair(i % 3 == 0 ? "Bush_Common_Flowers" : "Bush_Common", bushes, p, Rand(0, 360), Rand(.55f, 1f));
                 Pair(i % 2 == 0 ? "Flower_3_Group" : "Flower_4_Group", flowers, p + new Vector2(.6f, -1f), Rand(0, 360), Rand(.7f, 1.5f));
@@ -451,7 +453,7 @@ namespace Arena3Q.Editor
             // Bake many existing grass meshes into a small number of patch meshes, not thousands of GameObjects.
             for (int i = 0; i < _config.grassPatchPairs; i++)
             {
-                var p = new Vector2(Rand(-_config.size.x*.5f,_config.size.x*.5f), Rand(_config.size.y*.5f-4.3f,_config.size.y*.5f+1f));
+                var p = new Vector2(Rand(-_config.size.x*.5f+2f,_config.size.x*.5f-2f), Rand(_config.size.y*.5f-4.3f,_config.size.y*.5f-1.5f));
                 if (_config.RoadDistance(p) < _config.roadWidth * .8f) continue;
                 var patch=GrassPatch(grass,p,i);float yaw=Rand(0,360);patch.transform.rotation=Quaternion.Euler(0,yaw,0);
                 var opposite=Object.Instantiate(patch,parent:grass);opposite.name="GrassPatch "+i+" opposite";opposite.transform.position=_config.Point(-p,_config.TerrainHeight(p));opposite.transform.rotation=Quaternion.Euler(0,yaw+180,0);
@@ -609,7 +611,11 @@ namespace Arena3Q.Editor
                 so.ApplyModifiedPropertiesWithoutUndo();EditorUtility.SetDirty(stage);stages.Add(stage);
             }
             var view = CloneAsset<BattleViewConfig>("Assets/Arena3Q/Content/Resources/BattleView.asset",Content+"/BattleView.asset");
-            var viewSo = new SerializedObject(view);viewSo.FindProperty("defaultTiltDegrees").floatValue = 90f-_config.cameraElevation;viewSo.FindProperty("cameraDistance").floatValue = 100f;viewSo.ApplyModifiedPropertiesWithoutUndo();EditorUtility.SetDirty(view);
+            var viewSo = new SerializedObject(view);viewSo.FindProperty("defaultTiltDegrees").floatValue = 90f-_config.cameraElevation;viewSo.FindProperty("cameraDistance").floatValue = 100f;
+            var sourceView=AssetDatabase.LoadAssetAtPath<BattleViewConfig>("Assets/Arena3Q/Content/Resources/BattleView.asset");
+            viewSo.FindProperty("heroModelScale").floatValue=sourceView.HeroModelScale*_config.heroScaleMultiplier;
+            viewSo.FindProperty("playerColor").colorValue=_config.red;viewSo.FindProperty("enemyColor").colorValue=_config.blue;
+            viewSo.ApplyModifiedPropertiesWithoutUndo();EditorUtility.SetDirty(view);
             var props=CloneAsset<MapProps3DLibrary>("Assets/Arena3Q/Content/Maps/MapProps3D.asset",Content+"/MapProps3D.asset");
             var propsSo=new SerializedObject(props);var propItems=propsSo.FindProperty("props");
             for(int i=0;i<propItems.arraySize;i++)
@@ -617,10 +623,12 @@ namespace Arena3Q.Editor
                 var item=propItems.GetArrayElementAtIndex(i);string id=item.FindPropertyRelative("name").stringValue;
                 item.FindPropertyRelative("material").objectReferenceValue=AssetDatabase.LoadAssetAtPath<Material>(Art+"/Materials/"+id+".mat");
                 if(id=="BaguaWideStoneSlab"){var original=AssetDatabase.LoadAssetAtPath<MapProps3DLibrary>("Assets/Arena3Q/Content/Maps/MapProps3D.asset").Props.First(p=>p.name==id);item.FindPropertyRelative("scale").floatValue=original.scale*scale;}
+                if(id.StartsWith("ThreeKingdomsCommand_")){var original=AssetDatabase.LoadAssetAtPath<MapProps3DLibrary>("Assets/Arena3Q/Content/Maps/MapProps3D.asset").Props.First(p=>p.name==id);item.FindPropertyRelative("scale").floatValue=original.scale*1.45f*_config.buildingScaleMultiplier/view.DecorModelScale;}
             }
             propsSo.ApplyModifiedPropertiesWithoutUndo();EditorUtility.SetDirty(props);viewSo.Update();viewSo.FindProperty("mapProps").objectReferenceValue=props;viewSo.ApplyModifiedPropertiesWithoutUndo();EditorUtility.SetDirty(view);
             battle.Configure(stages.ToArray(),AssetDatabase.LoadAssetAtPath<Material>("Packages/com.unity.render-pipelines.universal/Runtime/Materials/Sprite-Unlit-Default.mat"),true,true);
             var bridge = battle.GetComponent<BattlefieldLegacyBridge>() ?? battle.gameObject.AddComponent<BattlefieldLegacyBridge>();bridge.battle=battle;bridge.battleCamera=camera;bridge.environment=environment;
+            bridge.editorCastlePreviews=new[]{root.Find("Camps/BlueCamp/ThreeKingdomsCommand_1").gameObject,root.Find("Camps/RedCamp/ThreeKingdomsCommand_1").gameObject};
             bridge.altarCollider=root.Find("BattleCenter/ExistingBaguaAltar").GetComponentInChildren<MeshCollider>();
             var gateState=root.gameObject.AddComponent<BattlefieldGateState>();gateState.battle=battle;
             for(int i=0;i<8;i++)gateState.runes[i]=root.Find("BattleCenter/ExistingOctagonalPillarsAndRunes/Rune "+i).GetComponent<MeshRenderer>();
@@ -693,6 +701,8 @@ namespace Arena3Q.Editor
             if(parent.name=="Trees")
             {
                 var trunk=go.AddComponent<CapsuleCollider>();var b=BoundsOf(go);trunk.radius=.3f;trunk.height=b.size.y/scale*.8f;trunk.center=Vector3.up*trunk.height*.5f;
+                float radius=trunk.radius*scale;
+                Obstacles.Add(new Rect(p-Vector2.one*radius,Vector2.one*(radius*2f)));
             }
             return go;
         }

@@ -193,6 +193,9 @@ namespace Arena3Q.Gameplay
             _model.rotation = MapProp3D.Rotation(_modelYaw);
             _block ??= new MaterialPropertyBlock();
             _block.SetColor(BaseColorId, tint);
+            var teamColor = _logic.x <= _battle.Stage.MapBounds.center.x ? _battle.View.PlayerColor : _battle.View.EnemyColor;
+            _block.SetColor("_FactionColor", teamColor);
+            _block.SetFloat("_FactionMask", teamColor.b > teamColor.r ? 1f : 0f);
             _modelRenderer.SetPropertyBlock(_block);
         }
 

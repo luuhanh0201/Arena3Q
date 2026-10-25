@@ -16,6 +16,7 @@ namespace Arena3Q.Gameplay
         public Camera battleCamera;
         public BattlefieldEnvironment environment;
         public Collider altarCollider;
+        public GameObject[] editorCastlePreviews;
         private static readonly Quaternion Basis = Quaternion.Euler(90f, 0f, 0f);
         private Quaternion _rootRotation, _cameraRotation;
         private Vector3 _cameraPosition;
@@ -26,6 +27,7 @@ namespace Arena3Q.Gameplay
         private void OnEnable()
         {
             if (!Application.isPlaying) return;
+            if (editorCastlePreviews != null) foreach (var preview in editorCastlePreviews) if (preview != null) preview.SetActive(false);
             if (battle != null) battle.BattleStarted += Refresh;
             RenderPipelineManager.beginCameraRendering += Begin;
             RenderPipelineManager.endCameraRendering += End;
@@ -54,13 +56,6 @@ namespace Arena3Q.Gameplay
             }
             foreach (var light in world.GetComponentsInChildren<Light>()) light.enabled = false;
             foreach (var volume in world.GetComponentsInChildren<Volume>()) volume.enabled = false;
-            foreach (var unit in battle.Registry.Units)
-            {
-                if (!unit.IsCastle) continue;
-                foreach (var renderer in unit.GetComponentsInChildren<MeshRenderer>()) renderer.enabled = false;
-                foreach (var sprite in unit.GetComponentsInChildren<SpriteRenderer>())
-                    if (sprite.name == "Body" || sprite.name == "Prop shadow") sprite.enabled = false;
-            }
             if (environment != null) environment.ApplyLighting();
         }
         private void Begin(ScriptableRenderContext context, Camera camera)

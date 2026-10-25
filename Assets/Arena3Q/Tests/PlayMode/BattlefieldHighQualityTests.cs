@@ -20,7 +20,7 @@ namespace Arena3Q.Tests.PlayMode
     public sealed class BattlefieldHighQualityTests
     {
         private const string Scene="Assets/Arena3Q/Scenes/Battlefield_HighQuality.unity";
-        private const string Evidence="NghiemThu/Battlefield/XemTruoc_Map_20261025";
+        private const string Evidence="NghiemThu/Battlefield/XemTruoc_ChinhSua_20261025";
         private BattleController _battle;
         private BattlefieldEnvironment _environment;
         [UnitySetUp]
@@ -86,9 +86,14 @@ namespace Arena3Q.Tests.PlayMode
             var blue=_environment.transform.Find("Camps/BlueCamp");var red=_environment.transform.Find("Camps/RedCamp");Assert.That(blue.childCount,Is.EqualTo(red.childCount));
             for(int i=0;i<blue.childCount;i++){var a=blue.GetChild(i);var b=red.GetChild(i);Assert.That(Vector2.Distance(new Vector2(a.position.x,a.position.z),-new Vector2(b.position.x,b.position.z)),Is.LessThan(.01f),a.name);}
             Assert.That(_environment.transform.Find("Environment/Terrain").GetComponentsInChildren<MeshFilter>().Length,Is.EqualTo(4));
+            foreach(var trunk in _environment.transform.Find("Environment/Vegetation/Trees").GetComponentsInChildren<CapsuleCollider>())
+                Assert.That(_battle.Layout.IsBlocked(new Vector2(trunk.transform.position.x,trunk.transform.position.z),.05f),Is.True,"tree trunk belongs to navigation");
             // Runtime static batching replaces filters with a non-readable combined mesh; inspect the editable sources.
             var terrain=Enumerable.Range(0,4).Select(i=>AssetDatabase.LoadAssetAtPath<Mesh>("Assets/Arena3Q/Art/Battlefield/Meshes/Terrain_"+i+".asset")).ToArray();
-            Assert.That(terrain.Length,Is.EqualTo(4));Assert.That(terrain.Max(m=>m.bounds.size.y),Is.GreaterThan(1f),"real terrain height");
+            Assert.That(terrain.Length,Is.EqualTo(4));
+            foreach(var mesh in terrain)
+                foreach(var vertex in mesh.vertices)
+                { Assert.That(Mathf.Abs(vertex.x),Is.LessThanOrEqualTo(config.size.x*.5f+.001f)); Assert.That(Mathf.Abs(vertex.z),Is.LessThanOrEqualTo(config.size.y*.5f+.001f)); }
             Assert.That(terrain.SelectMany(m=>m.colors).Count(c=>c.r>.8f),Is.GreaterThan(100),"visible road mask");Assert.That(terrain.SelectMany(m=>m.colors).Count(c=>c.a>.6f),Is.GreaterThan(100),"grass blending");
             foreach(var mesh in terrain)Assert.That(new FileInfo(AssetDatabase.GetAssetPath(mesh)).Length,Is.LessThan(1000000),"small editable tile");
             foreach(var material in _environment.GetComponentsInChildren<Renderer>(true).SelectMany(r=>r.sharedMaterials).Distinct())
@@ -184,7 +189,7 @@ namespace Arena3Q.Tests.PlayMode
             foreach(var group in _environment.transform.Find("Environment/Vegetation/Trees").GetComponentsInChildren<LODGroup>())
             {
                 var members=group.GetLODs()[0].renderers;var bounds=members[0].bounds;foreach(var member in members)bounds.Encapsulate(member.bounds);
-                if(bounds.center.z>-22f)continue;
+                if(bounds.center.z>-_environment.config.size.y*.5f+5f)continue;
                 var p=new Vector2(bounds.center.x,bounds.center.z+(bounds.center.y-1f)/Mathf.Tan(_environment.config.cameraElevation*Mathf.Deg2Rad));
                 if(_battle.Layout.IsWalkable(p)&&!_battle.Layout.IsBlocked(p,.45f)){selected=group;spot=p;break;}
             }
@@ -195,6 +200,47 @@ namespace Arena3Q.Tests.PlayMode
             Assert.That(instancing.TreeVisibility(selected),Is.LessThan(.4f));Capture("occlusion-faded.png");
             hero.SetPosition(Vector2.zero);yield return new WaitForSecondsRealtime(.4f);
             Assert.That(instancing.TreeVisibility(selected),Is.GreaterThan(.95f),"tree fades back when the line of sight clears");
+        }
+        [UnityTest]
+        public IEnumerator Feedback_HeroesAreLarger_PlayerIsRed_CastlesChangeToRuins()
+        {
+            var source=AssetDatabase.LoadAssetAtPath<BattleViewConfig>("Assets/Arena3Q/Content/Resources/BattleView.asset");
+            var originals=AssetDatabase.LoadAssetAtPath<MapProps3DLibrary>("Assets/Arena3Q/Content/Maps/MapProps3D.asset");
+            var intact=originals.Props.First(p=>p.name=="ThreeKingdomsCommand_1").mesh;
+            var ruined=originals.Props.First(p=>p.name=="ThreeKingdomsCommand_2").mesh;
+            Assert.That(_environment.transform.Find("Camps/RedCamp").GetChild(0).position.x,Is.LessThan(0f));
+            Assert.That(_environment.transform.Find("Camps/BlueCamp").GetChild(0).position.x,Is.GreaterThan(0f));
+            Assert.That(_battle.View.PlayerColor.r,Is.GreaterThan(_battle.View.PlayerColor.b));
+            for(int card=0;card<5;card++)Assert.That(_battle.TrySummon(SummonRequest.Quick(card)).Accepted,Is.True);
+            foreach(var hero in _battle.Registry.Units.OfType<HeroUnit>())
+            { Assert.That(hero.DrawnSize,Is.EqualTo(source.HeroModelScale*2f).Within(.001f)); Assert.That(hero.Radius,Is.EqualTo(HeroUnit.BodyRadius)); }
+            yield return null;
+            foreach(var preview in _battle.GetComponent<BattlefieldLegacyBridge>().editorCastlePreviews)Assert.That(preview.activeInHierarchy,Is.False);
+            var block=new MaterialPropertyBlock();
+            foreach(var castle in _battle.Registry.Units.OfType<CastleUnit>())
+            {
+                var body=castle.GetComponentsInChildren<MeshRenderer>().Single(r=>r.enabled&&r.GetComponent<MeshFilter>().sharedMesh==intact);
+                body.GetPropertyBlock(block);
+                Assert.That(block.GetFloat("_FactionMask"),Is.EqualTo(castle.Team==Team.Enemy?1f:0f));
+                Assert.That(castle.transform.Find("HealthFill").GetComponent<SpriteRenderer>().color,Is.EqualTo(castle.Team==Team.Player?_battle.View.PlayerColor:_battle.View.EnemyColor));
+                var original=originals.Props.First(p=>p.name=="ThreeKingdomsCommand_1");
+                Assert.That(body.transform.parent.localScale.x/original.scale,Is.EqualTo(1.45f*2f).Within(.001f));
+            }
+            Overview();Capture("feedback-alive.png");
+            foreach(var team in new[]{Team.Enemy,Team.Player})
+            {
+                if(team==Team.Player){_battle.StartBattle(1);yield return null;_battle.AutoSimulate=false;Overview();}
+                var castle=_battle.Registry.Units.OfType<CastleUnit>().Single(u=>u.Team==team);
+                castle.TakeDamage(castle.MaxHealth*100f,null);yield return null;
+                Assert.That(_battle.CastleFalls.Count,Is.EqualTo(1));
+                Capture(team==Team.Enemy?"feedback-enemy-shaking.png":"feedback-player-shaking.png");
+                yield return new WaitForSeconds(1.25f);
+                Assert.That(_battle.CastleFalls[0].HasCollapsed,Is.True);
+                var ruin=_battle.CastleFalls[0].GetComponentsInChildren<MeshRenderer>().Single(r=>r.GetComponent<MeshFilter>().sharedMesh==ruined);
+                ruin.GetPropertyBlock(block);Assert.That(block.GetFloat("_FactionMask"),Is.EqualTo(team==Team.Enemy?1f:0f));
+                Assert.That(_battle.CastleFalls[0].GetComponentsInChildren<MeshRenderer>().Any(r=>r.GetComponent<MeshFilter>().sharedMesh==intact),Is.False);
+                Capture(team==Team.Enemy?"feedback-enemy-ruined.png":"feedback-player-ruined.png");
+            }
         }
         [UnityTest]
         public IEnumerator Altar_UsesRealSurfaceHeightOnlyDuringRendering()

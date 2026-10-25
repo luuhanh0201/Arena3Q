@@ -55,9 +55,9 @@ namespace Arena3Q.Gameplay
             if (battleCamera == null || config == null) return;
             battleCamera.orthographic = true;
             float elevation = config.cameraElevation * Mathf.Deg2Rad;
-            float halfWidth = (config.size.x + config.rimWidth * 2f) * .5f;
-            float halfDepth = (config.size.y + config.rimWidth * 2f) * .5f;
-            battleCamera.orthographicSize = Mathf.Max(halfWidth / Mathf.Max(.5f, battleCamera.aspect), halfDepth * Mathf.Sin(elevation) + config.rimHeight) * config.cameraPadding;
+            float halfWidth = config.size.x * .5f;
+            float halfDepth = config.size.y * .5f;
+            battleCamera.orthographicSize = Mathf.Max(halfWidth / Mathf.Max(.5f, battleCamera.aspect), halfDepth * Mathf.Sin(elevation)) * config.cameraPadding;
             Vector3 focus = new Vector3(config.cameraOffset.x, 0f, config.cameraOffset.y);
             battleCamera.transform.position = focus + new Vector3(0f, Mathf.Sin(elevation), -Mathf.Cos(elevation)) * 100f;
             battleCamera.transform.rotation = Quaternion.LookRotation(focus - battleCamera.transform.position, Vector3.up);

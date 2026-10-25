@@ -111,6 +111,7 @@ namespace Arena3Q.Gameplay
             // In 3D a unit without a picture stands as a lit placeholder body.
             Visual = new UnitVisual(transform, sprite != null ? sprite : PlaceholderArt.Circle, color, radius * 2f,
                 withSelectionRing, battle.Presentation3D && sprite == null ? battle.View : null);
+            Visual.SetTeamColors(battle.View.PlayerColor, battle.View.EnemyColor);
             Visual.SetHealth(1f, team == Team.Enemy);
             Visual.SetGroundScale(battle.ViewYScale);
             transform.rotation = battle.UprightRotation;

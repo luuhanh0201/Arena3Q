@@ -21,7 +21,7 @@ namespace Arena3Q.Gameplay
             _runtime = runtime;
             _canAttack = config.CanAttack;
             name = runtime.Team == Team.Player ? "Player Castle" : "Enemy Castle";
-            var color = runtime.Team == Team.Player ? new Color(0.35f, 0.6f, 1f) : new Color(0.85f, 0.25f, 0.25f);
+            var color = runtime.Team == Team.Player ? battle.View.PlayerColor : battle.View.EnemyColor;
             InitUnit(battle, runtime.Id, runtime.Team, runtime.MaxHealth, BodyRadius, PlaceholderArt.Square, color,
                 withSelectionRing: false);
             _art = config.Art;

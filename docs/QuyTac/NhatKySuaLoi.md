@@ -1,5 +1,11 @@
 # Nhật ký sửa lỗi – Arena3Q
 
+## Nhà chính Battlefield bị vỡ ngay khi bắt đầu (25/10/2026, Codex)
+
+- Nguyên nhân: recipe đặt Command_2 (tàn tích) tĩnh ở hai trại, bridge lại tắt model CastleUnit live. Sửa preview Editor thành Command_1, ẩn preview trong Play và giữ lifecycle nguyên/vỡ của CastleUnit/CastleFallView; cả hai model dùng cùng tỉ lệ mới, màu phe giữ sau khi sập. Test phải phá thật nhà cả hai phe và đối chiếu mesh render, không chỉ tên object.
+- Phe ta đổi đỏ, địch xanh qua BattleViewConfig cho HP, triệu hồi, chiếm tế đàn và marker. Tướng x2 là thay view, không tăng radius/chỉ số. Bỏ nền ngoài map và đồng bộ thân cây chuyển vào trong biên với navigation.
+- Lượt cuối15/15 PlayMode:8map và7hồi quy sập nhà/camera/scale/chiến thắng/thất bại scene cũ. Bằng chứng NghiemThu/Battlefield/XemTruoc_ChinhSua_20261025, không suy ra FPS điện thoại.
+
 ## Camera toàn cảnh chiến trường mới (25/10/2026, Codex)
 
 - Scene mới mở đủ map80×44, nhưng Zoom dùng giới hạn cũ theo vùng chiến đấu nên lần cuộn đầu có thể nhảy từ mức toàn cảnh vào trong. Thêm cờ allowMapOverview chỉ bật trong scene mới, dùng max cấu hình của nó; mặc địnhfalse giữ đường camera cũ. Kiểm roundtrip picking và2bài camera/tilt scene cũ đều đạt; không sửa Battle.unity.

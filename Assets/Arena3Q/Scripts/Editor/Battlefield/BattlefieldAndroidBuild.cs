@@ -8,7 +8,7 @@ namespace Arena3Q.Editor
 {
     public static class BattlefieldAndroidBuild
     {
-        public const string Output="Builds/Android/Arena3Q-Battlefield-20261025.apk";
+        public const string Output="Builds/Android/Arena3Q-Battlefield-Feedback-20261025.apk";
         [MenuItem("Arena3Q/Battlefield/Build Android Test APK")]
         public static void Build()
         {
@@ -26,7 +26,9 @@ namespace Arena3Q.Editor
                 var s=report.summary;
                 long apkBytes=File.Exists(Output)?new FileInfo(Output).Length:0;
                 string result=$"result={s.result}\noutput={Output}\napkBytes={apkBytes}\nallBuildOutputBytes={s.totalSize}\nseconds={s.totalTime.TotalSeconds:F1}\nerrors={s.totalErrors}\nwarnings={s.totalWarnings}\nStartup scene={BattlefieldBuilder.ScenePath}\n";
-                File.WriteAllText("NghiemThu/Battlefield/XemTruoc_Map_20261025/android-build.txt",result);Debug.Log("[Battlefield APK] "+result);
+                const string evidence="NghiemThu/Battlefield/XemTruoc_ChinhSua_20261025";
+                Directory.CreateDirectory(evidence);
+                File.WriteAllText(evidence+"/android-build.txt",result);Debug.Log("[Battlefield APK] "+result);
                 if(s.result!=BuildResult.Succeeded)throw new InvalidOperationException("Battlefield APK build failed: "+s.result);
             }
             finally{EditorUserBuildSettings.buildAppBundle=bundle;}

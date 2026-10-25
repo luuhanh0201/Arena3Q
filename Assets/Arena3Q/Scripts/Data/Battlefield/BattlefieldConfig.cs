@@ -17,6 +17,8 @@ namespace Arena3Q.Data
         [Range(35f, 70f)] public float cameraElevation = 50f;
         public Vector2 cameraOffset = new Vector2(0f, -1f);
         public float cameraPadding = 1.1f;
+        [Min(.1f)] public float heroScaleMultiplier = 2f;
+        [Min(.1f)] public float buildingScaleMultiplier = 2f;
         public Color blue = new Color(.2f, .46f, .82f);
         public Color red = new Color(.8f, .19f, .1f);
         public Color sunColor = new Color(1f, .85f, .66f);

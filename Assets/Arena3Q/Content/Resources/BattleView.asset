@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: BattleView
   m_EditorClassIdentifier: 
   presentation3D: 1
+  playerColor: {r: 0.9, g: 0.16, b: 0.1, a: 1}
+  enemyColor: {r: 0.2, g: 0.46, b: 0.95, a: 1}
   defaultTiltDegrees: 41.41
   rendererIndex: 1
   cameraDistance: 60

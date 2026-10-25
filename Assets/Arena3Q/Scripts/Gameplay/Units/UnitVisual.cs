@@ -32,6 +32,15 @@ namespace Arena3Q.Gameplay
         private float _artTop;
         // Drawn size of the body over its gameplay size (heroes: BattleViewConfig.HeroModelScale).
         private float _bodySize = 1f;
+        private Color _friendlyColor = new Color(.9f, .16f, .1f);
+        private Color _hostileColor = new Color(.2f, .46f, .95f);
+        private Color _teamColor;
+
+        public void SetTeamColors(Color friendly, Color hostile)
+        {
+            _friendlyColor = friendly;
+            _hostileColor = hostile;
+        }
 
         internal UnitBody3D Model => _model;
 
@@ -123,7 +132,8 @@ namespace Arena3Q.Gameplay
             var t = _healthFill.transform;
             t.localScale = new Vector3(_barWidth * fraction, t.localScale.y, 1f);
             t.localPosition = new Vector3(-_barWidth * (1f - fraction) * 0.5f, t.localPosition.y, 0f);
-            _healthFill.color = isEnemy ? new Color(1f, 0.35f, 0.3f) : new Color(0.3f, 1f, 0.35f);
+            _teamColor = isEnemy ? _hostileColor : _friendlyColor;
+            _healthFill.color = _teamColor;
         }
 
         /// <summary>
@@ -325,6 +335,8 @@ namespace Arena3Q.Gameplay
             {
                 _propBlock ??= new MaterialPropertyBlock();
                 _propBlock.SetColor(BaseColorId, _body.color);
+                _propBlock.SetColor("_FactionColor", _teamColor);
+                _propBlock.SetFloat("_FactionMask", _teamColor.b > _teamColor.r ? 1f : 0f);
                 _propRenderer.SetPropertyBlock(_propBlock);
             }
             if (_stun != null && _stun.enabled)

@@ -593,7 +593,8 @@ namespace Arena3Q.Gameplay
             hero.Runtime.SyncFrom(hero.Brain);
             ClearTaunts(hero);
             TrySelectHero(heroId);
-            SpawnMarker(target.Position, new Color(1f, 0.3f, 0.25f, 0.9f));
+            var targetColor = View.EnemyColor; targetColor.a = .9f;
+            SpawnMarker(target.Position, targetColor);
             return result;
         }
 
@@ -891,8 +892,8 @@ namespace Arena3Q.Gameplay
             }
         }
 
-        private static readonly Color PlayerSkillColor = new Color(0.35f, 0.75f, 1f, 0.35f);
-        private static readonly Color EnemySkillColor = new Color(1f, 0.3f, 0.25f, 0.35f);
+        private Color PlayerSkillColor { get { var c = View.PlayerColor; c.a = .35f; return c; } }
+        private Color EnemySkillColor { get { var c = View.EnemyColor; c.a = .35f; return c; } }
 
         /// <summary>Placeholder look of a skill until the VFX exist: the area on the ground, fading out.</summary>
         internal GameObject ShowSkill(SkillAreaDefinition skill, SkillAim aim, Team team, float seconds, UnitBase follow)
@@ -1009,7 +1010,8 @@ namespace Arena3Q.Gameplay
                 }
             }
 
-            _summonZoneOverlay = AddGroundVisual("SummonZone", PlaceholderArt.Square, new Color(0.4f, 0.75f, 1f, 0.28f),
+            var summonColor = View.PlayerColor; summonColor.a = .28f;
+            _summonZoneOverlay = AddGroundVisual("SummonZone", PlaceholderArt.Square, summonColor,
                 Stage.SummonZone, -31980);
             _summonZoneOverlay.enabled = false;
 

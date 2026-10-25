@@ -59,7 +59,7 @@ MonoBehaviour:
     meshPosition: {x: 0, y: 0, z: 0}
     meshRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
     meshScale: {x: 100, y: 99.99999, z: 99.99999}
-    scale: 0.86731106
+    scale: 1.6768014
     groundCentre: {x: 0.002278328, y: 0.0018341541, z: 0.004556656}
     footprint: 3.5
     frontYaw: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
     meshPosition: {x: 0, y: 0, z: 0}
     meshRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
     meshScale: {x: 100, y: 99.99999, z: 99.99999}
-    scale: 0.9984963
+    scale: 1.9304262
     groundCentre: {x: -0.00016725063, y: 0.008609295, z: 0.0040180683}
     footprint: 3.5
     frontYaw: 0
