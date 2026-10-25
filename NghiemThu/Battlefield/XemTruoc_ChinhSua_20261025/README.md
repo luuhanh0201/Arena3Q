@@ -1,6 +1,6 @@
 # Chỉnh map theo phản hồi trên điện thoại, 25/10/2026
 
-Đã sửa 3/3 nhóm yêu cầu và kiểm 15/15 PlayMode (8 map, 7 hồi quy scene cũ). APK bản sửa đang được build riêng; chưa chạy bản sửa trên điện thoại khi USB chưa kết nối.
+Đã sửa 3/3 nhóm yêu cầu và kiểm 15/15 PlayMode (8 map, 7 hồi quy scene cũ). APK bản sửa build thành công, 380,5MB (+15,4MB so bản trước), 0lỗi/8cảnh báo; chữ kýv2 đạt và cùng signer. Chưa chạy bản sửa trên điện thoại khi USB chưa kết nối.
 
 - Bỏ toàn bộ mesh nền kéo dài ngoài biên: bốn tile đất giới hạn chính xác X ±40, Z ±22. Không còn dải đồi ngoài map. Giữ mặt sân giao tranh phẳng và khối đá/cây/công trình 3D. Camera fit theo kích thước map, khoảng trống ngoài map là màu nền camera.
 - Trại trái của người chơi là RedCamp, phải là BlueCamp. Thanh HP, vùng triệu hồi, vòng chiếm tế đàn, chỉ dấu tấn công và màu dự phòng của vùng kỹ năng dùng màu phe từ BattleViewConfig. Cả Công/Thủ đều giữ phe ta đỏ; màu riêng của từng tướng/chiêu vẫn theo asset của họ.
@@ -17,3 +17,5 @@ Cấu hình chỉnh ở `Content/Battlefield/BattlefieldConfig.asset` (`heroScal
 Ảnh, APK, XML/log giữ local theo quy tắc kích thước repo. Xem `docs/BanDo/BattlefieldFeedback_20261025.md` để biết APK và kết quả bàn giao cuối.
 
 Trang xem trực tiếp http://127.0.0.1:4311/app/feedback.html:7ảnh decode đúng, không lỗi JavaScript hoặc tràn ngang ở412px. Ảnh web desktop/mobile và `web-feedback-verification.json` lưu tại đây. So nguồn40file:39giữ SHA, BattleView.asset thêm đúng2màu phe theo yêu cầu, không đổi trường cũ. Runtime source commit1133172.
+
+APK `Builds/Android/Arena3Q-Battlefield-Feedback-20261025.apk`:398.956.603byte, SHA256`602ca28a571c4abc408466c9ca36d41e3d2948c271e78ce604c663144fe7a0bf`. Build478,9giây, ARM64/minAPI26/target36, package/signing giữ tương thích cài đè. HEAD tải file trả200 và đúng dung lượng. Log build/signature/verificationJSON tại đây; APK trước vẫn giữ riêng. `adb devices -l` sau build rỗng, không có bằng chứng cài/chạy của bản sửa này.

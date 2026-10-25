@@ -12,6 +12,7 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Bàn giao trước đó: claude/outbox/20261020-2330_BAN-GIAO-cong-viec-claude.md.
 
 ## codex
+- 25/10 hoàn tất3/3 chỉnh map theo phản hồi: bỏ nền ngoài biên80×44, phe ta đỏ/địch xanh cả Công/Thủ, tướng và công trình x2, nhà chính dùng đúng Command_1 nguyên/Command_2 vỡ theo lifecycle thật. 15/15 PlayMode, web7ảnh đạt; APK Feedback380,5MB (+15,4MB),0lỗi/8cảnh báo, chữ kýv2cùng signer. Source1133172 đãpush; ảnh/download http://127.0.0.1:4311/app/feedback.html (PID24500). ADB sau build rỗng, chưa chạy bản sửa/FPS máy thật. Báo cáo docs/BanDo/BattlefieldFeedback_20261025.md. Nhả file/Unity; không theo dõi sau bàn giao.
 - 25/10 sửa theo phản hồi điện thoại: bỏ nền ngoài biên, phe ta đỏ/địch xanh, tướng x2, công trình x2 và trạng thái nhà chính nguyên/vỡ. Giữ Scripts Data/Battlefield, BattleViewConfig, Gameplay/Battlefield, UnitVisual/UnitBase, CastleUnit/CastleFallView, BaguaFormationView/BattleController, Editor/Battlefield, asset scene/config/prefab map và test tương ứng; Unity batch. Không sửa nguồn tướng hoặc model gốc. Không theo dõi sau bàn giao.
 - 25/10 chạy điện thoại theo yêu cầu: đã cài cập nhật APK Battlefield trên Redmi Note8Pro Android11 (Success), mở Activity COLD/ok550ms/PID16472. ADB mất thiết bị trước ảnh/log;3lần devices sau đó rỗng, không kết luận render/FPS/crash. Báo cáo NghiemThu/Battlefield/ChayMay_20261025/README.md. Nhả file, Unity không dùng; không theo dõi sau bàn giao.
 - 25/10 người dùng yêu cầu chạy APK Battlefield trên điện thoại. Đã nhận Redmi Note 8 Pro Android11 qua ADB; đang cài cập nhật APK365,1MiB, sau đó mở/kiểm hình và log. Chỉ giữ báo cáo/bằng chứng device; chưa cần Unity hoặc sửa nguồn game. Không theo dõi sau bàn giao.
@@ -57,7 +58,7 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Việc đầu: kiểm snapshot 3D về scale, toàn bộ submesh và quạt; kiểm footprint VFX sau đổi camera; đồng bộ docs 3D. Sau đó kiểm model/motion Mặc Ảnh và giải quyết Lữ Bố chưa qua QA da.
 - Báo ngay từng phần nhỏ với ảnh trước–sau và số đo. Chưa nghiệm thu tổng thể. Chỉ test Unity, chưa build/test Android theo bàn giao 0619. Sau khi hoàn tất công việc theo dõi inbox 1 giờ.
 ## Unity (Editor / batch mode)
-- Đang giữ bởi: Codex, sửa map theo phản hồi điện thoại và kiểm Unity batch.
+- Đang giữ bởi: không ai. Codex đã hoàn tất sửa map/APK Feedback; không theo dõi sau bàn giao.
 
 
 

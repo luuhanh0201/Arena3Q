@@ -1,5 +1,7 @@
 # Chiến trường 3D Arena3Q, scene v1 ngày 25/10/2026
 
+**Bản sửa sau khi test điện thoại:** [báo cáo phe đỏ, bỏ nền ngoài biên, tướng/công trình x2 và nhà nguyên/vỡ](BattlefieldFeedback_20261025.md). [Xem ảnh bản mới](http://127.0.0.1:4311/app/feedback.html), [APK bản sửa 380,5MB](http://127.0.0.1:4311/test-apk/Arena3Q-Battlefield-Feedback-20261025.apk). Các số liệu bên dưới giữ lịch sử bản v1.
+
 Đã dựng scene **`Assets/Arena3Q/Scenes/Battlefield_HighQuality.unity`**, mở/sửa trực tiếp và nhấn Play để thử PvE. Trang xem ảnh/video Unity: **http://127.0.0.1:4311/app/map.html**. Đây là bản môi trường bằng bộ asset người dùng đã xem và cho phép dùng qua lệnh “dựng map đi”; chưa coi là nghiệm thu art cuối giống ảnh concept hoặc nghiệm thu FPS mobile.
 
 ## Audit và phạm vi thay đổi
