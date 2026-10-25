@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Arena3Q/Scenes/Frontend.unity
     guid: a53c331cb21e0884198d596375c74928
   - enabled: 1
+    path: Assets/Arena3Q/Scenes/Battlefield_HighQuality.unity
+    guid: a532e0cc39b0f124aa772e41da4b2ea3
+  - enabled: 1
     path: Assets/Arena3Q/Scenes/Battle.unity
     guid: df704845059e96444961628e1af12d76
   m_configObjects:

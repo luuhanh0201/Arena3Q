@@ -120,6 +120,9 @@ namespace Arena3Q.Tests.PlayMode
             BattleController battle = null;
             yield return WaitForBattle(b => battle = b);
             Assert.That(battle.Stage.StageId, Is.EqualTo("tutorial_01"));
+            Assert.That(battle.gameObject.scene.name, Is.EqualTo("Battlefield_HighQuality"), "the real Frontend route must open the newest map");
+            Assert.That(Object.FindAnyObjectByType<BattlefieldEnvironment>(), Is.Not.Null);
+            Assert.That(Object.FindAnyObjectByType<Arena3Q.UI.BattlefieldTestControls>().StageButton.gameObject.activeSelf, Is.False, "campaign players cannot bypass the tutorial with the map test switch");
             Assert.That(battle.Lineup[0].Hero.HeroId, Is.EqualTo("lord_strategist"));
             Assert.That(battle.Lineup[0].Level, Is.EqualTo(1));
             Assert.That(battle.Lineup.Any(c => c.Hero.HeroId == "guardian" && c.Stars == 3), Is.True);
@@ -203,6 +206,7 @@ namespace Arena3Q.Tests.PlayMode
             BattleController battle = null;
             yield return WaitForBattle(b => battle = b);
             Assert.That(battle.Stage.StageId, Is.EqualTo("attack_01"), "the tutorial is done: the default stage");
+            Assert.That(battle.gameObject.scene.name, Is.EqualTo("Battlefield_HighQuality"), "returning players also use the newest map");
             Assert.That(battle.Lineup[0].Hero.HeroId, Is.EqualTo("lord_archer"));
             Assert.That(battle.Lineup[0].Level, Is.EqualTo(3));
         }

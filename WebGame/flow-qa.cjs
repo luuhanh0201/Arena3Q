@@ -6,7 +6,8 @@ const { chromium } = createRequire(path.join(root, 'Admin/package.json'))('@play
 const settings = require('./web-settings.json');
 const touch = process.argv.includes('--touch');
 const introOnly = process.argv.includes('--intro-only');
-const out = path.join(root, 'NghiemThu/WebGame/20261025', introOnly ? 'intro' : touch ? 'flow-touch' : 'flow');
+const latest = process.argv.includes('--latest');
+const out = path.join(root, latest ? 'NghiemThu/Release/Latest_20261025' : 'NghiemThu/WebGame/20261025', introOnly ? 'intro' : touch ? 'flow-touch' : 'flow');
 fs.mkdirSync(out, { recursive: true });
 
 (async () => {
@@ -46,6 +47,12 @@ fs.mkdirSync(out, { recursive: true });
   try {
     await page.goto(`http://127.0.0.1:${settings.port}`);
     await page.waitForSelector('#modes button[aria-pressed="true"]');
+    if (latest) {
+      const build = await (await page.request.get(`http://127.0.0.1:${settings.port}/build.json`)).json();
+      assert.equal(build.battleScene, 'Battlefield_HighQuality');
+      assert.match(build.dataUrl, /\?v=[a-f0-9]+$/);
+      report.build = { contentHash: build.contentHash, battleScene: build.battleScene, startupScene: build.startupScene };
+    }
     await page.click('[data-mode="pc"]');
     await page.click('#start');
     await page.waitForSelector('#game-frame[data-ready="true"]', { timeout: 240000 });

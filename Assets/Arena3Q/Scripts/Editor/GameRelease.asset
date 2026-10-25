@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8128d5213d894be5b5b8dc17ee277d90, type: 3}
+  m_Name: GameRelease
+  m_EditorClassIdentifier: Arena3Q.Editor::Arena3Q.Editor.GameReleaseSettings
+  frontend: {fileID: 11400000, guid: d318ce5184dda98438aabc5e9ba17f81, type: 2}
+  scenes:
+  - {fileID: 102900000, guid: a53c331cb21e0884198d596375c74928, type: 3}
+  - {fileID: 102900000, guid: a532e0cc39b0f124aa772e41da4b2ea3, type: 3}
+  - {fileID: 102900000, guid: df704845059e96444961628e1af12d76, type: 3}
+  tutorialSource: {fileID: 11400000, guid: 8312ed9470000604db64a1540d49dab5, type: 2}
+  attackSource: {fileID: 11400000, guid: 8a7039988c475614984e3c7114bd74f8, type: 2}
+  defenseSource: {fileID: 11400000, guid: 836ac76bc6f8044439003106bd7887b7, type: 2}
+  attackLayout: {fileID: 11400000, guid: 5b400f3648e3d8a48b5bd2da53d4529c, type: 2}
+  defenseLayout: {fileID: 11400000, guid: 046e01c84e7b2ed47923363beb38ae43, type: 2}
+  campaignFolder: Assets/Arena3Q/Content/Battlefield/Campaign

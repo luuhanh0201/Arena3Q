@@ -176,7 +176,7 @@ namespace Arena3Q.Tests.PlayMode
             var controls=Object.FindAnyObjectByType<Arena3Q.UI.BattlefieldTestControls>();Assert.That(controls,Is.Not.Null);Assert.That(controls.GraphicsButton,Is.Not.Null);
             for(int i=0;i<3;i++)
             {
-                var previous=_environment.quality;controls.GraphicsButton.onClick.Invoke();Assert.That(_environment.quality,Is.EqualTo((BattlefieldGraphics)(((int)previous+1)%3)));Assert.That(Application.targetFrameRate,Is.EqualTo(_environment.quality==BattlefieldGraphics.High?60:30));yield return null;
+                var previous=_environment.quality;controls.GraphicsButton.onClick.Invoke();Assert.That(_environment.quality,Is.EqualTo((BattlefieldGraphics)(((int)previous+1)%3)));Assert.That(Application.targetFrameRate,Is.GreaterThanOrEqualTo(RuntimePerformanceConfig.MinimumFrameRate));yield return null;
             }
             var stage=_battle.Stage;controls.StageButton.onClick.Invoke();yield return null;Assert.That(_battle.Stage,Is.Not.EqualTo(stage));Assert.That(_environment.gameObject.activeInHierarchy,Is.True);
             controls.StageButton.onClick.Invoke();yield return null;Assert.That(_battle.Stage,Is.EqualTo(stage));

@@ -6,14 +6,20 @@ const settings = require('./web-settings.json');
 const root = path.resolve(__dirname, '..', settings.output);
 const host = process.env.ARENA_WEB_HOST || '127.0.0.1';
 const port = Number(process.env.ARENA_WEB_PORT || settings.port);
+const mobileApk = path.resolve(__dirname, '..', settings.androidDownload);
+const androidRoot = path.resolve(__dirname, '../Builds/Android') + path.sep;
+if (!mobileApk.startsWith(androidRoot) || path.extname(mobileApk) !== '.apk') throw new Error('Android download must stay inside Builds/Android');
 const mime = { '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8', '.mjs':'text/javascript; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.json':'application/json; charset=utf-8', '.wasm':'application/wasm', '.png':'image/png', '.jpg':'image/jpeg', '.ttf':'font/ttf', '.txt':'text/plain; charset=utf-8', '.mp4':'video/mp4', '.unityweb':'application/octet-stream', '.data':'application/octet-stream' };
 const server = http.createServer((req, res) => {
   if (!['GET','HEAD'].includes(req.method)) { res.writeHead(405, { Allow:'GET, HEAD' }); res.end(); return; }
-  let filename;
+  let filename, download = false;
   try {
     const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
-    filename = path.resolve(root, '.' + (pathname.endsWith('/') ? pathname + 'index.html' : pathname));
-    if (filename !== root && !filename.startsWith(root + path.sep)) throw new Error('outside root');
+    if (pathname === '/download/' + path.basename(mobileApk)) { filename = mobileApk; download = true; }
+    else {
+      filename = path.resolve(root, '.' + (pathname.endsWith('/') ? pathname + 'index.html' : pathname));
+      if (filename !== root && !filename.startsWith(root + path.sep)) throw new Error('outside root');
+    }
   } catch { res.writeHead(400); res.end(); return; }
   fs.stat(filename, (error, stat) => {
     if (error || !stat.isFile()) { res.writeHead(404); res.end(); return; }
@@ -21,8 +27,9 @@ const server = http.createServer((req, res) => {
     let real;
     try { real = fs.realpathSync(filename); }
     catch { res.writeHead(404); res.end(); return; }
-    if (!real.startsWith(fs.realpathSync(root) + path.sep)) { res.writeHead(403); res.end(); return; }
+    if (download ? real !== fs.realpathSync(mobileApk) : !real.startsWith(fs.realpathSync(root) + path.sep)) { res.writeHead(403); res.end(); return; }
     const headers = { 'Content-Type':mime[path.extname(filename)] || 'application/octet-stream', 'Accept-Ranges':'bytes', 'X-Content-Type-Options':'nosniff', 'Cache-Control':'no-cache' };
+    if (download) { headers['Content-Type'] = 'application/vnd.android.package-archive'; headers['Content-Disposition'] = `attachment; filename="${path.basename(mobileApk)}"`; }
     let start = 0, end = stat.size - 1, status = 200;
     if (req.headers.range) {
       const match = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range);

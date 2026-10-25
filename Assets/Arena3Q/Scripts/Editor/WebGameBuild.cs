@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using Arena3Q.Data;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
@@ -21,6 +22,7 @@ namespace Arena3Q.Editor
             public string loaderUrl, dataUrl, frameworkUrl, codeUrl;
             public string streamingAssetsUrl = "Player/StreamingAssets";
             public string companyName, productName, productVersion;
+            public string contentHash, startupScene, battleScene;
         }
 
         [MenuItem("Arena3Q/Build/Web Game (Phone, iPad, PC)")]
@@ -35,6 +37,9 @@ namespace Arena3Q.Editor
                 throw new InvalidOperationException("Web output must stay within Builds/WebGL.");
             if (settings.scenes == null || settings.scenes.Length == 0 || settings.scenes[0] != settings.startScene || settings.scenes.Any(s => !File.Exists(s)))
                 throw new InvalidOperationException("Every configured web scene must exist, with startScene first.");
+            CurrentGameRelease.Validate();
+            if (!settings.scenes.SequenceEqual(CurrentGameRelease.ScenePaths))
+                throw new InvalidOperationException("Web scenes differ from the current mobile/web release manifest.");
             ApprovedSkillIcons.Verify();
             var typography = Resources.Load<UiTypographyConfig>(UiTypographyConfig.ResourceName);
             if (typography == null || typography.browserFont == null)
@@ -100,12 +105,24 @@ namespace Arena3Q.Editor
             Directory.CreateDirectory(streaming);
             File.Copy(settings.introSource, Path.Combine(streaming, settings.introFile), true);
             string build = Path.Combine(output, "Player/Build");
-            string Pick(string pattern) => "Player/Build/" + Path.GetFileName(Directory.GetFiles(build, pattern).Single());
+            string Hash(string file)
+            {
+                using var sha = SHA256.Create(); using var stream = File.OpenRead(file);
+                return BitConverter.ToString(sha.ComputeHash(stream)).Replace("-", "").ToLowerInvariant();
+            }
+            string Pick(string pattern)
+            {
+                string file = Directory.GetFiles(build, pattern).Single();
+                return "Player/Build/" + Path.GetFileName(file) + "?v=" + Hash(file).Substring(0, 20);
+            }
             var browser = new BrowserBuild {
                 loaderUrl = Pick("*.loader.js"), dataUrl = Pick("*.data*"),
                 frameworkUrl = Pick("*.framework.js*"), codeUrl = Pick("*.wasm*"),
                 companyName = PlayerSettings.companyName, productName = PlayerSettings.productName,
-                productVersion = Application.version
+                productVersion = Application.version,
+                contentHash = Hash(Directory.GetFiles(build, "*.data*").Single()),
+                startupScene = settings.startScene,
+                battleScene = CurrentGameRelease.Settings.frontend.BattleSceneName
             };
             File.WriteAllText(Path.Combine(output, "build.json"), JsonUtility.ToJson(browser, true));
         }

@@ -48,6 +48,8 @@ namespace Arena3Q.UI
         private void Refresh()
         {
             if(_graphicsLabel==null)return;
+            // A campaign battle must finish normally so tutorial rewards and saved progress stay consistent.
+            if(StageButton!=null)StageButton.gameObject.SetActive(string.IsNullOrEmpty(battle.ReturnSceneName));
             _graphicsLabel.text="Đồ họa: "+(environment.quality==BattlefieldGraphics.High?"Cao":environment.quality==BattlefieldGraphics.Medium?"Vừa":"Thấp");
             _stageLabel.text=battle.Stage!=null&&battle.Stage.StageType==StageType.Attack?"Chuyển ải Thủ":"Chuyển ải Công";
         }

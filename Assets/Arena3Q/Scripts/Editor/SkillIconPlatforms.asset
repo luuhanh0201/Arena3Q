@@ -17,6 +17,6 @@ MonoBehaviour:
   androidFormat: 48
   iphoneFormat: 48
   webFormat: 4
-  androidOutput: Builds/Android/Arena3Q-Mobile-20261025.apk
+  androidOutput: Builds/Android/Arena3Q-Latest-20261025.apk
   recreateAndroidPackage: 1
   futureWebOutput: Builds/WebGL/Arena3Q

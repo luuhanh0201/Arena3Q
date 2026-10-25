@@ -66,7 +66,7 @@ async function start() {
     graphics.getExtension('WEBGL_lose_context')?.loseContext();
     const response = await fetch('build.json', { cache: 'no-cache' });
     if (!response.ok) throw new Error(`Build manifest: HTTP ${response.status}`);
-    const { loaderUrl, ...build } = await response.json();
+    const { loaderUrl, contentHash, startupScene, battleScene, ...build } = await response.json();
     await new Promise((resolve, reject) => {
       const script = document.createElement('script');
       script.src = loaderUrl;

@@ -447,3 +447,9 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 - Nguyên nhân: UiFactory dùng LegacyRuntime.ttf, dựa vào font hệ điều hành để bù ký tự trên native. WebGL không có cùng bộ font dự phòng.
 - Sửa: cấu hình UiTypography tham chiếu đúng BeVietnamPro-Regular.ttf đã dùng trong mobile; UiFactory nhánh web lấy font nhúng này. Không thay font nguồn hoặc nhánh native. Builder kiểm ký tự tiếng Việt trước khi xuất.
 - Phòng tránh: luôn xem ảnh chữ thật trên nền tảng đích, gồm chữ có dấu ở HUD, chọn tướng và ô tên; không lấy 0 lỗi console hoặc kiểm Editor làm bằng chứng font web.
+
+## 25/10 - Hai bản phát hành chưa nối cùng nội dung mới nhất
+- Người dùng phát hiện: web giữ Frontend -> Battle cũ, còn mobile tối ưu mở thẳng scene thử map. Đóng gói scene Battlefield mới vào app không có nghĩa luồng chơi thật sử dụng scene đó.
+- Sửa: một GameReleaseSettings dùng chung scene Frontend/Battlefield; stage campaign dẫn xuất nhận geometry map mới, giữ stageId, luật, đợt quái, chỉ số và thưởng của stage gốc. Cả builder web/mobile kiểm tham chiếu thực trước build; APK mới mở Frontend, nút thử đổi ải bị ẩn khi có campaign launch.
+- Phòng tránh: kiểm người chơi mới và quay lại từ Frontend tới tên scene thật, kích thước map và thưởng tutorial; không nghiệm thu chỉ từ kiểm scene map riêng hoặc danh sách file build. URL payload web thêm hash nội dung để tránh cache bản cũ.
+- Trong khi tích hợp phát hiện BattlefieldQuality còn cho Low/Medium target30, trái quy tắc60FPS đã chốt. Chặn giá trị dưới RuntimePerformanceConfig.MinimumFrameRate; không coi đặt target là kết quả FPS thiết bị.

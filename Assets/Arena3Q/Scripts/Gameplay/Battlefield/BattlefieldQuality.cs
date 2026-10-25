@@ -1,3 +1,4 @@
+using Arena3Q.Data;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -10,9 +11,9 @@ namespace Arena3Q.Gameplay
         public RenderPipelineAsset low;
         public RenderPipelineAsset medium;
         public RenderPipelineAsset high;
-        public int lowFrameRate = 30;
-        public int mediumFrameRate = 30;
-        public int highFrameRate = 60;
+        [Min(RuntimePerformanceConfig.MinimumFrameRate)] public int lowFrameRate = RuntimePerformanceConfig.MinimumFrameRate;
+        [Min(RuntimePerformanceConfig.MinimumFrameRate)] public int mediumFrameRate = RuntimePerformanceConfig.MinimumFrameRate;
+        [Min(RuntimePerformanceConfig.MinimumFrameRate)] public int highFrameRate = RuntimePerformanceConfig.MinimumFrameRate;
         private RenderPipelineAsset _previous, _active;
         private float _previousLod;
         private int _previousFps;
@@ -38,7 +39,8 @@ namespace Arena3Q.Gameplay
             if (!Application.isPlaying) return;
             _active = Selected; if (_active != null) QualitySettings.renderPipeline = _active;
             QualitySettings.lodBias = environment.quality == BattlefieldGraphics.High ? 1.8f : environment.quality == BattlefieldGraphics.Medium ? 1f : .6f;
-            Application.targetFrameRate = environment.quality == BattlefieldGraphics.High ? highFrameRate : environment.quality == BattlefieldGraphics.Medium ? mediumFrameRate : lowFrameRate;
+            int requested = environment.quality == BattlefieldGraphics.High ? highFrameRate : environment.quality == BattlefieldGraphics.Medium ? mediumFrameRate : lowFrameRate;
+            Application.targetFrameRate = Mathf.Max(RuntimePerformanceConfig.MinimumFrameRate, requested);
         }
     }
 }

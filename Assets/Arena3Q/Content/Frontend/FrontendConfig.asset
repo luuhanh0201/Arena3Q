@@ -16,6 +16,7 @@ MonoBehaviour:
   gameTitle: Arena3Q
   introSeconds: 3
   introVideo: {fileID: 32900000, guid: 00a5633de80c4d13ad5902c060c7da34, type: 3}
+  webIntroFile: Arena3Q_Splash_loud.mp4
   logo: {fileID: 21300000, guid: f79074f0e331f9245a1b874814065e64, type: 3}
   banner: {fileID: 21300000, guid: 46818626d1753844d9f58e82f5d35b8f, type: 3}
   theme:
@@ -47,7 +48,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7f85e9a8c0614b84694e9fa2d08885f7, type: 2}
   - {fileID: 11400000, guid: 0d2ace241d7d2bb4fa6dba3011768ada, type: 2}
   progression: {fileID: 11400000, guid: 0fb10bd7ba8baae4082f63f5008d19eb, type: 2}
-  tutorialStage: {fileID: 11400000, guid: 8312ed9470000604db64a1540d49dab5, type: 2}
+  tutorialStage: {fileID: 11400000, guid: 5c8b7bcc3f620ad4ba4056b0d357548f, type: 2}
   starterGifts:
   - hero: {fileID: 11400000, guid: 7f85e9a8c0614b84694e9fa2d08885f7, type: 2}
     level: 1
@@ -62,8 +63,8 @@ MonoBehaviour:
     stars: 3
     lordSkillLevels: 00000000000000000000000000000000i
   tutorialRewardLevel: 2
-  defaultStage: {fileID: 11400000, guid: 8a7039988c475614984e3c7114bd74f8, type: 2}
-  battleSceneName: Battle
+  defaultStage: {fileID: 11400000, guid: e7ddb4aebcaef9b459c07f198db9aea4, type: 2}
+  battleSceneName: Battlefield_HighQuality
   frontendSceneName: Frontend
   developmentLordLevel: 60
   developmentFullRage: 1

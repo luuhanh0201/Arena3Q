@@ -25,7 +25,7 @@ namespace Arena3Q.Editor
                 throw new InvalidOperationException("Latest report does not match the mobile APK output.");
             VerifyBuild(report);
         }
-        public static void VerifyBuild(BuildReport report)
+        public static void VerifyBuild(BuildReport report,string evidence=Evidence)
         {
             var registry=JsonUtility.FromJson<Registry>(File.ReadAllText("Admin/reviews/skill-icons-20261025.json"));
             var sources=registry.skills.ToDictionary(e=>e.texturePath);
@@ -37,7 +37,7 @@ namespace Arena3Q.Editor
             }).ToArray();
             if(icons.Length==0)throw new InvalidOperationException("No skill icons found in mobile APK report.");
             ulong bytes=0;foreach(var icon in icons)bytes+=icon.bytes;
-            Directory.CreateDirectory(Evidence);File.WriteAllText(Evidence+"/build-icons.json",JsonUtility.ToJson(new BuildIcons{count=icons.Length,textureBytes=bytes,icons=icons},true));
+            Directory.CreateDirectory(evidence);File.WriteAllText(evidence+"/build-icons.json",JsonUtility.ToJson(new BuildIcons{count=icons.Length,textureBytes=bytes,icons=icons},true));
             Debug.Log($"[IconMobileQA] Built {icons.Length} ASTC4x4 icon textures, {bytes} bytes before ZIP.");
         }
         private static void Capture(bool after)

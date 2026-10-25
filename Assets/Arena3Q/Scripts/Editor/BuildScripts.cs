@@ -13,8 +13,7 @@ namespace Arena3Q.Editor
     public static class BuildScripts
     {
         [MenuItem("Arena3Q/Build/Android Dev (APK)")]
-        public static void BuildAndroidDev() =>
-            Build(BuildTarget.Android, BuildTargetGroup.Android, "Builds/Android/Arena3Q-dev.apk", BuildOptions.Development);
+        public static void BuildAndroidDev() => BattlefieldAndroidBuild.BuildMobile();
 
         [MenuItem("Arena3Q/Build/Windows Dev")]
         public static void BuildWindowsDev() =>
