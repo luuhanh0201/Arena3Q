@@ -44,6 +44,8 @@ namespace Arena3Q.Data
         [SerializeField, Min(0.5f)] private float introSeconds = 3f;
         [Tooltip("intro.mp4 (§5). Empty = an animated logo placeholder.")]
         [SerializeField] private VideoClip introVideo;
+        [Tooltip("Browser video URL, relative to StreamingAssets. Web builds cannot play imported VideoClips.")]
+        [SerializeField] private string webIntroFile = "Arena3Q_Splash_loud.mp4";
         [SerializeField] private Sprite logo;
         [Tooltip("banner_title.png: end of the intro and background of the login and server screens.")]
         [SerializeField] private Sprite banner;
@@ -94,6 +96,7 @@ namespace Arena3Q.Data
         public string GameTitle => gameTitle;
         public float IntroSeconds => introSeconds;
         public VideoClip IntroVideo => introVideo;
+        public string WebIntroFile => webIntroFile;
         public Sprite Logo => logo;
         public Sprite Banner => banner;
         public UiTheme Theme => theme ?? (theme = new UiTheme());

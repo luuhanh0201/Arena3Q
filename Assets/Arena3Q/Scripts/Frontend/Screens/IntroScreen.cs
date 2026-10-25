@@ -23,19 +23,35 @@ namespace Arena3Q.Frontend
             var catcher = UiFactory.Stretch("SkipSplash", Root); catcher.SetSiblingIndex(1);
             var hit = UiFactory.AddImage(catcher, Color.clear); hit.raycastTarget = true;
             hit.gameObject.AddComponent<Button>().onClick.AddListener(() => { if (CanSkip) Finish(); });
+#if UNITY_WEBGL && !UNITY_EDITOR
+            if (string.IsNullOrWhiteSpace(Flow.Config.WebIntroFile)) return;
+            _texture = new RenderTexture((int)Art.referenceSize.x, (int)Art.referenceSize.y, 0);
+#else
             if (Flow.Config.IntroVideo == null) return;
             var clip = Flow.Config.IntroVideo;
             _texture = new RenderTexture((int)clip.width, (int)clip.height, 0);
+#endif
             _texture.Create();
             var view = UiFactory.Stretch("SplashVideo", Root); view.SetSiblingIndex(1);
             _view = view.gameObject.AddComponent<RawImage>(); _view.texture = _texture; _view.raycastTarget = false; _view.enabled = false;
             _audio = Root.gameObject.AddComponent<AudioSource>(); _audio.playOnAwake = false; _audio.spatialBlend = 0;
             _audio.mute = Kit.Audio.Muted; _audio.volume = Art.introVolume;
             _video = Root.gameObject.AddComponent<VideoPlayer>();
-            _video.playOnAwake = false; _video.clip = clip; _video.renderMode = VideoRenderMode.RenderTexture;
+            _video.playOnAwake = false;
+#if UNITY_WEBGL && !UNITY_EDITOR
+            _video.source = VideoSource.Url;
+            _video.url = Application.streamingAssetsPath.TrimEnd('/') + "/" + Flow.Config.WebIntroFile;
+#else
+            _video.clip = clip;
+#endif
+            _video.renderMode = VideoRenderMode.RenderTexture;
             _video.targetTexture = _texture; _video.isLooping = false; _video.waitForFirstFrame = true;
             _video.audioOutputMode = VideoAudioOutputMode.AudioSource;
+#if UNITY_WEBGL && !UNITY_EDITOR
+            _video.EnableAudioTrack(0, true); _video.SetTargetAudioSource(0, _audio);
+#else
             if (clip.audioTrackCount > 0) { _video.EnableAudioTrack(0, true); _video.SetTargetAudioSource(0, _audio); }
+#endif
             _video.loopPointReached += OnEnd;
             _video.sendFrameReadyEvents = true; _video.frameReady += OnFrame;
             _video.errorReceived += OnError;
