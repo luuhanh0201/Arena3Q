@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arena3Q · Map đã chỉnh sửa</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#101820;color:#e5edf3}*{box-sizing:border-box}body{max-width:1500px;margin:auto;padding:24px}h1{font-size:26px}p{color:#b9c9d3;line-height:1.6}a{color:#91cefa}nav{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}button{font:inherit;padding:10px 14px;border:1px solid #455764;border-radius:8px;background:#1b2b37;color:#e5edf3;cursor:pointer}button[aria-pressed=true]{background:#b98d4b;color:#101820}figure{margin:0;border:1px solid #455764;border-radius:12px;overflow:hidden;background:#060a0d}img{display:block;width:100%;height:auto}figcaption{padding:16px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}small{color:#b9c9d3}code{overflow-wrap:anywhere}#download{font-weight:600}@media(max-width:600px){body{padding:14px}h1{font-size:22px}button{flex:1}}
+</style>
+<h1>Chiến trường đã chỉnh sửa</h1>
+<p>Bỏ nền ngoài biên. Phe ta đỏ, địch xanh. Tướng và công trình lớn gấp đôi. Nhà chính nguyên vẹn khi còn sống, đổi sang model vỡ sau khi bị phá.</p>
+<p><a id="download" href="/test-apk/Arena3Q-Battlefield-Feedback-20261025.apk" download>Tải APK bản sửa</a> <small id="apk-size"></small> · <a href="/app/map.html">Bản map trước</a></p>
+<nav aria-label="Ảnh kiểm tra">
+<button data-image="feedback-alive.png" aria-pressed="true">Trận 5 tướng</button>
+<button data-image="before-after.png" aria-pressed="false">Trước / sau</button>
+<button data-image="phase2-overview.png" aria-pressed="false">Scene trong Editor</button>
+<button data-image="castle-alive-ruined.png" aria-pressed="false">Nhà sống / vỡ</button>
+<button data-image="feedback-enemy-ruined.png" aria-pressed="false">Nhà địch bị phá</button>
+<button data-image="feedback-player-ruined.png" aria-pressed="false">Nhà ta bị phá</button>
+<button data-image="play-defense.png" aria-pressed="false">Ải phòng thủ</button>
+</nav>
+<figure><img id="map" src="/map-feedback/feedback-alive.png" alt="Trận 5 tướng trong Unity"><figcaption><strong id="label">Trận 5 tướng</strong><a id="original" href="/map-feedback/feedback-alive.png" target="_blank" rel="noopener">Mở ảnh đầy đủ</a></figcaption></figure>
+<p>15/15 bài kiểm tra Unity đạt. Ảnh so sánh: trái trước, phải sau, cùng góc camera và mức zoom. Màu riêng của tướng và kỹ năng giữ theo asset của họ. Một số tướng/lính vẫn dùng hình prototype hiện có.</p>
+<p>Đây là ảnh xuất từ scene Unity, không phải WebGL. Chưa có số đo FPS của bản sửa trên điện thoại.</p>
+<script>
+const image=document.querySelector('#map');
+for(const button of document.querySelectorAll('[data-image]'))button.addEventListener('click',()=>{
+  for(const item of document.querySelectorAll('[data-image]'))item.setAttribute('aria-pressed',String(item===button));
+  image.src='/map-feedback/'+button.dataset.image;image.alt=button.textContent;document.querySelector('#label').textContent=button.textContent;document.querySelector('#original').href=image.src;
+});
+fetch(document.querySelector('#download').href,{method:'HEAD'}).then(r=>{if(r.ok)document.querySelector('#apk-size').textContent='('+ (Number(r.headers.get('content-length'))/1048576).toFixed(1)+' MB)';else document.querySelector('#apk-size').textContent='(đang build)';}).catch(()=>{});
+</script>
+</html>

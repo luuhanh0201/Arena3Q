@@ -15,3 +15,5 @@
 Cấu hình chỉnh ở `Content/Battlefield/BattlefieldConfig.asset` (`heroScaleMultiplier`, `buildingScaleMultiplier`); dùng Generate/Rebuild để áp dụng vào scene. Màu phe ở `BattleViewConfig`; map mới lấy từ cặp màu đỏ/xanh của BattlefieldConfig.
 
 Ảnh, APK, XML/log giữ local theo quy tắc kích thước repo. Xem `docs/BanDo/BattlefieldFeedback_20261025.md` để biết APK và kết quả bàn giao cuối.
+
+Trang xem trực tiếp http://127.0.0.1:4311/app/feedback.html:7ảnh decode đúng, không lỗi JavaScript hoặc tràn ngang ở412px. Ảnh web desktop/mobile và `web-feedback-verification.json` lưu tại đây. So nguồn40file:39giữ SHA, BattleView.asset thêm đúng2màu phe theo yêu cầu, không đổi trường cũ. Runtime source commit1133172.
