@@ -13,6 +13,7 @@ services:
       LOCAL_STORAGE_PATH: .local/storage
       ADMIN_ORIGINS: ${ADMIN_ORIGINS:-http://localhost:8080}
       COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      SESSION_HOURS: ${SESSION_HOURS:-8760}
       REDIS_URL: ${REDIS_URL:-}
       STORAGE_DRIVER: ${STORAGE_DRIVER:-local}
       S3_ENDPOINT: ${S3_ENDPOINT:-}

@@ -208,6 +208,7 @@ describe("real HTTP auth, read APIs and asset protection", () => {
       const cookie = response.headers.get("set-cookie")!;
       expect(cookie).toContain("HttpOnly");
       expect(cookie).toContain("SameSite=Lax");
+      expect(cookie).toContain(`Max-Age=${config.sessionHours * 3600}`);
       if (id === "owner") ownerCookie = cookie.split(";")[0];
       else readerCookie = cookie.split(";")[0];
       expect(await response.text()).not.toContain("passwordHash");
@@ -215,6 +216,32 @@ describe("real HTTP auth, read APIs and asset protection", () => {
   });
   afterAll(async () => {
     await app?.close();
+  });
+  it("keeps a fixed 365-day server expiry and synchronizes the browser cookie", async () => {
+    expect(config.sessionHours).toBe(365 * 24);
+    const session = (await store.read()).sessions.find(
+      (item: any) => item.userId === "owner",
+    );
+    expect(
+      Math.abs(
+        Date.parse(session.expiresAt) -
+          Date.parse(session.createdAt) -
+          365 * 24 * 3600000,
+      ),
+    ).toBeLessThan(1000);
+    const response = await request("/api/admin/v1/auth/me", {
+      headers: { Cookie: ownerCookie },
+    });
+    expect(response.status).toBe(200);
+    const maxAge = Number(
+      response.headers.get("set-cookie")?.match(/Max-Age=(\d+)/)?.[1],
+    );
+    expect(maxAge).toBeLessThanOrEqual(365 * 24 * 3600);
+    expect(maxAge).toBeGreaterThan(365 * 24 * 3600 - 30);
+    expect(
+      (await store.read()).sessions.find((item: any) => item.id === session.id)
+        .expiresAt,
+    ).toBe(session.expiresAt);
   });
   it("protects unauthenticated API and media; rejects cross-origin writes", async () => {
     expect((await request("/api/admin/v1/heroes")).status).toBe(401);

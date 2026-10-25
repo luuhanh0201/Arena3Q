@@ -55,6 +55,8 @@ Phiên bản chính được khóa bằng `package-lock.json`. Model viewer khô
 
 Mật khẩu dùng scrypt có salt, DB chỉ lưu hash. Session random lưu hash server, cookie HttpOnly/SameSite=Lax; logout thu hồi session. API kiểm quyền độc lập với UI. Media riêng đi qua API có auth, chống path traversal/symlink thoát kho và có range request. 401/403/404/500 khác nhau; lỗi server không lộ đường dẫn/stack cho trình duyệt. Audit không chứa mật khẩu/token. Khi triển khai HTTPS, đặt `COOKIE_SECURE=true` và `ADMIN_ORIGINS` đúng origin được phép.
 
+Theo yêu cầu 25/10, phiên đăng nhập mặc định **365 ngày** (`SESSION_HOURS=8760`), tính cố định từ lúc đăng nhập. Cookie và bản ghi server cùng thời hạn; `/auth/me` đồng bộ lại cookie theo thời hạn còn lại, không tự kéo dài thời hạn server mỗi lần truy cập. Logout vẫn thu hồi phiên ngay.
+
 ## Chuyển sang PostgreSQL sau này
 
 1. Dừng API và sao lưu `.local`. Cấu hình `DATABASE_URL` cho DB trống.

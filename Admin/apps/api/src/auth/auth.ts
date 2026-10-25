@@ -37,6 +37,7 @@ export const Permissions = (...permissions: string[]) =>
 export interface AdminRequest extends Request {
   user: CurrentUser;
   requestId: string;
+  sessionExpiresAt: string;
 }
 export const COOKIE = "arena3q_admin_session";
 const digest = (value: string) =>
@@ -96,6 +97,7 @@ export class SessionGuard implements CanActivate {
       : null;
     if (!user) throw new UnauthorizedException("Phiên đăng nhập đã hết hạn.");
     request.user = publicUser(user);
+    request.sessionExpiresAt = session!.expiresAt;
     const permissions =
       this.reflector.getAllAndOverride<string[]>(PERMISSIONS, [
         context.getHandler(),
@@ -167,7 +169,29 @@ export class AuthController {
     );
     return { data: publicUser(user), meta: { isDemo: false }, error: null };
   }
-  @Get("me") me(@Req() request: AdminRequest) {
+  @Get("me") me(
+    @Req() request: AdminRequest,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    // Keep the browser cookie aligned with the fixed server expiry, including
+    // sessions extended by an explicit local configuration migration.
+    const token = parse(request.headers.cookie ?? "")[COOKIE];
+    if (!token) throw new UnauthorizedException("Vui lòng đăng nhập Admin.");
+    response.setHeader(
+      "Set-Cookie",
+      serialize(COOKIE, token, {
+        httpOnly: true,
+        sameSite: "lax",
+        secure: config.cookieSecure,
+        path: "/",
+        maxAge: Math.max(
+          0,
+          Math.floor(
+            (Date.parse(request.sessionExpiresAt) - Date.now()) / 1000,
+          ),
+        ),
+      }),
+    );
     return { data: request.user, meta: { isDemo: false }, error: null };
   }
   @Post("logout") @HttpCode(200) async logout(

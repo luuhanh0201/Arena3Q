@@ -19,7 +19,7 @@ export const config = {
     process.env.LOCAL_STORAGE_PATH ?? ".local/storage",
   ),
   cookieSecure: process.env.COOKIE_SECURE === "true",
-  sessionHours: Number(process.env.SESSION_HOURS ?? 12),
+  sessionHours: Number(process.env.SESSION_HOURS ?? 365 * 24),
   allowedOrigins: (
     process.env.ADMIN_ORIGINS ??
     "http://localhost:3000,http://127.0.0.1:3000,http://localhost:8080"

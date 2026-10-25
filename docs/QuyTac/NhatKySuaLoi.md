@@ -2,6 +2,8 @@
 
 ## Admin P0: bộ lọc hồ sơ và timeline GLB (25/10/2026, Codex)
 
+- Bổ sung theo yêu cầu phiên 365 ngày: đổi default/env/Compose thành 8760 giờ, cùng hạn ở bản ghi server và cookie. Chỉ sửa TTL trong JSON không đổi hạn cookie cũ, nên `/auth/me` cấp lại cookie theo hạn còn lại của phiên đã xác thực; không rolling hạn server. Migration local sao lưu DB, chỉ gia hạn phiên còn sống của user active, không hồi sinh phiên hết hạn; test HTTP kiểm Max-Age, hạn cố định và logout thu hồi.
+
 - Liên kết từ tên/portrait/nút mở/tài nguyên của một dòng ban đầu không mang `returnTo`, trong khi bấm nền dòng có mang. Quay lại mất bộ lọc. Đồng bộ mọi lối mở hồ sơ với URL danh sách hiện tại; Playwright tìm `lu bo`, mở tên Lữ Bố, đổi 11 tab, reload rồi quay lại phải còn bộ lọc và một dòng.
 - Timeline GLB đọc `event.target.value` bên trong updater trì hoãn của React; controlled range có thể đã được khôi phục về giá trị frame cũ. Chụp số ngay trong event handler trước khi gọi updater và cập nhật time hiển thị. Kiểm bằng GLB fixture có clip thật, pause rồi seek, đổi speed/camera/shading và tải screenshot. Fixture chỉ nằm trong test, không nhập DB hoặc game.
 - Khi đọc YAML Unity, số fileID 64 bit không được chuyển thẳng thành Number. Parse BigInt rồi chỉ chuyển số trong miền safe integer; giữ ID lớn dưới dạng chuỗi để không resolve nhầm sprite. Không lấy growth profile làm vai trò tướng, không đếm socket 2D thành rig 3D, extra skill binding không tự gán slot gameplay.
