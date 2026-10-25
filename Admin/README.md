@@ -41,6 +41,8 @@ API kiểm quyền đọc/sửa/phát hành độc lập, kiểm SHA nguồn và
 
 Bộ **42 ảnh mới đang chờ người dùng duyệt**, chưa gắn vào Admin/game. Bản gốc, tên kỹ năng và số thứ tự nằm ở `../NghiemThu/Admin/XemTruoc_SkillIcons_20261025/xem_anh_ky_nang.html`. Hai script `skill-review-manifest.cjs` và `build-skill-review.cjs` chỉ dựng danh sách/trang duyệt, không áp dụng ảnh.
 
+Để xem qua HTTP, chạy `npm run review:skills`, mở **http://127.0.0.1:4310**. Server chỉ phục vụ trang duyệt/42 PNG gốc/ảnh tổng hợp trên loopback; không ghi trạng thái duyệt hay thay đổi Admin/Unity. Ctrl+C để dừng. Trang Admin chính vẫn ở http://localhost:3000/admin.
+
 GLB/texture là tài nguyên dẫn xuất local, không vào Git. Có thể xuất lại bằng Blender 4.5.3 (không lưu thay đổi vào .blend nguồn), rồi dừng API/import lại snapshot:
 
 ```powershell

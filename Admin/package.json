@@ -11,6 +11,7 @@
   },
   "scripts": {
     "start": "node scripts/start-production.cjs",
+    "review:skills": "node scripts/start-skill-review.cjs",
     "setup": "npm run build:contracts && tsx scripts/setup.ts",
     "import:unity": "tsx scripts/import-unity.ts",
     "build:contracts": "npm run build -w @arena3q/contracts",
