@@ -2,6 +2,7 @@
 
 ## 25/10/2026 · Codex · dựng Battlefield mới
 
+- Kiểm điện thoại: install-r Success và Activity COLD/ok/PID16472, nhưng ADB mất thiết bị trước screencap/logcat; serverADB vẫn sống, devices list rỗng. Chưa rõ nguyên nhân rớt USB. Chỉ nhận đã cài/gửi lệnh mở thành công, không gọi map render đạt hoặc quy thành crash khi chưa có ảnh/log; xem ChayMay_20261025.
 - BuildReport.summary.totalSize gồm các output/backup symbols của Development build, không phải kích thước file APK. Lượt đầu tổng output1,82GB nhưng APK thật382.807.684byte. Báo apkBytes bằng FileInfo(Output).Length, giữ allBuildOutputBytes riêng; không gửi thư mục BackUpThisFolder cho người dùng cài.
 - ffmpeg đi kèm Krita không có encoder libx264. Dùng libopenh264 có sẵn, kiểm video phát/giải mã thật trong Edge; mã thoát0 của bước xuất khung không chứng minh đã có clip dùng được.
 - Audit occlusion: ray từ tâm camera đến tướng là ray phối cảnh, sai với camera orthographic hiện hành. Dùng ray song song hướng camera, đi qua đầu/ngực tướng; chuyển basis theo trạng thái bridge trong/ngoài lượt render. Cây giao ray mờ dần bằng dither per-instance rồi phục hồi, không đổi collider hoặc gameplay.

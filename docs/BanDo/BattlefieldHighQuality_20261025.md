@@ -124,7 +124,7 @@ node docs/BanDo/Tools/asset-review/verify-map.cjs
 | Art polish theo concept | Bộ miễn phí và đạo cụ gốc khác độ chi tiết; đã đồng bộ kích thước, matte/cloth và ánh sáng, nhưng vẫn cần duyệt art/mật độ/texture lặp. Không tuyên bố đạt chất lượng thương mại cuối giống ảnh tham chiếu. |
 | Baked lighting | Đang dùng một sun realtime và ambient, không có lightmap bake cuối. Có thể bake sau khi chốt layout/model; chưa có bằng chứng lightmap. Fog/SSAO/DOF không bật. |
 | Tướng/lính | Tái sử dụng prototype; một số đơn vị vẫn có hình tạm. Việc dựng model/animation mới cho chúng không nằm trong thay đổi map này. |
-| Thiết bị và triển khai | APK test đã build và kiểm chữ ký, mở map mới trực tiếp. Chưa chạy/đo FPS/CPU/GPU/nhiệt trên máy thật và chưa build iOS. Scene mặc định của project được giữ. |
+| Thiết bị và triển khai | APK đã build/kiểm chữ ký và cài/mở Activity trên Redmi Note8Pro. USB ngắt nên chưa xác nhận hình map hoặc đo FPS/CPU/GPU/nhiệt; chưa build iOS. Scene mặc định của project được giữ. |
 
 ## APK kiểm tra trên điện thoại
 
@@ -132,7 +132,9 @@ Lệnh **Arena3Q > Battlefield > Build Android Test APK**, hoặc `-executeMetho
 
 **Build thành công:**382.807.684byte (**365,1MiB**),0lỗi,10cảnh báo UAC0009 từ directive DEVELOPMENT_BUILD ở BattleInputController đang có;736,8giây. AndroidARM64, Android8/API26 trở lên, targetAPI36. `apksigner verify` đạt chữ kýv2, cùng certificate với APK cũ nên hỗ trợ cài đè. SHA256: `6aa9abe43eedb39539a11ef54db76116d92877cb6aa6e609e444b3a0b95816d4`. Mã runtime của bản build: commit`18584c1`.
 
-Tải qua trang xem hoặc [link APK local](http://127.0.0.1:4311/test-apk/Arena3Q-Battlefield-20261025.apk). Đây là địa chỉ trên máy đang chạy server; có thể tải ở máy tính rồi chuyển APK sang điện thoại. Chỉ gửi fileAPK, không gửi thư mục `BackUpThisFolder_ButDontShipItWithYourGame` chứa symbols. `BuildReport.totalSize` gồm các output khác, không phải dung lượng APK. Bản này chứa cả icon kỹ năng đã duyệt và tài nguyên game hiện có, không phải365MiB chỉ riêng map. Chưa tự cài/chạy bản này trên điện thoại; người dùng sẽ test theo yêu cầu.
+Tải qua trang xem hoặc [link APK local](http://127.0.0.1:4311/test-apk/Arena3Q-Battlefield-20261025.apk). Đây là địa chỉ trên máy đang chạy server; có thể tải ở máy tính rồi chuyển APK sang điện thoại. Chỉ gửi fileAPK, không gửi thư mục `BackUpThisFolder_ButDontShipItWithYourGame` chứa symbols. `BuildReport.totalSize` gồm các output khác, không phải dung lượng APK. Bản này chứa cả icon kỹ năng đã duyệt và tài nguyên game hiện có, không phải365MiB chỉ riêng map.
+
+**Theo yêu cầu chạy máy tiếp theo:** đã cài cập nhật trên Redmi Note8Pro/Android11, `install -r` Success; mở UnityPlayerGameActivity trả Status:ok/COLD550ms và PID16472. USB mất kết nối ngay khi chuẩn bị chụp/read log, nên chưa xác nhận map đã render hoặc đoFPS. Bằng chứng/giới hạn ở `NghiemThu/Battlefield/ChayMay_20261025/README.md`; không kết luận app crash hay chạy ổn khi chưa có ảnh/log.
 
 ## File local cần sao lưu
 
