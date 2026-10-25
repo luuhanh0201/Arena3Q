@@ -2,6 +2,7 @@
 
 ## 25/10/2026 · Codex · dựng Battlefield mới
 
+- BuildReport.summary.totalSize gồm các output/backup symbols của Development build, không phải kích thước file APK. Lượt đầu tổng output1,82GB nhưng APK thật382.807.684byte. Báo apkBytes bằng FileInfo(Output).Length, giữ allBuildOutputBytes riêng; không gửi thư mục BackUpThisFolder cho người dùng cài.
 - ffmpeg đi kèm Krita không có encoder libx264. Dùng libopenh264 có sẵn, kiểm video phát/giải mã thật trong Edge; mã thoát0 của bước xuất khung không chứng minh đã có clip dùng được.
 - Audit occlusion: ray từ tâm camera đến tướng là ray phối cảnh, sai với camera orthographic hiện hành. Dùng ray song song hướng camera, đi qua đầu/ngực tướng; chuyển basis theo trạng thái bridge trong/ngoài lượt render. Cây giao ray mờ dần bằng dither per-instance rồi phục hồi, không đổi collider hoặc gameplay.
 - Hai bài kiểm bổ sung sai cách đọc sau khi lưu prefab/scene: static batching thay sharedMesh của terrain bằng Combined Mesh không Read/Write; ParticleSystemRenderer không có MeshFilter và toán tử ?. không xử lý Unity fake-null. Kiểm vertexcolor qua mesh asset nguồn và phân biệt loại Renderer trước khi lấy mesh; tính mesh static kết hợp một lần để không đếm lặp toàn bộ batch.

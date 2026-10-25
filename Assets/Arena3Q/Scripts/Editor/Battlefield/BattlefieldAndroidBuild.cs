@@ -24,7 +24,8 @@ namespace Arena3Q.Editor
                     locationPathName=Output,target=BuildTarget.Android,targetGroup=BuildTargetGroup.Android,options=BuildOptions.Development
                 });
                 var s=report.summary;
-                string result=$"result={s.result}\noutput={Output}\nbytes={s.totalSize}\nseconds={s.totalTime.TotalSeconds:F1}\nerrors={s.totalErrors}\nwarnings={s.totalWarnings}\nStartup scene={BattlefieldBuilder.ScenePath}\n";
+                long apkBytes=File.Exists(Output)?new FileInfo(Output).Length:0;
+                string result=$"result={s.result}\noutput={Output}\napkBytes={apkBytes}\nallBuildOutputBytes={s.totalSize}\nseconds={s.totalTime.TotalSeconds:F1}\nerrors={s.totalErrors}\nwarnings={s.totalWarnings}\nStartup scene={BattlefieldBuilder.ScenePath}\n";
                 File.WriteAllText("NghiemThu/Battlefield/XemTruoc_Map_20261025/android-build.txt",result);Debug.Log("[Battlefield APK] "+result);
                 if(s.result!=BuildResult.Succeeded)throw new InvalidOperationException("Battlefield APK build failed: "+s.result);
             }

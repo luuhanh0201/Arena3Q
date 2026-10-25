@@ -13,4 +13,6 @@ Scene: `Assets/Arena3Q/Scenes/Battlefield_HighQuality.unity`. Xem: http://127.0.
 - `source-integrity.json`:40 file nguồn không đổi SHA256. `validation.txt` rỗng nghĩa không có lỗi Stage/spawn/material ở lượt Generate cuối.
 - `web-verification.json`, `web-map-desktop.png`, `web-map-mobile.png`:10 ảnh decode, video phát, không lỗi/tràn mobile; server chỉ đọc.
 
-Chưa nghiệm thu hình thương mại cuối, chưa có asset đúng loài/kiến trúc còn thiếu, chưa bake lightmap và chưa đo FPS/bộ nhớ thiết bị. Ảnh/clip/log lớn giữ local; README được theo dõi trong Git.
+APK `Builds/Android/Arena3Q-Battlefield-20261025.apk`:365,1MiB, build0lỗi/10cảnh báo directive cũ, ARM64/API26+. `android-apk-verification.json` và `apksigner.txt`: v2hợp lệ, cùng signer bản trước, downloadHEAD200/content-lengthđúng,40file nguồn không đổi. APK mở thẳng map mới, có nút chất lượng và Công/Thủ. SHA256 `6aa9abe43eedb39539a11ef54db76116d92877cb6aa6e609e444b3a0b95816d4`.
+
+Chưa nghiệm thu hình thương mại cuối, chưa có asset đúng loài/kiến trúc còn thiếu, chưa bake lightmap và chưa chạy/đo FPS/bộ nhớ thiết bị. Ảnh/clip/log/APK lớn giữ local; README được theo dõi trong Git.

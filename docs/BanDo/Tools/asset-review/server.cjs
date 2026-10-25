@@ -10,6 +10,7 @@ const review = path.join(
 const mounts = new Map([
   ["/review/", review],
   ["/map-evidence/",path.join(root,"NghiemThu/Battlefield/XemTruoc_Map_20261025")],
+  ["/test-apk/",path.join(root,"Builds/Android")],
   [
     "/nature/",
     path.join(root, "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF"),
@@ -36,6 +37,7 @@ const mime = {
   ".jpg": "image/jpeg",
   ".webp": "image/webp",
   ".mp4": "video/mp4",
+  ".apk": "application/vnd.android.package-archive",
 };
 const server = http.createServer(async (request, response) => {
   response.setHeader("X-Content-Type-Options", "nosniff");
@@ -56,6 +58,9 @@ const server = http.createServer(async (request, response) => {
     const [prefix, folder] = mount;
     const filename = path.resolve(folder, url.slice(prefix.length));
     const relative = path.relative(folder, filename);
+    if(prefix==="/test-apk/"&&relative!=="Arena3Q-Battlefield-20261025.apk"){
+      response.writeHead(404).end();return;
+    }
     const type = mime[path.extname(filename).toLowerCase()];
     if (!type || relative.startsWith("..") || path.isAbsolute(relative)) {
       response.writeHead(404).end();
@@ -78,6 +83,7 @@ const server = http.createServer(async (request, response) => {
     response.writeHead(200, {
       "Content-Type": type,
       "Content-Length": info.size,
+      ...(type==="application/vnd.android.package-archive"?{"Content-Disposition":'attachment; filename="Arena3Q-Battlefield-20261025.apk"'}:{}),
       "Cache-Control":
         type.includes("json") ||
         type.includes("html") ||
