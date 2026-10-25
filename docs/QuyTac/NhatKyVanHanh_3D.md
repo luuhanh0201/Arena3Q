@@ -172,3 +172,8 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
 
 - Lượt compile kiểm mới báo CS1929 ở test vì gọi OfType trực tiếp trên UnitRegistry. Registry có API Count(predicate), nhưng enumeration phải qua Units; đã sửa test sang Registry.Units.OfType. Chưa chạy generator khi compile lỗi. Log Logs/BattlefieldFeedbackGenerate.log.
 - Khi chuyển cây vào trong biên phải đồng bộ collider thân cây vào BattlefieldLayout, không chỉ PhysX (movement hiện tại dùng layout). Đã thêm footprint thân cây, giữ khoảng thoáng với doanh trại x2; kiểm mọi gốc cây bị chặn trong layout và cả hai tuyến vẫn đi được. Ảnh vòng đầu thấy cây đè sát mái nên giảm cây/đá dải sau ở phạm vi doanh trại, không đổi mesh gốc.
+
+## 25/10 – audit dung lượng APK theo phản hồi người dùng
+- So APK24/10 với map25/10 phải tách cả thay đổi icon đã gắn cùng đợt:39icon RGBA32 chưa nén tổng234MB trướcZIP, khoảng154,4MB compressed theo phân bổ chunk; map mới khoảng84,9MB raw/50,8MB compressed ước tính. Báo gộp APK365/380MB mà không tách các thay đổi làm hiểu nhầm map tự tăng200MB. Luôn đối chiếu BuildReport và cùng tập nội dung trước khi quy nguyên nhân.
+- BattlefieldEnvironment giữ tham chiếu AssetLibrary dùng cho Editor, kéo thêm77asset chỉ thuộc thư viện (3.532.265byte trướcZIP). Đã phát hiện bằng dependency graph giữ3scene và Resources, cắt đúng cạnh AssetLibrary. Chưa sửa/tối ưu trong lượt hỏi nguyên nhân; phải tách tham chiếu Editor khỏi player, không xóa asset nguồn/mesh phá nhà.
+- Sáu texture đất chưa có Android override nên raw6MB mỗi ảnh; Owned_* mới có ASTC6x6. Kiểm từng nhóm importer thực tế thay vì suy từ một helper hoặc nhầm rawMB với APKMB. Báo cáo NghiemThu/Battlefield/AuditDungLuong_20261025/README.md.
