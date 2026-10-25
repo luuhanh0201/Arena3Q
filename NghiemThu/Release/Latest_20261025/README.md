@@ -1,5 +1,7 @@
 # Đồng bộ phần mới nhất lên web và mobile 25/10/2026
 
+Cập nhật20:18 ngày25/10: APK cùng tên đã được thay bằng bản sửa camera mobile thu nhỏ lộ nền đen (263,4MiB,276.168.981byte) và cài đè thành công. Các số/hash APK trong phần dưới mô tả đợt19:55 trước sửa; xem bằng chứng mới tại [MobileScreen_20261025](../MobileScreen_20261025/README.md). Web hiện vẫn là gói đã kiểm ở đợt này.
+
 Đã hoàn tất hai gói và kiểm bản phát hành. Nguồn tích hợp `c1b55a0` đã push.
 
 Lỗi bản trước: web có scene map mới trong gói nhưng Frontend vẫn mở Battle cũ; mobile tối ưu mở scene thử map trước Frontend. Bản sửa dùng chung manifest `Assets/Arena3Q/Scripts/Editor/GameRelease.asset`: **Frontend -> Battlefield_HighQuality**, giữ lựa chọn chủ tướng và hồ sơ của người chơi.
