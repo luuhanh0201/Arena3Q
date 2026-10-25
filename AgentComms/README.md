@@ -26,11 +26,11 @@ AgentComms/
 - Báo cáo khi xong ghi: đã làm gì, file đã sửa, test/kiểm tra đã chạy và kết quả, đường dẫn ảnh/log, phần chưa làm hoặc chưa kiểm chứng, commit (nếu có).
 - Làm từng việc theo thứ tự tên file (cũ trước). Việc chưa có báo cáo = việc mới.
 
-## 3. Chờ việc (bắt buộc)
-- **Sau khi làm xong việc của mình, agent ở trạng thái chờ 1 tiếng** và trong suốt thời gian đó **luôn theo dõi inbox của mình**.
-- Có việc mới trong lúc chờ → làm ngay; xong lại chờ thêm 1 tiếng tính từ lúc xong.
-- Hết 1 tiếng không có việc mới → ghi `dừng – hết giờ chờ` vào `STATUS.md` rồi dừng.
-- Khi bắt đầu chờ, ghi vào `STATUS.md`: `đang chờ đến HH:MM`.
+## 3. Theo dõi khi được yêu cầu
+- **Chỉ theo dõi khi người dùng yêu cầu rõ ràng** (chỉ đạo25/10/2026: "bỏ theo dõi đi, chỉ thoe dõi khi nào tôi yêu cầu"). Không tự chờ hoặc theo dõi1giờ sau khi hoàn tất công việc. Chỉ đạo này thay thế quy tắc chờ mặc định trước đây.
+- Khi được giao theo dõi, ghi phạm vi và thời hạn theo yêu cầu vào `STATUS.md`; không tự kéo dài thời hạn sau một việc mới.
+- Người dùng yêu cầu dừng → dừng ngay, cập nhật trạng thái; không để watcher chạy ngầm.
+- Việc đọc inbox khi bắt đầu/đang thực hiện một nhiệm vụ vẫn theo quy trình nhận việc; đó không phải phiên theo dõi sau bàn giao.
 
 ## 4. Tránh dẫm chân nhau
 - Trước khi sửa, agent ghi vào phần của mình trong `STATUS.md` các **file / folder đang giữ**. Chỉ sửa phần của mình trong `STATUS.md`.

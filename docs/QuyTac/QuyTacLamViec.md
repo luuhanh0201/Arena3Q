@@ -45,7 +45,7 @@ Gom các quy tắc người dùng đã nói rải rác qua các phiên, để **
 - Giao việc qua `AgentComms/` (giao thức: `AgentComms/README.md`, trạng thái và khoá Unity: `AgentComms/STATUS.md`). Vai làm / review đổi thường xuyên; **luôn đọc ghi chú `DOI-VAI` / chia việc mới nhất** trước khi động vào file.
 - Không sửa file agent kia đang giữ. Unity chỉ một phiên một lúc: xin / nhả khoá trong STATUS.
 - **Làm xong phần nhỏ thì báo ngay** cho agent kia kiểm (đường dẫn, SHA nguồn, log, ảnh trước–sau). Giữa các bước luôn xem inbox của mình (2026-10-20).
-- Sau khi xong việc: chờ **1 giờ** theo dõi inbox. Có việc mới thì làm tiếp; hết giờ không có gì thì ghi "dừng – hết giờ chờ" vào STATUS. Áp dụng khi người dùng không giao việc khác.
+- **Chỉ theo dõi khi người dùng yêu cầu rõ ràng** (25/10/2026: "bỏ theo dõi đi, chỉ thoe dõi khi nào tôi yêu cầu"). Hoàn tất việc thì bàn giao, không tự chờ/theo dõi1giờ. Có yêu cầu theo dõi thì làm đúng phạm vi/thời hạn được giao; khi người dùng bảo dừng, dừng ngay cả watcher nền. Quy tắc này thay thế mặc định chờ1giờ trước đây.
 - **Review**:
   - tự chạy lại kiểm tra, không nhận test pass của bên làm là đã nghiệm thu;
   - mỗi vòng báo **% đạt so với tài liệu tướng**, chia theo mục (Mặc Ảnh: §17 `MacAnh_Production_Spec_v1_1.md`), giữ cùng thang điểm giữa các vòng;
