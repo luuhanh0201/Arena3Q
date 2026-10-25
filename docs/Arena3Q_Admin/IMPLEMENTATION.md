@@ -44,4 +44,4 @@ Chạy theo `Admin/README.md`. Sau khi có PostgreSQL thật, kiểm migration/i
 - 42 skill duy nhất / 46 liên kết, bao gồm kỹ năng chưa gán. Hiển thị sử dụng theo tham chiếu bộ kỹ năng/animation thực.
 - API GET editor, PUT draft, POST apply-unity; form RHF/Zod, RBAC, revision/SHA, whitelist trường, backup/journal/audit và phục hồi khi DB thất bại. Chỉ số và mô tả áp dụng vào Unity local và build tương lai, không đồng bộ APK cũ.
 - Các thao tác tạo tướng/upload/publish/rollback khác vẫn PLANNED. Manifest menu tổng thể giữ READ_ONLY ở danh sách; quyền chỉnh kỹ năng kiểm riêng từng thao tác.
-- 42 ảnh minh họa kỹ năng ở trang duyệt riêng, chưa gán khi chưa được người dùng duyệt.
+- Người dùng đã chốt42ảnh minh họa, đã gắn vào42SkillDefinition Unity và46liên kết Admin. Registry duyệt/SHA256 được lưu; PNG lớn ở local, metadata/công cụ có trong Git. Chỉ thay icon, không đổi chỉ số. Chi tiết quy trình và kiểm trong Admin/README.md.

@@ -21,7 +21,7 @@ Chạy bản production local: `npm run build`, sau đó `npm start`. Script sta
 ## Dữ liệu thật và phạm vi
 
 - `scripts/import-unity.ts` đọc `.asset`, `.meta` và enum nguồn; giữ ID, giá trị, GUID và fileID 64 bit. Không sửa file Unity, không khởi động Editor.
-- Snapshot hiện có **10 tướng, 11 tham chiếu asset, 18 binding animation và 42 kỹ năng duy nhất** (46 liên kết tướng/kỹ năng). Ảnh đầy đủ là PNG giữ nguyên pixel nguồn và alpha; thumbnail 320 px dùng WebP lossless. Khung ảnh giữ đúng tỷ lệ, có xem lớn.
+- Snapshot hiện có **10 tướng, 53 tham chiếu asset, 18 binding animation và 42 kỹ năng duy nhất** (46 liên kết tướng/kỹ năng). Cả 42 skill đã có ảnh được duyệt. Ảnh đầy đủ là PNG giữ nguyên pixel nguồn và alpha; thumbnail 320 px dùng WebP lossless. Khung ảnh giữ đúng tỷ lệ, có xem lớn.
 - Tìm tên có/không dấu và ID; lọc, sắp xếp, phân trang tại API; trạng thái nằm trong URL. Quay lại danh sách giữ bộ lọc. CSV xuất theo toàn bộ bộ lọc và chặn công thức spreadsheet.
 - Hồ sơ gồm tổng quan, hình ảnh, model, rig, animation, kỹ năng, chỉ số, phát triển, skin, liên kết, phiên bản. API tải từng tab; `tab`, `skillId`, `clipId` là deep link.
 - Phẩm chất/vai trò chưa có trong nguồn được giữ trống. `DRAFT` là trạng thái snapshot admin chưa phát hành. Không suy diễn SSR, công thức chỉ số, kết quả QA, người cập nhật hoặc số liệu người chơi/doanh thu.
@@ -31,7 +31,7 @@ Chạy bản production local: `npm run build`, sau đó `npm start`. Script sta
 
 Để cập nhật snapshot, **dừng API trước**, rồi chạy `npm run import:unity` và khởi động lại. Không chạy importer/setup cùng lúc với API ghi file.
 
-## Chỉnh kỹ năng và ảnh chờ duyệt
+## Chỉnh kỹ năng và ảnh đã duyệt
 
 Trong hồ sơ tướng → Kỹ năng & hiệu ứng → Chỉnh chỉ số và mô tả: **Lưu bản nháp** chỉ cập nhật db.json. **Áp dụng Unity** cập nhật đúng `SkillDefinition.asset` nguồn; Unity local nạp giá trị mới cho trận mới, các lần build tiếp theo mang giá trị đó. APK đã build không tự nhận thay đổi. Không thêm loại cơ chế mới qua form.
 
@@ -39,7 +39,19 @@ API kiểm quyền đọc/sửa/phát hành độc lập, kiểm SHA nguồn và
 
 `UNITY_PROJECT_ROOT=..`, `UNITY_WRITE_ENABLED=true` dành cho local. Compose mặc định **tắt ghi Unity**, vì container chưa mount nguồn game; chỉ xem dữ liệu và lưu nháp. Không chạy builder tái sinh skill trong Unity đồng thời với thao tác apply trên Admin.
 
-Bộ **42 ảnh mới đang chờ người dùng duyệt**, chưa gắn vào Admin/game. Bản gốc, tên kỹ năng và số thứ tự nằm ở `../NghiemThu/Admin/XemTruoc_SkillIcons_20261025/xem_anh_ky_nang.html`. Hai script `skill-review-manifest.cjs` và `build-skill-review.cjs` chỉ dựng danh sách/trang duyệt, không áp dụng ảnh.
+Bộ **42 ảnh đã được người dùng chốt ngày25/10** và gắn vào42 `SkillDefinition` /46liên kết Admin, gồm kỹ năng chưa trang bị. Registry `reviews/skill-icons-20261025.json` ghi lời duyệt, thời gian, SHA256, kích thước và đường dẫn từng ảnh. PNG gốc trong `Assets/Arena3Q/Art/SkillIcons` giữ nguyên độ phân giải, Unity dùng Sprite RGBA32 không nén; web full PNG cùng pixel, thumbnail320px lossless. Bấm ảnh chiêu trong Admin để xem nguyên bản. Chỉ thay dòng `icon`, không đổi số liệu/mô tả/slot hay trạng thái sử dụng kỹ năng.
+
+42 PNG nguồn tổng khoảng100,8MiB giữ **local**, không vào Git theo quy tắc asset lớn; `.meta`, tham chiếu, registry và công cụ được commit. Giữ cả thư mục review gốc `../NghiemThu/Admin/XemTruoc_SkillIcons_20261025` khi sao lưu/chuyển máy. Mã Git một mình không chứa các PNG này.
+
+Quy trình tái tạo (dừng API, giữ Unity độc quyền theo AgentComms; chuẩn bị đủ PNG đúng checksum trước):
+
+1. `npx tsx scripts/apply-approved-skill-icons.ts prepare` kiểm duyệt/checksum/nguồn, sao lưu asset+DB rồi chép ảnh còn thiếu.
+2. Unity batch `-executeMethod Arena3Q.Editor.ApprovedSkillIcons.Import` nhập texture và xuất GUID/fileID Sprite thật, không ghi SkillDefinition.
+3. `npx tsx scripts/apply-approved-skill-icons.ts bind` thay riêng dòng icon từ backup, từ chối thay đổi ngoài phạm vi.
+4. Unity batch `-executeMethod Arena3Q.Editor.ApprovedSkillIcons.Verify` nạp lại tất cả42SkillDefinition và xác minh đúng Sprite/độ phân giải.
+5. `npx tsx scripts/apply-approved-skill-icons.ts verify`, rồi `npm run import:unity` và khởi động lại Admin.
+
+Backup ở `.local/skill-icon-backups`, report Unity `.local/unity-approved-skill-icons.json`. Không dùng builder tái sinh số liệu để gắn ảnh. Hai script review chỉ dựng danh sách/HTML; script manifest từ chối ghi đè bộ đã được duyệt, HTML phản ánh trạng thái đã áp dụng.
 
 Để xem qua HTTP, chạy `npm run review:skills`, mở **http://127.0.0.1:4310**. Server chỉ phục vụ trang duyệt/42 PNG gốc/ảnh tổng hợp trên loopback; không ghi trạng thái duyệt hay thay đổi Admin/Unity. Ctrl+C để dừng. Trang Admin chính vẫn ở http://localhost:3000/admin.
 

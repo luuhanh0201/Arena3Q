@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: "Ki\u1EBFm T\xE2m"
   slot: 0
   description: "H\u1ED3i 3 % s\xE1t th\u01B0\u01A1ng g\xE2y ra; d\u01B0\u1EDBi 30 % m\xE1u +25 % t\u1ED1c \u0111\xE1nh."
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 8992d00cbdd2f984498a867deb77969d, type: 3}
   iconColor: {r: 0.62, g: 0.72, b: 0.9, a: 1}
   cooldown: 0
   castTime: 0.3

@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: "Li\u1EC7p S\xE1t"
   slot: 0
   description: "M\u1EE5c ti\xEAu d\u01B0\u1EDBi 40 % m\xE1u nh\u1EADn th\xEAm 30 % s\xE1t th\u01B0\u01A1ng."
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 1165fb4978962ef43afea193c114da42, type: 3}
   iconColor: {r: 0.35, g: 0.85, b: 0.4, a: 1}
   cooldown: 0
   castTime: 0.3

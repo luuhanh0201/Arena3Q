@@ -55,9 +55,7 @@ export function SkillImage({ skill }: { skill: Skill }) {
   return (
     <span
       className="relative grid size-12 shrink-0 place-items-center overflow-hidden rounded-lg border border-border bg-secondary"
-      title={
-        skill.iconAssetId ? "Ảnh kỹ năng nguồn" : "Ảnh kỹ năng đang chờ duyệt"
-      }
+      title={skill.iconAssetId ? "Ảnh kỹ năng nguồn" : "Chưa có ảnh kỹ năng"}
     >
       {skill.iconAssetId ? (
         <img
@@ -91,7 +89,7 @@ export function SkillParameterDetails({ skill }: { skill: Skill }) {
         )}
       </div>
       <p className="text-xs leading-6 text-muted-foreground">
-        {skill.usage?.detail} Ảnh kỹ năng mới chỉ được gắn sau khi bạn duyệt.
+        {skill.usage?.detail}
       </p>
       <h3>Chỉ số chiến đấu đầy đủ</h3>
       <dl className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -150,6 +148,39 @@ export function SkillParameterDetails({ skill }: { skill: Skill }) {
       )}
       <SkillEditButton skill={skill} />
     </div>
+  );
+}
+export function SkillArtwork({ skill }: { skill: Skill }) {
+  const [open, setOpen] = useState(false);
+  if (!skill.iconAssetId) return null;
+  return (
+    <>
+      <button
+        type="button"
+        className="relative mb-5 block size-32 overflow-hidden rounded-xl border border-border transition hover:border-primary focus-visible:outline-2 focus-visible:outline-primary"
+        aria-label={`Xem ảnh kỹ năng ${skill.name}`}
+        onClick={() => setOpen(true)}
+      >
+        <img
+          src={assetUrl(skill.iconAssetId, true)}
+          alt={skill.name}
+          className="absolute inset-0 h-full w-full object-contain"
+        />
+      </button>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="max-w-3xl p-5">
+          <DialogTitle>{skill.name}</DialogTitle>
+          <DialogDescription>
+            Ảnh kỹ năng đã duyệt, chất lượng gốc.
+          </DialogDescription>
+          <img
+            src={assetUrl(skill.iconAssetId)}
+            alt={`Ảnh gốc ${skill.name}`}
+            className="max-h-[72dvh] w-full object-contain"
+          />
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
 interface State {

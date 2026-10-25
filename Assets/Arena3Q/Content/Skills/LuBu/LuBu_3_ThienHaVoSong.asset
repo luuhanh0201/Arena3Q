@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: lubu_thien_ha_vo_song
   displayName: "Thi\xEAn H\u1EA1 V\xF4 Song"
   description: "Tuy\u1EC7t k\u1EF9: nh\u1EA3y l\xEAn, gi\xE1ng Ph\u01B0\u01A1ng Thi\xEAn H\u1ECDa K\xEDch xu\u1ED1ng \u0111\u1EA5t: 300% s\xE1t th\u01B0\u01A1ng di\u1EC7n r\u1ED9ng, h\u1EA5t tung 1 gi\xE2y; \u0111\u1ECBch d\u01B0\u1EDBi 30% m\xE1u ch\u1ECBu th\xEAm 25% s\xE1t th\u01B0\u01A1ng t\u1EEB chi\xEAu n\xE0y. Sau chi\xEAu nh\u1EADn \u0111\u1EE7 5 t\u1EA7ng Cu\u1ED3ng Huy\u1EBFt."
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: aae788caa6d0d68468f0154e56272350, type: 3}
   iconColor: {r: 0.98, g: 0.9, b: 0.84, a: 1}
   cooldown: 0
   castTime: 1.8333334

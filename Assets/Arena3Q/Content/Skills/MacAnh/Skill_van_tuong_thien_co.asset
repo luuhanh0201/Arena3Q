@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: van_tuong_thien_co
   displayName: "V\u1EA1n T\u01B0\u1EE3ng Thi\xEAn C\u01A1"
   description: "V\u1EA1n T\u01B0\u1EE3ng Thi\xEAn C\u01A1: v\xF2ng tr\u1EADn lan ra t\u1EEB ch\xE2n M\u1EB7c \u1EA2nh; qu\xE2n ta trong 5 m +25 % C\xF4ng 8 gi\xE2y, h\u1ED3i 20 % m\xE1u, c\xE1c t\u01B0\u1EDBng kh\xE1c +30 % n\u1ED9."
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: c7b33ff9aaf6b62498ffc0471f833510, type: 3}
   iconColor: {r: 0.65, g: 0.35, b: 0.9, a: 1}
   cooldown: 0
   castTime: 2.5

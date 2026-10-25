@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: "Cu\u1ED3ng \u0110ao L\u1EE5c Tr\u1EA3m"
   slot: 3
   description: "6 nh\xE1t trong 1.5 gi\xE2y v\xE0o m\u1ECDi \u0111\u1ECBch b\xE1n k\xEDnh 1.8 (5 \xD7 80 %, nh\xE1t cu\u1ED1i 250 %); mi\u1EC5n kh\u1ED1ng ch\u1EBF."
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 86572b99293de9c4686887bdfb05e9d5, type: 3}
   iconColor: {r: 0.97249997, g: 0.6425, b: 0.615, a: 1}
   cooldown: 0
   castTime: 0.2

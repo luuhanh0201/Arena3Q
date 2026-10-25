@@ -1,5 +1,10 @@
 # Nhật ký sửa lỗi – Arena3Q
 
+## Gắn icon đã duyệt: giữ nguyên dữ liệu kỹ năng (25/10/2026, Codex)
+
+- SerializedObject/SaveAssetIfDirty khi gắn Sprite tự thêm field mặc định mới (executeThreshold/executeBonus/zoneSway/minimumTargets) và đảo thứ tự YAML. Kiểm sâu trước/sau bắt được ngay; không chấp nhận phát sinh ngoài icon. Chuyển pipeline: Unity nhập Sprite và cung cấp GUID/fileID thật; công cụ dùng bản sao nguồn để thay duy nhất dòng icon, kiểm không có sửa ngoài phạm vi, rồi Unity nạp lại xác minh tham chiếu. Giữ backup từng asset và DB.
+- CLI tsx của workspace đang xuất CJS, top-level await không chạy; bọc async main như importer hiện có. PowerShell stdin làm hỏng tiếng Việt trong selector browser; dùng file UTF-8 hoặc selector ASCII. Chỉ dừng server sau khi lượt chụp hoàn tất, không coi session còn chạy là đã xong.
+
 ## Admin: ảnh tràn, preview và form kỹ năng (25/10/2026, Codex)
 
 - Gallery đặt ảnh 512 px trong grid cao 256 px nhưng chưa chặn intrinsic sizing, ảnh chồng phần tên. Cho ảnh absolute trong khung relative có overflow hidden/object-contain; portrait và zoom dùng cùng nguyên tắc. Browser kiểm hình nằm trong khung, PNG full trả đúng pixel nguồn; thumbnail WebP có MIME riêng.

@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: "Tr\u1ED1ng Tr\u1EADn"
   slot: 2
   description: "Qu\xE2n ta b\xE1n k\xEDnh 6: +20 % t\u1ED1c \u0111\xE1nh v\xE0 t\u1ED1c ch\u1EA1y 6 gi\xE2y."
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 97a08c0d671b24d429e9a3df7943415c, type: 3}
   iconColor: {r: 0.89500004, g: 0.524, b: 0.48900002, a: 1}
   cooldown: 14
   castTime: 0.3

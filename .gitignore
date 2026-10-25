@@ -84,3 +84,7 @@ Thumbs.db
 /Assets/Arena3Q/Art/UI/Startup/Video/*.ogg*
 /Assets/Arena3Q/Art/UI/Startup/Video/BGM_From45s.wav
 /AgentComms/codex/staging/ui-tools/
+
+# Approved full-resolution skill artwork is kept local (>1 MB per source).
+# Keep importer metadata and approval registry/scripts in Git.
+/Assets/Arena3Q/Art/SkillIcons/*.png

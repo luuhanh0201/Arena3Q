@@ -12,6 +12,9 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Bàn giao trước đó: claude/outbox/20261020-2330_BAN-GIAO-cong-viec-claude.md.
 
 ## codex
+- 25/10 đã áp dụng bộ42icon được duyệt: Unity xác minh42Sprite đúng độ phân giải, mỗi asset chỉ đổi dòng icon; web10hồ sơ/46liên kết có ảnh,42PNG full khớp pixel,0pageerror, modal ảnh gốc đạt. Build production/TypeScript đạt. Web3000/API4000 và trang4310 đang chạy; nhả toàn bộ file/Unity. Sau commit theo dõi inbox1giờ theo AGENTS/AgentComms, dự kiến đến11:22 giờVN.
+- 25/10 Unity đã nạp và xác minh42Sprite đầy đủ độ phân giải; công cụ đối chiếu xác nhận mọi trường ngoài icon giữ nguyên. Đã import Admin53asset/46liên kết có42icon, build production đạt; web đang chạy lại để kiểm toàn bộ10hồ sơ. Nhả Unity, giữ file icon/Admin/báo cáo tới khi kiểm/chốt xong.
+- 25/10 người dùng chốt toàn bộ42ảnh ("oke tôi chót"). Codex giữ Admin/scripts, registry duyệt, UI kỹ năng, Art/SkillIcons, Content/Skills (chỉ gắn icon), Editor/ApprovedSkillIcons, bằng chứng/báo cáo. Nhận Unity batch để import Sprite và xác minh42tham chiếu; không giữ/sửa nguồn3D hay số liệu chiến đấu.
 - 25/10 trang duyệt 42 icon đang chạy http://127.0.0.1:4310 (Node PID5540), browser tải đủ42ảnh/0pageerror, PNG gốc200, file ngoài whitelist404, POST405. Admin3000/API4000 HTTP200. Tự mở trình duyệt bị hệ thống chặn; đã gửi link bấm xem. Nhả file/Unity, vẫn chờ người dùng duyệt icon trước khi gắn.
 - 25/10 bản Admin mới đã build production, unit/API19/19, browser6/6 workflow (91routes/11tabs/18clip có thay đổi pixel), Unity fixture1/1 khôngskip. 42 icon có trang duyệt01–42, PENDING_APPROVAL, chưa gắn Admin/game; đang chờ người dùng duyệt theo yêu cầu trực tiếp. Nhả file và Unity; đang chờ duyệt ảnh, chưa hoàn tất phần gắn icon.
 - 25/10 Unity AdminSkillImportTests đạt1/1,0skip: output kỹ năng nhập thành SkillDefinition thật, Unity đọc đúng cooldown9, hệ số sát thương2 và mô tả; fixture đã dọn, không thay số liệu game thật. Nhả Unity. Đang kiểm bản web với texture nhúng đầy đủ; 42 ảnh kỹ năng đã gửi duyệt, chưa áp dụng khi chưa có đồng ý.
@@ -44,7 +47,7 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Việc đầu: kiểm snapshot 3D về scale, toàn bộ submesh và quạt; kiểm footprint VFX sau đổi camera; đồng bộ docs 3D. Sau đó kiểm model/motion Mặc Ảnh và giải quyết Lữ Bố chưa qua QA da.
 - Báo ngay từng phần nhỏ với ảnh trước–sau và số đo. Chưa nghiệm thu tổng thể. Chỉ test Unity, chưa build/test Android theo bàn giao 0619. Sau khi hoàn tất công việc theo dõi inbox 1 giờ.
 ## Unity (Editor / batch mode)
-- Đang giữ bởi: không ai. Codex đã kết thúc build/kiểm UI và nhả Unity.
+- Đang giữ bởi: không ai. Codex đã kết thúc import/xác minh42icon đã duyệt, không build APK.
 
 
 

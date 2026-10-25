@@ -1,0 +1,553 @@
+{
+  "status": "APPROVED",
+  "approvedAt": "2026-10-25T03:08:04.990Z",
+  "approvalMessage": "oke tôi chót",
+  "skills": [
+    {
+      "id": "liep_sat",
+      "name": "Liệp Sát",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/liep_sat.png",
+      "sha256": "fb509de09a45716e30257329a93f13532221cdf3dfe25ca6bafb8da509208770",
+      "bytes": 2242964,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/liep_sat.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Hero_Archer/Skill_liep_sat.asset"
+      ]
+    },
+    {
+      "id": "doc_tien",
+      "name": "Độc Tiễn",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/doc_tien.png",
+      "sha256": "97d41e4a8594734234717c272a9db62f08dc877a9b74db84fe124852411c3d5f",
+      "bytes": 1898253,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/doc_tien.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Hero_Archer/Skill_doc_tien.asset"
+      ]
+    },
+    {
+      "id": "ung_kich",
+      "name": "Ưng Kích",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/ung_kich.png",
+      "sha256": "eee9760eeb46bb8268112a64807a5ece172788c1e337302b594d90a22cafa34f",
+      "bytes": 2506508,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/ung_kich.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Hero_Archer/Skill_ung_kich.asset"
+      ]
+    },
+    {
+      "id": "xuyen_duong_tien",
+      "name": "Xuyên Dương Tiễn",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/xuyen_duong_tien.png",
+      "sha256": "33db2ff44b969357a0285b34b9619328712862f5a70a6568c324d91e63dc6004",
+      "bytes": 2375031,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/xuyen_duong_tien.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Hero_Archer/Skill_xuyen_duong_tien.asset"
+      ]
+    },
+    {
+      "id": "xung_phong",
+      "name": "Xung Phong",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/xung_phong.png",
+      "sha256": "6db927bda38c3441477234802308302b4674394fab767055ac8e92f3dab95856",
+      "bytes": 2656149,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/xung_phong.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Hero_Cavalry/Skill_xung_phong.asset"
+      ]
+    },
+    {
+      "id": "ma_dap",
+      "name": "Mã Đạp",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/ma_dap.png",
+      "sha256": "6127d3a9be636d05f119823a0078167918ed7e37b76907b3e0b1cc9c43728a85",
+      "bytes": 2562579,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/ma_dap.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Hero_Cavalry/Skill_ma_dap.asset"
+      ]
+    },
+    {
+      "id": "phong_ma",
+      "name": "Phong Mã",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/phong_ma.png",
+      "sha256": "4f59768d4f2fd9bda207d695f412f0950e4adf5b0f909026e2a4db17ff30af39",
+      "bytes": 2651008,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/phong_ma.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Hero_Cavalry/Skill_phong_ma.asset"
+      ]
+    },
+    {
+      "id": "thien_quan_dot_kich",
+      "name": "Thiên Quân Đột Kích",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/thien_quan_dot_kich.png",
+      "sha256": "9fc7131b4f8faa3f7b180993d2dac3d472c495a84f18e10284a5d68e91c9f6b2",
+      "bytes": 2717300,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/thien_quan_dot_kich.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Hero_Cavalry/Skill_thien_quan_dot_kich.asset"
+      ]
+    },
+    {
+      "id": "kien_thu",
+      "name": "Kiên Thủ",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/kien_thu.png",
+      "sha256": "4db5100de810fc7f6e6724f1fa1957c9f0ae5dadbab3d5850ac638f04d2d85ff",
+      "bytes": 2661701,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/kien_thu.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Hero_Guardian/Skill_kien_thu.asset"
+      ]
+    },
+    {
+      "id": "thuan_kich",
+      "name": "Thuẫn Kích",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/thuan_kich.png",
+      "sha256": "1243e0410a0fe9f7663c8ff7811c576efef6e4affd537e9a44517a1856539e62",
+      "bytes": 2521441,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/thuan_kich.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Hero_Guardian/Skill_thuan_kich.asset"
+      ]
+    },
+    {
+      "id": "ho_ve_tran",
+      "name": "Hộ Vệ Trận",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/ho_ve_tran.png",
+      "sha256": "edcbd07b5fe0f9f566ef3b2da05bb06b8d9d04bbaceae1fb28bb67cef4fd8987",
+      "bytes": 2524484,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/ho_ve_tran.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Hero_Guardian/Skill_ho_ve_tran.asset"
+      ]
+    },
+    {
+      "id": "kim_thanh_thiet_bich",
+      "name": "Kim Thành Thiết Bích",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/kim_thanh_thiet_bich.png",
+      "sha256": "7ab1c606328187c54d7cd1a50440b2ebf6b9f9afeff47135bbf3954a0bc4f45c",
+      "bytes": 2485654,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/kim_thanh_thiet_bich.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Hero_Guardian/Skill_kim_thanh_thiet_bich.asset"
+      ]
+    },
+    {
+      "id": "kiem_tam",
+      "name": "Kiếm Tâm",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/kiem_tam.png",
+      "sha256": "b9d34c9172a2077151216333ee064ba84c341545ea0c7f06060ea07e499b9494",
+      "bytes": 2311404,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/kiem_tam.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Lord_Swordsman/Skill_kiem_tam.asset"
+      ]
+    },
+    {
+      "id": "phi_anh_dot_kich",
+      "name": "Phi Ảnh Đột Kích",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/phi_anh_dot_kich.png",
+      "sha256": "04bbcab3d5c341e79e7a75dc721c6ffffc2301a14fd94ff9434ffff164268ccc",
+      "bytes": 2266143,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/phi_anh_dot_kich.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Lord_Swordsman/Skill_phi_anh_dot_kich.asset"
+      ]
+    },
+    {
+      "id": "toan_phong_tram",
+      "name": "Toàn Phong Trảm",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/toan_phong_tram.png",
+      "sha256": "c94a700fed8258e90cf15d84173ed9a638500f7130d884636691d5ea7c607380",
+      "bytes": 2439929,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/toan_phong_tram.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Lord_Swordsman/Skill_toan_phong_tram.asset"
+      ]
+    },
+    {
+      "id": "van_kiem_quy_tong",
+      "name": "Vạn Kiếm Quy Tông",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/van_kiem_quy_tong.png",
+      "sha256": "2c8bdaeba112891bce9986ee5e20010e9c3fa8327416cfc1ac8a04b07237c796",
+      "bytes": 2743141,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/van_kiem_quy_tong.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Lord_Swordsman/Skill_van_kiem_quy_tong.asset"
+      ]
+    },
+    {
+      "id": "lubu_cuong_huyet",
+      "name": "Chiến Thần Cuồng Huyết",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/lubu_cuong_huyet.png",
+      "sha256": "78d1b6f550f827666993f533b8a6f8acfffd734399a7905e04be9fbd3bdfb995",
+      "bytes": 2519583,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/lubu_cuong_huyet.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/LuBu/LuBu_0_ChienThanCuongHuyet.asset"
+      ]
+    },
+    {
+      "id": "lubu_phuong_thien_tram",
+      "name": "Phương Thiên Trảm",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/lubu_phuong_thien_tram.png",
+      "sha256": "093572cd77ef9e618ced63aa876fd10fcaee43e3655bd8008d701e82725da91a",
+      "bytes": 2583161,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/lubu_phuong_thien_tram.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/LuBu/LuBu_1_PhuongThienTram.asset"
+      ]
+    },
+    {
+      "id": "lubu_xich_tho_xung_phong",
+      "name": "Xích Thố Xung Phong",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/lubu_xich_tho_xung_phong.png",
+      "sha256": "da4be9aa294ce85cac0ca5c2162090f07b870c31fcf3d041ba99cd67b5cc5e3a",
+      "bytes": 2635569,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/lubu_xich_tho_xung_phong.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/LuBu/LuBu_2_XichThoXungPhong.asset"
+      ]
+    },
+    {
+      "id": "lubu_thien_ha_vo_song",
+      "name": "Thiên Hạ Vô Song",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/lubu_thien_ha_vo_song.png",
+      "sha256": "652069bb9c3a8adba095cad35b2ef5bfeba9b2b18a86da0ce4a83b9599739d61",
+      "bytes": 2656075,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/lubu_thien_ha_vo_song.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/LuBu/LuBu_3_ThienHaVoSong.asset"
+      ]
+    },
+    {
+      "id": "lien_tram",
+      "name": "Liên Trảm",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/lien_tram.png",
+      "sha256": "6c3bb40d483444e0971619cf8828895c30f4ce4a4d5189375806c44fc87ba917",
+      "bytes": 2409784,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/lien_tram.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Hero_Swordsman/Skill_lien_tram.asset"
+      ]
+    },
+    {
+      "id": "bat_dao_tram",
+      "name": "Bạt Đao Trảm",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/bat_dao_tram.png",
+      "sha256": "525a35cdcda63d0a9f12b67cb9157926ef0eb618e466a9227bbfd537a3bfded7",
+      "bytes": 2469916,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/bat_dao_tram.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Hero_Swordsman/Skill_bat_dao_tram.asset"
+      ]
+    },
+    {
+      "id": "dao_khi",
+      "name": "Đao Khí",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/dao_khi.png",
+      "sha256": "165bb13e41b0b7dba1a96a48745f18f2930177beb8fb3003b67dff1340c295fc",
+      "bytes": 2306840,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/dao_khi.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Hero_Swordsman/Skill_dao_khi.asset"
+      ]
+    },
+    {
+      "id": "cuong_dao_luc_tram",
+      "name": "Cuồng Đao Lục Trảm",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/cuong_dao_luc_tram.png",
+      "sha256": "03629182f4a7f6e82faa965fb21b66a23b53348cf89fb6ae0760e35034846526",
+      "bytes": 2712013,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/cuong_dao_luc_tram.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Hero_Swordsman/Skill_cuong_dao_luc_tram.asset"
+      ]
+    },
+    {
+      "id": "ung_nhan",
+      "name": "Ưng Nhãn",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/ung_nhan.png",
+      "sha256": "a29e36575197b50ec2d95a00c7a66994e5494cfd7457df591fa8341de283c34b",
+      "bytes": 2218724,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/ung_nhan.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Lord_Archer/Skill_ung_nhan.asset"
+      ]
+    },
+    {
+      "id": "lien_chau_tien",
+      "name": "Liên Châu Tiễn",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/lien_chau_tien.png",
+      "sha256": "14e5adeed1164ba1e2379b7309ce75a2a9d3cb706caf1eca28b3151eeaa84abd",
+      "bytes": 2152422,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/lien_chau_tien.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Lord_Archer/Skill_lien_chau_tien.asset"
+      ]
+    },
+    {
+      "id": "tien_vu",
+      "name": "Tiễn Vũ",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/tien_vu.png",
+      "sha256": "4c1e2203979495f9af502c9d1f6c4fe9ec4a578e5bc458a36f5aae00016fda40",
+      "bytes": 2399772,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/tien_vu.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Lord_Archer/Skill_tien_vu.asset"
+      ]
+    },
+    {
+      "id": "pha_thanh_hoa_tien",
+      "name": "Phá Thành Hỏa Tiễn",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/pha_thanh_hoa_tien.png",
+      "sha256": "ddc20733611e98c4f6b66ae5af394fa4b3a01b7f574291234a1c0cab9fd67c7d",
+      "bytes": 2583166,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/pha_thanh_hoa_tien.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Lord_Archer/Skill_pha_thanh_hoa_tien.asset"
+      ]
+    },
+    {
+      "id": "quan_lenh_nhu_son",
+      "name": "Quân Lệnh Như Sơn",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/quan_lenh_nhu_son.png",
+      "sha256": "fbbe199270f75b2218a4ee733e26c4dae248535e400b795595c700c6789bc155",
+      "bytes": 2753258,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/quan_lenh_nhu_son.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Lord_Marshal/Skill_quan_lenh_nhu_son.asset"
+      ]
+    },
+    {
+      "id": "hieu_trieu",
+      "name": "Hiệu Triệu",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/hieu_trieu.png",
+      "sha256": "59df487a99731113ba602de3534840ef4ab30166f2991b113021a18c6a737547",
+      "bytes": 2544199,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/hieu_trieu.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Lord_Marshal/Skill_hieu_trieu.asset"
+      ]
+    },
+    {
+      "id": "trong_tran",
+      "name": "Trống Trận",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/trong_tran.png",
+      "sha256": "ce02b88bb82699a392f403d0905e1aef184b2c6008cba956bacd34bca504eb33",
+      "bytes": 2540821,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/trong_tran.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Lord_Marshal/Skill_trong_tran.asset"
+      ]
+    },
+    {
+      "id": "thiet_ky_xung_phong",
+      "name": "Thiết Kỵ Xung Phong",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/thiet_ky_xung_phong.png",
+      "sha256": "6c11676346663c01ee346a9079cd8e7fc21006c2b99e198f08faf8e64b1e1297",
+      "bytes": 2784894,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/thiet_ky_xung_phong.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Lord_Marshal/Skill_thiet_ky_xung_phong.asset"
+      ]
+    },
+    {
+      "id": "thao_luoc",
+      "name": "Thao Lược",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/thao_luoc.png",
+      "sha256": "d18b26ee747efc8146845c59c54d8f40779210dd603568909ab78c24dd607f18",
+      "bytes": 2631926,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/thao_luoc.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Lord_Strategist/Skill_thao_luoc.asset"
+      ]
+    },
+    {
+      "id": "huyen_co_tran",
+      "name": "Huyền Cơ Trận",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/huyen_co_tran.png",
+      "sha256": "67d0288c7463cd301e459e69b0e3188a1bd6f0613fea4db65b6f5e4f53c564ef",
+      "bytes": 2675499,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/huyen_co_tran.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/MacAnh/Skill_huyen_co_tran.asset"
+      ]
+    },
+    {
+      "id": "phong_vu_khon_tran",
+      "name": "Phong Vũ Khốn Trận",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/phong_vu_khon_tran.png",
+      "sha256": "e19ea09d602f2dda466c57c939e02d58c1ad2acdcafb71c6c3d9246745e90090",
+      "bytes": 2554599,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/phong_vu_khon_tran.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/MacAnh/Skill_phong_vu_khon_tran.asset"
+      ]
+    },
+    {
+      "id": "van_tuong_thien_co",
+      "name": "Vạn Tượng Thiên Cơ",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/van_tuong_thien_co.png",
+      "sha256": "ab60ab27882e11c2cb2e468cc34566ee0ec4d1904e84b95e7a18167e3edd8d9c",
+      "bytes": 2780428,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/van_tuong_thien_co.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/MacAnh/Skill_van_tuong_thien_co.asset"
+      ]
+    },
+    {
+      "id": "tam_vu_lien_kich",
+      "name": "Tam Vũ Liên Kích",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/tam_vu_lien_kich.png",
+      "sha256": "a13010146dc37a2564d5c58640891e84195246f56f6205c876258ee265b956ac",
+      "bytes": 2359842,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/tam_vu_lien_kich.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/MacAnh/Skill_tam_vu_lien_kich.asset"
+      ]
+    },
+    {
+      "id": "thien_muu_ho_tran",
+      "name": "Thiên Mưu Hộ Trận",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/thien_muu_ho_tran.png",
+      "sha256": "f63fb9ae484fef0a70ae7ca8e27b571248ab301b6af4aa1cdd105305891b55c1",
+      "bytes": 2332154,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/thien_muu_ho_tran.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/MacAnh/Skill_thien_muu_ho_tran.asset"
+      ]
+    },
+    {
+      "id": "anh_bo_phan_kich",
+      "name": "Ảnh Bộ Phản Kích",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/anh_bo_phan_kich.png",
+      "sha256": "4bcf78d7f494d8d2c2126a311f82318313341134b0f9f996996fe656a368c654",
+      "bytes": 2478537,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/anh_bo_phan_kich.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/MacAnh/Skill_anh_bo_phan_kich.asset"
+      ]
+    },
+    {
+      "id": "bat_quai_tran",
+      "name": "Bát Quái Trận",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/bat_quai_tran.png",
+      "sha256": "9e4f5a38de185127a16c88dbb997c7f33e4b8b6ee57c7b9435e4e5d0cdca0ac7",
+      "bytes": 2998154,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/bat_quai_tran.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Lord_Strategist/Skill_bat_quai_tran.asset"
+      ]
+    },
+    {
+      "id": "dong_phong",
+      "name": "Đông Phong",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/dong_phong.png",
+      "sha256": "bb26ffca97a7f589ea3bab3b978a0bec2f98910421e24937b2e5ffca35d6dd3a",
+      "bytes": 2702931,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/dong_phong.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Lord_Strategist/Skill_dong_phong.asset"
+      ]
+    },
+    {
+      "id": "hoa_ke",
+      "name": "Hỏa Kế",
+      "sourceFile": "NghiemThu/Admin/XemTruoc_SkillIcons_20261025/hoa_ke.png",
+      "sha256": "c5b2dcbcd624b342a4481814f81a7989cd0c4bf6360e2aee8d85e65f67bf27e3",
+      "bytes": 2366126,
+      "width": 1254,
+      "height": 1254,
+      "texturePath": "Assets/Arena3Q/Art/SkillIcons/hoa_ke.png",
+      "skillPaths": [
+        "Assets/Arena3Q/Content/Skills/Lord_Strategist/Skill_hoa_ke.asset"
+      ]
+    }
+  ]
+}

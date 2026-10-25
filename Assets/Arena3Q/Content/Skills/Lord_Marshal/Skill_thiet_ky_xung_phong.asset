@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: "Thi\u1EBFt K\u1EF5 Xung Phong"
   slot: 3
   description: "H\xE0ng k\u1EF5 binh lao qua \u0111\u01B0\u1EDDng th\u1EB3ng d\xE0i 12, s\xE1t th\u01B0\u01A1ng v\xE0 h\u1EA5t v\u0103ng."
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 8f4736983b7f0e643b13e24a30ee0b80, type: 3}
   iconColor: {r: 0.9175, g: 0.626, b: 0.5985, a: 1}
   cooldown: 0
   castTime: 0.5

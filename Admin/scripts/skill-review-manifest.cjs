@@ -105,6 +105,14 @@ const folder = path.resolve(
   "../NghiemThu/Admin/XemTruoc_SkillIcons_20261025",
 );
 fs.mkdirSync(folder, { recursive: true });
+const existing = path.join(folder, "manifest.json");
+if (
+  fs.existsSync(existing) &&
+  JSON.parse(fs.readFileSync(existing, "utf8")).status !== "PENDING_APPROVAL"
+)
+  throw new Error(
+    "Review already approved; rebuild HTML without replacing the approval manifest.",
+  );
 const items = [...skills.values()];
 if (items.some((s) => !s.subject))
   throw new Error("Every source skill needs a distinct visual brief");

@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: "Phong M\xE3"
   slot: 2
   description: "B\u1EA3n th\xE2n +40 % t\u1ED1c ch\u1EA1y, +20 % s\xE1t th\u01B0\u01A1ng 5 gi\xE2y."
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 02785ee1b2726464bb38b029d6c22269, type: 3}
   iconColor: {r: 0.72, g: 0.615, b: 1, a: 1}
   cooldown: 14
   castTime: 0.1

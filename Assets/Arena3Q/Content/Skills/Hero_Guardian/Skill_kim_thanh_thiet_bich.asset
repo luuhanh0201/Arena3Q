@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: "Kim Th\xE0nh Thi\u1EBFt B\xEDch"
   slot: 3
   description: "V\xF9ng b\u1EA3o v\u1EC7 b\xE1n k\xEDnh 3.5 trong 6 gi\xE2y: qu\xE2n ta \u221250 % s\xE1t th\u01B0\u01A1ng nh\u1EADn v\xE0o, mi\u1EC5n kh\u1ED1ng ch\u1EBF."
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 50a45f2395668f04d9d1c920518d7f3f, type: 3}
   iconColor: {r: 0.615, g: 0.89, b: 0.97249997, a: 1}
   cooldown: 0
   castTime: 0.4

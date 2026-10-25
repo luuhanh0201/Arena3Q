@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: "H\u1ED9 V\u1EC7 Tr\u1EADn"
   slot: 2
   description: "Qu\xE2n ta b\xE1n k\xEDnh 3 nh\u1EADn khi\xEAn 10 % m\xE1u t\u1ED1i \u0111a c\u1EE7a Gi\xE1p S\u0129, 5 gi\xE2y."
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 146a4105879521e4ca613987d86ab945, type: 3}
   iconColor: {r: 0.51, g: 0.86, b: 0.965, a: 1}
   cooldown: 15
   castTime: 0.3

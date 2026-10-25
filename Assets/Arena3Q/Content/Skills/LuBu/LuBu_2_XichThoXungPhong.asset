@@ -15,7 +15,7 @@ MonoBehaviour:
   skillId: lubu_xich_tho_xung_phong
   displayName: "X\xEDch Th\u1ED1 Xung Phong"
   description: "Lao th\u1EB3ng v\u1EC1 ph\xEDa tr\u01B0\u1EDBc c\xF9ng b\xF3ng X\xEDch Th\u1ED1: 130% s\xE1t th\u01B0\u01A1ng l\xEAn \u0111\u1ECBch tr\xEAn \u0111\u01B0\u1EDDng lao, h\u1EA5t tung 0,8 gi\xE2y. K\u1EBFt th\xFAc lao nh\u1EADn khi\xEAn b\u1EB1ng 12% m\xE1u t\u1ED1i \u0111a trong 3 gi\xE2y."
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: dd02c728de1b0e245a9c7df0b629e636, type: 3}
   iconColor: {r: 0.97, g: 0.45, b: 0.2, a: 1}
   cooldown: 12
   castTime: 0.46666667

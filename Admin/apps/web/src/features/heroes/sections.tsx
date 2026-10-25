@@ -60,6 +60,7 @@ import {
   SkillParameterDetails,
   SkillUsageBadge,
   SkillImage,
+  SkillArtwork,
 } from "./skill-editor";
 const ModelViewer = dynamic(() => import("./model-viewer"), {
   ssr: false,
@@ -1045,6 +1046,7 @@ function SkillsSection({
             title={selected.name}
             description={selected.description ?? "Chưa có mô tả kỹ năng."}
           >
+            <SkillArtwork skill={selected} />
             <div className="mb-5 flex flex-wrap items-center gap-2">
               <span className="badge badge-amber">
                 {slotLabel(selected.slot)}
