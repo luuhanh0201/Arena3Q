@@ -1,0 +1,384 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec651c929b17e64f84ba7a53dba8139, type: 3}
+  m_Name: BattlefieldAssetLibrary
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.BattlefieldAssetLibrary
+  entries:
+  - id: BaguaRoundStoneAltar
+    category: Arena3Q original
+    prefab: {fileID: 4264598323469300942, guid: 6a3f7d6451b07ab49b4aa96642ae38e2, type: 3}
+    missing: 0
+    note: 
+  - id: BaguaStonePillar
+    category: Arena3Q original
+    prefab: {fileID: 2413623338149498271, guid: 7ff888be0631c59459538c88cf7c419e, type: 3}
+    missing: 0
+    note: 
+  - id: BaguaWideStoneSlab
+    category: Arena3Q original
+    prefab: {fileID: 2548774213548319768, guid: 41ac7c95f5022b342a317884019e53b2, type: 3}
+    missing: 0
+    note: 
+  - id: MilitaryFlagpoleBanner
+    category: Arena3Q original
+    prefab: {fileID: 2112095532238979585, guid: f966d1598af35e54abc4f0355d6cb82d, type: 3}
+    missing: 0
+    note: 
+  - id: ThreeKingdomsCommand_1
+    category: Arena3Q original
+    prefab: {fileID: 4858157521461861476, guid: e667b24a26c8aa548ae7d4b4c43cfceb, type: 3}
+    missing: 0
+    note: 
+  - id: ThreeKingdomsCommand_2
+    category: Arena3Q original
+    prefab: {fileID: 6757652341618857669, guid: 8aa4285d838a7e54d82588fba11e3fcf, type: 3}
+    missing: 0
+    note: 
+  - id: ThreeKingdomsSquare
+    category: Arena3Q original
+    prefab: {fileID: 6505005805758521133, guid: 8f8b3bb560a088248be53fc4ecfca694, type: 3}
+    missing: 0
+    note: 
+  - id: WoodenCampWatchtower
+    category: Arena3Q original
+    prefab: {fileID: 5202303067193598801, guid: bb2dd2c88e3100d42afe7e13f910f657, type: 3}
+    missing: 0
+    note: 
+  - id: WoodenPalisadeFence
+    category: Arena3Q original
+    prefab: {fileID: 3524839981112096141, guid: 2879a89b307c8394cb54ace0ded81df5, type: 3}
+    missing: 0
+    note: 
+  - id: Bush_Common
+    category: "B\u1EE5i v\xE0 c\xE2y th\u1EA5p"
+    prefab: {fileID: 8830219014164028671, guid: e49eeb0f894754b4ea9885ab8794b9a6, type: 3}
+    missing: 0
+    note: 
+  - id: Bush_Common_Flowers
+    category: "B\u1EE5i v\xE0 c\xE2y th\u1EA5p"
+    prefab: {fileID: 6676899101659211726, guid: bec3c80bea31cf24d89abe161740471a, type: 3}
+    missing: 0
+    note: 
+  - id: Clover_1
+    category: "B\u1EE5i v\xE0 c\xE2y th\u1EA5p"
+    prefab: {fileID: 6031841742724834779, guid: 324595e4bec77234d9b118ff503ec0c5, type: 3}
+    missing: 0
+    note: 
+  - id: CommonTree_1
+    category: "C\xE2y"
+    prefab: {fileID: 4141483600771641065, guid: f6a9f4c2d38685046b3cb6cc719b9acb, type: 3}
+    missing: 0
+    note: 
+  - id: CommonTree_2
+    category: "C\xE2y"
+    prefab: {fileID: 2182554422414976941, guid: 064e2df7bccf2bb458767ab5762186e4, type: 3}
+    missing: 0
+    note: 
+  - id: CommonTree_3
+    category: "C\xE2y"
+    prefab: {fileID: 5237742888250080282, guid: 6744165010a8abb4396ece0fcc3840ee, type: 3}
+    missing: 0
+    note: 
+  - id: CommonTree_5
+    category: "C\xE2y"
+    prefab: {fileID: 4166296621983817461, guid: 93bb97a672f40e344afd5b1087e45ab0, type: 3}
+    missing: 0
+    note: 
+  - id: Fern_1
+    category: "B\u1EE5i v\xE0 c\xE2y th\u1EA5p"
+    prefab: {fileID: 690027826055917528, guid: 78deb9040213b894aad677e36c60a6cc, type: 3}
+    missing: 0
+    note: 
+  - id: Flower_3_Group
+    category: "Hoa v\xE0 chi ti\u1EBFt t\u1EF1 nhi\xEAn"
+    prefab: {fileID: 6062978169417040074, guid: d2c1283c15be36f4999025dc73644ee2, type: 3}
+    missing: 0
+    note: 
+  - id: Flower_4_Group
+    category: "Hoa v\xE0 chi ti\u1EBFt t\u1EF1 nhi\xEAn"
+    prefab: {fileID: 7609865135331085507, guid: 917ac13163e36a74e8d7dc15735cc98a, type: 3}
+    missing: 0
+    note: 
+  - id: Grass_Common_Short
+    category: "C\u1ECF"
+    prefab: {fileID: 4402195814917410874, guid: c5dfe9430ff990048b7de8cc76dd3927, type: 3}
+    missing: 0
+    note: 
+  - id: Grass_Common_Tall
+    category: "C\u1ECF"
+    prefab: {fileID: 772656628271178298, guid: dae2b85c7fc6e274aa934d9add4def4b, type: 3}
+    missing: 0
+    note: 
+  - id: Grass_Wispy_Short
+    category: "C\u1ECF"
+    prefab: {fileID: 5700922252095121007, guid: 58f763f98f59072459da9c19cd08b432, type: 3}
+    missing: 0
+    note: 
+  - id: Grass_Wispy_Tall
+    category: "C\u1ECF"
+    prefab: {fileID: 2469733922611033043, guid: 74e18fe9d3033084185f9eb06e697234, type: 3}
+    missing: 0
+    note: 
+  - id: Pebble_Round_1
+    category: "\u0110\xE1 v\xE0 \u0111\u01B0\u1EDDng l\xE1t"
+    prefab: {fileID: 7394555998944109972, guid: da7733699e37dd845a289a30e0443797, type: 3}
+    missing: 0
+    note: 
+  - id: Pebble_Round_3
+    category: "\u0110\xE1 v\xE0 \u0111\u01B0\u1EDDng l\xE1t"
+    prefab: {fileID: 1307288534937206691, guid: 0ae297b1b89f8c84b85fda9151b4ce58, type: 3}
+    missing: 0
+    note: 
+  - id: Pebble_Square_1
+    category: "\u0110\xE1 v\xE0 \u0111\u01B0\u1EDDng l\xE1t"
+    prefab: {fileID: 8765339716257561263, guid: 767efe2d2aa7ece438f22a5b735defb6, type: 3}
+    missing: 0
+    note: 
+  - id: Pine_1
+    category: "C\xE2y"
+    prefab: {fileID: 602288549395351477, guid: 65d3f9b071eb90b48b37dd59b6477802, type: 3}
+    missing: 0
+    note: 
+  - id: Pine_3
+    category: "C\xE2y"
+    prefab: {fileID: 4126430751497820461, guid: 1c2d1bf3511a257408047cf45a82f2d3, type: 3}
+    missing: 0
+    note: 
+  - id: Pine_5
+    category: "C\xE2y"
+    prefab: {fileID: 6346238027722162987, guid: 052aa8d5497b09d44ad73d67a4d9c5cc, type: 3}
+    missing: 0
+    note: 
+  - id: Plant_1_Big
+    category: "B\u1EE5i v\xE0 c\xE2y th\u1EA5p"
+    prefab: {fileID: 5872533521753456329, guid: 4e5793aab28339a4096ad57069ddd095, type: 3}
+    missing: 0
+    note: 
+  - id: Plant_7_Big
+    category: "B\u1EE5i v\xE0 c\xE2y th\u1EA5p"
+    prefab: {fileID: 7928404096176016328, guid: 6d2f6375b97dbcd47b1cdada1c40923f, type: 3}
+    missing: 0
+    note: 
+  - id: RockPath_Round_Small_1
+    category: "\u0110\xE1 v\xE0 \u0111\u01B0\u1EDDng l\xE1t"
+    prefab: {fileID: 3409470974558143478, guid: c96014676018b8749a2b0d5a4f029b05, type: 3}
+    missing: 0
+    note: 
+  - id: RockPath_Round_Wide
+    category: "\u0110\xE1 v\xE0 \u0111\u01B0\u1EDDng l\xE1t"
+    prefab: {fileID: 1018702867962348748, guid: 909ce6860f10d554b87e1fcd82da2687, type: 3}
+    missing: 0
+    note: 
+  - id: RockPath_Square_Thin
+    category: "\u0110\xE1 v\xE0 \u0111\u01B0\u1EDDng l\xE1t"
+    prefab: {fileID: 32490331759554330, guid: 7ae224ce68f73c34ca6a38aa77f25600, type: 3}
+    missing: 0
+    note: 
+  - id: Rock_Medium_1
+    category: "\u0110\xE1 v\xE0 \u0111\u01B0\u1EDDng l\xE1t"
+    prefab: {fileID: 8023228698683616090, guid: 424fcbf4731b4884180ee8672099740e, type: 3}
+    missing: 0
+    note: 
+  - id: Rock_Medium_2
+    category: "\u0110\xE1 v\xE0 \u0111\u01B0\u1EDDng l\xE1t"
+    prefab: {fileID: 2184407601029644797, guid: d7f4959b5dc4efa49bd8b76db7ad5487, type: 3}
+    missing: 0
+    note: 
+  - id: Rock_Medium_3
+    category: "\u0110\xE1 v\xE0 \u0111\u01B0\u1EDDng l\xE1t"
+    prefab: {fileID: 2320592272569331765, guid: 5d6d2d5c9eb921a46b55e66fdd770cff, type: 3}
+    missing: 0
+    note: 
+  - id: TwistedTree_1
+    category: "C\xE2y"
+    prefab: {fileID: 375175433637127202, guid: 04b75bdc905f7f24ea94748e43c3c1d9, type: 3}
+    missing: 0
+    note: 
+  - id: TwistedTree_3
+    category: "C\xE2y"
+    prefab: {fileID: 8970645996896902736, guid: 00879c8d9b5d77944955a9e3c65389fd, type: 3}
+    missing: 0
+    note: 
+  - id: Bag
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 3133344609451511069, guid: c275f6afd9b04e24e92a2cfcff984ab2, type: 3}
+    missing: 0
+    note: 
+  - id: Barrel
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 264924539048241428, guid: 244d2f0f00536154d83bb0799544eeca, type: 3}
+    missing: 0
+    note: 
+  - id: Barrel_Holder
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 1378643953122856688, guid: 58ef1e0b9799e8f429f76127e62cd836, type: 3}
+    missing: 0
+    note: 
+  - id: Bench
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 2689929373816595084, guid: 3daf70d13b7ce8c46ba60ce89d9332da, type: 3}
+    missing: 0
+    note: 
+  - id: Bucket_Metal
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 5344993940295519783, guid: 46aed1ffad52db5408903cc60c45ab98, type: 3}
+    missing: 0
+    note: 
+  - id: Bucket_Wooden_1
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 2504476706529043874, guid: 687b0f52607d2b14a8d8091995a13290, type: 3}
+    missing: 0
+    note: 
+  - id: Candle_1
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 8576303021073941415, guid: d0c89c558bd149d40917f0cbff92bbd9, type: 3}
+    missing: 0
+    note: 
+  - id: Chest_Wood
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 3318998716754376019, guid: 002eaf3b06edf744e8ed883ff6452bb4, type: 3}
+    missing: 0
+    note: 
+  - id: Crate_Metal
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 2324616006334364835, guid: f63343ce37cbd494db98024110eb7a08, type: 3}
+    missing: 0
+    note: 
+  - id: Crate_Wooden
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 6975218070517230738, guid: f818d60296389c745a9ea7a6dd0eb987, type: 3}
+    missing: 0
+    note: 
+  - id: Dummy
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 8182482111249915668, guid: e0d21c34d1d77914ca009c01680d4187, type: 3}
+    missing: 0
+    note: 
+  - id: FarmCrate_Empty
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 3086936600234863358, guid: 1d0403dc07385dd4a80ffb0635df371c, type: 3}
+    missing: 0
+    note: 
+  - id: Lantern_Wall
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 8692766607556819837, guid: 2b33924744d2579489b75dc112f80e28, type: 3}
+    missing: 0
+    note: 
+  - id: Peg_Rack
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 7531067272053737716, guid: c5781c3ee28d7de419b9dde65c976387, type: 3}
+    missing: 0
+    note: 
+  - id: Pouch_Large
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 8039369191125284975, guid: 52e81e0c63ba6e54cad1b324619e09bc, type: 3}
+    missing: 0
+    note: 
+  - id: Rope_1
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 8936550259965485213, guid: 90a3f422fc6106549869e46e841bd75f, type: 3}
+    missing: 0
+    note: 
+  - id: Rope_2
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 4073262735212260670, guid: 13be74a6d7c106d4a93c54075b88164e, type: 3}
+    missing: 0
+    note: 
+  - id: Rope_3
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 9004916593774060981, guid: 9f0e5402316521b4aa1d005afe0ad80d, type: 3}
+    missing: 0
+    note: 
+  - id: Shield_Wooden
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 8165516056021267380, guid: e368b916b77667449bc352b937371d66, type: 3}
+    missing: 0
+    note: 
+  - id: Stall_Cart_Empty
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 8036556038506899787, guid: 1ddbfd393c8ea064bbcd95d1661f2cc9, type: 3}
+    missing: 0
+    note: 
+  - id: Sword_Bronze
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 8663367465559130681, guid: e663d7eacabe5ee418e394ca4a52c347, type: 3}
+    missing: 0
+    note: 
+  - id: Table_Large
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 7073232888457143802, guid: dcbccda5f4bd17e4b8ca9f51767b30ac, type: 3}
+    missing: 0
+    note: 
+  - id: Torch_Metal
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 6651624930129996593, guid: 0d8d2f5c30ae90f4fb01d0a8663850a5, type: 3}
+    missing: 0
+    note: 
+  - id: Vase_Rubble_Medium
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 4678955994216086683, guid: 1fe7e1ad2ef09004490cb29872b1eda0, type: 3}
+    missing: 0
+    note: 
+  - id: WeaponStand
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 5070326870025501296, guid: 3d2acaa92ae23b7498377debf442a7f8, type: 3}
+    missing: 0
+    note: 
+  - id: Whetstone
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 5296949351575778439, guid: d0e671cfa12c022438f290c198d92bbc, type: 3}
+    missing: 0
+    note: 
+  - id: Workbench
+    category: "\u0110\u1EA1o c\u1EE5 doanh tr\u1EA1i"
+    prefab: {fileID: 5085988266867753056, guid: 91d3712acbfb02a43af568e38d40ba18, type: 3}
+    missing: 0
+    note: 
+  - id: Tree_Bamboo
+    category: Missing exact asset
+    prefab: {fileID: 0}
+    missing: 1
+    note: Use approved generic vegetation/rocks; no exact-species claim.
+  - id: Tree_Peach
+    category: Missing exact asset
+    prefab: {fileID: 0}
+    missing: 1
+    note: Use approved generic vegetation/rocks; no exact-species claim.
+  - id: Tree_Maple
+    category: Missing exact asset
+    prefab: {fileID: 0}
+    missing: 1
+    note: Use approved generic vegetation/rocks; no exact-species claim.
+  - id: Oriental_StoneLantern
+    category: Missing exact asset
+    prefab: {fileID: 0}
+    missing: 1
+    note: Use approved generic vegetation/rocks; no exact-species claim.
+  - id: Oriental_Ruins
+    category: Missing exact asset
+    prefab: {fileID: 0}
+    missing: 1
+    note: Use approved generic vegetation/rocks; no exact-species claim.
+  groundAlbedo:
+  - {fileID: 2800000, guid: 47bb9727f47a29d459eba3d6ddc05ae1, type: 3}
+  - {fileID: 2800000, guid: 4cf9dc1aab158c54c8f0755802275224, type: 3}
+  - {fileID: 2800000, guid: 0a7c3f403d39cc246adda666426edf88, type: 3}
+  - {fileID: 2800000, guid: d5e5b33cae1cf634e9f8b133e4ae5cb7, type: 3}
+  - {fileID: 2800000, guid: ff0ea38a67692324297d6f040111ad99, type: 3}
+  - {fileID: 2800000, guid: 83d434c631ce8124caf17505dbd07b2c, type: 3}
+  groundMaterial: {fileID: 2100000, guid: 33673cd31b0baa8429587590b75125a3, type: 2}
+  runeMaterial: {fileID: 2100000, guid: e1085be7c33cee94582674458074cf90, type: 2}
+  fireMaterial: {fileID: 2100000, guid: 0919c4b73dfc11749bd6ba55b4cbf784, type: 2}
+  smokeMaterial: {fileID: 2100000, guid: 6fe7b8021f8f015489bfa319ef24720d, type: 2}
+  dustMaterial: {fileID: 2100000, guid: f8d35096e46a2db4bb077665a663d28d, type: 2}
+  leafMesh: {fileID: 4300000, guid: 25036e340e6f8504ea332fc3dabff850, type: 2}
+  leafMaterial: {fileID: 2100000, guid: e02852ae723bb1c46b707cb2003dad90, type: 2}

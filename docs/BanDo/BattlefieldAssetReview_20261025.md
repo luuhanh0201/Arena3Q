@@ -1,5 +1,7 @@
 # Bộ asset chiến trường trước khi dựng map
 
+**Cập nhật:** người dùng đã ra lệnh “dựng map đi” sau khi xem bộ asset. Bộ này được phép dùng để triển khai scene riêng `Battlefield_HighQuality`; nội dung bên dưới ghi lại phạm vi tại thời điểm gửi duyệt. Tiến độ và nghiệm thu map ghi trong `BattlefieldHighQuality_20261025.md`.
+
 Người dùng cho phép bổ sung asset miễn phí dùng thương mại, sau đó yêu cầu **xem asset trước khi bắt đầu tạo map**. Trạng thái hiện tại: **PENDING_APPROVAL**. Chưa dựng scene, địa hình, bố cục hay prefab môi trường mới. Không thay đổi Battle.unity, camera, navigation, gameplay hoặc model Arena3Q gốc.
 
 Trang duyệt local: **http://127.0.0.1:4311**. Bấm từng món để xoay/zoom 3D. Danh sách mặc định có **80 đề xuất**; chọn “Toàn bộ thư viện” xem **185 tài nguyên**. Với 9 model Arena3Q, chọn “Nguồn gốc” hoặc “Bản nhẹ hiện có”. Những bản nguồn 54–126MiB chỉ dùng để kiểm hình, chưa phải ngân sách mobile được duyệt. Ánh sáng/material trình duyệt dùng cho duyệt hình; chưa phải cấu hình shader URP cuối cùng.

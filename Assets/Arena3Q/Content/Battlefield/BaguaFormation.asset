@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f394f41c5031645468dd2225503cd41a, type: 3}
+  m_Name: BaguaFormation
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.BaguaFormationConfig
+  altarCenter: {x: 0, y: 0}
+  altarRadius: 3.4
+  pillars:
+  - {x: 10.901778, y: 4.515665}
+  - {x: 4.5156646, y: 10.901778}
+  - {x: -4.515664, y: 10.901779}
+  - {x: -10.901778, y: 4.515665}
+  - {x: -10.901778, y: -4.5156646}
+  - {x: -4.5156665, y: -10.901778}
+  - {x: 4.5156665, y: -10.901777}
+  - {x: 10.901779, y: -4.5156646}
+  pillarRadius: 1.7
+  gates:
+  - position: {x: 11.8, y: 0}
+    rotY: 90
+  - position: {x: 8.34386, y: 8.34386}
+    rotY: 45
+  - position: {x: -0.0000005157944, y: 11.8}
+    rotY: 0
+  - position: {x: -8.34386, y: 8.34386}
+    rotY: -45
+  - position: {x: -11.8, y: -0.0000010315888}
+    rotY: -90
+  - position: {x: -8.343859, y: -8.343862}
+    rotY: -135
+  - position: {x: 0.0000001407136, y: -11.8}
+    rotY: -180
+  - position: {x: 8.343863, y: -8.343857}
+    rotY: -225
+  triggerSize: {x: 4.968422, y: 1}
+  slabLength: 5.175439
+  slabThickness: 0.4
+  rotationPeriodSeconds: 20
+  warningSeconds: 3
+  clockwise: 1
+  slabRiseSeconds: 0.6
+  slabLowerSeconds: 0.6
+  initialKinds: 0100000000000000020000000300000001000000000000000200000003000000i
+  captureSeconds: 5
+  blessingMultiplier: 1.5
+  life:
+    runeColor: {r: 0.35, g: 0.85, b: 0.35, a: 1}
+    effect:
+      HealFraction: 0.08
+      MoveSpeedUp: 0
+      MoveSpeedUpSeconds: 0
+      DamageFraction: 0
+      Slow: 0
+      SlowSeconds: 0
+      CooldownSeconds: 5
+  haste:
+    runeColor: {r: 1, g: 0.85, b: 0.25, a: 1}
+    effect:
+      HealFraction: 0
+      MoveSpeedUp: 0.3
+      MoveSpeedUpSeconds: 4
+      DamageFraction: 0
+      Slow: 0
+      SlowSeconds: 0
+      CooldownSeconds: 5
+  death:
+    runeColor: {r: 0.9, g: 0.2, b: 0.18, a: 1}
+    effect:
+      HealFraction: 0
+      MoveSpeedUp: 0
+      MoveSpeedUpSeconds: 0
+      DamageFraction: 0.1
+      Slow: 0.3
+      SlowSeconds: 2
+      CooldownSeconds: 5
+  closedRuneColor: {r: 0.55, g: 0.55, b: 0.58, a: 1}
+  pillarSprites:
+  - {fileID: 21300000, guid: 51b68425bfdf2204c9f46db5f34ed17e, type: 3}
+  - {fileID: 21300000, guid: 5975172823fc0fc409b5b12cddf0fc00, type: 3}
+  - {fileID: 21300000, guid: 7ec503a182e18734f9ed988a2def65c7, type: 3}
+  - {fileID: 21300000, guid: 1ef8c624b1fc8cf4f9cfa2f121aeef77, type: 3}
+  - {fileID: 21300000, guid: e622d640ae242e540a0d801dd7e63bc7, type: 3}
+  - {fileID: 21300000, guid: c88c4f1246f7ca74b8229420826a2261, type: 3}
+  - {fileID: 21300000, guid: 979162da08e189043be7ad158c259374, type: 3}
+  - {fileID: 21300000, guid: 74279cc2895c7b2458e6d1b260c09e60, type: 3}
+  slabSprites:
+  - yaw: 0
+    sprite: {fileID: 21300000, guid: bbf2cd94eec679d4b9619b2414ee3f39, type: 3}
+  - yaw: 45
+    sprite: {fileID: 21300000, guid: b6b795a6857f738479e36d06b94600cb, type: 3}
+  - yaw: 90
+    sprite: {fileID: 21300000, guid: 72825b5d1aa8743478a6310a12a1c684, type: 3}
+  - yaw: 135
+    sprite: {fileID: 21300000, guid: 86c038510ac6320478f86faa96bfd3ec, type: 3}
+  - yaw: 180
+    sprite: {fileID: 21300000, guid: 7e8ada7ae6268644e8f593ce9cc80615, type: 3}
+  - yaw: 225
+    sprite: {fileID: 21300000, guid: bbf36f1bd5d6984489d3832d7b83e51c, type: 3}
+  - yaw: 270
+    sprite: {fileID: 21300000, guid: 0a83d707ee911964ab3c05f71726ce0e, type: 3}
+  - yaw: 315
+    sprite: {fileID: 21300000, guid: 2f4d7f8cfa79bc041bd490a332ba0cfb, type: 3}
+  altarSprite: {fileID: 21300000, guid: 2e2ec8e88dca9ae488ffb7b84d2aa35e, type: 3}
+  slabSinkDepth: 1.9

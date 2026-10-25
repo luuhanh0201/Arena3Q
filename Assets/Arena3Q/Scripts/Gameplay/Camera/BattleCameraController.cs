@@ -18,6 +18,8 @@ namespace Arena3Q.Gameplay
         [SerializeField, Min(0.1f)] private float startOrthographicSize = 7f;
         [Tooltip("How quickly the camera catches up with the followed hero.")]
         [SerializeField, Min(0.1f)] private float followSharpness = 4f;
+        [Tooltip("Scene-specific overview may include the environment rim outside the gameplay rectangle.")]
+        [SerializeField] private bool allowMapOverview;
 
         private Camera _camera;
         private bool _followPaused;
@@ -99,7 +101,7 @@ namespace Arena3Q.Gameplay
             if (factor <= 0f || battle == null || battle.Stage == null)
                 return;
             var before = ScreenToPlane(screenFocus);
-            var maxSize = Mathf.Min(maxOrthographicSize, CameraMath.MaxOrthographicSize(battle.ViewBounds, Camera.aspect));
+            var maxSize = allowMapOverview ? maxOrthographicSize : Mathf.Min(maxOrthographicSize, CameraMath.MaxOrthographicSize(battle.ViewBounds, Camera.aspect));
             Camera.orthographicSize = Mathf.Clamp(Camera.orthographicSize * factor, Mathf.Min(minOrthographicSize, maxSize), maxSize);
             var after = ScreenToPlane(screenFocus);
             SetCenter(_center + (before - after));

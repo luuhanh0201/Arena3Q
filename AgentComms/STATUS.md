@@ -12,6 +12,8 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Bàn giao trước đó: claude/outbox/20261020-2330_BAN-GIAO-cong-viec-claude.md.
 
 ## codex
+- 25/10 map Battlefield_HighQuality đã dựng và kiểm7/7 PlayMode +2/2 camera cũ; nguồn40file giữ SHA. Preview http://127.0.0.1:4311/app/map.html (PID18368). Người dùng yêu cầu APK để test: đang build bằng BattlefieldAndroidBuild, mở thẳng map mới, có đổi đồ họa/Công/Thủ. Giữ Unity và file map/UI test riêng; không sửa BattleHud/scene gốc, không theo dõi sau bàn giao.
+- 25/10 người dùng đã duyệt bước tiếp theo bằng lệnh "dựng map đi". Nhận Unity để tạo scene Battlefield_HighQuality riêng và cấu hình/prefab/material/mesh dẫn xuất mới; giữ Scripts/Data/Battlefield, Gameplay/Battlefield, Editor/Battlefield, Art/Battlefield, Content/Battlefield và Tests tương ứng. Tái dùng asset đã xem, giữ Battle.unity/mesh gốc/gameplay cũ; không theo dõi sau bàn giao.
 - 25/10 bộasset trước map đã sẵn sàng để xem http://127.0.0.1:4311 (PID10116):185tài nguyên/80đềxuất,171modelrender,9nguồnArena3Qđủchấtlượng,14texture,185thumbnail,0pageerror. Chưa tạo scene/map/prefab/gameplay, còn thiếu tre/đào/phong đúngloài/cổng/cliffkit. Nhảfile/Unity; chờ người dùng duyệt asset cụ thể trước dựng map, không tự theo dõi.
 - 25/10 cập nhật người dùng: lấy đủasset rồi phải gửi xem/duyệt trước khi tạo map. Dừng triển khai scene/layout/gameplay; chỉ chuẩn bị khoasset, giấy phép và trang xem3D. NatureStandard68model đã tải/xác minhCC0, đang bổ sung đạo cụ phù hợp. Chưa tạo/đổi scene Battlefield; Unity chưa chạy, nhả khóa cho tới khi cần preview riêng.
 - 25/10 người dùng giao chiến trường3D chất lượng cao, cho phép bổ sung asset miễn phí dùng thương mại. Codex giữ scene/prefab/config mới Battlefield, scripts mới Environment/Editor/Battlefield, adapter trình bày và kiểm liên quan; giữ Unity batch. Giữ nguồn gốc Battle.unity/MapProps/mesh trung tâm, không ghi đè prefab người dùng; không sửa rig/tướng. Không theo dõi sau bàn giao nếu không được yêu cầu.
@@ -51,7 +53,7 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Việc đầu: kiểm snapshot 3D về scale, toàn bộ submesh và quạt; kiểm footprint VFX sau đổi camera; đồng bộ docs 3D. Sau đó kiểm model/motion Mặc Ảnh và giải quyết Lữ Bố chưa qua QA da.
 - Báo ngay từng phần nhỏ với ảnh trước–sau và số đo. Chưa nghiệm thu tổng thể. Chỉ test Unity, chưa build/test Android theo bàn giao 0619. Sau khi hoàn tất công việc theo dõi inbox 1 giờ.
 ## Unity (Editor / batch mode)
-- Đang giữ bởi: không ai. Codex đã kết thúc import/xác minh42icon đã duyệt, không build APK.
+- Đang giữ bởi: Codex, build APK test Battlefield theo yêu cầu mới của người dùng.
 
 
 

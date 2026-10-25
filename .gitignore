@@ -88,3 +88,16 @@ Thumbs.db
 # Approved full-resolution skill artwork is kept local (>1 MB per source).
 # Keep importer metadata and approval registry/scripts in Git.
 /Assets/Arena3Q/Art/SkillIcons/*.png
+
+# Battlefield source images stay local; metadata and reproducible builder are tracked.
+/Assets/Arena3Q/Art/Battlefield/Textures/Owned_*.png
+/Assets/Arena3Q/Art/Battlefield/Textures/Owned_*.jpg
+/Assets/Arena3Q/Art/Battlefield/Textures/DrySand.png
+/Assets/Arena3Q/Art/Battlefield/Textures/PackedEarth.png
+/Assets/Arena3Q/Art/Battlefield/Textures/GravelSoil.png
+/Assets/Arena3Q/Art/Battlefield/Textures/OldPaving.png
+/Assets/Arena3Q/Art/Battlefield/Textures/DryGrass.png
+/Assets/Arena3Q/Art/Battlefield/Textures/SparseGreenGrass.png
+# Local intermediate meshes superseded by four terrain tiles / four shared grass variants.
+/Assets/Arena3Q/Art/Battlefield/Meshes/Terrain.asset*
+/Assets/Arena3Q/Art/Battlefield/Meshes/GrassPatch_*

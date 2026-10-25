@@ -1,0 +1,1131 @@
+{
+  "entries": [
+    {
+      "id": "Bush_Common",
+      "category": "Bụi và cây thấp",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Bush_Common.fbx",
+      "materials": [
+        {
+          "name": "Leaves_TwistedTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaves_TwistedTree_C.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "Bush_Common_Flowers",
+      "category": "Bụi và cây thấp",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Bush_Common_Flowers.fbx",
+      "materials": [
+        {
+          "name": "Leaves_NormalTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaves_NormalTree_C.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        },
+        {
+          "name": "Flowers",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Flowers.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "Clover_1",
+      "category": "Bụi và cây thấp",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Clover_1.fbx",
+      "materials": [
+        {
+          "name": "Leaves",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaves.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "CommonTree_1",
+      "category": "Cây",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/CommonTree_1.fbx",
+      "materials": [
+        {
+          "name": "Bark_NormalTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_NormalTree.png",
+          "normal": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_NormalTree_Normal.png",
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "Leaves_NormalTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaves_NormalTree_C.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "CommonTree_2",
+      "category": "Cây",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/CommonTree_2.fbx",
+      "materials": [
+        {
+          "name": "Bark_NormalTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_NormalTree.png",
+          "normal": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_NormalTree_Normal.png",
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "Leaves_NormalTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaves_NormalTree_C.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "CommonTree_3",
+      "category": "Cây",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/CommonTree_3.fbx",
+      "materials": [
+        {
+          "name": "Bark_NormalTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_NormalTree.png",
+          "normal": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_NormalTree_Normal.png",
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "Leaves_NormalTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaves_NormalTree_C.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "CommonTree_5",
+      "category": "Cây",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/CommonTree_5.fbx",
+      "materials": [
+        {
+          "name": "Bark_NormalTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_NormalTree.png",
+          "normal": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_NormalTree_Normal.png",
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "Leaves_NormalTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaves_NormalTree_C.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "Fern_1",
+      "category": "Bụi và cây thấp",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Fern_1.fbx",
+      "materials": [
+        {
+          "name": "Leaves",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaves.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "Flower_3_Group",
+      "category": "Hoa và chi tiết tự nhiên",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Flower_3_Group.fbx",
+      "materials": [
+        {
+          "name": "Leaves",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaves.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        },
+        {
+          "name": "Flowers",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Flowers.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "Flower_4_Group",
+      "category": "Hoa và chi tiết tự nhiên",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Flower_4_Group.fbx",
+      "materials": [
+        {
+          "name": "Leaves",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaves.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        },
+        {
+          "name": "Flowers",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Flowers.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "Grass_Common_Short",
+      "category": "Cỏ",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Grass_Common_Short.fbx",
+      "materials": [
+        {
+          "name": "Grass",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Grass.png",
+          "normal": null,
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "Grass_Common_Tall",
+      "category": "Cỏ",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Grass_Common_Tall.fbx",
+      "materials": [
+        {
+          "name": "Grass",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Grass.png",
+          "normal": null,
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "Grass_Wispy_Short",
+      "category": "Cỏ",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Grass_Wispy_Short.fbx",
+      "materials": [
+        {
+          "name": "Grass",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Grass.png",
+          "normal": null,
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "Grass_Wispy_Tall",
+      "category": "Cỏ",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Grass_Wispy_Tall.fbx",
+      "materials": [
+        {
+          "name": "Grass",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Grass.png",
+          "normal": null,
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "Pebble_Round_1",
+      "category": "Đá và đường lát",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Pebble_Round_1.fbx",
+      "materials": [
+        {
+          "name": "PathRocks",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/PathRocks_Diffuse.png",
+          "normal": null,
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Pebble_Round_3",
+      "category": "Đá và đường lát",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Pebble_Round_3.fbx",
+      "materials": [
+        {
+          "name": "PathRocks",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/PathRocks_Diffuse.png",
+          "normal": null,
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Pebble_Square_1",
+      "category": "Đá và đường lát",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Pebble_Square_1.fbx",
+      "materials": [
+        {
+          "name": "PathRocks",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/PathRocks_Diffuse.png",
+          "normal": null,
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Pine_1",
+      "category": "Cây",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Pine_1.fbx",
+      "materials": [
+        {
+          "name": "Bark_NormalTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_NormalTree.png",
+          "normal": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_NormalTree_Normal.png",
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "Leaves_Pine",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaf_Pine_C.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "Pine_3",
+      "category": "Cây",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Pine_3.fbx",
+      "materials": [
+        {
+          "name": "Bark_NormalTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_NormalTree.png",
+          "normal": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_NormalTree_Normal.png",
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "Leaves_Pine",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaf_Pine_C.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "Pine_5",
+      "category": "Cây",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Pine_5.fbx",
+      "materials": [
+        {
+          "name": "Bark_NormalTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_NormalTree.png",
+          "normal": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_NormalTree_Normal.png",
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "Leaves_Pine",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaf_Pine_C.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "Plant_1_Big",
+      "category": "Bụi và cây thấp",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Plant_1_Big.fbx",
+      "materials": [
+        {
+          "name": "Leaves",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaves.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "Plant_7_Big",
+      "category": "Bụi và cây thấp",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Plant_7_Big.fbx",
+      "materials": [
+        {
+          "name": "Leaves",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaves.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "RockPath_Round_Small_1",
+      "category": "Đá và đường lát",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/RockPath_Round_Small_1.fbx",
+      "materials": [
+        {
+          "name": "PathRocks",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/PathRocks_Diffuse.png",
+          "normal": null,
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "RockPath_Round_Wide",
+      "category": "Đá và đường lát",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/RockPath_Round_Wide.fbx",
+      "materials": [
+        {
+          "name": "PathRocks",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/PathRocks_Diffuse.png",
+          "normal": null,
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "RockPath_Square_Thin",
+      "category": "Đá và đường lát",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/RockPath_Square_Thin.fbx",
+      "materials": [
+        {
+          "name": "PathRocks",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/PathRocks_Diffuse.png",
+          "normal": null,
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Rock_Medium_1",
+      "category": "Đá và đường lát",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Rock_Medium_1.fbx",
+      "materials": [
+        {
+          "name": "Rocks",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Rocks_Diffuse.png",
+          "normal": null,
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Rock_Medium_2",
+      "category": "Đá và đường lát",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Rock_Medium_2.fbx",
+      "materials": [
+        {
+          "name": "Rocks",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Rocks_Diffuse.png",
+          "normal": null,
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Rock_Medium_3",
+      "category": "Đá và đường lát",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/Rock_Medium_3.fbx",
+      "materials": [
+        {
+          "name": "Rocks",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Rocks_Diffuse.png",
+          "normal": null,
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "TwistedTree_1",
+      "category": "Cây",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/TwistedTree_1.fbx",
+      "materials": [
+        {
+          "name": "Bark_TwistedTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_TwistedTree.png",
+          "normal": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_TwistedTree_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "Leaves_TwistedTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaves_TwistedTree_C.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "TwistedTree_3",
+      "category": "Cây",
+      "model": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/FBX (Unity)/TwistedTree_3.fbx",
+      "materials": [
+        {
+          "name": "Bark_TwistedTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_TwistedTree.png",
+          "normal": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Bark_TwistedTree_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "Leaves_TwistedTree",
+          "albedo": "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF/Leaves_TwistedTree_C.png",
+          "normal": null,
+          "cutoff": 0.20000000298023224,
+          "doubleSided": true,
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "id": "Bag",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Bag.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Cloth",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Cloth_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Cloth_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Barrel",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Barrel.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Barrel_Holder",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Barrel_Holder.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Bench",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Bench.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Bucket_Metal",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Bucket_Metal.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Bucket_Wooden_1",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Bucket_Wooden_1.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Candle_1",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Candle_1.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Props",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Props_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Props_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Chest_Wood",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Chest_Wood.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Crate_Metal",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Crate_Metal.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Crate_Wooden",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Crate_Wooden.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Dummy",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Dummy.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Cloth",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Cloth_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Cloth_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "FarmCrate_Empty",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/FarmCrate_Empty.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Lantern_Wall",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Lantern_Wall.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Peg_Rack",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Peg_Rack.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Pouch_Large",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Pouch_Large.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Props_Vertex",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Props_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Props_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Rope_1",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Rope_1.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Rope_2",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Rope_2.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Rope_3",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Rope_3.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Shield_Wooden",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Shield_Wooden.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Metal_Vertex",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Props",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Props_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Props_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Stall_Cart_Empty",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Stall_Cart_Empty.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Banner",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Cloth_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Cloth_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Sword_Bronze",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Sword_Bronze.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Props_Vertex",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Props_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Props_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Table_Large",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Table_Large.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Torch_Metal",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Torch_Metal.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Vase_Rubble_Medium",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Vase_Rubble_Medium.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Props_Vertex",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Props_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Props_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "WeaponStand",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/WeaponStand.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Whetstone",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Whetstone.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Props_Vertex",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Props_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Props_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    },
+    {
+      "id": "Workbench",
+      "category": "Đạo cụ doanh trại",
+      "model": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Workbench.fbx",
+      "materials": [
+        {
+          "name": "MI_Trim_Furniture",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Furniture_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        },
+        {
+          "name": "MI_Trim_Metal",
+          "albedo": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_BaseColor.png",
+          "normal": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/glTF/T_Trim_Metal_Normal.png",
+          "cutoff": 0,
+          "doubleSided": true,
+          "leaf": false
+        }
+      ]
+    }
+  ]
+}

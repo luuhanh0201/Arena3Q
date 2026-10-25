@@ -9,6 +9,7 @@ const review = path.join(
 );
 const mounts = new Map([
   ["/review/", review],
+  ["/map-evidence/",path.join(root,"NghiemThu/Battlefield/XemTruoc_Map_20261025")],
   [
     "/nature/",
     path.join(root, "Assets/ThirdParty/Quaternius/StylizedNatureStandard/glTF"),
@@ -34,6 +35,7 @@ const mime = {
   ".png": "image/png",
   ".jpg": "image/jpeg",
   ".webp": "image/webp",
+  ".mp4": "video/mp4",
 };
 const server = http.createServer(async (request, response) => {
   response.setHeader("X-Content-Type-Options", "nosniff");

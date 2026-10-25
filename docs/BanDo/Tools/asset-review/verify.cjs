@@ -32,8 +32,8 @@ const sha = (file) =>
       () => window.__assetReady && typeof window.__previewAsset === "function",
     );
     const manifest = await page.evaluate(() => window.__reviewManifest);
-    assert.equal(manifest.status, "PENDING_APPROVAL");
-    assert.equal(manifest.mapCreated, false);
+    assert.ok(["PENDING_APPROVAL","APPROVED_FOR_MAP"].includes(manifest.status));
+    assert.equal(manifest.mapCreated,manifest.status==="APPROVED_FOR_MAP");
     assert.equal(manifest.items.length, 185);
     assert.equal(new Set(manifest.items.map((item) => item.id)).size, 185);
     assert.equal(await page.locator(".card").count(), 80);
@@ -122,8 +122,8 @@ const sha = (file) =>
     );
     assert.deepEqual(errors, []);
     const report = {
-      status: "PENDING_APPROVAL",
-      mapCreated: false,
+      status: manifest.status,
+      mapCreated: manifest.mapCreated,
       modelsRenderedInCapture: 171,
       originalOwnedModels: originalModels,
       thumbnails: 185,
@@ -142,7 +142,7 @@ const sha = (file) =>
         sourceModels: originalModels.length,
         thumbnails: 185,
         pageErrors: errors,
-        mapCreated: false,
+        mapCreated: manifest.mapCreated,
       }),
     );
   } finally {

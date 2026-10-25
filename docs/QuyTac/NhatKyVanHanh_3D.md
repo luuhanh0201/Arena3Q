@@ -1,5 +1,19 @@
 # Nhật ký vận hành – thiết kế 3D, animation, VFX
 
+## 25/10/2026 · Codex · dựng Battlefield mới
+
+- ffmpeg đi kèm Krita không có encoder libx264. Dùng libopenh264 có sẵn, kiểm video phát/giải mã thật trong Edge; mã thoát0 của bước xuất khung không chứng minh đã có clip dùng được.
+- Audit occlusion: ray từ tâm camera đến tướng là ray phối cảnh, sai với camera orthographic hiện hành. Dùng ray song song hướng camera, đi qua đầu/ngực tướng; chuyển basis theo trạng thái bridge trong/ngoài lượt render. Cây giao ray mờ dần bằng dither per-instance rồi phục hồi, không đổi collider hoặc gameplay.
+- Hai bài kiểm bổ sung sai cách đọc sau khi lưu prefab/scene: static batching thay sharedMesh của terrain bằng Combined Mesh không Read/Write; ParticleSystemRenderer không có MeshFilter và toán tử ?. không xử lý Unity fake-null. Kiểm vertexcolor qua mesh asset nguồn và phân biệt loại Renderer trước khi lấy mesh; tính mesh static kết hợp một lần để không đếm lặp toàn bộ batch.
+- Lượt đo render bổ sung làm Unity batch D3D12 crash ở D3D12RenderPass::SetupDeviceResources: công cụ gọi Camera.Render trực tiếp khi targetTexture=null, batch không có backbuffer GameView hợp lệ. Capture qua RenderTexture trước đó không lỗi. Mọi render thủ công trong batch phải có RenderTexture sống trong suốt lượt; không gọi Render vào màn hình để cố lấy profiler counter. Counter0 trong batch là không đo được, tuyệt đối không báo map0drawcall.
+- Giảm mật độ grass theo chỉ số child đơn làm Low/Medium chỉ bật một phía của cặp180. Đổi điều kiện theo chỉ số cặp i/2 và thêm kiểm đối xứng trong mỗi preset; chất lượng được thay đồ trang trí, không được phá bố cục hai phe.
+- Nền vẫn giữ ảnh cũ ngay sau Generate dù audit CPU có đúng6mask: mở scene trong phiên Unity mới cho đường cong hiện đúng, xác nhận GPU buffer của Mesh cũ không được cập nhật bởi EditorUtility.CopySerialized. Sửa bằng Clear/ghi vertices,colors,uv,triangles trực tiếp rồi UploadMeshData(false), SetDirty; áp dụng cả grasspatch. So ảnh sau generate với ảnh reload để bắt trạng thái CPU/GPU khác nhau.
+- Audit dữ liệu phát hiện WaveSpawn tên trường là spawnPoint, không phải position; nhánh null trước đó làm wave giữ tọa độ map cũ. Đọc schema thật và kiểm vị trí spawn của cả Attack/Defense, không dựa vào việc null-check giúp compile.
+- Generate phase3 ghi UnityException: MaterialPropertyBlock được tạo trong field initializer của MonoBehaviour, Unity deserialize trên luồng không cho gọi native CreateImpl. Chuyển sang tạo lười trong LateUpdate; nghiệm thu phải kiểm cả exception trong log dù tiến trình Unity trả exit0.
+- Lượt compile đầu dừng CS0234 ở Light2D: assembly Editor không tham chiếu URP2D riêng trong phiên bản đang cài. Không thêm dependency2D vào công cụ3D chỉ để tắt đèn; tắt đúng GameObject Global Light 2D trên bản sao scene. Kiểm log compile trước khi chạy generate/capture.
+- Audit code phát hiện biến thể cliffscale chỉ áp một phía và grasspair dùng trạng thái RNG khác, phá đối xứng180. Dùng scale chung cho cặp và RNG riêng cùng seed; kiểm bố cục/collider phía đối diện khi Validate, không chỉ nhìn ảnh overview.
+- Capture phase2 cho nền đồng màu: dùng nhầm Mathf.SmoothStep(a,b,value) như hàm smoothstep ngưỡng; Unity thực tế nội suy giữa a,b với t0–1. Sửa mọi mask bằng SmoothStep(0,1,InverseLerp(a,b,value)), thêm kiểm khoảng0–1/ảnh nền6layer. Camera capture dùng aspectEditor khác RenderTexture nên lấy dư viền; fit sau khi gắn targetTexture/aspect thực. Collider vật quay90 phải tính bounds trong local, không chia worldAABB cho scale rồi gọi là collider đúng.
+
 ## 25/10/2026 · Codex · trang duyệt asset chiến trường
 
 - Nút xem texture lặp bị ẩn: CSS `#repeat { display:none }` vẫn hiệu lực khi JS gán style rỗng. Browser test bấm nút phát hiện, sửa thành display inline-block khi chọn texture; kiểm đủ6texture chuyển một ô/lặp3×3. Không chỉ kiểm URL ảnh trả200 rồi nhận UI hoạt động.

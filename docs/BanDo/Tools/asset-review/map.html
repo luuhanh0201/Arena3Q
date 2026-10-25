@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arena3Q · Chiến trường Unity</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#101820;color:#e5edf3}*{box-sizing:border-box}body{margin:0}header,main,footer{max-width:1440px;margin:auto;padding:22px 28px}header{display:flex;align-items:center;justify-content:space-between;gap:24px}h1{font-size:25px;margin:6px 0}p{line-height:1.6;color:#aebfcb}a{color:#91cefa}small{color:#aebfcb}.eyebrow{color:#e2b36b;text-transform:uppercase;letter-spacing:.15em;font-size:12px}.frame{background:#19252e;border:1px solid #334652;border-radius:16px;overflow:hidden}.frame img,.frame video{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:#0b1015}.caption{padding:14px 18px;display:flex;gap:20px;justify-content:space-between;align-items:center}.caption strong{font-size:16px}.controls{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}button{border:1px solid #455764;border-radius:8px;background:#1b2b37;color:#e5edf3;padding:10px 16px;cursor:pointer;font:inherit;font-size:14px}button[aria-pressed=true]{background:#b98d4b;color:#101820;border-color:#dcb77d}button:hover{border-color:#dcb77d}.details{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:30px 0}.panel{border-top:1px solid #334652;padding:18px 0}.panel h2{font-size:18px}li{line-height:1.7;margin:7px 0;color:#b9c9d3}code{font-size:13px;overflow-wrap:anywhere}video{max-width:100%}#video-frame{margin-top:30px}footer{font-size:13px;border-top:1px solid #334652;margin-top:25px}@media(max-width:700px){header{display:block}header,main,footer{padding:16px}.details{grid-template-columns:1fr}.caption{display:block}.controls button{flex:1}h1{font-size:22px}}
+</style>
+<header><div><div class="eyebrow">Arena3Q / Unity battlefield</div><h1>Chiến trường Bát Quái</h1><small>Ảnh và chuyển động được xuất trực tiếp từ scene Unity mới.</small></div><a href="/">Xem thư viện asset</a></header>
+<main>
+<div class="controls" role="group" aria-label="Góc xem">
+<button data-image="phase2-overview.png" aria-pressed="true">Toàn cảnh</button>
+<button data-image="play-five-heroes.png" aria-pressed="false">Trận 5 tướng</button>
+<button data-image="play-defense.png" aria-pressed="false">Ải phòng thủ</button>
+<button data-image="play-altar.png" aria-pressed="false">Tướng trên tế đàn</button>
+<button data-image="occlusion-before.png" aria-pressed="false">Cây che tướng</button>
+<button data-image="occlusion-faded.png" aria-pressed="false">Cây đã mờ</button>
+<button data-image="quality-high.png" aria-pressed="false">High</button>
+<button data-image="quality-medium.png" aria-pressed="false">Medium</button>
+<button data-image="quality-low.png" aria-pressed="false">Low</button>
+<button data-image="original-battle.png" aria-pressed="false">Scene cũ</button>
+</div>
+<figure class="frame" style="margin:0"><img id="map" src="/map-evidence/phase2-overview.png" alt="Toàn cảnh chiến trường Arena3Q trong Unity"><figcaption class="caption"><strong id="label">Toàn cảnh</strong><a id="original" href="/map-evidence/phase2-overview.png" target="_blank">Mở ảnh gốc 1600 × 900</a></figcaption></figure>
+<section class="frame" id="video-frame"><video controls loop muted playsinline preload="metadata" poster="/map-evidence/motion-000.png"><source src="/map-evidence/environment-motion.mp4" type="video/mp4"></video><div class="caption"><strong>Gió và hiệu ứng môi trường</strong><small>Chuyển động Unity, 3 giây / 12 khung mỗi giây</small></div></section>
+<div class="details"><section class="panel"><h2>Mở và chỉnh trong Unity</h2><p><code>Assets/Arena3Q/Scenes/Battlefield_HighQuality.unity</code></p><ul><li>Mở scene để xem và sửa trực tiếp; nhấn Play để thử PvE.</li><li>Cuộn hoặc chụm để zoom, kéo để di chuyển camera; dùng thẻ tướng để triệu hồi và ra lệnh.</li><li>Cấu hình địa hình, gió, camera và thư viện prefab trong <code>Content/Battlefield</code>.</li><li>Scene và model nguồn được giữ nguyên. Các phần môi trường được lưu thành prefab riêng.</li></ul></section><section class="panel"><h2>Phạm vi bản này</h2><ul><li>Địa hình 3D, sáu lớp mặt đất, hai đường vòng, trại xanh/đỏ và cụm Bát Quái bằng model đang có.</li><li>Trees, grass, bush, hoa, đá; gió GPU, lửa, khói, bụi và lá bay; ba mức đồ họa.</li><li>Model tướng/lính đang dùng thuộc hệ thống game hiện có; một số đơn vị vẫn là hình tạm của prototype.</li><li>Tre, đào, phong đúng loài, đèn đá cổ và tường đổ phương Đông còn thiếu model riêng. Có mốc thay thế trong scene.</li><li>Ảnh đẹp hơn và bộ đếm Editor không thay cho kiểm FPS trên thiết bị. Chưa nghiệm thu hiệu năng Android/iOS.</li></ul></section></div>
+</main><footer>Trang xem local chỉ đọc. Đây là ảnh của scene Unity, không phải bản game WebGL.</footer>
+<script>
+const image=document.querySelector('#map');for(const button of document.querySelectorAll('[data-image]'))button.addEventListener('click',()=>{for(const item of document.querySelectorAll('[data-image]'))item.setAttribute('aria-pressed',String(item===button));image.src='/map-evidence/'+button.dataset.image;image.alt=button.textContent;document.querySelector('#label').textContent=button.textContent;document.querySelector('#original').href=image.src;});
+</script>
+</html>

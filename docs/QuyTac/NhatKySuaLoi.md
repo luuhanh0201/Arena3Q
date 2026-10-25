@@ -1,5 +1,9 @@
 # Nhật ký sửa lỗi – Arena3Q
 
+## Camera toàn cảnh chiến trường mới (25/10/2026, Codex)
+
+- Scene mới mở đủ map80×44, nhưng Zoom dùng giới hạn cũ theo vùng chiến đấu nên lần cuộn đầu có thể nhảy từ mức toàn cảnh vào trong. Thêm cờ allowMapOverview chỉ bật trong scene mới, dùng max cấu hình của nó; mặc địnhfalse giữ đường camera cũ. Kiểm roundtrip picking và2bài camera/tilt scene cũ đều đạt; không sửa Battle.unity.
+
 ## Gắn icon đã duyệt: giữ nguyên dữ liệu kỹ năng (25/10/2026, Codex)
 
 - SerializedObject/SaveAssetIfDirty khi gắn Sprite tự thêm field mặc định mới (executeThreshold/executeBonus/zoneSway/minimumTargets) và đảo thứ tự YAML. Kiểm sâu trước/sau bắt được ngay; không chấp nhận phát sinh ngoài icon. Chuyển pipeline: Unity nhập Sprite và cung cấp GUID/fileID thật; công cụ dùng bản sao nguồn để thay duy nhất dòng icon, kiểm không có sửa ngoài phạm vi, rồi Unity nạp lại xác minh tham chiếu. Giữ backup từng asset và DB.
