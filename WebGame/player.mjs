@@ -26,6 +26,7 @@ function selectMode(id) {
   frame.dataset.mode = selected.id;
   $('mode-label').textContent = selected.label;
   fit();
+  if (instance) canvas.focus({ preventScroll: true });
 }
 
 function progress(value) {
@@ -33,7 +34,7 @@ function progress(value) {
   $('progress').style.width = `${percent}%`;
   $('progress').setAttribute('aria-valuenow', String(percent));
   $('percent').textContent = `${percent}%`;
-  $('status').textContent = percent < 90 ? 'Đang tải tài nguyên. Vui lòng chờ một chút.' : 'Đang chuẩn bị chiến trường...';
+  $('status').textContent = percent < 90 ? 'Đang tải tài nguyên. Vui lòng chờ một chút.' : 'Đang chuẩn bị vào game...';
 }
 
 function showFailure(error) {

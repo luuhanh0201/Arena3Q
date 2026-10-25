@@ -11,7 +11,19 @@ namespace Arena3Q.UI
     {
         private static Font _font;
 
-        public static Font Font => _font != null ? _font : _font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        public static Font Font
+        {
+            get
+            {
+                if (_font != null) return _font;
+#if UNITY_WEBGL && !UNITY_EDITOR
+                var typography = Resources.Load<UiTypographyConfig>(UiTypographyConfig.ResourceName);
+                if (typography != null) _font = typography.browserFont;
+#endif
+                if (_font == null) _font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                return _font;
+            }
+        }
 
         public static Canvas CreateCanvas(Transform parent, string name, int sortingOrder)
         {

@@ -12,7 +12,7 @@ Unity 6000.6.6f1, cần Web Build Support. Không mở Editor khác cùng projec
 & 'C:/Program Files/Unity/Hub/Editor/6000.6.6f1/Editor/Unity.exe' -batchmode -nographics -quit -projectPath 'D:/UnityProjects/Arena3Q' -buildTarget WebGL -executeMethod Arena3Q.Editor.WebGameBuild.Build -logFile 'Logs/WebGame-build.log'
 ```
 
-Menu: **Arena3Q > Build > Web Game (Phone, iPad, PC)**. Cấu hình: [web-settings.json](web-settings.json). Scene đầu giống APK mobile mới nhất: `Battlefield_HighQuality`, kèm Frontend và Battle. Build không đổi danh sách scene mobile hoặc override nén texture. RGBA32 của icon WebGL giữ chất lượng gốc; bộ ASTC mobile độc lập.
+Menu: **Arena3Q > Build > Web Game (Phone, iPad, PC)**. Cấu hình: [web-settings.json](web-settings.json). Người dùng chốt mở luồng game đầy đủ: Frontend (intro, tải, đăng nhập, chọn máy chủ, chọn tướng, đặt tên, truyện) rồi Battle theo hồ sơ hiện có. `Battlefield_HighQuality` cũng được đóng gói để dùng ở bước tích hợp map tiếp theo; không thay ải hướng dẫn hoặc chỉ số của game hiện tại. Build không đổi danh sách scene mobile hoặc override nén texture. RGBA32 của icon WebGL giữ chất lượng gốc; bộ ASTC mobile độc lập.
 
 Output: `Builds/WebGL/Arena3Q`. `build.json` được sinh theo tên file Unity thực tế; không đoán tên loader hoặc wasm. Gzip có bộ giải nén dự phòng của Unity, dùng được trên máy chủ tĩnh không thiết lập Content-Encoding. Video intro được chép vào `Player/StreamingAssets`, VideoPlayer bản web dùng URL thay cho VideoClip. Các thiết lập template/nén tạm thời được khôi phục sau build.
 
@@ -33,8 +33,14 @@ Muốn cập nhật riêng trang bọc sau build, chép `index.html`, `style.css
 ```powershell
 node WebGame/verify.cjs --ui
 node WebGame/verify.cjs
+node WebGame/flow-qa.cjs
+node WebGame/flow-qa.cjs --touch
+node WebGame/flow-qa.cjs --intro-only
+node WebGame/make-review.cjs
 ```
 
 Dùng Playwright hiện có trong Admin và Edge đã cài, không thêm package game. Bản `--ui` kiểm trang chọn màn hình trước khi chạy Unity. Bản đầy đủ đợi Unity khởi tạo thật, kiểm 15 kết hợp cửa sổ/tỷ lệ, canvas backing buffer, không tràn trang, giữ lựa chọn và chỉ tải loader một lần. Ảnh/JSON/log tại `NghiemThu/WebGame/20261025`.
+
+`flow-qa.cjs` bấm/nhập bằng chuột và bàn phím qua luồng Frontend thật, kiểm video được tải bằng URL và hồ sơ Unity thực sự được ghi vào IndexedDB. Nhánh web của HUD dùng font nhúng từ `Content/Resources/UiTypography.asset` tham chiếu font mobile hiện có; không phụ thuộc bộ font dự phòng của hệ điều hành.
 
 Hồ sơ game lưu trong IndexedDB của trình duyệt qua persistentDataPath (bật tự đồng bộ); không dùng chung hồ sơ native mobile. Cửa sổ riêng tư/xóa dữ liệu trang có thể làm mất hồ sơ local. Hỗ trợ hình trên trình duyệt desktop không thay thế kiểm Safari iPad hoặc FPS trên máy thật.

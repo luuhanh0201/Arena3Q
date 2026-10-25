@@ -1,10 +1,10 @@
 {
   "output": "Builds/WebGL/Arena3Q",
-  "startScene": "Assets/Arena3Q/Scenes/Battlefield_HighQuality.unity",
+  "startScene": "Assets/Arena3Q/Scenes/Frontend.unity",
   "scenes": [
-    "Assets/Arena3Q/Scenes/Battlefield_HighQuality.unity",
     "Assets/Arena3Q/Scenes/Frontend.unity",
-    "Assets/Arena3Q/Scenes/Battle.unity"
+    "Assets/Arena3Q/Scenes/Battle.unity",
+    "Assets/Arena3Q/Scenes/Battlefield_HighQuality.unity"
   ],
   "modes": [
     { "id": "phone", "label": "Điện thoại", "width": 1280, "height": 576 },

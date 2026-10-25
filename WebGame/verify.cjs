@@ -69,6 +69,36 @@ fs.mkdirSync(evidence, { recursive: true });
     await page.waitForSelector('#modes button[aria-pressed="true"]');
     assert.equal(await page.locator('#game-frame').getAttribute('data-mode'), 'ipad');
     report.persistence = true;
+    await page.click('#fullscreen');
+    await page.waitForFunction(() => document.fullscreenElement !== null);
+    assert.equal(await page.locator('#fullscreen').textContent(), 'Thu màn hình');
+    await page.click('#fullscreen');
+    await page.waitForFunction(() => document.fullscreenElement === null);
+    report.fullscreen = true;
+
+    if (uiOnly) {
+      report.deviceDefaults = [];
+      for (const device of [{ width: 412, height: 915, mode: 'phone' }, { width: 1024, height: 768, mode: 'ipad' }]) {
+        const touchContext = await browser.newContext({ viewport: { width: device.width, height: device.height }, hasTouch: true, isMobile: true });
+        const touchPage = await touchContext.newPage();
+        await touchPage.goto(base);
+        await touchPage.waitForSelector('#modes button[aria-pressed="true"]');
+        assert.equal(await touchPage.locator('#game-frame').getAttribute('data-mode'), device.mode);
+        report.deviceDefaults.push(device.mode);
+        await touchContext.close();
+      }
+      const failurePage = await context.newPage();
+      await failurePage.route('**/build.json', route => route.fulfill({ status: 503, body: 'Unavailable' }));
+      await failurePage.goto(base);
+      await failurePage.waitForSelector('#modes button[aria-pressed="true"]');
+      await failurePage.click('#start');
+      await failurePage.waitForFunction(() => document.querySelector('#start').textContent === 'THỬ LẠI');
+      assert.equal(await failurePage.locator('#loading').isHidden(), true);
+      assert.ok(await failurePage.locator('#cover').isVisible());
+      await failurePage.screenshot({ path: path.join(evidence, 'network-error.png') });
+      report.failureRecovery = true;
+      await failurePage.close();
+    }
 
     const video = '/Player/StreamingAssets/' + settings.introFile;
     if (!uiOnly) {

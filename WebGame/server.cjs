@@ -18,7 +18,9 @@ const server = http.createServer((req, res) => {
   fs.stat(filename, (error, stat) => {
     if (error || !stat.isFile()) { res.writeHead(404); res.end(); return; }
     // Resolve symlinks too: a packaged build must never serve files outside its own directory.
-    const real = fs.realpathSync(filename);
+    let real;
+    try { real = fs.realpathSync(filename); }
+    catch { res.writeHead(404); res.end(); return; }
     if (!real.startsWith(fs.realpathSync(root) + path.sep)) { res.writeHead(403); res.end(); return; }
     const headers = { 'Content-Type':mime[path.extname(filename)] || 'application/octet-stream', 'Accept-Ranges':'bytes', 'X-Content-Type-Options':'nosniff', 'Cache-Control':'no-cache' };
     let start = 0, end = stat.size - 1, status = 200;
@@ -34,7 +36,7 @@ const server = http.createServer((req, res) => {
     res.writeHead(status, headers);
     if (req.method === 'HEAD') { res.end(); return; }
     const stream = fs.createReadStream(filename, { start, end });
-    stream.on('error', () => res.destroy()); req.on('close', () => stream.destroy()); stream.pipe(res);
+    stream.on('error', () => res.destroy()); res.on('close', () => stream.destroy()); stream.pipe(res);
   });
 });
 server.listen(port, host, () => console.log(`Arena3Q: http://${host}:${port}`));

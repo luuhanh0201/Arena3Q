@@ -436,3 +436,14 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 - Focus ô nhập bị trở lại viền xanh mỗi lần gõ vì Error("") luôn chọn inputBorder. Giữ goldLine khi Input.isFocused. Thêm test focus/typing và pause/resume.
 - Ảnh đối chiếu phát hiện mã lỗi biến mất khi dùng box15px theo CSS: line metrics của TMP khác trình duyệt, Ellipsis loại cả dòng. Tăng box25px quanh cùng tâm, thêm kiểm tra overflow và glyph thật trước retry; không sao chép chiều cao CSS mà bỏ qua font metrics Unity.
 - Bằng chứng tự kiểm giữ riêng NghiemThu/UI/XemTruoc_Startup_TuKiem_20261024, không ghi đè các bản trước.
+
+## 25/10 - Tương thích video intro với bản game web
+- Phát hiện khi rà soát đường xuất WebGL đầu tiên: IntroScreen chỉ dùng VideoClip nhập vào Unity. Trình duyệt không hỗ trợ nguồn này, nên có nguy cơ chỉ thấy ảnh tĩnh hoặc mất intro dù native hoạt động.
+- Sửa: thêm WebIntroFile trong FrontendConfig; nhánh WebGL dùng VideoSource.Url với tệp MP4 cùng nguồn tại StreamingAssets. Builder chép đúng video mobile vào gói web; nhánh mobile/Editor giữ nguyên VideoClip.
+- Phòng tránh: kiểm video bằng HTTP Range và chạy intro trên trình duyệt thật; compile hoặc test Editor không đủ xác nhận nhánh WebGL. Theo [tài liệu video Unity 6.6](https://docs.unity.com/en-us/engine/6000.6/manual/platform-specific/webgl/develop/video).
+
+## 25/10 - HUD mất chữ tiếng Việt trên WebGL
+- Phát hiện bằng ảnh game thật trong Edge: HUD hiện thiếu ký tự, ví dụ `Ải Công` thành `i Công`, `Lữ Bố` thành `L B`. Build và kiểm JS đều qua; kết quả đó không phát hiện lỗi font.
+- Nguyên nhân: UiFactory dùng LegacyRuntime.ttf, dựa vào font hệ điều hành để bù ký tự trên native. WebGL không có cùng bộ font dự phòng.
+- Sửa: cấu hình UiTypography tham chiếu đúng BeVietnamPro-Regular.ttf đã dùng trong mobile; UiFactory nhánh web lấy font nhúng này. Không thay font nguồn hoặc nhánh native. Builder kiểm ký tự tiếng Việt trước khi xuất.
+- Phòng tránh: luôn xem ảnh chữ thật trên nền tảng đích, gồm chữ có dấu ở HUD, chọn tướng và ô tên; không lấy 0 lỗi console hoặc kiểm Editor làm bằng chứng font web.

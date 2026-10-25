@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using Arena3Q.Data;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
@@ -35,6 +36,12 @@ namespace Arena3Q.Editor
             if (settings.scenes == null || settings.scenes.Length == 0 || settings.scenes[0] != settings.startScene || settings.scenes.Any(s => !File.Exists(s)))
                 throw new InvalidOperationException("Every configured web scene must exist, with startScene first.");
             ApprovedSkillIcons.Verify();
+            var typography = Resources.Load<UiTypographyConfig>(UiTypographyConfig.ResourceName);
+            if (typography == null || typography.browserFont == null)
+                throw new InvalidOperationException("Browser UI requires the embedded mobile font.");
+            foreach (char glyph in "Ải Công Thủ Đồ họa Chủ tướng Triệu hồi Kỵ Binh Lữ Bố")
+                if (!typography.browserFont.HasCharacter(glyph))
+                    throw new InvalidOperationException("Browser font lacks Vietnamese glyph: " + glyph);
             Directory.CreateDirectory(output);
             string template = PlayerSettings.WebGL.template;
             var compression = PlayerSettings.WebGL.compressionFormat;
