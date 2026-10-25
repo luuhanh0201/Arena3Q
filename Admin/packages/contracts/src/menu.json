@@ -1,0 +1,1725 @@
+{
+  "schemaVersion": "1.1",
+  "product": "Arena3Q Admin Panel",
+  "generatedFor": "Unified hero list to 11-tab hero detail navigation",
+  "implementationNotice": "Mỗi chức năng PLANNED hiển thị Chức năng đang phát triển; game.heroes chỉ có Danh sách tướng, mọi kỹ năng/hiệu ứng/animation/chỉ số là tab trong hero detail; không dùng PLANNED để che 403/lỗi API.",
+  "heroDetailRoute": "/admin/game/heroes/detail/:heroId",
+  "heroDetailTabs": [
+    "overview",
+    "media",
+    "model",
+    "rig",
+    "animations",
+    "skills",
+    "stats",
+    "progression",
+    "skins",
+    "relations",
+    "versions"
+  ],
+  "menu": [
+    {
+      "id": "DASHBOARD",
+      "label": "TỔNG QUAN",
+      "children": [
+        {
+          "label": "Dashboard",
+          "children": [
+            {
+              "label": "Tổng quan hệ thống",
+              "id": "DASHBOARD.DASHBOARD.OVERVIEW",
+              "route": "/admin/dashboard/overview",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Tổng quan hệ thống chưa được triển khai."
+              }
+            },
+            {
+              "label": "Tổng quan người chơi",
+              "id": "DASHBOARD.DASHBOARD.PLAYERS",
+              "route": "/admin/dashboard/players",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Tổng quan người chơi chưa được triển khai."
+              }
+            },
+            {
+              "label": "Tổng quan game",
+              "id": "DASHBOARD.DASHBOARD.GAME",
+              "route": "/admin/dashboard/game",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Tổng quan game chưa được triển khai."
+              }
+            }
+          ],
+          "id": "DASHBOARD.DASHBOARD",
+          "route": "/admin/dashboard",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P0"
+        }
+      ],
+      "route": "/admin/dashboard",
+      "level": 1,
+      "status": "PLANNED",
+      "priority": "P0"
+    },
+    {
+      "id": "OPERATIONS",
+      "label": "VẬN HÀNH",
+      "children": [
+        {
+          "label": "Người chơi",
+          "children": [
+            {
+              "label": "Danh sách người chơi",
+              "id": "OPERATIONS.PLAYERS.LIST",
+              "route": "/admin/operations/players",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.players.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Danh sách người chơi chưa được triển khai."
+              }
+            },
+            {
+              "label": "Tra cứu tài khoản",
+              "id": "OPERATIONS.PLAYERS.LOOKUP",
+              "route": "/admin/operations/players/lookup",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.players.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Tra cứu tài khoản chưa được triển khai."
+              }
+            },
+            {
+              "label": "Khóa / mở khóa tài khoản",
+              "id": "OPERATIONS.PLAYERS.SUSPENSIONS",
+              "route": "/admin/operations/players/suspensions",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.players.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Khóa / mở khóa tài khoản chưa được triển khai."
+              }
+            },
+            {
+              "label": "Lịch sử hoạt động",
+              "id": "OPERATIONS.PLAYERS.ACTIVITY",
+              "route": "/admin/operations/players/activity",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.players.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Lịch sử hoạt động chưa được triển khai."
+              }
+            }
+          ],
+          "id": "OPERATIONS.PLAYERS",
+          "route": "/admin/operations/players",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P0"
+        },
+        {
+          "label": "Hỗ trợ & Game Master",
+          "children": [
+            {
+              "label": "Phiếu hỗ trợ",
+              "id": "OPERATIONS.SUPPORT.TICKETS",
+              "route": "/admin/operations/support/tickets",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.support.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Phiếu hỗ trợ chưa được triển khai."
+              }
+            },
+            {
+              "label": "Thư hệ thống",
+              "id": "OPERATIONS.SUPPORT.MAIL",
+              "route": "/admin/operations/support/mail",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.support.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Thư hệ thống chưa được triển khai."
+              }
+            },
+            {
+              "label": "Gửi quà / đền bù",
+              "id": "OPERATIONS.SUPPORT.COMPENSATION",
+              "route": "/admin/operations/support/compensation",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.support.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Gửi quà / đền bù chưa được triển khai."
+              }
+            },
+            {
+              "label": "Mã quà tặng",
+              "id": "OPERATIONS.SUPPORT.GIFT_CODES",
+              "route": "/admin/operations/support/gift-codes",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.support.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Mã quà tặng chưa được triển khai."
+              }
+            }
+          ],
+          "id": "OPERATIONS.SUPPORT",
+          "route": "/admin/operations/support",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P0"
+        },
+        {
+          "label": "Trận đấu & bảo mật",
+          "children": [
+            {
+              "label": "Lịch sử trận đấu",
+              "id": "OPERATIONS.BATTLES.HISTORY",
+              "route": "/admin/operations/battles/history",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.battles.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Lịch sử trận đấu chưa được triển khai."
+              }
+            },
+            {
+              "label": "Nhật ký trận đấu",
+              "id": "OPERATIONS.BATTLES.LOGS",
+              "route": "/admin/operations/battles/logs",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.battles.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Nhật ký trận đấu chưa được triển khai."
+              }
+            },
+            {
+              "label": "Cảnh báo bất thường",
+              "id": "OPERATIONS.BATTLES.ALERTS",
+              "route": "/admin/operations/battles/alerts",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.battles.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Cảnh báo bất thường chưa được triển khai."
+              }
+            },
+            {
+              "label": "Xử lý vi phạm",
+              "id": "OPERATIONS.BATTLES.VIOLATIONS",
+              "route": "/admin/operations/battles/violations",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.battles.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Xử lý vi phạm chưa được triển khai."
+              }
+            }
+          ],
+          "id": "OPERATIONS.BATTLES",
+          "route": "/admin/operations/battles",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P0"
+        },
+        {
+          "label": "Thống kê người chơi",
+          "children": [
+            {
+              "label": "DAU / MAU / CCU",
+              "id": "OPERATIONS.ANALYTICS.ACTIVE_USERS",
+              "route": "/admin/operations/analytics/active-users",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.analytics.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "DAU / MAU / CCU chưa được triển khai."
+              }
+            },
+            {
+              "label": "Giữ chân người chơi",
+              "id": "OPERATIONS.ANALYTICS.RETENTION",
+              "route": "/admin/operations/analytics/retention",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.analytics.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Giữ chân người chơi chưa được triển khai."
+              }
+            },
+            {
+              "label": "Tiến trình vượt ải",
+              "id": "OPERATIONS.ANALYTICS.PVE_PROGRESS",
+              "route": "/admin/operations/analytics/pve-progress",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.analytics.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Tiến trình vượt ải chưa được triển khai."
+              }
+            }
+          ],
+          "id": "OPERATIONS.ANALYTICS",
+          "route": "/admin/operations/analytics",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P1"
+        },
+        {
+          "label": "Thông báo vận hành",
+          "children": [
+            {
+              "label": "Thông báo trong game",
+              "id": "OPERATIONS.ANNOUNCEMENTS.IN_GAME",
+              "route": "/admin/operations/announcements/in-game",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.announcements.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Thông báo trong game chưa được triển khai."
+              }
+            },
+            {
+              "label": "Thông báo đẩy",
+              "id": "OPERATIONS.ANNOUNCEMENTS.PUSH",
+              "route": "/admin/operations/announcements/push",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.announcements.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Thông báo đẩy chưa được triển khai."
+              }
+            }
+          ],
+          "id": "OPERATIONS.ANNOUNCEMENTS",
+          "route": "/admin/operations/announcements",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P1"
+        }
+      ],
+      "route": "/admin/operations",
+      "level": 1,
+      "status": "PLANNED",
+      "priority": "P1"
+    },
+    {
+      "id": "GAME",
+      "label": "GAME",
+      "children": [
+        {
+          "label": "Tướng",
+          "children": [
+            {
+              "label": "Danh sách tướng",
+              "id": "GAME.HEROES.LIST",
+              "route": "/admin/game/heroes",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.heroes.read"
+              ],
+              "targetImplementation": "READ_ONLY",
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Danh sách tướng chưa được triển khai."
+              }
+            }
+          ],
+          "id": "GAME.HEROES",
+          "route": "/admin/game/heroes",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P0"
+        },
+        {
+          "label": "PvE - Ải",
+          "children": [
+            {
+              "label": "Chương",
+              "id": "GAME.PVE.CHAPTERS",
+              "route": "/admin/game/pve/chapters",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.pve.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Chương chưa được triển khai."
+              }
+            },
+            {
+              "label": "Màn / ải",
+              "id": "GAME.PVE.STAGES",
+              "route": "/admin/game/pve/stages",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.pve.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Màn / ải chưa được triển khai."
+              }
+            },
+            {
+              "label": "Đội hình địch",
+              "id": "GAME.PVE.ENEMIES",
+              "route": "/admin/game/pve/enemies",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.pve.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Đội hình địch chưa được triển khai."
+              }
+            },
+            {
+              "label": "AI & hành vi địch",
+              "id": "GAME.PVE.AI",
+              "route": "/admin/game/pve/ai",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.pve.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "AI & hành vi địch chưa được triển khai."
+              }
+            },
+            {
+              "label": "Wave / điều kiện thắng thua",
+              "id": "GAME.PVE.WAVES",
+              "route": "/admin/game/pve/waves",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.pve.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Wave / điều kiện thắng thua chưa được triển khai."
+              }
+            },
+            {
+              "label": "Phần thưởng ải",
+              "id": "GAME.PVE.REWARDS",
+              "route": "/admin/game/pve/rewards",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.pve.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Phần thưởng ải chưa được triển khai."
+              }
+            }
+          ],
+          "id": "GAME.PVE",
+          "route": "/admin/game/pve",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P0"
+        },
+        {
+          "label": "Bản đồ & chiến đấu",
+          "children": [
+            {
+              "label": "Danh sách bản đồ",
+              "id": "GAME.BATTLE.MAPS",
+              "route": "/admin/game/battle/maps",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.battle.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Danh sách bản đồ chưa được triển khai."
+              }
+            },
+            {
+              "label": "Quy tắc đội hình 5 tướng",
+              "id": "GAME.BATTLE.TEAMS",
+              "route": "/admin/game/battle/teams",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.battle.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Quy tắc đội hình 5 tướng chưa được triển khai."
+              }
+            },
+            {
+              "label": "Luật chọn mục tiêu / di chuyển",
+              "id": "GAME.BATTLE.TARGETING",
+              "route": "/admin/game/battle/targeting",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.battle.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Luật chọn mục tiêu / di chuyển chưa được triển khai."
+              }
+            },
+            {
+              "label": "Cấu hình trận đấu",
+              "id": "GAME.BATTLE.RULES",
+              "route": "/admin/game/battle/rules",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.battle.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Cấu hình trận đấu chưa được triển khai."
+              }
+            }
+          ],
+          "id": "GAME.BATTLE",
+          "route": "/admin/game/battle",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P0"
+        },
+        {
+          "label": "Vật phẩm & trang bị",
+          "children": [
+            {
+              "label": "Danh mục vật phẩm",
+              "id": "GAME.ITEMS.CATALOG",
+              "route": "/admin/game/items/catalog",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.items.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Danh mục vật phẩm chưa được triển khai."
+              }
+            },
+            {
+              "label": "Trang bị",
+              "id": "GAME.ITEMS.EQUIPMENT",
+              "route": "/admin/game/items/equipment",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.items.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Trang bị chưa được triển khai."
+              }
+            },
+            {
+              "label": "Nguyên liệu",
+              "id": "GAME.ITEMS.MATERIALS",
+              "route": "/admin/game/items/materials",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.items.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Nguyên liệu chưa được triển khai."
+              }
+            },
+            {
+              "label": "Bộ trang bị / thuộc tính",
+              "id": "GAME.ITEMS.SETS",
+              "route": "/admin/game/items/sets",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.items.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Bộ trang bị / thuộc tính chưa được triển khai."
+              }
+            }
+          ],
+          "id": "GAME.ITEMS",
+          "route": "/admin/game/items",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P0"
+        },
+        {
+          "label": "Phát triển tướng",
+          "children": [
+            {
+              "label": "Cấp độ & kinh nghiệm",
+              "id": "GAME.PROGRESSION.LEVELING",
+              "route": "/admin/game/progression/leveling",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.progression.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Cấp độ & kinh nghiệm chưa được triển khai."
+              }
+            },
+            {
+              "label": "Nâng sao / đột phá",
+              "id": "GAME.PROGRESSION.STARS",
+              "route": "/admin/game/progression/stars",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.progression.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Nâng sao / đột phá chưa được triển khai."
+              }
+            },
+            {
+              "label": "Tăng phẩm chất / thức tỉnh",
+              "id": "GAME.PROGRESSION.AWAKENING",
+              "route": "/admin/game/progression/awakening",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.progression.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Tăng phẩm chất / thức tỉnh chưa được triển khai."
+              }
+            }
+          ],
+          "id": "GAME.PROGRESSION",
+          "route": "/admin/game/progression",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P1"
+        },
+        {
+          "label": "Chiêu mộ cơ bản",
+          "children": [
+            {
+              "label": "Bể tướng / tỷ lệ",
+              "id": "GAME.SUMMON.POOLS",
+              "route": "/admin/game/summon/pools",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.summon.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Bể tướng / tỷ lệ chưa được triển khai."
+              }
+            },
+            {
+              "label": "Bảo hiểm chiêu mộ (pity)",
+              "id": "GAME.SUMMON.PITY",
+              "route": "/admin/game/summon/pity",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.summon.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Bảo hiểm chiêu mộ (pity) chưa được triển khai."
+              }
+            },
+            {
+              "label": "Quy tắc quay",
+              "id": "GAME.SUMMON.RULES",
+              "route": "/admin/game/summon/rules",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.summon.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Quy tắc quay chưa được triển khai."
+              }
+            }
+          ],
+          "id": "GAME.SUMMON",
+          "route": "/admin/game/summon",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P1"
+        },
+        {
+          "label": "Chế độ mở rộng",
+          "children": [
+            {
+              "label": "PvP / đấu trường",
+              "id": "GAME.EXTENDED.PVP",
+              "route": "/admin/game/extended/pvp",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P2",
+              "requiredPermissions": [
+                "admin.extended.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "PvP / đấu trường chưa được triển khai."
+              }
+            },
+            {
+              "label": "Bang hội",
+              "id": "GAME.EXTENDED.GUILDS",
+              "route": "/admin/game/extended/guilds",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P2",
+              "requiredPermissions": [
+                "admin.extended.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Bang hội chưa được triển khai."
+              }
+            },
+            {
+              "label": "Xếp hạng mùa giải",
+              "id": "GAME.EXTENDED.SEASONS",
+              "route": "/admin/game/extended/seasons",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P2",
+              "requiredPermissions": [
+                "admin.extended.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Xếp hạng mùa giải chưa được triển khai."
+              }
+            }
+          ],
+          "id": "GAME.EXTENDED",
+          "route": "/admin/game/extended",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P2"
+        }
+      ],
+      "route": "/admin/game",
+      "level": 1,
+      "status": "PLANNED",
+      "priority": "P0"
+    },
+    {
+      "id": "EVENTS",
+      "label": "SỰ KIỆN",
+      "children": [
+        {
+          "label": "Quản lý sự kiện",
+          "children": [
+            {
+              "label": "Lịch sự kiện",
+              "id": "EVENTS.MANAGEMENT.CALENDAR",
+              "route": "/admin/events/management/calendar",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.management.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Lịch sự kiện chưa được triển khai."
+              }
+            },
+            {
+              "label": "Danh sách sự kiện",
+              "id": "EVENTS.MANAGEMENT.LIST",
+              "route": "/admin/events/management/list",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.management.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Danh sách sự kiện chưa được triển khai."
+              }
+            },
+            {
+              "label": "Mẫu sự kiện",
+              "id": "EVENTS.MANAGEMENT.TEMPLATES",
+              "route": "/admin/events/management/templates",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.management.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Mẫu sự kiện chưa được triển khai."
+              }
+            },
+            {
+              "label": "Lịch sử sự kiện",
+              "id": "EVENTS.MANAGEMENT.HISTORY",
+              "route": "/admin/events/management/history",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.management.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Lịch sử sự kiện chưa được triển khai."
+              }
+            }
+          ],
+          "id": "EVENTS.MANAGEMENT",
+          "route": "/admin/events/management",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P1"
+        },
+        {
+          "label": "Hoạt động định kỳ",
+          "children": [
+            {
+              "label": "Điểm danh",
+              "id": "EVENTS.RECURRING.LOGIN",
+              "route": "/admin/events/recurring/login",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.recurring.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Điểm danh chưa được triển khai."
+              }
+            },
+            {
+              "label": "Nhiệm vụ ngày / tuần",
+              "id": "EVENTS.RECURRING.MISSIONS",
+              "route": "/admin/events/recurring/missions",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.recurring.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Nhiệm vụ ngày / tuần chưa được triển khai."
+              }
+            },
+            {
+              "label": "Thành tựu",
+              "id": "EVENTS.RECURRING.ACHIEVEMENTS",
+              "route": "/admin/events/recurring/achievements",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.recurring.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Thành tựu chưa được triển khai."
+              }
+            }
+          ],
+          "id": "EVENTS.RECURRING",
+          "route": "/admin/events/recurring",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P1"
+        },
+        {
+          "label": "Sự kiện đặc biệt",
+          "children": [
+            {
+              "label": "Thử thách giới hạn thời gian",
+              "id": "EVENTS.SPECIAL.CHALLENGE",
+              "route": "/admin/events/special/challenge",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.special.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Thử thách giới hạn thời gian chưa được triển khai."
+              }
+            },
+            {
+              "label": "Thu thập / đổi quà",
+              "id": "EVENTS.SPECIAL.EXCHANGE",
+              "route": "/admin/events/special/exchange",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.special.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Thu thập / đổi quà chưa được triển khai."
+              }
+            },
+            {
+              "label": "Bảng xếp hạng sự kiện",
+              "id": "EVENTS.SPECIAL.LEADERBOARDS",
+              "route": "/admin/events/special/leaderboards",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.special.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Bảng xếp hạng sự kiện chưa được triển khai."
+              }
+            }
+          ],
+          "id": "EVENTS.SPECIAL",
+          "route": "/admin/events/special",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P1"
+        },
+        {
+          "label": "Chiêu mộ theo sự kiện",
+          "children": [
+            {
+              "label": "Banner giới hạn",
+              "id": "EVENTS.BANNERS.LIST",
+              "route": "/admin/events/banners/list",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P2",
+              "requiredPermissions": [
+                "admin.banners.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Banner giới hạn chưa được triển khai."
+              }
+            },
+            {
+              "label": "Tướng tăng tỷ lệ",
+              "id": "EVENTS.BANNERS.RATE_UP",
+              "route": "/admin/events/banners/rate-up",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P2",
+              "requiredPermissions": [
+                "admin.banners.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Tướng tăng tỷ lệ chưa được triển khai."
+              }
+            },
+            {
+              "label": "Lịch banner",
+              "id": "EVENTS.BANNERS.SCHEDULE",
+              "route": "/admin/events/banners/schedule",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P2",
+              "requiredPermissions": [
+                "admin.banners.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Lịch banner chưa được triển khai."
+              }
+            }
+          ],
+          "id": "EVENTS.BANNERS",
+          "route": "/admin/events/banners",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P2"
+        }
+      ],
+      "route": "/admin/events",
+      "level": 1,
+      "status": "PLANNED",
+      "priority": "P1"
+    },
+    {
+      "id": "FINANCE",
+      "label": "TÀI CHÍNH",
+      "children": [
+        {
+          "label": "Kinh tế game",
+          "children": [
+            {
+              "label": "Danh mục tiền tệ",
+              "id": "FINANCE.ECONOMY.CURRENCIES",
+              "route": "/admin/finance/economy/currencies",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.economy.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Danh mục tiền tệ chưa được triển khai."
+              }
+            },
+            {
+              "label": "Nguồn nhận / tiêu hao",
+              "id": "FINANCE.ECONOMY.SOURCES_SINKS",
+              "route": "/admin/finance/economy/sources-sinks",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.economy.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Nguồn nhận / tiêu hao chưa được triển khai."
+              }
+            },
+            {
+              "label": "Cấu hình giá / chi phí",
+              "id": "FINANCE.ECONOMY.PRICES",
+              "route": "/admin/finance/economy/prices",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.economy.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Cấu hình giá / chi phí chưa được triển khai."
+              }
+            },
+            {
+              "label": "Kiểm soát lạm phát",
+              "id": "FINANCE.ECONOMY.INFLATION",
+              "route": "/admin/finance/economy/inflation",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.economy.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Kiểm soát lạm phát chưa được triển khai."
+              }
+            }
+          ],
+          "id": "FINANCE.ECONOMY",
+          "route": "/admin/finance/economy",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P1"
+        },
+        {
+          "label": "Cửa hàng",
+          "children": [
+            {
+              "label": "Danh mục sản phẩm",
+              "id": "FINANCE.SHOP.PRODUCTS",
+              "route": "/admin/finance/shop/products",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.shop.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Danh mục sản phẩm chưa được triển khai."
+              }
+            },
+            {
+              "label": "Gói bán / bundle",
+              "id": "FINANCE.SHOP.BUNDLES",
+              "route": "/admin/finance/shop/bundles",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.shop.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Gói bán / bundle chưa được triển khai."
+              }
+            },
+            {
+              "label": "Giới hạn mua",
+              "id": "FINANCE.SHOP.LIMITS",
+              "route": "/admin/finance/shop/limits",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.shop.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Giới hạn mua chưa được triển khai."
+              }
+            },
+            {
+              "label": "Lịch bán",
+              "id": "FINANCE.SHOP.SCHEDULE",
+              "route": "/admin/finance/shop/schedule",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.shop.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Lịch bán chưa được triển khai."
+              }
+            }
+          ],
+          "id": "FINANCE.SHOP",
+          "route": "/admin/finance/shop",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P1"
+        },
+        {
+          "label": "Thanh toán",
+          "children": [
+            {
+              "label": "Đơn hàng",
+              "id": "FINANCE.PAYMENTS.ORDERS",
+              "route": "/admin/finance/payments/orders",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P2",
+              "requiredPermissions": [
+                "admin.payments.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Đơn hàng chưa được triển khai."
+              }
+            },
+            {
+              "label": "Giao dịch thanh toán",
+              "id": "FINANCE.PAYMENTS.TRANSACTIONS",
+              "route": "/admin/finance/payments/transactions",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P2",
+              "requiredPermissions": [
+                "admin.payments.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Giao dịch thanh toán chưa được triển khai."
+              }
+            },
+            {
+              "label": "Hoàn tiền / đối soát",
+              "id": "FINANCE.PAYMENTS.REFUNDS",
+              "route": "/admin/finance/payments/refunds",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P2",
+              "requiredPermissions": [
+                "admin.payments.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Hoàn tiền / đối soát chưa được triển khai."
+              }
+            },
+            {
+              "label": "Cấu hình nhà cung cấp",
+              "id": "FINANCE.PAYMENTS.PROVIDERS",
+              "route": "/admin/finance/payments/providers",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P2",
+              "requiredPermissions": [
+                "admin.payments.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Cấu hình nhà cung cấp chưa được triển khai."
+              }
+            }
+          ],
+          "id": "FINANCE.PAYMENTS",
+          "route": "/admin/finance/payments",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P2"
+        },
+        {
+          "label": "Báo cáo tài chính",
+          "children": [
+            {
+              "label": "Doanh thu",
+              "id": "FINANCE.REPORTS.REVENUE",
+              "route": "/admin/finance/reports/revenue",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P2",
+              "requiredPermissions": [
+                "admin.reports.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Doanh thu chưa được triển khai."
+              }
+            },
+            {
+              "label": "ARPU / ARPPU",
+              "id": "FINANCE.REPORTS.ARPU",
+              "route": "/admin/finance/reports/arpu",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P2",
+              "requiredPermissions": [
+                "admin.reports.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "ARPU / ARPPU chưa được triển khai."
+              }
+            },
+            {
+              "label": "Giao dịch bất thường",
+              "id": "FINANCE.REPORTS.ANOMALIES",
+              "route": "/admin/finance/reports/anomalies",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P2",
+              "requiredPermissions": [
+                "admin.reports.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Giao dịch bất thường chưa được triển khai."
+              }
+            }
+          ],
+          "id": "FINANCE.REPORTS",
+          "route": "/admin/finance/reports",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P2"
+        }
+      ],
+      "route": "/admin/finance",
+      "level": 1,
+      "status": "PLANNED",
+      "priority": "P1"
+    },
+    {
+      "id": "SYSTEM",
+      "label": "HỆ THỐNG",
+      "children": [
+        {
+          "label": "Cấu hình & phát hành",
+          "children": [
+            {
+              "label": "Cấu hình game",
+              "id": "SYSTEM.CONFIG.GAME",
+              "route": "/admin/system/config/game",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.config.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Cấu hình game chưa được triển khai."
+              }
+            },
+            {
+              "label": "Bản nháp / phiên bản cấu hình",
+              "id": "SYSTEM.CONFIG.VERSIONS",
+              "route": "/admin/system/config/versions",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.config.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Bản nháp / phiên bản cấu hình chưa được triển khai."
+              }
+            },
+            {
+              "label": "Xuất bản / rollback",
+              "id": "SYSTEM.CONFIG.RELEASES",
+              "route": "/admin/system/config/releases",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.config.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Xuất bản / rollback chưa được triển khai."
+              }
+            },
+            {
+              "label": "Bảo trì / phiên bản client",
+              "id": "SYSTEM.CONFIG.MAINTENANCE",
+              "route": "/admin/system/config/maintenance",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.config.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Bảo trì / phiên bản client chưa được triển khai."
+              }
+            }
+          ],
+          "id": "SYSTEM.CONFIG",
+          "route": "/admin/system/config",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P0"
+        },
+        {
+          "label": "Thư viện tài nguyên",
+          "children": [
+            {
+              "label": "Hình ảnh 2D",
+              "id": "SYSTEM.ASSETS.IMAGES",
+              "route": "/admin/system/assets/images",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.assets.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Hình ảnh 2D chưa được triển khai."
+              }
+            },
+            {
+              "label": "Model 3D",
+              "id": "SYSTEM.ASSETS.MODELS",
+              "route": "/admin/system/assets/models",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.assets.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Model 3D chưa được triển khai."
+              }
+            },
+            {
+              "label": "Rig / Animation",
+              "id": "SYSTEM.ASSETS.ANIMATIONS",
+              "route": "/admin/system/assets/animations",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.assets.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Rig / Animation chưa được triển khai."
+              }
+            },
+            {
+              "label": "VFX / SFX",
+              "id": "SYSTEM.ASSETS.EFFECTS",
+              "route": "/admin/system/assets/effects",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.assets.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "VFX / SFX chưa được triển khai."
+              }
+            },
+            {
+              "label": "Unity Asset Mapping",
+              "id": "SYSTEM.ASSETS.UNITY_MAPPINGS",
+              "route": "/admin/system/assets/unity-mappings",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.assets.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Unity Asset Mapping chưa được triển khai."
+              }
+            }
+          ],
+          "id": "SYSTEM.ASSETS",
+          "route": "/admin/system/assets",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P0"
+        },
+        {
+          "label": "Admin & phân quyền",
+          "children": [
+            {
+              "label": "Tài khoản Admin",
+              "id": "SYSTEM.ACCESS.USERS",
+              "route": "/admin/system/access/users",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.access.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Tài khoản Admin chưa được triển khai."
+              }
+            },
+            {
+              "label": "Vai trò / quyền hạn",
+              "id": "SYSTEM.ACCESS.ROLES",
+              "route": "/admin/system/access/roles",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.access.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Vai trò / quyền hạn chưa được triển khai."
+              }
+            },
+            {
+              "label": "Phiên đăng nhập",
+              "id": "SYSTEM.ACCESS.SESSIONS",
+              "route": "/admin/system/access/sessions",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.access.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Phiên đăng nhập chưa được triển khai."
+              }
+            }
+          ],
+          "id": "SYSTEM.ACCESS",
+          "route": "/admin/system/access",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P0"
+        },
+        {
+          "label": "Nhật ký & giám sát",
+          "children": [
+            {
+              "label": "Audit Log",
+              "id": "SYSTEM.MONITORING.AUDIT",
+              "route": "/admin/system/monitoring/audit",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.monitoring.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Audit Log chưa được triển khai."
+              }
+            },
+            {
+              "label": "Lỗi hệ thống",
+              "id": "SYSTEM.MONITORING.ERRORS",
+              "route": "/admin/system/monitoring/errors",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.monitoring.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Lỗi hệ thống chưa được triển khai."
+              }
+            },
+            {
+              "label": "Hàng đợi / tác vụ nền",
+              "id": "SYSTEM.MONITORING.JOBS",
+              "route": "/admin/system/monitoring/jobs",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.monitoring.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Hàng đợi / tác vụ nền chưa được triển khai."
+              }
+            },
+            {
+              "label": "Sao lưu / phục hồi",
+              "id": "SYSTEM.MONITORING.BACKUPS",
+              "route": "/admin/system/monitoring/backups",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P0",
+              "requiredPermissions": [
+                "admin.monitoring.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Sao lưu / phục hồi chưa được triển khai."
+              }
+            }
+          ],
+          "id": "SYSTEM.MONITORING",
+          "route": "/admin/system/monitoring",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P0"
+        },
+        {
+          "label": "Tích hợp",
+          "children": [
+            {
+              "label": "Object Storage / CDN",
+              "id": "SYSTEM.INTEGRATIONS.STORAGE",
+              "route": "/admin/system/integrations/storage",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.integrations.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Object Storage / CDN chưa được triển khai."
+              }
+            },
+            {
+              "label": "Analytics / Telemetry",
+              "id": "SYSTEM.INTEGRATIONS.ANALYTICS",
+              "route": "/admin/system/integrations/analytics",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.integrations.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Analytics / Telemetry chưa được triển khai."
+              }
+            },
+            {
+              "label": "Push / Email",
+              "id": "SYSTEM.INTEGRATIONS.MESSAGING",
+              "route": "/admin/system/integrations/messaging",
+              "level": 3,
+              "status": "PLANNED",
+              "priority": "P1",
+              "requiredPermissions": [
+                "admin.integrations.read"
+              ],
+              "placeholder": {
+                "title": "Chức năng đang phát triển",
+                "description": "Push / Email chưa được triển khai."
+              }
+            }
+          ],
+          "id": "SYSTEM.INTEGRATIONS",
+          "route": "/admin/system/integrations",
+          "level": 2,
+          "status": "PLANNED",
+          "priority": "P1"
+        }
+      ],
+      "route": "/admin/system",
+      "level": 1,
+      "status": "PLANNED",
+      "priority": "P0"
+    }
+  ],
+  "heroListRoute": "/admin/game/heroes",
+  "heroDetailTabLabels": {
+    "overview": "Tổng quan",
+    "media": "Hình ảnh 2D",
+    "model": "Model 3D",
+    "rig": "Rig & xương",
+    "animations": "Animation",
+    "skills": "Kỹ năng & hiệu ứng",
+    "stats": "Chỉ số",
+    "progression": "Phát triển",
+    "skins": "Skin",
+    "relations": "Liên kết",
+    "versions": "Lịch sử"
+  },
+  "heroNavigationRules": {
+    "entry": "Game > Tướng > Danh sách tướng",
+    "onHeroClick": "Điều hướng /admin/game/heroes/detail/:heroId?tab=overview bằng heroId của hàng được chọn.",
+    "skills": "Hiển thị skills, effects, VFX, SFX trong tab skills của tướng, mở detail bằng panel/drawer, không tạo sidebar độc lập.",
+    "heroTabsAreSidebarItems": false,
+    "activeSidebarId": "GAME.HEROES.LIST",
+    "legacyRoutes": "Các liên kết menu kỹ năng/chỉ số/animation cũ nếu có phải redirect đến /admin/game/heroes.",
+    "unavailable": "Tính năng PLANNED: đang phát triển; dữ liệu trống: chưa có dữ liệu; lỗi API: hiển thị lỗi và retry."
+  }
+}

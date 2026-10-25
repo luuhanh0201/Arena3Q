@@ -1,0 +1,38 @@
+{
+  "name": "arena3q-admin",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "start": "node scripts/start-production.cjs",
+    "setup": "npm run build:contracts && tsx scripts/setup.ts",
+    "import:unity": "tsx scripts/import-unity.ts",
+    "build:contracts": "npm run build -w @arena3q/contracts",
+    "dev": "npm run build:contracts && concurrently -k -n API,WEB \"npm run dev -w @arena3q/api\" \"npm run dev -w @arena3q/web\"",
+    "build": "npm run build:contracts && npm run build -w @arena3q/api && npm run build -w @arena3q/web",
+    "typecheck": "npm run build:contracts && npm run typecheck -w @arena3q/api && npm run typecheck -w @arena3q/web",
+    "test": "npm run build:contracts && npm run build -w @arena3q/api && vitest run",
+    "test:e2e": "playwright test",
+    "db:migrate": "npm run build:contracts && npm run db:migrate -w @arena3q/api"
+  },
+  "overrides": {
+    "multer": "2.5.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^24.0.0",
+    "concurrently": "^9.2.0",
+    "prettier": "^3.6.2",
+    "sharp": "^0.34.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.0",
+    "yaml": "^2.8.0"
+  }
+}

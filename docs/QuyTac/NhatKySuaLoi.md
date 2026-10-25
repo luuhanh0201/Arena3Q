@@ -1,5 +1,14 @@
 # Nhật ký sửa lỗi – Arena3Q
 
+## Admin P0: bộ lọc hồ sơ và timeline GLB (25/10/2026, Codex)
+
+- Liên kết từ tên/portrait/nút mở/tài nguyên của một dòng ban đầu không mang `returnTo`, trong khi bấm nền dòng có mang. Quay lại mất bộ lọc. Đồng bộ mọi lối mở hồ sơ với URL danh sách hiện tại; Playwright tìm `lu bo`, mở tên Lữ Bố, đổi 11 tab, reload rồi quay lại phải còn bộ lọc và một dòng.
+- Timeline GLB đọc `event.target.value` bên trong updater trì hoãn của React; controlled range có thể đã được khôi phục về giá trị frame cũ. Chụp số ngay trong event handler trước khi gọi updater và cập nhật time hiển thị. Kiểm bằng GLB fixture có clip thật, pause rồi seek, đổi speed/camera/shading và tải screenshot. Fixture chỉ nằm trong test, không nhập DB hoặc game.
+- Khi đọc YAML Unity, số fileID 64 bit không được chuyển thẳng thành Number. Parse BigInt rồi chỉ chuyển số trong miền safe integer; giữ ID lớn dưới dạng chuỗi để không resolve nhầm sprite. Không lấy growth profile làm vai trò tướng, không đếm socket 2D thành rig 3D, extra skill binding không tự gán slot gameplay.
+- Audit npm phát hiện multer 2.4.0 trong Nest platform-express bị advisory `GHSA-q7qp-rjg7-q26m`; pin override bản vá 2.5.0 và kiểm lại lockfile/audit. P0 chưa có upload endpoint; không dùng auto-fix hạ Nest khác major.
+- Xem screenshot production thấy khoảng cách và cỡ chữ đăng nhập bị co: reset typography đặt ngoài CSS layer lấn utility Tailwind v4. Chuyển reset vào `@layer base` để `mt/mb/text/color` hoạt động đúng; chụp lại cùng viewport 1600×1000. Biểu đồ snapshot tắt animation mở đầu để ảnh/report luôn phản ánh ngay số đếm thật.
+
+
 ## UI neo mép, đóng form và chuyển màn (24/10/2026, Codex)
 
 - Loa/ngôn ngữ và thẻ Khách đặt trong DesignFrame 1280 nên trôi vào giữa trên màn rộng. Tách EdgeControls stretch theo SafeArea, neo cụm phải bằng anchor phải và thẻ người chơi vào mép trái; giữ nội dung trung tâm trong DesignFrame. Đối chiếu 16:9, 2340×1080 và vùng khuyết giả lập bằng bounds cùng ảnh thật.
