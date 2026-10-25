@@ -183,3 +183,8 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
 - APK mobile đã build Succeeded, nhưng bước kiểm packedSize cuối bị chặn do phép tính ceil(height/4) thiếu ngoặc trong phiên code đã nạp của Unity: nhân rồi chia làm expected cao hơn payload thật. Log phong_ma1577656byte (ASTCpayload1577536+metadata120). Đã sửa phép tính thành tích hai ceil riêng; chạy lại kiểm BuildReport đã tạo, không đổi ảnh hoặc build game để né kiểm. Phải giữ QA và chỉ bàn giao sau khi bước kiểm sửa đạt.
 
 - Kiểm ZIP APK mobile đầu thấy payload276.011.465byte nhưng file398.940.694byte, overhead122.929.229byte; icon packed thật chỉ61.528.848byte/39ảnh. Gói Gradle incremental giữ vùng dữ liệu đã thay nên giảm texture chưa giảm fileAPK. Thêm cờ recreateAndroidPackage cho mobile: chỉ bỏ đúng launcher-debug.apk sinh trong Library/Bee/Android trước build để Gradle tạo ZIP sạch, giữ APK bàn giao cũ và cachecode/nguồn. Kiểm lại chữ ký và payload sau đóng gói; không xóa tùy tiện padding16KB hoặc repack gói đã ký.
+
+## 25/10 - Camera mobile vượt map khi thu nhỏ
+- Người dùng và ảnh máy thật phát hiện nền đen quanh map. allowMapOverview bypass giới hạn zoom; FitCamera dùng contain kèm padding; kiểm tâm không chặn được viewport lớn hơn map.
+- Sửa giới hạn cả kích thước và tâm theo bounds chiếu, bỏ bypass khỏi camera chơi, HUD theo safe area. Không thêm lại terrain ngoài biên hoặc thay model.
+- Phòng tránh: kiểm ray các góc viewport sau startup/zoom/pan/resize/đổi tilt; ảnh overview khi tắt controller không thay thế kiểm camera thật. 17 PlayMode gồm kiểm viewport/HUD đã qua; cần ảnh máy thật sau cài bản sửa.

@@ -634,7 +634,7 @@ namespace Arena3Q.Editor
             for(int i=0;i<8;i++)gateState.runes[i]=root.Find("BattleCenter/ExistingOctagonalPillarsAndRunes/Rune "+i).GetComponent<MeshRenderer>();
             var startup = battle.GetComponent<BattlefieldStartup>() ?? battle.gameObject.AddComponent<BattlefieldStartup>();startup.battle=battle;startup.view=view;
             var controller = camera.GetComponent<BattleCameraController>();
-            var cameraSo = new SerializedObject(controller);cameraSo.FindProperty("startOrthographicSize").floatValue=environment.battleCamera.orthographicSize;cameraSo.FindProperty("maxOrthographicSize").floatValue=environment.battleCamera.orthographicSize;cameraSo.FindProperty("minOrthographicSize").floatValue=8f;cameraSo.FindProperty("allowMapOverview").boolValue=true;cameraSo.ApplyModifiedPropertiesWithoutUndo();
+            var cameraSo = new SerializedObject(controller);cameraSo.FindProperty("startOrthographicSize").floatValue=environment.battleCamera.orthographicSize;cameraSo.FindProperty("maxOrthographicSize").floatValue=environment.battleCamera.orthographicSize;cameraSo.FindProperty("minOrthographicSize").floatValue=8f;cameraSo.ApplyModifiedPropertiesWithoutUndo();
             var spawnRoot=Group("SpawnPoints",root);
             foreach(var point in stages[0].QuickSummonPoints){var marker=Group("PlayerSpawn",spawnRoot);marker.position=_config.Point(point);}
             Group("Navigation",root);

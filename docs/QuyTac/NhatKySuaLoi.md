@@ -454,3 +454,9 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 - Phòng tránh: kiểm người chơi mới và quay lại từ Frontend tới tên scene thật, kích thước map và thưởng tutorial; không nghiệm thu chỉ từ kiểm scene map riêng hoặc danh sách file build. URL payload web thêm hash nội dung để tránh cache bản cũ.
 - Trong khi tích hợp phát hiện BattlefieldQuality còn cho Low/Medium target30, trái quy tắc60FPS đã chốt. Chặn giá trị dưới RuntimePerformanceConfig.MinimumFrameRate; không coi đặt target là kết quả FPS thiết bị.
 - Fixture dữ liệu lần đầu dùng Count trên WaveSpawn[] nên chưa compile; sửa Length, lượt sau4/4Edit và14/14Play qua. Kiểm kiểu trả về của dữ liệu trước khi viết assertion.
+
+## 25/10 - Mobile thu nhỏ ra nền đen và HUD chạm thanh điều hướng
+- Người dùng báo và ảnh điện thoại xác nhận map nằm trong vùng camera đen khi zoom xa. Scene Battlefield bật allowMapOverview, bỏ giới hạn zoom theo bản đồ; FitCamera còn dùng phép fit chứa cả map kèm padding. ClampCenter chỉ đưa tâm về giữa, không thu viewport lớn hơn map. Khởi tạo/resize/đổi tilt cũng không clamp lại kích thước.
+- Sửa: bỏ bypass overview khỏi camera chơi; giới hạn kích thước và tâm ở mọi lần cập nhật theo bounds đã chiếu, FitCamera dùng viewport nằm trong map. Không thêm lại nền ngoài biên người dùng đã bỏ.
+- HUD gắn UiSafeArea cập nhật khi cutout/nav bar thay đổi; giữ style/nội dung mobile. Thanh Android vẫn do ImmersiveScreen quản lý, không thay thiết lập điều hướng của thiết bị.
+- Phòng tránh: kiểm các góc ray-ground của viewport sau zoom cực đại, pan bốn mép, thay tỷ lệ màn hình và tilt; không chỉ kiểm tâm camera hoặc ảnh overview với controller bị tắt. Kiểm HUD trong safe area giả lập và ảnh máy thật.

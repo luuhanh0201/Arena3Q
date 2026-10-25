@@ -524,7 +524,6 @@ MonoBehaviour:
   maxOrthographicSize: 24.75
   startOrthographicSize: 24.75
   followSharpness: 4
-  allowMapOverview: 1
 --- !u!1 &580233618
 GameObject:
   m_ObjectHideFlags: 0

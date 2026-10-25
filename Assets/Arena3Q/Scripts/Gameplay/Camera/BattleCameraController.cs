@@ -18,8 +18,6 @@ namespace Arena3Q.Gameplay
         [SerializeField, Min(0.1f)] private float startOrthographicSize = 7f;
         [Tooltip("How quickly the camera catches up with the followed hero.")]
         [SerializeField, Min(0.1f)] private float followSharpness = 4f;
-        [Tooltip("Scene-specific overview may include the environment rim outside the gameplay rectangle.")]
-        [SerializeField] private bool allowMapOverview;
 
         private Camera _camera;
         private bool _followPaused;
@@ -101,7 +99,7 @@ namespace Arena3Q.Gameplay
             if (factor <= 0f || battle == null || battle.Stage == null)
                 return;
             var before = ScreenToPlane(screenFocus);
-            var maxSize = allowMapOverview ? maxOrthographicSize : Mathf.Min(maxOrthographicSize, CameraMath.MaxOrthographicSize(battle.ViewBounds, Camera.aspect));
+            var maxSize = Mathf.Min(maxOrthographicSize, CameraMath.MaxOrthographicSize(battle.ViewBounds, Camera.aspect));
             Camera.orthographicSize = Mathf.Clamp(Camera.orthographicSize * factor, Mathf.Min(minOrthographicSize, maxSize), maxSize);
             var after = ScreenToPlane(screenFocus);
             SetCenter(_center + (before - after));
@@ -185,7 +183,13 @@ namespace Arena3Q.Gameplay
         private void SetCenter(Vector2 center)
         {
             if (battle != null && battle.Stage != null)
+            {
+                // Clamp the size too: startup, aspect/tilt changes and external FitCamera calls can all
+                // leave a viewport larger than the ground even without a pinch/scroll event.
+                float maxSize = Mathf.Min(maxOrthographicSize, CameraMath.MaxOrthographicSize(battle.ViewBounds, Camera.aspect));
+                Camera.orthographicSize = Mathf.Clamp(Camera.orthographicSize, Mathf.Min(minOrthographicSize, maxSize), maxSize);
                 center = CameraMath.ClampCenter(battle.ViewBounds, center, Camera.orthographicSize, Camera.aspect);
+            }
             _center = center;
             if (battle != null && battle.Presentation3D)
                 BattleView3D.PlaceCamera(transform, battle, TiltedViewMath.PlaneToGround(center, battle.GroundProjection));

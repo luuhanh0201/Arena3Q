@@ -194,6 +194,8 @@ namespace Arena3Q.UI
         {
             _canvas = UiFactory.CreateCanvas(transform, "HUD Canvas", 10);
             var root = (RectTransform)_canvas.transform;
+            root = UiFactory.Stretch("Safe HUD", root);
+            root.gameObject.AddComponent<UiSafeArea>();
 
             // Off-screen icons sit under everything else so cards stay tappable.
             var indicatorRoot = UiFactory.Stretch("EdgeIcons", root);

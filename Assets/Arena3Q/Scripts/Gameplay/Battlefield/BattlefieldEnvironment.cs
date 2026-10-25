@@ -1,4 +1,5 @@
 using Arena3Q.Data;
+using Arena3Q.Core;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -57,8 +58,13 @@ namespace Arena3Q.Gameplay
             float elevation = config.cameraElevation * Mathf.Deg2Rad;
             float halfWidth = config.size.x * .5f;
             float halfDepth = config.size.y * .5f;
-            battleCamera.orthographicSize = Mathf.Max(halfWidth / Mathf.Max(.5f, battleCamera.aspect), halfDepth * Mathf.Sin(elevation)) * config.cameraPadding;
+            var projected = new Rect(-halfWidth, -halfDepth * Mathf.Sin(elevation), config.size.x, config.size.y * Mathf.Sin(elevation));
+            // The old fit contained the whole map with padding, exposing the camera clear colour.
+            // Gameplay must cover the viewport; the player can pan to the remaining map edges.
+            battleCamera.orthographicSize = CameraMath.MaxOrthographicSize(projected, battleCamera.aspect);
             Vector3 focus = new Vector3(config.cameraOffset.x, 0f, config.cameraOffset.y);
+            var centre = CameraMath.ClampCenter(projected, new Vector2(focus.x, focus.z * Mathf.Sin(elevation)), battleCamera.orthographicSize, battleCamera.aspect);
+            focus = new Vector3(centre.x, 0f, centre.y / Mathf.Max(.01f, Mathf.Sin(elevation)));
             battleCamera.transform.position = focus + new Vector3(0f, Mathf.Sin(elevation), -Mathf.Cos(elevation)) * 100f;
             battleCamera.transform.rotation = Quaternion.LookRotation(focus - battleCamera.transform.position, Vector3.up);
             battleCamera.nearClipPlane = .3f; battleCamera.farClipPlane = 240f;
