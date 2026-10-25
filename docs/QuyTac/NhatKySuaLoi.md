@@ -1,5 +1,12 @@
 # Nhật ký sửa lỗi – Arena3Q
 
+## Admin: ảnh tràn, preview và form kỹ năng (25/10/2026, Codex)
+
+- Gallery đặt ảnh 512 px trong grid cao 256 px nhưng chưa chặn intrinsic sizing, ảnh chồng phần tên. Cho ảnh absolute trong khung relative có overflow hidden/object-contain; portrait và zoom dùng cùng nguyên tắc. Browser kiểm hình nằm trong khung, PNG full trả đúng pixel nguồn; thumbnail WebP có MIME riêng.
+- Loading overlay bằng Drei Html trong Suspense/Canvas gây DOM removeChild khi React 19 chuyển route. Đưa overlay ra ngoài Canvas, Suspense fallback null; kiểm chuyển model/animation và thu mọi pageerror, không bỏ qua lỗi.
+- Form có min=0 khiến native validation chặn submit trước RHF/Zod, nên thiếu thông báo lỗi trong form. Dùng noValidate để một luồng validation hiện alert; API vẫn kiểm độc lập và từ chối giá trị âm.
+- Skill YAML cần giữ header Unity, reference 64 bit và chỉ ghi trường cho phép. Kiểm HTTP bằng nguồn fixture, backup/audit, xung đột SHA/revision và phục hồi khi DB ghi lỗi; Unity EditMode đọc fixture thành SkillDefinition thật. Không dùng test này để khẳng định đã chỉnh cân bằng mọi chiêu hay APK cũ đã nhận số mới.
+
 ## Admin P0: bộ lọc hồ sơ và timeline GLB (25/10/2026, Codex)
 
 - Bổ sung theo yêu cầu phiên 365 ngày: đổi default/env/Compose thành 8760 giờ, cùng hạn ở bản ghi server và cookie. Chỉ sửa TTL trong JSON không đổi hạn cookie cũ, nên `/auth/me` cấp lại cookie theo hạn còn lại của phiên đã xác thực; không rolling hạn server. Migration local sao lưu DB, chỉ gia hạn phiên còn sống của user active, không hồi sinh phiên hết hạn; test HTTP kiểm Max-Age, hạn cố định và logout thu hồi.

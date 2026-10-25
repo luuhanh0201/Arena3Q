@@ -219,37 +219,31 @@ export async function importUnity(
             return item;
           }
         }
-        item.storageKey = `unity/${id}/preview.webp`;
+        item.storageKey = `unity/${id}/original.png`;
         item.thumbnailKey = `unity/${id}/thumbnail.webp`;
         await fs.mkdir(path.join(privateRoot, "unity", id), {
           recursive: true,
         });
         const pixels = await image.png().toBuffer();
+        // Full preview preserves source pixels and alpha. Only list thumbnails are resized.
+        await fs.writeFile(path.join(privateRoot, item.storageKey), pixels);
         await sharp(pixels)
           .resize({
-            width: 1200,
-            height: 1200,
+            width: 320,
+            height: 320,
             fit: "inside",
             withoutEnlargement: true,
           })
-          .webp({ quality: 88 })
-          .toFile(path.join(privateRoot, item.storageKey));
-        await sharp(pixels)
-          .resize({
-            width: 160,
-            height: 160,
-            fit: "inside",
-            withoutEnlargement: true,
-          })
-          .webp({ quality: 82 })
+          .webp({ lossless: true })
           .toFile(path.join(privateRoot, item.thumbnailKey));
-        item.contentType = "image/webp";
+        item.contentType = "image/png";
         item.browserCompatible = true;
         item.metadata = {
           ...item.metadata,
           alpha: info.hasAlpha ?? null,
           colorSpace: info.space ?? null,
-          previewFormat: "webp",
+          previewFormat: "png",
+          quality: "SOURCE_PIXELS_LOSSLESS",
           originalFormat: extension,
         };
       } catch (error) {
@@ -364,6 +358,31 @@ export async function importUnity(
       ...(raw.skills ?? []),
       ...(animation?.skills ?? []).map((binding: any) => binding.skill),
     ];
+    const equippedGuids = new Set(
+      (raw.skills ?? []).map((reference: any) => reference.guid),
+    );
+    const boundGuids = new Set(
+      (animation?.skills ?? []).map((binding: any) => binding.skill?.guid),
+    );
+    const skillFolders = [
+      ...new Set(
+        references
+          .map(resolve)
+          .filter(Boolean)
+          .map((file: string) => path.dirname(file)),
+      ),
+    ];
+    for (const folder of skillFolders)
+      for (const file of await walk(folder, ".asset")) {
+        const source = (await load(file)).MonoBehaviour;
+        if (!source?.skillId) continue;
+        const metadata = await load(file + ".meta");
+        if (
+          metadata.guid &&
+          !references.some((reference: any) => reference.guid === metadata.guid)
+        )
+          references.push({ guid: metadata.guid, fileID: 11400000 });
+      }
     for (const [index, reference] of references.entries()) {
       const skillPath = resolve(reference);
       if (!skillPath) {
@@ -376,13 +395,27 @@ export async function importUnity(
       const icon = await asset(skill.icon, "SKILL_ICON");
       if (icon) heroAssets.push(icon.id);
       skills.push({
+        sourceVersion: hash(await fs.readFile(skillPath)),
+        iconAssetId: icon?.browserCompatible ? icon.id : null,
+        usage: {
+          status: equippedGuids.has(reference.guid)
+            ? "EQUIPPED"
+            : boundGuids.has(reference.guid)
+              ? "ANIMATION_ONLY"
+              : "UNUSED",
+          heroSlots: equippedGuids.has(reference.guid)
+            ? [label("SkillSlot", skill.slot) ?? String(skill.slot)]
+            : [],
+          detail: equippedGuids.has(reference.guid)
+            ? "Được gán vào bộ bốn kỹ năng HeroDefinition; game dùng khi ô kỹ năng đã mở."
+            : boundGuids.has(reference.guid)
+              ? "Có animation/VFX binding nhưng chưa được trang bị trong bộ kỹ năng của tướng."
+              : "Có asset nguồn cùng thư mục; chưa được gán vào bộ kỹ năng hoặc animation của tướng.",
+        },
         id: skill.skillId,
         name: skill.displayName ?? skill.skillId,
         description: skill.description ?? null,
-        slot:
-          index < (raw.skills ?? []).length
-            ? (label("SkillSlot", skill.slot) ?? "UNASSIGNED")
-            : "ANIMATION_BINDING",
+        slot: label("SkillSlot", skill.slot) ?? "UNASSIGNED",
         cooldownMs:
           typeof skill.cooldown === "number" ? skill.cooldown * 1000 : null,
         castTimeMs:
@@ -523,6 +556,78 @@ export async function importUnity(
         sourcePath: sourceRef(animationPath!),
       };
     }
+    const previewFolder = path.join(privateRoot, "web-preview", raw.heroId);
+    try {
+      const manifest = JSON.parse(
+        await fs.readFile(path.join(previewFolder, "manifest.json"), "utf8"),
+      );
+      const glbFile = path.join(previewFolder, "model.glb");
+      const bytes = await fs.readFile(glbFile);
+      if (
+        manifest.heroId !== raw.heroId ||
+        bytes.readUInt32LE(0) !== 0x46546c67
+      )
+        throw new Error("Invalid GLB manifest");
+      const sourceFile = path.resolve(root, manifest.sourcePath);
+      if (hash(await fs.readFile(sourceFile)) !== manifest.sourceSha256)
+        throw new Error("Preview source changed; export again");
+      const id = "web-model-" + raw.heroId;
+      assets.set(id, {
+        id,
+        name: raw.displayName + " — chất lượng nguồn.glb",
+        type: "MODEL",
+        category: "FULL_QUALITY_WEB_MODEL",
+        format: "glb",
+        bytes: bytes.length,
+        width: null,
+        height: null,
+        checksum: hash(bytes),
+        sourcePath: manifest.sourcePath,
+        guid: null,
+        fileId: null,
+        version: hash(bytes).slice(0, 12),
+        updatedAt: (await fs.stat(glbFile)).mtime.toISOString(),
+        storageKey: `web-preview/${raw.heroId}/model.glb`,
+        thumbnailKey: null,
+        contentType: "model/gltf-binary",
+        available: true,
+        browserCompatible: true,
+        metadata: manifest,
+      });
+      heroAssets.push(id);
+      model = {
+        assetId: id,
+        previewAssetId: id,
+        sourcePath: manifest.sourcePath,
+        metadata: {
+          ...model?.metadata,
+          quality: manifest.quality,
+          sourceSha256: manifest.sourceSha256,
+          sourceBytes: manifest.sourceBytes,
+          qa: "UNKNOWN",
+          note: manifest.note,
+          textureCount: manifest.textures.length,
+          clips: manifest.clips,
+        },
+      };
+      rig = {
+        type: "SOURCE_SKELETON",
+        bones: manifest.bones,
+        sockets: rig?.sockets ?? [],
+        metadata: { qa: "UNKNOWN", quality: manifest.quality },
+        sourcePath: manifest.sourcePath,
+      };
+      for (const clip of animations)
+        if (manifest.clips.includes(clip.action)) {
+          clip.previewAssetId = id;
+          clip.rigId = id;
+          clip.metadata.glbClipName = clip.action;
+          clip.metadata.previewSource = manifest.sourcePath;
+        }
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== "ENOENT")
+        warnings.push(`Web preview ${raw.heroId}: ${(error as Error).message}`);
+    }
     const hero: Hero = {
       id: raw.heroId,
       heroCode: raw.heroId,
@@ -637,6 +742,13 @@ export async function importUnity(
   await store.update((state) => {
     for (const hero of heroes) {
       const before = state.heroes.find((previous) => previous.id === hero.id);
+      for (const skill of hero.sections.skills) {
+        const previous = before?.sections.skills.find(
+          (item) =>
+            item.id === skill.id && item.sourcePath === skill.sourcePath,
+        );
+        if (previous?.editor) skill.editor = previous.editor;
+      }
       hero.sections.versions = before?.sections.versions ?? [];
       if (!before || before.resourceVersion !== hero.resourceVersion)
         hero.sections.versions.push({

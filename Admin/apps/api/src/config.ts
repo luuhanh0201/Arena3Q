@@ -6,6 +6,8 @@ export const adminRoot = path.resolve(
 dotenv({ path: path.join(adminRoot, ".env"), quiet: true });
 export const config = {
   root: adminRoot,
+  unityRoot: path.resolve(adminRoot, process.env.UNITY_PROJECT_ROOT ?? ".."),
+  unityWriteEnabled: process.env.UNITY_WRITE_ENABLED !== "false",
   port: Number(process.env.API_PORT ?? 4000),
   host: process.env.API_HOST ?? "127.0.0.1",
   driver: process.env.DATABASE_DRIVER ?? "json",

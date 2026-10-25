@@ -133,3 +133,12 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
 - Quạt có quay tương đối với Hand; cho ngón đuổi riêng kéo méo lòng bàn tay. Candidate dùng dáng nắm cố định theo Socket_Hand_R, không phải chuyển động độc lập từng ngón. GripDigit lưu nhãn vùng ngón để audit tiếp xúc không phụ thuộc weight.
 - Candidate81aa0c07: surface nguồn đạt, quạt6phần đạt, tiếp xúc từng vùng ngón trên985mẫu đạt. Vẫn cần ảnh Unity cổ tay/vai/ngón cái và Claude review; không coi số đo là nghiệm thu.
 - Đọc image.pixels từng mặt gây rất chậm; dừng đúng tiến trình chẩn đoán và dùng foreach_get vào NumPy. Không dừng Blender giao diện người dùng.
+
+## 25/10/2026 · Admin GLB preview nguồn có object bone-parent
+
+- Khung camera Lữ Bố cắt đầu kích vì Box3 dùng bounds cache ở bind pose. Đo bounds chính xác bằng vertex skinned sau updateMatrixWorld, bao gồm vũ khí; kiểm ảnh góc front thấy đủ mũ/chân/kích. Không dùng số mesh/clip tải thành công làm thay kiểm hình.
+- Overlay Drei Html trong Canvas Suspense gây DOM removeChild khi đổi trang React19. Đặt loading overlay HTML ngoài Canvas; browser kiểm cả hai model và trang animation không có pageerror.
+
+- Xuất GLB từ Final/MacAnh_Portrait.blend gặp KeyError `parent_bone_uuid=None` trong Blender glTF sampling cache; phụ kiện quạt là mesh bone-parent, có n-gon nên exporter cũng không tạo tangent được.
+- Bản thử chuyển bone-parent chưa hết lỗi: phụ kiện thực parent qua Empty trung gian. Phải xuất cả Empty trong selection để exporter không làm mất quan hệ parent-bone, giữ armature root. Triangulate n-gon trong bộ nhớ khi tạo bản dẫn xuất; không lưu blend, không đổi nguồn FBX/game hoặc giảm mesh/texture.
+- GLB đầu tải được và có clip nhưng Lữ Bố trắng/Mưu Sĩ tối. JSON kiểm được không có baseColorTexture hoặc còn URI external vì `export_keep_originals=true`. Đổi false để nhúng ảnh trong GLB; kiểm bắt buộc không còn URI ngoài và có đủ base-color texture. Exporter4.5 chỉ có AUTO/JPEG/WEBP/NONE, không nhận enum PNG; dùng AUTO và JPEG quality100 cho ảnh JPEG nguồn. Kiểm hình trình duyệt sau xuất; cảnh báo tangent n-gon của một số phụ kiện vẫn cần đối chiếu, không được gọi đây là sửa QA model.

@@ -100,7 +100,9 @@ export class AssetsController {
     if (!info.isFile()) throw new NotFoundException("Không tìm thấy file.");
     response.setHeader(
       "Content-Type",
-      asset.contentType ?? "application/octet-stream",
+      variant === "thumbnail"
+        ? "image/webp"
+        : (asset.contentType ?? "application/octet-stream"),
     );
     response.setHeader("Accept-Ranges", "bytes");
     const range = request.headers.range;

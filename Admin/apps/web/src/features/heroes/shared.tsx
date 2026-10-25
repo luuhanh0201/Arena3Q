@@ -28,7 +28,7 @@ export function Portrait({
   return (
     <div
       className={cn(
-        "grid shrink-0 place-items-center overflow-hidden rounded-xl border border-[#3c4655] bg-[#101a2b]",
+        "relative grid shrink-0 place-items-center overflow-hidden rounded-xl border border-[#3c4655] bg-[#101a2b]",
         className,
       )}
     >
@@ -37,7 +37,7 @@ export function Portrait({
           src={assetUrl(assetId, true)}
           alt={name}
           loading="lazy"
-          className="h-full w-full object-contain"
+          className="absolute inset-0 h-full w-full object-contain"
           onError={() => setFailed(true)}
         />
       ) : (

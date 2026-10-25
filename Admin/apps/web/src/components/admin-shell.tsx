@@ -479,7 +479,7 @@ function ShellLayout({
             LOCAL
           </span>
           <span className="hidden text-xs text-muted-foreground sm:block">
-            Chỉ xem
+            Unity local
           </span>
           <Button
             variant="ghost"

@@ -1,6 +1,12 @@
 import { z } from "zod";
 import menuRegistry from "./menu.json";
 export * from "./addressables";
+export * from "./skills";
+import {
+  skillEditableSchema,
+  type SkillEditor,
+  type SkillUsage,
+} from "./skills";
 
 export const featureStatuses = [
   "READY",
@@ -129,6 +135,10 @@ export interface AnimationClip {
   metadata: JsonObject;
 }
 export interface Skill {
+  sourceVersion?: string;
+  usage?: SkillUsage;
+  editor?: SkillEditor;
+  iconAssetId?: string | null;
   id: string;
   name: string;
   description: string | null;
@@ -372,6 +382,25 @@ const clipSchema = z.object({
   metadata: object,
 });
 const skillSchema = z.object({
+  sourceVersion: z.string().optional(),
+  usage: z
+    .object({
+      status: z.enum(["EQUIPPED", "ANIMATION_ONLY", "UNUSED"]),
+      heroSlots: z.array(z.string()),
+      detail: z.string(),
+    })
+    .optional(),
+  editor: z
+    .object({
+      revision: z.number().int().nonnegative(),
+      draft: z.lazy(() => skillEditableSchema).nullable(),
+      updatedAt: strNull,
+      updatedBy: strNull,
+      lastAppliedAt: strNull,
+      baseVersion: strNull.optional(),
+    })
+    .optional(),
+  iconAssetId: strNull.optional(),
   id: z.string(),
   name: z.string(),
   description: strNull,

@@ -1,6 +1,6 @@
 # Arena3Q Admin · P0
 
-Admin chạy độc lập với Unity, theo `docs/Arena3Q_Admin` v1.1. Bản đầu có shell/menu đủ **6 nhóm, 26 nhóm con, 91 chức năng**, danh sách tướng và hồ sơ **11 tab chỉ xem**. Các chức năng tương lai có trang “Đang phát triển”, không trả kết quả thao tác giả.
+Admin chạy độc lập với Unity, theo `docs/Arena3Q_Admin` v1.1. Có shell/menu đủ **6 nhóm, 26 nhóm con, 91 chức năng**, danh sách tướng và hồ sơ **11 tab**, kèm chỉnh chỉ số/mô tả kỹ năng và áp dụng vào nguồn Unity local. Các chức năng tương lai có trang “Đang phát triển”, không trả kết quả thao tác giả.
 
 ## Chạy local trên Windows
 
@@ -21,14 +21,36 @@ Chạy bản production local: `npm run build`, sau đó `npm start`. Script sta
 ## Dữ liệu thật và phạm vi
 
 - `scripts/import-unity.ts` đọc `.asset`, `.meta` và enum nguồn; giữ ID, giá trị, GUID và fileID 64 bit. Không sửa file Unity, không khởi động Editor.
-- Snapshot hiện có **10 tướng, 9 tham chiếu asset và 18 binding animation**. Ảnh thực được xử lý WebP vào kho riêng, bảo toàn alpha/tỷ lệ. Số lượng này phản ánh nguồn hiện tại, không phải dữ liệu mẫu.
+- Snapshot hiện có **10 tướng, 11 tham chiếu asset, 18 binding animation và 42 kỹ năng duy nhất** (46 liên kết tướng/kỹ năng). Ảnh đầy đủ là PNG giữ nguyên pixel nguồn và alpha; thumbnail 320 px dùng WebP lossless. Khung ảnh giữ đúng tỷ lệ, có xem lớn.
 - Tìm tên có/không dấu và ID; lọc, sắp xếp, phân trang tại API; trạng thái nằm trong URL. Quay lại danh sách giữ bộ lọc. CSV xuất theo toàn bộ bộ lọc và chặn công thức spreadsheet.
 - Hồ sơ gồm tổng quan, hình ảnh, model, rig, animation, kỹ năng, chỉ số, phát triển, skin, liên kết, phiên bản. API tải từng tab; `tab`, `skillId`, `clipId` là deep link.
 - Phẩm chất/vai trò chưa có trong nguồn được giữ trống. `DRAFT` là trạng thái snapshot admin chưa phát hành. Không suy diễn SSR, công thức chỉ số, kết quả QA, người cập nhật hoặc số liệu người chơi/doanh thu.
-- Animation nguồn hiện là **binding Unity**, không phải clip 3D đã xuất. Socket 2D không được tính là rig 3D đạt QA. Prefab được hiển thị metadata; chỉ GLB thực, hợp lệ mới mở viewer. Importer không tự chuyển FBX/prefab thành GLB.
-- Tạo/sửa/nhập qua web/phát hành/rollback là thao tác PLANNED trong P0. Chưa ghi config vào game. Đăng nhập/đăng xuất và audit là ghi dữ liệu thực.
+- Lữ Bố có GLB đầy đủ 7 clip; Mưu sĩ có GLB đầy đủ 11 clip. Các bản dẫn xuất giữ lưới nguồn, nhúng texture gốc (có ảnh 4K), không giảm polygon. Chọn clip, play/pause, speed/loop, timeline, camera, skeleton và chụp ảnh ngay trong viewer. Các tướng chưa có nguồn 3D không được gán model giả. Đây là khả năng xem trên web, không thay thế nghiệm thu skin/animation trong game.
+- Kỹ năng có mô tả, chỉ số chi tiết và phân biệt **đang gán bộ kỹ năng**, **chỉ gán animation**, **chưa gán trong game**. Trạng thái căn cứ `HeroDefinition.skills` và binding animation; kỹ năng đã gán vẫn phụ thuộc điều kiện mở khóa trong game.
+- Riêng kỹ năng đã có thao tác chỉnh/lưu nháp/áp dụng Unity local. Tạo tướng, nhập/upload qua web, phát hành Addressables và rollback qua UI vẫn PLANNED.
 
 Để cập nhật snapshot, **dừng API trước**, rồi chạy `npm run import:unity` và khởi động lại. Không chạy importer/setup cùng lúc với API ghi file.
+
+## Chỉnh kỹ năng và ảnh chờ duyệt
+
+Trong hồ sơ tướng → Kỹ năng & hiệu ứng → Chỉnh chỉ số và mô tả: **Lưu bản nháp** chỉ cập nhật db.json. **Áp dụng Unity** cập nhật đúng `SkillDefinition.asset` nguồn; Unity local nạp giá trị mới cho trận mới, các lần build tiếp theo mang giá trị đó. APK đã build không tự nhận thay đổi. Không thêm loại cơ chế mới qua form.
+
+API kiểm quyền đọc/sửa/phát hành độc lập, kiểm SHA nguồn và revision để từ chối bản nháp cũ hoặc nguồn đã sửa bên ngoài. Chỉ ghi file whitelist trong `Assets/Arena3Q/Content/Skills`, giữ GUID/ref YAML; có backup `.local/skill-backups`, journal `.local/skill-transactions`, audit và phục hồi giao dịch dang dở khi khởi động. Nếu ghi DB thất bại, nguồn được trả về backup. Sao lưu cả `.local` cùng dự án trước khi di chuyển máy.
+
+`UNITY_PROJECT_ROOT=..`, `UNITY_WRITE_ENABLED=true` dành cho local. Compose mặc định **tắt ghi Unity**, vì container chưa mount nguồn game; chỉ xem dữ liệu và lưu nháp. Không chạy builder tái sinh skill trong Unity đồng thời với thao tác apply trên Admin.
+
+Bộ **42 ảnh mới đang chờ người dùng duyệt**, chưa gắn vào Admin/game. Bản gốc, tên kỹ năng và số thứ tự nằm ở `../NghiemThu/Admin/XemTruoc_SkillIcons_20261025/xem_anh_ky_nang.html`. Hai script `skill-review-manifest.cjs` và `build-skill-review.cjs` chỉ dựng danh sách/trang duyệt, không áp dụng ảnh.
+
+GLB/texture là tài nguyên dẫn xuất local, không vào Git. Có thể xuất lại bằng Blender 4.5.3 (không lưu thay đổi vào .blend nguồn), rồi dừng API/import lại snapshot:
+
+```powershell
+$blenderPath = '../Library/LuBuTools/blender-4.5.3-windows-x64/blender.exe'
+& $blenderPath -b '../docs/art/concepts/LuBu_Arena3Q/LuBu_Arena3Q_Grip.blend' --python scripts/export-web-preview.py -- --hero lu_bu
+& $blenderPath -b '../docs/art/concepts/MuuSi_main-hero/MacAnh/Production/Final/MacAnh_Portrait.blend' --python scripts/export-web-preview.py -- --hero lord_strategist
+npm run import:unity
+```
+
+Importer kiểm checksum nguồn của manifest, không dùng GLB cũ khi .blend đã đổi. Bản hiện tại khoảng 72,2 MiB và 64,4 MiB, nên lần mở đầu có thời gian tải; sau đó trình duyệt cache. Các cảnh báo tangent trên phụ kiện nguồn và QA biến dạng nguồn không được coi là đã sửa bởi exporter.
 
 ## Stack đã thiết lập
 

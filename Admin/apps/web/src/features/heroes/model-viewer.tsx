@@ -10,18 +10,20 @@ import {
   type ReactNode,
 } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Html, OrbitControls, useAnimations, useGLTF } from "@react-three/drei";
+import { OrbitControls, useAnimations, useGLTF } from "@react-three/drei";
 import {
   Box3,
   LoopOnce,
   LoopRepeat,
   Mesh,
   MeshStandardMaterial,
+  PMREMGenerator,
   Vector3,
   type AnimationAction,
   type Material,
 } from "three";
 import { clone } from "three/examples/jsm/utils/SkeletonUtils.js";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import {
   Camera,
   Grid2X2,
@@ -100,9 +102,16 @@ export default function ModelViewer({
   const loaded = useCallback((value: Metadata) => {
     setMetadata(value);
     setClip((current) =>
-      value.clips.includes(current) ? current : (value.clips[0] ?? ""),
+      value.clips.includes(current)
+        ? current
+        : value.clips.includes("Idle")
+          ? "Idle"
+          : (value.clips[0] ?? ""),
     );
   }, []);
+  useEffect(() => {
+    if (initialClip) setClip(initialClip);
+  }, [initialClip]);
   if (supported === false)
     return (
       <EmptyState
@@ -193,7 +202,7 @@ export default function ModelViewer({
             <Camera />
           </Button>
         </div>
-        <div className="h-[440px] min-h-60">
+        <div className="relative h-[440px] min-h-60">
           {supported && (
             <Canvas
               frameloop="demand"
@@ -208,15 +217,7 @@ export default function ModelViewer({
               {grid && <gridHelper args={[20, 20, "#34445d", "#1d2b40"]} />}
               {axes && <axesHelper args={[2]} />}
               <OrbitControls makeDefault enableDamping />
-              <Suspense
-                fallback={
-                  <Html center>
-                    <span className="whitespace-nowrap text-xs text-slate-300">
-                      Đang tải model...
-                    </span>
-                  </Html>
-                }
-              >
+              <Suspense fallback={null}>
                 <Scene
                   assetId={assetId}
                   view={view}
@@ -235,6 +236,14 @@ export default function ModelViewer({
                 />
               </Suspense>
             </Canvas>
+          )}
+          {supported && !metadata && (
+            <div
+              role="status"
+              className="pointer-events-none absolute inset-0 flex items-center justify-center text-xs text-slate-300"
+            >
+              Đang tải model...
+            </div>
           )}
         </div>
         {metadata && (
@@ -373,6 +382,20 @@ function Scene({
   }, [gltf.scene]);
   const { actions, mixer } = useAnimations(gltf.animations, scene);
   const { camera, controls, invalidate, gl, scene: rootScene } = useThree();
+  useEffect(() => {
+    const generator = new PMREMGenerator(gl);
+    const room = new RoomEnvironment();
+    const environment = generator.fromScene(room, 0.04);
+    const previous = rootScene.environment;
+    rootScene.environment = environment.texture;
+    invalidate();
+    return () => {
+      rootScene.environment = previous;
+      environment.dispose();
+      room.dispose();
+      generator.dispose();
+    };
+  }, [gl, rootScene, invalidate]);
   const active = useRef<AnimationAction | null>(null);
   const last = useRef(0);
   useEffect(() => {
@@ -409,7 +432,10 @@ function Scene({
     };
   }, [scene, gltf.animations, onLoaded]);
   useEffect(() => {
-    const box = new Box3().setFromObject(scene);
+    // Include the actual skinned vertices and held weapon, rather than cached
+    // bind-pose bounds, which can place the animated model outside the frame.
+    scene.updateMatrixWorld(true);
+    const box = new Box3().setFromObject(scene, true);
     const center = box.getCenter(new Vector3());
     const size = box.getSize(new Vector3());
     const radius = Math.max(size.x, size.y, size.z, 0.1) * 1.65;

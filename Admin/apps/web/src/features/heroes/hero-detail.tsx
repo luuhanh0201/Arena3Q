@@ -106,7 +106,7 @@ export function HeroDetail({ id }: { id: string }) {
             <span className="badge badge-blue">
               {statusLabel(record.status)}
             </span>
-            <span className="badge badge-green">Chỉ xem</span>
+            <span className="badge badge-green">Nguồn Unity local</span>
           </div>
           <CopyId id={record.id} />
           <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
@@ -175,8 +175,8 @@ export function HeroDetail({ id }: { id: string }) {
       <div className="mt-5 flex items-start gap-2 text-[10px] leading-5 text-muted-foreground">
         <ShieldCheck className="mt-0.5 size-3 shrink-0" />
         <span>
-          Snapshot nguồn Unity. Bản Admin này chưa phát hành thay đổi cấu hình
-          vào game.
+          Nguồn Unity local. Chỉ số kỹ năng chỉ thay đổi trong game sau khi bạn
+          lưu bản nháp và bấm áp dụng.
           <br />
           <code className="source-path">{record.sourcePath}</code>
         </span>

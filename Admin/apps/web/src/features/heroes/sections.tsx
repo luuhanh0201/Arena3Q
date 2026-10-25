@@ -56,6 +56,11 @@ import {
 import { EmptyState, ErrorState, Loading } from "@/components/states";
 import { usePlannedAction } from "@/components/action-dialog";
 import { Portrait } from "./shared";
+import {
+  SkillParameterDetails,
+  SkillUsageBadge,
+  SkillImage,
+} from "./skill-editor";
 const ModelViewer = dynamic(() => import("./model-viewer"), {
   ssr: false,
   loading: () => <Loading label="Đang khởi tạo bộ xem 3D..." />,
@@ -409,14 +414,14 @@ function MediaSection({ assets }: { assets: Asset[] }) {
             <button
               disabled={!asset.browserCompatible || !asset.available}
               onClick={() => setSelected(asset)}
-              className="group relative grid h-64 w-full place-items-center bg-[#0d1726] p-6"
+              className="group relative block h-64 w-full overflow-hidden bg-[#0d1726]"
             >
               {asset.browserCompatible ? (
                 <img
                   src={assetUrl(asset.id)}
                   alt={asset.name}
                   loading="lazy"
-                  className="h-full w-full object-contain transition-transform duration-200 group-hover:scale-[1.03]"
+                  className="absolute inset-0 h-full w-full max-h-full max-w-full object-contain p-6 transition-transform duration-200 group-hover:scale-[1.03]"
                 />
               ) : (
                 <span className="text-xs text-muted-foreground">
@@ -541,7 +546,7 @@ function ImagePreview({
                   draggable={false}
                   src={assetUrl(asset.id)}
                   alt={asset.name}
-                  className="pointer-events-none max-h-full max-w-full select-none object-contain"
+                  className="pointer-events-none absolute inset-0 h-full w-full select-none object-contain"
                   style={{
                     transform: `translate(${offset.x}px,${offset.y}px) scale(${zoom})`,
                   }}
@@ -730,7 +735,10 @@ function AnimationsSection({
   const router = useRouter();
   const [term, setTerm] = useState("");
   const selected =
-    clips.find((clip) => clip.id === search.get("clipId")) ?? null;
+    clips.find((clip) => clip.id === search.get("clipId")) ??
+    clips.find((clip) => clip.action === "Idle") ??
+    clips[0] ??
+    null;
   const shown = clips.filter((clip) =>
     (clip.name + " " + clip.action).toLowerCase().includes(term.toLowerCase()),
   );
@@ -919,6 +927,7 @@ function SkillsSection({
   const router = useRouter();
   const [term, setTerm] = useState("");
   const [slot, setSlot] = useState("");
+  const [usage, setUsage] = useState("");
   const [asset, setAsset] = useState<string | null>(null);
   const [effect, setEffect] = useState<Skill["effects"][number] | null>(null);
   const selected =
@@ -930,7 +939,8 @@ function SkillsSection({
       (skill.name + " " + skill.id)
         .toLocaleLowerCase("vi")
         .includes(term.toLocaleLowerCase("vi")) &&
-      (!slot || skill.slot === slot),
+      (!slot || skill.slot === slot) &&
+      (!usage || skill.usage?.status === usage),
   );
   function select(id: string) {
     const params = new URLSearchParams(search);
@@ -986,6 +996,17 @@ function SkillsSection({
                 </option>
               ))}
             </select>
+            <select
+              aria-label="Lọc kỹ năng đang dùng"
+              className="w-full"
+              value={usage}
+              onChange={(event) => setUsage(event.target.value)}
+            >
+              <option value="">Tất cả trạng thái</option>
+              <option value="EQUIPPED">Đang dùng trong bộ kỹ năng</option>
+              <option value="ANIMATION_ONLY">Chỉ gán animation</option>
+              <option value="UNUSED">Chưa gán trong game</option>
+            </select>
           </div>
           <div className="space-y-1 p-2">
             {shown.map((skill, index) => (
@@ -998,22 +1019,16 @@ function SkillsSection({
                     "border-primary/25 bg-primary/[.065]",
                 )}
               >
-                <span
-                  className={cn(
-                    "grid size-9 shrink-0 place-items-center rounded-lg border",
-                    selected?.id === skill.id
-                      ? "border-primary/40 bg-primary/10 text-primary"
-                      : "border-border bg-secondary text-muted-foreground",
-                  )}
-                >
-                  <Sparkles className="size-4" />
-                </span>
+                <SkillImage skill={skill} />
                 <span className="min-w-0">
                   <span className="block text-xs font-semibold leading-5">
                     {skill.name}
                   </span>
                   <span className="mt-1 block text-[10px] text-muted-foreground">
                     {slotLabel(skill.slot)}
+                  </span>
+                  <span className="mt-1 block">
+                    <SkillUsageBadge skill={skill} />
                   </span>
                 </span>
               </button>
@@ -1064,6 +1079,7 @@ function SkillsSection({
               <Field label="Tầm sử dụng">{formatNumber(selected.range)}</Field>
               <Field label="Bán kính">{formatNumber(selected.radius)}</Field>
             </dl>
+            <SkillParameterDetails skill={selected} />
             <div className="mt-6 border-t border-border pt-5">
               <h3 className="mb-3">Hiệu ứng chiến đấu</h3>
               {selected.effects.length ? (

@@ -33,6 +33,10 @@ import {
 import { FeaturesController, HeroesController } from "./heroes/heroes";
 import { AssetStorage, AssetsController } from "./assets/assets";
 import { Infrastructure } from "./integrations/integrations";
+import {
+  SkillEditorController,
+  SkillEditorService,
+} from "./heroes/skill-editor";
 
 @Controller()
 class HealthController {
@@ -71,26 +75,25 @@ class ApiExceptionFilter implements ExceptionFilter {
         `[${request.requestId}]`,
         exception instanceof Error ? exception.message : "Internal error",
       );
-    response
-      .status(status)
-      .json({
-        data: null,
-        meta: null,
-        error: {
-          code:
-            (
-              {
-                400: "VALIDATION_ERROR",
-                401: "UNAUTHENTICATED",
-                403: "FORBIDDEN",
-                404: "NOT_FOUND",
-                429: "RATE_LIMITED",
-              } as Record<number, string>
-            )[status] ?? "INTERNAL_ERROR",
-          message,
-          requestId: request.requestId,
-        },
-      });
+    response.status(status).json({
+      data: null,
+      meta: null,
+      error: {
+        code:
+          (
+            {
+              400: "VALIDATION_ERROR",
+              401: "UNAUTHENTICATED",
+              403: "FORBIDDEN",
+              404: "NOT_FOUND",
+              409: "CONFLICT",
+              429: "RATE_LIMITED",
+            } as Record<number, string>
+          )[status] ?? "INTERNAL_ERROR",
+        message,
+        requestId: request.requestId,
+      },
+    });
   }
 }
 export async function createApp(
@@ -115,11 +118,13 @@ export async function createApp(
       FeaturesController,
       HeroesController,
       AssetsController,
+      SkillEditorController,
     ],
     providers: [
       { provide: ADMIN_STORE, useValue: store },
       AssetStorage,
       Infrastructure,
+      SkillEditorService,
       { provide: APP_GUARD, useClass: ThrottlerGuard },
       { provide: APP_GUARD, useClass: SessionGuard },
     ],
@@ -140,29 +145,25 @@ export async function createApp(
         (origin && !config.allowedOrigins.includes(origin)) ||
         request.headers["sec-fetch-site"] === "cross-site"
       )
-        return response
-          .status(403)
-          .json({
-            data: null,
-            meta: null,
-            error: {
-              code: "FORBIDDEN",
-              message: "Nguồn yêu cầu không được phép.",
-              requestId: request.requestId,
-            },
-          });
+        return response.status(403).json({
+          data: null,
+          meta: null,
+          error: {
+            code: "FORBIDDEN",
+            message: "Nguồn yêu cầu không được phép.",
+            requestId: request.requestId,
+          },
+        });
       if (!request.is("application/json"))
-        return response
-          .status(400)
-          .json({
-            data: null,
-            meta: null,
-            error: {
-              code: "VALIDATION_ERROR",
-              message: "Yêu cầu cần JSON.",
-              requestId: request.requestId,
-            },
-          });
+        return response.status(400).json({
+          data: null,
+          meta: null,
+          error: {
+            code: "VALIDATION_ERROR",
+            message: "Yêu cầu cần JSON.",
+            requestId: request.requestId,
+          },
+        });
     }
     next();
   });
