@@ -1,0 +1,70 @@
+{
+  "reviewer": "Codex visual self-review",
+  "scope": "web artwork delivery; user acceptance remains separate",
+  "notes": [
+    "Locked source textures retain face, two plumes, armor patterns and polearm proportions in all rig samples.",
+    "Idle and Run close at the continuous boundary; 24th source is not a duplicate of the first.",
+    "Run alternates contacts, counter-arm and lift; heavy skirt and polearm occlude parts of the legs in this three-quarter view.",
+    "Attack shows windup, sweep, impact, follow-through and recovery. VFX is a separate timed layer.",
+    "Portrait avatar intentionally crops plume tips; full-body/animation canvases retain the complete silhouette.",
+    "Web playback at normal and quarter speed, 5 times and 4 aspect ratios reviewed. No device FPS measurement."
+  ],
+  "files": [
+    {
+      "file": "ArtSource/Lobby2D/rig.json",
+      "sha256": "2c5299469e8ab0b901382a129c8890d27737a3bc09f650fff6c660bc41eba6f6"
+    },
+    {
+      "file": "ArtSource/Lobby2D/layout.json",
+      "sha256": "ffd0ecaff8e32d91c5fa570e0820465576099222332760c4ae3d4f4c011665de"
+    },
+    {
+      "file": "ArtSource/Lobby2D/slash.json",
+      "sha256": "f8c683c15401e857efcc5c853454cc41d50160bf9c5be68f637ea4af0fa8c19c"
+    },
+    {
+      "file": "ArtSource/Lobby2D/delivery.json",
+      "sha256": "94f2a3e370d398a27f3c3a7c091b33b5481768d66120536450fc5a9d97a7166c"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Runtime/LuBuCutoutPose.cs",
+      "sha256": "2fd75c47fc32833b1cba150d7ce1fdee11c1873ca14f26ed5fb88f0479ece6d0"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Runtime/LuBuCutoutGraphic.cs",
+      "sha256": "192c4e8ecd6ecfa31aae056e6e8aa60268dfc1fd09c03b2c3b7afec5c21491ac"
+    },
+    {
+      "file": "NghiemThu/UI/XemTruoc_Lobby2D_20261026/Lobby_0.png",
+      "sha256": "bc099a7de5bca86da63765fc5f824cf71367316fdee44ee18da4ec2daf3d2a7f"
+    },
+    {
+      "file": "NghiemThu/UI/XemTruoc_Lobby2D_20261026/Lobby_4.png",
+      "sha256": "8b5ee81440a0e5facc856310908d837412d7ac99c5bf2947a32185d285c5f8ee"
+    },
+    {
+      "file": "NghiemThu/UI/XemTruoc_Lobby2D_20261026/Lobby_safe_2400.png",
+      "sha256": "cde9ca2c8a6938388044391ba81f631ef150df9effa61fa34a48483ec5b1c95c"
+    },
+    {
+      "file": "NghiemThu/UI/XemTruoc_Lobby2D_20261026/VIP_01_12.png",
+      "sha256": "f5013f9a55a3d2adc65783c341a9c375479ce48ad5cd0647dd2c872421f1a836"
+    },
+    {
+      "file": "NghiemThu/UI/XemTruoc_Lobby2D_20261026/Rig_ExtraHand_Before_After.png",
+      "sha256": "9d1579f7b13360026d394fec60738326e4d374c61d6c3dcdabc8805b7ae1f11b"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/atlas.png",
+      "sha256": "37ebe6886da667d5e9e21b5e3b64607dfcc9381f0315dde2fabf1edcbe18c9b3"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/atlas.png",
+      "sha256": "e4233f4241e8f09f82a1be0d1979d2170c3944af48e4ef13985e7bc9c9a7aa06"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/atlas.png",
+      "sha256": "70e98b648d1d1f49bdc371cf7eecfad673f6f708d7bf49177b2beab62c2bf536"
+    }
+  ]
+}

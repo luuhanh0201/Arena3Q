@@ -188,3 +188,25 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
 - Người dùng và ảnh máy thật phát hiện nền đen quanh map. allowMapOverview bypass giới hạn zoom; FitCamera dùng contain kèm padding; kiểm tâm không chặn được viewport lớn hơn map.
 - Sửa giới hạn cả kích thước và tâm theo bounds chiếu, bỏ bypass khỏi camera chơi, HUD theo safe area. Không thêm lại terrain ngoài biên hoặc thay model.
 - Phòng tránh: kiểm ray các góc viewport sau startup/zoom/pan/resize/đổi tilt; ảnh overview khi tắt controller không thay thế kiểm camera thật. 17 PlayMode gồm kiểm viewport/HUD đã qua; cần ảnh máy thật sau cài bản sửa.
+
+## 26/10 - Bộ 2D sảnh theo reference mới
+- Ảnh AI đầu tiên cắt đầu kích/mép cape dù prompt yêu cầu margin. Kiểm alpha tại biên tìm thêm BattlePose và key Impact bị cắt. Giữ bản gốc, tạo lại khung bằng imagegen; không thêm canvas trống để che phần hình đã mất.
+- Model 3D/atlas cũ khác identity reference mới, không được upscale hoặc đổi tên để coi như asset 1024 mới. Các key pose AI chỉ là draft, chưa thành rig/24 frame. Gate mesh/identity/loop/foot-contact phải kiểm độc lập; không dùng hash khác nhau thay bằng chứng chuyển động.
+
+- Xem contact sheet: hai key Run AI chưa chứng minh chân trái/phải luân phiên; chi tiết kích/giáp giữa key còn cần đối chiếu. Layer thành trì AI có thể đổi vị trí/camera khi tách; prefab dùng một architecture cố định cho cả 5 sky, chưa sử dụng 3 layer chưa đăng ký khớp. Không nội suy các key này thành 24 frame hoặc ghi đạt gate hình ảnh.
+
+- 26/10 người dùng xác nhận không có PSD/rig, yêu cầu Codex tự sinh nguồn và nghiệm thu đúng prompt. Chuyển sang dựng rig từ một plate đã khóa identity, AI chỉ inpaint chỗ khuất/tách kích, tóc, plume; frame render từ rig liên tục, không tween cả ảnh/không dùng các key AI lệch làm frame.
+
+- Rig audit vòng1 chặn xuất: khoảng với vượt20,36px, giáp/kích scale giữ1, vải0,902..1,091. Capture custom UI Graphic đang rỗng dù mã compile; phải sửa render và kiểm alpha thật, không dùng marker SUCCESS thay nghiệm thu hình. Bổ sung tên bone/clip/time cho lỗi với, buộc rebuild graphic trong batch capture.
+
+- Capture rỗng do custom Graphic thiếu CanvasRenderer, attribute require ở Image không tự áp vào lớp mới. Bổ sung RequireComponent và tạo renderer tường minh; buộc kiểm ảnh alpha trước khi xuất. Khoảng với vượt ở UpperArm_R, Attack t0,9396s khi thu tay; giải bằng ràng buộc hai điểm nắm trong miền với của cả hai tay, không kéo giãn tay/giáp hoặc đổi kích. Gait swing chuyển sang Hermite nối vận tốc tiếp đất/đẩy chân, lift có tiếp tuyến0.
+
+- 27/10 ảnh rig cho thấy tay thứ3 do polygon cape chứa pixel tay gốc; forearm cũng lấn mảng da bàn tay. Cắt cape dưới tay, dùng underlay vải đã inpaint cho chỗ khuất, cắt forearm đúng cổ tay. Run cần tư thế crouch thấp hơn vì chân sau theo phối cảnh ngắn hơn; giữ chiều dài xương, hạ pelvis và thêm nguồn boot hướng chạy riêng. Không chấp nhận đủ frame nếu còn pixel cơ thể lẫn trong layer vải.
+
+- 27/10 lỗi còn20,36px ở tay phải là giới hạn với TỐI THIỂU khi thu tay qua sát vai (chênh chiều dài hai bone), không phải thiếu tầm với tối đa. Bổ sung miền vành khuyên và quỹ đạo thu tay vòng xuống, không kéo giãn bone. Loại thêm vài pixel tay trái khỏi mép cape phải. Chỉ kiểm trên web theo lệnh người dùng; Unity chỉ dùng sản xuất ảnh, không build player/APK.
+
+- Xuất VFX cần reload rig/dependency sau NewScene: texture đã có nhưng slash ScriptableObject bị unload thành fake-null, nhánh return im lặng làm thiếu24 VFX. Bỏ return im lặng, reload asset sau đổi scene và bắt buộc marker/count riêng. Web root cần base URL cho module/CSS; kiểm thật bằng browser, không chỉ HTTP index200.
+
+- 27/10 sprite clip builder gặp khai báo var nhiều biến trong một câu C#, compiler chặn; tách khai báo trước khi xuất. GIF làm tròn delay từng frame khiến tổng clip lệch, đổi phân bố sai số centisecond để tổng đúng2/0,9/1,1s.
+- 27/10 avatar cũ là bust thu nhỏ, bạc còn ánh đồng: đã sinh lại cận mặt và bạc lạnh từ nguồn đã khóa, lưu ảnh trước–sau. Cache glyph TMP dùng chung bị sửa khi capture; chuyển sang font clone riêng của Lobby2D, trả đúng2file cache ban đầu sạch về HEAD sau khi xong, không đụng font source/gameplay.
+- 27/10 preview server không còn sống khi tiếp tục phiên, Playwright báo ERR_CONNECTION_REFUSED: khởi động lại server loopback rồi chạy lại đủ26check. Tỷ lệ xem rộng phải reset16:9 khi chọn thời điểm. Kiểm web không phải chứng minh FPS native.

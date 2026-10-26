@@ -1,0 +1,3423 @@
+{
+  "version": 1,
+  "generatedAt": "2026-10-26T23:13:40.196Z",
+  "status": "in-production",
+  "assets": [
+    {
+      "id": "LuBu_FullBody",
+      "file": "Characters/LuBu/Portraits/LuBu_FullBody.png",
+      "width": 1254,
+      "height": 1254,
+      "transparent": true,
+      "pivot": [
+        0.519,
+        0.087
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "portrait",
+      "allowEdge": false,
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Portraits/LuBu_FullBody.png",
+      "source": "ArtSource/Lobby2D/Generated/LuBu_FullBody_source.png",
+      "sourceHash": "c82af89d8ddbec55513e76c2232b6388c029390b8213da3c3a9aabdf99ccdbf5",
+      "sha256": "69e5b1069d0f81f044fe2bfc13bafdd98f9aabd89bbf48eb172e613c87296146",
+      "pixelHash": "5e375331b0d548cfbed1a556ff22ce4bb2b9b4b8febb326c2f321b87b80d715e",
+      "bytes": 1833107,
+      "alphaZero": 969626,
+      "alphaOpaque": 1527,
+      "alphaEdge": 0,
+      "bounds": [
+        105,
+        114,
+        1200,
+        1156
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "LuBu_Head",
+      "file": "Characters/LuBu/Portraits/LuBu_Head.png",
+      "width": 1254,
+      "height": 1254,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "portrait",
+      "allowEdge": false,
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Portraits/LuBu_Head.png",
+      "source": "ArtSource/Lobby2D/Generated/LuBu_Head_source.png",
+      "sourceHash": "daa999040227b3ee867e578035eb2191582ac430adf75c4d9b2e8c949271d8bb",
+      "sha256": "c3c1516f2fdfa59447d8f9fe8021d4b18f7209b927055a116031f6220b9dfdd6",
+      "pixelHash": "834d89e26febe84e97e90635858ea077de9fb8f9a21377bd1c55676b682b3754",
+      "bytes": 2321284,
+      "alphaZero": 722566,
+      "alphaOpaque": 1514,
+      "alphaEdge": 0,
+      "bounds": [
+        20,
+        76,
+        1230,
+        1178
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "LuBu_Avatar",
+      "file": "Characters/LuBu/Portraits/LuBu_Avatar.png",
+      "width": 1254,
+      "height": 1254,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "portrait",
+      "allowEdge": true,
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Portraits/LuBu_Avatar.png",
+      "source": "ArtSource/Lobby2D/Generated/LuBu_Avatar_source.png",
+      "sourceHash": "0435e4c8de40b81bd6672d4341d963bd3f7c75d4ac3ee5f1ec9cded6f68da12a",
+      "sha256": "ea2f780f0f657e6825c8180326d3ad7b101f1f1d9dd2135f5a7e85c040cbe1b6",
+      "pixelHash": "f7272b3a57ca2971c464a97a1e333265d7766bb356f6e04524c889ed36ab539f",
+      "bytes": 3249837,
+      "alphaZero": 332259,
+      "alphaOpaque": 322,
+      "alphaEdge": 2553,
+      "bounds": [
+        0,
+        0,
+        1253,
+        1253
+      ],
+      "visualStatus": "tight identity portrait",
+      "technicalPassed": true
+    },
+    {
+      "id": "LuBu_Bust",
+      "file": "Characters/LuBu/Portraits/LuBu_Bust.png",
+      "width": 1254,
+      "height": 1254,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "portrait",
+      "allowEdge": false,
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Portraits/LuBu_Bust.png",
+      "source": "ArtSource/Lobby2D/Generated/LuBu_Bust_source.png",
+      "sourceHash": "3522a4dbefb487d21e0f3c442d19adb236cd97b89d406b616066b22438babbe3",
+      "sha256": "c15c54c27cb2435f2c533920265ce3348359b80c0392948d5aedbe7258479881",
+      "pixelHash": "e76c16c4811ae31098636773188a795c6764134bbb363128b4a200f87ae3144b",
+      "bytes": 2930242,
+      "alphaZero": 552097,
+      "alphaOpaque": 1323,
+      "alphaEdge": 0,
+      "bounds": [
+        25,
+        32,
+        1215,
+        1243
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "LuBu_BattlePose",
+      "file": "Characters/LuBu/Portraits/LuBu_BattlePose.png",
+      "width": 1254,
+      "height": 1254,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "portrait",
+      "allowEdge": false,
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Portraits/LuBu_BattlePose.png",
+      "source": "ArtSource/Lobby2D/Generated/LuBu_BattlePose_source.png",
+      "sourceHash": "f5dbdf3311f25a4461acc135bac2b5bf6150b72fe91c34e04d18b55f3d4e19d7",
+      "sha256": "69f0c41e47cd70028f1e5a5d57224f01f4fe60057c946cf42aa182062c2b7c17",
+      "pixelHash": "b6031ef14238a40e1ddb1ca296e81770bca4d4e45ff56ee6b772396159243d11",
+      "bytes": 1708270,
+      "alphaZero": 1005290,
+      "alphaOpaque": 1034,
+      "alphaEdge": 0,
+      "bounds": [
+        116,
+        164,
+        1225,
+        1100
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Head",
+      "file": "Characters/LuBu/Layers/Head.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Head.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Head_source.png",
+      "sourceHash": "4064b13489a970073257b0b6209b9490ad14626b1ac7ce9f3841f9dd76780469",
+      "sha256": "4064b13489a970073257b0b6209b9490ad14626b1ac7ce9f3841f9dd76780469",
+      "pixelHash": "94913328f872e660066e3199a53491aa48dac5831421214859b62a22ecb74838",
+      "bytes": 70066,
+      "alphaZero": 4177147,
+      "alphaOpaque": 6544,
+      "alphaEdge": 0,
+      "bounds": [
+        999,
+        979,
+        1215,
+        1095
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Hair_Front",
+      "file": "Characters/LuBu/Layers/Hair_Front.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Hair_Front.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Hair_Front_source.png",
+      "sourceHash": "685dc9aae13a9da64e364fd18217be5a21cf0a019884f3a0101e26367fd82e1c",
+      "sha256": "685dc9aae13a9da64e364fd18217be5a21cf0a019884f3a0101e26367fd82e1c",
+      "pixelHash": "c11b1f9f004aed88d71afd189de6ad0d0a0a12be92188db0ce506719be630d16",
+      "bytes": 111702,
+      "alphaZero": 4165369,
+      "alphaOpaque": 6913,
+      "alphaEdge": 0,
+      "bounds": [
+        954,
+        883,
+        1249,
+        1048
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Hair_Back",
+      "file": "Characters/LuBu/Layers/Hair_Back.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Hair_Back.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Hair_Back_source.png",
+      "sourceHash": "16d0673ffcee6f2b8cc9cb7fa5516c0514944c78982466e5644c1daa43942fbe",
+      "sha256": "16d0673ffcee6f2b8cc9cb7fa5516c0514944c78982466e5644c1daa43942fbe",
+      "pixelHash": "004995d907c962ba70f8b780e9419ada8f6b6088c0f68069d3f0ac8a960a9c10",
+      "bytes": 129566,
+      "alphaZero": 4159783,
+      "alphaOpaque": 1339,
+      "alphaEdge": 0,
+      "bounds": [
+        882,
+        913,
+        1123,
+        1287
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Helmet",
+      "file": "Characters/LuBu/Layers/Helmet.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Helmet.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Helmet_source.png",
+      "sourceHash": "baea5773c9a6cd2dcefd83a50b611a45d355df29ebb5440b57b6fab1c5666009",
+      "sha256": "baea5773c9a6cd2dcefd83a50b611a45d355df29ebb5440b57b6fab1c5666009",
+      "pixelHash": "5033a8d43892773b7d69b863fd3380665bd2cd9316643dd1d19570776794f13f",
+      "bytes": 62764,
+      "alphaZero": 4181670,
+      "alphaOpaque": 8121,
+      "alphaEdge": 0,
+      "bounds": [
+        1041,
+        800,
+        1221,
+        927
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Feather_Left",
+      "file": "Characters/LuBu/Layers/Feather_Left.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Feather_Left.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Feather_Left_source.png",
+      "sourceHash": "912076c57283689a9a80c312bbea236607a123fcd4741dacf148966f6f28085e",
+      "sha256": "912076c57283689a9a80c312bbea236607a123fcd4741dacf148966f6f28085e",
+      "pixelHash": "555992a6bc1bfa3d480d12745eb62f5e3422f18553f0c98101cb8a49d88559f3",
+      "bytes": 318259,
+      "alphaZero": 4106349,
+      "alphaOpaque": 5820,
+      "alphaEdge": 0,
+      "bounds": [
+        466,
+        586,
+        1102,
+        1267
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Feather_Right",
+      "file": "Characters/LuBu/Layers/Feather_Right.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Feather_Right.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Feather_Right_source.png",
+      "sourceHash": "63b00d0aec9b152e4fa6aa61e50987a74807746b4d676136e7ff755e0512490d",
+      "sha256": "63b00d0aec9b152e4fa6aa61e50987a74807746b4d676136e7ff755e0512490d",
+      "pixelHash": "14bb8a8d97f7112cb793c7ce1baed0189c604aff4df14443e23189a266370147",
+      "bytes": 252223,
+      "alphaZero": 4124704,
+      "alphaOpaque": 3814,
+      "alphaEdge": 0,
+      "bounds": [
+        631,
+        652,
+        1369,
+        1194
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Torso",
+      "file": "Characters/LuBu/Layers/Torso.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Torso.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Torso_source.png",
+      "sourceHash": "555f80ecd2a9944f70c63772b8df208152dd94afa6b3d30541c5acf354bbddc1",
+      "sha256": "555f80ecd2a9944f70c63772b8df208152dd94afa6b3d30541c5acf354bbddc1",
+      "pixelHash": "8f79f954a123da081cedc3e60b6223a56eadd81282074a5f27024d83c89ddd13",
+      "bytes": 200159,
+      "alphaZero": 4137776,
+      "alphaOpaque": 33864,
+      "alphaEdge": 0,
+      "bounds": [
+        990,
+        1052,
+        1243,
+        1355
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_UpperArm_L",
+      "file": "Characters/LuBu/Layers/UpperArm_L.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/UpperArm_L.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_UpperArm_L_source.png",
+      "sourceHash": "e6021e9a80f0981cbf8311cb9a13a42e21f2a9629642644aaf9e35ee87648809",
+      "sha256": "e6021e9a80f0981cbf8311cb9a13a42e21f2a9629642644aaf9e35ee87648809",
+      "pixelHash": "ae91641c32c378ba5cb28225cb458e77f55e07a4e40e28e6bc3704b2d8f95557",
+      "bytes": 30984,
+      "alphaZero": 4189354,
+      "alphaOpaque": 2944,
+      "alphaEdge": 0,
+      "bounds": [
+        1181,
+        1149,
+        1277,
+        1251
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_UpperArm_R",
+      "file": "Characters/LuBu/Layers/UpperArm_R.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/UpperArm_R.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_UpperArm_R_source.png",
+      "sourceHash": "5d23628940cbbc57a49efc8bb46ebee540248ff568462e491408d4b0bb55d15a",
+      "sha256": "5d23628940cbbc57a49efc8bb46ebee540248ff568462e491408d4b0bb55d15a",
+      "pixelHash": "f9e12f22d6f828e26f771a04d4a5eb98e2331836af622e461124001e731a21aa",
+      "bytes": 38584,
+      "alphaZero": 4186546,
+      "alphaOpaque": 4126,
+      "alphaEdge": 0,
+      "bounds": [
+        876,
+        1116,
+        1013,
+        1208
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Forearm_L",
+      "file": "Characters/LuBu/Layers/Forearm_L.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Forearm_L.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Forearm_L_source.png",
+      "sourceHash": "25b41d63bcce090106c83e9b1c1d879d9e1d69554b9868b3dda5d3137d8098f0",
+      "sha256": "25b41d63bcce090106c83e9b1c1d879d9e1d69554b9868b3dda5d3137d8098f0",
+      "pixelHash": "6367e69cba320a5450c61eabe70185836d469f13be3461cd931f054667cbd9ca",
+      "bytes": 29297,
+      "alphaZero": 4190472,
+      "alphaOpaque": 2606,
+      "alphaEdge": 0,
+      "bounds": [
+        1242,
+        1209,
+        1312,
+        1302
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Forearm_R",
+      "file": "Characters/LuBu/Layers/Forearm_R.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Forearm_R.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Forearm_R_source.png",
+      "sourceHash": "6e9edc11950e6cb22f5e18b8c7309fe90538ab0bae2f42d12fc8bf5a0502baf7",
+      "sha256": "6e9edc11950e6cb22f5e18b8c7309fe90538ab0bae2f42d12fc8bf5a0502baf7",
+      "pixelHash": "cf0c3b739932bb5dae879b1f2f50f562cd0504a958e67e36fb811138f4db19c1",
+      "bytes": 26464,
+      "alphaZero": 4190809,
+      "alphaOpaque": 2122,
+      "alphaEdge": 0,
+      "bounds": [
+        828,
+        1164,
+        927,
+        1225
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Hand_L",
+      "file": "Characters/LuBu/Layers/Hand_L.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Hand_L.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Hand_L_source.png",
+      "sourceHash": "0a57e55516e6b134b96b4bb484712e97f32940139825b79c35179f7c0f82e9c7",
+      "sha256": "0a57e55516e6b134b96b4bb484712e97f32940139825b79c35179f7c0f82e9c7",
+      "pixelHash": "842e79c675185f386f85262ffc490c45f207bda9005f48834aa952f7044b4696",
+      "bytes": 26369,
+      "alphaZero": 4191727,
+      "alphaOpaque": 791,
+      "alphaEdge": 0,
+      "bounds": [
+        1279,
+        1293,
+        1341,
+        1351
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Hand_R",
+      "file": "Characters/LuBu/Layers/Hand_R.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Hand_R.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Hand_R_source.png",
+      "sourceHash": "a5f10e0697597bba894696052317f5e5a866ebea63afb779cca12515c5f688ac",
+      "sha256": "a5f10e0697597bba894696052317f5e5a866ebea63afb779cca12515c5f688ac",
+      "pixelHash": "c1f014ef6ad83faabd91b91964254d76b968162e09c42ee9158fa528f913ffc8",
+      "bytes": 29461,
+      "alphaZero": 4190783,
+      "alphaOpaque": 1106,
+      "alphaEdge": 0,
+      "bounds": [
+        806,
+        1209,
+        881,
+        1273
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Thigh_L",
+      "file": "Characters/LuBu/Layers/Thigh_L.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Thigh_L.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Thigh_L_source.png",
+      "sourceHash": "a4184a5b7f942a9f1e7d6c5e8a085dbbd2f5ce30a3574587d57d60f2c021d1cc",
+      "sha256": "a4184a5b7f942a9f1e7d6c5e8a085dbbd2f5ce30a3574587d57d60f2c021d1cc",
+      "pixelHash": "fb3d84e9c33f8ba7e36fc403ef7e47b9ddf2ffc0034d9645d2acaf0c6ab99da6",
+      "bytes": 53657,
+      "alphaZero": 4183269,
+      "alphaOpaque": 7222,
+      "alphaEdge": 0,
+      "bounds": [
+        1145,
+        1311,
+        1240,
+        1478
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Thigh_R",
+      "file": "Characters/LuBu/Layers/Thigh_R.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Thigh_R.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Thigh_R_source.png",
+      "sourceHash": "8cab9bac1abe486449a2ff6d499a40359e9b5450d100cab558d6cf148623ceaf",
+      "sha256": "8cab9bac1abe486449a2ff6d499a40359e9b5450d100cab558d6cf148623ceaf",
+      "pixelHash": "44be0cd293ee105dc6375b062866e7576ceb465681648accbcd06384e888c4a5",
+      "bytes": 64153,
+      "alphaZero": 4179421,
+      "alphaOpaque": 9195,
+      "alphaEdge": 0,
+      "bounds": [
+        914,
+        1296,
+        1088,
+        1478
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Shin_L",
+      "file": "Characters/LuBu/Layers/Shin_L.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Shin_L.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Shin_L_source.png",
+      "sourceHash": "603df2ac2161283995a047d417cd72f7951e96d3408884056d2dcbf99c1f618d",
+      "sha256": "603df2ac2161283995a047d417cd72f7951e96d3408884056d2dcbf99c1f618d",
+      "pixelHash": "1517683d163ad97cd9bf1bf4804809ea37b0a1030658c1a48d19a15c036eb5c3",
+      "bytes": 50257,
+      "alphaZero": 4184129,
+      "alphaOpaque": 5304,
+      "alphaEdge": 0,
+      "bounds": [
+        1169,
+        1428,
+        1250,
+        1598
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Shin_R",
+      "file": "Characters/LuBu/Layers/Shin_R.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Shin_R.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Shin_R_source.png",
+      "sourceHash": "8a7cd24b718b6d3e4b6ce31aeb43561c7135e53d00c2eec32b904ab54294dcef",
+      "sha256": "8a7cd24b718b6d3e4b6ce31aeb43561c7135e53d00c2eec32b904ab54294dcef",
+      "pixelHash": "8bddf8e0f2d75dba891dc7c35459ac2951bb9ff5606b6de93c0bc80b43e3b799",
+      "bytes": 66500,
+      "alphaZero": 4179634,
+      "alphaOpaque": 9083,
+      "alphaEdge": 0,
+      "bounds": [
+        835,
+        1420,
+        989,
+        1614
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Foot_L",
+      "file": "Characters/LuBu/Layers/Foot_L.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Foot_L.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Foot_L_source.png",
+      "sourceHash": "822d134b2526fdf5d5a8e81c6ef2b8d1213a6abb5f8e874d633810babaf96479",
+      "sha256": "822d134b2526fdf5d5a8e81c6ef2b8d1213a6abb5f8e874d633810babaf96479",
+      "pixelHash": "82410a5b60263bdaadd5419c34103b982d5fd145f43b70c6fc2750fc8d528186",
+      "bytes": 37931,
+      "alphaZero": 4188050,
+      "alphaOpaque": 2677,
+      "alphaEdge": 0,
+      "bounds": [
+        1157,
+        1554,
+        1289,
+        1627
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Foot_R",
+      "file": "Characters/LuBu/Layers/Foot_R.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Foot_R.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Foot_R_source.png",
+      "sourceHash": "cbc8410efa077c58293e226efd2d76060420a0852a03c4644c8517dbc2c73a95",
+      "sha256": "cbc8410efa077c58293e226efd2d76060420a0852a03c4644c8517dbc2c73a95",
+      "pixelHash": "81ee80da2bb5a3cbf51eb8d4b21bf4d986f81ed86edc3af8e46a09472ac232c3",
+      "bytes": 43808,
+      "alphaZero": 4186843,
+      "alphaOpaque": 3862,
+      "alphaEdge": 0,
+      "bounds": [
+        800,
+        1565,
+        917,
+        1644
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_ShoulderArmor_L",
+      "file": "Characters/LuBu/Layers/ShoulderArmor_L.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/ShoulderArmor_L.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_ShoulderArmor_L_source.png",
+      "sourceHash": "7310cb73eccc44934e88ecd6205bf5f80d35b9008717f5985fb67107d011b366",
+      "sha256": "7310cb73eccc44934e88ecd6205bf5f80d35b9008717f5985fb67107d011b366",
+      "pixelHash": "5e4291f270ff337197ffd1caf5345d8776cf81522d53fa1932cb12f25e125a98",
+      "bytes": 42740,
+      "alphaZero": 4186868,
+      "alphaOpaque": 4251,
+      "alphaEdge": 0,
+      "bounds": [
+        1176,
+        1080,
+        1287,
+        1203
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_ShoulderArmor_R",
+      "file": "Characters/LuBu/Layers/ShoulderArmor_R.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/ShoulderArmor_R.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_ShoulderArmor_R_source.png",
+      "sourceHash": "1e854504c5bf81d8b72760283b06f14f8eef615a07c563dbdd5a1d7603d7a4cf",
+      "sha256": "1e854504c5bf81d8b72760283b06f14f8eef615a07c563dbdd5a1d7603d7a4cf",
+      "pixelHash": "a4485ce7a12523cb5b3aa84084db418742dd754ca75ff81ac7effdc15d8f470d",
+      "bytes": 81911,
+      "alphaZero": 4175111,
+      "alphaOpaque": 11874,
+      "alphaEdge": 0,
+      "bounds": [
+        846,
+        990,
+        1037,
+        1146
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Cape_Upper",
+      "file": "Characters/LuBu/Layers/Cape_Upper.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Cape_Upper.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Cape_Upper_source.png",
+      "sourceHash": "82f525dbf35bdeadd4979f2ba56f826bff7d86d629b636b30bd668aa82e767cc",
+      "sha256": "82f525dbf35bdeadd4979f2ba56f826bff7d86d629b636b30bd668aa82e767cc",
+      "pixelHash": "7362d2b470b888e893d370f9b9d836667cc80e7dedc06ea5620f84273ce1588d",
+      "bytes": 275766,
+      "alphaZero": 4032695,
+      "alphaOpaque": 11701,
+      "alphaEdge": 0,
+      "bounds": [
+        773,
+        1069,
+        1332,
+        1527
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Cape_Left",
+      "file": "Characters/LuBu/Layers/Cape_Left.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Cape_Left.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Cape_Left_source.png",
+      "sourceHash": "3d27ff382ef625d010e741df4180845574bdbcf381d3891bd18cd464ca68eaaf",
+      "sha256": "3d27ff382ef625d010e741df4180845574bdbcf381d3891bd18cd464ca68eaaf",
+      "pixelHash": "868427ade9fb87d434495e2a2f9e77c4a9abb4a51183ebcbbe9b0c2a76afb4e8",
+      "bytes": 223510,
+      "alphaZero": 4115552,
+      "alphaOpaque": 23530,
+      "alphaEdge": 0,
+      "bounds": [
+        485,
+        1268,
+        976,
+        1523
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Cape_Right",
+      "file": "Characters/LuBu/Layers/Cape_Right.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Cape_Right.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Cape_Right_source.png",
+      "sourceHash": "c3ede8fc7088f5efbe1257fea4954fdf00ad4b01fcad0ff66ada79d5938d1a13",
+      "sha256": "c3ede8fc7088f5efbe1257fea4954fdf00ad4b01fcad0ff66ada79d5938d1a13",
+      "pixelHash": "cbc421c4a0090713a271b6121db684b719d149a58171ab2be7c0fedaba869bbb",
+      "bytes": 77850,
+      "alphaZero": 4174283,
+      "alphaOpaque": 7034,
+      "alphaEdge": 0,
+      "bounds": [
+        1237,
+        1361,
+        1466,
+        1549
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Cloth_Front",
+      "file": "Characters/LuBu/Layers/Cloth_Front.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Cloth_Front.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Cloth_Front_source.png",
+      "sourceHash": "dd11333e12aa36df890a8709ec2bb833a911d41e6697bf0288039b52ee9f1946",
+      "sha256": "dd11333e12aa36df890a8709ec2bb833a911d41e6697bf0288039b52ee9f1946",
+      "pixelHash": "0d52d251c159f778bbac703974f464b521496ddafe9e7cca614680c3f0ac75db",
+      "bytes": 223536,
+      "alphaZero": 4128155,
+      "alphaOpaque": 29514,
+      "alphaEdge": 0,
+      "bounds": [
+        938,
+        1244,
+        1252,
+        1554
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Layer_Weapon",
+      "file": "Characters/LuBu/Layers/Weapon.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Layers/Weapon.png",
+      "source": "ArtSource/Lobby2D/Generated/Layer_Weapon_source.png",
+      "sourceHash": "eb0440debfaad82c0d0b718b9c3ada38b25767991536ac721a2ab9cbe4668db3",
+      "sha256": "eb0440debfaad82c0d0b718b9c3ada38b25767991536ac721a2ab9cbe4668db3",
+      "pixelHash": "915c99a94afa74dd943463772252aedcbd412858df945a3aca06be20ec16f94a",
+      "bytes": 290091,
+      "alphaZero": 4117839,
+      "alphaOpaque": 26141,
+      "alphaEdge": 0,
+      "bounds": [
+        519,
+        1060,
+        1577,
+        1640
+      ],
+      "visualStatus": "native-rig-export",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_Lobby",
+      "file": "UI/Icons/Lobby.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/Lobby.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_Lobby_source.png",
+      "sourceHash": "563f17a0eac406cf59e206d75f1a0d65087e83b2f7d00a338abf2efbd9456a07",
+      "sha256": "fff31906eeff407bb7f92ad1fcf8536f67e58e3e2a0127aa9ccecf923cb2a3a6",
+      "pixelHash": "403635700744720c2a34cfeb169feb1ea844160dd20085e046f7152ec45b83a5",
+      "bytes": 88529,
+      "alphaZero": 37358,
+      "alphaOpaque": 668,
+      "alphaEdge": 0,
+      "bounds": [
+        25,
+        20,
+        230,
+        214
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_Heroes",
+      "file": "UI/Icons/Heroes.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/Heroes.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_Heroes_source.png",
+      "sourceHash": "9afac3adaf255f5c7eac1eb5e5afb70eb22b11b7416e3be76bd46b3ddccd4a83",
+      "sha256": "9ada073f15cbec4bfb4a5022d46eb5be294745a1bb2ffa7eaa8417688f40e619",
+      "pixelHash": "348f71004fce1bd4436df15dc2388c0be9b15642d4b2df31562a04829c246d41",
+      "bytes": 89656,
+      "alphaZero": 38369,
+      "alphaOpaque": 613,
+      "alphaEdge": 0,
+      "bounds": [
+        36,
+        11,
+        219,
+        228
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_Lineup",
+      "file": "UI/Icons/Lineup.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/Lineup.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_Lineup_source.png",
+      "sourceHash": "4204207c1caab4ecb93b8baf2ed131891ed3196c144b1426649e8491db7972d7",
+      "sha256": "1a8cd9f5488e07d68438cbb34f85742a206a5647e4c08f37825bb68b3054e474",
+      "pixelHash": "0b7769f3198e1f7b2d2861293261396009204ad7b9070dd5f1bc6672577ea0b1",
+      "bytes": 85472,
+      "alphaZero": 40081,
+      "alphaOpaque": 1651,
+      "alphaEdge": 0,
+      "bounds": [
+        30,
+        17,
+        225,
+        229
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_Equipment",
+      "file": "UI/Icons/Equipment.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/Equipment.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_Equipment_source.png",
+      "sourceHash": "07247a0855ad2a44d6aa06d1c1d278d9a6d73357a6ba07d430ae2dc733c5f8ba",
+      "sha256": "d8fa0fe9df4a414c9142394bd6cb2e36c57459a57b3df94d6b6838ebe9a87bba",
+      "pixelHash": "bb5fa8ecd3fe884398fd8928106a0a1a4ccbeb5adcdb4192e368f2e31ab48a13",
+      "bytes": 98250,
+      "alphaZero": 35560,
+      "alphaOpaque": 504,
+      "alphaEdge": 0,
+      "bounds": [
+        19,
+        34,
+        237,
+        225
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_Bag",
+      "file": "UI/Icons/Bag.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/Bag.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_Bag_source.png",
+      "sourceHash": "35aa8ab843f8820d2d82d498cb40486df1a7f4af458055ee47ac94b85256220e",
+      "sha256": "1c323a06535690213b77b98a023f8508a658516e6f6256d919c5b4a8f108b576",
+      "pixelHash": "c397b43d0f301293c11e4a71145cfb7e3d82254891dc52586c0e15136e02420e",
+      "bytes": 76771,
+      "alphaZero": 41007,
+      "alphaOpaque": 425,
+      "alphaEdge": 0,
+      "bounds": [
+        35,
+        36,
+        228,
+        211
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_More",
+      "file": "UI/Icons/More.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/More.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_More_source.png",
+      "sourceHash": "6f36d49691aad9893ec9f7bb76cf4962c8b57097291ff9a156f2d86dacfb2a76",
+      "sha256": "f2262ecf263eb5e23068131dd7219292f149b544d134bdec8dd107af2675c36a",
+      "pixelHash": "9f3f925d1cc2286f6333892d72ee1db0c43baa2678cb2b2bc328322649122e08",
+      "bytes": 62774,
+      "alphaZero": 46085,
+      "alphaOpaque": 442,
+      "alphaEdge": 0,
+      "bounds": [
+        28,
+        27,
+        227,
+        226
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_Quests",
+      "file": "UI/Icons/Quests.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/Quests.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_Quests_source.png",
+      "sourceHash": "9bf74fe730ea729b5b21489081f18101b61b7cc268b77aadd92fce15677b38cb",
+      "sha256": "76ce32d7af3178074f3314ad4cea5675ac8bff82cd588ec895b7c55686c1c031",
+      "pixelHash": "176825586a8aff5da443a8a247fceadc22e5ccdadaf669f4badc08e29d34cb36",
+      "bytes": 83267,
+      "alphaZero": 39349,
+      "alphaOpaque": 541,
+      "alphaEdge": 0,
+      "bounds": [
+        15,
+        32,
+        244,
+        235
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_Events",
+      "file": "UI/Icons/Events.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/Events.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_Events_source.png",
+      "sourceHash": "99641cf565c2977556d12a6f88e0c6dfca5c987d49608baf85c47f0ce64792ec",
+      "sha256": "b16f1c73b01e3b91eb92bc85fa7ffe6b31b7a8cf4c41b77f48789db688af1f7e",
+      "pixelHash": "afb112c6c4237d283a1223899bb72addc57e955b48cee255559249a1d31d4e48",
+      "bytes": 84539,
+      "alphaZero": 37960,
+      "alphaOpaque": 427,
+      "alphaEdge": 0,
+      "bounds": [
+        33,
+        38,
+        228,
+        222
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_Welfare",
+      "file": "UI/Icons/Welfare.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/Welfare.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_Welfare_source.png",
+      "sourceHash": "d8e4f5bcffdd37036e11ca3b12abce2a0ddeee274a797c9c2516a164e0a358bc",
+      "sha256": "3c7869896da6185719a8da7e71039b7cd251b0ad596dafde778bacd46be656c2",
+      "pixelHash": "aedc3483c2718ec0c7d879e6b30fe914ca9619d28118eadb8c7e1fa8c1d0874b",
+      "bytes": 111967,
+      "alphaZero": 30413,
+      "alphaOpaque": 558,
+      "alphaEdge": 0,
+      "bounds": [
+        19,
+        19,
+        246,
+        238
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_Friends",
+      "file": "UI/Icons/Friends.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/Friends.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_Friends_source.png",
+      "sourceHash": "bd8680b554e37cfd3dc4a47fca4ebb379ee872ca5c5abf696553d8a47b65ab26",
+      "sha256": "7eb0809adb7f7b10ef6c93c3509501471c123f277a5e652519a033bc0017dd0d",
+      "pixelHash": "8c53ef308d8fe51bb38fd92cf9af8b7ab76d1da979c8ad406d8e7d908d4bfb56",
+      "bytes": 68795,
+      "alphaZero": 43462,
+      "alphaOpaque": 497,
+      "alphaEdge": 0,
+      "bounds": [
+        28,
+        50,
+        226,
+        206
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_Guild",
+      "file": "UI/Icons/Guild.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/Guild.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_Guild_source.png",
+      "sourceHash": "adb30b3ac0df56e96c47d27f44c02c40d89b2da41bcc0ddab1601fe2e2678932",
+      "sha256": "f6bcd0a50437858db71736537afe5793657fb793ebdb0ee87a92db6319ea4a0d",
+      "pixelHash": "dfd1a191eb902f31c5271f2a87d8e1c4147c3cd62faa4e898ec2254b8f0e6722",
+      "bytes": 92043,
+      "alphaZero": 36112,
+      "alphaOpaque": 1009,
+      "alphaEdge": 0,
+      "bounds": [
+        13,
+        8,
+        242,
+        228
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_Banknotes",
+      "file": "UI/Icons/Banknotes.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/Banknotes.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_Banknotes_source.png",
+      "sourceHash": "2ed51335c1ffaeacdfd26b8c1c95f1d5e9165c2cca7d967ccbb9bd731eb16732",
+      "sha256": "add82fe5fe3555f08c8fac1f9dc9eb3ff2a7087f567c821edf1c74c8d24aefaa",
+      "pixelHash": "7e364ad6ab7b526c610bd2309d5ea7f2a5702f50d42a657d8ba7460d22e1931f",
+      "bytes": 88708,
+      "alphaZero": 38605,
+      "alphaOpaque": 464,
+      "alphaEdge": 0,
+      "bounds": [
+        16,
+        38,
+        243,
+        220
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_Silver",
+      "file": "UI/Icons/Silver.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/Silver.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_Silver_source.png",
+      "sourceHash": "589f5c6bf1f5d148050504b7f20d808625d52bfbfdc8154f3545a8ed2f63b3fc",
+      "sha256": "6f692c5a4dc507bd09be1fb618d763f769c93e431b1ed3318cbf1e04b039837d",
+      "pixelHash": "b3c5097efb0eeb457447435defeef2ab3b05c49d840e5fcd7756ea3874b94057",
+      "bytes": 74067,
+      "alphaZero": 38085,
+      "alphaOpaque": 487,
+      "alphaEdge": 0,
+      "bounds": [
+        41,
+        36,
+        224,
+        226
+      ],
+      "visualStatus": "silver material corrected",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_Stamina",
+      "file": "UI/Icons/Stamina.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/Stamina.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_Stamina_source.png",
+      "sourceHash": "67757061c27a57e26908a9f3fc9998019efcc60be7192722aa806293acfd0740",
+      "sha256": "ebfb2713cf3cebbcc658b1000a53800ffdc1c6ad32a003cd3ec2121f729932c1",
+      "pixelHash": "b84f8e3087abc9ed659fd412dff7941f29f2ff61066ee54925d1d63f85475e19",
+      "bytes": 72798,
+      "alphaZero": 43582,
+      "alphaOpaque": 423,
+      "alphaEdge": 0,
+      "bounds": [
+        28,
+        41,
+        236,
+        220
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_Mail",
+      "file": "UI/Icons/Mail.png",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "padding": 12,
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/Mail.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_Mail_source.png",
+      "sourceHash": "53be7a83419b9d8285591e2958b7ec72d25327d936a895a4d0a0276f04a5dc2b",
+      "sha256": "5064ab968a88a30d09fb300c4d403c66273439a17ce2ac50a8262bd92d950286",
+      "pixelHash": "4b3a95b7f7f5c984f9367543a8124069cd023f1af63275c4da8606a49aa19131",
+      "bytes": 2670,
+      "alphaZero": 13937,
+      "alphaOpaque": 566,
+      "alphaEdge": 0,
+      "bounds": [
+        28,
+        35,
+        99,
+        92
+      ],
+      "visualStatus": "native-ui",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_Settings",
+      "file": "UI/Icons/Settings.png",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "padding": 12,
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/Settings.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_Settings_source.png",
+      "sourceHash": "8966bca3acb2fb2d81717d3c1486c9c5c3dd4e1356d1b11cc87ffd19bec9b603",
+      "sha256": "5411110e5edd6f7ea602663b921d69d0f06d6e75082aac8a957e58377a8d6ffd",
+      "pixelHash": "29e979c612478f1744811094ba407a460c6c2057a3a791b6b1e71e59f98efec3",
+      "bytes": 4143,
+      "alphaZero": 14027,
+      "alphaOpaque": 576,
+      "alphaEdge": 0,
+      "bounds": [
+        32,
+        29,
+        95,
+        98
+      ],
+      "visualStatus": "native-ui",
+      "technicalPassed": true
+    },
+    {
+      "id": "Icon_Notification",
+      "file": "UI/Icons/Notification.png",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "padding": 12,
+      "path": "Assets/Arena3Q/Lobby2D/UI/Icons/Notification.png",
+      "source": "ArtSource/Lobby2D/Generated/Icon_Notification_source.png",
+      "sourceHash": "4c6f702fc6ac0bf454b41d6d0d6fa456e0214e0caf331394041253fea054cb07",
+      "sha256": "e3c70b52756adcd787c766f114e03cd48fc03fcbef0613bfaf75a61eeffb59df",
+      "pixelHash": "0eb5edb5c54936086c000cc5f326a9bdcc42e3212910726a95cb9ade64e7b897",
+      "bytes": 1254,
+      "alphaZero": 12248,
+      "alphaOpaque": 3476,
+      "alphaEdge": 0,
+      "bounds": [
+        29,
+        29,
+        98,
+        98
+      ],
+      "visualStatus": "native-ui",
+      "technicalPassed": true
+    },
+    {
+      "id": "Battle_Normal",
+      "file": "UI/Buttons/Battle_Normal.png",
+      "width": 1024,
+      "height": 352,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "button",
+      "family": "battle",
+      "padding": 16,
+      "path": "Assets/Arena3Q/Lobby2D/UI/Buttons/Battle_Normal.png",
+      "source": "ArtSource/Lobby2D/Generated/Battle_Normal_source.png",
+      "sourceHash": "05f5c7491d9df0dd31cc8b066fa8f94a2d80d596a1b196efa9e33dfc46339843",
+      "sha256": "a7209baaf0b33697f8753fc6342396767cbba0730a1a0f1e26b43a2bceef3e7d",
+      "pixelHash": "a8fa62e27b8422085ddbb10244918f2b70ded1cf713e1899630d9fe288a14a9c",
+      "bytes": 520119,
+      "alphaZero": 155568,
+      "alphaOpaque": 1340,
+      "alphaEdge": 0,
+      "bounds": [
+        47,
+        23,
+        976,
+        328
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Battle_Pressed",
+      "file": "UI/Buttons/Battle_Pressed.png",
+      "width": 1024,
+      "height": 352,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "button",
+      "family": "battle",
+      "padding": 16,
+      "path": "Assets/Arena3Q/Lobby2D/UI/Buttons/Battle_Pressed.png",
+      "source": "ArtSource/Lobby2D/Generated/Battle_Pressed_source.png",
+      "sourceHash": "d831a8d1bdef8086b8c3e6ed5abeeabcab278ca7090a9e34a3b98eaa89339af7",
+      "sha256": "01ea894aaffa52e86e71098ec9783ad4d6b99164952d9e8a95cb81c8d35aac96",
+      "pixelHash": "2227f510a585ef166f5966c35d150e5662a420d1e6f149cd4538f2ecb10594b9",
+      "bytes": 470940,
+      "alphaZero": 153632,
+      "alphaOpaque": 1411,
+      "alphaEdge": 0,
+      "bounds": [
+        46,
+        23,
+        977,
+        330
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Battle_Disabled",
+      "file": "UI/Buttons/Battle_Disabled.png",
+      "width": 1024,
+      "height": 352,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "button",
+      "family": "battle",
+      "padding": 16,
+      "path": "Assets/Arena3Q/Lobby2D/UI/Buttons/Battle_Disabled.png",
+      "source": "ArtSource/Lobby2D/Generated/Battle_Disabled_source.png",
+      "sourceHash": "d76cc02fcba289cdc74bc2b8d5d90752e378f6f0576954a489399ffd6a6a97da",
+      "sha256": "53ee1e50d0e3d12b44a44e55bb8cc5a57e70966ded0a797870d75070d5198527",
+      "pixelHash": "b4703552b28507992f0fded940116466a77f4aed9c2d073bf3bad5cb4d9155af",
+      "bytes": 469109,
+      "alphaZero": 154209,
+      "alphaOpaque": 1706,
+      "alphaEdge": 0,
+      "bounds": [
+        46,
+        22,
+        977,
+        329
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Battle_Highlight",
+      "file": "UI/Buttons/Battle_Highlight.png",
+      "width": 1024,
+      "height": 352,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "effect",
+      "family": "battle",
+      "padding": 16,
+      "path": "Assets/Arena3Q/Lobby2D/UI/Buttons/Battle_Highlight.png",
+      "source": "ArtSource/Lobby2D/Generated/Battle_Highlight_source.png",
+      "sourceHash": "98d06eabfceb6ac990de2fedff6fc1b9beb597065b0e2233a569047d653952cd",
+      "sha256": "4ac076214ccbd200812b00afef83ca205f6f6f204fd161d54f9595f5dbaa2ec3",
+      "pixelHash": "c837deefbbd64b6047fe0b82993fd6ded5ad43b1da7fc34399bcfb5184d5a167",
+      "bytes": 325319,
+      "alphaZero": 230903,
+      "alphaOpaque": 0,
+      "alphaEdge": 0,
+      "bounds": [
+        38,
+        16,
+        985,
+        335
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Panel_Border",
+      "file": "UI/Panels/Panel_Border.png",
+      "width": 1024,
+      "height": 640,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        192,
+        160,
+        192,
+        160
+      ],
+      "role": "frame",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Panels/Panel_Border.png",
+      "source": "ArtSource/Lobby2D/Generated/Panel_Border_source.png",
+      "sourceHash": "721796e2cee3fab499ff99451929e50015bcc20f485edef8a9336dff40b5428e",
+      "sha256": "eaceee8906d6e13487441e37277b59244165b3e7c2c41f3621bc208f81d021d0",
+      "pixelHash": "24cbe018de3b6921659b9738577b5e85ee8707ae545b837ff63a15577d4c6335",
+      "bytes": 342626,
+      "alphaZero": 536295,
+      "alphaOpaque": 962,
+      "alphaEdge": 0,
+      "bounds": [
+        25,
+        33,
+        993,
+        593
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "UI_LightSweep",
+      "file": "Effects/UI/LightSweep.png",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "effect",
+      "padding": 8,
+      "path": "Assets/Arena3Q/Lobby2D/Effects/UI/LightSweep.png",
+      "source": "ArtSource/Lobby2D/Generated/UI_LightSweep_source.png",
+      "sourceHash": "827bdd61e244bad7c9bf6fd605bd0831b1259a2e85aa2baf34f8250e31b6162d",
+      "sha256": "e602627f64e6ea31e4ea99cfaae75d69abc07ae41079a021ffbb592679f4fb6b",
+      "pixelHash": "1a18524fa306ddb112ec2f4749a2da516cef90cf86b04712e3c51ad79d496e1b",
+      "bytes": 974,
+      "alphaZero": 8620,
+      "alphaOpaque": 0,
+      "alphaEdge": 0,
+      "bounds": [
+        27,
+        15,
+        100,
+        112
+      ],
+      "visualStatus": "native-ui",
+      "technicalPassed": true
+    },
+    {
+      "id": "Ambient_Mote",
+      "file": "Effects/UI/Ambient_Mote.png",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "effect",
+      "padding": 12,
+      "path": "Assets/Arena3Q/Lobby2D/Effects/UI/Ambient_Mote.png",
+      "source": "ArtSource/Lobby2D/Generated/Ambient_Mote_source.png",
+      "sourceHash": "caedcc5df5bcac4470244d2520d6a64b45b20c1ccf4d918da516c55e3fa365a6",
+      "sha256": "a91eb85d28ae6ad08311ad94f28b13507b9148faba62ec39193102c723716156",
+      "pixelHash": "e3382a44f943f6c5c80e2de8398432f853e9c1a0fc8efc5042917ea69a61adf2",
+      "bytes": 12134,
+      "alphaZero": 8268,
+      "alphaOpaque": 0,
+      "alphaEdge": 0,
+      "bounds": [
+        16,
+        16,
+        108,
+        110
+      ],
+      "visualStatus": "Kenney CC0 reused",
+      "technicalPassed": true
+    },
+    {
+      "id": "Panel_Background",
+      "file": "UI/Panels/Panel_Background.png",
+      "width": 512,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        40,
+        40,
+        40,
+        40
+      ],
+      "role": "frame",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Panels/Panel_Background.png",
+      "source": "ArtSource/Lobby2D/Generated/Panel_Background_source.png",
+      "sourceHash": "802f41a13b116c3c96f88452ea95ab65e857bbef03bb1080befb07d524a8be6d",
+      "sha256": "a007169532ca23686a0fdd32830460745d701febd72f4f85f4488c20778cb7f4",
+      "pixelHash": "7051a65946ebdac8362aa2157449a3a13971bde0570777de478f1471a3bfb99b",
+      "bytes": 6446,
+      "alphaZero": 2076,
+      "alphaOpaque": 127536,
+      "alphaEdge": 0,
+      "bounds": [
+        1,
+        1,
+        510,
+        254
+      ],
+      "visualStatus": "native-ui",
+      "technicalPassed": true
+    },
+    {
+      "id": "Resource_Bar",
+      "file": "UI/Resources/Resource_Bar.png",
+      "width": 512,
+      "height": 96,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        48,
+        24,
+        48,
+        24
+      ],
+      "role": "frame",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Resources/Resource_Bar.png",
+      "source": "ArtSource/Lobby2D/Generated/Resource_Bar_source.png",
+      "sourceHash": "b709c4a27d9d557dbcffd9c19b85757a9448d0c9715417e1bf7a1b60c0e2fe92",
+      "sha256": "0ff947c4741d186f1d4d1b8f2304de9c9b151f1e192f2e23f58daeabae8286cd",
+      "pixelHash": "ba5b89f624e2d8426b2bf4112f7f32069dcf20990e5d7dcbc59447f4ac216903",
+      "bytes": 3059,
+      "alphaZero": 1756,
+      "alphaOpaque": 46256,
+      "alphaEdge": 0,
+      "bounds": [
+        1,
+        1,
+        510,
+        94
+      ],
+      "visualStatus": "native-ui",
+      "technicalPassed": true
+    },
+    {
+      "id": "Player_Name",
+      "file": "UI/Panels/Player_Name.png",
+      "width": 640,
+      "height": 160,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        80,
+        40,
+        80,
+        40
+      ],
+      "role": "frame",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Panels/Player_Name.png",
+      "source": "ArtSource/Lobby2D/Generated/Player_Name_source.png",
+      "sourceHash": "07b893324548e721dd96cf277ae453a28951a2d186c11da32d941b04ca8311c7",
+      "sha256": "084df882b0464c00fe2a57960968627fb34afaa1ea46c8ec0505ade7968c8bd4",
+      "pixelHash": "e7d85b23896edaf0dcaa366e2bc26f2e9562c6a5d5595bee88da2abc400d01e3",
+      "bytes": 4801,
+      "alphaZero": 2140,
+      "alphaOpaque": 98736,
+      "alphaEdge": 0,
+      "bounds": [
+        1,
+        1,
+        638,
+        158
+      ],
+      "visualStatus": "native-ui",
+      "technicalPassed": true
+    },
+    {
+      "id": "Avatar_Frame",
+      "file": "UI/Panels/Avatar_Frame.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "role": "frame",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Panels/Avatar_Frame.png",
+      "source": "ArtSource/Lobby2D/Generated/Avatar_Frame_source.png",
+      "sourceHash": "035811d4183f5e05f04c12e9b8ab159a5bc341f5411989f54207e5272433dad2",
+      "sha256": "d084d6e2de3e7e6d30b148dc0a0231c46356c839e7e66f0edcdfd53e35e83d9a",
+      "pixelHash": "7ec8452866f423d543d166978b88aa59103127c87ec8db19227698a46c3b6969",
+      "bytes": 4264,
+      "alphaZero": 59984,
+      "alphaOpaque": 1992,
+      "alphaEdge": 0,
+      "bounds": [
+        1,
+        1,
+        254,
+        254
+      ],
+      "visualStatus": "native-ui",
+      "technicalPassed": true
+    },
+    {
+      "id": "Banner_Frame",
+      "file": "UI/Banners/Banner_Frame.png",
+      "width": 1024,
+      "height": 400,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        160,
+        120,
+        160,
+        120
+      ],
+      "role": "frame",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Banners/Banner_Frame.png",
+      "source": "ArtSource/Lobby2D/Generated/Banner_Frame_source.png",
+      "sourceHash": "f407e6cc219bdf83a5a359b3788278e2a3d2a6a62b4cc5b436f69eb80fffd241",
+      "sha256": "2d9a78b8582534ba97ddfdc7e303d2ab42a48ddb45142c17833fdb9fdd3ff9d8",
+      "pixelHash": "f8ea22b02e7145639ab955143c9026d31216759d8bf096cb4db8d238b54392db",
+      "bytes": 7232,
+      "alphaZero": 393104,
+      "alphaOpaque": 5640,
+      "alphaEdge": 0,
+      "bounds": [
+        1,
+        1,
+        1022,
+        398
+      ],
+      "visualStatus": "native-ui",
+      "technicalPassed": true
+    },
+    {
+      "id": "Event_Card_Frame",
+      "file": "UI/Banners/Event_Card_Frame.png",
+      "width": 512,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        80,
+        64,
+        80,
+        64
+      ],
+      "role": "frame",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Banners/Event_Card_Frame.png",
+      "source": "ArtSource/Lobby2D/Generated/Event_Card_Frame_source.png",
+      "sourceHash": "508e490db55f575054aa4ec776fbdbb117dc8af11c22a85e81e5f7cb7e43ea43",
+      "sha256": "b93d1cd337802c02dc210ba9755c8b2a9d304616cd12dad57d1fe1cfab4eeefb",
+      "pixelHash": "af1c53ef545d59cbd800f3022907fab8553af40d1f3bf4a2681f8091288099f7",
+      "bytes": 4770,
+      "alphaZero": 122448,
+      "alphaOpaque": 3016,
+      "alphaEdge": 0,
+      "bounds": [
+        1,
+        1,
+        510,
+        254
+      ],
+      "visualStatus": "native-ui",
+      "technicalPassed": true
+    },
+    {
+      "id": "Navigation_Horizontal",
+      "file": "UI/Navigation/Navigation_Horizontal.png",
+      "width": 1024,
+      "height": 144,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        96,
+        36,
+        96,
+        36
+      ],
+      "role": "frame",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Navigation/Navigation_Horizontal.png",
+      "source": "ArtSource/Lobby2D/Generated/Navigation_Horizontal_source.png",
+      "sourceHash": "40cd4a85b36a6af36c34b7bd6caae8fac30de85552750806a5a37f39e6bb14be",
+      "sha256": "3f9ae6f38db93c0f1edcdf45947a2239d9de6039c4eb6ceffc7d6bff5d0a2865",
+      "pixelHash": "2480cece4da6343f05b68351f27590ee17e81b736a05d3d71520dd3f3df12280",
+      "bytes": 4710,
+      "alphaZero": 2876,
+      "alphaOpaque": 142320,
+      "alphaEdge": 0,
+      "bounds": [
+        1,
+        1,
+        1022,
+        142
+      ],
+      "visualStatus": "native-ui",
+      "technicalPassed": true
+    },
+    {
+      "id": "Navigation_Vertical",
+      "file": "UI/Navigation/Navigation_Vertical.png",
+      "width": 160,
+      "height": 640,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        40,
+        96,
+        40,
+        96
+      ],
+      "role": "frame",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Navigation/Navigation_Vertical.png",
+      "source": "ArtSource/Lobby2D/Generated/Navigation_Vertical_source.png",
+      "sourceHash": "b997e1d3d260f24b2127d7ee2da67967911ace8ca2c61467fc9196510810fa94",
+      "sha256": "bec69edf326c07ac190c2f3f795807d0049c86ffb29bc86108e94bee7f220188",
+      "pixelHash": "6dd1bd74f870184d1392d3c815bfe5c9a1571e56e51bf8c91fd3739c148476e0",
+      "bytes": 8173,
+      "alphaZero": 2140,
+      "alphaOpaque": 98736,
+      "alphaEdge": 0,
+      "bounds": [
+        1,
+        1,
+        158,
+        638
+      ],
+      "visualStatus": "native-ui",
+      "technicalPassed": true
+    },
+    {
+      "id": "Secondary_Normal",
+      "file": "UI/Buttons/Secondary_Normal.png",
+      "width": 512,
+      "height": 144,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        48,
+        24,
+        48,
+        24
+      ],
+      "role": "frame",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Buttons/Secondary_Normal.png",
+      "source": "ArtSource/Lobby2D/Generated/Secondary_Normal_source.png",
+      "sourceHash": "85a6d6111a98169d4430448e1e6f0bfed6aded1208c5c379aa27550ad1cb4b4c",
+      "sha256": "c106eb2f151f2fd1dbd0a0d6928589a44733c69390a6ea3ed70c8c715d939327",
+      "pixelHash": "647fe09f32fce5befc593ac7b40d2cb1f8d2a32ff8b3c3bc7cb967ab6c572cfc",
+      "bytes": 4265,
+      "alphaZero": 1852,
+      "alphaOpaque": 70640,
+      "alphaEdge": 0,
+      "bounds": [
+        1,
+        1,
+        510,
+        142
+      ],
+      "visualStatus": "native-ui",
+      "technicalPassed": true
+    },
+    {
+      "id": "VIP_01",
+      "file": "UI/VIP/VIP_01.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 1,
+      "padding": 12,
+      "path": "Assets/Arena3Q/Lobby2D/UI/VIP/VIP_01.png",
+      "source": "ArtSource/Lobby2D/Generated/VIP_01_source.png",
+      "sourceHash": "e846552cd296f35d4dfb9a478188f5161a9dd97cb78e8d1996b380d86afcfb1a",
+      "sha256": "df1492ae43c6ccab272ab95b76164af06095f5127c2f4b1288bb978efdc6b096",
+      "pixelHash": "37223601d38caed3891e7fe037d36e43ca058b83e11c436345171f091a196a9f",
+      "bytes": 145088,
+      "alphaZero": 101598,
+      "alphaOpaque": 882,
+      "alphaEdge": 0,
+      "bounds": [
+        35,
+        28,
+        604,
+        211
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "VIP_02",
+      "file": "UI/VIP/VIP_02.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 2,
+      "padding": 12,
+      "path": "Assets/Arena3Q/Lobby2D/UI/VIP/VIP_02.png",
+      "source": "ArtSource/Lobby2D/Generated/VIP_02_source.png",
+      "sourceHash": "4283156d05e3f0c0fa83a805f44d9e29335c10f19786889cce55762588c55ac1",
+      "sha256": "3196cae953028c16a97a2cf7a4b9e55902faef02e2c8a72fc38cbf0a85c06100",
+      "pixelHash": "466688f1ca2d7486a8f073a5e3d48658b45ca35238d1eb3da8d14007970d8167",
+      "bytes": 194144,
+      "alphaZero": 91260,
+      "alphaOpaque": 1403,
+      "alphaEdge": 0,
+      "bounds": [
+        21,
+        20,
+        617,
+        205
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "VIP_03",
+      "file": "UI/VIP/VIP_03.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 3,
+      "padding": 12,
+      "path": "Assets/Arena3Q/Lobby2D/UI/VIP/VIP_03.png",
+      "source": "ArtSource/Lobby2D/Generated/VIP_03_source.png",
+      "sourceHash": "2475bdda2f8916b0c666fa2710637ba89a4be4f4e0eb7a8e1dcdaf76e43550da",
+      "sha256": "6d0439753bf489f30d0111fedd5078e3b4f1d304542ddcde87632b4de99bbc3f",
+      "pixelHash": "f1f71868156262dd8800e4c069fc00780b1c892950e0ec2b2bdb0deee112dee9",
+      "bytes": 188035,
+      "alphaZero": 86850,
+      "alphaOpaque": 1039,
+      "alphaEdge": 0,
+      "bounds": [
+        21,
+        17,
+        618,
+        199
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "VIP_04",
+      "file": "UI/VIP/VIP_04.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 4,
+      "padding": 12,
+      "path": "Assets/Arena3Q/Lobby2D/UI/VIP/VIP_04.png",
+      "source": "ArtSource/Lobby2D/Generated/VIP_04_source.png",
+      "sourceHash": "5eca5c4abc350b9bcf7e2192cff79f7c2319b8facc83176694a26ffc0f4f0a89",
+      "sha256": "0843ae945ccead39e6bac803cb84ac77cb03a558b3693835e4232e8587a56297",
+      "pixelHash": "4d1c22cd27a7b9b34694b94cc5598506efd8089a35a1a8cfae84c7361a02f8d3",
+      "bytes": 188655,
+      "alphaZero": 90221,
+      "alphaOpaque": 1405,
+      "alphaEdge": 0,
+      "bounds": [
+        27,
+        19,
+        612,
+        218
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "VIP_05",
+      "file": "UI/VIP/VIP_05.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 5,
+      "padding": 12,
+      "path": "Assets/Arena3Q/Lobby2D/UI/VIP/VIP_05.png",
+      "source": "ArtSource/Lobby2D/Generated/VIP_05_source.png",
+      "sourceHash": "531010da01d6f9a94a546c4a7257be93de9f159c74f4ec3dd1e1d4e2203a1d65",
+      "sha256": "b4582464b85e33ae53a1ea16fcdbc9cc693cec9f89ed18efa03026a4efeac6d9",
+      "pixelHash": "cb9a52984d9984a55699751d34fdb07f3a906c755b6ab79cacf9a389b7bc30f1",
+      "bytes": 192500,
+      "alphaZero": 89724,
+      "alphaOpaque": 1095,
+      "alphaEdge": 0,
+      "bounds": [
+        18,
+        33,
+        620,
+        201
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "VIP_06",
+      "file": "UI/VIP/VIP_06.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 6,
+      "padding": 12,
+      "path": "Assets/Arena3Q/Lobby2D/UI/VIP/VIP_06.png",
+      "source": "ArtSource/Lobby2D/Generated/VIP_06_source.png",
+      "sourceHash": "0d07b79ddc9a6279d1885366de97b81e47206ba98495d57f01232ecf48d559eb",
+      "sha256": "75163cc56fe66d9f637d3d4c19ae03a268bd72e00ede87cbc228923ed8d0321a",
+      "pixelHash": "8773b81afea873e4d3c2f732c32f0935bf9592437967110fdac6b7950f3fa638",
+      "bytes": 181520,
+      "alphaZero": 93393,
+      "alphaOpaque": 1089,
+      "alphaEdge": 0,
+      "bounds": [
+        19,
+        16,
+        619,
+        223
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "VIP_07",
+      "file": "UI/VIP/VIP_07.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 7,
+      "padding": 12,
+      "path": "Assets/Arena3Q/Lobby2D/UI/VIP/VIP_07.png",
+      "source": "ArtSource/Lobby2D/Generated/VIP_07_source.png",
+      "sourceHash": "995c605cc96eaad6ad8099b34fa48d57a7b5c305c6f94eca0c549c17dba9f365",
+      "sha256": "7e623c5164f1acb3d9a6968528a3999e46975e42546530daffb2939d222bbb6f",
+      "pixelHash": "963e1db5a58af572d703e14ad547a06e2263fa5c03845d2178c89e62af1f2497",
+      "bytes": 200975,
+      "alphaZero": 85698,
+      "alphaOpaque": 1077,
+      "alphaEdge": 0,
+      "bounds": [
+        20,
+        15,
+        618,
+        225
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "VIP_08",
+      "file": "UI/VIP/VIP_08.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 8,
+      "padding": 12,
+      "path": "Assets/Arena3Q/Lobby2D/UI/VIP/VIP_08.png",
+      "source": "ArtSource/Lobby2D/Generated/VIP_08_source.png",
+      "sourceHash": "ebf1dc96abf3e7b128205953b334aa5ebe175ec729ad5106e2261377a0f6334c",
+      "sha256": "8ee84adda98399c215127112d37ad2d227ea2270446f499de233fcc47af8c6ea",
+      "pixelHash": "0e7a890079084193adc36a47416f6f5226c3f6c750ebe294ea1cc729391c0630",
+      "bytes": 175186,
+      "alphaZero": 94007,
+      "alphaOpaque": 1214,
+      "alphaEdge": 0,
+      "bounds": [
+        24,
+        27,
+        614,
+        197
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "VIP_09",
+      "file": "UI/VIP/VIP_09.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 9,
+      "padding": 12,
+      "path": "Assets/Arena3Q/Lobby2D/UI/VIP/VIP_09.png",
+      "source": "ArtSource/Lobby2D/Generated/VIP_09_source.png",
+      "sourceHash": "95e716fbde2048fc1d558920e6cb9e3a20cdaeeed0bfc028b6c1650662045ade",
+      "sha256": "bd3b2d89d3caaccfa23a3b3af4e80c95818f1e352b72bbae38ea471e0829a891",
+      "pixelHash": "a262e585a49080a19345641c699bc3f5f9713dbecf8a8721c3d1d74961e16639",
+      "bytes": 194771,
+      "alphaZero": 90389,
+      "alphaOpaque": 1593,
+      "alphaEdge": 0,
+      "bounds": [
+        25,
+        23,
+        613,
+        208
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "VIP_10",
+      "file": "UI/VIP/VIP_10.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 10,
+      "padding": 12,
+      "path": "Assets/Arena3Q/Lobby2D/UI/VIP/VIP_10.png",
+      "source": "ArtSource/Lobby2D/Generated/VIP_10_source.png",
+      "sourceHash": "9c3e9e1ff719261763167a003df0ba17e1e5414d9f8df6c586e7c9e965977933",
+      "sha256": "4e525d007298f6a8e6b228368ac09828de4624144fb86de1baadb949f577563e",
+      "pixelHash": "489ed97d8f13cd5fd30b2179ba58b608a130e59bc3a42ede835bf0d2eac2d30d",
+      "bytes": 184232,
+      "alphaZero": 91023,
+      "alphaOpaque": 1037,
+      "alphaEdge": 0,
+      "bounds": [
+        31,
+        17,
+        607,
+        218
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "VIP_11",
+      "file": "UI/VIP/VIP_11.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 11,
+      "padding": 12,
+      "path": "Assets/Arena3Q/Lobby2D/UI/VIP/VIP_11.png",
+      "source": "ArtSource/Lobby2D/Generated/VIP_11_source.png",
+      "sourceHash": "e1568877481d3ac2188edc057d0f0e78fe8626594eab0776dbbe8b9160492ee8",
+      "sha256": "607c0be773bc79055c01260449a67cdb36e8b125a7ce48f5977aa98992b57dd6",
+      "pixelHash": "6300c755d16751dd553e7790f68959dbf09dd3c075515a56dfd20666e2c09f1a",
+      "bytes": 217916,
+      "alphaZero": 81831,
+      "alphaOpaque": 1223,
+      "alphaEdge": 0,
+      "bounds": [
+        21,
+        25,
+        617,
+        207
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "VIP_12",
+      "file": "UI/VIP/VIP_12.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 12,
+      "padding": 12,
+      "path": "Assets/Arena3Q/Lobby2D/UI/VIP/VIP_12.png",
+      "source": "ArtSource/Lobby2D/Generated/VIP_12_source.png",
+      "sourceHash": "f0af0d18ff3eb3cc454ac5ecd74c3d7327d7e0496b37baa14a35df1a5c9115c8",
+      "sha256": "f20e30bb0ea9ea3538d53b6a2e2a918669d8630bc068ed75c8cc76da8a54f079",
+      "pixelHash": "6c428da3367a3be94991019d113227bc6746e45073518f87782ce21d98979702",
+      "bytes": 221011,
+      "alphaZero": 80455,
+      "alphaOpaque": 1115,
+      "alphaEdge": 0,
+      "bounds": [
+        21,
+        21,
+        617,
+        216
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Banner_Recruit",
+      "file": "UI/Banners/Recruit.png",
+      "width": 1024,
+      "height": 400,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "banner",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Banners/Recruit.png",
+      "source": "ArtSource/Lobby2D/Generated/Banner_Recruit_source.png",
+      "sourceHash": "8bf8127fe8b7134c350086d739ff5985591b248559ead2940d13e78ab04b31d0",
+      "sha256": "253ee01d9db24b23f0a66f31009008219001b9e64efa483188973fad5ac165a4",
+      "pixelHash": "bbd50fa91ce1c74cd40339af76bb4d354e82fee0e0fabfe3b8031d6e9979c900",
+      "bytes": 1184787,
+      "alphaZero": 9600,
+      "alphaOpaque": 400000,
+      "alphaEdge": 2000,
+      "bounds": [
+        12,
+        0,
+        1011,
+        399
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Banner_Event",
+      "file": "UI/Banners/Event.png",
+      "width": 1024,
+      "height": 400,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "banner",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Banners/Event.png",
+      "source": "ArtSource/Lobby2D/Generated/Banner_Event_source.png",
+      "sourceHash": "516bc9dbfa2242a3aa6bdce19b7d9d3d14aaa3047741cd8ac4a0dc8c921f7787",
+      "sha256": "5d2c040c739ecf83c6cd5f27350e3cbb8e8578cb7f3a0bcc1bde7b2f450b383f",
+      "pixelHash": "6536f29d1eac2f75812e0b45a45a7a032af1369b559282661a0c871099f37c25",
+      "bytes": 1138083,
+      "alphaZero": 9600,
+      "alphaOpaque": 400000,
+      "alphaEdge": 2000,
+      "bounds": [
+        12,
+        0,
+        1011,
+        399
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Banner_Arena",
+      "file": "UI/Banners/Arena.png",
+      "width": 1024,
+      "height": 400,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "banner",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Banners/Arena.png",
+      "source": "ArtSource/Lobby2D/Generated/Banner_Arena_source.png",
+      "sourceHash": "c2a34e2cf638dfd1764cfea4b0e6b4a428d086bd7e227822a93eba7dc630d469",
+      "sha256": "dae739354819b1451c96b3ea7ef69fc32027abf6e082b98fd3c7ea1b76b7a8f1",
+      "pixelHash": "4d197156be0a2878f2b83484cb3f16c76753f37320986c9fb49e82f60fd5886b",
+      "bytes": 1122912,
+      "alphaZero": 9600,
+      "alphaOpaque": 400000,
+      "alphaEdge": 2000,
+      "bounds": [
+        12,
+        0,
+        1011,
+        399
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Banner_Guild",
+      "file": "UI/Banners/Guild.png",
+      "width": 1024,
+      "height": 400,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "banner",
+      "path": "Assets/Arena3Q/Lobby2D/UI/Banners/Guild.png",
+      "source": "ArtSource/Lobby2D/Generated/Banner_Guild_source.png",
+      "sourceHash": "f3d2c958a47732ad2f369cfea55fa923562ab926ca1225bbbaeff54eb08462a7",
+      "sha256": "f6499ef49a88043eb1022df80c1045dd83100f2ee57184695ce7db9d5363c184",
+      "pixelHash": "2e70208e5b894fed7e675f0e22c3945905cce33616c1b417d1b95879ee976189",
+      "bytes": 1158745,
+      "alphaZero": 9600,
+      "alphaOpaque": 400000,
+      "alphaEdge": 2000,
+      "bounds": [
+        12,
+        0,
+        1011,
+        399
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Sky_Morning",
+      "file": "Backgrounds/Lobby/Sky/Morning.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "sky",
+      "path": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Sky/Morning.png",
+      "source": "ArtSource/Lobby2D/Generated/Sky_Morning_source.png",
+      "sourceHash": "ab0aa38245eb42a53139e148a57d22d1aea996e9f1d62d7886a9b213a4083124",
+      "sha256": "207457543389ae005fa688193403986f886ad307d10661c96ff9a258823b3f25",
+      "pixelHash": "28e726a5b22514b460e0e4793b22205f84916192f78e787cf960f326a3513543",
+      "bytes": 3855872,
+      "alphaZero": 1080,
+      "alphaOpaque": 2072520,
+      "alphaEdge": 4916,
+      "bounds": [
+        0,
+        0,
+        1918,
+        1079
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Sky_Noon",
+      "file": "Backgrounds/Lobby/Sky/Noon.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "sky",
+      "path": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Sky/Noon.png",
+      "source": "ArtSource/Lobby2D/Generated/Sky_Noon_source.png",
+      "sourceHash": "7f1f23969755cc27024b52e7637a59f9c3fe3e3706ae9915e458f100c3df4134",
+      "sha256": "edaef2d62597e6e05c9f84e1305dc9a6f1733fe48aa705500be3ec9575ad95b0",
+      "pixelHash": "28b807dbaeaef8712942731f1f8beb70263b232a6c33141674d817b54f3a2a41",
+      "bytes": 3870097,
+      "alphaZero": 1080,
+      "alphaOpaque": 2072520,
+      "alphaEdge": 4916,
+      "bounds": [
+        0,
+        0,
+        1918,
+        1079
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Sky_Afternoon",
+      "file": "Backgrounds/Lobby/Sky/Afternoon.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "sky",
+      "path": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Sky/Afternoon.png",
+      "source": "ArtSource/Lobby2D/Generated/Sky_Afternoon_source.png",
+      "sourceHash": "b6903bc63206d7deaddcdc9746dd7430cfd5d8aa49c8b17fc7306bc55e994806",
+      "sha256": "e9bfa5194985241276f846bb894d0428d91090dfb12c957da94176e8f1b32e22",
+      "pixelHash": "1b0d2aa7f63022bad852a090aa354ff25a67ea277c6ecc12b6884a9595903509",
+      "bytes": 4017888,
+      "alphaZero": 1080,
+      "alphaOpaque": 2072520,
+      "alphaEdge": 4916,
+      "bounds": [
+        0,
+        0,
+        1918,
+        1079
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Sky_Evening",
+      "file": "Backgrounds/Lobby/Sky/Evening.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "sky",
+      "path": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Sky/Evening.png",
+      "source": "ArtSource/Lobby2D/Generated/Sky_Evening_source.png",
+      "sourceHash": "2908e5782faf7f9a7e2ade4a6d292d1c5ed22951ffdcd4b1e4d6763e4ca11835",
+      "sha256": "d84d9bbcb485aff050c384b202fb1a29ce93730d8864d785603721bb3ec7a5d7",
+      "pixelHash": "db68f1301d761cbdcfde49d8c7fa8ce955daa93960729fc514cdc725157c3a02",
+      "bytes": 4016499,
+      "alphaZero": 1080,
+      "alphaOpaque": 2072520,
+      "alphaEdge": 4916,
+      "bounds": [
+        0,
+        0,
+        1918,
+        1079
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Sky_Night",
+      "file": "Backgrounds/Lobby/Sky/Night.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "sky",
+      "path": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Sky/Night.png",
+      "source": "ArtSource/Lobby2D/Generated/Sky_Night_source.png",
+      "sourceHash": "3a6baf44436305909a84e1350c77410951029ddcde2b6bbc076343b9fb0e36e5",
+      "sha256": "783174a4e18453be7eed6e99fd6109b072934ad86c382191800fee6cc31a4c31",
+      "pixelHash": "91c69a2b09eaa8ccb0c3b093c2f145251697d2651f5109ff8861dc1ce07b7b20",
+      "bytes": 3324831,
+      "alphaZero": 1080,
+      "alphaOpaque": 2072520,
+      "alphaEdge": 4916,
+      "bounds": [
+        0,
+        0,
+        1918,
+        1079
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Environment_Far_Background",
+      "file": "Backgrounds/Lobby/Environment/Far_Background.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "environment",
+      "path": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Environment/Far_Background.png",
+      "source": "ArtSource/Lobby2D/Generated/Environment_Far_Background_source.png",
+      "sourceHash": "a8c6c8acd5e8679fa783608f56f89fa2748bacdfe0aa79a9374c1aab7cceed39",
+      "sha256": "115776b769bd369732ce505b00004a57b1ea4a58f7adfeb0f6691df11959e963",
+      "pixelHash": "cb397efbc00aca2d4238da6abe97d70257e9edfd861857fb42048e39a7dfa918",
+      "bytes": 634440,
+      "alphaZero": 1879473,
+      "alphaOpaque": 54,
+      "alphaEdge": 4,
+      "bounds": [
+        430,
+        0,
+        1918,
+        529
+      ],
+      "visualStatus": "registered-source-pixels",
+      "technicalPassed": true
+    },
+    {
+      "id": "Environment_Buildings",
+      "file": "Backgrounds/Lobby/Environment/Buildings.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "environment",
+      "path": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Environment/Buildings.png",
+      "source": "ArtSource/Lobby2D/Generated/Environment_Buildings_source.png",
+      "sourceHash": "a2e7fe3493c24962abb0a4fa045f34243b7e25df73d718c46d14b34ea71855e2",
+      "sha256": "56840ca571b5677891a6cb7117c664ce4dfe1c58fed2c1c85b647050ae27f101",
+      "pixelHash": "e53490b3328bffa10ea1a1b7042d08f937343b58512e8773e85a95479cc36414",
+      "bytes": 1638303,
+      "alphaZero": 1569506,
+      "alphaOpaque": 12,
+      "alphaEdge": 0,
+      "bounds": [
+        520,
+        324,
+        1918,
+        984
+      ],
+      "visualStatus": "registered-source-pixels",
+      "technicalPassed": true
+    },
+    {
+      "id": "Environment_Foreground",
+      "file": "Backgrounds/Lobby/Environment/Foreground.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "environment",
+      "path": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Environment/Foreground.png",
+      "source": "ArtSource/Lobby2D/Generated/Environment_Foreground_source.png",
+      "sourceHash": "3971ec4af41e6fe4a10a56d65e57225ea8f3da27a3c47714c2efe92602c2e203",
+      "sha256": "9aaa66daaea2c796ba3b11a2bfd0a0a567588b1e5fc4cb40002f05de2a1f3093",
+      "pixelHash": "fe2b52e2208a908d599dc2daac72e4280f2a6eb5f491f96c5938ab03bd880c39",
+      "bytes": 2835346,
+      "alphaZero": 1149946,
+      "alphaOpaque": 80,
+      "alphaEdge": 3337,
+      "bounds": [
+        0,
+        0,
+        1918,
+        1079
+      ],
+      "visualStatus": "registered-source-pixels",
+      "technicalPassed": true
+    },
+    {
+      "id": "Lobby_Architecture",
+      "file": "Backgrounds/Lobby/Environment/Lobby_Architecture.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "environment-baseline",
+      "path": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Environment/Lobby_Architecture.png",
+      "source": "ArtSource/Lobby2D/Generated/Lobby_Architecture_source.png",
+      "sourceHash": "278bee172a8a1492cf415bf05587a3a8cbfb18f1c2202db98ae757cb5c0baeed",
+      "sha256": "6bc1015c49bfd7834b49ac0d6b7f61678e16574600806afde9be298ab3a6b1d1",
+      "pixelHash": "e8209fb7ccb70d36f9179e6d498b11a426d5c69a575ddb6d4814081b39fe7f13",
+      "bytes": 5034348,
+      "alphaZero": 451725,
+      "alphaOpaque": 146,
+      "alphaEdge": 3341,
+      "bounds": [
+        0,
+        0,
+        1918,
+        1079
+      ],
+      "visualStatus": "draft",
+      "technicalPassed": true
+    },
+    {
+      "id": "Environment_Lighting",
+      "file": "Backgrounds/Lobby/Lighting/Lighting.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "environment-lighting",
+      "path": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Lighting/Lighting.png",
+      "source": "ArtSource/Lobby2D/Generated/Environment_Lighting_source.png",
+      "sourceHash": "3f4042841f457eca4c0f4b26948b32dc62738205998909dff18bc70c84f0a0ea",
+      "sha256": "fce1eda4c19b4536e92843f804d9d96fe0592cbac8e25079a800ec5a1a1af115",
+      "pixelHash": "a652ef80f143a65fda3597dbab8b1955b997f9ac77e1d07f5048957f3391fff1",
+      "bytes": 60686,
+      "alphaZero": 2062130,
+      "alphaOpaque": 0,
+      "alphaEdge": 0,
+      "bounds": [
+        34,
+        527,
+        1856,
+        863
+      ],
+      "visualStatus": "registered-source-pixels",
+      "technicalPassed": true
+    },
+    {
+      "id": "Key_Run_LeftContact",
+      "file": "Characters/LuBu/KeyPoses/Run_LeftContact.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "key-pose",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/KeyPoses/Run_LeftContact.png",
+      "source": "ArtSource/Lobby2D/Generated/Key_Run_LeftContact_source.png",
+      "sourceHash": "3e82555957a2310efa593b845e572b62424fb8fe79f2b8d2eaaa3054ac72217a",
+      "sha256": "cb9d904fe4f9abd65dddcae1571e361bb55f5a22a89533d557b0dce806fcf546",
+      "pixelHash": "b129e817b13010482ce971e59ad77549eb471ba0e9f9f6a69d7a764ee5c7491b",
+      "bytes": 1661421,
+      "alphaZero": 3667064,
+      "alphaOpaque": 261899,
+      "alphaEdge": 0,
+      "bounds": [
+        483,
+        618,
+        1506,
+        1766
+      ],
+      "visualStatus": "native-rig-key-pose",
+      "technicalPassed": true
+    },
+    {
+      "id": "Key_Run_RightContact",
+      "file": "Characters/LuBu/KeyPoses/Run_RightContact.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "key-pose",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/KeyPoses/Run_RightContact.png",
+      "source": "ArtSource/Lobby2D/Generated/Key_Run_RightContact_source.png",
+      "sourceHash": "67748d43c31806b6addf48f8b48ed7f2f279236c1016c9fd0db191848fc0f24b",
+      "sha256": "21b1d40d39c39d0155cd6a69874b1b94414b3aaac1f3d3a25c53f776c66fd37f",
+      "pixelHash": "d13972b258c493537a2c3c28ea90ccee88f82a19d2bf017cc95ec2560352af1c",
+      "bytes": 1662591,
+      "alphaZero": 3670772,
+      "alphaOpaque": 266720,
+      "alphaEdge": 0,
+      "bounds": [
+        508,
+        620,
+        1506,
+        1766
+      ],
+      "visualStatus": "native-rig-key-pose",
+      "technicalPassed": true
+    },
+    {
+      "id": "Key_Attack_Anticipation",
+      "file": "Characters/LuBu/KeyPoses/Attack_Anticipation.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "key-pose",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/KeyPoses/Attack_Anticipation.png",
+      "source": "ArtSource/Lobby2D/Generated/Key_Attack_Anticipation_source.png",
+      "sourceHash": "97c0ae612d8338dcac574ffe4674dad59458b980efb9d4c9bb06394692517f45",
+      "sha256": "dbe87c4c6f49172f5c86ce1b88f0123a7637be23213ae0f68c9c75c4892bdac6",
+      "pixelHash": "7551add5ac3011fe608f482dd1bd8afe473162e9885139599d2fccb6e1a962d5",
+      "bytes": 1636034,
+      "alphaZero": 3675815,
+      "alphaOpaque": 262731,
+      "alphaEdge": 0,
+      "bounds": [
+        458,
+        634,
+        1471,
+        1644
+      ],
+      "visualStatus": "native-rig-key-pose",
+      "technicalPassed": true
+    },
+    {
+      "id": "Key_Attack_Impact",
+      "file": "Characters/LuBu/KeyPoses/Attack_Impact.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "key-pose",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/KeyPoses/Attack_Impact.png",
+      "source": "ArtSource/Lobby2D/Generated/Key_Attack_Impact_source.png",
+      "sourceHash": "41c75e848916045d6e36d022104dea3eb9394040573a745ac86fdf9c7a963e92",
+      "sha256": "66d79b27417c8180d3416df48355ee1b9ac58cda0cf521a4ea383de09c0f15f7",
+      "pixelHash": "845f070dae1a2404898051d4e27c5121ffe1872fd9a2c34c3fadfcd193b56c44",
+      "bytes": 1691655,
+      "alphaZero": 3655232,
+      "alphaOpaque": 259640,
+      "alphaEdge": 0,
+      "bounds": [
+        512,
+        590,
+        1650,
+        1767
+      ],
+      "visualStatus": "native-rig-key-pose",
+      "technicalPassed": true
+    },
+    {
+      "id": "Key_Attack_FollowThrough",
+      "file": "Characters/LuBu/KeyPoses/Attack_FollowThrough.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "key-pose",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/KeyPoses/Attack_FollowThrough.png",
+      "source": "ArtSource/Lobby2D/Generated/Key_Attack_FollowThrough_source.png",
+      "sourceHash": "21643e0c5d46a058f0879cac154a8742c680b25c82143606bb452ca0745f1f2d",
+      "sha256": "f5aa6671c54bc975533f13af284778799f60ade6dd7ff472af1de909f916c5eb",
+      "pixelHash": "1524fe5d8cbc592e3ee1c5fdf113f76d0fceed79c9cf7bd8507b2132da5f6749",
+      "bytes": 1687862,
+      "alphaZero": 3654956,
+      "alphaOpaque": 255695,
+      "alphaEdge": 0,
+      "bounds": [
+        480,
+        583,
+        1462,
+        1937
+      ],
+      "visualStatus": "native-rig-key-pose",
+      "technicalPassed": true
+    },
+    {
+      "id": "Key_Attack_Recovery",
+      "file": "Characters/LuBu/KeyPoses/Attack_Recovery.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "key-pose",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/KeyPoses/Attack_Recovery.png",
+      "source": "ArtSource/Lobby2D/Generated/Key_Attack_Recovery_source.png",
+      "sourceHash": "4e33b8f1dc302cd24c0268faafe58c38417dd5ac21f9677b9e93d7b75c0cf2bc",
+      "sha256": "cc4049bcc156ecba69e4bb85c127fe0d20867f65908e9058c4b947bb0673466b",
+      "pixelHash": "3b5ae0ce20975012509a4b6beb92760e2a9fec3708078260a4e9eb7c50d8c6ea",
+      "bytes": 1705677,
+      "alphaZero": 3653448,
+      "alphaOpaque": 268923,
+      "alphaEdge": 0,
+      "bounds": [
+        464,
+        586,
+        1585,
+        1644
+      ],
+      "visualStatus": "native-rig-key-pose",
+      "technicalPassed": true
+    }
+  ]
+}

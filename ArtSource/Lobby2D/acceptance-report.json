@@ -1,0 +1,618 @@
+{
+  "complete": true,
+  "clips": [
+    {
+      "name": "LuBu_Idle",
+      "actualFrames": 24,
+      "uniqueFrames": 24,
+      "missing": [],
+      "extraFiles": [],
+      "frames": [
+        {
+          "index": 0,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3652607,
+          "edge": 0,
+          "pixelHash": "ff964c2b2502de40e0a57e532c3ec01689f7510ed832d49c99d5c261fd53441c"
+        },
+        {
+          "index": 1,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3652611,
+          "edge": 0,
+          "pixelHash": "8ed7d03f7a923821de87e5b03e214f41f0adc77b669b32dd6ba5f87c5c6db1be"
+        },
+        {
+          "index": 2,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3652926,
+          "edge": 0,
+          "pixelHash": "f43eba9a45cc1e6aca867e7e4615d8cab49df946452bfa59bc4d35f38b2d5fdb"
+        },
+        {
+          "index": 3,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3653181,
+          "edge": 0,
+          "pixelHash": "7f45c1009d1c9c13577896ae42117878fb564ff87976241e84fa40b9c0cce136"
+        },
+        {
+          "index": 4,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3653389,
+          "edge": 0,
+          "pixelHash": "7fb434fa95417206994b885388555eb55b8f44d32491d0c0b43d70bc1e4b8774"
+        },
+        {
+          "index": 5,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3653751,
+          "edge": 0,
+          "pixelHash": "ba049226c5da6d10aef94c634632bfa84fe8e9dbe987bebb75efb2d206e881af"
+        },
+        {
+          "index": 6,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3654021,
+          "edge": 0,
+          "pixelHash": "84391c5b9fb26faa5b8d18caf4ed364dc9e2a035b3d998ae5fded0a6864bfb6c"
+        },
+        {
+          "index": 7,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3654338,
+          "edge": 0,
+          "pixelHash": "9bfe20e8e41a9e622e7d3ed9e3dd11f712f1fbf0d271387b6cfdb0289e19f435"
+        },
+        {
+          "index": 8,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3654546,
+          "edge": 0,
+          "pixelHash": "e1a4ad542da1bde2bf7cb61142ae4bc4c399f526b12e0b2c151272bd4e94f39e"
+        },
+        {
+          "index": 9,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3654819,
+          "edge": 0,
+          "pixelHash": "f9230d767642dff31707051e36e618350eb19ec31275133baad192ffa39b0076"
+        },
+        {
+          "index": 10,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3655016,
+          "edge": 0,
+          "pixelHash": "0aa816680b8714e9b22bdd863b2b9e189803d4b6a337b370180d7687fff0b575"
+        },
+        {
+          "index": 11,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3654828,
+          "edge": 0,
+          "pixelHash": "948df87b28277e7c04fb0fe669d542b16807dfc5c978c8b891881f75b50193e3"
+        },
+        {
+          "index": 12,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3654989,
+          "edge": 0,
+          "pixelHash": "4516e92db7ed1a964c8e277251b780bb82d291abf710e6c4da38c436642f47a7"
+        },
+        {
+          "index": 13,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3654820,
+          "edge": 0,
+          "pixelHash": "a75721aaa222ecd6b56c99dfff6155f7f98625f9eb8252626b446da7a0fd3d31"
+        },
+        {
+          "index": 14,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3654423,
+          "edge": 0,
+          "pixelHash": "26028b7d2a42484b0aadf8ecf967a0cd1a6d03ab13c659252a7c49a33ed2125c"
+        },
+        {
+          "index": 15,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3654098,
+          "edge": 0,
+          "pixelHash": "b98eeb75763b0bfd6a525e268bfdf6cb1667f7e80827548d0d715681315a4b07"
+        },
+        {
+          "index": 16,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3653675,
+          "edge": 0,
+          "pixelHash": "f26c29a7a0526f11713eb9cd6d8484beccfaa34fa57b90b49723a72d5bf3e657"
+        },
+        {
+          "index": 17,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3653268,
+          "edge": 0,
+          "pixelHash": "90f08440161cb0139e914c2738811e01982b0f30f3dbb1af0a80d51a03b28bc2"
+        },
+        {
+          "index": 18,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3652925,
+          "edge": 0,
+          "pixelHash": "a4a91af582d01154885a8f24cd63082a25b26c36c65832667b898cfe25684edb"
+        },
+        {
+          "index": 19,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3652533,
+          "edge": 0,
+          "pixelHash": "9a88c65fbb0ec6a6b982ac548d21332ab6b45f3ed359571774be0f81c2092cda"
+        },
+        {
+          "index": 20,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3652476,
+          "edge": 0,
+          "pixelHash": "8090ce25fb148e6f5da01df0a75b8da1702faecfcea7350bbfadf7f61f590be3"
+        },
+        {
+          "index": 21,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3652251,
+          "edge": 0,
+          "pixelHash": "9a0447c77046121080455d7eab622ad2554af10f4819e7b4938cfd1461bfed31"
+        },
+        {
+          "index": 22,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3652306,
+          "edge": 0,
+          "pixelHash": "6de036ee0555fe9301e07911abf6786b99b92fc718b39f9a7faeb4a9aa635d31"
+        },
+        {
+          "index": 23,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3652370,
+          "edge": 0,
+          "pixelHash": "4051578d378675f5da91cd8a98771118ca49fa6f470975356a6891fd648b277c"
+        }
+      ]
+    },
+    {
+      "name": "LuBu_Run",
+      "actualFrames": 24,
+      "uniqueFrames": 24,
+      "missing": [],
+      "extraFiles": [],
+      "frames": [
+        {
+          "index": 0,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3667064,
+          "edge": 0,
+          "pixelHash": "b129e817b13010482ce971e59ad77549eb471ba0e9f9f6a69d7a764ee5c7491b"
+        },
+        {
+          "index": 1,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3668370,
+          "edge": 0,
+          "pixelHash": "210669e22eec6bddd4a2efc53cc24e645b739d81ef81a2b7ee5800199574d9c2"
+        },
+        {
+          "index": 2,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3668602,
+          "edge": 0,
+          "pixelHash": "d28aceb5dc38b9df214efb0999afcfd08bf4a3ff1e13472c4bc6d2c39f8b81aa"
+        },
+        {
+          "index": 3,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3668512,
+          "edge": 0,
+          "pixelHash": "eda70227c431247942cc7e67c216f9d2597f6de2ebfe9eb30947ae9eba528bcc"
+        },
+        {
+          "index": 4,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3669141,
+          "edge": 0,
+          "pixelHash": "783c1d01f73764eb155158b0f839d9437e01adf5c2555b47b666b3d58a479e5c"
+        },
+        {
+          "index": 5,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3669970,
+          "edge": 0,
+          "pixelHash": "6a0e0e403c00600268da1d2d6905b6e91139079cad3a1a4d12671978d14a001d"
+        },
+        {
+          "index": 6,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3670231,
+          "edge": 0,
+          "pixelHash": "e70b27a4c9f125ca8d29c187deea942b1ee823f5d379e673d3eff2301b8bbf9c"
+        },
+        {
+          "index": 7,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3668916,
+          "edge": 0,
+          "pixelHash": "8bc531deecf1f559446d48e0d646889427d75beaf77d9a6f63ef6207246bdf9d"
+        },
+        {
+          "index": 8,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3668036,
+          "edge": 0,
+          "pixelHash": "18434ab9c7e5ceb2625b795ad26826959dba1fedaea0b327179149d8e6f9db34"
+        },
+        {
+          "index": 9,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3667628,
+          "edge": 0,
+          "pixelHash": "a5c5d17cc78ea77b18adafb3867086de9d6170a1a88ea52f86893e3dc205759a"
+        },
+        {
+          "index": 10,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3667368,
+          "edge": 0,
+          "pixelHash": "e3909a3bdf429218a6fc4839e4c8643473b98569e307c280e5f3f71a2a9fed2b"
+        },
+        {
+          "index": 11,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3668212,
+          "edge": 0,
+          "pixelHash": "1a82b492ea82af7bb60f4994ef1de3d5af84461771b4af2ab471eb08b1ffeb45"
+        },
+        {
+          "index": 12,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3670772,
+          "edge": 0,
+          "pixelHash": "d13972b258c493537a2c3c28ea90ccee88f82a19d2bf017cc95ec2560352af1c"
+        },
+        {
+          "index": 13,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3675585,
+          "edge": 0,
+          "pixelHash": "f0e12136f042052847af26234bef21d89faafe836472a24feb115f623f5a8565"
+        },
+        {
+          "index": 14,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3680276,
+          "edge": 0,
+          "pixelHash": "a1c46566812d77d649b2d81388546bb5d335115bfe44e87af1b0e88462a622c8"
+        },
+        {
+          "index": 15,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3680539,
+          "edge": 0,
+          "pixelHash": "d8d573a7c8447ba3aa5afd648203efb9b5aa06482544932a1541757fe4366a25"
+        },
+        {
+          "index": 16,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3679405,
+          "edge": 0,
+          "pixelHash": "06b6eb6c16bc3e9962e9634d8ec7501dd51ddf1e2983513eb752ddc5e88a99ef"
+        },
+        {
+          "index": 17,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3678939,
+          "edge": 0,
+          "pixelHash": "ba367c5e096c299df305edf950678f19e69c5f2fe12d08209a312d763dd1f963"
+        },
+        {
+          "index": 18,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3677258,
+          "edge": 0,
+          "pixelHash": "c84ce14c9227cc67e70d9871e9a4f5976bd15bf539f8f929247f91f61d45b26e"
+        },
+        {
+          "index": 19,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3675395,
+          "edge": 0,
+          "pixelHash": "71c292416caabefcc5dbfca93ab5c58259c561f5e2335a211932ab471222999a"
+        },
+        {
+          "index": 20,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3674039,
+          "edge": 0,
+          "pixelHash": "2cc08f8be1a15988423d002a72b4743da074941c3b442e357125a4570cce9f9a"
+        },
+        {
+          "index": 21,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3672730,
+          "edge": 0,
+          "pixelHash": "91a2ee71f0ad35e36e9c7828470fff73c9a5c73c4a0a2184a504ae6e48813e8b"
+        },
+        {
+          "index": 22,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3671160,
+          "edge": 0,
+          "pixelHash": "f6c3a9b05c915ac67b2c78ff9c7927dd78b1f344074330db7f18d87ef86e892e"
+        },
+        {
+          "index": 23,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3668720,
+          "edge": 0,
+          "pixelHash": "41ed739f6e4ed3845493600ca63bdec36f53d42280240bed03c9fd17851e2b61"
+        }
+      ]
+    },
+    {
+      "name": "LuBu_Attack_01",
+      "actualFrames": 24,
+      "uniqueFrames": 24,
+      "missing": [],
+      "extraFiles": [],
+      "frames": [
+        {
+          "index": 0,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3652607,
+          "edge": 0,
+          "pixelHash": "ff964c2b2502de40e0a57e532c3ec01689f7510ed832d49c99d5c261fd53441c"
+        },
+        {
+          "index": 1,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3646867,
+          "edge": 0,
+          "pixelHash": "5ba030dfbe7b4e94ebbfb6c04aa42bac085f7070154c97e7980ab50e2d904d82"
+        },
+        {
+          "index": 2,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3636294,
+          "edge": 0,
+          "pixelHash": "57ea142934c0acb8688248a9c44981a348afdef9972b0346cae1db5bdaf3905e"
+        },
+        {
+          "index": 3,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3636481,
+          "edge": 0,
+          "pixelHash": "3d1ed4d32076fceb15b230d6fd01cf9c3a4c6204b4ad9ef4b6737d3ef3dbc29a"
+        },
+        {
+          "index": 4,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3642895,
+          "edge": 0,
+          "pixelHash": "9445b681b7929096ca25f5e91f419fee68edbd02505285f8b8f0c3647f09b200"
+        },
+        {
+          "index": 5,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3655877,
+          "edge": 0,
+          "pixelHash": "9407c490c68c5283bf7cb26975bcb0a5e70c3a432dd4da32f04cdcddfe9f63f3"
+        },
+        {
+          "index": 6,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3680529,
+          "edge": 0,
+          "pixelHash": "4ff2b84327529cabaed246c00924fbffc0f2b4473919be0130ec18d556ebd172"
+        },
+        {
+          "index": 7,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3675815,
+          "edge": 0,
+          "pixelHash": "7551add5ac3011fe608f482dd1bd8afe473162e9885139599d2fccb6e1a962d5"
+        },
+        {
+          "index": 8,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3665806,
+          "edge": 0,
+          "pixelHash": "0fef55e6c744a64a839ae4ae6162190b05ae6c13850fb15c96a035b9852f66b6"
+        },
+        {
+          "index": 9,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3663035,
+          "edge": 0,
+          "pixelHash": "8a85ddebfde4952a51acbe9d447d1927f187d1b189346346953eca2c22e8dd59"
+        },
+        {
+          "index": 10,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3673994,
+          "edge": 0,
+          "pixelHash": "54539a9b962834e79cf4a2ae17824df18bd748de3be058dc9d32c1302250a35d"
+        },
+        {
+          "index": 11,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3678610,
+          "edge": 0,
+          "pixelHash": "cf07fccbe7e300044828aeca83e720a201ac53c0a4b93a1daffd2a7d207e7df4"
+        },
+        {
+          "index": 12,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3646653,
+          "edge": 0,
+          "pixelHash": "51a820f1e61279607f69cc324b158101dbb509a7b62e61078ff16794a4ffe9d3"
+        },
+        {
+          "index": 13,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3655232,
+          "edge": 0,
+          "pixelHash": "845f070dae1a2404898051d4e27c5121ffe1872fd9a2c34c3fadfcd193b56c44"
+        },
+        {
+          "index": 14,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3658433,
+          "edge": 0,
+          "pixelHash": "46e0752b4135273b83c53006dd49ffda0a564464c43449080a03ff9295c5e16d"
+        },
+        {
+          "index": 15,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3656880,
+          "edge": 0,
+          "pixelHash": "c507576f92609d5565c60314d37155d5b18afebb93d5f6d3e3470b15c4ba2cc8"
+        },
+        {
+          "index": 16,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3655713,
+          "edge": 0,
+          "pixelHash": "c33027628e90fa54f52ee22ed8425ce4d724529cb6f54e82f5e5223ec02406f0"
+        },
+        {
+          "index": 17,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3654956,
+          "edge": 0,
+          "pixelHash": "1524fe5d8cbc592e3ee1c5fdf113f76d0fceed79c9cf7bd8507b2132da5f6749"
+        },
+        {
+          "index": 18,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3655102,
+          "edge": 0,
+          "pixelHash": "7bb95e8b63e3d3814a6d1be1115aff0093cce1439d22f207062af92a6a803c75"
+        },
+        {
+          "index": 19,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3654973,
+          "edge": 0,
+          "pixelHash": "d0422c98298ca6c4b23e00ca8a32789a57df813f49f84981bb7769f5b93148f6"
+        },
+        {
+          "index": 20,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3650480,
+          "edge": 0,
+          "pixelHash": "788681ecb603aca6f37d194ca86213bf876ee3b35a91829ba492fc840134f05f"
+        },
+        {
+          "index": 21,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3643631,
+          "edge": 0,
+          "pixelHash": "8ced2dc17d8b5ee0da1a342bad1f03286a92cbf4a03e17ee1f629beb6cb847b6"
+        },
+        {
+          "index": 22,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3650296,
+          "edge": 0,
+          "pixelHash": "086179ed4b84aa8d9373fc2ee25da3b9ef3518e9797690c274b040d067b787b2"
+        },
+        {
+          "index": 23,
+          "width": 2048,
+          "height": 2048,
+          "transparent": 3653448,
+          "edge": 0,
+          "pixelHash": "3b5ae0ce20975012509a4b6beb92760e2a9fec3708078260a4e9eb7c50d8c6ea"
+        }
+      ]
+    }
+  ],
+  "artMissing": [],
+  "artTechnicalFailures": [],
+  "pendingGates": [],
+  "issues": [],
+  "scope": "web artwork delivery",
+  "deferredGates": {
+    "device60fps": "User requested web review only, no player/device build this session. Target60 is configured; actual device FPS is unmeasured."
+  },
+  "fullPlatformAcceptance": false,
+  "webScopePassed": true
+}

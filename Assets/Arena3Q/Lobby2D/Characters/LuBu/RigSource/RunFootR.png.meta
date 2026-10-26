@@ -1,0 +1,886 @@
+fileFormatVersion: 2
+guid: 76daef04b4f16004e9ba4d9d447a232f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 379103124138161945
+    second: RunFootR_0
+  - first:
+      213: -4301705868730544326
+    second: RunFootR_1
+  - first:
+      213: 803517015175836030
+    second: RunFootR_2
+  - first:
+      213: -6114023096268418605
+    second: RunFootR_3
+  - first:
+      213: -9139277202589541261
+    second: RunFootR_4
+  - first:
+      213: 8799287951432374949
+    second: RunFootR_5
+  - first:
+      213: -8701007156678662136
+    second: RunFootR_6
+  - first:
+      213: -2169774856433129075
+    second: RunFootR_7
+  - first:
+      213: 6863202435468320306
+    second: RunFootR_8
+  - first:
+      213: -2783929329150682382
+    second: RunFootR_9
+  - first:
+      213: 6033796971474457753
+    second: RunFootR_10
+  - first:
+      213: -819653134918691679
+    second: RunFootR_11
+  - first:
+      213: -1226804777790525890
+    second: RunFootR_12
+  - first:
+      213: -7413827685555169782
+    second: RunFootR_13
+  - first:
+      213: -465213302658625013
+    second: RunFootR_14
+  - first:
+      213: -2891030276463835046
+    second: RunFootR_15
+  - first:
+      213: 1760586915379815802
+    second: RunFootR_16
+  - first:
+      213: -9169978223033362407
+    second: RunFootR_17
+  - first:
+      213: -6682142924628195304
+    second: RunFootR_18
+  - first:
+      213: -308500738308253015
+    second: RunFootR_19
+  - first:
+      213: -330034752090666049
+    second: RunFootR_20
+  - first:
+      213: 1407524506686049227
+    second: RunFootR_21
+  - first:
+      213: 6981264694862913837
+    second: RunFootR_22
+  - first:
+      213: -1747301181920826350
+    second: RunFootR_23
+  - first:
+      213: 4265870899558520854
+    second: RunFootR_24
+  - first:
+      213: 8714472657149187605
+    second: RunFootR_25
+  - first:
+      213: -5379636502309930255
+    second: RunFootR_26
+  - first:
+      213: 4494223487141077638
+    second: RunFootR_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 48
+    textureCompression: 1
+    compressionQuality: 100
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 48
+    textureCompression: 1
+    compressionQuality: 100
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RunFootR_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1219
+        height: 1218
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 917fe776848d24500800000000000000
+      internalID: 379103124138161945
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_1
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 1211
+        width: 196
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3f4a16cd454d44c0800000000000000
+      internalID: -4301705868730544326
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_2
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 1193
+        width: 35
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e71b984d77aa62b00800000000000000
+      internalID: 803517015175836030
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_3
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 1181
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d1136e2360a62ba0800000000000000
+      internalID: -6114023096268418605
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_4
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 1189
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37c13d36ec3ca2180800000000000000
+      internalID: -9139277202589541261
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_5
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 1181
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5aa508d65c95d1a70800000000000000
+      internalID: 8799287951432374949
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_6
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1189
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80869064710df3780800000000000000
+      internalID: -8701007156678662136
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_7
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 1181
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d89aab7934963e1e0800000000000000
+      internalID: -2169774856433129075
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_8
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 1189
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23e5fa3904efe3f50800000000000000
+      internalID: 6863202435468320306
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_9
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1151
+        width: 19
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fa9e28660f7d59d0800000000000000
+      internalID: -2783929329150682382
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 998
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 994109b806a5cb350800000000000000
+      internalID: 6033796971474457753
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 560
+        width: 5
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a4d22601d100a4f0800000000000000
+      internalID: -819653134918691679
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_12
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 517
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3e2b03fd8389fee0800000000000000
+      internalID: -1226804777790525890
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_13
+      rect:
+        serializedVersion: 2
+        x: 1131
+        y: 449
+        width: 29
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a061788000bcc1990800000000000000
+      internalID: -7413827685555169782
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_14
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 467
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b021f3e47fa3b89f0800000000000000
+      internalID: -465213302658625013
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_15
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 151
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a584978e74ff0e7d0800000000000000
+      internalID: -2891030276463835046
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_16
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 160
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a752a67b87cde6810800000000000000
+      internalID: 1760586915379815802
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_17
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 127
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 918570a0461bdb080800000000000000
+      internalID: -9169978223033362407
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_18
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 128
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 818852fd9624443a0800000000000000
+      internalID: -6682142924628195304
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_19
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 128
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9aad038863cf7bbf0800000000000000
+      internalID: -308500738308253015
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_20
+      rect:
+        serializedVersion: 2
+        x: 1065
+        y: 132
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbb0a1e342b7b6bf0800000000000000
+      internalID: -330034752090666049
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_21
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 111
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcbcda9d418888310800000000000000
+      internalID: 1407524506686049227
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_22
+      rect:
+        serializedVersion: 2
+        x: 1133
+        y: 111
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d21a74c604f62e060800000000000000
+      internalID: 6981264694862913837
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 68
+        width: 5
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21c2df725d650c7e0800000000000000
+      internalID: -1747301181920826350
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_24
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 54
+        width: 16
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6189cd94bfa633b30800000000000000
+      internalID: 4265870899558520854
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_25
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 79
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5165b3ed5b600f870800000000000000
+      internalID: 8714472657149187605
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_26
+      rect:
+        serializedVersion: 2
+        x: 1095
+        y: 61
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fa771b8a11b755b0800000000000000
+      internalID: -5379636502309930255
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RunFootR_27
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 51
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 682e24c3370be5e30800000000000000
+      internalID: 4494223487141077638
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      RunFootR_0: 379103124138161945
+      RunFootR_1: -4301705868730544326
+      RunFootR_10: 6033796971474457753
+      RunFootR_11: -819653134918691679
+      RunFootR_12: -1226804777790525890
+      RunFootR_13: -7413827685555169782
+      RunFootR_14: -465213302658625013
+      RunFootR_15: -2891030276463835046
+      RunFootR_16: 1760586915379815802
+      RunFootR_17: -9169978223033362407
+      RunFootR_18: -6682142924628195304
+      RunFootR_19: -308500738308253015
+      RunFootR_2: 803517015175836030
+      RunFootR_20: -330034752090666049
+      RunFootR_21: 1407524506686049227
+      RunFootR_22: 6981264694862913837
+      RunFootR_23: -1747301181920826350
+      RunFootR_24: 4265870899558520854
+      RunFootR_25: 8714472657149187605
+      RunFootR_26: -5379636502309930255
+      RunFootR_27: 4494223487141077638
+      RunFootR_3: -6114023096268418605
+      RunFootR_4: -9139277202589541261
+      RunFootR_5: 8799287951432374949
+      RunFootR_6: -8701007156678662136
+      RunFootR_7: -2169774856433129075
+      RunFootR_8: 6863202435468320306
+      RunFootR_9: -2783929329150682382
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

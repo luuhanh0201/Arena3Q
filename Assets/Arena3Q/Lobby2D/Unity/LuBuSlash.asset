@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff22f47b74605d44188618c46a53f97b, type: 3}
+  m_Name: LuBuSlash
+  m_EditorClassIdentifier: Arena3Q.Lobby2D::Arena3Q.Lobby2D.LuBuSlashDefinition
+  sprite: {fileID: 21300000, guid: 9daa54a5df6a2e04b9a04bef7ac2f7cb, type: 3}
+  size: {x: 1500, y: 1500}
+  offset: {x: 80, y: 400}
+  pivot: {x: 0.2, y: 0.5}
+  outer: {r: 0.79, g: 0.12, b: 0.12, a: 1}
+  inner: {r: 1, g: 0.82, b: 0.4, a: 1}
+  start: 0.45
+  end: 0.71
+  outerAlpha: 0.65
+  innerAlpha: 0.8
+  innerScale: 0.94
+  rotationStart: 35
+  rotationEnd: -55
+  scaleStart: 0.72
+  fadeSeconds: 0.12

@@ -1,0 +1,11 @@
+{
+  "CleanMaster": "ArtSource/Lobby2D/Generated/Rig_CleanMaster_source.png",
+  "WeaponClean": "ArtSource/Lobby2D/Generated/Rig_WeaponClean_source.png",
+  "CapeUnderlay": "ArtSource/Lobby2D/Generated/Rig_CapeUnderlay_source.png",
+  "HairUnderlay": "ArtSource/Lobby2D/Generated/Rig_HairUnderlay_source.png",
+  "FeatherLeftClean": "ArtSource/Lobby2D/Generated/Rig_FeatherLeftClean_source.png",
+  "FeatherRightClean": "ArtSource/Lobby2D/Generated/Rig_FeatherRightClean_source.png",
+  "BlinkMaster": "ArtSource/Lobby2D/Generated/Rig_BlinkMaster_source.png",
+  "RunFootR": "ArtSource/Lobby2D/Generated/Rig_RunFootR_source.png",
+  "RunFootL": "ArtSource/Lobby2D/Generated/Rig_RunFootL_source.png"
+}

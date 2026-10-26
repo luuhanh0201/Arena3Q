@@ -1,0 +1,101 @@
+{
+  "CleanMaster": {
+    "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/CleanMaster.png",
+    "width": 1254,
+    "height": 1254,
+    "bounds": [
+      105,
+      111,
+      1096,
+      1145
+    ]
+  },
+  "WeaponClean": {
+    "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/WeaponClean.png",
+    "width": 1254,
+    "height": 1254,
+    "bounds": [
+      43,
+      67,
+      1220,
+      1205
+    ]
+  },
+  "CapeUnderlay": {
+    "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/CapeUnderlay.png",
+    "width": 1254,
+    "height": 1254,
+    "bounds": [
+      13,
+      379,
+      1241,
+      1163
+    ]
+  },
+  "HairUnderlay": {
+    "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/HairUnderlay.png",
+    "width": 1254,
+    "height": 1254,
+    "bounds": [
+      84,
+      96,
+      1132,
+      1188
+    ]
+  },
+  "FeatherLeftClean": {
+    "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/FeatherLeftClean.png",
+    "width": 1254,
+    "height": 1254,
+    "bounds": [
+      34,
+      22,
+      1203,
+      1221
+    ]
+  },
+  "FeatherRightClean": {
+    "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/FeatherRightClean.png",
+    "width": 1254,
+    "height": 1254,
+    "bounds": [
+      78,
+      102,
+      1181,
+      1156
+    ]
+  },
+  "BlinkMaster": {
+    "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/BlinkMaster.png",
+    "width": 1254,
+    "height": 1254,
+    "bounds": [
+      105,
+      111,
+      1204,
+      1158
+    ]
+  },
+  "RunFootR": {
+    "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/RunFootR.png",
+    "width": 1254,
+    "height": 1254,
+    "bounds": [
+      171,
+      208,
+      1148,
+      1052
+    ]
+  },
+  "RunFootL": {
+    "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/RunFootL.png",
+    "width": 1254,
+    "height": 1254,
+    "bounds": [
+      176,
+      184,
+      1124,
+      1047
+    ]
+  }
+}

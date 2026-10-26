@@ -1,0 +1,249 @@
+{
+  "name": "LuBu_Attack_VFX",
+  "duration": 1.1,
+  "loop": false,
+  "source": "Kenney Particle Pack 1.1 slash_03, CC0",
+  "frames": [
+    {
+      "index": 0,
+      "file": "LuBu_Attack_VFX_000.png",
+      "time": 0,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 1,
+      "file": "LuBu_Attack_VFX_001.png",
+      "time": 0.04583333333333334,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 2,
+      "file": "LuBu_Attack_VFX_002.png",
+      "time": 0.09166666666666667,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 3,
+      "file": "LuBu_Attack_VFX_003.png",
+      "time": 0.1375,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 4,
+      "file": "LuBu_Attack_VFX_004.png",
+      "time": 0.18333333333333335,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 5,
+      "file": "LuBu_Attack_VFX_005.png",
+      "time": 0.22916666666666666,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 6,
+      "file": "LuBu_Attack_VFX_006.png",
+      "time": 0.275,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 7,
+      "file": "LuBu_Attack_VFX_007.png",
+      "time": 0.32083333333333336,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 8,
+      "file": "LuBu_Attack_VFX_008.png",
+      "time": 0.3666666666666667,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 9,
+      "file": "LuBu_Attack_VFX_009.png",
+      "time": 0.41250000000000003,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 10,
+      "file": "LuBu_Attack_VFX_010.png",
+      "time": 0.4583333333333333,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 11,
+      "file": "LuBu_Attack_VFX_011.png",
+      "time": 0.5041666666666668,
+      "visiblePixels": 68419,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 12,
+      "file": "LuBu_Attack_VFX_012.png",
+      "time": 0.55,
+      "visiblePixels": 118460,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 13,
+      "file": "LuBu_Attack_VFX_013.png",
+      "time": 0.5958333333333333,
+      "visiblePixels": 148534,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 14,
+      "file": "LuBu_Attack_VFX_014.png",
+      "time": 0.6416666666666667,
+      "visiblePixels": 170527,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 15,
+      "file": "LuBu_Attack_VFX_015.png",
+      "time": 0.6875,
+      "visiblePixels": 182334,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 16,
+      "file": "LuBu_Attack_VFX_016.png",
+      "time": 0.7333333333333334,
+      "visiblePixels": 176212,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 17,
+      "file": "LuBu_Attack_VFX_017.png",
+      "time": 0.7791666666666668,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 18,
+      "file": "LuBu_Attack_VFX_018.png",
+      "time": 0.8250000000000001,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 19,
+      "file": "LuBu_Attack_VFX_019.png",
+      "time": 0.8708333333333335,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 20,
+      "file": "LuBu_Attack_VFX_020.png",
+      "time": 0.9166666666666666,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 21,
+      "file": "LuBu_Attack_VFX_021.png",
+      "time": 0.9625,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 22,
+      "file": "LuBu_Attack_VFX_022.png",
+      "time": 1.0083333333333335,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "index": 23,
+      "file": "LuBu_Attack_VFX_023.png",
+      "time": 1.0541666666666667,
+      "visiblePixels": 0,
+      "pivot": [
+        0.5,
+        0.2
+      ]
+    }
+  ],
+  "damageSource": false
+}

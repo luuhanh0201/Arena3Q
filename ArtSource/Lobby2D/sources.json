@@ -1,0 +1,386 @@
+{
+  "LuBu_FullBody": {
+    "path": "ArtSource/Lobby2D/Generated/LuBu_FullBody_source.png",
+    "visualStatus": "draft"
+  },
+  "Lobby_Architecture": {
+    "path": "ArtSource/Lobby2D/Generated/Lobby_Architecture_source.png",
+    "visualStatus": "draft"
+  },
+  "Battle_Normal": {
+    "path": "ArtSource/Lobby2D/Generated/Battle_Normal_source.png",
+    "visualStatus": "draft"
+  },
+  "Panel_Border": {
+    "path": "ArtSource/Lobby2D/Generated/Panel_Border_source.png",
+    "visualStatus": "draft"
+  },
+  "LuBu_Head": {
+    "path": "ArtSource/Lobby2D/Generated/LuBu_Head_source.png",
+    "visualStatus": "draft"
+  },
+  "LuBu_Avatar": {
+    "path": "ArtSource/Lobby2D/Generated/LuBu_Avatar_source.png",
+    "visualStatus": "tight identity portrait"
+  },
+  "LuBu_Bust": {
+    "path": "ArtSource/Lobby2D/Generated/LuBu_Bust_source.png",
+    "visualStatus": "draft"
+  },
+  "LuBu_BattlePose": {
+    "path": "ArtSource/Lobby2D/Generated/LuBu_BattlePose_source.png",
+    "visualStatus": "draft"
+  },
+  "Sky_Morning": {
+    "path": "ArtSource/Lobby2D/Generated/Sky_Morning_source.png",
+    "visualStatus": "draft"
+  },
+  "Sky_Noon": {
+    "path": "ArtSource/Lobby2D/Generated/Sky_Noon_source.png",
+    "visualStatus": "draft"
+  },
+  "Sky_Afternoon": {
+    "path": "ArtSource/Lobby2D/Generated/Sky_Afternoon_source.png",
+    "visualStatus": "draft"
+  },
+  "Sky_Evening": {
+    "path": "ArtSource/Lobby2D/Generated/Sky_Evening_source.png",
+    "visualStatus": "draft"
+  },
+  "Sky_Night": {
+    "path": "ArtSource/Lobby2D/Generated/Sky_Night_source.png",
+    "visualStatus": "draft"
+  },
+  "Environment_Far_Background": {
+    "path": "ArtSource/Lobby2D/Generated/Environment_Far_Background_source.png",
+    "visualStatus": "registered-source-pixels"
+  },
+  "Environment_Buildings": {
+    "path": "ArtSource/Lobby2D/Generated/Environment_Buildings_source.png",
+    "visualStatus": "registered-source-pixels"
+  },
+  "Environment_Foreground": {
+    "path": "ArtSource/Lobby2D/Generated/Environment_Foreground_source.png",
+    "visualStatus": "registered-source-pixels"
+  },
+  "Banner_Recruit": {
+    "path": "ArtSource/Lobby2D/Generated/Banner_Recruit_source.png",
+    "visualStatus": "draft"
+  },
+  "Banner_Event": {
+    "path": "ArtSource/Lobby2D/Generated/Banner_Event_source.png",
+    "visualStatus": "draft"
+  },
+  "Banner_Arena": {
+    "path": "ArtSource/Lobby2D/Generated/Banner_Arena_source.png",
+    "visualStatus": "draft"
+  },
+  "Banner_Guild": {
+    "path": "ArtSource/Lobby2D/Generated/Banner_Guild_source.png",
+    "visualStatus": "draft"
+  },
+  "Battle_Pressed": {
+    "path": "ArtSource/Lobby2D/Generated/Battle_Pressed_source.png",
+    "visualStatus": "draft"
+  },
+  "Battle_Disabled": {
+    "path": "ArtSource/Lobby2D/Generated/Battle_Disabled_source.png",
+    "visualStatus": "draft"
+  },
+  "Battle_Highlight": {
+    "path": "ArtSource/Lobby2D/Generated/Battle_Highlight_source.png",
+    "visualStatus": "draft"
+  },
+  "Key_Run_LeftContact": {
+    "path": "ArtSource/Lobby2D/Generated/Key_Run_LeftContact_source.png",
+    "visualStatus": "native-rig-key-pose"
+  },
+  "Key_Run_RightContact": {
+    "path": "ArtSource/Lobby2D/Generated/Key_Run_RightContact_source.png",
+    "visualStatus": "native-rig-key-pose"
+  },
+  "Key_Attack_Anticipation": {
+    "path": "ArtSource/Lobby2D/Generated/Key_Attack_Anticipation_source.png",
+    "visualStatus": "native-rig-key-pose"
+  },
+  "Key_Attack_Impact": {
+    "path": "ArtSource/Lobby2D/Generated/Key_Attack_Impact_source.png",
+    "visualStatus": "native-rig-key-pose"
+  },
+  "Key_Attack_FollowThrough": {
+    "path": "ArtSource/Lobby2D/Generated/Key_Attack_FollowThrough_source.png",
+    "visualStatus": "native-rig-key-pose"
+  },
+  "Key_Attack_Recovery": {
+    "path": "ArtSource/Lobby2D/Generated/Key_Attack_Recovery_source.png",
+    "visualStatus": "native-rig-key-pose"
+  },
+  "VIP_01": {
+    "path": "ArtSource/Lobby2D/Generated/VIP_01_source.png",
+    "visualStatus": "draft"
+  },
+  "VIP_02": {
+    "path": "ArtSource/Lobby2D/Generated/VIP_02_source.png",
+    "visualStatus": "draft"
+  },
+  "VIP_03": {
+    "path": "ArtSource/Lobby2D/Generated/VIP_03_source.png",
+    "visualStatus": "draft"
+  },
+  "VIP_04": {
+    "path": "ArtSource/Lobby2D/Generated/VIP_04_source.png",
+    "visualStatus": "draft"
+  },
+  "VIP_05": {
+    "path": "ArtSource/Lobby2D/Generated/VIP_05_source.png",
+    "visualStatus": "draft"
+  },
+  "VIP_06": {
+    "path": "ArtSource/Lobby2D/Generated/VIP_06_source.png",
+    "visualStatus": "draft"
+  },
+  "VIP_07": {
+    "path": "ArtSource/Lobby2D/Generated/VIP_07_source.png",
+    "visualStatus": "draft"
+  },
+  "VIP_08": {
+    "path": "ArtSource/Lobby2D/Generated/VIP_08_source.png",
+    "visualStatus": "draft"
+  },
+  "VIP_09": {
+    "path": "ArtSource/Lobby2D/Generated/VIP_09_source.png",
+    "visualStatus": "draft"
+  },
+  "VIP_10": {
+    "path": "ArtSource/Lobby2D/Generated/VIP_10_source.png",
+    "visualStatus": "draft"
+  },
+  "VIP_11": {
+    "path": "ArtSource/Lobby2D/Generated/VIP_11_source.png",
+    "visualStatus": "draft"
+  },
+  "VIP_12": {
+    "path": "ArtSource/Lobby2D/Generated/VIP_12_source.png",
+    "visualStatus": "draft"
+  },
+  "Avatar_Frame": {
+    "path": "ArtSource/Lobby2D/Generated/Avatar_Frame_source.png",
+    "visualStatus": "native-ui"
+  },
+  "Banner_Frame": {
+    "path": "ArtSource/Lobby2D/Generated/Banner_Frame_source.png",
+    "visualStatus": "native-ui"
+  },
+  "Event_Card_Frame": {
+    "path": "ArtSource/Lobby2D/Generated/Event_Card_Frame_source.png",
+    "visualStatus": "native-ui"
+  },
+  "Icon_Mail": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_Mail_source.png",
+    "visualStatus": "native-ui"
+  },
+  "Icon_Notification": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_Notification_source.png",
+    "visualStatus": "native-ui"
+  },
+  "Icon_Settings": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_Settings_source.png",
+    "visualStatus": "native-ui"
+  },
+  "Navigation_Horizontal": {
+    "path": "ArtSource/Lobby2D/Generated/Navigation_Horizontal_source.png",
+    "visualStatus": "native-ui"
+  },
+  "Navigation_Vertical": {
+    "path": "ArtSource/Lobby2D/Generated/Navigation_Vertical_source.png",
+    "visualStatus": "native-ui"
+  },
+  "Panel_Background": {
+    "path": "ArtSource/Lobby2D/Generated/Panel_Background_source.png",
+    "visualStatus": "native-ui"
+  },
+  "Player_Name": {
+    "path": "ArtSource/Lobby2D/Generated/Player_Name_source.png",
+    "visualStatus": "native-ui"
+  },
+  "Resource_Bar": {
+    "path": "ArtSource/Lobby2D/Generated/Resource_Bar_source.png",
+    "visualStatus": "native-ui"
+  },
+  "Secondary_Normal": {
+    "path": "ArtSource/Lobby2D/Generated/Secondary_Normal_source.png",
+    "visualStatus": "native-ui"
+  },
+  "Icon_Lobby": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_Lobby_source.png",
+    "visualStatus": "draft"
+  },
+  "Icon_Heroes": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_Heroes_source.png",
+    "visualStatus": "draft"
+  },
+  "Icon_Lineup": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_Lineup_source.png",
+    "visualStatus": "draft"
+  },
+  "Icon_Equipment": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_Equipment_source.png",
+    "visualStatus": "draft"
+  },
+  "Icon_Bag": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_Bag_source.png",
+    "visualStatus": "draft"
+  },
+  "Icon_More": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_More_source.png",
+    "visualStatus": "draft"
+  },
+  "Icon_Quests": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_Quests_source.png",
+    "visualStatus": "draft"
+  },
+  "Icon_Events": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_Events_source.png",
+    "visualStatus": "draft"
+  },
+  "Icon_Welfare": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_Welfare_source.png",
+    "visualStatus": "draft"
+  },
+  "Icon_Friends": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_Friends_source.png",
+    "visualStatus": "draft"
+  },
+  "Icon_Guild": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_Guild_source.png",
+    "visualStatus": "draft"
+  },
+  "Icon_Banknotes": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_Banknotes_source.png",
+    "visualStatus": "draft"
+  },
+  "Icon_Silver": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_Silver_source.png",
+    "visualStatus": "silver material corrected"
+  },
+  "Icon_Stamina": {
+    "path": "ArtSource/Lobby2D/Generated/Icon_Stamina_source.png",
+    "visualStatus": "draft"
+  },
+  "UI_LightSweep": {
+    "path": "ArtSource/Lobby2D/Generated/UI_LightSweep_source.png",
+    "visualStatus": "native-ui"
+  },
+  "Environment_Lighting": {
+    "path": "ArtSource/Lobby2D/Generated/Environment_Lighting_source.png",
+    "visualStatus": "registered-source-pixels"
+  },
+  "Layer_Head": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Head_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Hair_Front": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Hair_Front_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Hair_Back": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Hair_Back_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Helmet": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Helmet_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Feather_Left": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Feather_Left_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Feather_Right": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Feather_Right_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Torso": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Torso_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_UpperArm_L": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_UpperArm_L_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_UpperArm_R": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_UpperArm_R_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Forearm_L": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Forearm_L_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Forearm_R": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Forearm_R_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Hand_L": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Hand_L_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Hand_R": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Hand_R_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Thigh_L": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Thigh_L_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Thigh_R": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Thigh_R_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Shin_L": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Shin_L_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Shin_R": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Shin_R_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Foot_L": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Foot_L_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Foot_R": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Foot_R_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_ShoulderArmor_L": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_ShoulderArmor_L_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_ShoulderArmor_R": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_ShoulderArmor_R_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Cape_Upper": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Cape_Upper_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Cape_Left": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Cape_Left_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Cape_Right": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Cape_Right_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Cloth_Front": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Cloth_Front_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Layer_Weapon": {
+    "path": "ArtSource/Lobby2D/Generated/Layer_Weapon_source.png",
+    "visualStatus": "native-rig-export"
+  },
+  "Ambient_Mote": {
+    "path": "ArtSource/Lobby2D/Generated/Ambient_Mote_source.png",
+    "visualStatus": "Kenney CC0 reused"
+  }
+}

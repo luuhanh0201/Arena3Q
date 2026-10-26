@@ -1,0 +1,1245 @@
+{
+  "version": 1,
+  "clips": [
+    {
+      "version": 1,
+      "name": "LuBu_Idle",
+      "duration": 2,
+      "loop": true,
+      "frames": [
+        {
+          "index": 0,
+          "file": "LuBu_Idle_000.png",
+          "start": 0,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "5d321b690cc9b770ed4702b70463cb7ae6d414b8be751e40735ba2422f6a3572",
+          "pixelHash": "ff964c2b2502de40e0a57e532c3ec01689f7510ed832d49c99d5c261fd53441c",
+          "alphaZero": 3652607,
+          "alphaEdge": 0
+        },
+        {
+          "index": 1,
+          "file": "LuBu_Idle_001.png",
+          "start": 0.08333333333333333,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "b4724a20026d24deaf8bb255822034513def2161b7972d444ec23179518dfa15",
+          "pixelHash": "8ed7d03f7a923821de87e5b03e214f41f0adc77b669b32dd6ba5f87c5c6db1be",
+          "alphaZero": 3652611,
+          "alphaEdge": 0
+        },
+        {
+          "index": 2,
+          "file": "LuBu_Idle_002.png",
+          "start": 0.16666666666666666,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "4c2a6a0d5b383d8b1a5d27482ab9596327daecc7763a0be0e933add151dbb054",
+          "pixelHash": "f43eba9a45cc1e6aca867e7e4615d8cab49df946452bfa59bc4d35f38b2d5fdb",
+          "alphaZero": 3652926,
+          "alphaEdge": 0
+        },
+        {
+          "index": 3,
+          "file": "LuBu_Idle_003.png",
+          "start": 0.25,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "ff82348dc68d122e755f1c08c8f923a3b0dbb696615113242ec8c87c8f8d4f2d",
+          "pixelHash": "7f45c1009d1c9c13577896ae42117878fb564ff87976241e84fa40b9c0cce136",
+          "alphaZero": 3653181,
+          "alphaEdge": 0
+        },
+        {
+          "index": 4,
+          "file": "LuBu_Idle_004.png",
+          "start": 0.3333333333333333,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "c5a5fe10bf1670e862127dad9204c4f7765cdbc501aa1b5df1862bf55465dc15",
+          "pixelHash": "7fb434fa95417206994b885388555eb55b8f44d32491d0c0b43d70bc1e4b8774",
+          "alphaZero": 3653389,
+          "alphaEdge": 0
+        },
+        {
+          "index": 5,
+          "file": "LuBu_Idle_005.png",
+          "start": 0.4166666666666667,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "6280ab3afd392ce92a21c4292a5a5f162ea6ff2f6f1f48cd34f1aaa72a320f38",
+          "pixelHash": "ba049226c5da6d10aef94c634632bfa84fe8e9dbe987bebb75efb2d206e881af",
+          "alphaZero": 3653751,
+          "alphaEdge": 0
+        },
+        {
+          "index": 6,
+          "file": "LuBu_Idle_006.png",
+          "start": 0.5,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "a3faf2a2361742933311a6efcb961fbc427f893cfef14f67f4a62a769a27ce5a",
+          "pixelHash": "84391c5b9fb26faa5b8d18caf4ed364dc9e2a035b3d998ae5fded0a6864bfb6c",
+          "alphaZero": 3654021,
+          "alphaEdge": 0
+        },
+        {
+          "index": 7,
+          "file": "LuBu_Idle_007.png",
+          "start": 0.5833333333333334,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "5a275fe8eae4f0cd8c3aa0b9f6c6f395abc01f3c228bff9aaec0355655d12bf3",
+          "pixelHash": "9bfe20e8e41a9e622e7d3ed9e3dd11f712f1fbf0d271387b6cfdb0289e19f435",
+          "alphaZero": 3654338,
+          "alphaEdge": 0
+        },
+        {
+          "index": 8,
+          "file": "LuBu_Idle_008.png",
+          "start": 0.6666666666666666,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "20749580b4247ccfb42af445d39970ec092fdd5dfb0fc0178a948fe9e4295b40",
+          "pixelHash": "e1a4ad542da1bde2bf7cb61142ae4bc4c399f526b12e0b2c151272bd4e94f39e",
+          "alphaZero": 3654546,
+          "alphaEdge": 0
+        },
+        {
+          "index": 9,
+          "file": "LuBu_Idle_009.png",
+          "start": 0.75,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "adcb8e1de7919c1978a251d7bfe7d63ec280d3fa412fa4163d5d331661234f1a",
+          "pixelHash": "f9230d767642dff31707051e36e618350eb19ec31275133baad192ffa39b0076",
+          "alphaZero": 3654819,
+          "alphaEdge": 0
+        },
+        {
+          "index": 10,
+          "file": "LuBu_Idle_010.png",
+          "start": 0.8333333333333334,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "4cf8f923d99a8fff81c7b5737458ef9fb718dabeee1000e833aaac13ecf9d5d9",
+          "pixelHash": "0aa816680b8714e9b22bdd863b2b9e189803d4b6a337b370180d7687fff0b575",
+          "alphaZero": 3655016,
+          "alphaEdge": 0
+        },
+        {
+          "index": 11,
+          "file": "LuBu_Idle_011.png",
+          "start": 0.9166666666666666,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "9d71a177003d42be1186807bae2012380a311955947ace95eb171d3d86b3cb61",
+          "pixelHash": "948df87b28277e7c04fb0fe669d542b16807dfc5c978c8b891881f75b50193e3",
+          "alphaZero": 3654828,
+          "alphaEdge": 0
+        },
+        {
+          "index": 12,
+          "file": "LuBu_Idle_012.png",
+          "start": 1,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "4170a09ed93f40215658b2a36a5091cddb041229c6d24f9e7d68f00f1b9e249e",
+          "pixelHash": "4516e92db7ed1a964c8e277251b780bb82d291abf710e6c4da38c436642f47a7",
+          "alphaZero": 3654989,
+          "alphaEdge": 0
+        },
+        {
+          "index": 13,
+          "file": "LuBu_Idle_013.png",
+          "start": 1.0833333333333333,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "d928a70e7e1f5e2283c0a0d3cba33e1380c1a3cba076590ae684bec80df6c77c",
+          "pixelHash": "a75721aaa222ecd6b56c99dfff6155f7f98625f9eb8252626b446da7a0fd3d31",
+          "alphaZero": 3654820,
+          "alphaEdge": 0
+        },
+        {
+          "index": 14,
+          "file": "LuBu_Idle_014.png",
+          "start": 1.1666666666666667,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "2aba88bfb9b33770b35bca176d6bac4b55ea81f37a668d5d214e70a17c785c57",
+          "pixelHash": "26028b7d2a42484b0aadf8ecf967a0cd1a6d03ab13c659252a7c49a33ed2125c",
+          "alphaZero": 3654423,
+          "alphaEdge": 0
+        },
+        {
+          "index": 15,
+          "file": "LuBu_Idle_015.png",
+          "start": 1.25,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "51a810f5ec5e6cf4eb78a882c94702632a894348b5aa33671205de12cd38a5b5",
+          "pixelHash": "b98eeb75763b0bfd6a525e268bfdf6cb1667f7e80827548d0d715681315a4b07",
+          "alphaZero": 3654098,
+          "alphaEdge": 0
+        },
+        {
+          "index": 16,
+          "file": "LuBu_Idle_016.png",
+          "start": 1.3333333333333333,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "5e736756443b3a37692e7c7f6cd2760cbe32235ef6dc232015cba8d909afa7e4",
+          "pixelHash": "f26c29a7a0526f11713eb9cd6d8484beccfaa34fa57b90b49723a72d5bf3e657",
+          "alphaZero": 3653675,
+          "alphaEdge": 0
+        },
+        {
+          "index": 17,
+          "file": "LuBu_Idle_017.png",
+          "start": 1.4166666666666667,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "d721f0855035fa0416cf3082554fe6801bf173e7fa68c375ceae421543b7ab6a",
+          "pixelHash": "90f08440161cb0139e914c2738811e01982b0f30f3dbb1af0a80d51a03b28bc2",
+          "alphaZero": 3653268,
+          "alphaEdge": 0
+        },
+        {
+          "index": 18,
+          "file": "LuBu_Idle_018.png",
+          "start": 1.5,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "99d06e4016eaaefe3847459cdd2e79741e54fa8304bac159fc4eecbad9152957",
+          "pixelHash": "a4a91af582d01154885a8f24cd63082a25b26c36c65832667b898cfe25684edb",
+          "alphaZero": 3652925,
+          "alphaEdge": 0
+        },
+        {
+          "index": 19,
+          "file": "LuBu_Idle_019.png",
+          "start": 1.5833333333333333,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "63203790263298eb751522017e447b6e7566ce64b855bf863830e8449ae4c8db",
+          "pixelHash": "9a88c65fbb0ec6a6b982ac548d21332ab6b45f3ed359571774be0f81c2092cda",
+          "alphaZero": 3652533,
+          "alphaEdge": 0
+        },
+        {
+          "index": 20,
+          "file": "LuBu_Idle_020.png",
+          "start": 1.6666666666666667,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "74b6d6a994da134692de012caa2e15d850eced88c8918aeeb7cf5927a7370653",
+          "pixelHash": "8090ce25fb148e6f5da01df0a75b8da1702faecfcea7350bbfadf7f61f590be3",
+          "alphaZero": 3652476,
+          "alphaEdge": 0
+        },
+        {
+          "index": 21,
+          "file": "LuBu_Idle_021.png",
+          "start": 1.75,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "cb6f87821f5e594dacec46c5f04f3e84432e34f40005ac9bea5e579730e25917",
+          "pixelHash": "9a0447c77046121080455d7eab622ad2554af10f4819e7b4938cfd1461bfed31",
+          "alphaZero": 3652251,
+          "alphaEdge": 0
+        },
+        {
+          "index": 22,
+          "file": "LuBu_Idle_022.png",
+          "start": 1.8333333333333333,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "1048e89ac6376f1634581c51cdeaef1acd8075c04e7cc905736a1039e4c9ca37",
+          "pixelHash": "6de036ee0555fe9301e07911abf6786b99b92fc718b39f9a7faeb4a9aa635d31",
+          "alphaZero": 3652306,
+          "alphaEdge": 0
+        },
+        {
+          "index": 23,
+          "file": "LuBu_Idle_023.png",
+          "start": 1.9166666666666667,
+          "duration": 0.08333333333333333,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "13208d6866c8973a61f23b07b353f9421c38890d4d79e34662b65a891b0eb172",
+          "pixelHash": "4051578d378675f5da91cd8a98771118ca49fa6f470975356a6891fd648b277c",
+          "alphaZero": 3652370,
+          "alphaEdge": 0
+        }
+      ],
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "canvas": [
+        2048,
+        2048
+      ],
+      "frameRate": 12,
+      "inPlace": true,
+      "virtualRunSpeedPixelsPerSecond": 0,
+      "atlas": {
+        "file": "atlas.png",
+        "columns": 6,
+        "rows": 4,
+        "cellSize": 512,
+        "usage": "review; independent source frames retain 2048px"
+      },
+      "events": []
+    },
+    {
+      "version": 1,
+      "name": "LuBu_Run",
+      "duration": 0.9,
+      "loop": true,
+      "frames": [
+        {
+          "index": 0,
+          "file": "LuBu_Run_000.png",
+          "start": 0,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "3e82555957a2310efa593b845e572b62424fb8fe79f2b8d2eaaa3054ac72217a",
+          "pixelHash": "b129e817b13010482ce971e59ad77549eb471ba0e9f9f6a69d7a764ee5c7491b",
+          "alphaZero": 3667064,
+          "alphaEdge": 0
+        },
+        {
+          "index": 1,
+          "file": "LuBu_Run_001.png",
+          "start": 0.0375,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "1d89369cbf1bcb6a8ad25b5c864c5f3710229d2cbeb7d97bbee3c69dc6209903",
+          "pixelHash": "210669e22eec6bddd4a2efc53cc24e645b739d81ef81a2b7ee5800199574d9c2",
+          "alphaZero": 3668370,
+          "alphaEdge": 0
+        },
+        {
+          "index": 2,
+          "file": "LuBu_Run_002.png",
+          "start": 0.075,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "fc4eeaa2f0acadafc6d6d4958423c76894832a7bca90c27e701b071b5e19f037",
+          "pixelHash": "d28aceb5dc38b9df214efb0999afcfd08bf4a3ff1e13472c4bc6d2c39f8b81aa",
+          "alphaZero": 3668602,
+          "alphaEdge": 0
+        },
+        {
+          "index": 3,
+          "file": "LuBu_Run_003.png",
+          "start": 0.1125,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "161911decc38f5b4388cb27b241a612d3c3efd34395ecd235a77b389e195607c",
+          "pixelHash": "eda70227c431247942cc7e67c216f9d2597f6de2ebfe9eb30947ae9eba528bcc",
+          "alphaZero": 3668512,
+          "alphaEdge": 0
+        },
+        {
+          "index": 4,
+          "file": "LuBu_Run_004.png",
+          "start": 0.15,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "9bd3b67903aca959a4f3b6cc99273a5417a14ffc96bca65629ae9193b01ea7ec",
+          "pixelHash": "783c1d01f73764eb155158b0f839d9437e01adf5c2555b47b666b3d58a479e5c",
+          "alphaZero": 3669141,
+          "alphaEdge": 0
+        },
+        {
+          "index": 5,
+          "file": "LuBu_Run_005.png",
+          "start": 0.1875,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "c21df7626f8fa1957d52f63d3b75741b92c5bb57c6f8e3fce431c623bc57f46e",
+          "pixelHash": "6a0e0e403c00600268da1d2d6905b6e91139079cad3a1a4d12671978d14a001d",
+          "alphaZero": 3669970,
+          "alphaEdge": 0
+        },
+        {
+          "index": 6,
+          "file": "LuBu_Run_006.png",
+          "start": 0.225,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "a0869fb0c8d73e4f078e1e697d42f0747fca84ef89da98e33563c73e85ca8ace",
+          "pixelHash": "e70b27a4c9f125ca8d29c187deea942b1ee823f5d379e673d3eff2301b8bbf9c",
+          "alphaZero": 3670231,
+          "alphaEdge": 0
+        },
+        {
+          "index": 7,
+          "file": "LuBu_Run_007.png",
+          "start": 0.2625,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "c7522e6d4dbe26f96f0e4c0a37a79e8615f45b405c7becd05d62ad7c1525c689",
+          "pixelHash": "8bc531deecf1f559446d48e0d646889427d75beaf77d9a6f63ef6207246bdf9d",
+          "alphaZero": 3668916,
+          "alphaEdge": 0
+        },
+        {
+          "index": 8,
+          "file": "LuBu_Run_008.png",
+          "start": 0.3,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "cc3cad3bbf42d86089e03b77543bf69dc7bbd50298674e03cbec63a7951b595b",
+          "pixelHash": "18434ab9c7e5ceb2625b795ad26826959dba1fedaea0b327179149d8e6f9db34",
+          "alphaZero": 3668036,
+          "alphaEdge": 0
+        },
+        {
+          "index": 9,
+          "file": "LuBu_Run_009.png",
+          "start": 0.33749999999999997,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "1e3143af1ad566e2cecf0125073cb49b992fbf704f79cf6d0f6e987bbd591fb2",
+          "pixelHash": "a5c5d17cc78ea77b18adafb3867086de9d6170a1a88ea52f86893e3dc205759a",
+          "alphaZero": 3667628,
+          "alphaEdge": 0
+        },
+        {
+          "index": 10,
+          "file": "LuBu_Run_010.png",
+          "start": 0.375,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "00a6dc98bb805ec87f8202c783f70c9e82838e9e065d99f61939fcee7bbcb683",
+          "pixelHash": "e3909a3bdf429218a6fc4839e4c8643473b98569e307c280e5f3f71a2a9fed2b",
+          "alphaZero": 3667368,
+          "alphaEdge": 0
+        },
+        {
+          "index": 11,
+          "file": "LuBu_Run_011.png",
+          "start": 0.41250000000000003,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "2917ebbd8e4246f89caedaf4c8d268ce50f1d6cb880301bd52d5c8a2c4fcc8a7",
+          "pixelHash": "1a82b492ea82af7bb60f4994ef1de3d5af84461771b4af2ab471eb08b1ffeb45",
+          "alphaZero": 3668212,
+          "alphaEdge": 0
+        },
+        {
+          "index": 12,
+          "file": "LuBu_Run_012.png",
+          "start": 0.45,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "67748d43c31806b6addf48f8b48ed7f2f279236c1016c9fd0db191848fc0f24b",
+          "pixelHash": "d13972b258c493537a2c3c28ea90ccee88f82a19d2bf017cc95ec2560352af1c",
+          "alphaZero": 3670772,
+          "alphaEdge": 0
+        },
+        {
+          "index": 13,
+          "file": "LuBu_Run_013.png",
+          "start": 0.48750000000000004,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "d56bbf3b09733a2514b676b9989237ca9f80cd7ef7a5e82e693e8851be453a91",
+          "pixelHash": "f0e12136f042052847af26234bef21d89faafe836472a24feb115f623f5a8565",
+          "alphaZero": 3675585,
+          "alphaEdge": 0
+        },
+        {
+          "index": 14,
+          "file": "LuBu_Run_014.png",
+          "start": 0.525,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "b465b00a03206d0a73b48b109cf5bfad18231ddb0c7c73a901d60df123cb3c1b",
+          "pixelHash": "a1c46566812d77d649b2d81388546bb5d335115bfe44e87af1b0e88462a622c8",
+          "alphaZero": 3680276,
+          "alphaEdge": 0
+        },
+        {
+          "index": 15,
+          "file": "LuBu_Run_015.png",
+          "start": 0.5625,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "4db8aa3402526b17d16e3daba2d6372f858ec18de1fc7c26b5aefa726d2557db",
+          "pixelHash": "d8d573a7c8447ba3aa5afd648203efb9b5aa06482544932a1541757fe4366a25",
+          "alphaZero": 3680539,
+          "alphaEdge": 0
+        },
+        {
+          "index": 16,
+          "file": "LuBu_Run_016.png",
+          "start": 0.6,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "864247b3a2c8076d54cefd7f1c5a3ad0a31c027d666b58fe0e18dd056b084ed2",
+          "pixelHash": "06b6eb6c16bc3e9962e9634d8ec7501dd51ddf1e2983513eb752ddc5e88a99ef",
+          "alphaZero": 3679405,
+          "alphaEdge": 0
+        },
+        {
+          "index": 17,
+          "file": "LuBu_Run_017.png",
+          "start": 0.6375000000000001,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "d3696b9031f92a7faed9098bc692deb70977f45e27df8f41948f8117b26ef879",
+          "pixelHash": "ba367c5e096c299df305edf950678f19e69c5f2fe12d08209a312d763dd1f963",
+          "alphaZero": 3678939,
+          "alphaEdge": 0
+        },
+        {
+          "index": 18,
+          "file": "LuBu_Run_018.png",
+          "start": 0.6749999999999999,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "4f89146180011a0d1cf490aa1062f14253b53ad6595659765228aa699d4c9b73",
+          "pixelHash": "c84ce14c9227cc67e70d9871e9a4f5976bd15bf539f8f929247f91f61d45b26e",
+          "alphaZero": 3677258,
+          "alphaEdge": 0
+        },
+        {
+          "index": 19,
+          "file": "LuBu_Run_019.png",
+          "start": 0.7125,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "cc76f290291a40049b48f4fd2e46dcb18b7e81dcd8e3c305a23dc1be1e03b0ce",
+          "pixelHash": "71c292416caabefcc5dbfca93ab5c58259c561f5e2335a211932ab471222999a",
+          "alphaZero": 3675395,
+          "alphaEdge": 0
+        },
+        {
+          "index": 20,
+          "file": "LuBu_Run_020.png",
+          "start": 0.75,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "f6045f6ef41fa818497f384018736ad4d3445d76ea7cbdd1ce36669e20a5bf26",
+          "pixelHash": "2cc08f8be1a15988423d002a72b4743da074941c3b442e357125a4570cce9f9a",
+          "alphaZero": 3674039,
+          "alphaEdge": 0
+        },
+        {
+          "index": 21,
+          "file": "LuBu_Run_021.png",
+          "start": 0.7875000000000001,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "2150cae4b9ae38f09dd6b4f027c659a5783cf657e3167f70a9d7d964315bed02",
+          "pixelHash": "91a2ee71f0ad35e36e9c7828470fff73c9a5c73c4a0a2184a504ae6e48813e8b",
+          "alphaZero": 3672730,
+          "alphaEdge": 0
+        },
+        {
+          "index": 22,
+          "file": "LuBu_Run_022.png",
+          "start": 0.8250000000000001,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "7b04a7fc4b9dd03ab0ada541d3013328f8df92ccba85f8fa173751c45e6f398c",
+          "pixelHash": "f6c3a9b05c915ac67b2c78ff9c7927dd78b1f344074330db7f18d87ef86e892e",
+          "alphaZero": 3671160,
+          "alphaEdge": 0
+        },
+        {
+          "index": 23,
+          "file": "LuBu_Run_023.png",
+          "start": 0.8624999999999999,
+          "duration": 0.0375,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "51ccdb376e4270d45554fd7a5dab3a35a1ec5b2ce3608bfb09abdd7a613ca406",
+          "pixelHash": "41ed739f6e4ed3845493600ca63bdec36f53d42280240bed03c9fd17851e2b61",
+          "alphaZero": 3668720,
+          "alphaEdge": 0
+        }
+      ],
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "canvas": [
+        2048,
+        2048
+      ],
+      "frameRate": 26.666666666666664,
+      "inPlace": true,
+      "virtualRunSpeedPixelsPerSecond": 502.64550264550263,
+      "atlas": {
+        "file": "atlas.png",
+        "columns": 6,
+        "rows": 4,
+        "cellSize": 512,
+        "usage": "review; independent source frames retain 2048px"
+      },
+      "events": []
+    },
+    {
+      "version": 1,
+      "name": "LuBu_Attack_01",
+      "duration": 1.1,
+      "loop": false,
+      "frames": [
+        {
+          "index": 0,
+          "file": "LuBu_Attack_000.png",
+          "start": 0,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "5d321b690cc9b770ed4702b70463cb7ae6d414b8be751e40735ba2422f6a3572",
+          "pixelHash": "ff964c2b2502de40e0a57e532c3ec01689f7510ed832d49c99d5c261fd53441c",
+          "alphaZero": 3652607,
+          "alphaEdge": 0
+        },
+        {
+          "index": 1,
+          "file": "LuBu_Attack_001.png",
+          "start": 0.04583333333333334,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "0900dc1ac6a8715dd1133f482568bb96d3106f88712a5cf920ac2839f2171f0b",
+          "pixelHash": "5ba030dfbe7b4e94ebbfb6c04aa42bac085f7070154c97e7980ab50e2d904d82",
+          "alphaZero": 3646867,
+          "alphaEdge": 0
+        },
+        {
+          "index": 2,
+          "file": "LuBu_Attack_002.png",
+          "start": 0.09166666666666667,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "d543f4118496f08ced8007400cd1c3093cd817f9b203b287e30fc35122a6f755",
+          "pixelHash": "57ea142934c0acb8688248a9c44981a348afdef9972b0346cae1db5bdaf3905e",
+          "alphaZero": 3636294,
+          "alphaEdge": 0
+        },
+        {
+          "index": 3,
+          "file": "LuBu_Attack_003.png",
+          "start": 0.1375,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "b5100ead16ff83e8a00b50df506347d46b4fc8ec3fd82cdbc57e4e72ce82d9a0",
+          "pixelHash": "3d1ed4d32076fceb15b230d6fd01cf9c3a4c6204b4ad9ef4b6737d3ef3dbc29a",
+          "alphaZero": 3636481,
+          "alphaEdge": 0
+        },
+        {
+          "index": 4,
+          "file": "LuBu_Attack_004.png",
+          "start": 0.18333333333333335,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "81623ec5a010d09db0efba6c1a3b25e9ac3b4b0eb9437e1c6d88626ec4940c42",
+          "pixelHash": "9445b681b7929096ca25f5e91f419fee68edbd02505285f8b8f0c3647f09b200",
+          "alphaZero": 3642895,
+          "alphaEdge": 0
+        },
+        {
+          "index": 5,
+          "file": "LuBu_Attack_005.png",
+          "start": 0.22916666666666666,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "4e0d0f2e72f9c9d355e3d642ef32a2b7f99ba62e8183c5ceb0871a1808b013f7",
+          "pixelHash": "9407c490c68c5283bf7cb26975bcb0a5e70c3a432dd4da32f04cdcddfe9f63f3",
+          "alphaZero": 3655877,
+          "alphaEdge": 0
+        },
+        {
+          "index": 6,
+          "file": "LuBu_Attack_006.png",
+          "start": 0.275,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "a3d18d62d7e4089746f247005dc97130c60be9d88830f2fbf79e1433dcc02902",
+          "pixelHash": "4ff2b84327529cabaed246c00924fbffc0f2b4473919be0130ec18d556ebd172",
+          "alphaZero": 3680529,
+          "alphaEdge": 0
+        },
+        {
+          "index": 7,
+          "file": "LuBu_Attack_007.png",
+          "start": 0.32083333333333336,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "97c0ae612d8338dcac574ffe4674dad59458b980efb9d4c9bb06394692517f45",
+          "pixelHash": "7551add5ac3011fe608f482dd1bd8afe473162e9885139599d2fccb6e1a962d5",
+          "alphaZero": 3675815,
+          "alphaEdge": 0
+        },
+        {
+          "index": 8,
+          "file": "LuBu_Attack_008.png",
+          "start": 0.3666666666666667,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "64e2f0caac62cecc46b9f9ff8da5190a21eee44129cc4599679ea851046a6a9c",
+          "pixelHash": "0fef55e6c744a64a839ae4ae6162190b05ae6c13850fb15c96a035b9852f66b6",
+          "alphaZero": 3665806,
+          "alphaEdge": 0
+        },
+        {
+          "index": 9,
+          "file": "LuBu_Attack_009.png",
+          "start": 0.41250000000000003,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "c8084ba363dc3fd92f96be2e5d4539cff730d2711db17b798cd728f553f29033",
+          "pixelHash": "8a85ddebfde4952a51acbe9d447d1927f187d1b189346346953eca2c22e8dd59",
+          "alphaZero": 3663035,
+          "alphaEdge": 0
+        },
+        {
+          "index": 10,
+          "file": "LuBu_Attack_010.png",
+          "start": 0.4583333333333333,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "ad748570c2c46be1311f1ba83dedbbe1043379559e0a7dfc4b0499ba71443c00",
+          "pixelHash": "54539a9b962834e79cf4a2ae17824df18bd748de3be058dc9d32c1302250a35d",
+          "alphaZero": 3673994,
+          "alphaEdge": 0
+        },
+        {
+          "index": 11,
+          "file": "LuBu_Attack_011.png",
+          "start": 0.5041666666666668,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "3f726cf6dbb8d9324a7ae3a4a6b4f293c87ff41831afbb176b4cc2adbe60a134",
+          "pixelHash": "cf07fccbe7e300044828aeca83e720a201ac53c0a4b93a1daffd2a7d207e7df4",
+          "alphaZero": 3678610,
+          "alphaEdge": 0
+        },
+        {
+          "index": 12,
+          "file": "LuBu_Attack_012.png",
+          "start": 0.55,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "cf5820e490fbc28fc15a413e4b62a65a4dd03f36007d0aba88f1859c93089cdd",
+          "pixelHash": "51a820f1e61279607f69cc324b158101dbb509a7b62e61078ff16794a4ffe9d3",
+          "alphaZero": 3646653,
+          "alphaEdge": 0
+        },
+        {
+          "index": 13,
+          "file": "LuBu_Attack_013.png",
+          "start": 0.5958333333333333,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "41c75e848916045d6e36d022104dea3eb9394040573a745ac86fdf9c7a963e92",
+          "pixelHash": "845f070dae1a2404898051d4e27c5121ffe1872fd9a2c34c3fadfcd193b56c44",
+          "alphaZero": 3655232,
+          "alphaEdge": 0
+        },
+        {
+          "index": 14,
+          "file": "LuBu_Attack_014.png",
+          "start": 0.6416666666666667,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "340d780a4ce02d3ed53af3fe29bab3ab30b057d1244879c646e9bdd32468ee58",
+          "pixelHash": "46e0752b4135273b83c53006dd49ffda0a564464c43449080a03ff9295c5e16d",
+          "alphaZero": 3658433,
+          "alphaEdge": 0
+        },
+        {
+          "index": 15,
+          "file": "LuBu_Attack_015.png",
+          "start": 0.6875,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "bff1da9775c498906637bf0217c6c27899cb35fccfafef2c907f0c47f36c57b1",
+          "pixelHash": "c507576f92609d5565c60314d37155d5b18afebb93d5f6d3e3470b15c4ba2cc8",
+          "alphaZero": 3656880,
+          "alphaEdge": 0
+        },
+        {
+          "index": 16,
+          "file": "LuBu_Attack_016.png",
+          "start": 0.7333333333333334,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "ac9697c245ba32796f574b948847c4798fe5ce5d03ec1aac53f142aea41cb6b1",
+          "pixelHash": "c33027628e90fa54f52ee22ed8425ce4d724529cb6f54e82f5e5223ec02406f0",
+          "alphaZero": 3655713,
+          "alphaEdge": 0
+        },
+        {
+          "index": 17,
+          "file": "LuBu_Attack_017.png",
+          "start": 0.7791666666666668,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "21643e0c5d46a058f0879cac154a8742c680b25c82143606bb452ca0745f1f2d",
+          "pixelHash": "1524fe5d8cbc592e3ee1c5fdf113f76d0fceed79c9cf7bd8507b2132da5f6749",
+          "alphaZero": 3654956,
+          "alphaEdge": 0
+        },
+        {
+          "index": 18,
+          "file": "LuBu_Attack_018.png",
+          "start": 0.8250000000000001,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "b37c4f7a2bbdabf925ee760cbd89f9395059ee73cd83ee33687795c70b94793c",
+          "pixelHash": "7bb95e8b63e3d3814a6d1be1115aff0093cce1439d22f207062af92a6a803c75",
+          "alphaZero": 3655102,
+          "alphaEdge": 0
+        },
+        {
+          "index": 19,
+          "file": "LuBu_Attack_019.png",
+          "start": 0.8708333333333335,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "4d7be6be8b883f28c63074cc130a0485e8f39d33136c8eaa891bd5033f1db8d9",
+          "pixelHash": "d0422c98298ca6c4b23e00ca8a32789a57df813f49f84981bb7769f5b93148f6",
+          "alphaZero": 3654973,
+          "alphaEdge": 0
+        },
+        {
+          "index": 20,
+          "file": "LuBu_Attack_020.png",
+          "start": 0.9166666666666666,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "31eeed075892d2f263ad9baab05089df51af4e87f68927dca78d0edb9dda3cd3",
+          "pixelHash": "788681ecb603aca6f37d194ca86213bf876ee3b35a91829ba492fc840134f05f",
+          "alphaZero": 3650480,
+          "alphaEdge": 0
+        },
+        {
+          "index": 21,
+          "file": "LuBu_Attack_021.png",
+          "start": 0.9625,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "33513704ca6b81260cc1d2db9b0e74e6f6fbbf11cd669a4ceabf463bbe4c8157",
+          "pixelHash": "8ced2dc17d8b5ee0da1a342bad1f03286a92cbf4a03e17ee1f629beb6cb847b6",
+          "alphaZero": 3643631,
+          "alphaEdge": 0
+        },
+        {
+          "index": 22,
+          "file": "LuBu_Attack_022.png",
+          "start": 1.0083333333333335,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "c2b6423bee3b0b7c18e2b46a872729ea3e612415ed365d331bcc9e04b6bc27d9",
+          "pixelHash": "086179ed4b84aa8d9373fc2ee25da3b9ef3518e9797690c274b040d067b787b2",
+          "alphaZero": 3650296,
+          "alphaEdge": 0
+        },
+        {
+          "index": 23,
+          "file": "LuBu_Attack_023.png",
+          "start": 1.0541666666666667,
+          "duration": 0.04583333333333334,
+          "pivot": [
+            0.5,
+            0.2
+          ],
+          "width": 2048,
+          "height": 2048,
+          "sha256": "4e33b8f1dc302cd24c0268faafe58c38417dd5ac21f9677b9e93d7b75c0cf2bc",
+          "pixelHash": "3b5ae0ce20975012509a4b6beb92760e2a9fec3708078260a4e9eb7c50d8c6ea",
+          "alphaZero": 3653448,
+          "alphaEdge": 0
+        }
+      ],
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "canvas": [
+        2048,
+        2048
+      ],
+      "frameRate": 21.818181818181817,
+      "inPlace": true,
+      "virtualRunSpeedPixelsPerSecond": 0,
+      "atlas": {
+        "file": "atlas.png",
+        "columns": 6,
+        "rows": 4,
+        "cellSize": 512,
+        "usage": "review; independent source frames retain 2048px"
+      },
+      "events": [
+        {
+          "name": "Impact",
+          "frame": 13,
+          "time": 0.5958333333333333,
+          "source": "rig clock; VFX never deals damage"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1972 @@
+{
+  "version": 1,
+  "assetRoot": "Assets/Arena3Q/Lobby2D",
+  "status": "delivered-web-reviewed",
+  "referenceRoot": "docs/UI/assets",
+  "canvas": [
+    1920,
+    1080
+  ],
+  "palette": [
+    "#C91E1E",
+    "#7A1319",
+    "#FFD166",
+    "#A66A28",
+    "#101018",
+    "#17243A"
+  ],
+  "references": [
+    "Sảnh Game.png",
+    "animation1.png",
+    "farmes.png",
+    "12ba053f-ca19-4883-bae9-eb55f1552d38.png",
+    "5adabb22-538c-4d4e-bc33-732cc8098a41.png",
+    "a67b4d61-95f4-4751-80a5-f0867cb6ffe3.png"
+  ],
+  "menus": {
+    "bottom": [
+      "Sảnh",
+      "Tướng",
+      "Đội Hình",
+      "Trang Bị",
+      "Túi",
+      "Khác"
+    ],
+    "left": [
+      "Nhiệm Vụ",
+      "Sự Kiện",
+      "Phúc Lợi",
+      "Hảo Hữu",
+      "Bang Hội"
+    ],
+    "right": [
+      "Chiêu Mộ",
+      "Sự Kiện nổi bật",
+      "Đấu Trường",
+      "Bang Hội"
+    ],
+    "cta": "Xuất Chiến"
+  },
+  "assets": [
+    {
+      "id": "LuBu_FullBody",
+      "file": "Characters/LuBu/Portraits/LuBu_FullBody.png",
+      "width": 1254,
+      "height": 1254,
+      "transparent": true,
+      "pivot": [
+        0.519,
+        0.087
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "portrait",
+      "allowEdge": false
+    },
+    {
+      "id": "LuBu_Head",
+      "file": "Characters/LuBu/Portraits/LuBu_Head.png",
+      "width": 1254,
+      "height": 1254,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "portrait",
+      "allowEdge": false
+    },
+    {
+      "id": "LuBu_Avatar",
+      "file": "Characters/LuBu/Portraits/LuBu_Avatar.png",
+      "width": 1254,
+      "height": 1254,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "portrait",
+      "allowEdge": true
+    },
+    {
+      "id": "LuBu_Bust",
+      "file": "Characters/LuBu/Portraits/LuBu_Bust.png",
+      "width": 1254,
+      "height": 1254,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "portrait",
+      "allowEdge": false
+    },
+    {
+      "id": "LuBu_BattlePose",
+      "file": "Characters/LuBu/Portraits/LuBu_BattlePose.png",
+      "width": 1254,
+      "height": 1254,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "portrait",
+      "allowEdge": false
+    },
+    {
+      "id": "Layer_Head",
+      "file": "Characters/LuBu/Layers/Head.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Hair_Front",
+      "file": "Characters/LuBu/Layers/Hair_Front.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Hair_Back",
+      "file": "Characters/LuBu/Layers/Hair_Back.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Helmet",
+      "file": "Characters/LuBu/Layers/Helmet.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Feather_Left",
+      "file": "Characters/LuBu/Layers/Feather_Left.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Feather_Right",
+      "file": "Characters/LuBu/Layers/Feather_Right.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Torso",
+      "file": "Characters/LuBu/Layers/Torso.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_UpperArm_L",
+      "file": "Characters/LuBu/Layers/UpperArm_L.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_UpperArm_R",
+      "file": "Characters/LuBu/Layers/UpperArm_R.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Forearm_L",
+      "file": "Characters/LuBu/Layers/Forearm_L.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Forearm_R",
+      "file": "Characters/LuBu/Layers/Forearm_R.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Hand_L",
+      "file": "Characters/LuBu/Layers/Hand_L.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Hand_R",
+      "file": "Characters/LuBu/Layers/Hand_R.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Thigh_L",
+      "file": "Characters/LuBu/Layers/Thigh_L.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Thigh_R",
+      "file": "Characters/LuBu/Layers/Thigh_R.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Shin_L",
+      "file": "Characters/LuBu/Layers/Shin_L.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Shin_R",
+      "file": "Characters/LuBu/Layers/Shin_R.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Foot_L",
+      "file": "Characters/LuBu/Layers/Foot_L.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Foot_R",
+      "file": "Characters/LuBu/Layers/Foot_R.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_ShoulderArmor_L",
+      "file": "Characters/LuBu/Layers/ShoulderArmor_L.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_ShoulderArmor_R",
+      "file": "Characters/LuBu/Layers/ShoulderArmor_R.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Cape_Upper",
+      "file": "Characters/LuBu/Layers/Cape_Upper.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Cape_Left",
+      "file": "Characters/LuBu/Layers/Cape_Left.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Cape_Right",
+      "file": "Characters/LuBu/Layers/Cape_Right.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Cloth_Front",
+      "file": "Characters/LuBu/Layers/Cloth_Front.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Layer_Weapon",
+      "file": "Characters/LuBu/Layers/Weapon.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "rig-layer"
+    },
+    {
+      "id": "Icon_Lobby",
+      "file": "UI/Icons/Lobby.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon"
+    },
+    {
+      "id": "Icon_Heroes",
+      "file": "UI/Icons/Heroes.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon"
+    },
+    {
+      "id": "Icon_Lineup",
+      "file": "UI/Icons/Lineup.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon"
+    },
+    {
+      "id": "Icon_Equipment",
+      "file": "UI/Icons/Equipment.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon"
+    },
+    {
+      "id": "Icon_Bag",
+      "file": "UI/Icons/Bag.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon"
+    },
+    {
+      "id": "Icon_More",
+      "file": "UI/Icons/More.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon"
+    },
+    {
+      "id": "Icon_Quests",
+      "file": "UI/Icons/Quests.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon"
+    },
+    {
+      "id": "Icon_Events",
+      "file": "UI/Icons/Events.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon"
+    },
+    {
+      "id": "Icon_Welfare",
+      "file": "UI/Icons/Welfare.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon"
+    },
+    {
+      "id": "Icon_Friends",
+      "file": "UI/Icons/Friends.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon"
+    },
+    {
+      "id": "Icon_Guild",
+      "file": "UI/Icons/Guild.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon"
+    },
+    {
+      "id": "Icon_Banknotes",
+      "file": "UI/Icons/Banknotes.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon"
+    },
+    {
+      "id": "Icon_Silver",
+      "file": "UI/Icons/Silver.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon"
+    },
+    {
+      "id": "Icon_Stamina",
+      "file": "UI/Icons/Stamina.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon"
+    },
+    {
+      "id": "Icon_Mail",
+      "file": "UI/Icons/Mail.png",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "padding": 12
+    },
+    {
+      "id": "Icon_Settings",
+      "file": "UI/Icons/Settings.png",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "padding": 12
+    },
+    {
+      "id": "Icon_Notification",
+      "file": "UI/Icons/Notification.png",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "icon",
+      "padding": 12
+    },
+    {
+      "id": "Battle_Normal",
+      "file": "UI/Buttons/Battle_Normal.png",
+      "width": 1024,
+      "height": 352,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "button",
+      "family": "battle",
+      "padding": 16
+    },
+    {
+      "id": "Battle_Pressed",
+      "file": "UI/Buttons/Battle_Pressed.png",
+      "width": 1024,
+      "height": 352,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "button",
+      "family": "battle",
+      "padding": 16
+    },
+    {
+      "id": "Battle_Disabled",
+      "file": "UI/Buttons/Battle_Disabled.png",
+      "width": 1024,
+      "height": 352,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "button",
+      "family": "battle",
+      "padding": 16
+    },
+    {
+      "id": "Battle_Highlight",
+      "file": "UI/Buttons/Battle_Highlight.png",
+      "width": 1024,
+      "height": 352,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "effect",
+      "family": "battle",
+      "padding": 16
+    },
+    {
+      "id": "Panel_Border",
+      "file": "UI/Panels/Panel_Border.png",
+      "width": 1024,
+      "height": 640,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        192,
+        160,
+        192,
+        160
+      ],
+      "role": "frame"
+    },
+    {
+      "id": "UI_LightSweep",
+      "file": "Effects/UI/LightSweep.png",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "effect",
+      "padding": 8
+    },
+    {
+      "id": "Ambient_Mote",
+      "file": "Effects/UI/Ambient_Mote.png",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "effect",
+      "padding": 12
+    },
+    {
+      "id": "Panel_Background",
+      "file": "UI/Panels/Panel_Background.png",
+      "width": 512,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        40,
+        40,
+        40,
+        40
+      ],
+      "role": "frame"
+    },
+    {
+      "id": "Resource_Bar",
+      "file": "UI/Resources/Resource_Bar.png",
+      "width": 512,
+      "height": 96,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        48,
+        24,
+        48,
+        24
+      ],
+      "role": "frame"
+    },
+    {
+      "id": "Player_Name",
+      "file": "UI/Panels/Player_Name.png",
+      "width": 640,
+      "height": 160,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        80,
+        40,
+        80,
+        40
+      ],
+      "role": "frame"
+    },
+    {
+      "id": "Avatar_Frame",
+      "file": "UI/Panels/Avatar_Frame.png",
+      "width": 256,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "role": "frame"
+    },
+    {
+      "id": "Banner_Frame",
+      "file": "UI/Banners/Banner_Frame.png",
+      "width": 1024,
+      "height": 400,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        160,
+        120,
+        160,
+        120
+      ],
+      "role": "frame"
+    },
+    {
+      "id": "Event_Card_Frame",
+      "file": "UI/Banners/Event_Card_Frame.png",
+      "width": 512,
+      "height": 256,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        80,
+        64,
+        80,
+        64
+      ],
+      "role": "frame"
+    },
+    {
+      "id": "Navigation_Horizontal",
+      "file": "UI/Navigation/Navigation_Horizontal.png",
+      "width": 1024,
+      "height": 144,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        96,
+        36,
+        96,
+        36
+      ],
+      "role": "frame"
+    },
+    {
+      "id": "Navigation_Vertical",
+      "file": "UI/Navigation/Navigation_Vertical.png",
+      "width": 160,
+      "height": 640,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        40,
+        96,
+        40,
+        96
+      ],
+      "role": "frame"
+    },
+    {
+      "id": "Secondary_Normal",
+      "file": "UI/Buttons/Secondary_Normal.png",
+      "width": 512,
+      "height": 144,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        48,
+        24,
+        48,
+        24
+      ],
+      "role": "frame"
+    },
+    {
+      "id": "VIP_01",
+      "file": "UI/VIP/VIP_01.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 1,
+      "padding": 12
+    },
+    {
+      "id": "VIP_02",
+      "file": "UI/VIP/VIP_02.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 2,
+      "padding": 12
+    },
+    {
+      "id": "VIP_03",
+      "file": "UI/VIP/VIP_03.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 3,
+      "padding": 12
+    },
+    {
+      "id": "VIP_04",
+      "file": "UI/VIP/VIP_04.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 4,
+      "padding": 12
+    },
+    {
+      "id": "VIP_05",
+      "file": "UI/VIP/VIP_05.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 5,
+      "padding": 12
+    },
+    {
+      "id": "VIP_06",
+      "file": "UI/VIP/VIP_06.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 6,
+      "padding": 12
+    },
+    {
+      "id": "VIP_07",
+      "file": "UI/VIP/VIP_07.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 7,
+      "padding": 12
+    },
+    {
+      "id": "VIP_08",
+      "file": "UI/VIP/VIP_08.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 8,
+      "padding": 12
+    },
+    {
+      "id": "VIP_09",
+      "file": "UI/VIP/VIP_09.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 9,
+      "padding": 12
+    },
+    {
+      "id": "VIP_10",
+      "file": "UI/VIP/VIP_10.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 10,
+      "padding": 12
+    },
+    {
+      "id": "VIP_11",
+      "file": "UI/VIP/VIP_11.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 11,
+      "padding": 12
+    },
+    {
+      "id": "VIP_12",
+      "file": "UI/VIP/VIP_12.png",
+      "width": 640,
+      "height": 240,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "vip",
+      "tier": 12,
+      "padding": 12
+    },
+    {
+      "id": "Banner_Recruit",
+      "file": "UI/Banners/Recruit.png",
+      "width": 1024,
+      "height": 400,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "banner"
+    },
+    {
+      "id": "Banner_Event",
+      "file": "UI/Banners/Event.png",
+      "width": 1024,
+      "height": 400,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "banner"
+    },
+    {
+      "id": "Banner_Arena",
+      "file": "UI/Banners/Arena.png",
+      "width": 1024,
+      "height": 400,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "banner"
+    },
+    {
+      "id": "Banner_Guild",
+      "file": "UI/Banners/Guild.png",
+      "width": 1024,
+      "height": 400,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "banner"
+    },
+    {
+      "id": "Sky_Morning",
+      "file": "Backgrounds/Lobby/Sky/Morning.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "sky"
+    },
+    {
+      "id": "Sky_Noon",
+      "file": "Backgrounds/Lobby/Sky/Noon.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "sky"
+    },
+    {
+      "id": "Sky_Afternoon",
+      "file": "Backgrounds/Lobby/Sky/Afternoon.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "sky"
+    },
+    {
+      "id": "Sky_Evening",
+      "file": "Backgrounds/Lobby/Sky/Evening.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "sky"
+    },
+    {
+      "id": "Sky_Night",
+      "file": "Backgrounds/Lobby/Sky/Night.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "sky"
+    },
+    {
+      "id": "Environment_Far_Background",
+      "file": "Backgrounds/Lobby/Environment/Far_Background.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "environment"
+    },
+    {
+      "id": "Environment_Buildings",
+      "file": "Backgrounds/Lobby/Environment/Buildings.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "environment"
+    },
+    {
+      "id": "Environment_Foreground",
+      "file": "Backgrounds/Lobby/Environment/Foreground.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "environment"
+    },
+    {
+      "id": "Lobby_Architecture",
+      "file": "Backgrounds/Lobby/Environment/Lobby_Architecture.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "environment-baseline"
+    },
+    {
+      "id": "Environment_Lighting",
+      "file": "Backgrounds/Lobby/Lighting/Lighting.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "allowEdge": true,
+      "role": "environment-lighting"
+    },
+    {
+      "id": "Key_Run_LeftContact",
+      "file": "Characters/LuBu/KeyPoses/Run_LeftContact.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "key-pose"
+    },
+    {
+      "id": "Key_Run_RightContact",
+      "file": "Characters/LuBu/KeyPoses/Run_RightContact.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "key-pose"
+    },
+    {
+      "id": "Key_Attack_Anticipation",
+      "file": "Characters/LuBu/KeyPoses/Attack_Anticipation.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "key-pose"
+    },
+    {
+      "id": "Key_Attack_Impact",
+      "file": "Characters/LuBu/KeyPoses/Attack_Impact.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "key-pose"
+    },
+    {
+      "id": "Key_Attack_FollowThrough",
+      "file": "Characters/LuBu/KeyPoses/Attack_FollowThrough.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "key-pose"
+    },
+    {
+      "id": "Key_Attack_Recovery",
+      "file": "Characters/LuBu/KeyPoses/Attack_Recovery.png",
+      "width": 2048,
+      "height": 2048,
+      "transparent": true,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "role": "key-pose"
+    }
+  ],
+  "clips": [
+    {
+      "name": "LuBu_Idle",
+      "folder": "Characters/LuBu/Animations/Idle",
+      "prefix": "LuBu_Idle",
+      "count": 24,
+      "width": 2048,
+      "height": 2048,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "duration": 2,
+      "loop": true,
+      "endpointPolicy": "sample t=i/24; exclude copied endpoint; Attack recovery finishes before the final sample",
+      "events": [],
+      "requiredFiles": [
+        "timing.csv",
+        "frames.json",
+        "atlas.png",
+        "preview.gif"
+      ],
+      "visualReview": {
+        "identity": true,
+        "surfaceIntegrity": true,
+        "weightAndInertia": true,
+        "footContacts": true,
+        "loopOrRecovery": true
+      }
+    },
+    {
+      "name": "LuBu_Run",
+      "folder": "Characters/LuBu/Animations/Run",
+      "prefix": "LuBu_Run",
+      "count": 24,
+      "width": 2048,
+      "height": 2048,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "duration": 0.9,
+      "loop": true,
+      "endpointPolicy": "sample t=i/24; exclude copied endpoint; Attack recovery finishes before the final sample",
+      "events": [],
+      "requiredFiles": [
+        "timing.csv",
+        "frames.json",
+        "atlas.png",
+        "preview.gif"
+      ],
+      "visualReview": {
+        "identity": true,
+        "surfaceIntegrity": true,
+        "weightAndInertia": true,
+        "footContacts": true,
+        "loopOrRecovery": true
+      }
+    },
+    {
+      "name": "LuBu_Attack_01",
+      "folder": "Characters/LuBu/Animations/Attack",
+      "prefix": "LuBu_Attack",
+      "count": 24,
+      "width": 2048,
+      "height": 2048,
+      "pivot": [
+        0.5,
+        0.2
+      ],
+      "duration": 1.1,
+      "loop": false,
+      "endpointPolicy": "sample t=i/24; exclude copied endpoint; Attack recovery finishes before the final sample",
+      "events": [
+        {
+          "name": "Impact",
+          "frame": 13,
+          "status": "proposed, not gameplay bound"
+        }
+      ],
+      "requiredFiles": [
+        "timing.csv",
+        "frames.json",
+        "atlas.png",
+        "preview.gif"
+      ],
+      "visualReview": {
+        "identity": true,
+        "surfaceIntegrity": true,
+        "weightAndInertia": true,
+        "footContacts": true,
+        "loopOrRecovery": true
+      }
+    }
+  ],
+  "rigLayers": [
+    "Head",
+    "Hair_Front",
+    "Hair_Back",
+    "Helmet",
+    "Feather_Left",
+    "Feather_Right",
+    "Torso",
+    "UpperArm_L",
+    "UpperArm_R",
+    "Forearm_L",
+    "Forearm_R",
+    "Hand_L",
+    "Hand_R",
+    "Thigh_L",
+    "Thigh_R",
+    "Shin_L",
+    "Shin_R",
+    "Foot_L",
+    "Foot_R",
+    "ShoulderArmor_L",
+    "ShoulderArmor_R",
+    "Cape_Upper",
+    "Cape_Left",
+    "Cape_Right",
+    "Cloth_Front",
+    "Weapon"
+  ],
+  "qualityGates": {
+    "characterIdentity": true,
+    "registeredEnvironmentLayers": true,
+    "buttonStatesRegistered": true,
+    "rigHiddenSurfaces": true,
+    "unityImported": true,
+    "previewReviewed": true,
+    "device60fps": false
+  },
+  "validationScope": "web artwork delivery",
+  "deferredGates": {
+    "device60fps": "User requested web review only, no player/device build this session. Target60 is configured; actual device FPS is unmeasured."
+  }
+}

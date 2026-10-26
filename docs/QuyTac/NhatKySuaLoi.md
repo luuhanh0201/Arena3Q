@@ -460,3 +460,12 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 - Sửa: bỏ bypass overview khỏi camera chơi; giới hạn kích thước và tâm ở mọi lần cập nhật theo bounds đã chiếu, FitCamera dùng viewport nằm trong map. Không thêm lại nền ngoài biên người dùng đã bỏ.
 - HUD gắn UiSafeArea cập nhật khi cutout/nav bar thay đổi; giữ style/nội dung mobile. Thanh Android vẫn do ImmersiveScreen quản lý, không thay thiết lập điều hướng của thiết bị.
 - Phòng tránh: kiểm các góc ray-ground của viewport sau zoom cực đại, pan bốn mép, thay tỷ lệ màn hình và tilt; không chỉ kiểm tâm camera hoặc ảnh overview với controller bị tắt. Kiểm HUD trong safe area giả lập và ảnh máy thật.
+
+## 27/10 - Bộ sảnh2D: rig, xuất frame và trang xem
+
+- Graphic rig rỗng do thiếu CanvasRenderer; thêm RequireComponent và kiểm số pixel alpha trước xuất. NewScene làm dependency slash thành Unity fake-null; reload rig/slash và chặn thiếu24file VFX thay vì return im lặng.
+- Attack thu tay vượt miền với tối thiểu, cape chứa pixel bàn tay gốc gây tay thứ3; giải bằng IK miền vành khuyên, quỹ đạo thu tay và underlay/cắt mask sạch. Run giữ độ dài bone bằng pelvis compliance, đường chân Hermite nối vận tốc. Audit291pose/150transition và xem ảnh trước–sau, không dùng hash khác nhau làm bằng chứng chuyển động đúng.
+- Sprite clip builder khai báo var nhiều biến gây compile lỗi; tách khai báo. GIF làm tròn delay độc lập lệch tổng thời lượng; phân bố phần dư centisecond.
+- Web root thiếu base làm module/CSS403; thêm base, khởi động server trước Playwright và kiểm tài nguyên thật. Reset aspect về16:9 khi chọn ảnh thời điểm. Web cuối26/26 qua, Attack không loop và VFX bật/tắt riêng.
+- Avatar bust quá nhỏ, bạc ánh đồng: sinh refinement đúng nguồn, lưu so sánh thật. Capture TMP làm bẩn cache font dùng chung; dùng font clone riêng, trả các cache ban đầu sạch về HEAD sau lượt cuối. Bộ gói riêng không đổi game release, không build game;60FPS máy thật chưa đo theo yêu cầu chỉ kiểm web.
+- Bằng chứng: `docs/UI/Lobby2D/Delivery.md`, `ArtSource/Lobby2D/acceptance-report.json`, hai thư mục XemTruoc_Lobby2D và XemTruoc_LobbyRig26/10.

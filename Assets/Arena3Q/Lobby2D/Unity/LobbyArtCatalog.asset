@@ -1,0 +1,2777 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e458a5fa93343408edf9fc5af744fe, type: 3}
+  m_Name: LobbyArtCatalog
+  m_EditorClassIdentifier: Arena3Q.Lobby2D::Arena3Q.Lobby2D.LobbyArtCatalog
+  entries:
+  - id: LuBu_FullBody
+    role: portrait
+    sprite: {fileID: 21300000, guid: 0096f618c3852934d849c09d9ebba4d4, type: 3}
+  - id: LuBu_Avatar
+    role: portrait
+    sprite: {fileID: 21300000, guid: 8192c62bdddf0cc44af35a244ab0629c, type: 3}
+  - id: Icon_Lobby
+    role: icon
+    sprite: {fileID: 21300000, guid: 84a0b16e196d53143b077e882dbc246d, type: 3}
+  - id: Icon_Heroes
+    role: icon
+    sprite: {fileID: 21300000, guid: 29579bff84056ec4d9dc16dbc2be949f, type: 3}
+  - id: Icon_Lineup
+    role: icon
+    sprite: {fileID: 21300000, guid: 47efa8f010d85f34eb9325e995e99528, type: 3}
+  - id: Icon_Equipment
+    role: icon
+    sprite: {fileID: 21300000, guid: fc366f08944cc504c8d945df2a371d83, type: 3}
+  - id: Icon_Bag
+    role: icon
+    sprite: {fileID: 21300000, guid: fba5e9c91ad4d5841b8b2b29cb6940b1, type: 3}
+  - id: Icon_More
+    role: icon
+    sprite: {fileID: 21300000, guid: 45c6b41f01c07984c8db7a1eba55b678, type: 3}
+  - id: Icon_Quests
+    role: icon
+    sprite: {fileID: 21300000, guid: b572e8771dcbfe841b1bfb01b548c804, type: 3}
+  - id: Icon_Events
+    role: icon
+    sprite: {fileID: 21300000, guid: db78f5e4e06e4c94a9863779b4e8c407, type: 3}
+  - id: Icon_Welfare
+    role: icon
+    sprite: {fileID: 21300000, guid: f2e1c611ec564a345b0bee7a6f45fccd, type: 3}
+  - id: Icon_Friends
+    role: icon
+    sprite: {fileID: 21300000, guid: 247dee0d6d0877a4d9f819d2cb6a1929, type: 3}
+  - id: Icon_Guild
+    role: icon
+    sprite: {fileID: 21300000, guid: 819c07c38cf7d0d4cb7b0641a70d141f, type: 3}
+  - id: Icon_Banknotes
+    role: icon
+    sprite: {fileID: 21300000, guid: 0584444fb94e1394e91176389989f4ae, type: 3}
+  - id: Icon_Silver
+    role: icon
+    sprite: {fileID: 21300000, guid: bcb9d990986e691428acdad321ce1838, type: 3}
+  - id: Icon_Stamina
+    role: icon
+    sprite: {fileID: 21300000, guid: 7b6515201a9b70947816d5ddfc24d9e0, type: 3}
+  - id: Icon_Mail
+    role: icon
+    sprite: {fileID: 21300000, guid: 5e840fbfaddca4249b3d3aa86b1c2020, type: 3}
+  - id: Icon_Settings
+    role: icon
+    sprite: {fileID: 21300000, guid: a224486983fc8c9419f6c12b02070969, type: 3}
+  - id: Icon_Notification
+    role: icon
+    sprite: {fileID: 21300000, guid: d0c16a045a1a3194189472a48508f1c1, type: 3}
+  - id: Battle_Normal
+    role: button
+    sprite: {fileID: 21300000, guid: b1a1a0dc180596449b13c3fa721d9a15, type: 3}
+  - id: Battle_Pressed
+    role: button
+    sprite: {fileID: 21300000, guid: 1e219637d03c00b4da70af28b996bf2c, type: 3}
+  - id: Battle_Disabled
+    role: button
+    sprite: {fileID: 21300000, guid: 7727feeef0112a340a66333ef7001d52, type: 3}
+  - id: Battle_Highlight
+    role: effect
+    sprite: {fileID: 21300000, guid: 4a20479c094205f4fa5b1fe7217eea7b, type: 3}
+  - id: Panel_Border
+    role: frame
+    sprite: {fileID: 21300000, guid: 5f5d061ca1ca3e6418c5f90356b9b82a, type: 3}
+  - id: UI_LightSweep
+    role: effect
+    sprite: {fileID: 21300000, guid: 7b06ace13a95fad40ae25be845d8ba59, type: 3}
+  - id: Ambient_Mote
+    role: effect
+    sprite: {fileID: 21300000, guid: a55dcc653fe063b4faafcd4dfc049f77, type: 3}
+  - id: Resource_Bar
+    role: frame
+    sprite: {fileID: 21300000, guid: da2922277eca12b47b93c96796288d09, type: 3}
+  - id: Player_Name
+    role: frame
+    sprite: {fileID: 21300000, guid: 98a93b4248cb07f4ca994c29e218ffec, type: 3}
+  - id: Navigation_Horizontal
+    role: frame
+    sprite: {fileID: 21300000, guid: ba7f52d62147a4844b4a93d6610d2cd5, type: 3}
+  - id: Navigation_Vertical
+    role: frame
+    sprite: {fileID: 21300000, guid: 77a403ffe6f8b71459b6574cfb682560, type: 3}
+  - id: Secondary_Normal
+    role: frame
+    sprite: {fileID: 21300000, guid: 55a7e313931335b479332a8502c82c83, type: 3}
+  - id: VIP_01
+    role: vip
+    sprite: {fileID: 21300000, guid: 1154988e916f039428ad976c88085dd0, type: 3}
+  - id: VIP_02
+    role: vip
+    sprite: {fileID: 21300000, guid: def5f4f9db7816846bcfca7ac2742430, type: 3}
+  - id: VIP_03
+    role: vip
+    sprite: {fileID: 21300000, guid: 616d3a119799a18438348a64275733b1, type: 3}
+  - id: VIP_04
+    role: vip
+    sprite: {fileID: 21300000, guid: 2adbd714b9989344bb95457ed620e098, type: 3}
+  - id: VIP_05
+    role: vip
+    sprite: {fileID: 21300000, guid: 1ea40f82430227645b53cbb4da858cb0, type: 3}
+  - id: VIP_06
+    role: vip
+    sprite: {fileID: 21300000, guid: d86fca5c08eacfa4bbf833386930c350, type: 3}
+  - id: VIP_07
+    role: vip
+    sprite: {fileID: 21300000, guid: 019dc5f0b6c1b0741ad0d0259cbae04f, type: 3}
+  - id: VIP_08
+    role: vip
+    sprite: {fileID: 21300000, guid: 42a01430738a3c64d81468454b7132c3, type: 3}
+  - id: VIP_09
+    role: vip
+    sprite: {fileID: 21300000, guid: f53b3fba60fc364469d1afe4effca312, type: 3}
+  - id: VIP_10
+    role: vip
+    sprite: {fileID: 21300000, guid: 8c57be490cac1014bbf664238479c6b1, type: 3}
+  - id: VIP_11
+    role: vip
+    sprite: {fileID: 21300000, guid: 9907cec796c1aa64aa16a8451c78b48b, type: 3}
+  - id: VIP_12
+    role: vip
+    sprite: {fileID: 21300000, guid: 433354d9c980b6e4fa78b712454b22c6, type: 3}
+  - id: Banner_Recruit
+    role: banner
+    sprite: {fileID: 21300000, guid: 074641bc13f792248abaad70b81a44b8, type: 3}
+  - id: Banner_Event
+    role: banner
+    sprite: {fileID: 21300000, guid: fab46a3b3b2d23e4bb4860cb2aee16d4, type: 3}
+  - id: Banner_Arena
+    role: banner
+    sprite: {fileID: 21300000, guid: 4d4de0b6495988b478cd84f0da0999aa, type: 3}
+  - id: Banner_Guild
+    role: banner
+    sprite: {fileID: 21300000, guid: 658710e0f12063e4aacbccb474a03484, type: 3}
+  - id: Sky_Morning
+    role: sky
+    sprite: {fileID: 21300000, guid: 91b764827b5f8a046a8677aadd8040d8, type: 3}
+  - id: Sky_Noon
+    role: sky
+    sprite: {fileID: 21300000, guid: dd71de7fcd15cb6409c7085c1fcff408, type: 3}
+  - id: Sky_Afternoon
+    role: sky
+    sprite: {fileID: 21300000, guid: 7d136cc16a149c147b0d791cb58eb69a, type: 3}
+  - id: Sky_Evening
+    role: sky
+    sprite: {fileID: 21300000, guid: 60d400c1de4b0bc4ea23000233cd1152, type: 3}
+  - id: Sky_Night
+    role: sky
+    sprite: {fileID: 21300000, guid: d2a79bd9c0f5e2c40ab551ed4838b37f, type: 3}
+  - id: Environment_Far_Background
+    role: environment
+    sprite: {fileID: 21300000, guid: d431d06635754014d889a6218d39f0d1, type: 3}
+  - id: Environment_Buildings
+    role: environment
+    sprite: {fileID: 21300000, guid: 3f5d6b241a027a64480c0d0ff9217a01, type: 3}
+  - id: Environment_Foreground
+    role: environment
+    sprite: {fileID: 21300000, guid: 3ae14c66959e7444c85a163ec855bd19, type: 3}
+  - id: Environment_Lighting
+    role: environment-lighting
+    sprite: {fileID: 21300000, guid: 4ff5af9503438fe41b7af5d8626363b2, type: 3}
+  times:
+  - label: "S\xE1ng"
+    skyId: Sky_Morning
+    environmentTint: {r: 1, g: 0.97, b: 0.91, a: 1}
+    lightingAlpha: 0
+  - label: "Tr\u01B0a"
+    skyId: Sky_Noon
+    environmentTint: {r: 1, g: 1, b: 1, a: 1}
+    lightingAlpha: 0
+  - label: "Chi\u1EC1u"
+    skyId: Sky_Afternoon
+    environmentTint: {r: 1, g: 0.81, b: 0.66, a: 1}
+    lightingAlpha: 0.1
+  - label: "T\u1ED1i"
+    skyId: Sky_Evening
+    environmentTint: {r: 0.66, g: 0.65, b: 0.86, a: 1}
+    lightingAlpha: 0.5
+  - label: "\u0110\xEAm"
+    skyId: Sky_Night
+    environmentTint: {r: 0.43, g: 0.53, b: 0.78, a: 1}
+    lightingAlpha: 0.85
+  bottom:
+  - label: "S\u1EA3nh"
+    iconId: Icon_Lobby
+  - label: "T\u01B0\u1EDBng"
+    iconId: Icon_Heroes
+  - label: "\u0110\u1ED9i H\xECnh"
+    iconId: Icon_Lineup
+  - label: "Trang B\u1ECB"
+    iconId: Icon_Equipment
+  - label: "T\xFAi"
+    iconId: Icon_Bag
+  - label: "Kh\xE1c"
+    iconId: Icon_More
+  left:
+  - label: "Nhi\u1EC7m V\u1EE5"
+    iconId: Icon_Quests
+  - label: "S\u1EF1 Ki\u1EC7n"
+    iconId: Icon_Events
+  - label: "Ph\xFAc L\u1EE3i"
+    iconId: Icon_Welfare
+  - label: "H\u1EA3o H\u1EEFu"
+    iconId: Icon_Friends
+  - label: "Bang H\u1ED9i"
+    iconId: Icon_Guild
+  nodes:
+  - id: Sky
+    parent:
+    spriteId: Sky_Morning
+    text:
+    destination:
+    effect: sky
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 0}
+    position: {x: 0, y: 0}
+    size: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 1
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: Architecture_Far_Background
+    parent:
+    spriteId: Environment_Far_Background
+    text:
+    destination:
+    effect: environment
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 0}
+    position: {x: 0, y: 0}
+    size: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 1
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: Architecture_Buildings
+    parent:
+    spriteId: Environment_Buildings
+    text:
+    destination:
+    effect: environment
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 0}
+    position: {x: 0, y: 0}
+    size: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 1
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: Architecture_Foreground
+    parent:
+    spriteId: Environment_Foreground
+    text:
+    destination:
+    effect: environment
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 0}
+    position: {x: 0, y: 0}
+    size: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 1
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: Lighting
+    parent:
+    spriteId: Environment_Lighting
+    text:
+    destination:
+    effect: lighting
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 0}
+    position: {x: 0, y: 0}
+    size: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 1
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: AmbientVFX
+    parent:
+    spriteId: Ambient_Mote
+    text:
+    destination:
+    effect: ambientMotes
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 2
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 0}
+    position: {x: 0, y: 0}
+    size: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 1
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: SafeArea
+    parent:
+    spriteId:
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 2
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 0}
+    position: {x: 0, y: 0}
+    size: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 1
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 1
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: LuBu
+    parent: SafeArea
+    spriteId: LuBu_FullBody
+    text:
+    destination:
+    effect: heroAnchor
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.4, y: 0}
+    position: {x: 0, y: 170}
+    size: {x: 1000, y: 1000}
+    pivot: {x: 0.519, y: 0.087}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0.4, y: 0.1574074}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: Profile
+    parent: SafeArea
+    spriteId: Player_Name
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 1}
+    position: {x: 310, y: -83}
+    size: {x: 600, y: 132}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 1
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: ProfileOrnament
+    parent: Profile
+    spriteId: Panel_Border
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 0, y: 0}
+    size: {x: 600, y: 132}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 1
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 4
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: Avatar
+    parent: Profile
+    spriteId: LuBu_Avatar
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 0.5}
+    position: {x: 66, y: 0}
+    size: {x: 112, y: 112}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: PlayerName
+    parent: Profile
+    spriteId:
+    text: '{playerName}'
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 0.5}
+    position: {x: 235, y: 25}
+    size: {x: 210, y: 40}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 32
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: Level
+    parent: Profile
+    spriteId:
+    text: Lv.{level}
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 0.5}
+    position: {x: 195, y: -12}
+    size: {x: 130, y: 30}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 23
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 0.82, b: 0.4, a: 1}
+  - id: Power
+    parent: Profile
+    spriteId:
+    text: "Chi\u1EBFn L\u1EF1c: {power}"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 0.5}
+    position: {x: 315, y: -43}
+    size: {x: 370, y: 32}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 25
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 0.82, b: 0.4, a: 1}
+  - id: VIP
+    parent: Profile
+    spriteId: VIP_{vip}
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 1, y: 1}
+    position: {x: -118, y: -32}
+    size: {x: 225, y: 85}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 1
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: VIPSheen
+    parent: VIP
+    spriteId: UI_LightSweep
+    text:
+    destination:
+    effect: vipSheen
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 0, y: 0}
+    size: {x: 42, y: 85}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 7
+    activeSeconds: 1.5
+    amplitude: 0.25
+    travel: 300
+    fadeSeconds: 0.2
+    minVip: 8
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: VIPLabel
+    parent: VIP
+    spriteId:
+    text: VIP {vip}
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 0, y: -3}
+    size: {x: 160, y: 40}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 26
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 0.82, b: 0.4, a: 1}
+  - id: Banknotes
+    parent: SafeArea
+    spriteId: Resource_Bar
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 1}
+    position: {x: -147, y: -47}
+    size: {x: 226, y: 67}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 1
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BanknotesIcon
+    parent: Banknotes
+    spriteId: Icon_Banknotes
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 0.5}
+    position: {x: 30, y: 0}
+    size: {x: 62, y: 62}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BanknotesValue
+    parent: Banknotes
+    spriteId:
+    text: '{banknotes}'
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 18, y: 0}
+    size: {x: 155, y: 42}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 24
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: Silver
+    parent: SafeArea
+    spriteId: Resource_Bar
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 1}
+    position: {x: 91, y: -47}
+    size: {x: 226, y: 67}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 1
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: SilverIcon
+    parent: Silver
+    spriteId: Icon_Silver
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 0.5}
+    position: {x: 30, y: 0}
+    size: {x: 62, y: 62}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: SilverValue
+    parent: Silver
+    spriteId:
+    text: '{silver}'
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 18, y: 0}
+    size: {x: 155, y: 42}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 24
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: Stamina
+    parent: SafeArea
+    spriteId: Resource_Bar
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 1}
+    position: {x: 329, y: -47}
+    size: {x: 226, y: 67}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 1
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: StaminaIcon
+    parent: Stamina
+    spriteId: Icon_Stamina
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 0.5}
+    position: {x: 30, y: 0}
+    size: {x: 62, y: 62}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: StaminaValue
+    parent: Stamina
+    spriteId:
+    text: '{stamina}'
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 18, y: 0}
+    size: {x: 155, y: 42}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 24
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: TopFriends
+    parent: SafeArea
+    spriteId: Icon_Friends
+    text:
+    destination: "H\u1EA3o H\u1EEFu"
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 1, y: 1}
+    position: {x: -172, y: -45}
+    size: {x: 48, y: 48}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: TopMail
+    parent: SafeArea
+    spriteId: Icon_Mail
+    text:
+    destination: "Th\u01B0"
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 1, y: 1}
+    position: {x: -109, y: -45}
+    size: {x: 48, y: 48}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: TopSettings
+    parent: SafeArea
+    spriteId: Icon_Settings
+    text:
+    destination: "C\xE0i \u0110\u1EB7t"
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 1, y: 1}
+    position: {x: -46, y: -45}
+    size: {x: 48, y: 48}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: MailNotification
+    parent: TopMail
+    spriteId: Icon_Notification
+    text:
+    destination:
+    effect: notification
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 1, y: 1}
+    position: {x: -2, y: -2}
+    size: {x: 17, y: 17}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 0.9, g: 0.03, b: 0.06, a: 1}
+  - id: Left
+    parent: SafeArea
+    spriteId: Navigation_Vertical
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 0.5}
+    position: {x: 79, y: -9}
+    size: {x: 136, y: 630}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 1
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: LeftQuests
+    parent: Left
+    spriteId: Icon_Quests
+    text:
+    destination: "Nhi\u1EC7m V\u1EE5"
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 0.5, y: 1}
+    position: {x: 0, y: -65}
+    size: {x: 80, y: 80}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: LeftQuestsLabel
+    parent: LeftQuests
+    spriteId:
+    text: "Nhi\u1EC7m V\u1EE5"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0}
+    position: {x: 0, y: -18}
+    size: {x: 128, y: 32}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 23
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: LeftEvents
+    parent: Left
+    spriteId: Icon_Events
+    text:
+    destination: "S\u1EF1 Ki\u1EC7n"
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 0.5, y: 1}
+    position: {x: 0, y: -185}
+    size: {x: 80, y: 80}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: LeftEventsLabel
+    parent: LeftEvents
+    spriteId:
+    text: "S\u1EF1 Ki\u1EC7n"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0}
+    position: {x: 0, y: -18}
+    size: {x: 128, y: 32}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 23
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: LeftWelfare
+    parent: Left
+    spriteId: Icon_Welfare
+    text:
+    destination: "Ph\xFAc L\u1EE3i"
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 0.5, y: 1}
+    position: {x: 0, y: -305}
+    size: {x: 80, y: 80}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: LeftWelfareLabel
+    parent: LeftWelfare
+    spriteId:
+    text: "Ph\xFAc L\u1EE3i"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0}
+    position: {x: 0, y: -18}
+    size: {x: 128, y: 32}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 23
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: LeftFriends
+    parent: Left
+    spriteId: Icon_Friends
+    text:
+    destination: "H\u1EA3o H\u1EEFu"
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 0.5, y: 1}
+    position: {x: 0, y: -425}
+    size: {x: 80, y: 80}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: LeftFriendsLabel
+    parent: LeftFriends
+    spriteId:
+    text: "H\u1EA3o H\u1EEFu"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0}
+    position: {x: 0, y: -18}
+    size: {x: 128, y: 32}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 23
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: LeftGuild
+    parent: Left
+    spriteId: Icon_Guild
+    text:
+    destination: "Bang H\u1ED9i"
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 0.5, y: 1}
+    position: {x: 0, y: -545}
+    size: {x: 80, y: 80}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: LeftGuildLabel
+    parent: LeftGuild
+    spriteId:
+    text: "Bang H\u1ED9i"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0}
+    position: {x: 0, y: -18}
+    size: {x: 128, y: 32}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 23
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: Bottom
+    parent: SafeArea
+    spriteId: Navigation_Horizontal
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0, y: 0}
+    position: {x: 599, y: 83}
+    size: {x: 1168, y: 138}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 1
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BottomOrnament
+    parent: Bottom
+    spriteId: Panel_Border
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 0, y: 0}
+    size: {x: 1168, y: 138}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 1
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 4
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BottomLobby
+    parent: Bottom
+    spriteId: Icon_Lobby
+    text:
+    destination: "S\u1EA3nh"
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 0, y: 0.5}
+    position: {x: 105, y: 10}
+    size: {x: 91, y: 91}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BottomLobbyLabel
+    parent: BottomLobby
+    spriteId:
+    text: "S\u1EA3nh"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0}
+    position: {x: 0, y: -13}
+    size: {x: 176, y: 33}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 25
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BottomHeroes
+    parent: Bottom
+    spriteId: Icon_Heroes
+    text:
+    destination: "T\u01B0\u1EDBng"
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 0, y: 0.5}
+    position: {x: 296, y: 10}
+    size: {x: 91, y: 91}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BottomHeroesLabel
+    parent: BottomHeroes
+    spriteId:
+    text: "T\u01B0\u1EDBng"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0}
+    position: {x: 0, y: -13}
+    size: {x: 176, y: 33}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 25
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BottomLineup
+    parent: Bottom
+    spriteId: Icon_Lineup
+    text:
+    destination: "\u0110\u1ED9i H\xECnh"
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 0, y: 0.5}
+    position: {x: 487, y: 10}
+    size: {x: 91, y: 91}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BottomLineupLabel
+    parent: BottomLineup
+    spriteId:
+    text: "\u0110\u1ED9i H\xECnh"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0}
+    position: {x: 0, y: -13}
+    size: {x: 176, y: 33}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 25
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BottomEquipment
+    parent: Bottom
+    spriteId: Icon_Equipment
+    text:
+    destination: "Trang B\u1ECB"
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 0, y: 0.5}
+    position: {x: 678, y: 10}
+    size: {x: 91, y: 91}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BottomEquipmentLabel
+    parent: BottomEquipment
+    spriteId:
+    text: "Trang B\u1ECB"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0}
+    position: {x: 0, y: -13}
+    size: {x: 176, y: 33}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 25
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BottomBag
+    parent: Bottom
+    spriteId: Icon_Bag
+    text:
+    destination: "T\xFAi"
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 0, y: 0.5}
+    position: {x: 869, y: 10}
+    size: {x: 91, y: 91}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BottomBagLabel
+    parent: BottomBag
+    spriteId:
+    text: "T\xFAi"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0}
+    position: {x: 0, y: -13}
+    size: {x: 176, y: 33}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 25
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BottomMore
+    parent: Bottom
+    spriteId: Icon_More
+    text:
+    destination: "Kh\xE1c"
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 0, y: 0.5}
+    position: {x: 1060, y: 10}
+    size: {x: 91, y: 91}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BottomMoreLabel
+    parent: BottomMore
+    spriteId:
+    text: "Kh\xE1c"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0}
+    position: {x: 0, y: -13}
+    size: {x: 176, y: 33}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 25
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: CardEvent
+    parent: SafeArea
+    spriteId: Banner_Event
+    text:
+    destination: "S\u1EF1 Ki\u1EC7n n\u1ED5i b\u1EADt"
+    effect: bannerCycle
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 1, y: 1}
+    position: {x: -306, y: -239}
+    size: {x: 570, y: 219}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: CardEventBorder
+    parent: CardEvent
+    spriteId: Panel_Border
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 0, y: 0}
+    size: {x: 570, y: 219}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 1
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 4
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: CardEventLabel
+    parent: CardEvent
+    spriteId:
+    text: "S\u1EF1 Ki\u1EC7n n\u1ED5i b\u1EADt"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.25}
+    position: {x: 0, y: 0}
+    size: {x: 538, y: 62}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 38
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 0.82, b: 0.4, a: 1}
+  - id: CardRecruit
+    parent: SafeArea
+    spriteId: Banner_Recruit
+    text:
+    destination: "Chi\xEAu M\u1ED9"
+    effect: recruitMotes
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 1, y: 1}
+    position: {x: -306, y: -474}
+    size: {x: 570, y: 219}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 1
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: RecruitSheen
+    parent: CardRecruit
+    spriteId: UI_LightSweep
+    text:
+    destination:
+    effect: recruitSheen
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 0, y: 0}
+    size: {x: 55, y: 219}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 8
+    activeSeconds: 2
+    amplitude: 0.15
+    travel: 650
+    fadeSeconds: 0.2
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: CardRecruitBorder
+    parent: CardRecruit
+    spriteId: Panel_Border
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 0, y: 0}
+    size: {x: 570, y: 219}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 1
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 4
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: CardRecruitLabel
+    parent: CardRecruit
+    spriteId:
+    text: "Chi\xEAu M\u1ED9"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.25}
+    position: {x: 0, y: 0}
+    size: {x: 538, y: 62}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 38
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 0.82, b: 0.4, a: 1}
+  - id: CardArena
+    parent: SafeArea
+    spriteId: Banner_Arena
+    text:
+    destination: "\u0110\u1EA5u Tr\u01B0\u1EDDng"
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 1, y: 1}
+    position: {x: -452, y: -689}
+    size: {x: 277, y: 174}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: CardArenaBorder
+    parent: CardArena
+    spriteId: Panel_Border
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 0, y: 0}
+    size: {x: 277, y: 174}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 1
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 4
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: CardArenaLabel
+    parent: CardArena
+    spriteId:
+    text: "\u0110\u1EA5u Tr\u01B0\u1EDDng"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.25}
+    position: {x: 0, y: 0}
+    size: {x: 245, y: 62}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 29
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 0.82, b: 0.4, a: 1}
+  - id: CardGuild
+    parent: SafeArea
+    spriteId: Banner_Guild
+    text:
+    destination: "Bang H\u1ED9i"
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 1, y: 1}
+    position: {x: -160, y: -689}
+    size: {x: 277, y: 174}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: CardGuildBorder
+    parent: CardGuild
+    spriteId: Panel_Border
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 0, y: 0}
+    size: {x: 277, y: 174}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 1
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 4
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: CardGuildLabel
+    parent: CardGuild
+    spriteId:
+    text: "Bang H\u1ED9i"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.25}
+    position: {x: 0, y: 0}
+    size: {x: 245, y: 62}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 29
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 0.82, b: 0.4, a: 1}
+  - id: Battle
+    parent: SafeArea
+    spriteId: Battle_Normal
+    text:
+    destination: "Xu\u1EA5t Chi\u1EBFn"
+    effect:
+    pressedSpriteId: Battle_Pressed
+    disabledSpriteId: Battle_Disabled
+    kind: 0
+    action: 1
+    timeIndex: 0
+    anchor: {x: 1, y: 0}
+    position: {x: -315, y: 125}
+    size: {x: 590, y: 203}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BattleGlow
+    parent: Battle
+    spriteId: Battle_Highlight
+    text:
+    destination:
+    effect: ctaGlow
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 0, y: 0}
+    size: {x: 590, y: 203}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 1
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 5
+    activeSeconds: 5
+    amplitude: 0.28
+    travel: 0
+    fadeSeconds: 0.2
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: BattleLabel
+    parent: Battle
+    spriteId:
+    text: "Xu\u1EA5t Chi\u1EBFn"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 35, y: -32}
+    size: {x: 410, y: 75}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 48
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 0.82, b: 0.4, a: 1}
+  - id: Time0
+    parent: SafeArea
+    spriteId: Secondary_Normal
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 2
+    timeIndex: 0
+    anchor: {x: 0.5, y: 1}
+    position: {x: -240, y: -108}
+    size: {x: 115, y: 38}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: TimeLabel0
+    parent: Time0
+    spriteId:
+    text: "S\xE1ng"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 0, y: 0}
+    size: {x: 108, y: 33}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 21
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: Time1
+    parent: SafeArea
+    spriteId: Secondary_Normal
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 2
+    timeIndex: 1
+    anchor: {x: 0.5, y: 1}
+    position: {x: -120, y: -108}
+    size: {x: 115, y: 38}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: TimeLabel1
+    parent: Time1
+    spriteId:
+    text: "Tr\u01B0a"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 0, y: 0}
+    size: {x: 108, y: 33}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 21
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: Time2
+    parent: SafeArea
+    spriteId: Secondary_Normal
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 2
+    timeIndex: 2
+    anchor: {x: 0.5, y: 1}
+    position: {x: 0, y: -108}
+    size: {x: 115, y: 38}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: TimeLabel2
+    parent: Time2
+    spriteId:
+    text: "Chi\u1EC1u"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 0, y: 0}
+    size: {x: 108, y: 33}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 21
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: Time3
+    parent: SafeArea
+    spriteId: Secondary_Normal
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 2
+    timeIndex: 3
+    anchor: {x: 0.5, y: 1}
+    position: {x: 120, y: -108}
+    size: {x: 115, y: 38}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: TimeLabel3
+    parent: Time3
+    spriteId:
+    text: "T\u1ED1i"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 0, y: 0}
+    size: {x: 108, y: 33}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 21
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: Time4
+    parent: SafeArea
+    spriteId: Secondary_Normal
+    text:
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 0
+    action: 2
+    timeIndex: 4
+    anchor: {x: 0.5, y: 1}
+    position: {x: 240, y: -108}
+    size: {x: 115, y: 38}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 0
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: TimeLabel4
+    parent: Time4
+    spriteId:
+    text: "\u0110\xEAm"
+    destination:
+    effect:
+    pressedSpriteId:
+    disabledSpriteId:
+    kind: 1
+    action: 0
+    timeIndex: 0
+    anchor: {x: 0.5, y: 0.5}
+    position: {x: 0, y: 0}
+    size: {x: 108, y: 33}
+    pivot: {x: 0.5, y: 0.5}
+    stretch: 0
+    sliced: 0
+    preserveAspect: 0
+    safeArea: 0
+    mask: 0
+    cover: 0
+    fontSize: 21
+    pixelMultiplier: 1
+    period: 0
+    activeSeconds: 0
+    amplitude: 0
+    travel: 0
+    fadeSeconds: 0
+    minVip: 0
+    referencePoint: {x: 0, y: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  font: {fileID: 11400000, guid: c849b112beebb5f4c902829242efd90b, type: 2}
+  characterRig: {fileID: 11400000, guid: 4dddfc9a2b4124a40a2f2fecea72d467, type: 2}
+  characterScale: 0.8
+  referenceResolution: {x: 1920, y: 1080}
+  targetFrameRate: 60
+  playerName: Arena3Q
+  playerLevel: 50
+  vip: 12
+  power: 1.245.680
+  banknotes: 12.680
+  silver: 5.320.000
+  stamina: 180/180
+  notificationAnimation: 1
+  buttonResponse: 1
+  vipAnimation: 1
+  ctaAnimation: 1
+  bannerAnimation: 1
+  bannerSeconds: 7
+  bannerFadeSeconds: 1.2
+  eventBannerSprites:
+  - Banner_Event
+  - Banner_Recruit
+  ambientAnimation: 1
+  recruitAnimation: 1
+  ambientMoteCount: 14
+  recruitMoteCount: 7
+  moteMinSize: 3
+  moteMaxSize: 7
+  moteLifetime: 18
+  moteDrift: 7
+  moteAlpha: 0.32
+  moteFadeSeconds: 0.2
+  moteColor: {r: 1, g: 0.82, b: 0.4, a: 1}
+  notificationSpeed: 1.2
+  notificationMinimumAlpha: 0.65
+  pressedScale: 0.95
+  responseSeconds: 0.1

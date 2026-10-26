@@ -1,0 +1,2758 @@
+{
+  "nodes": [
+    {
+      "id": "Sky",
+      "parent": "",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Sky_Morning",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "cover": true,
+      "effect": "sky"
+    },
+    {
+      "id": "Architecture_Far_Background",
+      "parent": "",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Environment_Far_Background",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "cover": true,
+      "effect": "environment"
+    },
+    {
+      "id": "Architecture_Buildings",
+      "parent": "",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Environment_Buildings",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "cover": true,
+      "effect": "environment"
+    },
+    {
+      "id": "Architecture_Foreground",
+      "parent": "",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Environment_Foreground",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "cover": true,
+      "effect": "environment"
+    },
+    {
+      "id": "Lighting",
+      "parent": "",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Environment_Lighting",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "cover": true,
+      "effect": "lighting"
+    },
+    {
+      "id": "AmbientVFX",
+      "parent": "",
+      "kind": 2,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Ambient_Mote",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "cover": true,
+      "effect": "ambientMotes"
+    },
+    {
+      "id": "SafeArea",
+      "parent": "",
+      "kind": 2,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "stretch": true,
+      "safeArea": true
+    },
+    {
+      "id": "LuBu",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 0.4,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": 170
+      },
+      "size": {
+        "x": 1000,
+        "y": 1000
+      },
+      "pivot": {
+        "x": 0.519,
+        "y": 0.087
+      },
+      "spriteId": "LuBu_FullBody",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "effect": "heroAnchor",
+      "referencePoint": {
+        "x": 0.4,
+        "y": 0.1574074074074074
+      }
+    },
+    {
+      "id": "Profile",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 1
+      },
+      "position": {
+        "x": 310,
+        "y": -83
+      },
+      "size": {
+        "x": 600,
+        "y": 132
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Player_Name",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "sliced": true
+    },
+    {
+      "id": "ProfileOrnament",
+      "parent": "Profile",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 600,
+        "y": 132
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Panel_Border",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 4,
+      "sliced": true
+    },
+    {
+      "id": "Avatar",
+      "parent": "Profile",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 66,
+        "y": 0
+      },
+      "size": {
+        "x": 112,
+        "y": 112
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "LuBu_Avatar",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1
+    },
+    {
+      "id": "PlayerName",
+      "parent": "Profile",
+      "kind": 1,
+      "anchor": {
+        "x": 0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 235,
+        "y": 25
+      },
+      "size": {
+        "x": 210,
+        "y": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "{playerName}",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 32
+    },
+    {
+      "id": "Level",
+      "parent": "Profile",
+      "kind": 1,
+      "anchor": {
+        "x": 0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 195,
+        "y": -12
+      },
+      "size": {
+        "x": 130,
+        "y": 30
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Lv.{level}",
+      "tint": {
+        "r": 1,
+        "g": 0.82,
+        "b": 0.4,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 23
+    },
+    {
+      "id": "Power",
+      "parent": "Profile",
+      "kind": 1,
+      "anchor": {
+        "x": 0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 315,
+        "y": -43
+      },
+      "size": {
+        "x": 370,
+        "y": 32
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Chiến Lực: {power}",
+      "tint": {
+        "r": 1,
+        "g": 0.82,
+        "b": 0.4,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 25
+    },
+    {
+      "id": "VIP",
+      "parent": "Profile",
+      "kind": 0,
+      "anchor": {
+        "x": 1,
+        "y": 1
+      },
+      "position": {
+        "x": -118,
+        "y": -32
+      },
+      "size": {
+        "x": 225,
+        "y": 85
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "VIP_{vip}",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "mask": true
+    },
+    {
+      "id": "VIPSheen",
+      "parent": "VIP",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 42,
+        "y": 85
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "UI_LightSweep",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "effect": "vipSheen",
+      "period": 7,
+      "activeSeconds": 1.5,
+      "amplitude": 0.25,
+      "travel": 300,
+      "minVip": 8,
+      "fadeSeconds": 0.2
+    },
+    {
+      "id": "VIPLabel",
+      "parent": "VIP",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": -3
+      },
+      "size": {
+        "x": 160,
+        "y": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "VIP {vip}",
+      "tint": {
+        "r": 1,
+        "g": 0.82,
+        "b": 0.4,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 26
+    },
+    {
+      "id": "Banknotes",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "position": {
+        "x": -147,
+        "y": -47
+      },
+      "size": {
+        "x": 226,
+        "y": 67
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Resource_Bar",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "sliced": true
+    },
+    {
+      "id": "BanknotesIcon",
+      "parent": "Banknotes",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 30,
+        "y": 0
+      },
+      "size": {
+        "x": 62,
+        "y": 62
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Banknotes",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1
+    },
+    {
+      "id": "BanknotesValue",
+      "parent": "Banknotes",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 18,
+        "y": 0
+      },
+      "size": {
+        "x": 155,
+        "y": 42
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "{banknotes}",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 24
+    },
+    {
+      "id": "Silver",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "position": {
+        "x": 91,
+        "y": -47
+      },
+      "size": {
+        "x": 226,
+        "y": 67
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Resource_Bar",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "sliced": true
+    },
+    {
+      "id": "SilverIcon",
+      "parent": "Silver",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 30,
+        "y": 0
+      },
+      "size": {
+        "x": 62,
+        "y": 62
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Silver",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1
+    },
+    {
+      "id": "SilverValue",
+      "parent": "Silver",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 18,
+        "y": 0
+      },
+      "size": {
+        "x": 155,
+        "y": 42
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "{silver}",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 24
+    },
+    {
+      "id": "Stamina",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "position": {
+        "x": 329,
+        "y": -47
+      },
+      "size": {
+        "x": 226,
+        "y": 67
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Resource_Bar",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "sliced": true
+    },
+    {
+      "id": "StaminaIcon",
+      "parent": "Stamina",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 30,
+        "y": 0
+      },
+      "size": {
+        "x": 62,
+        "y": 62
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Stamina",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1
+    },
+    {
+      "id": "StaminaValue",
+      "parent": "Stamina",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 18,
+        "y": 0
+      },
+      "size": {
+        "x": 155,
+        "y": 42
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "{stamina}",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 24
+    },
+    {
+      "id": "TopFriends",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 1,
+        "y": 1
+      },
+      "position": {
+        "x": -172,
+        "y": -45
+      },
+      "size": {
+        "x": 48,
+        "y": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Friends",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Hảo Hữu"
+    },
+    {
+      "id": "TopMail",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 1,
+        "y": 1
+      },
+      "position": {
+        "x": -109,
+        "y": -45
+      },
+      "size": {
+        "x": 48,
+        "y": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Mail",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Thư"
+    },
+    {
+      "id": "TopSettings",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 1,
+        "y": 1
+      },
+      "position": {
+        "x": -46,
+        "y": -45
+      },
+      "size": {
+        "x": 48,
+        "y": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Settings",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Cài Đặt"
+    },
+    {
+      "id": "MailNotification",
+      "parent": "TopMail",
+      "kind": 0,
+      "anchor": {
+        "x": 1,
+        "y": 1
+      },
+      "position": {
+        "x": -2,
+        "y": -2
+      },
+      "size": {
+        "x": 17,
+        "y": 17
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Notification",
+      "text": "",
+      "tint": {
+        "r": 0.9,
+        "g": 0.03,
+        "b": 0.06,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "effect": "notification"
+    },
+    {
+      "id": "Left",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 79,
+        "y": -9
+      },
+      "size": {
+        "x": 136,
+        "y": 630
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Navigation_Vertical",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "sliced": true
+    },
+    {
+      "id": "LeftQuests",
+      "parent": "Left",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "position": {
+        "x": 0,
+        "y": -65
+      },
+      "size": {
+        "x": 80,
+        "y": 80
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Quests",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Nhiệm Vụ"
+    },
+    {
+      "id": "LeftQuestsLabel",
+      "parent": "LeftQuests",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": -18
+      },
+      "size": {
+        "x": 128,
+        "y": 32
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Nhiệm Vụ",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 23
+    },
+    {
+      "id": "LeftEvents",
+      "parent": "Left",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "position": {
+        "x": 0,
+        "y": -185
+      },
+      "size": {
+        "x": 80,
+        "y": 80
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Events",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Sự Kiện"
+    },
+    {
+      "id": "LeftEventsLabel",
+      "parent": "LeftEvents",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": -18
+      },
+      "size": {
+        "x": 128,
+        "y": 32
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Sự Kiện",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 23
+    },
+    {
+      "id": "LeftWelfare",
+      "parent": "Left",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "position": {
+        "x": 0,
+        "y": -305
+      },
+      "size": {
+        "x": 80,
+        "y": 80
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Welfare",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Phúc Lợi"
+    },
+    {
+      "id": "LeftWelfareLabel",
+      "parent": "LeftWelfare",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": -18
+      },
+      "size": {
+        "x": 128,
+        "y": 32
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Phúc Lợi",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 23
+    },
+    {
+      "id": "LeftFriends",
+      "parent": "Left",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "position": {
+        "x": 0,
+        "y": -425
+      },
+      "size": {
+        "x": 80,
+        "y": 80
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Friends",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Hảo Hữu"
+    },
+    {
+      "id": "LeftFriendsLabel",
+      "parent": "LeftFriends",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": -18
+      },
+      "size": {
+        "x": 128,
+        "y": 32
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Hảo Hữu",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 23
+    },
+    {
+      "id": "LeftGuild",
+      "parent": "Left",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "position": {
+        "x": 0,
+        "y": -545
+      },
+      "size": {
+        "x": 80,
+        "y": 80
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Guild",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Bang Hội"
+    },
+    {
+      "id": "LeftGuildLabel",
+      "parent": "LeftGuild",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": -18
+      },
+      "size": {
+        "x": 128,
+        "y": 32
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Bang Hội",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 23
+    },
+    {
+      "id": "Bottom",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "position": {
+        "x": 599,
+        "y": 83
+      },
+      "size": {
+        "x": 1168,
+        "y": 138
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Navigation_Horizontal",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "sliced": true
+    },
+    {
+      "id": "BottomOrnament",
+      "parent": "Bottom",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 1168,
+        "y": 138
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Panel_Border",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 4,
+      "sliced": true
+    },
+    {
+      "id": "BottomLobby",
+      "parent": "Bottom",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 105,
+        "y": 10
+      },
+      "size": {
+        "x": 91,
+        "y": 91
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Lobby",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Sảnh"
+    },
+    {
+      "id": "BottomLobbyLabel",
+      "parent": "BottomLobby",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": -13
+      },
+      "size": {
+        "x": 176,
+        "y": 33
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Sảnh",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 25
+    },
+    {
+      "id": "BottomHeroes",
+      "parent": "Bottom",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 296,
+        "y": 10
+      },
+      "size": {
+        "x": 91,
+        "y": 91
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Heroes",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Tướng"
+    },
+    {
+      "id": "BottomHeroesLabel",
+      "parent": "BottomHeroes",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": -13
+      },
+      "size": {
+        "x": 176,
+        "y": 33
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Tướng",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 25
+    },
+    {
+      "id": "BottomLineup",
+      "parent": "Bottom",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 487,
+        "y": 10
+      },
+      "size": {
+        "x": 91,
+        "y": 91
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Lineup",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Đội Hình"
+    },
+    {
+      "id": "BottomLineupLabel",
+      "parent": "BottomLineup",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": -13
+      },
+      "size": {
+        "x": 176,
+        "y": 33
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Đội Hình",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 25
+    },
+    {
+      "id": "BottomEquipment",
+      "parent": "Bottom",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 678,
+        "y": 10
+      },
+      "size": {
+        "x": 91,
+        "y": 91
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Equipment",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Trang Bị"
+    },
+    {
+      "id": "BottomEquipmentLabel",
+      "parent": "BottomEquipment",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": -13
+      },
+      "size": {
+        "x": 176,
+        "y": 33
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Trang Bị",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 25
+    },
+    {
+      "id": "BottomBag",
+      "parent": "Bottom",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 869,
+        "y": 10
+      },
+      "size": {
+        "x": 91,
+        "y": 91
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_Bag",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Túi"
+    },
+    {
+      "id": "BottomBagLabel",
+      "parent": "BottomBag",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": -13
+      },
+      "size": {
+        "x": 176,
+        "y": 33
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Túi",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 25
+    },
+    {
+      "id": "BottomMore",
+      "parent": "Bottom",
+      "kind": 0,
+      "anchor": {
+        "x": 0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 1060,
+        "y": 10
+      },
+      "size": {
+        "x": 91,
+        "y": 91
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Icon_More",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Khác"
+    },
+    {
+      "id": "BottomMoreLabel",
+      "parent": "BottomMore",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0
+      },
+      "position": {
+        "x": 0,
+        "y": -13
+      },
+      "size": {
+        "x": 176,
+        "y": 33
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Khác",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 25
+    },
+    {
+      "id": "CardEvent",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 1,
+        "y": 1
+      },
+      "position": {
+        "x": -306,
+        "y": -239
+      },
+      "size": {
+        "x": 570,
+        "y": 219
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Banner_Event",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Sự Kiện nổi bật",
+      "effect": "bannerCycle",
+      "mask": false
+    },
+    {
+      "id": "CardEventBorder",
+      "parent": "CardEvent",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 570,
+        "y": 219
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Panel_Border",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 4,
+      "sliced": true
+    },
+    {
+      "id": "CardEventLabel",
+      "parent": "CardEvent",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.25
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 538,
+        "y": 62
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Sự Kiện nổi bật",
+      "tint": {
+        "r": 1,
+        "g": 0.82,
+        "b": 0.4,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 38
+    },
+    {
+      "id": "CardRecruit",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 1,
+        "y": 1
+      },
+      "position": {
+        "x": -306,
+        "y": -474
+      },
+      "size": {
+        "x": 570,
+        "y": 219
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Banner_Recruit",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Chiêu Mộ",
+      "effect": "recruitMotes",
+      "mask": true
+    },
+    {
+      "id": "RecruitSheen",
+      "parent": "CardRecruit",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 55,
+        "y": 219
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "UI_LightSweep",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "effect": "recruitSheen",
+      "period": 8,
+      "activeSeconds": 2,
+      "amplitude": 0.15,
+      "travel": 650,
+      "fadeSeconds": 0.2
+    },
+    {
+      "id": "CardRecruitBorder",
+      "parent": "CardRecruit",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 570,
+        "y": 219
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Panel_Border",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 4,
+      "sliced": true
+    },
+    {
+      "id": "CardRecruitLabel",
+      "parent": "CardRecruit",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.25
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 538,
+        "y": 62
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Chiêu Mộ",
+      "tint": {
+        "r": 1,
+        "g": 0.82,
+        "b": 0.4,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 38
+    },
+    {
+      "id": "CardArena",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 1,
+        "y": 1
+      },
+      "position": {
+        "x": -452,
+        "y": -689
+      },
+      "size": {
+        "x": 277,
+        "y": 174
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Banner_Arena",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Đấu Trường",
+      "effect": "",
+      "mask": false
+    },
+    {
+      "id": "CardArenaBorder",
+      "parent": "CardArena",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 277,
+        "y": 174
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Panel_Border",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 4,
+      "sliced": true
+    },
+    {
+      "id": "CardArenaLabel",
+      "parent": "CardArena",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.25
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 245,
+        "y": 62
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Đấu Trường",
+      "tint": {
+        "r": 1,
+        "g": 0.82,
+        "b": 0.4,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 29
+    },
+    {
+      "id": "CardGuild",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 1,
+        "y": 1
+      },
+      "position": {
+        "x": -160,
+        "y": -689
+      },
+      "size": {
+        "x": 277,
+        "y": 174
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Banner_Guild",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Bang Hội",
+      "effect": "",
+      "mask": false
+    },
+    {
+      "id": "CardGuildBorder",
+      "parent": "CardGuild",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 277,
+        "y": 174
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Panel_Border",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 4,
+      "sliced": true
+    },
+    {
+      "id": "CardGuildLabel",
+      "parent": "CardGuild",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.25
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 245,
+        "y": 62
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Bang Hội",
+      "tint": {
+        "r": 1,
+        "g": 0.82,
+        "b": 0.4,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 29
+    },
+    {
+      "id": "Battle",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 1,
+        "y": 0
+      },
+      "position": {
+        "x": -315,
+        "y": 125
+      },
+      "size": {
+        "x": 590,
+        "y": 203
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Battle_Normal",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "action": 1,
+      "destination": "Xuất Chiến",
+      "pressedSpriteId": "Battle_Pressed",
+      "disabledSpriteId": "Battle_Disabled"
+    },
+    {
+      "id": "BattleGlow",
+      "parent": "Battle",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 590,
+        "y": 203
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Battle_Highlight",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": true,
+      "pixelMultiplier": 1,
+      "effect": "ctaGlow",
+      "period": 5,
+      "activeSeconds": 5,
+      "amplitude": 0.28,
+      "travel": 0,
+      "fadeSeconds": 0.2
+    },
+    {
+      "id": "BattleLabel",
+      "parent": "Battle",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 35,
+        "y": -32
+      },
+      "size": {
+        "x": 410,
+        "y": 75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Xuất Chiến",
+      "tint": {
+        "r": 1,
+        "g": 0.82,
+        "b": 0.4,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 48
+    },
+    {
+      "id": "Time0",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "position": {
+        "x": -240,
+        "y": -108
+      },
+      "size": {
+        "x": 115,
+        "y": 38
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Secondary_Normal",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "action": 2,
+      "timeIndex": 0
+    },
+    {
+      "id": "TimeLabel0",
+      "parent": "Time0",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 108,
+        "y": 33
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Sáng",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 21
+    },
+    {
+      "id": "Time1",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "position": {
+        "x": -120,
+        "y": -108
+      },
+      "size": {
+        "x": 115,
+        "y": 38
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Secondary_Normal",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "action": 2,
+      "timeIndex": 1
+    },
+    {
+      "id": "TimeLabel1",
+      "parent": "Time1",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 108,
+        "y": 33
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Trưa",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 21
+    },
+    {
+      "id": "Time2",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "position": {
+        "x": 0,
+        "y": -108
+      },
+      "size": {
+        "x": 115,
+        "y": 38
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Secondary_Normal",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "action": 2,
+      "timeIndex": 2
+    },
+    {
+      "id": "TimeLabel2",
+      "parent": "Time2",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 108,
+        "y": 33
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Chiều",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 21
+    },
+    {
+      "id": "Time3",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "position": {
+        "x": 120,
+        "y": -108
+      },
+      "size": {
+        "x": 115,
+        "y": 38
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Secondary_Normal",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "action": 2,
+      "timeIndex": 3
+    },
+    {
+      "id": "TimeLabel3",
+      "parent": "Time3",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 108,
+        "y": 33
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Tối",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 21
+    },
+    {
+      "id": "Time4",
+      "parent": "SafeArea",
+      "kind": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "position": {
+        "x": 240,
+        "y": -108
+      },
+      "size": {
+        "x": 115,
+        "y": 38
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "Secondary_Normal",
+      "text": "",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "action": 2,
+      "timeIndex": 4
+    },
+    {
+      "id": "TimeLabel4",
+      "parent": "Time4",
+      "kind": 1,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 108,
+        "y": 33
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "spriteId": "",
+      "text": "Đêm",
+      "tint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "preserveAspect": false,
+      "pixelMultiplier": 1,
+      "fontSize": 21
+    }
+  ],
+  "times": [
+    {
+      "label": "Sáng",
+      "skyId": "Sky_Morning",
+      "environmentTint": {
+        "r": 1,
+        "g": 0.97,
+        "b": 0.91,
+        "a": 1
+      },
+      "lightingAlpha": 0
+    },
+    {
+      "label": "Trưa",
+      "skyId": "Sky_Noon",
+      "environmentTint": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "lightingAlpha": 0
+    },
+    {
+      "label": "Chiều",
+      "skyId": "Sky_Afternoon",
+      "environmentTint": {
+        "r": 1,
+        "g": 0.81,
+        "b": 0.66,
+        "a": 1
+      },
+      "lightingAlpha": 0.1
+    },
+    {
+      "label": "Tối",
+      "skyId": "Sky_Evening",
+      "environmentTint": {
+        "r": 0.66,
+        "g": 0.65,
+        "b": 0.86,
+        "a": 1
+      },
+      "lightingAlpha": 0.5
+    },
+    {
+      "label": "Đêm",
+      "skyId": "Sky_Night",
+      "environmentTint": {
+        "r": 0.43,
+        "g": 0.53,
+        "b": 0.78,
+        "a": 1
+      },
+      "lightingAlpha": 0.85
+    }
+  ],
+  "bottom": [
+    {
+      "label": "Sảnh",
+      "iconId": "Icon_Lobby"
+    },
+    {
+      "label": "Tướng",
+      "iconId": "Icon_Heroes"
+    },
+    {
+      "label": "Đội Hình",
+      "iconId": "Icon_Lineup"
+    },
+    {
+      "label": "Trang Bị",
+      "iconId": "Icon_Equipment"
+    },
+    {
+      "label": "Túi",
+      "iconId": "Icon_Bag"
+    },
+    {
+      "label": "Khác",
+      "iconId": "Icon_More"
+    }
+  ],
+  "left": [
+    {
+      "label": "Nhiệm Vụ",
+      "iconId": "Icon_Quests"
+    },
+    {
+      "label": "Sự Kiện",
+      "iconId": "Icon_Events"
+    },
+    {
+      "label": "Phúc Lợi",
+      "iconId": "Icon_Welfare"
+    },
+    {
+      "label": "Hảo Hữu",
+      "iconId": "Icon_Friends"
+    },
+    {
+      "label": "Bang Hội",
+      "iconId": "Icon_Guild"
+    }
+  ]
+}

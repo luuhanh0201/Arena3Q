@@ -1,0 +1,7 @@
+{
+  "name": "arena3q-lobby-art-tools",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": { "serve": "node serve.cjs", "verify": "node validate.cjs", "web-check": "node verify-web.cjs" },
+  "dependencies": { "sharp": "0.35.5", "@resvg/resvg-js": "2.6.2", "playwright": "1.64.1", "lucide-react": "0.544.0" }
+}

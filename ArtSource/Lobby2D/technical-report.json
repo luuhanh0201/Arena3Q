@@ -1,0 +1,8 @@
+{
+  "delivered": 96,
+  "expected": 96,
+  "missing": [],
+  "technicalFailures": [],
+  "complete": true,
+  "scope": "base-image technical checks only"
+}

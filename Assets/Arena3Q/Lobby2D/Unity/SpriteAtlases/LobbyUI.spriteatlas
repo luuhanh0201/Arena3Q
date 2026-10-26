@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LobbyUI
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 0
+      compressionQuality: 0
+      maxTextureSize: 0
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 4
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 0
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 21300000, guid: 84a0b16e196d53143b077e882dbc246d, type: 3}
+    - {fileID: 21300000, guid: 29579bff84056ec4d9dc16dbc2be949f, type: 3}
+    - {fileID: 21300000, guid: 47efa8f010d85f34eb9325e995e99528, type: 3}
+    - {fileID: 21300000, guid: fc366f08944cc504c8d945df2a371d83, type: 3}
+    - {fileID: 21300000, guid: fba5e9c91ad4d5841b8b2b29cb6940b1, type: 3}
+    - {fileID: 21300000, guid: 45c6b41f01c07984c8db7a1eba55b678, type: 3}
+    - {fileID: 21300000, guid: b572e8771dcbfe841b1bfb01b548c804, type: 3}
+    - {fileID: 21300000, guid: db78f5e4e06e4c94a9863779b4e8c407, type: 3}
+    - {fileID: 21300000, guid: f2e1c611ec564a345b0bee7a6f45fccd, type: 3}
+    - {fileID: 21300000, guid: 247dee0d6d0877a4d9f819d2cb6a1929, type: 3}
+    - {fileID: 21300000, guid: 819c07c38cf7d0d4cb7b0641a70d141f, type: 3}
+    - {fileID: 21300000, guid: 0584444fb94e1394e91176389989f4ae, type: 3}
+    - {fileID: 21300000, guid: bcb9d990986e691428acdad321ce1838, type: 3}
+    - {fileID: 21300000, guid: 7b6515201a9b70947816d5ddfc24d9e0, type: 3}
+    - {fileID: 21300000, guid: 5e840fbfaddca4249b3d3aa86b1c2020, type: 3}
+    - {fileID: 21300000, guid: a224486983fc8c9419f6c12b02070969, type: 3}
+    - {fileID: 21300000, guid: d0c16a045a1a3194189472a48508f1c1, type: 3}
+    - {fileID: 21300000, guid: b1a1a0dc180596449b13c3fa721d9a15, type: 3}
+    - {fileID: 21300000, guid: 1e219637d03c00b4da70af28b996bf2c, type: 3}
+    - {fileID: 21300000, guid: 7727feeef0112a340a66333ef7001d52, type: 3}
+    - {fileID: 21300000, guid: 4a20479c094205f4fa5b1fe7217eea7b, type: 3}
+    - {fileID: 21300000, guid: 5f5d061ca1ca3e6418c5f90356b9b82a, type: 3}
+    - {fileID: 21300000, guid: 7b06ace13a95fad40ae25be845d8ba59, type: 3}
+    - {fileID: 21300000, guid: a55dcc653fe063b4faafcd4dfc049f77, type: 3}
+    - {fileID: 21300000, guid: da2922277eca12b47b93c96796288d09, type: 3}
+    - {fileID: 21300000, guid: 98a93b4248cb07f4ca994c29e218ffec, type: 3}
+    - {fileID: 21300000, guid: ba7f52d62147a4844b4a93d6610d2cd5, type: 3}
+    - {fileID: 21300000, guid: 77a403ffe6f8b71459b6574cfb682560, type: 3}
+    - {fileID: 21300000, guid: 55a7e313931335b479332a8502c82c83, type: 3}
+    - {fileID: 21300000, guid: 1154988e916f039428ad976c88085dd0, type: 3}
+    - {fileID: 21300000, guid: def5f4f9db7816846bcfca7ac2742430, type: 3}
+    - {fileID: 21300000, guid: 616d3a119799a18438348a64275733b1, type: 3}
+    - {fileID: 21300000, guid: 2adbd714b9989344bb95457ed620e098, type: 3}
+    - {fileID: 21300000, guid: 1ea40f82430227645b53cbb4da858cb0, type: 3}
+    - {fileID: 21300000, guid: d86fca5c08eacfa4bbf833386930c350, type: 3}
+    - {fileID: 21300000, guid: 019dc5f0b6c1b0741ad0d0259cbae04f, type: 3}
+    - {fileID: 21300000, guid: 42a01430738a3c64d81468454b7132c3, type: 3}
+    - {fileID: 21300000, guid: f53b3fba60fc364469d1afe4effca312, type: 3}
+    - {fileID: 21300000, guid: 8c57be490cac1014bbf664238479c6b1, type: 3}
+    - {fileID: 21300000, guid: 9907cec796c1aa64aa16a8451c78b48b, type: 3}
+    - {fileID: 21300000, guid: 433354d9c980b6e4fa78b712454b22c6, type: 3}
+    - {fileID: 21300000, guid: 074641bc13f792248abaad70b81a44b8, type: 3}
+    - {fileID: 21300000, guid: fab46a3b3b2d23e4bb4860cb2aee16d4, type: 3}
+    - {fileID: 21300000, guid: 4d4de0b6495988b478cd84f0da0999aa, type: 3}
+    - {fileID: 21300000, guid: 658710e0f12063e4aacbccb474a03484, type: 3}
+    bindAsDefault: 0
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys: []
+  m_MasterAtlas: {fileID: 0}
+  m_RenderDataMap: {}
+  m_Tag: LobbyUI
+  m_IsVariant: 0
+  m_Guid: 00000000000000000000000000000000

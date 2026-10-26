@@ -1,0 +1,521 @@
+{
+  "rule": "Only code and assets below approximately 1 MB in Git; no LFS.",
+  "restoreFrom": "Builds/Art/Arena3Q_Lobby2D.unitypackage",
+  "files": [
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Environment/Buildings.png",
+      "bytes": 1638303,
+      "sha256": "56840ca571b5677891a6cb7117c664ce4dfe1c58fed2c1c85b647050ae27f101"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Environment/Foreground.png",
+      "bytes": 2835346,
+      "sha256": "9aaa66daaea2c796ba3b11a2bfd0a0a567588b1e5fc4cb40002f05de2a1f3093"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Environment/Lobby_Architecture.png",
+      "bytes": 5034348,
+      "sha256": "6bc1015c49bfd7834b49ac0d6b7f61678e16574600806afde9be298ab3a6b1d1"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Sky/Afternoon.png",
+      "bytes": 4017888,
+      "sha256": "e9bfa5194985241276f846bb894d0428d91090dfb12c957da94176e8f1b32e22"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Sky/Evening.png",
+      "bytes": 4016499,
+      "sha256": "d84d9bbcb485aff050c384b202fb1a29ce93730d8864d785603721bb3ec7a5d7"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Sky/Morning.png",
+      "bytes": 3855872,
+      "sha256": "207457543389ae005fa688193403986f886ad307d10661c96ff9a258823b3f25"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Sky/Night.png",
+      "bytes": 3324831,
+      "sha256": "783174a4e18453be7eed6e99fd6109b072934ad86c382191800fee6cc31a4c31"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Backgrounds/Lobby/Sky/Noon.png",
+      "bytes": 3870097,
+      "sha256": "edaef2d62597e6e05c9f84e1305dc9a6f1733fe48aa705500be3ec9575ad95b0"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/atlas.png",
+      "bytes": 2971155,
+      "sha256": "70e98b648d1d1f49bdc371cf7eecfad673f6f708d7bf49177b2beab62c2bf536"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_000.png",
+      "bytes": 1548428,
+      "sha256": "5d321b690cc9b770ed4702b70463cb7ae6d414b8be751e40735ba2422f6a3572"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_001.png",
+      "bytes": 1558565,
+      "sha256": "0900dc1ac6a8715dd1133f482568bb96d3106f88712a5cf920ac2839f2171f0b"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_002.png",
+      "bytes": 1580482,
+      "sha256": "d543f4118496f08ced8007400cd1c3093cd817f9b203b287e30fc35122a6f755"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_003.png",
+      "bytes": 1573786,
+      "sha256": "b5100ead16ff83e8a00b50df506347d46b4fc8ec3fd82cdbc57e4e72ce82d9a0"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_004.png",
+      "bytes": 1572312,
+      "sha256": "81623ec5a010d09db0efba6c1a3b25e9ac3b4b0eb9437e1c6d88626ec4940c42"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_005.png",
+      "bytes": 1527988,
+      "sha256": "4e0d0f2e72f9c9d355e3d642ef32a2b7f99ba62e8183c5ceb0871a1808b013f7"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_006.png",
+      "bytes": 1456219,
+      "sha256": "a3d18d62d7e4089746f247005dc97130c60be9d88830f2fbf79e1433dcc02902"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_007.png",
+      "bytes": 1474979,
+      "sha256": "97c0ae612d8338dcac574ffe4674dad59458b980efb9d4c9bb06394692517f45"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_008.png",
+      "bytes": 1499868,
+      "sha256": "64e2f0caac62cecc46b9f9ff8da5190a21eee44129cc4599679ea851046a6a9c"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_009.png",
+      "bytes": 1502986,
+      "sha256": "c8084ba363dc3fd92f96be2e5d4539cff730d2711db17b798cd728f553f29033"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_010.png",
+      "bytes": 1480440,
+      "sha256": "ad748570c2c46be1311f1ba83dedbbe1043379559e0a7dfc4b0499ba71443c00"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_011.png",
+      "bytes": 1455287,
+      "sha256": "3f726cf6dbb8d9324a7ae3a4a6b4f293c87ff41831afbb176b4cc2adbe60a134"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_012.png",
+      "bytes": 1565792,
+      "sha256": "cf5820e490fbc28fc15a413e4b62a65a4dd03f36007d0aba88f1859c93089cdd"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_013.png",
+      "bytes": 1535970,
+      "sha256": "41c75e848916045d6e36d022104dea3eb9394040573a745ac86fdf9c7a963e92"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_014.png",
+      "bytes": 1522928,
+      "sha256": "340d780a4ce02d3ed53af3fe29bab3ab30b057d1244879c646e9bdd32468ee58"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_015.png",
+      "bytes": 1524342,
+      "sha256": "bff1da9775c498906637bf0217c6c27899cb35fccfafef2c907f0c47f36c57b1"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_016.png",
+      "bytes": 1527877,
+      "sha256": "ac9697c245ba32796f574b948847c4798fe5ce5d03ec1aac53f142aea41cb6b1"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_017.png",
+      "bytes": 1529412,
+      "sha256": "21643e0c5d46a058f0879cac154a8742c680b25c82143606bb452ca0745f1f2d"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_018.png",
+      "bytes": 1529582,
+      "sha256": "b37c4f7a2bbdabf925ee760cbd89f9395059ee73cd83ee33687795c70b94793c"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_019.png",
+      "bytes": 1529213,
+      "sha256": "4d7be6be8b883f28c63074cc130a0485e8f39d33136c8eaa891bd5033f1db8d9"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_020.png",
+      "bytes": 1549892,
+      "sha256": "31eeed075892d2f263ad9baab05089df51af4e87f68927dca78d0edb9dda3cd3"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_021.png",
+      "bytes": 1570699,
+      "sha256": "33513704ca6b81260cc1d2db9b0e74e6f6fbbf11cd669a4ceabf463bbe4c8157"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_022.png",
+      "bytes": 1555904,
+      "sha256": "c2b6423bee3b0b7c18e2b46a872729ea3e612415ed365d331bcc9e04b6bc27d9"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Attack/LuBu_Attack_023.png",
+      "bytes": 1544012,
+      "sha256": "4e33b8f1dc302cd24c0268faafe58c38417dd5ac21f9677b9e93d7b75c0cf2bc"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/atlas.png",
+      "bytes": 2819098,
+      "sha256": "37ebe6886da667d5e9e21b5e3b64607dfcc9381f0315dde2fabf1edcbe18c9b3"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_000.png",
+      "bytes": 1548428,
+      "sha256": "5d321b690cc9b770ed4702b70463cb7ae6d414b8be751e40735ba2422f6a3572"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_001.png",
+      "bytes": 1545604,
+      "sha256": "b4724a20026d24deaf8bb255822034513def2161b7972d444ec23179518dfa15"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_002.png",
+      "bytes": 1545787,
+      "sha256": "4c2a6a0d5b383d8b1a5d27482ab9596327daecc7763a0be0e933add151dbb054"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_003.png",
+      "bytes": 1546628,
+      "sha256": "ff82348dc68d122e755f1c08c8f923a3b0dbb696615113242ec8c87c8f8d4f2d"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_004.png",
+      "bytes": 1546991,
+      "sha256": "c5a5fe10bf1670e862127dad9204c4f7765cdbc501aa1b5df1862bf55465dc15"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_005.png",
+      "bytes": 1546175,
+      "sha256": "6280ab3afd392ce92a21c4292a5a5f162ea6ff2f6f1f48cd34f1aaa72a320f38"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_006.png",
+      "bytes": 1544619,
+      "sha256": "a3faf2a2361742933311a6efcb961fbc427f893cfef14f67f4a62a769a27ce5a"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_007.png",
+      "bytes": 1543596,
+      "sha256": "5a275fe8eae4f0cd8c3aa0b9f6c6f395abc01f3c228bff9aaec0355655d12bf3"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_008.png",
+      "bytes": 1543480,
+      "sha256": "20749580b4247ccfb42af445d39970ec092fdd5dfb0fc0178a948fe9e4295b40"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_009.png",
+      "bytes": 1543908,
+      "sha256": "adcb8e1de7919c1978a251d7bfe7d63ec280d3fa412fa4163d5d331661234f1a"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_010.png",
+      "bytes": 1541995,
+      "sha256": "4cf8f923d99a8fff81c7b5737458ef9fb718dabeee1000e833aaac13ecf9d5d9"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_011.png",
+      "bytes": 1543926,
+      "sha256": "9d71a177003d42be1186807bae2012380a311955947ace95eb171d3d86b3cb61"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_012.png",
+      "bytes": 1543439,
+      "sha256": "4170a09ed93f40215658b2a36a5091cddb041229c6d24f9e7d68f00f1b9e249e"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_013.png",
+      "bytes": 1546595,
+      "sha256": "d928a70e7e1f5e2283c0a0d3cba33e1380c1a3cba076590ae684bec80df6c77c"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_014.png",
+      "bytes": 1543061,
+      "sha256": "2aba88bfb9b33770b35bca176d6bac4b55ea81f37a668d5d214e70a17c785c57"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_015.png",
+      "bytes": 1543938,
+      "sha256": "51a810f5ec5e6cf4eb78a882c94702632a894348b5aa33671205de12cd38a5b5"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_016.png",
+      "bytes": 1546069,
+      "sha256": "5e736756443b3a37692e7c7f6cd2760cbe32235ef6dc232015cba8d909afa7e4"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_017.png",
+      "bytes": 1547572,
+      "sha256": "d721f0855035fa0416cf3082554fe6801bf173e7fa68c375ceae421543b7ab6a"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_018.png",
+      "bytes": 1547809,
+      "sha256": "99d06e4016eaaefe3847459cdd2e79741e54fa8304bac159fc4eecbad9152957"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_019.png",
+      "bytes": 1548682,
+      "sha256": "63203790263298eb751522017e447b6e7566ce64b855bf863830e8449ae4c8db"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_020.png",
+      "bytes": 1547850,
+      "sha256": "74b6d6a994da134692de012caa2e15d850eced88c8918aeeb7cf5927a7370653"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_021.png",
+      "bytes": 1548460,
+      "sha256": "cb6f87821f5e594dacec46c5f04f3e84432e34f40005ac9bea5e579730e25917"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_022.png",
+      "bytes": 1548204,
+      "sha256": "1048e89ac6376f1634581c51cdeaef1acd8075c04e7cc905736a1039e4c9ca37"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Idle/LuBu_Idle_023.png",
+      "bytes": 1551181,
+      "sha256": "13208d6866c8973a61f23b07b353f9421c38890d4d79e34662b65a891b0eb172"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/atlas.png",
+      "bytes": 2913320,
+      "sha256": "e4233f4241e8f09f82a1be0d1979d2170c3944af48e4ef13985e7bc9c9a7aa06"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_000.png",
+      "bytes": 1509597,
+      "sha256": "3e82555957a2310efa593b845e572b62424fb8fe79f2b8d2eaaa3054ac72217a"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_001.png",
+      "bytes": 1505472,
+      "sha256": "1d89369cbf1bcb6a8ad25b5c864c5f3710229d2cbeb7d97bbee3c69dc6209903"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_002.png",
+      "bytes": 1504627,
+      "sha256": "fc4eeaa2f0acadafc6d6d4958423c76894832a7bca90c27e701b071b5e19f037"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_003.png",
+      "bytes": 1506259,
+      "sha256": "161911decc38f5b4388cb27b241a612d3c3efd34395ecd235a77b389e195607c"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_004.png",
+      "bytes": 1505428,
+      "sha256": "9bd3b67903aca959a4f3b6cc99273a5417a14ffc96bca65629ae9193b01ea7ec"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_005.png",
+      "bytes": 1504991,
+      "sha256": "c21df7626f8fa1957d52f63d3b75741b92c5bb57c6f8e3fce431c623bc57f46e"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_006.png",
+      "bytes": 1506912,
+      "sha256": "a0869fb0c8d73e4f078e1e697d42f0747fca84ef89da98e33563c73e85ca8ace"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_007.png",
+      "bytes": 1514480,
+      "sha256": "c7522e6d4dbe26f96f0e4c0a37a79e8615f45b405c7becd05d62ad7c1525c689"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_008.png",
+      "bytes": 1518807,
+      "sha256": "cc3cad3bbf42d86089e03b77543bf69dc7bbd50298674e03cbec63a7951b595b"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_009.png",
+      "bytes": 1520233,
+      "sha256": "1e3143af1ad566e2cecf0125073cb49b992fbf704f79cf6d0f6e987bbd591fb2"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_010.png",
+      "bytes": 1520601,
+      "sha256": "00a6dc98bb805ec87f8202c783f70c9e82838e9e065d99f61939fcee7bbcb683"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_011.png",
+      "bytes": 1518490,
+      "sha256": "2917ebbd8e4246f89caedaf4c8d268ce50f1d6cb880301bd52d5c8a2c4fcc8a7"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_012.png",
+      "bytes": 1513303,
+      "sha256": "67748d43c31806b6addf48f8b48ed7f2f279236c1016c9fd0db191848fc0f24b"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_013.png",
+      "bytes": 1500332,
+      "sha256": "d56bbf3b09733a2514b676b9989237ca9f80cd7ef7a5e82e693e8851be453a91"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_014.png",
+      "bytes": 1485031,
+      "sha256": "b465b00a03206d0a73b48b109cf5bfad18231ddb0c7c73a901d60df123cb3c1b"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_015.png",
+      "bytes": 1482867,
+      "sha256": "4db8aa3402526b17d16e3daba2d6372f858ec18de1fc7c26b5aefa726d2557db"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_016.png",
+      "bytes": 1482628,
+      "sha256": "864247b3a2c8076d54cefd7f1c5a3ad0a31c027d666b58fe0e18dd056b084ed2"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_017.png",
+      "bytes": 1479870,
+      "sha256": "d3696b9031f92a7faed9098bc692deb70977f45e27df8f41948f8117b26ef879"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_018.png",
+      "bytes": 1482809,
+      "sha256": "4f89146180011a0d1cf490aa1062f14253b53ad6595659765228aa699d4c9b73"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_019.png",
+      "bytes": 1488316,
+      "sha256": "cc76f290291a40049b48f4fd2e46dcb18b7e81dcd8e3c305a23dc1be1e03b0ce"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_020.png",
+      "bytes": 1492896,
+      "sha256": "f6045f6ef41fa818497f384018736ad4d3445d76ea7cbdd1ce36669e20a5bf26"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_021.png",
+      "bytes": 1498245,
+      "sha256": "2150cae4b9ae38f09dd6b4f027c659a5783cf657e3167f70a9d7d964315bed02"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_022.png",
+      "bytes": 1502260,
+      "sha256": "7b04a7fc4b9dd03ab0ada541d3013328f8df92ccba85f8fa173751c45e6f398c"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Animations/Run/LuBu_Run_023.png",
+      "bytes": 1507316,
+      "sha256": "51ccdb376e4270d45554fd7a5dab3a35a1ec5b2ce3608bfb09abdd7a613ca406"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/KeyPoses/Attack_Anticipation.png",
+      "bytes": 1636034,
+      "sha256": "dbe87c4c6f49172f5c86ce1b88f0123a7637be23213ae0f68c9c75c4892bdac6"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/KeyPoses/Attack_FollowThrough.png",
+      "bytes": 1687862,
+      "sha256": "f5aa6671c54bc975533f13af284778799f60ade6dd7ff472af1de909f916c5eb"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/KeyPoses/Attack_Impact.png",
+      "bytes": 1691655,
+      "sha256": "66d79b27417c8180d3416df48355ee1b9ac58cda0cf521a4ea383de09c0f15f7"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/KeyPoses/Attack_Recovery.png",
+      "bytes": 1705677,
+      "sha256": "cc4049bcc156ecba69e4bb85c127fe0d20867f65908e9058c4b947bb0673466b"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/KeyPoses/Run_LeftContact.png",
+      "bytes": 1661421,
+      "sha256": "cb9d904fe4f9abd65dddcae1571e361bb55f5a22a89533d557b0dce806fcf546"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/KeyPoses/Run_RightContact.png",
+      "bytes": 1662591,
+      "sha256": "21b1d40d39c39d0155cd6a69874b1b94414b3aaac1f3d3a25c53f776c66fd37f"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Portraits/LuBu_Avatar.png",
+      "bytes": 3249837,
+      "sha256": "ea2f780f0f657e6825c8180326d3ad7b101f1f1d9dd2135f5a7e85c040cbe1b6"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Portraits/LuBu_BattlePose.png",
+      "bytes": 1708270,
+      "sha256": "69f0c41e47cd70028f1e5a5d57224f01f4fe60057c946cf42aa182062c2b7c17"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Portraits/LuBu_Bust.png",
+      "bytes": 2930242,
+      "sha256": "c15c54c27cb2435f2c533920265ce3348359b80c0392948d5aedbe7258479881"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Portraits/LuBu_FullBody.png",
+      "bytes": 1833107,
+      "sha256": "69e5b1069d0f81f044fe2bfc13bafdd98f9aabd89bbf48eb172e613c87296146"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/Portraits/LuBu_Head.png",
+      "bytes": 2321284,
+      "sha256": "c3c1516f2fdfa59447d8f9fe8021d4b18f7209b927055a116031f6220b9dfdd6"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/BlinkMaster.png",
+      "bytes": 1505362,
+      "sha256": "8cc5d022ecb3d3f575c7921d62d50e4c2fb5ed0bad0341ee8ff4d8839c9391f3"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/CleanMaster.png",
+      "bytes": 1381104,
+      "sha256": "16ebc15908a6fb778a245900ad800aeb3ff8fa4a05fba1e9998cd62a0fa73e4b"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/RunFootL.png",
+      "bytes": 1092179,
+      "sha256": "8750d12605c35cfec7bece1c61758cf66238761f9fe23bfdae86e58a81554b65"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/RunFootR.png",
+      "bytes": 1038192,
+      "sha256": "a68bc0ee6121b0bb3ea960d0985de16176e0c41739cc09317f2500c5784207a1"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/UI/Banners/Arena.png",
+      "bytes": 1122912,
+      "sha256": "dae739354819b1451c96b3ea7ef69fc32027abf6e082b98fd3c7ea1b76b7a8f1"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/UI/Banners/Event.png",
+      "bytes": 1138083,
+      "sha256": "5d2c040c739ecf83c6cd5f27350e3cbb8e8578cb7f3a0bcc1bde7b2f450b383f"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/UI/Banners/Guild.png",
+      "bytes": 1158745,
+      "sha256": "f6499ef49a88043eb1022df80c1045dd83100f2ee57184695ce7db9d5363c184"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/UI/Banners/Recruit.png",
+      "bytes": 1184787,
+      "sha256": "253ee01d9db24b23f0a66f31009008219001b9e64efa483188973fad5ac165a4"
+    },
+    {
+      "file": "Assets/Arena3Q/Lobby2D/UI/Fonts/BeVietnamPro-Lobby-Bold SDF.asset",
+      "bytes": 3580961,
+      "sha256": "5ec627fa4b328b231496fc1158cbd8aea561b81dc6f94db7f2734f53c7806d80"
+    }
+  ]
+}

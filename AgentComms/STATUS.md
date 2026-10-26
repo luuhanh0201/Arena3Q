@@ -12,6 +12,7 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Bàn giao trước đó: claude/outbox/20261020-2330_BAN-GIAO-cong-viec-claude.md.
 
 ## codex
+- 27/10 bàn giao MASTER DESIGN2D:96asset cơ sở, rig26nhóm/38mảng,72frame2048 và24VFX riêng;3clip/atlas/GIF/timing/event,12VIP và5thời điểm sảnh. Web26/26qua tại http://127.0.0.1:4330; gói đủ Builds/Art/Arena3Q_Lobby2D.unitypackage193,3MB. Tài liệu docs/UI/Lobby2D/Delivery.md; hình/font lớn chỉ ở máy theo local-only-assets.json. Chỉ kiểm web, không build game/không đoFPS máy thật. Nhả ArtSource/Lobby2D, Assets/Arena3Q/Lobby2D, docs/UI/Lobby2D và Unity; không theo dõi sau bàn giao.
 - 25/10 ?? s?a camera mobile thu nh? l? n?n ?en v? HUD safe area; source39d0d00 ?? push,17/17PlayMode qua. APK Latest263,4MiB/276.168.981byte build0l?i/8c?nhb?o, ch? k?v2c?ng signer/package; c?i ?? Success20:18 gi? h? s?. ?i?n tho?i ?ang Asleep/DisplayOFF, app b? pause tr??c render, ?? y?u c?u b?t/m? kh?a ?? ki?m ?nh sau s?a; ch?a k?t lu?n m?y th?t/FPS. B?o c?o NghiemThu/Release/MobileScreen_20261025/README.md. Nh? file/Unity; kh?ng theo d?i sau b?n giao.
 - 25/10 đã cài đè APK Latest 263,4 MB lên Redmi Note 8 Pro qua ADB: Success, giữ dữ liệu; lastUpdateTime 19:54:43, firstInstallTime giữ 20/10. Mở COLD/ok 509 ms, PID3861 còn chạy; ảnh máy thật xác nhận attack_01 trên map mới và chủ tướng Mưu sĩ. Bằng chứng NghiemThu/Release/Latest_20261025/device; chưa đo FPS. Nhả file, không dùng Unity, không theo dõi sau bàn giao.
 - 25/10 đã đồng bộ web/mobile mới nhất: Frontend mở Battlefield_HighQuality, stage campaign giữ luật/chỉ số/thưởng gốc; source c1b55a0 đã push. Edit 4/4 + Play 14/14; hai lượt browser chuột/bàn phím và chạm giả lập đều vào map mới/triệu hồi/lưu, 17 ảnh mỗi lượt. Web 339,7 MB và APK Latest 263,4 MB đều 0 lỗi/8 cảnh báo; APK có 3 asset campaign bắt buộc, 39 icon ASTC4x4, chữ ký v2 cùng signer/package. URL web có hash chống cache cũ; xem/tải http://127.0.0.1:4322 (PID32528). Báo cáo NghiemThu/Release/Latest_20261025/README.md. ADB rỗng, chưa cài/FPS máy thật. Nhả file/Unity, không theo dõi sau bàn giao.
@@ -64,7 +65,7 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Việc đầu: kiểm snapshot 3D về scale, toàn bộ submesh và quạt; kiểm footprint VFX sau đổi camera; đồng bộ docs 3D. Sau đó kiểm model/motion Mặc Ảnh và giải quyết Lữ Bố chưa qua QA da.
 - Báo ngay từng phần nhỏ với ảnh trước–sau và số đo. Chưa nghiệm thu tổng thể. Chỉ test Unity, chưa build/test Android theo bàn giao 0619. Sau khi hoàn tất công việc theo dõi inbox 1 giờ.
 ## Unity (Editor / batch mode)
-- Đang giữ bởi: không ai. Codex đã build/kiểm bản web và mobile đồng bộ nội dung mới nhất; không theo dõi sau bàn giao.
+- Đang giữ bởi: không ai; Codex đã kết thúc xuất tài nguyên Lobby2D27/10.
 
 
 

@@ -1,0 +1,40 @@
+{
+  "textures": [
+    {
+      "id": "CleanMaster",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/CleanMaster.png"
+    },
+    {
+      "id": "WeaponClean",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/WeaponClean.png"
+    },
+    {
+      "id": "CapeUnderlay",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/CapeUnderlay.png"
+    },
+    {
+      "id": "HairUnderlay",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/HairUnderlay.png"
+    },
+    {
+      "id": "FeatherLeftClean",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/FeatherLeftClean.png"
+    },
+    {
+      "id": "FeatherRightClean",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/FeatherRightClean.png"
+    },
+    {
+      "id": "BlinkMaster",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/BlinkMaster.png"
+    },
+    {
+      "id": "RunFootR",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/RunFootR.png"
+    },
+    {
+      "id": "RunFootL",
+      "path": "Assets/Arena3Q/Lobby2D/Characters/LuBu/RigSource/RunFootL.png"
+    }
+  ]
+}
