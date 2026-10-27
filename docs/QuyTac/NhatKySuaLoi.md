@@ -469,3 +469,66 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 - Web root thiếu base làm module/CSS403; thêm base, khởi động server trước Playwright và kiểm tài nguyên thật. Reset aspect về16:9 khi chọn ảnh thời điểm. Web cuối26/26 qua, Attack không loop và VFX bật/tắt riêng.
 - Avatar bust quá nhỏ, bạc ánh đồng: sinh refinement đúng nguồn, lưu so sánh thật. Capture TMP làm bẩn cache font dùng chung; dùng font clone riêng, trả các cache ban đầu sạch về HEAD sau lượt cuối. Bộ gói riêng không đổi game release, không build game;60FPS máy thật chưa đo theo yêu cầu chỉ kiểm web.
 - Bằng chứng: `docs/UI/Lobby2D/Delivery.md`, `ArtSource/Lobby2D/acceptance-report.json`, hai thư mục XemTruoc_Lobby2D và XemTruoc_LobbyRig26/10.
+
+## 27/10 - Smoke test APK sảnh mới
+- Thêm kiểm raycast thực của nút chuyển động/thời điểm/Xuất Chiến, Attack hồi Idle và chỉ1Impact, tải Frontend thật với profile trong bộ nhớ. Fixture ban đầu thiếu reference Arena3Q.Data vì API Override có kiểu StartupUiConfig trong chữ ký; bổ sung reference trực tiếp, không suy luận rằng dùng một named argument sẽ bỏ các dependency của chữ ký.
+- Script QA lưu trong Temp bị Unity dọn sau build. Giữ công cụ cần tái sử dụng trong ArtSource/staging, chỉ dùng Temp cho dữ liệu có thể bỏ. APK và metadata kiểm phải nằm ngoài Temp.
+
+## 27/10 - Tích hợp sảnh theo review Claude
+- Sảnh thử tách scene làm Xuất Chiến tải lại Frontend và trận trả về chọn server. Đang nối bước Lobby, khôi phục server từ profile khi quay lại; cần test round trip thật trước bàn giao.
+- Compile phát hiện SpriteAtlas.GetIncludeInBuild không có trong API Unity đang dùng ở builder và smoke test cũ. Đọc m_EditorData.bindAsDefault qua SerializedObject, giữ SetIncludeInBuild để khôi phục đúng trạng thái ban đầu. Không suy luận API getter từ tên setter.
+
+
+## 27/10 - Model sảnh có mảng tối
+- Capture ban đầu dùng BattleLOD và hai point light trong Frontend thiếu ambient/đèn chính của trận. Sửa camera dùng PortraitLOD sẵn có, giữ material/action, key directional + SH probe lấy từ dữ liệu trận; đổi trục đèn vềY-up và ambient sanglinear. Không sửa mesh/texture nguồn.
+- Loại nghi vấn alpha:468529pixel đục,580047trong,0alpha trung gian; shader PBR thân ghi alpha1. Đọc GetPropertyBlock trước khi thêm SH để giữ dữ liệu gốc; test sentinel qua.
+- Bằng chứng trước–sau3pha/cận mặt/áo và ảnh Battle thật trong XemTruoc_Lobby2D_SuaTheoMau_20261027. Idle61mẫu/46,2triệulượt cạnh0gai/giãn/ép; gửi Claude review riêng, chưa nghiệm thu hình.
+
+
+## 27/10 - Sảnh màn rộng co về giữa
+- Review1215: dùng DesignFrame16:9 cho mọi cụm khiến màn2400/2340 có lề trống và model lớn theo nền cover. Tách nhóm neo trái/phải/dưới theo SafeAreaFitter, giữ cỡ theo chiều cao design; model lấy chiều cao vùng an toàn, không lấy chiều cao nền đã phóng cover. Chụp lại4tỉlệ và kiểm chân/mũ/quạt.
+
+
+## 27/10 - Banner Chiêu Mộ mới bị trắng
+- Ảnhgeneratednguồn đãcó, configsprite null doPNGđượcpresetSpriteMultiple; builder chỉkiểmtextureTypeSprite rồi bỏquaSpriteImportMode. BuộcSingle, SaveAndReimport rồiLoad lạiSprite. Không coi filePNG/meta tồntại làthamchiếuhợp lệ; kiểmSprite!=null vàảnhgame.
+
+
+## 27/10 - Một nguồn dữ liệu cho sảnh và tách công cụ art cũ
+- Model/Idle bị khai báo lại trong LobbyConfig, tài nguyên demo nằm cạnh cấu hình hình ảnh và bố cục/màu nằm trong LobbyScreen khiến chỉnh một thứ phải sửa nhiều nơi. Chuyển model chân dung về HeroDefinition; ví/VIP/Chiến Lực/EXP/sao đọc CharacterRecord qua ILobbyProfileSource; hình học vào LobbyLayoutConfig, màu vào StartupUiConfig. Hồ sơ JSON cũ thiếu ví đọc0, test dùng ví mẫu trong bộ nhớ, không cấp tiền demo cho hồ sơ thật.
+- LobbyArtBuilder cũ repack chung LobbyUI và SetIncludeInBuild(false), có thể vô hiệu atlas Frontend sau khi chạy công cụ art. Tách atlas LegacyLobbyReview; runtime/test cũ chỉ Editor, builder APK sảnh cũ chỉ hướng dẫn đường release. Release kiểm dependency và BuildReport chặn code/scene/catalog/rig legacy. Không xóa nguồn.
+- Phòng tránh: cấu hình hiển thị không giữ số liệu người chơi; một nguồn model; công cụ review không sửa asset phát hành dùng chung. Kiểm roundtrip hồ sơ số lớn và ảnh thật sau Apply.
+
+## 27/10 - Phân loại test legacy khi giới hạn Editor
+- Lượt Full Edit 17:31 có301qua/3lỗi: test smoke Android sảnh cũ bị chuyển sang EditMode do tests.asmdef includePlatforms Editor; LoadSceneAsyncInPlayMode không tạo host và teardown SceneManager.CreateScene chỉ hợp lệ PlayMode. Cần giữ test assembly PlayMode (includePlatforms rỗng) và dùng defineConstraints UNITY_EDITOR để không vào player, không bỏ/Ignore bài test để che lỗi.
+- Kiểm nguồn avatar: chụp lại avatar là thay đổi có chủ ý, không phải nén ảnh thay PNG nguồn. Verify riêng100ảnh nguồn giữSHA/GUID và1avatar512 được tái sinh cóhashkhớp snapshot import mới; không thay golden snapshot cũ.
+
+- Ảnh kiểm17:35 phát hiện PlayerName trống: khung cao26với font21 và Ellipsis không đủ chiều cao một dòng có dấu; tăng chiều cao dòng tên trong asset bố cục. Model màn rộng thấy chân nhưng đứng trên bậc thềm vì neo theo safe area trong khi bệ đỏ bị nền cover cắt; neo vị trí chân theo landmark của nền, trừ offset nền trong camera, giữ cỡ model theo safe height. Không phóng model theo nền.
+- Test tooltip bấm ngoài thất bại ở FullPlay do fixture tạo chuột giả nhưng chưa buộc Mouse.current sau cập nhật event (chuột thật có thể lấy lại current). Buộc thiết bị giả MakeCurrent sau InputSystem.Update để test đúng thiết bị, tiếp tục kiểm bằng assertion thật.
+
+- Lượt compile GI18:10 chặn CS1501 vì InputSystem.Update(InputUpdateType) không làAPIpublic của package đang dùng; chỉ có Update() ở assembly dự án. Trả về API0tham số, chuẩn bị trạng thái chuột thả và đọc wasPressedThisFrame trước khi queuepress để có baseline device hợp lệ. Không suy luận overload public từ enum/implementation nội bộ.
+- Runtimelegacy includePlatforms Editor vẫn khiến scenePlayMode báo class không làMonoBehaviour. Đổi includePlatforms rỗng + defineConstraints UNITY_EDITOR: code vẫn không vào player nhưng MonoBehaviour hợp lệ khi Play trong Editor. Tests cũng giữPlayMode +UNITY_EDITOR.
+
+- Targeted18:12 đã11/12qua;3testlegacy chạyPlayMode lạiđúng. Tooltip cònlỗiởassert wasPressedThisFrame dùisPressedtrue: thao tác Update() thủcông trong Editor không đại diện cậpnhật inputPlayerLoop. Đổi fixture queue state/thả rồi yieldframe, queuepress rồi yieldframe, kiểmUI đãđóng bằngluồng thật; không đổi code tooltip để đuổi theo inputfixture.
+
+- Targeted18:15 vẫn11/12: clickgiả đượcnhấn nhưng cờ wasPressedThisFrame khôngphảnánh ởphaTick; chỉ sửa fixture chưagiải quyết được hợpđồng thao tác. Tooltip chuyển sang theo dõi cạnh nhấn từ isPressed trong từngTick, cậpnhật cảkhiẩn, riêngchuột/vàchạm. Không phụthuộc bộđếmphaInputSystem; giữchạm trongtooltip/nguồnkhôngđóng vàchạmngoàiđóng. Cần chạy lại bài thực tế, không bỏ assertion.
+
+- Kết quả cuối vòng sửa sảnh: test gợi ý riêng 1/1; Full EditMode 301/301; Full PlayMode 176 qua, 0 lỗi, 1 ignored có sẵn. Fixture giữ trạng thái chuột giả tới lúc Tick, còn code phát hiện cạnh từ trạng thái nhấn, không phụ thuộc pha wasPressedThisFrame. Bản gửi review có 50 ảnh tải đủ và 12 điều khiển qua kiểm browser; chưa build APK trước review.
+
+## 27/10 - Người dùng phát hiện EXP tràn khung VIP
+- Thanh EXP dài150đơn vị, vượt phần nền đỏ bên trong art VIP, dù vẫn nằm trong RectTransform Player. Test chỉ đo khung ngoài nên không bắt lỗi hình này.
+- Thu khung EXP còn124, rãnh/fill122; một ExperienceBorder cộng inset quyết định toàn bộ thanh, bỏ hai tọa độ rãnh/fill khai báo riêng. Thêm RectMask2D ở viewport bên trong để fill không thể vượt viền. Không đổi EXP/số liệu hồ sơ.
+- Chụp trước/sau cùng cấp/EXP, kiểm0/50/100%/cấp tối đa vàbốn tỉ lệ; kiểmVIP1/12. Baseline giữ trong exp-overflow-before. Ghi nhận ảnh người dùng là cổng kiểm bổ sung, không lấy301/176test trước đó thay cho kiểm vùng art.
+
+- Kiểm ảnh EXP đầu:12/12test qua vàVIP12 hết lấn mép phải; VIP1 có vùng đỏ thấp hơn nên thanh còn sát đường vàng dưới. Nâng cả hàng Lv/EXP/VIP lên5đơn vị trong asset; thanh y63..71 nằm trong vùng đỏ chung của hai art. Giữ độ dài124/inset1. Kiểm ảnh thật hai bậc, không chỉ bounds khung ngoài.
+
+## 27/10 - Bố cục tên theo ảnh người dùng chọn
+- Người dùng chỉ ra tên đè trang trí VIP và gửi bố cục mới: avatar lớn trái, tên trong ô giữa, hàng Lv/EXP với VIP phải và Chiến Lực bên dưới. Ảnh này thay đề xuất trước và cho phép triển khai. Nhãn gần nhân vật chỉ giữ Chủ Tướng một dòng, bỏ tên/sao.
+- Vùng thân 12 art VIP không cùng cao độ; VIP2 nền bạc nên quét màu đỏ ban đầu nhận nhầm phần ngọc. Quét dải thân đỏ hoặc bạc liên tục và kiểm ảnh nguồn, seed bodyAnchorY vào từng VipFrame để căn ô tên theo thân khung, không theo chóp trang trí. Test ảnh hiện tại không còn xuất phương án chữ xếp dọc/glyph debug gây nhầm là UI thật.
+- Nhạc nền được mute khi Editor qua StartupUi.muteMusicInEditor; bài Music 1/1 xác nhận Source.mute, trạng thái loop/volume/lưu cài đặt vẫn hợp lệ.
+
+- Bản bố cục mới12/12test qua; tên được đo theo glyph thật trong dải thân của đủ12khungVIP. Ảnh cho thấy nhãn nhỏ còn đè một phần lông quạt khi neo giữa màn. Chuyển nhãn theo vị trí tương đối của vùng model, nằm bên trái silhouette và đi theo model ở màn rộng; giữ cỡ nhãn theo UI. Menu trái hạ dưới dải Chiến Lực để không chồng lớp.
+
+### 27/10: mũi tên Xuất Chiến sát chữ và StatusBar trên mây
+- Ảnh review20:45 cho thấy DoubleChevron nằm trong bounds Caption, khiến icon chạm chữ n. Tách hai Rect có khoảng hở, giảm nhẹ cỡ chữ để nằm trong tấm đỏ; giữ thông số trong LobbyLayout.
+- Nền pill vốn đã alpha0,5 nhưng trong linear project ảnh trên mây sáng vẫn nhạt. Đưa fill/viền thành token dùng chung; tăng độ che nền0,75 để tương phản rõ trong render thực, viền trắng0,12. Không chỉ kiểm literal alpha; phải xem trên nền sáng ở cả màn rộng.
+- Nhãn Chủ Tướng trước đó che quạt; neo bên trái model qua dữ liệu vị trí tương đối, không đặt đè vào vùng chuyển động quạt.

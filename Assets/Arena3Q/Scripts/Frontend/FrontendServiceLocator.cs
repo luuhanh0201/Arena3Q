@@ -16,6 +16,8 @@ namespace Arena3Q.Frontend
         private static IAccountService _accounts;
         private static IServerDirectory _servers;
         private static IAccountActions _accountActions;
+        private static ILobbyProfileSource _lobby;
+        public static ILobbyProfileSource Lobby => _lobby ?? (_lobby = new LocalLobbyProfileSource());
         private static Func<StartupUiConfig, IStartupPreparation> _preparation;
 
         public static IPlayerProfileStore Profiles => _profiles ?? (_profiles = new JsonFileProfileStore(JsonFileProfileStore.DefaultPath));
@@ -31,13 +33,14 @@ namespace Arena3Q.Frontend
         /// <summary>Replaces some services (null = keep the current one).</summary>
         public static void Override(IPlayerProfileStore profiles = null, IAccountService accounts = null,
             IServerDirectory servers = null, IAccountActions accountActions = null,
-            Func<StartupUiConfig, IStartupPreparation> preparation = null)
+            Func<StartupUiConfig, IStartupPreparation> preparation = null, ILobbyProfileSource lobby = null)
         {
             if (profiles != null) _profiles = profiles;
             if (accounts != null) _accounts = accounts;
             if (servers != null) _servers = servers;
             if (accountActions != null) _accountActions = accountActions;
             if (preparation != null) _preparation = preparation;
+            if (lobby != null) _lobby = lobby;
         }
 
         /// <summary>Back to the defaults.</summary>
@@ -48,6 +51,7 @@ namespace Arena3Q.Frontend
             _servers = null;
             _accountActions = null;
             _preparation = null;
+            _lobby = null;
         }
     }
 

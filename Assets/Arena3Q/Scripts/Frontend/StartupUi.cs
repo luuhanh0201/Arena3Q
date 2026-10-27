@@ -68,7 +68,7 @@ namespace Arena3Q.Frontend
 
         public Button IconButton(Transform parent, string name, Sprite sprite, Rect bounds, Action action, UiSound sound = UiSound.Tap)
         {
-            var image = Image(parent, name, sprite, bounds); image.raycastTarget = true;
+            var image = Image(parent, name, sprite, bounds, sprite != null ? Color.white : Color.clear); image.raycastTarget = true;
             var button = image.gameObject.AddComponent<Button>(); button.targetGraphic = image; button.transition = Selectable.Transition.None;
             image.gameObject.AddComponent<GameButton>().Configure(button, Audio, sound, Config, true);
             button.onClick.AddListener(() => action?.Invoke()); return button;

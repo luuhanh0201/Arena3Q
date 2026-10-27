@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c9268a4be69f2c4292026d0442393d3, type: 3}
   m_Name: FrontendConfig
   m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.FrontendConfig
-  steps: 0000000008000000010000000200000003000000040000000500000006000000i
+  steps: 000000000800000001000000020000000300000004000000050000000a0000000900000006000000i
   gameTitle: Arena3Q
   introSeconds: 3
   introVideo: {fileID: 32900000, guid: 00a5633de80c4d13ad5902c060c7da34, type: 3}
@@ -32,11 +32,12 @@ MonoBehaviour:
     panelSprite: {fileID: 0}
     font: {fileID: 12800000, guid: 6f4b5d9effbf5c6428b881f009874283, type: 3}
   startupUi: {fileID: 11400000, guid: a1b200237d5f47447a7b101b3a579194, type: 2}
+  lobby: {fileID: 11400000, guid: b7fc873aa901b65478b81bb2a700bf69, type: 2}
   minUsernameLength: 6
   maxUsernameLength: 20
   minPasswordLength: 8
-  termsUrl: 
-  privacyUrl: 
+  termsUrl:
+  privacyUrl:
   lordRoster: {fileID: 11400000, guid: 976a4a025d1237c4d962e98dac178bff, type: 2}
   serverList: {fileID: 11400000, guid: 15e345ea16cd8084088ae0c0fd1c10f0, type: 2}
   names: {fileID: 11400000, guid: 5378f887ca57e1f418fff80af34df9d5, type: 2}

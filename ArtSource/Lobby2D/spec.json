@@ -1076,7 +1076,7 @@
     },
     {
       "id": "Resource_Bar",
-      "file": "UI/Resources/Resource_Bar.png",
+      "file": "UI/ResourceBar/Resource_Bar.png",
       "width": 512,
       "height": 96,
       "transparent": true,

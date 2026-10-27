@@ -51,6 +51,7 @@ namespace Arena3Q.Editor
             frontend.FindProperty("defaultStage").objectReferenceValue = attack;
             frontend.FindProperty("battleSceneName").stringValue = settings.scenes[1].name;
             frontend.ApplyModifiedPropertiesWithoutUndo();
+            LobbyContentBuilder.ApplyTo(settings.frontend);
             EditorUtility.SetDirty(settings.frontend);
             AssetDatabase.SaveAssets();
             EditorBuildSettings.scenes = ScenePaths.Select(path => new EditorBuildSettingsScene(path, true)).ToArray();
@@ -60,8 +61,11 @@ namespace Arena3Q.Editor
 
         public static void Validate()
         {
+            if (Settings.frontend == null || Settings.frontend.Lobby == null || !Settings.frontend.Steps.Contains(FrontendStep.Lobby))
+                throw new InvalidOperationException("Release requires the integrated frontend lobby.");
             var settings = Settings;
             var scenes = ScenePaths;
+            LobbyCompressionQa.ValidateReleaseScenes(scenes);
             if (scenes.Length < 2 || scenes.Any(p => !File.Exists(p)) || settings.frontend == null ||
                 Path.GetFileNameWithoutExtension(scenes[0]) != settings.frontend.FrontendSceneName ||
                 Path.GetFileNameWithoutExtension(scenes[1]) != settings.frontend.BattleSceneName || scenes[1] != BattlefieldBuilder.ScenePath)
@@ -79,10 +83,12 @@ namespace Arena3Q.Editor
         public static void VerifyBuild(BuildReport report)
         {
             var config = Settings.frontend;
-            var required = new[] { AssetDatabase.GetAssetPath(config), AssetDatabase.GetAssetPath(config.TutorialStage), AssetDatabase.GetAssetPath(config.DefaultStage) };
+            var required = new[] { AssetDatabase.GetAssetPath(config), AssetDatabase.GetAssetPath(config.TutorialStage),
+                AssetDatabase.GetAssetPath(config.DefaultStage), AssetDatabase.GetAssetPath(config.Lobby) };
             var packed = new HashSet<string>(report.packedAssets.SelectMany(p => p.contents).Select(c => c.sourceAssetPath));
             foreach (string asset in required)
                 if (!packed.Contains(asset)) throw new InvalidOperationException("Built player does not contain the current campaign content: " + asset);
+            LobbyCompressionQa.VerifyBuild(report, "Release");
             Directory.CreateDirectory(Evidence);
             var proof = new PackedContent { platform = report.summary.platform.ToString(), startupScene = config.FrontendSceneName,
                 battleScene = config.BattleSceneName, requiredAssets = required, scenes = ScenePaths };

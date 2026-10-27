@@ -56,7 +56,7 @@ MonoBehaviour:
     - "Tr\u1EADn l\u1EEDa \u0111\u1ED1t qu\xE2n \u0111\u1ECBch 5 gi\xE2y"
     - "Tr\u1EADn \u0111\u1ED3 l\xE0m ch\u1EADm v\xE0 l\xE0m y\u1EBFu qu\xE2n \u0111\u1ECBch"
     - "Gi\xF3 l\u1EDBn \u0111\u1EA9y l\xF9i qu\xE2n \u0111\u1ECBch kh\u1EAFp chi\u1EBFn tr\u01B0\u1EDDng"
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: f5837161c3202ae478b4593b4cc54526, type: 3}
     splash: {fileID: 0}
   - lord: {fileID: 11400000, guid: b9aa5293f28087a44bc9bc394a790eb7, type: 2}
     role: "Ch\u1EC9 huy: t\u0103ng s\u1EE9c to\xE0n qu\xE2n, th\xEAm l\xEDnh. \u0110\u1EA1i t\u01B0\u1EDBng c\u1EA7m th\u01B0\u01A1ng, c\u1EDD l\u1EC7nh sau l\u01B0ng."

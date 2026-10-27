@@ -1983,7 +1983,7 @@
     },
     {
       "id": "Resource_Bar",
-      "file": "UI/Resources/Resource_Bar.png",
+      "file": "UI/ResourceBar/Resource_Bar.png",
       "width": 512,
       "height": 96,
       "transparent": true,
@@ -1998,7 +1998,7 @@
         24
       ],
       "role": "frame",
-      "path": "Assets/Arena3Q/Lobby2D/UI/Resources/Resource_Bar.png",
+      "path": "Assets/Arena3Q/Lobby2D/UI/ResourceBar/Resource_Bar.png",
       "source": "ArtSource/Lobby2D/Generated/Resource_Bar_source.png",
       "sourceHash": "b709c4a27d9d557dbcffd9c19b85757a9448d0c9715417e1bf7a1b60c0e2fe92",
       "sha256": "0ff947c4741d186f1d4d1b8f2304de9c9b151f1e192f2e23f58daeabae8286cd",

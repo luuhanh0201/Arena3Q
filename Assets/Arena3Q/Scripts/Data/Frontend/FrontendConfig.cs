@@ -53,6 +53,7 @@ namespace Arena3Q.Data
         [Header("Look")]
         [SerializeField] private UiTheme theme = new UiTheme();
         [SerializeField] private StartupUiConfig startupUi;
+        [SerializeField] private LobbyConfig lobby;
 
         [Header("Accounts")]
         [SerializeField, Min(1)] private int minUsernameLength = 6;
@@ -101,6 +102,7 @@ namespace Arena3Q.Data
         public Sprite Banner => banner;
         public UiTheme Theme => theme ?? (theme = new UiTheme());
         public StartupUiConfig StartupUi => startupUi;
+        public LobbyConfig Lobby => lobby;
         public string TermsUrl => termsUrl;
         public string PrivacyUrl => privacyUrl;
         public LordRoster LordRoster => lordRoster;

@@ -66,6 +66,11 @@ namespace Arena3Q.Core
         /// <summary>The lord's name = the player's name on this server (spec §2).</summary>
         public string name = "";
         public int lordLevel = 1;
+        public int lordStars = 1;
+        public int lordExperience;
+        public int vip;
+        public long combatPower;
+        public List<ResourceBalance> wallet = new List<ResourceBalance>();
         /// <summary>Points bought in each lord skill (passive, skill 2, skill 3, ultimate); 0 = not upgraded.</summary>
         public int[] lordSkillLevels = new int[4];
         public bool storySeen;
@@ -101,6 +106,13 @@ namespace Arena3Q.Core
             }
             return hero;
         }
+    }
+
+    [Serializable]
+    public sealed class ResourceBalance
+    {
+        public string id = "";
+        public long amount, capacity;
     }
 
     [Serializable]

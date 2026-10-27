@@ -1,0 +1,327 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d56686f1037f344786a6b5df19a51e0, type: 3}
+  m_Name: LobbyConfig
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.LobbyConfig
+  art:
+  - id: Icon_Lobby
+    sprite: {fileID: 21300000, guid: 84a0b16e196d53143b077e882dbc246d, type: 3}
+  - id: Icon_Heroes
+    sprite: {fileID: 21300000, guid: 29579bff84056ec4d9dc16dbc2be949f, type: 3}
+  - id: Icon_Lineup
+    sprite: {fileID: 21300000, guid: 47efa8f010d85f34eb9325e995e99528, type: 3}
+  - id: Icon_Equipment
+    sprite: {fileID: 21300000, guid: fc366f08944cc504c8d945df2a371d83, type: 3}
+  - id: Icon_Bag
+    sprite: {fileID: 21300000, guid: fba5e9c91ad4d5841b8b2b29cb6940b1, type: 3}
+  - id: Icon_More
+    sprite: {fileID: 21300000, guid: 45c6b41f01c07984c8db7a1eba55b678, type: 3}
+  - id: Icon_Quests
+    sprite: {fileID: 21300000, guid: b572e8771dcbfe841b1bfb01b548c804, type: 3}
+  - id: Icon_Events
+    sprite: {fileID: 21300000, guid: db78f5e4e06e4c94a9863779b4e8c407, type: 3}
+  - id: Icon_Welfare
+    sprite: {fileID: 21300000, guid: f2e1c611ec564a345b0bee7a6f45fccd, type: 3}
+  - id: Icon_Friends
+    sprite: {fileID: 21300000, guid: 247dee0d6d0877a4d9f819d2cb6a1929, type: 3}
+  - id: Icon_Guild
+    sprite: {fileID: 21300000, guid: 819c07c38cf7d0d4cb7b0641a70d141f, type: 3}
+  - id: Icon_Banknotes
+    sprite: {fileID: 21300000, guid: 0584444fb94e1394e91176389989f4ae, type: 3}
+  - id: Icon_Silver
+    sprite: {fileID: 21300000, guid: bcb9d990986e691428acdad321ce1838, type: 3}
+  - id: Icon_Stamina
+    sprite: {fileID: 21300000, guid: 7b6515201a9b70947816d5ddfc24d9e0, type: 3}
+  - id: Icon_Mail
+    sprite: {fileID: 21300000, guid: 5e840fbfaddca4249b3d3aa86b1c2020, type: 3}
+  - id: Icon_Settings
+    sprite: {fileID: 21300000, guid: a224486983fc8c9419f6c12b02070969, type: 3}
+  - id: Icon_Notification
+    sprite: {fileID: 21300000, guid: d0c16a045a1a3194189472a48508f1c1, type: 3}
+  - id: Battle_Normal
+    sprite: {fileID: 21300000, guid: b1a1a0dc180596449b13c3fa721d9a15, type: 3}
+  - id: Battle_Pressed
+    sprite: {fileID: 21300000, guid: 1e219637d03c00b4da70af28b996bf2c, type: 3}
+  - id: Battle_Disabled
+    sprite: {fileID: 21300000, guid: 7727feeef0112a340a66333ef7001d52, type: 3}
+  - id: Battle_Highlight
+    sprite: {fileID: 21300000, guid: 4a20479c094205f4fa5b1fe7217eea7b, type: 3}
+  - id: Panel_Border
+    sprite: {fileID: 21300000, guid: 5f5d061ca1ca3e6418c5f90356b9b82a, type: 3}
+  - id: UI_LightSweep
+    sprite: {fileID: 21300000, guid: 7b06ace13a95fad40ae25be845d8ba59, type: 3}
+  - id: Ambient_Mote
+    sprite: {fileID: 21300000, guid: a55dcc653fe063b4faafcd4dfc049f77, type: 3}
+  - id: Resource_Bar
+    sprite: {fileID: 21300000, guid: da2922277eca12b47b93c96796288d09, type: 3}
+  - id: Player_Name
+    sprite: {fileID: 21300000, guid: 98a93b4248cb07f4ca994c29e218ffec, type: 3}
+  - id: Navigation_Horizontal
+    sprite: {fileID: 21300000, guid: ba7f52d62147a4844b4a93d6610d2cd5, type: 3}
+  - id: Navigation_Vertical
+    sprite: {fileID: 21300000, guid: 77a403ffe6f8b71459b6574cfb682560, type: 3}
+  - id: Secondary_Normal
+    sprite: {fileID: 21300000, guid: 55a7e313931335b479332a8502c82c83, type: 3}
+  - id: VIP_01
+    sprite: {fileID: 21300000, guid: 1154988e916f039428ad976c88085dd0, type: 3}
+  - id: VIP_02
+    sprite: {fileID: 21300000, guid: def5f4f9db7816846bcfca7ac2742430, type: 3}
+  - id: VIP_03
+    sprite: {fileID: 21300000, guid: 616d3a119799a18438348a64275733b1, type: 3}
+  - id: VIP_04
+    sprite: {fileID: 21300000, guid: 2adbd714b9989344bb95457ed620e098, type: 3}
+  - id: VIP_05
+    sprite: {fileID: 21300000, guid: 1ea40f82430227645b53cbb4da858cb0, type: 3}
+  - id: VIP_06
+    sprite: {fileID: 21300000, guid: d86fca5c08eacfa4bbf833386930c350, type: 3}
+  - id: VIP_07
+    sprite: {fileID: 21300000, guid: 019dc5f0b6c1b0741ad0d0259cbae04f, type: 3}
+  - id: VIP_08
+    sprite: {fileID: 21300000, guid: 42a01430738a3c64d81468454b7132c3, type: 3}
+  - id: VIP_09
+    sprite: {fileID: 21300000, guid: f53b3fba60fc364469d1afe4effca312, type: 3}
+  - id: VIP_10
+    sprite: {fileID: 21300000, guid: 8c57be490cac1014bbf664238479c6b1, type: 3}
+  - id: VIP_11
+    sprite: {fileID: 21300000, guid: 9907cec796c1aa64aa16a8451c78b48b, type: 3}
+  - id: VIP_12
+    sprite: {fileID: 21300000, guid: 433354d9c980b6e4fa78b712454b22c6, type: 3}
+  - id: Banner_Recruit
+    sprite: {fileID: 21300000, guid: 76b4b5b996282fc4a9b87ae662694964, type: 3}
+  - id: Banner_Event
+    sprite: {fileID: 21300000, guid: fab46a3b3b2d23e4bb4860cb2aee16d4, type: 3}
+  - id: Banner_Arena
+    sprite: {fileID: 21300000, guid: 4d4de0b6495988b478cd84f0da0999aa, type: 3}
+  - id: Banner_Guild
+    sprite: {fileID: 21300000, guid: 658710e0f12063e4aacbccb474a03484, type: 3}
+  - id: Sky_Morning
+    sprite: {fileID: 21300000, guid: 91b764827b5f8a046a8677aadd8040d8, type: 3}
+  - id: Sky_Noon
+    sprite: {fileID: 21300000, guid: dd71de7fcd15cb6409c7085c1fcff408, type: 3}
+  - id: Sky_Afternoon
+    sprite: {fileID: 21300000, guid: 7d136cc16a149c147b0d791cb58eb69a, type: 3}
+  - id: Sky_Evening
+    sprite: {fileID: 21300000, guid: 60d400c1de4b0bc4ea23000233cd1152, type: 3}
+  - id: Sky_Night
+    sprite: {fileID: 21300000, guid: d2a79bd9c0f5e2c40ab551ed4838b37f, type: 3}
+  - id: Environment_Far_Background
+    sprite: {fileID: 21300000, guid: d431d06635754014d889a6218d39f0d1, type: 3}
+  - id: Environment_Buildings
+    sprite: {fileID: 21300000, guid: 3f5d6b241a027a64480c0d0ff9217a01, type: 3}
+  - id: Environment_Foreground
+    sprite: {fileID: 21300000, guid: 3ae14c66959e7444c85a163ec855bd19, type: 3}
+  - id: Environment_Lighting
+    sprite: {fileID: 21300000, guid: 4ff5af9503438fe41b7af5d8626363b2, type: 3}
+  layout: {fileID: 11400000, guid: 4e4f9c85db3951f449784e15b0aa2576, type: 2}
+  left:
+  - id: Icon_Quests
+    label: "Nhi\u1EC7m V\u1EE5"
+    icon: Icon_Quests
+    notification: 1
+  - id: Icon_Events
+    label: "S\u1EF1 Ki\u1EC7n"
+    icon: Icon_Events
+    notification: 0
+  - id: Icon_Welfare
+    label: "Ph\xFAc L\u1EE3i"
+    icon: Icon_Welfare
+    notification: 1
+  - id: Icon_Friends
+    label: "H\u1EA3o H\u1EEFu"
+    icon: Icon_Friends
+    notification: 0
+  - id: Icon_Guild
+    label: "Bang H\u1ED9i"
+    icon: Icon_Guild
+    notification: 1
+  bottom:
+  - id: Icon_Lobby
+    label: "S\u1EA3nh"
+    icon: Icon_Lobby
+    notification: 0
+  - id: Icon_Heroes
+    label: "T\u01B0\u1EDBng"
+    icon: Icon_Heroes
+    notification: 1
+  - id: Icon_Lineup
+    label: "\u0110\u1ED9i H\xECnh"
+    icon: Icon_Lineup
+    notification: 0
+  - id: Icon_Equipment
+    label: "Trang B\u1ECB"
+    icon: Icon_Equipment
+    notification: 0
+  - id: Icon_Bag
+    label: "T\xFAi"
+    icon: Icon_Bag
+    notification: 1
+  - id: Icon_More
+    label: "Kh\xE1c"
+    icon: Icon_More
+    notification: 1
+  resources:
+  - id: Banknotes
+    label: "Ng\xE2n Phi\u1EBFu"
+    icon: Icon_Banknotes
+    isStamina: 0
+    showAdd: 1
+  - id: Silver
+    label: "B\u1EA1c"
+    icon: Icon_Silver
+    isStamina: 0
+    showAdd: 1
+  - id: Stamina
+    label: "Th\u1EC3 L\u1EF1c"
+    icon: Icon_Stamina
+    isStamina: 1
+    showAdd: 1
+  banners:
+  - id: Event
+    title: "\u0110\u1EA1i Chi\u1EBFn\nQu\u1EA7n H\xF9ng"
+    subtitle: Tham gia ngay
+    tag: "S\u1EF1 Ki\u1EC7n"
+    art: Banner_Event
+  - id: Recruit
+    title: "Chi\xEAu M\u1ED9"
+    subtitle: "T\u1EE5 Anh H\xF9ng Th\u1ED1ng Tam Qu\u1ED1c"
+    tag:
+    art: Banner_Recruit
+  - id: Arena
+    title: "\u0110\u1EA5u Tr\u01B0\u1EDDng"
+    subtitle: "So t\xE0i chi\u1EBFn thu\u1EADt"
+    tag:
+    art: Banner_Arena
+  - id: Guild
+    title: "Bang H\u1ED9i"
+    subtitle: "C\xF9ng huynh \u0111\u1EC7 x\u01B0ng b\xE1 Tam Qu\u1ED1c"
+    tag:
+    art: Banner_Guild
+  daylight:
+  - startHour: 5
+    label: "S\xE1ng"
+    sky: Sky_Morning
+    tint: {r: 1, g: 0.97, b: 0.91, a: 1}
+    lightingAlpha: 0
+  - startHour: 11
+    label: "Tr\u01B0a"
+    sky: Sky_Noon
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    lightingAlpha: 0
+  - startHour: 15
+    label: "Chi\u1EC1u"
+    sky: Sky_Afternoon
+    tint: {r: 1, g: 0.81, b: 0.66, a: 1}
+    lightingAlpha: 0.1
+  - startHour: 18
+    label: "T\u1ED1i"
+    sky: Sky_Evening
+    tint: {r: 0.66, g: 0.65, b: 0.86, a: 1}
+    lightingAlpha: 0.5
+  - startHour: 21
+    label: "\u0110\xEAm"
+    sky: Sky_Night
+    tint: {r: 0.43, g: 0.53, b: 0.78, a: 1}
+    lightingAlpha: 0.85
+  models:
+  - hero: {fileID: 11400000, guid: 1c6bf5fd52527d44d9269892dcb3d3fb, type: 2}
+    yaw: 180
+    cameraHeight: 0.9
+    cameraSize: 1.05
+  plus: {fileID: 21300000, guid: 2ed8425c35c92404fa5af7b3275a0ad4, type: 3}
+  chevron: {fileID: 21300000, guid: 5454a8f26ce00f84da2a4bedfd49c0b5, type: 3}
+  doubleChevron: {fileID: 21300000, guid: 021f2e7adb380934ab0aff7a7f058e55, type: 3}
+  friends: {fileID: 21300000, guid: f60674b8a3b04ff47b2d8e516093e7e6, type: 3}
+  mail: {fileID: 21300000, guid: 284c03617ad55d1418c9508310f0722b, type: 3}
+  settings: {fileID: 21300000, guid: 1f44f05d66d51e34c8429cc863d6decf, type: 3}
+  star: {fileID: 21300000, guid: 3e170e5647e3c8240bc9c8b7476b5a4c, type: 3}
+  vipFrames:
+  - tier: 1
+    sprite: {fileID: 21300000, guid: 1154988e916f039428ad976c88085dd0, type: 3}
+    bodyAnchorY: 0.510417
+    bodyHeightY: 0.2125
+  - tier: 2
+    sprite: {fileID: 21300000, guid: def5f4f9db7816846bcfca7ac2742430, type: 3}
+    bodyAnchorY: 0.560417
+    bodyHeightY: 0.2375
+  - tier: 3
+    sprite: {fileID: 21300000, guid: 616d3a119799a18438348a64275733b1, type: 3}
+    bodyAnchorY: 0.539583
+    bodyHeightY: 0.254167
+  - tier: 4
+    sprite: {fileID: 21300000, guid: 2adbd714b9989344bb95457ed620e098, type: 3}
+    bodyAnchorY: 0.404167
+    bodyHeightY: 0.25
+  - tier: 5
+    sprite: {fileID: 21300000, guid: 1ea40f82430227645b53cbb4da858cb0, type: 3}
+    bodyAnchorY: 0.570833
+    bodyHeightY: 0.266667
+  - tier: 6
+    sprite: {fileID: 21300000, guid: d86fca5c08eacfa4bbf833386930c350, type: 3}
+    bodyAnchorY: 0.527083
+    bodyHeightY: 0.2375
+  - tier: 7
+    sprite: {fileID: 21300000, guid: 019dc5f0b6c1b0741ad0d0259cbae04f, type: 3}
+    bodyAnchorY: 0.572917
+    bodyHeightY: 0.2875
+  - tier: 8
+    sprite: {fileID: 21300000, guid: 42a01430738a3c64d81468454b7132c3, type: 3}
+    bodyAnchorY: 0.527083
+    bodyHeightY: 0.229167
+  - tier: 9
+    sprite: {fileID: 21300000, guid: f53b3fba60fc364469d1afe4effca312, type: 3}
+    bodyAnchorY: 0.525
+    bodyHeightY: 0.225
+  - tier: 10
+    sprite: {fileID: 21300000, guid: 8c57be490cac1014bbf664238479c6b1, type: 3}
+    bodyAnchorY: 0.545833
+    bodyHeightY: 0.25
+  - tier: 11
+    sprite: {fileID: 21300000, guid: 9907cec796c1aa64aa16a8451c78b48b, type: 3}
+    bodyAnchorY: 0.547917
+    bodyHeightY: 0.195833
+  - tier: 12
+    sprite: {fileID: 21300000, guid: 433354d9c980b6e4fa78b712454b22c6, type: 3}
+    bodyAnchorY: 0.61875
+    bodyHeightY: 0.229167
+  defaultPlayerFrame: {fileID: 21300000, guid: 98a93b4248cb07f4ca994c29e218ffec, type: 3}
+  uiRefinementsInitialized: 1
+  resourceCompactThreshold: 100000
+  resourceCompactDecimals: 1
+  resourceCompactUnit: "V\u1EA1n"
+  resourceTooltipSeconds: 2
+  mailNotification: 1
+  unavailableTitle: "Ch\u01B0a m\u1EDF"
+  unavailableBody: "T\xEDnh n\u0103ng \u0111ang \u0111\u01B0\u1EE3c chu\u1EA9n b\u1ECB."
+  missingModel: "H\xECnh \u1EA3nh ch\u1EE7 t\u01B0\u1EDBng \u0111ang \u0111\u01B0\u1EE3c c\u1EADp nh\u1EADt"
+  battleLabel: "Xu\u1EA5t Chi\u1EBFn"
+  lordHeading: "Chủ Tướng"
+  lordHeadingMaterial: {fileID: 2100000, guid: dfbd0d8c9466a224e801812ce506504e, type: 2}
+  daylightFadeSeconds: 2
+  renderResolution: 1024
+  avatarRenderResolution: 512
+  rendererIndex: 1
+  modelLayer: 30
+  directionalIntensity: 0.85
+  fillIntensity: 0
+  ambientColor: {r: 0.5, g: 0.49, b: 0.52, a: 1}
+  lightRotation: {x: 43.969242, y: 26.732426, z: 35.958855}
+  lightColor: {r: 1, g: 0.96, b: 0.9, a: 1}
+  lightingConfigured: 1
+  captureMsaa: 4
+  reflectionEnvironment: {fileID: 8900000, guid: 3e337a9cfd4812e4788513370f5fd259, type: 2}
+  captureComposite: {fileID: 2100000, guid: 0c63131d15c28944796e16820e4267c9, type: 2}
+  reflectionSky: {r: 0.52, g: 0.43, b: 0.3, a: 1}
+  reflectionGround: {r: 0.12, g: 0.09, b: 0.055, a: 1}
+  portraitWarmth: {r: 1, g: 0.95, b: 0.86, a: 1}
+  stagePosition: {x: -128, y: -128, z: -64}
+  heroFeet: {x: 0.39, y: 0.2}
+  heroFrameHeight: 0.84

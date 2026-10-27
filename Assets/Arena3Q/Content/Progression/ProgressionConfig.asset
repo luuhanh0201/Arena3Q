@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: ProgressionConfig
   m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.ProgressionConfig
   maxLevel: 60
+  baseExperienceToNextLevel: 100
+  additionalExperiencePerLevel: 0
   troopGrowthPerLevel: 0.03
   enemyGrowthPerLevel: 0.03
   stars:
@@ -58,6 +60,8 @@ MonoBehaviour:
   maxDamageReduction: 0.75
   heroBaseCritChance: 0.05
   critMultiplier: 1.5
+  crowdControlLockSeconds: 2
+  crowdControlBreakSeconds: 2
   combatPowerScale: 10
   combatPowerPerSkillLevel: 0.004
   referenceHealth: 900

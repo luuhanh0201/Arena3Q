@@ -1,0 +1,483 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c04a56459e3bbc04cabcb5c85c223141, type: 3}
+  m_Name: LobbyLayout
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.LobbyLayoutConfig
+  elements:
+  - id: EdgeGroup
+    bounds:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1280
+      height: 720
+    fontSize: 0
+  - id: Hero
+    bounds:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 600
+      height: 600
+    fontSize: 0
+  - id: MissingModel
+    bounds:
+      serializedVersion: 2
+      x: 140
+      y: 300
+      width: 320
+      height: 70
+    fontSize: 18
+  - id: LordNameplate
+    bounds:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 112
+      height: 42
+    fontSize: 0
+  - id: LordHeading
+    bounds:
+      serializedVersion: 2
+      x: 4
+      y: 3
+      width: 104
+      height: 36
+    fontSize: 18
+  - id: Player
+    bounds:
+      serializedVersion: 2
+      x: 12
+      y: 3
+      width: 390
+      height: 204
+    fontSize: 0
+  - id: VipBackground
+    bounds:
+      serializedVersion: 2
+      x: -6
+      y: 90
+      width: 382
+      height: 160
+    fontSize: 0
+  - id: AvatarBorder
+    bounds:
+      serializedVersion: 2
+      x: 0
+      y: 36
+      width: 102
+      height: 102
+    fontSize: 0
+  - id: AvatarMask
+    bounds:
+      serializedVersion: 2
+      x: 3
+      y: 3
+      width: 96
+      height: 96
+    fontSize: 0
+  - id: LordAvatar
+    bounds:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 96
+      height: 96
+    fontSize: 0
+  - id: PlayerName
+    bounds:
+      serializedVersion: 2
+      x: 106
+      y: 72
+      width: 172
+      height: 36
+    fontSize: 20
+  - id: PlayerStats
+    bounds:
+      serializedVersion: 2
+      x: 64
+      y: 118
+      width: 317
+      height: 29
+    fontSize: 0
+  - id: Level
+    bounds:
+      serializedVersion: 2
+      x: 23
+      y: 2
+      width: 49
+      height: 25
+    fontSize: 14
+  - id: ExperienceBorder
+    bounds:
+      serializedVersion: 2
+      x: 70
+      y: 9
+      width: 147
+      height: 10
+    fontSize: 0
+  - id: PowerRibbon
+    bounds:
+      serializedVersion: 2
+      x: 56
+      y: 150
+      width: 319
+      height: 42
+    fontSize: 0
+  - id: Power
+    bounds:
+      serializedVersion: 2
+      x: 64
+      y: 150
+      width: 303
+      height: 42
+    fontSize: 18
+  - id: VipBadge
+    bounds:
+      serializedVersion: 2
+      x: 243
+      y: -1
+      width: 75
+      height: 31
+    fontSize: 0
+  - id: VipLabel
+    bounds:
+      serializedVersion: 2
+      x: 5
+      y: 0
+      width: 65
+      height: 31
+    fontSize: 14
+  - id: Resource
+    bounds:
+      serializedVersion: 2
+      x: 505
+      y: 12
+      width: 152
+      height: 40
+    fontSize: 0
+  - id: ResourceIcon
+    bounds:
+      serializedVersion: 2
+      x: -12
+      y: -5
+      width: 44
+      height: 44
+    fontSize: 0
+  - id: ResourceAmount
+    bounds:
+      serializedVersion: 2
+      x: 29
+      y: 4
+      width: 90
+      height: 32
+    fontSize: 17
+  - id: ResourceHint
+    bounds:
+      serializedVersion: 2
+      x: -13
+      y: -5
+      width: 131
+      height: 45
+    fontSize: 0
+  - id: ResourceAdd
+    bounds:
+      serializedVersion: 2
+      x: 120
+      y: 6
+      width: 27
+      height: 28
+    fontSize: 0
+  - id: ResourcePlus
+    bounds:
+      serializedVersion: 2
+      x: 6
+      y: 6
+      width: 15
+      height: 16
+    fontSize: 0
+  - id: CornerButton
+    bounds:
+      serializedVersion: 2
+      x: 1142
+      y: 34
+      width: 42
+      height: 42
+    fontSize: 0
+  - id: CornerIcon
+    bounds:
+      serializedVersion: 2
+      x: 3
+      y: 3
+      width: 36
+      height: 36
+    fontSize: 0
+  - id: LeftNavigation
+    bounds:
+      serializedVersion: 2
+      x: 14
+      y: 205
+      width: 73
+      height: 405
+    fontSize: 0
+  - id: LeftButton
+    bounds:
+      serializedVersion: 2
+      x: 4
+      y: 8
+      width: 65
+      height: 74
+    fontSize: 0
+  - id: LeftIcon
+    bounds:
+      serializedVersion: 2
+      x: 13
+      y: 0
+      width: 40
+      height: 42
+    fontSize: 0
+  - id: LeftCaption
+    bounds:
+      serializedVersion: 2
+      x: 0
+      y: 42
+      width: 65
+      height: 25
+    fontSize: 13
+  - id: LeftDivider
+    bounds:
+      serializedVersion: 2
+      x: 12
+      y: 81
+      width: 49
+      height: 1
+    fontSize: 0
+  - id: BottomNavigation
+    bounds:
+      serializedVersion: 2
+      x: 30
+      y: 613
+      width: 735
+      height: 92
+    fontSize: 0
+  - id: BottomButton
+    bounds:
+      serializedVersion: 2
+      x: 15
+      y: 6
+      width: 112
+      height: 78
+    fontSize: 0
+  - id: BottomSelected
+    bounds:
+      serializedVersion: 2
+      x: 0
+      y: -3
+      width: 112
+      height: 83
+    fontSize: 0
+  - id: BottomIcon
+    bounds:
+      serializedVersion: 2
+      x: 30
+      y: 0
+      width: 52
+      height: 52
+    fontSize: 0
+  - id: BottomSelectedIcon
+    bounds:
+      serializedVersion: 2
+      x: 23
+      y: 0
+      width: 66
+      height: 52
+    fontSize: 0
+  - id: BottomCaption
+    bounds:
+      serializedVersion: 2
+      x: 3
+      y: 51
+      width: 106
+      height: 25
+    fontSize: 16
+  - id: BottomDivider
+    bounds:
+      serializedVersion: 2
+      x: 10
+      y: 41
+      width: 5
+      height: 5
+    fontSize: 0
+  - id: EnterBattle
+    bounds:
+      serializedVersion: 2
+      x: 891
+      y: 545
+      width: 380
+      height: 169
+    fontSize: 0
+  - id: BattleCaption
+    bounds:
+      serializedVersion: 2
+      x: 70
+      y: 81
+      width: 228
+      height: 62
+    fontSize: 34
+  - id: BattleChevron
+    bounds:
+      serializedVersion: 2
+      x: 309
+      y: 101
+      width: 22
+      height: 30
+    fontSize: 0
+  - id: ResourceTooltip
+    bounds:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 330
+      height: 58
+    fontSize: 0
+  - id: TooltipFrame
+    bounds:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 330
+      height: 58
+    fontSize: 0
+  - id: TooltipText
+    bounds:
+      serializedVersion: 2
+      x: 15
+      y: 7
+      width: 300
+      height: 44
+    fontSize: 15
+  - id: UnavailablePanel
+    bounds:
+      serializedVersion: 2
+      x: 400
+      y: 230
+      width: 480
+      height: 240
+    fontSize: 0
+  - id: UnavailableTitle
+    bounds:
+      serializedVersion: 2
+      x: 35
+      y: 35
+      width: 410
+      height: 40
+    fontSize: 25
+  - id: UnavailableBody
+    bounds:
+      serializedVersion: 2
+      x: 35
+      y: 85
+      width: 410
+      height: 55
+    fontSize: 18
+  - id: UnavailableClose
+    bounds:
+      serializedVersion: 2
+      x: 155
+      y: 164
+      width: 170
+      height: 50
+    fontSize: 0
+  banners:
+  - serializedVersion: 2
+    x: 908
+    y: 80
+    width: 355
+    height: 153
+  - serializedVersion: 2
+    x: 908
+    y: 242
+    width: 355
+    height: 153
+  - serializedVersion: 2
+    x: 908
+    y: 404
+    width: 173
+    height: 133
+  - serializedVersion: 2
+    x: 1090
+    y: 404
+    width: 173
+    height: 133
+  resourceStep: {x: 159, y: 0}
+  cornerStep: {x: 55, y: 0}
+  leftStep: {x: 0, y: 77}
+  bottomStep: {x: 118, y: 0}
+  starStep: {x: 0, y: 16}
+  cornerNotification: {x: 31, y: -1}
+  leftNotification: {x: 48, y: 0}
+  bottomNotification: {x: 78, y: 1}
+  notificationSize: 13
+  headingLineSpacing: 6
+  backdropAspect: 1.7777778
+  experienceInset: 1
+  playerNameMinimumFont: 14
+  playerFrameCorner: 10
+  playerFrameStroke: 1.2
+  lordPlateCorner: 10
+  lordPlateStroke: 1.6
+  backdropPivot: {x: 0.5, y: 0}
+  iconShadowOffset: {x: 1.5, y: -2}
+  iconOutlineOffset: {x: 1.2, y: 1.2}
+  navCorner: 32
+  navStroke: 2
+  selectedCorner: 26
+  selectedStroke: 2.5
+  dividerRotation: 45
+  tooltipPadding: 8
+  tooltipGap: 7
+  tooltipFontMin: 12
+  tooltipPixelsPerUnit: 3.5
+  unavailableDimAlpha: 0.6
+  bannerOverlayInset: 3
+  bannerOverlayStart: 0.3
+  bannerOverlayHeight: 0.68
+  bannerTagBacking:
+    serializedVersion: 2
+    x: 8
+    y: 5
+    width: 104
+    height: 25
+  bannerTag:
+    serializedVersion: 2
+    x: 22
+    y: 5
+    width: 76
+    height: 25
+  bannerTextInset: 13
+  bannerTextRightInset: 40
+  bannerSubtitleRightInset: 43
+  bannerTitleBottom: 81
+  bannerTitleHeight: 43
+  eventTitleBottom: 112
+  eventTitleWidth: 225
+  eventTitleHeight: 74
+  bannerSubtitleBottom: 39
+  bannerSubtitleHeight: 32
+  bannerChevronSize: {x: 21, y: 25}
+  bannerChevronInset: {x: 29, y: 34}
+  bannerTagFont: 13
+  bannerTitleFont: 25
+  smallBannerTitleFont: 21
+  bannerSubtitleFont: 15
+  smallBannerSubtitleFont: 12
+  lordPlateAnchor: {x: 0.14, y: 0.55}

@@ -26,6 +26,8 @@ namespace Arena3Q.Data
         public AudioClip[] sounds = new AudioClip[6];
         public AudioClip music;
         [Range(0, 1)] public float musicVolume = .65f;
+        [Tooltip("Silence background music while previewing or testing in Unity Editor.")]
+        public bool muteMusicInEditor = true;
         [Range(0, 1)] public float introVolume = 1f;
         [Range(0, 1)] public float soundVolume = .65f;
         [Min(.01f)] public float sameClipInterval = .08f;
@@ -34,6 +36,14 @@ namespace Arena3Q.Data
         public Color text = Hex("E6ECF5"), dim = Hex("A9B8CF"), muted = Hex("8FA2BF");
         public Color good = Hex("4ADE80"), weak = Hex("F59E0B"), bad = Hex("DC2626"), off = Hex("6B7280");
         public Color input = Hex("0A1424"), inputBorder = Hex("2F5584"), placeholder = Hex("7F93B0");
+        public Color statusPillFill = new Color(0, 0, 0, .75f), statusPillBorder = new Color(1, 1, 1, .12f);
+        [Header("Lobby design tokens")]
+        public Color lobbyPlayerBacking = new Color(.105f, .026f, .025f, .92f);
+        public Color lobbyExpStart = new Color(.96f, .28f, .08f), lobbyExpEnd = new Color(1, .83f, .29f), lobbyExpTrack = new Color(.055f, .035f, .025f);
+        public Color lobbyIconHighlight = new Color(1, .95f, .76f), lobbyIconShadow = new Color(.227f, .094f, .016f, .7f);
+        public Color lobbyDividerTint = new Color(1, 1, 1, .45f), lobbyBannerOverlay = new Color(0, 0, 0, .85f);
+        public Color lobbyNavigationFill = new Color(.025f, .035f, .055f, .94f), lobbySelectedFill = new Color(.34f, .12f, .025f, .95f);
+        public Color lobbyPlayerStats = Hex("0C1019"), lobbyVipBadge = Hex("360B13");
         [Header("Layout: 1280 x 720, top-left origin")]
         public Vector2 referenceSize = new Vector2(1280, 720);
         public Rect loginPanel = new Rect(380, 134, 520, 512);

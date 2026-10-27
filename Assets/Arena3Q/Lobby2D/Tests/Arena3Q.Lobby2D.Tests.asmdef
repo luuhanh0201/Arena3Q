@@ -1,0 +1,9 @@
+{
+  "name": "Arena3Q.Lobby2D.Tests",
+  "references": ["Arena3Q.Lobby2D", "Arena3Q.Core", "Arena3Q.Data", "Arena3Q.Frontend", "Arena3Q.UI", "UnityEngine.UI", "Unity.TextMeshPro", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
+  "includePlatforms": [],
+  "overrideReferences": true,
+  "precompiledReferences": ["nunit.framework.dll"],
+  "autoReferenced": false,
+  "defineConstraints": ["UNITY_INCLUDE_TESTS", "UNITY_EDITOR"]
+}

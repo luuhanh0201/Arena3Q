@@ -30,7 +30,7 @@ namespace Arena3Q.Lobby2D.Editor
             public LobbyArtCatalog.NavigationItem[] left, bottom;
         }
 
-        [MenuItem("Arena3Q/Lobby 2D/Import Art and Build Review Prefab")]
+        [MenuItem("Arena3Q/Legacy Art Review/Lobby 2D/Import Art and Build Review Prefab")]
         public static void Build()
         {
             AssetDatabase.Refresh();
@@ -79,7 +79,8 @@ namespace Arena3Q.Lobby2D.Editor
             catalog.font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(fontPath);
             catalog.characterRig=AssetDatabase.LoadAssetAtPath<LuBuCutoutDefinition>(Root+"/Unity/LuBuCutoutRig.asset");
             EditorUtility.SetDirty(catalog);
-            var atlasPath = Root + "/Unity/SpriteAtlases/LobbyUI.spriteatlas";
+            // The integrated Frontend owns LobbyUI; old review tools must never repack or disable it.
+            var atlasPath = Root + "/Unity/SpriteAtlases/LegacyLobbyReview.spriteatlas";
             var atlas = AssetDatabase.LoadAssetAtPath<SpriteAtlas>(atlasPath);
             if (!atlas) { atlas = new SpriteAtlas(); AssetDatabase.CreateAsset(atlas, atlasPath); }
             atlas.Remove(atlas.GetPackables());
@@ -100,7 +101,7 @@ namespace Arena3Q.Lobby2D.Editor
             Debug.Log("LOBBY2D_IMPORT_OK sprites=" + catalog.entries.Length + "; isolated art review prefab.");
         }
 
-        [MenuItem("Arena3Q/Lobby 2D/Build and Capture Art Review")]
+        [MenuItem("Arena3Q/Legacy Art Review/Lobby 2D/Build and Capture Art Review")]
         public static void BuildAndCapture()
         {
             Build();

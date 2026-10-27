@@ -115,7 +115,7 @@ namespace Arena3Q.Tests.PlayMode
             Assert.That(outgoingStory.activeInHierarchy, Is.True, "the story stays visible until the scene cover is opaque");
             Assert.That(outgoingStory.GetComponent<CanvasGroup>().blocksRaycasts, Is.False);
             Assert.That(character.storySeen, Is.True);
-            Assert.That(_flow.Step, Is.EqualTo(FrontendStep.Battle));
+            Assert.That(_flow.Step, Is.EqualTo(FrontendStep.TutorialBattle));
 
             BattleController battle = null;
             yield return WaitForBattle(b => battle = b);
@@ -201,6 +201,9 @@ namespace Arena3Q.Tests.PlayMode
             var servers = ScreenAs<ServerSelectScreen>();
             Assert.That(servers.Selected.Id, Is.EqualTo("s2"), "the last server");
             servers.Enter();
+            Assert.That(_flow.Step, Is.EqualTo(FrontendStep.Lobby));
+            Assert.That(_flow.Screen, Is.InstanceOf<LobbyScreen>());
+            _flow.EnterBattleFromLobby();
             Assert.That(_flow.Step, Is.EqualTo(FrontendStep.Battle));
 
             BattleController battle = null;
@@ -310,7 +313,8 @@ namespace Arena3Q.Tests.PlayMode
                 _flow = Object.FindAnyObjectByType<FrontendController>();
             }
             Assert.That(_flow, Is.Not.Null);
-            Assert.That(_flow.Step, Is.EqualTo(FrontendStep.ServerSelect), "back from a battle: straight to the servers");
+            Assert.That(_flow.Step, Is.EqualTo(FrontendStep.Lobby), "back from a battle: straight to the lobby");
+            Assert.That(_flow.Character, Is.SameAs(character), "restore the selected server character without signing in again");
         }
     }
 }

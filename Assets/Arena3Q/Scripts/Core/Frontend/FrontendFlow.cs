@@ -16,19 +16,22 @@ namespace Arena3Q.Core
         /// <summary>Nothing left to show.</summary>
         Done,
         // Appended to preserve existing serialized enum values.
-        Loading
+        Loading,
+        Lobby,
+        TutorialBattle
     }
 
     /// <summary>What the flow knows about the player at the moment it picks the next screen.</summary>
     public readonly struct FrontendState
     {
-        public FrontendState(bool signedIn, bool serverChosen, bool hasLord, bool hasName, bool storySeen)
+        public FrontendState(bool signedIn, bool serverChosen, bool hasLord, bool hasName, bool storySeen, bool tutorialCleared = false)
         {
             SignedIn = signedIn;
             ServerChosen = serverChosen;
             HasLord = hasLord;
             HasName = hasName;
             StorySeen = storySeen;
+            TutorialCleared = tutorialCleared;
         }
 
         public bool SignedIn { get; }
@@ -36,6 +39,7 @@ namespace Arena3Q.Core
         public bool HasLord { get; }
         public bool HasName { get; }
         public bool StorySeen { get; }
+        public bool TutorialCleared { get; }
     }
 
     /// <summary>
@@ -81,6 +85,7 @@ namespace Arena3Q.Core
                 case FrontendStep.LordSelect: return !state.HasLord;
                 case FrontendStep.NameEntry: return !state.HasName;
                 case FrontendStep.Story: return !state.StorySeen;
+                case FrontendStep.TutorialBattle: return !state.TutorialCleared;
                 case FrontendStep.Done: return false;
                 // Intro, login ("tap to enter" for a returning player), server and battle are always shown.
                 default: return true;

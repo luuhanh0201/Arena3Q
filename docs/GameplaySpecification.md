@@ -32,6 +32,7 @@ Tài liệu này là **nguồn đúng duy nhất** cho gameplay; khi mâu thuẫ
   - **Đã có trong code (bản thử, hình tạm):** scene `Frontend` chạy đủ các màn theo thứ tự trong `FrontendConfig`; người chơi cũ bỏ qua chọn tướng / đặt tên / cốt truyện; ải hướng dẫn với Giáp Sĩ 3★, thắng thì chủ tướng lên Lv2; hồ sơ lưu trên máy. ⏳ Chưa có: đăng nhập Google / Apple / tài khoản (cần backend – nút báo "chưa hỗ trợ"), danh sách máy chủ thật, video intro và hình (dùng hình tạm cho tới khi có art).
 - Màn chọn chủ tướng, cấp / sao / phe và kỹ năng: **đã có trong code** (bản thử, hình tạm – 2026-10-17). `FactionDefinition` dùng cho **phe của danh tướng** (mục "Cấp, sao và phe" dưới đây).
 - 🟡 Prototype dùng **một chủ tướng placeholder** (`Hero_Lord`).
+- ✅ (người dùng qua review Claude, 27/10) Sau trận hướng dẫn, Frontend mở **Sảnh**. Người chơi cũ vào Sảnh sau chọn máy chủ; Xuất Chiến mở trận, rời kết quả trở lại Sảnh với đúng nhân vật/máy chủ. Sảnh dùng chủ tướng của hồ sơ, chỉ hoạt ảnh Idle; chủ tướng chưa có model có thông báo hình đang cập nhật. Thời điểm sảnh tự đổi theo giờ máy, mốc giờ ở cấu hình; không có nút đổi thời điểm trên UI người chơi. ✅ (người dùng chốt lại bằng ảnh27/10) Cụm người chơi có avatar trái, tên trong thân VIP, hàng Lv/EXP/VIP riêng và Chiến Lực phía dưới. Bảng cạnh nhân vật chỉ hiện một dòng “Chủ Tướng” nhỏ gọn, không lặp tên/sao.
 
 ### Cấp, sao và phe (người dùng chốt 2026-10-17 · đã có trong code 2026-10-17)
 Thiết kế và bảng chỉ số (🟡): `docs/KeHoach/HeroProgression.md`.
@@ -231,7 +232,7 @@ Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng
 - `BattleRuntimeState` (tạo mới mỗi trận): số tướng đã triệu hồi, tướng đang chọn, trạng thái và máu từng tướng/lính/thành, lệnh hiện tại và điểm đích đã lưu của từng tướng, đồng hồ, đợt hiện tại, kết quả và số sao.
 
 ## 11. Ngoài phạm vi prototype ⏳
-Kiếm thẻ (nhiệm vụ, sự kiện, cửa hàng), kinh nghiệm, mảnh tướng và giao diện nâng cấp, tài nguyên triệu hồi, PvP, đăng nhập thật (Google / Apple / tài khoản), backend, lưu tiến trình trên máy chủ, sảnh chính và bản đồ chương, animation và hiệu ứng thật. * *(Đã làm ở bản thử: chọn chủ tướng, chỉ số theo cấp / sao / phe, kỹ năng tướng, cấp bậc và kỹ năng quân địch, luồng vào game với "Chơi ngay" và hồ sơ trên máy – mục 2, 3, 8.)*
+Kiếm thẻ (nhiệm vụ, sự kiện, cửa hàng), kinh nghiệm, mảnh tướng và giao diện nâng cấp, tài nguyên triệu hồi, PvP, đăng nhập thật (Google / Apple / tài khoản), backend, lưu tiến trình trên máy chủ và bản đồ chương. Sảnh chính được người dùng đưa vào phạm vi ngày27/10 (mục2); các menu kinh tế/PvP của sảnh vẫn chỉ là prototype. * *(Đã làm ở bản thử: chọn chủ tướng, chỉ số theo cấp / sao / phe, kỹ năng tướng, cấp bậc và kỹ năng quân địch, luồng vào game với "Chơi ngay" và hồ sơ trên máy – mục 2, 3, 8.)*
 
 ## 12. Tiêu chí nghiệm thu prototype
 - [ ] Mở scene Battle, chạy không lỗi compile.

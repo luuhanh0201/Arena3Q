@@ -92,6 +92,7 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
 | Ngày · agent · phần | Chuyện gì xảy ra | Nguyên nhân gốc | Phát hiện | Phòng tránh | Bằng chứng |
 |---|---|---|---|---|---|
 | 21/10 · Claude · biên dịch | `GetInstanceID()` báo CS0619 (đã bỏ ở Unity 6.6) làm hỏng lượt nhập flipbook và test. | API cũ, không biên dịch thử trước khi chạy chuỗi batch dài. | Log batch | Không dùng `GetInstanceID` (dùng `GetEntityId` hoặc giá trị riêng). Với code mới, chạy biên dịch nhanh (`-quit`) trước chuỗi import + test. Trong file có `using System;` thì gọi `UnityEngine.Random`. | `Logs/ClaudeReview/cyc_import.log` |
+| 21/10 · Codex · bake vải UV2 | Bản thử UV2 đầu vẫn gần như trống dù Blender báo hoàn tất. | Chưa khóa chọn mặt trong Edit mode, margin quá lớn và chưa chỉ rõ UV khi bake; chưa tách riêng đóng góp từng nguyên nhân. | Mở PNG sau bake; bản sửa chọn riêng mặt lining, margin0,002, truyền uv_layer rõ ràng, đo diện tíchUV46,26% thay khoảng0,13% ban đầu. | Assert diện tích UV trước bake; chọn mặt rõ bằng BMesh, lấy lại RNA sau Edit mode; chỉ rõ UV đích. Hash UV0/UV1 và source không đổi. Không coi marker hoàn tất là ảnh hợp lệ. | `Fabric/UV2_Bake_V3.log`, `Battle_InnerFabricUV2V3.png`; chưa tích hợp vào game |
 | 21/10 · Codex · thử UV vải riêng | Blender4.5.3 crash EXCEPTION_ACCESS_VIOLATION tại đọc `uv.data` sau smart-project. File nguồn không đổi (SHA655a6ed7…). | Giữ tham chiếu RNA UV layer qua chuyển Edit/Object mode; dữ liệu mesh đã được dựng lại. Backtrace tại `MeshUVLoopLayer_data_begin`. | Crash log chỉ dòng34 của bản thử `bake_fabric_uv2.py`. | Sau thao tác edit mesh, lấy lại mesh/UV layer bằng tên trước khi đọc dữ liệu; kiểm hash nguồn, không save source. | `Logs/CodexFix/20261021/Fabric/UV2_Bake.err`; bản thử ngoài Assets |
 | 21/10 · Codex · tiếp tục phiên Unity | Lượt batch DirectBefore thoát vì project đang mở; log cùng tên ghi đè lượt cũ, XML vẫn là kết quả cũ. | Sau khi tiếp tục phiên không đọc lại khoá và tiến trình, dùng lại tên log. | Log từ chối mở project; PID8024 là lượt build của Claude. | Mỗi lần tiếp tục phải đọc STATUS và dòng lệnh Unity trước khi chạy; mỗi lượt có tên log/XML riêng, kiểm thời gian kết quả. Không dừng tiến trình agent khác. | `Logs/CodexFix/20261021/DirectBefore.log`, thư Codex1144 |
 | 21/10 · Codex · test snapshot | Fixture lỗi trước khi đo snapshot vì đọc vertices của FBX không cho CPU đọc. | Đọc sharedMesh.vertices trong PlayMode khi Read/Write tắt. | Log Unity và mảng vertices rỗng. | Dùng BakeMesh cho skin, bounds hoặc MeshData phù hợp cho mesh cứng; kiểm fixture riêng trước khi kết luận lỗi sản phẩm. | `CodexMacAnhDirectTests.cs`; lượt kiểm mới còn chờ |
@@ -158,6 +159,8 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
 - Candidate81aa0c07: surface nguồn đạt, quạt6phần đạt, tiếp xúc từng vùng ngón trên985mẫu đạt. Vẫn cần ảnh Unity cổ tay/vai/ngón cái và Claude review; không coi số đo là nghiệm thu.
 - Đọc image.pixels từng mặt gây rất chậm; dừng đúng tiến trình chẩn đoán và dùng foreach_get vào NumPy. Không dừng Blender giao diện người dùng.
 
+## 23/10 – Claude bác ShoulderHand ade271a
+- Nearest contact1,382mm không chứng minh cán ở trong vòng ngón. GripFront vẫn lộ cán, ngón cái thò ngang; high-detail cut mang theo gai tím/da ở cổ tay. Vai40%chưa rõ; cameraTop/Back bị tóc/áo che. Cần kiểm vòng ngón bằng tia từ trục cán, camera chẩn đoán bổ sung, đo góc cầu vai; không nâng điểm chỉ vì bề mặt và tiếp xúc đạt.
 ## 25/10/2026 · Admin GLB preview nguồn có object bone-parent
 
 - Khung camera Lữ Bố cắt đầu kích vì Box3 dùng bounds cache ở bind pose. Đo bounds chính xác bằng vertex skinned sau updateMatrixWorld, bao gồm vũ khí; kiểm ảnh góc front thấy đủ mũ/chân/kích. Không dùng số mesh/clip tải thành công làm thay kiểm hình.
@@ -177,6 +180,7 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
 - So APK24/10 với map25/10 phải tách cả thay đổi icon đã gắn cùng đợt:39icon RGBA32 chưa nén tổng234MB trướcZIP, khoảng154,4MB compressed theo phân bổ chunk; map mới khoảng84,9MB raw/50,8MB compressed ước tính. Báo gộp APK365/380MB mà không tách các thay đổi làm hiểu nhầm map tự tăng200MB. Luôn đối chiếu BuildReport và cùng tập nội dung trước khi quy nguyên nhân.
 - BattlefieldEnvironment giữ tham chiếu AssetLibrary dùng cho Editor, kéo thêm77asset chỉ thuộc thư viện (3.532.265byte trướcZIP). Đã phát hiện bằng dependency graph giữ3scene và Resources, cắt đúng cạnh AssetLibrary. Chưa sửa/tối ưu trong lượt hỏi nguyên nhân; phải tách tham chiếu Editor khỏi player, không xóa asset nguồn/mesh phá nhà.
 - Sáu texture đất chưa có Android override nên raw6MB mỗi ảnh; Owned_* mới có ASTC6x6. Kiểm từng nhóm importer thực tế thay vì suy từ một helper hoặc nhầm rawMB với APKMB. Báo cáo NghiemThu/Battlefield/AuditDungLuong_20261025/README.md.
+
 
 ## 25/10 – icon mobile theo nền tảng
 - Bộ import cũ ép RGBA32 mọi nền tảng nên39icon trongAPK chiếm234MB raw. Tách settingsEditor: Android/iOS ASTC4x4, WebGL/Standalone RGBA32 độc lập, giữ nguồn1254 vàSpriteGUID. Import/Verify42ảnh và4PlayMode đạt; đã xem ảnh thật trước/sau.
@@ -210,3 +214,40 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
 - 27/10 sprite clip builder gặp khai báo var nhiều biến trong một câu C#, compiler chặn; tách khai báo trước khi xuất. GIF làm tròn delay từng frame khiến tổng clip lệch, đổi phân bố sai số centisecond để tổng đúng2/0,9/1,1s.
 - 27/10 avatar cũ là bust thu nhỏ, bạc còn ánh đồng: đã sinh lại cận mặt và bạc lạnh từ nguồn đã khóa, lưu ảnh trước–sau. Cache glyph TMP dùng chung bị sửa khi capture; chuyển sang font clone riêng của Lobby2D, trả đúng2file cache ban đầu sạch về HEAD sau khi xong, không đụng font source/gameplay.
 - 27/10 preview server không còn sống khi tiếp tục phiên, Playwright báo ERR_CONNECTION_REFUSED: khởi động lại server loopback rồi chạy lại đủ26check. Tỷ lệ xem rộng phải reset16:9 khi chọn thời điểm. Kiểm web không phải chứng minh FPS native.
+
+## 27/10 - APK thử sảnh2D và nút vào game
+- Người dùng đổi yêu cầu từ chỉ kiểm web sang build Android, chọn mở sảnh mới và vào game hiện tại. Builder riêng giữ manifest/campaign/profile gốc, kiểm rig và campaign thực trong BuildReport. APK đầu293.785.090byte,0lỗi/51cảnh báo; v2 signature qua. C++ mất8phút27giây, tiến trình clang vẫn chạy dù log không thêm dòng: không coi thiếu log là build treo.
+- Unity dọn Temp trong/sau build làm mất script QA chuẩn bị lúc chờ. Chuyển công cụ QA sang ArtSource hoặc staging ngoài Temp; không đặt tài liệu/script cần giữ trong Temp của Unity. PowerShell chặn ps1 theo execution policy; yêu cầu chạy kiểm read-only trong tiến trình riêng, không đổi policy hệ thống.
+- Smoke test assembly ban đầu thiếu Arena3Q.Data do API FrontendServiceLocator.Override có tham số StartupUiConfig dù chỉ truyền profile. Compiler CS0012, bổ sung reference trực tiếp trước chạy lại. Đây là lỗi fixture Editor, APK đã build0lỗi trước khi thêm test; không nghiệm thu nhánh nút chỉ dựa vào compile player.
+
+
+## 27/10 - Review sảnh và chủ tướng 3D
+- Review Claude chặn bản rig Lữ Bố trong sảnh: người dùng yêu cầu model chủ tướng từ hồ sơ, chỉ Idle. Tạo đường trình bày riêng lấy prefab/clip thật, giữ nguồn rig/model hiện có; avatar phải được chụp từ cùng model. Chưa nghiệm thu da/hình.
+- Unity trong sandbox báo không có giấy phép; chạy lại ngoài sandbox sau cấp quyền để dùng giấy phép máy. Compile tiếp bị getter atlas không tồn tại ở builder/test cũ, ghi lỗi và sửa trước kiểm hình.
+
+
+- Lượt capture sảnh đầu: 3/3 test hành vi qua nhưng ảnh UI hỏng UV/ô trắng vì atlas LobbyUI bị loại khỏi build và chưa pack/bind cho đường Frontend. Phải bật atlas cho sảnh tích hợp và pack theo target; ảnh thật là cổng bắt buộc. Model xuất hiện đúng chủ tướng nhưng chân còn cao hơn bệ, đang chỉnh neo theo ảnh.
+
+
+- Kiểm tiếp sảnh: 61 mẫu Idle, 7.286.877 lượt cạnh, 0 gai/giãn/ép. Số đo FPS trung bình đầu bị nhiễm một frame audit mesh đồng bộ, p95 vẫn16,745ms; thêm warmup sau audit và huỷ mesh trước đo. Không lấy lượt bị nhiễm làm hiệu năng sảnh.
+- Ảnh lượt2 cho thấy Panel_Border không có border9slice đúng, kéo thành đầu rồng lớn che banner. Bỏ sprite đó ở thẻ, dùng Graphic viền vát mỏng theo kích thước; menu dưới có hai đầu nhọn/ô chọn lục giác bằng cùng hệ code-native.
+
+
+- Claude gửi lưu ý1128: bề mặt model sảnh có mảng tối ở cằm/áo. Camera Frontend không có ambient/sun như trận; capture cũ chỉ hai point light, shader PBR phụ thuộc ánh sáng cảnh. Đang dùng key Directional + ambient probe cấp riêng từng renderer (không đổi RenderSettings toàn cục), lấy LOD Portrait sẵn có cùng material/action, giữ tham chiếu Battle để chụp đối chiếu. Chưa kết luận đạt trước ảnh cận.
+
+
+- 11:57 gửi review riêng model: ảnh trước–sau đã mở ở4331/model-review.html,9ảnh theo vùng/pha + ảnh từ trận thật. Alpha0pixel trung gian, không phải lỗ doRawImage. PortraitIdle61mẫu/46,2triệulượt cạnh khônggai/giãn/ép. FullEdit286/286,FullPlay171/0/1ignored,riêngLobby4/4. Lượt Editor58,33FPS/p9518,19ms lúcbrowserQA chạy, trước đó60,00FPS/p9517,25ms; chưađomáythật. Tạm dừngUI theo1140 và nhảUnity choClaude, chờ kếtluậnhình.
+
+
+- Review1200 xác nhận hết mảng tối/loang, chặn tiếp màu vàng ngảbạc và răngcưa. Frontend không có môi trườngphảnxạ cho PBR kimloại; thêm probe riêng với cubemap ấm nhỏ trongdata, không đổi albedo/materialnguồn. BậtMSAA4 choRT vàallowMSAA theo API URP đã kiểm mãnguồn package; thêm UI composite premultiplied vì coverageMSAA đã nhân vào RGB, tránh nhânalpha lần2 gây viềnđen/xanh. Giữ ảnhvòng1 trước thay.
+
+
+- Capture lại4tỉlệ bị Win32IO1224 khi ghi Lobby_2400.png đang được trìnhxemảnh mở/memory-map;3test hànhvi/da vẫnqua. Chuyển bằngchứng mỗi lượt sang folder captures_<timestamp> bấtbiến, không ghiđè ảnh người dùng/Claude đangxem. Không coi file ảnhcũ còn trênđĩa là capturemới đạt.
+
+
+- 27/10 lượt ghép module: ApplyForReview compile qua nhưng ApplyTo lỗi MissingReferenceException khi SetDirty LobbyConfig sau pack atlas/reimport PNG. Native asset có thể bị unload qua bước import dù managed fields vẫn đọc được; không coi local reference còn hợp lệ. Tách chuẩn bị importer trước đọc/mutate config, lưu asset trước pack và reload dữ liệu sau pack/reimport trước capture. Log lỗi Logs/Lobby-modules-apply.log (17:28).
+
+- Probe17:30: Current1073cyanđục ởgấu, NoNormal1530, NoORM364, BaseColorOnly44. Không kết luận alpha-bleed hoặc đổ lỗi normal chỉ từ count. Camera QA có thể nhận đèn/RenderSettings của scene Editor đang mở; cần cô lập preview scene trước so màu với Frontend thật. Không tắt ORM toàn thân để làm đẹp số đo và không sửa texture gốc khi chưa xác minh.
+
+- Probe18:08 cô lập đúng nguyên nhân gấu áo xanh:1307pixel xanh có albedo ấm; DiffuseGI không xanh, SpecularGI xanh; bỏ reflectionprobe không đổi ảnh dù GetClosestReflectionProbes báo đúngprobeấm weight1. Variant BoundCube gán unity_SpecCube0/HDR trực tiếp qua propertyblock cho0pixel xanh, vàng trở lạiấm. Shader PBR custom đang nhận fallback skycube của URP ở binding tựđộng. Sảnh gán cubemapRGBAHalflinear của capture vào từngrenderer, giữ SH/sentinel và toànbộsource material/ORM/normal. Không sửa shader/mesh/texture/rig tướng. Giữ ảnh trước tại surface-probe_20261027_180854; kiểm lại ảnh vàtest binding saufix.
+- Modelwide: neo chân vào bệ nền cover có thể đưa chân xuống sau thanhmenu khi cropgiữa. Căn nền theo mépdưới (pivot trong LobbyLayout) để giữ bệ trên vùngmenu; cỡ model vẫntheosafeheight. Cần xem ảnh cả4tỉlệ sau thay.

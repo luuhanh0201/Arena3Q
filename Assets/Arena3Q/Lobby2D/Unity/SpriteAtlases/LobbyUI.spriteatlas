@@ -35,6 +35,32 @@ SpriteAtlas:
       m_IgnorePlatformSupport: 0
       m_AndroidETC2FallbackOverride: 0
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 4
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 48
+      m_TextureCompression: 1
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 4
+      m_BuildTarget: iOS
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 48
+      m_TextureCompression: 1
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
       padding: 4
@@ -91,12 +117,57 @@ SpriteAtlas:
     - {fileID: 21300000, guid: fab46a3b3b2d23e4bb4860cb2aee16d4, type: 3}
     - {fileID: 21300000, guid: 4d4de0b6495988b478cd84f0da0999aa, type: 3}
     - {fileID: 21300000, guid: 658710e0f12063e4aacbccb474a03484, type: 3}
-    bindAsDefault: 0
+    bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
-    packedSpriteRenderDataKeys: []
+    packedSpriteRenderDataKeys:
+    - 7b6515201a9b70947816d5ddfc24d9e0: 21300000
+    - 42a01430738a3c64d81468454b7132c3: 21300000
+    - bcb9d990986e691428acdad321ce1838: 21300000
+    - 658710e0f12063e4aacbccb474a03484: 21300000
+    - 019dc5f0b6c1b0741ad0d0259cbae04f: 21300000
+    - 47efa8f010d85f34eb9325e995e99528: 21300000
+    - f2e1c611ec564a345b0bee7a6f45fccd: 21300000
+    - 616d3a119799a18438348a64275733b1: 21300000
+    - 7b06ace13a95fad40ae25be845d8ba59: 21300000
+    - 98a93b4248cb07f4ca994c29e218ffec: 21300000
+    - 1ea40f82430227645b53cbb4da858cb0: 21300000
+    - 55a7e313931335b479332a8502c82c83: 21300000
+    - 819c07c38cf7d0d4cb7b0641a70d141f: 21300000
+    - d0c16a045a1a3194189472a48508f1c1: 21300000
+    - 2adbd714b9989344bb95457ed620e098: 21300000
+    - db78f5e4e06e4c94a9863779b4e8c407: 21300000
+    - a55dcc653fe063b4faafcd4dfc049f77: 21300000
+    - 4d4de0b6495988b478cd84f0da0999aa: 21300000
+    - ba7f52d62147a4844b4a93d6610d2cd5: 21300000
+    - da2922277eca12b47b93c96796288d09: 21300000
+    - 1e219637d03c00b4da70af28b996bf2c: 21300000
+    - b572e8771dcbfe841b1bfb01b548c804: 21300000
+    - 9907cec796c1aa64aa16a8451c78b48b: 21300000
+    - fc366f08944cc504c8d945df2a371d83: 21300000
+    - 8c57be490cac1014bbf664238479c6b1: 21300000
+    - a224486983fc8c9419f6c12b02070969: 21300000
+    - fba5e9c91ad4d5841b8b2b29cb6940b1: 21300000
+    - 433354d9c980b6e4fa78b712454b22c6: 21300000
+    - def5f4f9db7816846bcfca7ac2742430: 21300000
+    - f53b3fba60fc364469d1afe4effca312: 21300000
+    - fab46a3b3b2d23e4bb4860cb2aee16d4: 21300000
+    - 5f5d061ca1ca3e6418c5f90356b9b82a: 21300000
+    - d86fca5c08eacfa4bbf833386930c350: 21300000
+    - 4a20479c094205f4fa5b1fe7217eea7b: 21300000
+    - 074641bc13f792248abaad70b81a44b8: 21300000
+    - b1a1a0dc180596449b13c3fa721d9a15: 21300000
+    - 247dee0d6d0877a4d9f819d2cb6a1929: 21300000
+    - 84a0b16e196d53143b077e882dbc246d: 21300000
+    - 1154988e916f039428ad976c88085dd0: 21300000
+    - 7727feeef0112a340a66333ef7001d52: 21300000
+    - 45c6b41f01c07984c8db7a1eba55b678: 21300000
+    - 0584444fb94e1394e91176389989f4ae: 21300000
+    - 5e840fbfaddca4249b3d3aa86b1c2020: 21300000
+    - 77a403ffe6f8b71459b6574cfb682560: 21300000
+    - 29579bff84056ec4d9dc16dbc2be949f: 21300000
   m_MasterAtlas: {fileID: 0}
   m_RenderDataMap: {}
   m_Tag: LobbyUI
   m_IsVariant: 0
-  m_Guid: 00000000000000000000000000000000
+  m_Guid: 0c555f4ec3511b741b253875f1ddd8af

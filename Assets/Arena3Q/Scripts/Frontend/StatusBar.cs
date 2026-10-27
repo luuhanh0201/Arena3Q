@@ -16,7 +16,9 @@ namespace Arena3Q.Frontend
         {
             _ui = ui;
             var rect = UiFactory.CreateRect("StatusPill", transform, Vector2.one, Vector2.one, Vector2.one, new Vector2(-12, -6), new Vector2(120, 26));
-            var pill = UiFactory.AddImage(rect, new Color(0, 0, 0, .5f), ui.Config.rounded, false); pill.type = Image.Type.Sliced;
+            var pill = UiFactory.AddImage(rect, ui.Config.statusPillFill, ui.Config.rounded, false); pill.type = Image.Type.Sliced;
+            var outline = rect.gameObject.AddComponent<Outline>();
+            outline.effectColor = ui.Config.statusPillBorder; outline.effectDistance = Vector2.one;
             _wifi = ui.Image(rect, "Connection", ui.Config.wifi, new Rect(12, 5, 18, 16));
             _slash = ui.Image(rect, "OfflineSlash", ui.Config.slash, new Rect(12, 5, 18, 16), ui.Config.bad);
             ui.Image(rect, "Divider", null, new Rect(40, 6, 1, 14), new Color(1, 1, 1, .35f));

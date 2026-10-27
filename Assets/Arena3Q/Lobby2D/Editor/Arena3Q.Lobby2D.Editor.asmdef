@@ -1,6 +1,6 @@
 {
   "name": "Arena3Q.Lobby2D.Editor",
-  "references": ["Arena3Q.Lobby2D", "UnityEngine.UI", "Unity.TextMeshPro", "Unity.InputSystem"],
+  "references": ["Arena3Q.Lobby2D", "Arena3Q.Editor", "Arena3Q.Data", "UnityEngine.UI", "Unity.TextMeshPro", "Unity.InputSystem"],
   "includePlatforms": ["Editor"],
   "autoReferenced": true
 }

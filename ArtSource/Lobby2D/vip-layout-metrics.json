@@ -1,0 +1,124 @@
+{
+  "frames": [
+    {
+      "tier": 1,
+      "bodyAnchorY": 0.510417,
+      "bodyHeightY": 0.2125,
+      "sourceNameBand": [
+        97,
+        148
+      ],
+      "sourceHeight": 240
+    },
+    {
+      "tier": 2,
+      "bodyAnchorY": 0.560417,
+      "bodyHeightY": 0.2375,
+      "sourceNameBand": [
+        106,
+        163
+      ],
+      "sourceHeight": 240
+    },
+    {
+      "tier": 3,
+      "bodyAnchorY": 0.539583,
+      "bodyHeightY": 0.254167,
+      "sourceNameBand": [
+        99,
+        160
+      ],
+      "sourceHeight": 240
+    },
+    {
+      "tier": 4,
+      "bodyAnchorY": 0.404167,
+      "bodyHeightY": 0.25,
+      "sourceNameBand": [
+        67,
+        127
+      ],
+      "sourceHeight": 240
+    },
+    {
+      "tier": 5,
+      "bodyAnchorY": 0.570833,
+      "bodyHeightY": 0.266667,
+      "sourceNameBand": [
+        105,
+        169
+      ],
+      "sourceHeight": 240
+    },
+    {
+      "tier": 6,
+      "bodyAnchorY": 0.527083,
+      "bodyHeightY": 0.2375,
+      "sourceNameBand": [
+        98,
+        155
+      ],
+      "sourceHeight": 240
+    },
+    {
+      "tier": 7,
+      "bodyAnchorY": 0.572917,
+      "bodyHeightY": 0.2875,
+      "sourceNameBand": [
+        103,
+        172
+      ],
+      "sourceHeight": 240
+    },
+    {
+      "tier": 8,
+      "bodyAnchorY": 0.527083,
+      "bodyHeightY": 0.229167,
+      "sourceNameBand": [
+        99,
+        154
+      ],
+      "sourceHeight": 240
+    },
+    {
+      "tier": 9,
+      "bodyAnchorY": 0.525,
+      "bodyHeightY": 0.225,
+      "sourceNameBand": [
+        99,
+        153
+      ],
+      "sourceHeight": 240
+    },
+    {
+      "tier": 10,
+      "bodyAnchorY": 0.545833,
+      "bodyHeightY": 0.25,
+      "sourceNameBand": [
+        101,
+        161
+      ],
+      "sourceHeight": 240
+    },
+    {
+      "tier": 11,
+      "bodyAnchorY": 0.547917,
+      "bodyHeightY": 0.195833,
+      "sourceNameBand": [
+        108,
+        155
+      ],
+      "sourceHeight": 240
+    },
+    {
+      "tier": 12,
+      "bodyAnchorY": 0.61875,
+      "bodyHeightY": 0.229167,
+      "sourceNameBand": [
+        121,
+        176
+      ],
+      "sourceHeight": 240
+    }
+  ]
+}

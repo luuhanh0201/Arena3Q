@@ -23,6 +23,10 @@ namespace Arena3Q.Data
         [SerializeField] private MacAnhPerformance macAnhPerformance;
         [Tooltip("3D model for the 3D battle (pictures only); empty = the picture / placeholder body.")]
         [SerializeField] private HeroModel3D model3D;
+        [Tooltip("Skinned model used by portrait and collection views. Empty = the hero's regular 3D model.")]
+        [SerializeField] private GameObject portraitModelPrefab;
+        [Tooltip("Breathing loop for portrait views. Empty = Idle from the hero's regular 3D model.")]
+        [SerializeField] private AnimationClip portraitIdle;
         [Tooltip("Tint used when no sprite is assigned.")]
         [SerializeField] private Color placeholderColor = Color.white;
         [Tooltip("Lord = the player's character (skills by level, breakthroughs); Starter = no faction, cheap stars; " +
@@ -86,6 +90,8 @@ namespace Arena3Q.Data
         public HeroAnimationSet Animations => animations;
         public MacAnhPerformance MacAnhPerformance => macAnhPerformance;
         public HeroModel3D Model3D => model3D;
+        public GameObject PortraitModelPrefab => portraitModelPrefab != null ? portraitModelPrefab : model3D?.Prefab;
+        public AnimationClip PortraitIdle => portraitIdle != null ? portraitIdle : model3D?.Find(HeroAnimationState.Idle);
         public Color PlaceholderColor => placeholderColor;
         public HeroKind Kind => kind;
         public FactionDefinition Faction => faction;

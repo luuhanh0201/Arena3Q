@@ -1,3 +1,18 @@
+CÔNG CỤ XEM ART CŨ, không dùng trong bản phát hành từ 27/10/2026
+
+Sảnh người chơi duy nhất: Scripts/Frontend/Screens/LobbyScreen.cs.
+Dữ liệu: Content/Frontend/LobbyConfig.asset và LobbyLayout.asset, tạo bởi LobbyContentBuilder.
+Sửa sảnh ở đường Frontend này, không sửa LobbyArtPreview để thay giao diện người chơi.
+Phát hành: CurrentGameRelease.Apply, rồi BattlefieldAndroidBuild.BuildMobile hoặc WebGameBuild.Build.
+
+Thư mục này vẫn cung cấp UI/nền cho sảnh mới. Giữ artwork, GUID và nguồn Lữ Bố 2D đã duyệt.
+Runtime và Tests chỉ biên dịch khi UNITY_EDITOR; includePlatforms để rỗng để MonoBehaviour vẫn chạy khi Play trong Editor.
+LobbyArtPreview, LobbyButtonResponse, LobbyArtCatalog và LobbyAndroidTestHost là công cụ cũ.
+Scene LobbyAndroidTest/LobbyArtReview và prefab review không nằm trong release.
+LobbyAndroidBuild.Build đã nghỉ; gọi API này sẽ hướng dẫn dùng đường release chung.
+Menu cũ nằm ở Arena3Q/Legacy Art Review/Lobby 2D; atlas riêng LegacyLobbyReview không vào build.
+LobbyCompressionQa kiểm dependency scene và BuildReport để chặn nội dung legacy.
+Historical delivery notes below (not the current player flow):
 Arena3Q Lobby 2D art delivery, 2026-10-27
 
 Open Unity/LobbyArtReview.unity or instantiate Unity/Prefabs/LobbyArtReview.prefab.

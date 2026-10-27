@@ -76,7 +76,7 @@ namespace Arena3Q.Lobby2D.Editor
             for(var i=0;i<curve.length;i++)curve.SmoothTangents(i,0);
             return curve;
         }
-        [MenuItem("Arena3Q/Lobby 2D/Lu Bu/Build Rig and Review Poses")]
+        [MenuItem("Arena3Q/Legacy Art Review/Lobby 2D/Lu Bu/Build Rig and Review Poses")]
         public static void BuildAndReview()
         {
             var rig=Build(); var output=Path.GetFullPath("NghiemThu/LuBu/XemTruoc_LobbyRig_20261026");Directory.CreateDirectory(output);
@@ -90,7 +90,7 @@ namespace Arena3Q.Lobby2D.Editor
             if(File.Exists(Root+"/Characters/LuBu/Animations/Attack/LuBu_Attack_023.png"))LuBuSpriteAnimationBuilder.Build();
             Debug.Log("LUBU_CUTOUT_REVIEW_OK "+JsonUtility.ToJson(audit));
         }
-        [MenuItem("Arena3Q/Lobby 2D/Lu Bu/Export 24 Frames and Layers")]
+        [MenuItem("Arena3Q/Legacy Art Review/Lobby 2D/Lu Bu/Export 24 Frames and Layers")]
         public static void Export()
         {
             var rig=Build();var audit=AuditRig(rig);

@@ -44,6 +44,9 @@ namespace Arena3Q.Data
 
         [Header("Levels")]
         [SerializeField, Min(1)] private int maxLevel = 60;
+        [Header("Prototype experience display, no automatic level changes")]
+        [SerializeField, Min(1)] private int baseExperienceToNextLevel = 100;
+        [SerializeField, Min(0)] private int additionalExperiencePerLevel;
         [Tooltip("Squad soldiers grow with their hero's level (Máu and Công, compounding).")]
         [SerializeField, Range(0f, 0.2f)] private float troopGrowthPerLevel = 0.03f;
         [Tooltip("Enemies grow with the stage's enemy level (Máu and Công, compounding).")]
@@ -100,6 +103,8 @@ namespace Arena3Q.Data
         [SerializeField, Range(0f, 0.2f)] private float referenceGrowthPerLevel = 0.03f;
 
         public int MaxLevel => maxLevel;
+        public long ExperienceRequiredForLevel(int level) => level >= maxLevel ? 0 :
+            (long)baseExperienceToNextLevel + (long)Mathf.Max(0, level - 1) * additionalExperiencePerLevel;
         public float ReferenceHealth => referenceHealth;
         public float ReferenceDamage => referenceDamage;
         public float ReferenceAttacksPerSecond => referenceAttacksPerSecond;

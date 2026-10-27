@@ -274,6 +274,7 @@ namespace Arena3Q.Tests.PlayMode
             ((IntroScreen)_flow.Screen).Finish();
             Assert.That(_flow.Music.Started, Is.True); Assert.That(_flow.Music.Source.loop, Is.True);
             Assert.That(_flow.Music.Source.clip, Is.SameAs(_flow.Config.StartupUi.music));
+            Assert.That(_flow.Music.Source.mute, Is.True, "Editor tests keep background music silent");
             Assert.That(_flow.Music.Volume, Is.EqualTo(.65f).Within(.001));
             _flow.Screen.Tick(10); ((LoginScreen)_flow.Screen).PlayAsGuest();
             var start = (ServerSelectScreen)_flow.Screen; start.OpenSettings(); yield return new WaitForSecondsRealtime(.55f);

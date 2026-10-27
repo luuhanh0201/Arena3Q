@@ -3,6 +3,7 @@
 Gom các quy tắc người dùng đã nói rải rác qua các phiên, để **mọi agent (Claude, Codex) cùng đọc một chỗ**. Quy tắc gameplay vẫn ở `docs/GameplaySpecification.md`. Luật kỹ thuật 3D ở `Model3D_Rules.md`. Quy tắc mới thì thêm vào đây (ngày + lời người dùng nếu có).
 
 ## 1. Giao tiếp và tiến độ
+- Khi mở test hoặc preview trong Unity, tắt nhạc nền (người dùng 27/10/2026). Dùng cấu hình `StartupUi.muteMusicInEditor`, giữ thao tác kiểm im nhạc ngay từ lúc nguồn nhạc được tạo.
 - Người dùng nói tiếng Việt: trả lời và viết tài liệu tiếng Việt.
 - Làm theo **từng bước**, có kế hoạch trước khi tạo file. Mỗi bước một commit, **commit xong push ngay** lên `origin` (không cần hỏi). Không force-push. Không commit file không thuộc việc của mình.
 - **Không hỏi lại điều đã chốt** (2026-10-17): tra `docs/` trước. Ý mới mâu thuẫn với điều đã ghi (nhất là mục ✅) thì nói rõ mâu thuẫn và đề xuất cách giải quyết, không lặng lẽ chọn.
@@ -42,6 +43,7 @@ Gom các quy tắc người dùng đã nói rải rác qua các phiên, để **
 - Hiển thị 3D (2026-10-21): camera orthographic nghiêng 41,4°, mặt đất mesh + texture. Model các tướng khác do người dùng tự làm (agent chỉ làm khi được giao trực tiếp).
 
 ## 4. Hai agent (AgentComms)
+- **Chỉ đạo trực tiếp ngày 24/10/2026:** Codex tự kiểm UI và báo cáo người dùng, không dùng Claude trong ngày 24/10; hủy luồng chờ review UI cũ. Người dùng yêu cầu build dự án sau khi tự kiểm, cho phép build Android Dev APK trong việc này (thay mốc chỉ test Unity trước đó).
 - Giao việc qua `AgentComms/` (giao thức: `AgentComms/README.md`, trạng thái và khoá Unity: `AgentComms/STATUS.md`). Vai làm / review đổi thường xuyên; **luôn đọc ghi chú `DOI-VAI` / chia việc mới nhất** trước khi động vào file.
 - Không sửa file agent kia đang giữ. Unity chỉ một phiên một lúc: xin / nhả khoá trong STATUS.
 - **Làm xong phần nhỏ thì báo ngay** cho agent kia kiểm (đường dẫn, SHA nguồn, log, ảnh trước–sau). Giữa các bước luôn xem inbox của mình (2026-10-20).

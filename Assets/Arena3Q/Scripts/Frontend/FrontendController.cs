@@ -54,7 +54,8 @@ namespace Arena3Q.Frontend
             Server != null,
             Character != null && Character.HasLord,
             Character != null && Character.HasName,
-            Character != null && Character.storySeen);
+            Character != null && Character.storySeen,
+            Character != null && Character.tutorialCleared);
 
         /// <summary>Sets up a controller created from code (editor tooling and tests).</summary>
         public void Configure(FrontendConfig frontendConfig) => config = frontendConfig;
@@ -66,6 +67,7 @@ namespace Arena3Q.Frontend
             if (config != null && config.StartupUi != null)
             {
                 canvas.GetComponent<CanvasScaler>().referenceResolution = config.StartupUi.referenceSize;
+                canvas.GetComponent<CanvasScaler>().matchWidthOrHeight = .5f;
                 var audio = gameObject.AddComponent<UIAudio>(); audio.Configure(config.StartupUi);
                 StartupUi = new StartupUi(config.StartupUi, audio);
                 SceneTransition.Configure(config.StartupUi.screenSeconds);
@@ -114,18 +116,21 @@ namespace Arena3Q.Frontend
             Rules = config.CreateProgressionRules();
             AccountRules = config.CreateAccountRules();
             _planner = new FrontendFlowPlanner(config.Steps);
+            var resume = ResumeAt;
+            ResumeAt = null;
             FrontendServiceLocator.ServersFor(config).Fetch(list =>
             {
                 if (this == null) return;
                 Servers = list ?? Array.Empty<ServerInfo>(); ServersChanged?.Invoke();
+                if (resume.HasValue && Profile.IsSignedIn)
+                {
+                    foreach (var server in Servers)
+                        if (server.Id == Profile.lastServerId) { Server = server; break; }
+                    Show(resume == FrontendStep.Lobby && (Character == null || !Character.HasLord || !Character.HasName)
+                        ? FrontendStep.ServerSelect : resume.Value);
+                }
+                else Show(_planner.First(State));
             });
-
-            var resume = ResumeAt;
-            ResumeAt = null;
-            if (resume.HasValue && Profile.IsSignedIn)
-                Show(resume.Value);
-            else
-                Show(_planner.First(State));
         }
 
         /// <summary>Called by a screen when the player is done with it.</summary>
@@ -151,6 +156,8 @@ namespace Arena3Q.Frontend
                 case FrontendStep.LordSelect: Screen = new LordSelectScreen(); break;
                 case FrontendStep.NameEntry: Screen = new NameEntryScreen(); break;
                 case FrontendStep.Story: Screen = new StoryScreen(); break;
+                case FrontendStep.Lobby: Screen = new LobbyScreen(); break;
+                case FrontendStep.TutorialBattle:
                 case FrontendStep.Battle: StartBattle(); return;
                 default: return;
             }
@@ -158,6 +165,10 @@ namespace Arena3Q.Frontend
         }
 
         public void ReturnToLogin() => Show(FrontendStep.Login);
+        public void EnterBattleFromLobby()
+        {
+            if (Step == FrontendStep.Lobby) Show(FrontendStep.Battle);
+        }
 
         private void OnDestroy() { Screen?.Hide(); Screen = null; }
 
@@ -284,7 +295,7 @@ namespace Arena3Q.Frontend
                 ReturnScene = config.FrontendSceneName,
                 OnFinished = (playedStage, decision) =>
                     BattleRewards.Apply(store, profile, character, playedStage == tutorialStage, decision, rewardLevel, rules, lord),
-                OnReturn = () => ResumeAt = FrontendStep.ServerSelect,
+                OnReturn = () => ResumeAt = FrontendStep.Lobby,
                 // Like the lord level: Development players on a device only.
                 FullRageAtStart = !Application.isEditor && Debug.isDebugBuild && config.DevelopmentFullRage
             });

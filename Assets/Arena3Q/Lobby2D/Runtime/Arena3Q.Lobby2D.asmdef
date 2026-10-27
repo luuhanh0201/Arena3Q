@@ -2,5 +2,7 @@
   "name": "Arena3Q.Lobby2D",
   "rootNamespace": "Arena3Q.Lobby2D",
   "references": ["UnityEngine.UI", "Unity.TextMeshPro", "Unity.InputSystem"],
+  "includePlatforms": [],
+  "defineConstraints": ["UNITY_EDITOR"],
   "autoReferenced": true
 }
