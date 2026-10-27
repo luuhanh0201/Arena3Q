@@ -1,5 +1,12 @@
 # Nhật ký sửa lỗi – Arena3Q
 
+## 28/10 - Công cụ kiểm web không bắt được số đo Unity
+
+- Build WebGL đã thành công nhưng lượt kiểm toàn luồng dừng ở assertion FPS: hook `createUnityInstance` bằng accessor trước khi script loader khai báo global không giữ được hàm thu số đo. Đây là lỗi công cụ QA; không ghi nhận lượt dừng là đạt.
+- Chuyển sang route riêng trong browser QA: nối hook sau mã loader, trước sự kiện load gọi Unity. Không sửa loader hoặc wrapper trong bản phát hành. Lưu mẫu đo vào JSON trước assertion để lượt lỗi còn bằng chứng chẩn đoán.
+- Kiểm lại đã lấy được `GetMetricsInfo` ở đủ ba mode DPR1. Số đo RAF và Unity giữ riêng; không dùng mẫu headless ngắn để tuyên bố đạt 60 FPS trên thiết bị. Kết quả toàn bộ lượt kiểm ghi tại `NghiemThu/WebGame/Build_20261028_0227/README.md`.
+- Xem ảnh phát hiện nhãn Lobby vẫn là Login: công cụ reload hồ sơ rồi bấm tọa độ nút Vào game của màn server, thiếu Chơi ngay trên màn login. Thêm đủ hai thao tác trong quality-qa và lobby-qa; mở ảnh xác nhận đúng model, ví, VIP và tên hồ sơ QA trước khi nhận kết quả. Không lấy tên file ảnh hoặc phép đo buffer làm bằng chứng đã tới đúng màn. Phương án thử Quit trước khi seed mất thêm thời gian và không cần thiết; đã bỏ khỏi công cụ cuối.
+
 ## Icon mobile và vùng dư trong APK (25/10/2026, Codex)
 
 - Importer cũ ép RGBA32 cho mobile,39icon chiếm234MB raw. Tách Android/iOS ASTC4x4 và WebGL/Standalone RGBA32 riêng, giữ1254px/Sprite/sourcePNG. BuildReport cuối xác nhận39texture61.528.848byte (58,7MB). 42meta chỉ đổi platform settings;42nguồn và skill assets/binding giữ nguyên.

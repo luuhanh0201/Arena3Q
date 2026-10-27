@@ -73,6 +73,7 @@ async function main(){
     // Reload the player so its own profile loader reads the seeded QA save.
     if(!savedQa)await start();
     await capture('02-returning-player');
+    await click(640,550);
     await click(640,638);
     await page.waitForTimeout(6000);
     await capture('03-lobby-pc');

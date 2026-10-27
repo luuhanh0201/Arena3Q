@@ -4,14 +4,21 @@ const {createRequire}=require('node:module'),root=path.resolve(__dirname,'..');
 const {chromium}=createRequire(path.join(root,'Admin/package.json'))('@playwright/test');
 const {seed,lobbyProfile}=require('./qa-profile.cjs'),settings=require('./web-settings.json');
 const phase=process.argv.includes('--before')?'before':process.argv.includes('--wrapper-only')?'wrapper':'after';
+const performanceOnly=process.argv.includes('--performance-only');
 const out=path.join(root,'NghiemThu/WebGame/Clarity_20261028',phase+'_'+new Date().toISOString().replace(/[:.]/g,'-'));
 fs.mkdirSync(out,{recursive:true});
 async function main(){
   const browser=await chromium.launch({channel:'msedge',headless:true,chromiumSandbox:true,args:['--enable-webgl','--ignore-gpu-blocklist','--mute-audio']});
-  const report={phase,passed:false,screenshots:[],measurements:[],errors:[],consoleErrors:[],warnings:[],frames:[]};
+  const report={phase,passed:false,screenshots:[],measurements:[],resizes:[],errors:[],consoleErrors:[],warnings:[],frames:[]};
   const save=()=>fs.writeFileSync(path.join(out,'result.json'),JSON.stringify(report,null,2));
   async function scenario(ratio){
   const context=await browser.newContext({viewport:{width:1600,height:1050},deviceScaleFactor:ratio}),page=await context.newPage();
+  await page.route('**/*.loader.js*',async route=>{
+    // Install after the loader's global declaration, before its load event starts Unity.
+    const response=await route.fetch();
+    const capture=';{const original=window.createUnityInstance;window.createUnityInstance=(...args)=>{const pending=original(...args);pending.then(instance=>{window.__arenaRuntimeMetrics=()=>instance.GetMetricsInfo()});return pending};}';
+    await route.fulfill({response,body:(await response.text())+capture});
+  });
   page.on('pageerror',error=>{report.errors.push(error.message);save()});
   page.on('console',message=>{if(message.type()==='error')report.consoleErrors.push(message.text());if(message.type()==='warning')report.warnings.push(message.text())});
   const base=`http://127.0.0.1:${settings.port}`;
@@ -39,8 +46,9 @@ async function main(){
           assert.ok(Math.max(measured.width,measured.height)<=settings.renderQuality.maxLongEdge+2);
         }
         if(screen==='Lobby'){
-          const timing=await page.evaluate(()=>new Promise(resolve=>{const intervals=[];let previous=performance.now(),start=previous;function frame(now){intervals.push(now-previous);previous=now;if(now-start<3000)requestAnimationFrame(frame);else{intervals.sort((a,b)=>a-b);resolve({method:'browser requestAnimationFrame cadence',frames:intervals.length,seconds:(now-start)/1000,fps:intervals.length*1000/(now-start),p95:intervals[Math.floor(intervals.length*.95)]})}}requestAnimationFrame(frame)}));
-          report.frames.push({mode:id,dpr:ratio,...timing});
+          const timing=await page.evaluate(()=>new Promise(resolve=>{const intervals=[],unitySamples=[];let previous=performance.now(),start=previous;function frame(now){intervals.push(now-previous);previous=now;if(window.__arenaRuntimeMetrics)unitySamples.push(window.__arenaRuntimeMetrics());if(now-start<3000)requestAnimationFrame(frame);else{intervals.sort((a,b)=>a-b);resolve({method:'browser requestAnimationFrame cadence with Unity GetMetricsInfo samples',frames:intervals.length,seconds:(now-start)/1000,fps:intervals.length*1000/(now-start),p95:intervals[Math.floor(intervals.length*.95)],unitySamples})}}requestAnimationFrame(frame)}));
+          report.frames.push({mode:id,dpr:ratio,...timing});save();
+          assert.ok(timing.unitySamples.length>0&&timing.unitySamples.every(sample=>Number.isFinite(sample.fps)),'Unity runtime FPS metrics must be captured');
         }
         await shot(screen+'_'+id+'_DPR'+ratio);
       }
@@ -49,13 +57,23 @@ async function main(){
   async function start(){await page.goto(base);await page.locator('#modes button[data-mode="pc"]').click();await page.locator('#start').click();await page.waitForSelector('#game-frame[data-ready="true"]',{timeout:300000})}
   try{
     report.build=await(await page.request.get(base+'/build.json')).json();
-    await start();await shot('Splash_DPR'+ratio);await page.waitForTimeout(2600);await shot('Loading_DPR'+ratio);await page.waitForTimeout(6000);
+    await start();
+    if(performanceOnly){await page.waitForTimeout(10000);report.qaProfile=await seed(page,lobbyProfile());await start();await page.waitForTimeout(9000);await click(640,550);await click(640,638);await page.waitForTimeout(4000);await matrix('Lobby');return}
+    await shot('Splash_DPR'+ratio);await page.waitForTimeout(2600);await shot('Loading_DPR'+ratio);await page.waitForTimeout(6000);
     await matrix('Login');
+    if(phase!=='before')for(const viewport of [{width:2400,height:1400},{width:915,height:412}]){
+      await page.setViewportSize(viewport);await mode(viewport.width>2000?'pc':'phone');
+      await page.waitForFunction(quality=>{const canvas=document.getElementById('unity-canvas'),box=canvas.getBoundingClientRect(),density=Math.min(devicePixelRatio,quality.maxPixelRatio,quality.maxLongEdge/Math.max(box.width,box.height),Math.sqrt(quality.maxPixels/(box.width*box.height)));return Math.abs(canvas.width-Math.round(box.width*density))<=2&&Math.abs(canvas.height-Math.round(box.height*density))<=2},settings.renderQuality,{timeout:15000});
+      const actual=await page.evaluate(()=>{const canvas=document.getElementById('unity-canvas'),box=canvas.getBoundingClientRect();return {width:canvas.width,height:canvas.height,cssWidth:box.width,cssHeight:box.height,dpr:devicePixelRatio,overflow:document.documentElement.scrollWidth>innerWidth||document.documentElement.scrollHeight>innerHeight}});
+      assert.ok(!actual.overflow);assert.ok(Math.max(actual.width,actual.height)<=settings.renderQuality.maxLongEdge+2);assert.ok(actual.width*actual.height<=settings.renderQuality.maxPixels+10000);
+      report.resizes.push({viewport,...actual});save();
+    }
+    await page.setViewportSize({width:1600,height:1050});await mode('pc');
     if(process.argv.includes('--quick'))return;
     await click(640,550);await matrix('Server');await click(640,638);await matrix('LordSelect');
     await click(960,667);await click(773,507);await matrix('Name');await click(794,493);await matrix('Story');
     await click(1180,40);await page.waitForTimeout(6000);await matrix('Battle');
-    report.qaProfile=await seed(page,lobbyProfile());await start();await page.waitForTimeout(9000);await click(640,638);await page.waitForTimeout(4000);await matrix('Lobby');
+    report.qaProfile=await seed(page,lobbyProfile());await start();await page.waitForTimeout(9000);await click(640,550);await click(640,638);await page.waitForTimeout(4000);await matrix('Lobby');
   }finally{save();await context.close()}
   }
   try{
