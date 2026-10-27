@@ -2,7 +2,7 @@
 
 Bản Unity WebGL riêng, dùng cùng game và tài nguyên của mobile. Trang bọc dùng nguyên logo, nền, font Be Vietnam Pro, sprite nút và khung Startup UI; không tải thư viện/font từ mạng bên ngoài.
 
-Người chơi chọn **Điện thoại** (20:9), **iPad** (4:3), **PC** (16:9), tất cả theo chiều ngang. Mỗi lựa chọn đặt kích thước render thực của canvas, để Unity tự bố trí HUD/camera và quy đổi chuột/cảm ứng. Trang giữ tỷ lệ khi cửa sổ nhỏ, không kéo méo hình. Chuyển lựa chọn không tải lại Unity hoặc trận; lưu ở localStorage, mặc định lần đầu theo thiết bị. Đây là lựa chọn tỷ lệ hiển thị, không giả lập hệ điều hành hoặc phần cứng.
+Người chơi chọn **Điện thoại** (20:9), **iPad** (4:3), **PC** (16:9), tất cả theo chiều ngang. Mỗi lựa chọn đặt tỉ lệ khung; độ phân giải render theo kích thước CSS thực × DPR màn hình, giới hạn bởi `renderQuality` trong `web-settings.json` (mặc định DPR tối đa2, cạnh dài3840, tổng8.294.400pixel). Unity tự bố trí HUD/camera và quy đổi chuột/cảm ứng. Trang giữ tỷ lệ khi cửa sổ nhỏ, không kéo méo hình; đổi màn hình/DPR hoặc cỡ cửa sổ sẽ cập nhật buffer. Chuyển lựa chọn không tải lại Unity hoặc trận; lưu ở localStorage, mặc định lần đầu theo thiết bị. Đây là lựa chọn tỷ lệ hiển thị, không giả lập hệ điều hành hoặc phần cứng.
 
 ## Build
 
@@ -47,6 +47,9 @@ node WebGame/release-review.cjs
 node WebGame/verify-release.cjs
 node WebGame/lobby-qa.cjs
 node WebGame/lobby-qa.cjs --show
+node WebGame/quality-qa.cjs --before
+node WebGame/quality-qa.cjs --wrapper-only --quick
+node WebGame/quality-qa.cjs
 ```
 
 Dùng Playwright hiện có trong Admin và Edge đã cài, không thêm package game. Bản `--ui` kiểm trang chọn màn hình trước khi chạy Unity. Bản đầy đủ đợi Unity khởi tạo thật, kiểm 15 kết hợp cửa sổ/tỷ lệ, canvas backing buffer, không tràn trang, giữ lựa chọn và chỉ tải loader một lần. Ảnh/JSON/log tại `NghiemThu/WebGame/20261025`.
@@ -54,5 +57,9 @@ Dùng Playwright hiện có trong Admin và Edge đã cài, không thêm package
 `flow-qa.cjs` bấm/nhập bằng chuột và bàn phím qua luồng Frontend thật, kiểm video được tải bằng URL và hồ sơ Unity thực sự được ghi vào IndexedDB. Nhánh web của HUD dùng font nhúng từ `Content/Resources/UiTypography.asset` tham chiếu font mobile hiện có; không phụ thuộc bộ font dự phòng của hệ điều hành.
 
 `lobby-qa.cjs` mở bản WebGL thật bằng Edge trong hồ sơ trình duyệt thử riêng, tắt tiếng. Sau lần tải đầu, công cụ đặt hồ sơ QA Mưu sĩ vào đúng kho IndexedDB của game, tải lại và bấm Vào game để kiểm Sảnh ở ba chế độ PC/điện thoại/iPad. Số dư/VIP mẫu chỉ nằm trong hồ sơ QA đó; không sửa dữ liệu phát hành hoặc hồ sơ trình duyệt đang dùng. Ảnh/log/JSON ở `NghiemThu/WebGame/Lobby_20261027`; tùy chọn `--show` giữ cửa sổ game mở sau khi kiểm thành công để người dùng xem trực tiếp.
+
+`quality-qa.cjs` dùng context riêng có deviceScaleFactor1/1,25/2 để kiểm buffer theo pixel vật lý và chụp toàn luồng ở ba mode. Không dùng đổi DPR qua CDP vì Playwright có thể khôi phục device metrics giữa các thao tác. Bản `--before` route wrapper4b23c57 từ bản lưu local trong thư mục bằng chứng, không hạ bản đang phục vụ. Ảnh và JSON mỗi lượt nằm trong thư mục bất biến dưới `NghiemThu/WebGame/Clarity_20261028`. Số đo requestAnimationFrame chỉ phản ánh nhịp trình duyệt, không chứng minh FPS GPU của game hoặc thiết bị Android.
+
+Chất lượng import WebGL được áp dụng bằng `Arena3Q.Editor.WebUiClarityBuilder.Apply`: ảnh UI/atlasRGBA32, nềnDXT chất lượng100; kiểm nguyên trạng override Android/iOS. Công cụ dùng nguồn keyart1672×941 đã có trong gói handoff local để thay bản thu nhỏ1280×720. Asset nguồn lớn giữ local theo quy tắc repo; chạy công cụ khi dựng lại máy có đầy đủ gói art.
 
 Hồ sơ game lưu trong IndexedDB của trình duyệt qua persistentDataPath (bật tự đồng bộ); không dùng chung hồ sơ native mobile. Cửa sổ riêng tư/xóa dữ liệu trang có thể làm mất hồ sơ local. Hỗ trợ hình trên trình duyệt desktop không thay thế kiểm Safari iPad hoặc FPS trên máy thật.

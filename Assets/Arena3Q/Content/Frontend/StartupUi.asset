@@ -356,5 +356,5 @@ MonoBehaviour:
     value: "T\xF4i \u0111\u1ED3ng \xFD v\u1EDBi {0} v\xE0 {1}."
   - key: loadingWaiting
     value: "\u0110ang ch\u1EDD k\u1EBFt n\u1ED1i\u2026"
-  statusPillFill: {r: 0, g: 0, b: 0, a: 0.75}
+  statusPillFill: {r: 0, g: 0, b: 0, a: 0.85}
   statusPillBorder: {r: 1, g: 1, b: 1, a: 0.12}

@@ -18,7 +18,7 @@ namespace Arena3Q.Frontend
         private float F(string id) => Layout.Font(id);
         private LobbyProfile _profile;
         private Image _sky, _nextSky, _lighting;
-        private Color _fromTint;
+        private Color _fromTint, _fromModelTint = Color.white, _modelTint = Color.white;
         private float _fromLighting, _fade = 1;
         public int? PreviewHour { get; set; }
         private readonly List<Image> _environment = new List<Image>();
@@ -263,9 +263,15 @@ namespace Arena3Q.Frontend
                 _tooltip = Kit.Rect(Edge, "ResourceTooltip", B("ResourceTooltip"));
                 var frame = Kit.Image(_tooltip, "Frame", Art.panel, B("TooltipFrame"), sliced: true);
                 frame.pixelsPerUnitMultiplier = Layout.tooltipPixelsPerUnit;
+                frame.rectTransform.anchorMin = Vector2.zero; frame.rectTransform.anchorMax = Vector2.one;
+                frame.rectTransform.offsetMin = frame.rectTransform.offsetMax = Vector2.zero;
                 _tooltipText = Kit.Text(_tooltip, "ExactBalance", "", B("TooltipText"), F("TooltipText"),
                     Art.text, TextAlignmentOptions.Center, 700);
                 _tooltipText.enableAutoSizing = true; _tooltipText.fontSizeMin = Layout.tooltipFontMin; _tooltipText.fontSizeMax = F("TooltipText");
+                var textRect = _tooltipText.rectTransform;
+                textRect.anchorMin = Vector2.zero; textRect.anchorMax = Vector2.one;
+                textRect.offsetMin = new Vector2(Layout.tooltipTextPadding, B("TooltipText").y);
+                textRect.offsetMax = -textRect.offsetMin;
             }
             var balance = _profile.Balance(entry.id);
             var exact = LobbyResourceRules.Exact(balance.amount);
@@ -280,7 +286,9 @@ namespace Arena3Q.Frontend
             var sourceBounds = RectTransformUtility.CalculateRelativeRectTransformBounds(Edge, _tooltipSource);
             var size = B("ResourceTooltip").size;
             var padding = Layout.tooltipPadding;
-            var width = Mathf.Min(size.x, Edge.rect.width - padding * 2); _tooltip.sizeDelta = new Vector2(width, size.y);
+            var preferred = _tooltipText.GetPreferredValues(_tooltipText.text, Mathf.Infinity, size.y).x + Layout.tooltipTextPadding * 2;
+            var width = Mathf.Min(Mathf.Clamp(preferred, Layout.tooltipMinimumWidth, size.x), Edge.rect.width - padding * 2);
+            _tooltip.sizeDelta = new Vector2(width, size.y);
             var x = Mathf.Clamp(sourceBounds.center.x - width * .5f, Edge.rect.xMin + padding, Edge.rect.xMax - width - padding);
             var top = Mathf.Clamp(sourceBounds.min.y - Layout.tooltipGap, Edge.rect.yMin + size.y + padding, Edge.rect.yMax - padding);
             _tooltip.anchoredPosition = new Vector2(x - Edge.rect.xMin, top - Edge.rect.yMax);
@@ -327,6 +335,7 @@ namespace Arena3Q.Frontend
             if (index < 0 || index >= _config.daylight.Length) return;
             var initial = _time < 0;
             _fromTint = _environment.Count > 0 ? _environment[0].color : Color.white;
+            _fromModelTint = _modelTint;
             _fromLighting = _lighting.color.a;
             if (_fade >= 1 && _nextSky.sprite != null) _sky.sprite = _nextSky.sprite;
             _time = index; var time = _config.daylight[index];
@@ -340,7 +349,8 @@ namespace Arena3Q.Frontend
             _nextSky.color = new Color(1, 1, 1, t);
             foreach (var layer in _environment) layer.color = tint;
             _lighting.color = new Color(1, 1, 1, Mathf.Lerp(_fromLighting, time.lightingAlpha, t));
-            _lord.SetTint(tint);
+            _modelTint = Color.Lerp(_fromModelTint, time.modelTint, t);
+            _lord.SetTint(_modelTint);
         }
         public override void Tick(float deltaTime)
         {

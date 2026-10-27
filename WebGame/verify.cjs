@@ -46,10 +46,12 @@ fs.mkdirSync(evidence, { recursive: true });
         const dimensions = await page.evaluate(() => {
           const c = document.getElementById('unity-canvas');
           const f = document.getElementById('game-frame').getBoundingClientRect();
-          return { width: c.width, height: c.height, x: f.x, y: f.y, w: f.width, h: f.height, overflow: document.documentElement.scrollWidth > innerWidth || document.documentElement.scrollHeight > innerHeight };
+          return { width: c.width, height: c.height, dpr: devicePixelRatio, x: f.x, y: f.y, w: f.width, h: f.height, overflow: document.documentElement.scrollWidth > innerWidth || document.documentElement.scrollHeight > innerHeight };
         });
-        assert.equal(dimensions.width, mode.width);
-        assert.equal(dimensions.height, mode.height);
+        const quality=settings.renderQuality;
+        const density=Math.min(dimensions.dpr,quality.maxPixelRatio,quality.maxLongEdge/Math.max(dimensions.w,dimensions.h),Math.sqrt(quality.maxPixels/(dimensions.w*dimensions.h)));
+        assert.ok(Math.abs(dimensions.width-Math.round(dimensions.w*density))<=2);
+        assert.ok(Math.abs(dimensions.height-Math.round(dimensions.h*density))<=2);
         assert.ok(!dimensions.overflow, `Overflow at ${viewport.width} ${mode.id}`);
         assert.ok(dimensions.x >= -1 && dimensions.y >= 0 && dimensions.x + dimensions.w <= viewport.width + 1 && dimensions.y + dimensions.h <= viewport.height + 1);
         assert.ok(Math.abs(dimensions.w / dimensions.h - mode.width / mode.height) < .025);

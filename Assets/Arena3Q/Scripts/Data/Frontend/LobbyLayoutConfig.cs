@@ -55,8 +55,8 @@ namespace Arena3Q.Data
             new Element("BottomCaption", new Rect(3, 51, 106, 25), 16),
             new Element("BottomDivider", new Rect(10, 41, 5, 5)),
             new Element("EnterBattle", new Rect(891, 545, 380, 169)),
-            new Element("BattleCaption", new Rect(70, 81, 228, 62), 34),
-            new Element("BattleChevron", new Rect(309, 101, 22, 30)),
+            new Element("BattleCaption", new Rect(66, 81, 219, 62), 33),
+            new Element("BattleChevron", new Rect(289, 101, 27, 30)),
             new Element("ResourceTooltip", new Rect(0, 0, 330, 58)),
             new Element("TooltipFrame", new Rect(0, 0, 330, 58)),
             new Element("TooltipText", new Rect(15, 7, 300, 44), 15),
@@ -77,6 +77,7 @@ namespace Arena3Q.Data
         public Vector2 iconShadowOffset = new Vector2(1.5f, -2), iconOutlineOffset = new Vector2(1.2f, 1.2f);
         public float navCorner = 32, navStroke = 2, selectedCorner = 26, selectedStroke = 2.5f, dividerRotation = 45;
         public float tooltipPadding = 8, tooltipGap = 7, tooltipFontMin = 12, tooltipPixelsPerUnit = 3.5f;
+        public float tooltipTextPadding = 16, tooltipMinimumWidth = 100;
         public float unavailableDimAlpha = .6f;
         public float bannerOverlayInset = 3, bannerOverlayStart = .3f, bannerOverlayHeight = .68f;
         public Rect bannerTagBacking = new Rect(8, 5, 104, 25), bannerTag = new Rect(22, 5, 76, 25);

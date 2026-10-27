@@ -16,6 +16,7 @@ namespace Arena3Q.Data
             public int startHour;
             public string label, sky;
             public Color tint = Color.white;
+            public Color modelTint = Color.white;
             public float lightingAlpha;
         }
         [Serializable] public sealed class LordModel
@@ -45,6 +46,8 @@ namespace Arena3Q.Data
         public Material lordHeadingMaterial;
         public float daylightFadeSeconds = 2;
         public int renderResolution = 1024, avatarRenderResolution = 512, rendererIndex = 1, modelLayer = 30;
+        public bool adaptiveRenderResolution = true;
+        public int renderResolutionMaximum = 2048, renderResolutionStep = 128;
         public float directionalIntensity = 1.4f, fillIntensity = 5;
         public Color ambientColor = new Color(.55f, .55f, .6f);
         public Vector3 lightRotation = new Vector3(40, -30, 0);

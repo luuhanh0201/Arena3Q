@@ -19,6 +19,9 @@ namespace Arena3Q.Frontend
         private Color _ambient, _lightColor;
         private Cubemap _reflection;
         private float _seconds;
+        private RawImage _image;
+        private LobbyConfig _config;
+        private readonly Vector3[] _displayCorners = new Vector3[4];
         public bool Initialize(RawImage image, LobbyConfig config, LobbyConfig.LordModel source)
         {
             return Initialize(image, config, source, source?.hero?.PortraitModelPrefab, source?.hero?.PortraitIdle);
@@ -28,6 +31,7 @@ namespace Arena3Q.Frontend
             GameObject modelPrefab, AnimationClip idle)
         {
             if (source == null || modelPrefab == null || idle == null) return false;
+            _image = image; _config = config;
             Idle = idle;
             _stage = new GameObject("LobbyLordStage");
             _stage.transform.position = config.stagePosition;
@@ -114,7 +118,25 @@ namespace Arena3Q.Frontend
         {
             if (Model != null && Idle != null) Idle.SampleAnimation(Model, Mathf.Repeat(seconds, Mathf.Max(.01f, Idle.length)));
         }
-        private void LateUpdate() { _seconds += Time.unscaledDeltaTime; Sample(_seconds); }
+        public void UpdateDisplayResolution()
+        {
+            if (_image == null || _image.canvas == null || !_config.adaptiveRenderResolution || Texture == null) return;
+            _image.rectTransform.GetWorldCorners(_displayCorners);
+            var canvas = _image.canvas;
+            var camera = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
+            var bottom = RectTransformUtility.WorldToScreenPoint(camera, _displayCorners[0]);
+            var top = RectTransformUtility.WorldToScreenPoint(camera, _displayCorners[2]);
+            var step = Mathf.Max(1, _config.renderResolutionStep);
+            var required = Mathf.CeilToInt(Mathf.Max(Mathf.Abs(top.x - bottom.x), Mathf.Abs(top.y - bottom.y)) / step) * step;
+            var resolution = Mathf.Clamp(required, _config.renderResolution, Mathf.Max(_config.renderResolution, _config.renderResolutionMaximum));
+            if (Texture.width == resolution) return;
+            var previous = Texture;
+            Texture = new RenderTexture(resolution, resolution, 24, RenderTextureFormat.ARGB32)
+                { name = "LobbyLordTexture", antiAliasing = _config.captureMsaa };
+            Texture.Create(); CaptureCamera.targetTexture = Texture; _image.texture = Texture;
+            previous.Release(); Release(previous);
+        }
+        private void LateUpdate() { _seconds += Time.unscaledDeltaTime; Sample(_seconds); UpdateDisplayResolution(); }
         private void OnDestroy()
         {
             if (CaptureCamera != null) CaptureCamera.targetTexture = null;

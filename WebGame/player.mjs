@@ -1,7 +1,19 @@
 const $ = id => document.getElementById(id);
 const storageKey = 'arena3q.web.display';
-let settings, selected, instance, loading = false;
+let settings, selected, instance, loading = false, densityQuery;
 const area = $('play-area'), frame = $('game-frame'), canvas = $('unity-canvas');
+function pixelRatio() {
+  const box = canvas.getBoundingClientRect(), quality = settings.renderQuality;
+  return Math.min(window.devicePixelRatio || 1, quality.maxPixelRatio,
+    quality.maxLongEdge / Math.max(1, box.width, box.height),
+    Math.sqrt(quality.maxPixels / Math.max(1, box.width * box.height)));
+}
+function watchDensity() {
+  densityQuery?.removeEventListener('change', densityChanged);
+  densityQuery = matchMedia(`(resolution: ${window.devicePixelRatio || 1}dppx)`);
+  densityQuery.addEventListener('change', densityChanged);
+}
+function densityChanged() { watchDensity(); fit(); }
 
 function fit() {
   if (!selected) return;
@@ -11,9 +23,9 @@ function fit() {
   const scale = Math.min(width / selected.width, height / selected.height);
   frame.style.width = `${selected.width * scale}px`;
   frame.style.height = `${selected.height * scale}px`;
-  // Unity owns its backing buffer after startup. Keep its automatic resize enabled
-  // and derive the pixel ratio from the fitted canvas to preserve the chosen size.
-  if (instance) instance.Module.devicePixelRatio = selected.width / canvas.getBoundingClientRect().width;
+  const ratio = pixelRatio(), box = canvas.getBoundingClientRect();
+  if (instance) instance.Module.devicePixelRatio = ratio;
+  else { canvas.width = Math.round(box.width * ratio); canvas.height = Math.round(box.height * ratio); }
 }
 
 function selectMode(id) {
@@ -22,10 +34,7 @@ function selectMode(id) {
   for (const button of $('modes').querySelectorAll('button')) {
     button.setAttribute('aria-pressed', String(button.dataset.mode === selected.id));
   }
-  // Setting the backing buffer, rather than stretching an old screenshot, makes Unity lay out
-  // its own cameras, safe areas, pointer coordinates and HUD for the selected aspect ratio.
-  canvas.width = selected.width;
-  canvas.height = selected.height;
+  // Modes choose aspect ratio; the backing buffer follows physical display pixels.
   frame.dataset.mode = selected.id;
   $('mode-label').textContent = selected.label;
   fit();
@@ -81,7 +90,7 @@ async function start() {
     instance = await window.createUnityInstance(canvas, {
       ...build,
       matchWebGLToCanvasSize: true,
-      devicePixelRatio: selected.width / canvas.getBoundingClientRect().width,
+      devicePixelRatio: pixelRatio(),
       autoSyncPersistentDataPath: true,
       showBanner: (message, type) => {
         console[type === 'error' ? 'error' : 'warn']('[Unity]', message);
@@ -118,12 +127,15 @@ document.addEventListener('fullscreenchange', () => {
 });
 new ResizeObserver(fit).observe(area);
 window.visualViewport?.addEventListener('resize', fit);
+window.addEventListener('resize', fit);
 canvas.addEventListener('contextmenu', event => event.preventDefault());
 $('start').disabled = true;
 try {
   const response = await fetch('web-settings.json', { cache: 'no-cache' });
   if (!response.ok) throw new Error(`Display settings: HTTP ${response.status}`);
   settings = await response.json();
+  if (!settings.renderQuality || !['maxPixelRatio', 'maxLongEdge', 'maxPixels'].every(key =>
+      Number.isFinite(settings.renderQuality[key]) && settings.renderQuality[key] > 0)) throw new Error('Invalid render quality settings');
   if (!Array.isArray(settings.modes) || !settings.modes.some(m => m.id === 'pc') ||
       settings.modes.some(m => !Number.isFinite(m.width) || !Number.isFinite(m.height) || m.width <= 0 || m.height <= 0)) {
     throw new Error('Invalid display settings');
@@ -140,6 +152,7 @@ try {
   const touch = matchMedia('(pointer: coarse)').matches;
   const deviceDefault = touch ? (Math.min(innerWidth, innerHeight) >= 600 ? 'ipad' : 'phone') : 'pc';
   selectMode(saved || deviceDefault);
+  watchDensity();
   $('start').disabled = false;
   $('start').addEventListener('click', start);
 } catch (error) { showFailure(error); }

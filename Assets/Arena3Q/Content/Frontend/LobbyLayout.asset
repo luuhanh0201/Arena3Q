@@ -328,17 +328,17 @@ MonoBehaviour:
   - id: BattleCaption
     bounds:
       serializedVersion: 2
-      x: 70
+      x: 66
       y: 81
-      width: 228
+      width: 219
       height: 62
-    fontSize: 34
+    fontSize: 33
   - id: BattleChevron
     bounds:
       serializedVersion: 2
-      x: 309
+      x: 289
       y: 101
-      width: 22
+      width: 27
       height: 30
     fontSize: 0
   - id: ResourceTooltip
@@ -481,3 +481,5 @@ MonoBehaviour:
   bannerSubtitleFont: 15
   smallBannerSubtitleFont: 12
   lordPlateAnchor: {x: 0.14, y: 0.55}
+  tooltipTextPadding: 16
+  tooltipMinimumWidth: 100

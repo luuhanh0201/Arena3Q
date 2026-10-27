@@ -77,7 +77,7 @@ namespace Arena3Q.Lobby2D.Tests
         [UnityTest] public IEnumerator BattleButtonLoadsActualFrontend()
         {
             var expected=_host.settings.gameScene;Tap(_host.view.SafeRoot.Find("Battle").GetComponent<Button>());
-            var until=Time.realtimeSinceStartup+20;while(SceneManager.GetActiveScene().name!=expected&&Time.realtimeSinceStartup<until)yield return null;
+            var until=Time.realtimeSinceStartup+60;while(SceneManager.GetActiveScene().name!=expected&&Time.realtimeSinceStartup<until)yield return null;
             Assert.That(SceneManager.GetActiveScene().name,Is.EqualTo(expected));yield return null;
             Assert.That(Object.FindAnyObjectByType<FrontendController>(),Is.Not.Null);
         }

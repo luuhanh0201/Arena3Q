@@ -79,9 +79,9 @@ async function main(){
     for(const mode of ['phone','ipad','pc']){
       await page.locator(`#modes button[data-mode="${mode}"]`).click();
       await page.waitForTimeout(2000);
-      const expected=settings.modes.find(item=>item.id===mode);
-      const actual=await page.locator('#unity-canvas').evaluate(canvas=>({width:canvas.width,height:canvas.height}));
-      assert.equal(actual.width,expected.width);assert.equal(actual.height,expected.height);
+      const actual=await page.locator('#unity-canvas').evaluate(canvas=>{const box=canvas.getBoundingClientRect();return {width:canvas.width,height:canvas.height,cssWidth:box.width,cssHeight:box.height,dpr:devicePixelRatio}});
+      const ratio=Math.min(actual.dpr,settings.renderQuality.maxPixelRatio,settings.renderQuality.maxLongEdge/Math.max(actual.cssWidth,actual.cssHeight),Math.sqrt(settings.renderQuality.maxPixels/(actual.cssWidth*actual.cssHeight)));
+      assert.ok(Math.abs(actual.width-Math.round(actual.cssWidth*ratio))<=2);assert.ok(Math.abs(actual.height-Math.round(actual.cssHeight*ratio))<=2);
       report.modes.push({mode,...actual});
       await capture('04-lobby-'+mode);
     }

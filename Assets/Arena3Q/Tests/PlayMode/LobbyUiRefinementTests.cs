@@ -67,6 +67,10 @@ namespace Arena3Q.Tests.PlayMode
             ExecuteEvents.Execute(hint.gameObject, new PointerEventData(EventSystem.current) { pointerId = -1 }, ExecuteEvents.pointerEnterHandler);
             Assert.That(Lobby.ResourceTooltipVisible, Is.True);
             Assert.That(Lobby.ResourceTooltipText, Is.EqualTo(resource.label + " " + LobbyResourceRules.Exact(balance.amount)));
+            var tooltip = Lobby.Root.GetComponentsInChildren<RectTransform>().Single(rect => rect.name == "ResourceTooltip");
+            var tooltipText = tooltip.GetComponentInChildren<TMP_Text>();
+            Assert.That(tooltip.rect.width, Is.LessThan(_flow.Config.Lobby.layout.Bounds("ResourceTooltip").width * .8f), "a short balance must not use the entire maximum-width panel");
+            Assert.That(tooltip.rect.width, Is.GreaterThanOrEqualTo(tooltipText.GetPreferredValues(tooltipText.text).x), "the content remains fully visible");
             yield return Capture("Resources_Hover");
             foreach (var width in new[] { 2160, 2340, 2400 }) yield return Capture("Resources_Hover_" + width, width);
             Lobby.Tick(_flow.Config.Lobby.resourceTooltipSeconds + .1f);
@@ -86,6 +90,25 @@ namespace Arena3Q.Tests.PlayMode
             hint.transform.parent.Find("Add").GetComponent<Button>().onClick.Invoke();
             Assert.That(Lobby.ResourceTooltipVisible, Is.False, "the plus opens its modal without leaving a hint over it");
             Assert.That(Lobby.Root.Find("SafeArea/Design1280/UnavailableModal"), Is.Not.Null);
+        }
+
+        [UnityTest]
+        public IEnumerator NightPortraitStaysWarmAndCaptureFollowsDisplaySize()
+        {
+            var view = Lobby.LordView;
+            var key = view.CaptureCamera.transform.parent.GetComponentsInChildren<Light>().Single(light => light.name == "Key");
+            Lobby.PreviewHour = 11; Lobby.Tick(_flow.Config.Lobby.daylightFadeSeconds + 1);
+            var daylight = key.color;
+            Lobby.PreviewHour = 21; Lobby.Tick(_flow.Config.Lobby.daylightFadeSeconds + 1);
+            Assert.That(key.color.r, Is.GreaterThan(daylight.r * .8f), "night keeps skin illuminated");
+            Assert.That(key.color.b / Mathf.Max(.01f, key.color.r), Is.LessThanOrEqualTo(daylight.b / Mathf.Max(.01f, daylight.r) + .05f), "night does not add a blue cast to skin");
+            var quad = view.GetComponent<RectTransform>(); var previous = quad.sizeDelta;
+            quad.sizeDelta = Vector2.one * 20000; Canvas.ForceUpdateCanvases(); view.UpdateDisplayResolution();
+            Assert.That(view.Texture.width, Is.EqualTo(_flow.Config.Lobby.renderResolutionMaximum), "large displays get a sharp capture within the configured GPU limit");
+            Assert.That(view.GetComponent<RawImage>().texture, Is.SameAs(view.Texture));
+            quad.sizeDelta = previous; Canvas.ForceUpdateCanvases(); view.UpdateDisplayResolution();
+            Assert.That(view.Texture.width, Is.LessThan(_flow.Config.Lobby.renderResolutionMaximum), "shrinking releases the larger capture");
+            yield return null;
         }
 
         [UnityTest]

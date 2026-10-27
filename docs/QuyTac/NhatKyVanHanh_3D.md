@@ -251,3 +251,5 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
 
 - Probe18:08 cô lập đúng nguyên nhân gấu áo xanh:1307pixel xanh có albedo ấm; DiffuseGI không xanh, SpecularGI xanh; bỏ reflectionprobe không đổi ảnh dù GetClosestReflectionProbes báo đúngprobeấm weight1. Variant BoundCube gán unity_SpecCube0/HDR trực tiếp qua propertyblock cho0pixel xanh, vàng trở lạiấm. Shader PBR custom đang nhận fallback skycube của URP ở binding tựđộng. Sảnh gán cubemapRGBAHalflinear của capture vào từngrenderer, giữ SH/sentinel và toànbộsource material/ORM/normal. Không sửa shader/mesh/texture/rig tướng. Giữ ảnh trước tại surface-probe_20261027_180854; kiểm lại ảnh vàtest binding saufix.
 - Modelwide: neo chân vào bệ nền cover có thể đưa chân xuống sau thanhmenu khi cropgiữa. Căn nền theo mépdưới (pivot trong LobbyLayout) để giữ bệ trên vùngmenu; cỡ model vẫntheosafeheight. Cần xem ảnh cả4tỉlệ sau thay.
+
+- 28/10 review93%: táchmodelTintkhỏinềnđêmđểda/vảitrắngkhôngxanhxám; captureRTthíchứngkíchthướcpixelvàgiớihạn2048trongdata. Khôngsửanguồnrig/mesh/clip/material,khôngđoánđạtFPSthiếtbịtừsốbrowser. Kiểm ảnhcùngIdleframecủa5thờiđiểmsautest.

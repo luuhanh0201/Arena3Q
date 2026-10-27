@@ -14,6 +14,10 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Bàn giao trước đó: claude/outbox/20261020-2330_BAN-GIAO-cong-viec-claude.md.
 
 ## codex
+- 28/10 00:28 đạt điểm nguồn ổn định Clarity: DPRthật/cap trongJSON;103importWebGL/atlasRGBA32,nềnDXT100; keyart1672giữGUID;4mụcUIđã sửa,RTmodeladaptive2048. UI31/33rồi2/2failuresđãqua; baselineDPRđúng69ảnh/63case,wrapperLogin9casequa. Trangtrướcsau4331/clarity-review.htmlđãmở;đềxuấtAI2xchưaápdụng. Đangcommit/push rồi nhảUnitychoClaudeAPK;tiếptụctheodõibàngiao vàlàmJS/galleryngoàiAssets.
+
+- 27/10 23:58 người dùng yêu cầu theo dõi bàn giao và tiếp tục. Nhận2355/0005/0015: sửa nét web toànluồng theoDPR/giới hạndata, nhậpWebGL, dùng nềnkeyartnguồn; chuẩn bịảnh2xđểxemtrướckhithay. Đồngthờisửa4mục hoànthiệnreview93%. GiữWebGame,Frontend/Lobby,Data/config/assetsUIliênquan,builder/test/ảnhbáocáo; theo dõi bàn giao trong vòng sửa/review hiện tại. NhậnUnityđangtrống; khôngđụngnguồnrig/mesh/animationClaude.
+
 - 27/10 23:50 buildWebGL sảnh mới thành công0lỗi,406,8MB (+67,1MB so339,7MB). Đã sửa cửa sổ QA chừa trắng bằngviewportthật/sandboxbật; sửa đồng bộmodevớiUnityquaautoresize/pixelratio. Browser3mode1280x576/1024x768/1600x900đúng,0pageerror/consoleerror,6ảnh. Edge đang mở sẵn sảnhPC tại http://127.0.0.1:4322, tắt tiếng, hồ sơQAriêng. Nhả file/Unity; không theo dõi sau bàn giao. Còn4điểm hoàn thiện từreview93%đãghi nhận, khôngsửa tronglượtbuildnày.
 
 - 27/10 20:57 hoàn tất bản sửa sảnh và bố cục người dùng trực tiếp chọn: avatar trái/tên trong VIP/Lv-EXP-VIP riêng/Chiến Lực dưới; nhãn Chủ Tướng một dòng, tránh quạt. Tên kiểm12khung; EXP cắt trong viewport; đã tách mũi tên Xuất Chiến và tăng tương phản StatusBar. BGM mute trong Editor. Full Edit301/301, Full Play176qua/0lỗi/1ignored; lượt UI cuối32/32, browser61+12+9ảnh/12điều khiển qua. Trang name-design.html và review.html cổng4331 đã mở. Nhả toàn bộ file và Unity. Nguồn7d89a90đãpush origin/main. Chưa build APK tích hợp; chờ review hình, không theo dõi sau bàn giao.
@@ -87,4 +91,4 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Việc đầu: kiểm snapshot 3D về scale, toàn bộ submesh và quạt; kiểm footprint VFX sau đổi camera; đồng bộ docs 3D. Sau đó kiểm model/motion Mặc Ảnh và giải quyết Lữ Bố chưa qua QA da.
 - Báo ngay từng phần nhỏ với ảnh trước–sau và số đo. Chưa nghiệm thu tổng thể. Chỉ test Unity, chưa build/test Android theo bàn giao 0619. Sau khi hoàn tất công việc theo dõi inbox 1 giờ.
 ## Unity (Editor / batch mode)
-- Trống. Codex buildWebGL xong23:44, đang kiểm browser; đã nhả Unity.
+- Trống sau kiểm UI00:26; Codex đang chốt commit điểm ổn định để nhường Claude build APK.
