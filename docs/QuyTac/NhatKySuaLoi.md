@@ -532,3 +532,9 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 - Ảnh review20:45 cho thấy DoubleChevron nằm trong bounds Caption, khiến icon chạm chữ n. Tách hai Rect có khoảng hở, giảm nhẹ cỡ chữ để nằm trong tấm đỏ; giữ thông số trong LobbyLayout.
 - Nền pill vốn đã alpha0,5 nhưng trong linear project ảnh trên mây sáng vẫn nhạt. Đưa fill/viền thành token dùng chung; tăng độ che nền0,75 để tương phản rõ trong render thực, viền trắng0,12. Không chỉ kiểm literal alpha; phải xem trên nền sáng ở cả màn rộng.
 - Nhãn Chủ Tướng trước đó che quạt; neo bên trái model qua dữ liệu vị trí tương đối, không đặt đè vào vùng chuyển động quạt.
+
+## 27/10 - Cửa sổ web xem thử chừa dải trắng
+- Dùng Playwright headed với viewport cố định1600trong cửa sổ màn hình1900khiến phần phải trắng; đây là cấu hình cửa sổ QA, không phải lỗi CSS của trang. Người dùng phát hiện qua ảnh. Khi mở để người dùng xem, dùng viewportnull, kích thước cửa sổ thật và sandboxChromiumbật; tránh cảnh báo no-sandbox mặc định của automation.
+- Selector[data-mode=phone] bắt cảbuttonvàgame-frame nên kiểm mode bịstrictviolation. Khoanh#modestoàn bộselectorbutton. Lượt đầu runtimeđã vào sảnh,0pageerror/consoleerror; fixture thất bại không được ghi đạt.
+- Lượt xem thử tải lạiUnityđểseedprofilelàm người dùng thấy82%lần hai. GiữprofileQAriêng và tái dùng sau khi đãseedthành công, không reloadlần nữa khi chỉmởxem.
+- Kiểm browser thật tiếp theo phát hiện đổimode1280vẫn bịUnityđưa canvasvề1600sau2giây. Gáncanvas.widthvới matchWebGLToCanvasSize=falsekhông đồng bộ Screenresolution nội bộ. Bật autoresizeUnityvà tínhdevicePixelRatiotừ kích thướcmode/chữnhậtcanvas đãfit; giữCSSfractional để khôngsailệchtỉlệ. Chỉcậpnhật wrapperJS, khôngphảibuildlạimãUnity. Kiểm backingbuffer sau khi chờPlayerLoop, khôngđọcngaykhigánDOM.

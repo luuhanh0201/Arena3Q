@@ -14,6 +14,8 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Bàn giao trước đó: claude/outbox/20261020-2330_BAN-GIAO-cong-viec-claude.md.
 
 ## codex
+- 27/10 23:50 buildWebGL sảnh mới thành công0lỗi,406,8MB (+67,1MB so339,7MB). Đã sửa cửa sổ QA chừa trắng bằngviewportthật/sandboxbật; sửa đồng bộmodevớiUnityquaautoresize/pixelratio. Browser3mode1280x576/1024x768/1600x900đúng,0pageerror/consoleerror,6ảnh. Edge đang mở sẵn sảnhPC tại http://127.0.0.1:4322, tắt tiếng, hồ sơQAriêng. Nhả file/Unity; không theo dõi sau bàn giao. Còn4điểm hoàn thiện từreview93%đãghi nhận, khôngsửa tronglượtbuildnày.
+
 - 27/10 20:57 hoàn tất bản sửa sảnh và bố cục người dùng trực tiếp chọn: avatar trái/tên trong VIP/Lv-EXP-VIP riêng/Chiến Lực dưới; nhãn Chủ Tướng một dòng, tránh quạt. Tên kiểm12khung; EXP cắt trong viewport; đã tách mũi tên Xuất Chiến và tăng tương phản StatusBar. BGM mute trong Editor. Full Edit301/301, Full Play176qua/0lỗi/1ignored; lượt UI cuối32/32, browser61+12+9ảnh/12điều khiển qua. Trang name-design.html và review.html cổng4331 đã mở. Nhả toàn bộ file và Unity. Nguồn7d89a90đãpush origin/main. Chưa build APK tích hợp; chờ review hình, không theo dõi sau bàn giao.
 - 27/10 người dùng chọn ảnh bố cục mới sau xem thiết kế: đang áp dụng avatar lớn trái, tên giữa thân VIP, Lv/EXP/VIP hàng riêng và Chiến Lực dưới; nhãn Chủ Tướng một dòng nhỏ gọn. Tắt BGM Editor qua config, Music test1/1. Giữ UI/layout/config/builder/test và Unity tới khi chụp đủ4tỉlệ; không còn chờ duyệt đề xuất cũ.
 
@@ -85,4 +87,4 @@ Mỗi agent chỉ sửa phần của mình. Quy tắc: `AgentComms/README.md`.
 - Việc đầu: kiểm snapshot 3D về scale, toàn bộ submesh và quạt; kiểm footprint VFX sau đổi camera; đồng bộ docs 3D. Sau đó kiểm model/motion Mặc Ảnh và giải quyết Lữ Bố chưa qua QA da.
 - Báo ngay từng phần nhỏ với ảnh trước–sau và số đo. Chưa nghiệm thu tổng thể. Chỉ test Unity, chưa build/test Android theo bàn giao 0619. Sau khi hoàn tất công việc theo dõi inbox 1 giờ.
 ## Unity (Editor / batch mode)
-- Đang giữ bởi: claude, review sảnh 27/10 21:00 (EditMode + PlayMode).
+- Trống. Codex buildWebGL xong23:44, đang kiểm browser; đã nhả Unity.

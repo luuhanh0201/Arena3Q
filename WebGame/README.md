@@ -45,10 +45,14 @@ node WebGame/flow-qa.cjs --latest
 node WebGame/flow-qa.cjs --latest --touch
 node WebGame/release-review.cjs
 node WebGame/verify-release.cjs
+node WebGame/lobby-qa.cjs
+node WebGame/lobby-qa.cjs --show
 ```
 
 Dùng Playwright hiện có trong Admin và Edge đã cài, không thêm package game. Bản `--ui` kiểm trang chọn màn hình trước khi chạy Unity. Bản đầy đủ đợi Unity khởi tạo thật, kiểm 15 kết hợp cửa sổ/tỷ lệ, canvas backing buffer, không tràn trang, giữ lựa chọn và chỉ tải loader một lần. Ảnh/JSON/log tại `NghiemThu/WebGame/20261025`.
 
 `flow-qa.cjs` bấm/nhập bằng chuột và bàn phím qua luồng Frontend thật, kiểm video được tải bằng URL và hồ sơ Unity thực sự được ghi vào IndexedDB. Nhánh web của HUD dùng font nhúng từ `Content/Resources/UiTypography.asset` tham chiếu font mobile hiện có; không phụ thuộc bộ font dự phòng của hệ điều hành.
+
+`lobby-qa.cjs` mở bản WebGL thật bằng Edge trong hồ sơ trình duyệt thử riêng, tắt tiếng. Sau lần tải đầu, công cụ đặt hồ sơ QA Mưu sĩ vào đúng kho IndexedDB của game, tải lại và bấm Vào game để kiểm Sảnh ở ba chế độ PC/điện thoại/iPad. Số dư/VIP mẫu chỉ nằm trong hồ sơ QA đó; không sửa dữ liệu phát hành hoặc hồ sơ trình duyệt đang dùng. Ảnh/log/JSON ở `NghiemThu/WebGame/Lobby_20261027`; tùy chọn `--show` giữ cửa sổ game mở sau khi kiểm thành công để người dùng xem trực tiếp.
 
 Hồ sơ game lưu trong IndexedDB của trình duyệt qua persistentDataPath (bật tự đồng bộ); không dùng chung hồ sơ native mobile. Cửa sổ riêng tư/xóa dữ liệu trang có thể làm mất hồ sơ local. Hỗ trợ hình trên trình duyệt desktop không thay thế kiểm Safari iPad hoặc FPS trên máy thật.

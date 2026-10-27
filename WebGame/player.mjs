@@ -9,8 +9,11 @@ function fit() {
   const width = Math.max(1, area.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight));
   const height = Math.max(1, area.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom));
   const scale = Math.min(width / selected.width, height / selected.height);
-  frame.style.width = `${Math.floor(selected.width * scale)}px`;
-  frame.style.height = `${Math.floor(selected.height * scale)}px`;
+  frame.style.width = `${selected.width * scale}px`;
+  frame.style.height = `${selected.height * scale}px`;
+  // Unity owns its backing buffer after startup. Keep its automatic resize enabled
+  // and derive the pixel ratio from the fitted canvas to preserve the chosen size.
+  if (instance) instance.Module.devicePixelRatio = selected.width / canvas.getBoundingClientRect().width;
 }
 
 function selectMode(id) {
@@ -26,6 +29,7 @@ function selectMode(id) {
   frame.dataset.mode = selected.id;
   $('mode-label').textContent = selected.label;
   fit();
+  window.dispatchEvent(new Event('resize'));
   if (instance) canvas.focus({ preventScroll: true });
 }
 
@@ -76,13 +80,14 @@ async function start() {
     });
     instance = await window.createUnityInstance(canvas, {
       ...build,
-      matchWebGLToCanvasSize: false,
-      devicePixelRatio: 1,
+      matchWebGLToCanvasSize: true,
+      devicePixelRatio: selected.width / canvas.getBoundingClientRect().width,
       autoSyncPersistentDataPath: true,
       showBanner: (message, type) => {
         console[type === 'error' ? 'error' : 'warn']('[Unity]', message);
       }
     }, progress);
+    fit();
     progress(1);
     frame.classList.add('running');
     $('cover').hidden = true;
