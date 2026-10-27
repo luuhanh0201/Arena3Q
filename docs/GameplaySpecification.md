@@ -57,7 +57,7 @@ Thiết kế và bảng chỉ số (🟡): `docs/KeHoach/HeroProgression.md`.
   - ✅ Dùng tuyệt kỹ xong thanh nộ **về 0**; tướng chết thì **mất nộ**; **không** mang sang trận sau.
 - ✅ **Thẻ của tướng đã ra sân hiển thị**: icon của **kỹ năng 2 và 3** kèm **đếm ngược hồi chiêu**, và **thanh nộ** của tuyệt kỹ (sáng lên khi đầy).
   - 🟡 Kỹ năng **chưa học** (chủ tướng chưa đủ cấp, tướng chưa đủ sao): icon hiện **ổ khoá**; chưa có tuyệt kỹ thì **không hiện thanh nộ** và không tích nộ; chạm thẻ hiện cùng thông báo "kỹ năng chưa thể sử dụng".
-- ✅ **Thao tác trên thẻ của tướng đã ra sân**:
+- ✅ **Thao tác trên thẻ của tướng đã ra sân** (28/10: thay bởi mục 5 "Cơ chế mới", chỉ còn chạm = tuyệt kỹ; chưa có trong code):
   - **Chạm** thẻ = dùng **tuyệt kỹ**, tự nhắm (khi thanh nộ đầy). ✅ **Chưa đầy nộ** thì hiển thị thông báo **"kỹ năng chưa thể sử dụng"** (không chọn tướng, không làm gì khác).
   - **Kéo** thẻ ra chiến trường = dùng tuyệt kỹ và **tự chọn điểm / hướng** (thả trên UI = huỷ; 🟡 chỉ khi nộ đầy).
   - **Giữ** thẻ **1.5 giây** = **chọn** tướng đó (đổi chọn tướng nhanh).
@@ -83,9 +83,23 @@ Thiết kế và bảng chỉ số (🟡): `docs/KeHoach/HeroProgression.md`.
   - **Triệu hồi nhanh**: chạm thẻ chưa dùng → tướng xuất hiện tại **điểm triệu hồi đặt sẵn** của ải (`quickSummonPoints`). Nếu có nhiều điểm, 🟡 chọn điểm còn trống gần thành ta nhất.
   - **Triệu hồi tự do**: kéo thẻ thả vào chiến trường → tướng xuất hiện ở vị trí đó, chỉ hợp lệ trong **vùng triệu hồi trước thành ta** (`summonZone` của ải). Hiển thị vùng hợp lệ khi đang kéo; thả ngoài vùng thì hủy, không mất thẻ.
 - 🟡 Triệu hồi không tốn tài nguyên và không có thời gian hồi (giữ tham số `summonCost`, `summonCooldown` = 0 để thêm sau).
-- 🟡 Sau khi xuất hiện, tướng ở trạng thái **Idle** và áp dụng luật chờ 5 giây ở mục 6: không có mục tiêu và không có lệnh trong 5 giây thì tự tiến lên.
+- 🟡 Sau khi xuất hiện, tướng ở trạng thái **Idle** và áp dụng luật chờ 5 giây ở mục 6: không có mục tiêu và không có lệnh trong 5 giây thì tự tiến lên. → **28/10: tướng mới theo lệnh toàn quân đang bật, bỏ luật 5 giây** (mục 5 "Cơ chế mới", chưa có trong code).
 
 ## 5. Điều khiển ✅
+
+### Cơ chế mới: tướng tự đánh + 3 lệnh toàn quân (người dùng chốt 2026-10-28 · **chưa có trong code**)
+Thay phần điều khiển từng tướng bên dưới (giữ làm lịch sử cho tới khi code xong), cùng các chỗ liên quan ở mục 3, 4, 6, 9.
+- ✅ **Bỏ điều khiển từng tướng:** không chọn tướng (bỏ vòng sáng, chạm vào tướng, giữ thẻ 1,5 giây), không ra lệnh di chuyển / tấn công mục tiêu cho từng tướng (bỏ chạm mặt đất, chạm địch, vuốt từ tướng). Tướng và đội lính **tự đánh**.
+- ✅ **Thẻ tướng đã ra sân:** **chạm** = dùng **tuyệt kỹ** tự nhắm khi đầy nộ; chưa đầy thì vẫn báo "kỹ năng chưa thể sử dụng". **Bỏ kéo thẻ để nhắm tuyệt kỹ.** Kỹ năng 2 và 3 vẫn tự dùng như mục 3.
+- ✅ **Triệu hồi giữ nguyên** mục 4: chạm thẻ chưa dùng = ra ở điểm đặt sẵn, kéo thả vào vùng triệu hồi = ra ở chỗ thả.
+- ✅ **Ba nút lệnh trên HUD, áp cho tất cả tướng** (cả đội lính và tướng triệu hồi sau). Một lệnh bật tại một thời điểm; bấm lệnh khác thì thay ngay:
+  - **Hold (giữ vị trí):** mọi tướng đứng yên ở vị trí hiện tại (tướng mới triệu hồi đứng ở chỗ xuất hiện), chỉ đánh địch đi vào tầm đánh, không đuổi. Dùng để chờ quân địch tới.
+  - **Tấn công:** mọi tướng tự tiến lên đánh như Advancing ở mục 6 (ải Công về phía thành địch, ải Thủ về phía đơn vị địch gần nhất).
+  - **Phòng thủ:** mọi tướng lui về vùng trước thành ta, đánh địch đi vào vùng đó rồi quay về chỗ.
+- ✅ **Vào trận lệnh đang bật là Hold** (cả ải Công và ải Thủ); tướng triệu hồi theo lệnh đang bật. **Bỏ luật chờ 5 giây** (Idle không còn tự chuyển Advancing).
+- 🟡 (chưa hỏi, mặc định khi code) Vùng phòng thủ = `summonZone` của ải; bán kính lao ra đánh lấy từ dữ liệu (như `guardRadius`). Vẫn kéo camera / zoom như mục 9; chạm icon tướng ở mép màn hình chỉ đưa camera tới tướng; camera không còn tự bám tướng được chọn. Lính theo lệnh của tướng như mục 7 (Hold như Idle, Tấn công như Advancing, Phòng thủ như quân giữ vị trí). Khiêu khích của địch tác dụng lên mọi tướng (không còn tướng đang thi hành lệnh riêng). Kỹ năng làm tướng dịch chuyển vẫn không tự dùng khi tướng đang đi (lúc tiến lên hoặc lui về). Tên nút, icon (thư viện Lucide) và thứ tự nút theo `docs/QuyTac/ThietKeUI.md`.
+
+### Điều khiển từng tướng (cũ, bị thay bởi mục trên khi code xong)
 - Chỉ **một tướng được chọn** tại một thời điểm; tướng được chọn có vòng sáng.
 - **Chọn tướng**: chạm trực tiếp vào tướng, **giữ thẻ** của tướng đã ra sân **1.5 giây** (mục 3 "Kỹ năng trên thẻ"), hoặc chạm icon tướng ở mép màn hình (mục 9).
 - **Lệnh di chuyển (`MoveCommand`)**: khi đã chọn tướng, chạm vào mặt đất hợp lệ.
@@ -119,6 +133,7 @@ Thiết kế và bảng chỉ số (🟡): `docs/KeHoach/HeroProgression.md`.
 6. Tới đích → chuyển sang **Idle** và áp dụng luật chờ 5 giây bên dưới.
 
 ### Idle và luật chờ 5 giây ✅
+- **28/10: bỏ luật chờ 5 giây**; tướng theo lệnh toàn quân Hold / Tấn công / Phòng thủ ở mục 5 "Cơ chế mới" (chưa có trong code).
 - Tướng đứng tại chỗ, **đánh địch đi vào tầm đánh** nhưng **không đuổi theo**.
 - 🟡 "Địch trong tầm" gồm cả **thành địch**, nhưng **quân địch được ưu tiên**: chỉ đánh thành khi trong tầm không còn quân nào. Áp dụng cho cả lính khi giữ đội hình / giao chiến tự do.
 - Nếu **trong 5 giây liên tục không có mục tiêu** (không có địch trong tầm) và không có lệnh mới → chuyển sang **Advancing**.
@@ -215,6 +230,7 @@ Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng
 - 🟡 Người chơi kéo màn hình để di chuyển camera, hai ngón (hoặc con lăn chuột) để zoom; giới hạn camera trong biên bản đồ.
 - ✅ Tướng nằm ngoài màn hình → hiện **icon tướng ở mép màn hình** theo hướng của tướng đó. Chạm icon → chọn tướng và 🟡 đưa camera tới tướng.
 - ✅ Ngoài chạm trực tiếp vào tướng, có thể chọn tướng bằng **thẻ**.
+- **28/10:** không còn chọn tướng (mục 5 "Cơ chế mới", chưa có trong code): bỏ camera bám tướng được chọn; chạm icon mép màn hình chỉ đưa camera tới tướng.
 
 ## 10. Dữ liệu
 - `FactionDefinition` ⏳ (tối thiểu): id, tên, màu; dùng cho phe danh tướng (Thục, Ngụy, Ngô, Quần) và bảng cộng hưởng.
