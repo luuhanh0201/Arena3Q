@@ -61,6 +61,21 @@ namespace Arena3Q.Editor.Chapter01
         /// <summary>Batch entry: kitbash prefabs first (the map uses them), then the map.</summary>
         public static void BuildWithKitbash() { Chapter01Kitbash.Build(); Build(); }
 
+        /// <summary>
+        /// Batch entry after a geometry change: map, then Codex's map systems (bridge approaches, NavMesh bake on the
+        /// new geometry, prefab), then the map again so the scene carries the fresh prefab. Codex's builder lives in
+        /// another assembly, so it is called by name.
+        /// </summary>
+        public static void BuildWithSystems()
+        {
+            Build();
+            var systems = Type.GetType("Arena3Q.Exploration.Editor.Chapter01SystemsBuilder, Arena3Q.Exploration.Editor")
+                ?? AppDomain.CurrentDomain.GetAssemblies().Select(a => a.GetType("Arena3Q.Exploration.Editor.Chapter01SystemsBuilder")).FirstOrDefault(t => t != null);
+            if (systems == null) { Debug.LogWarning("[Chapter01] Chapter01SystemsBuilder not found; map built without systems."); return; }
+            systems.GetMethod("Build").Invoke(null, null);
+            Build();
+        }
+
         [MenuItem("Arena3Q/Chapter 01/Build Exploration Map")]
         public static void Build()
         {
@@ -98,9 +113,10 @@ namespace Arena3Q.Editor.Chapter01
                     if (Place(p.asset, assets, library, new Vector2(p.pos[0], p.pos[1]), p.yaw, p.roll, p.y, p.scale > 0 ? p.scale : 1f, parent, true) != null) placed++;
                     else report.AppendLine("missing asset " + p.asset);
                 }
-                foreach (var (pos, yaw) in Crossings())
+                foreach (var (pos, yaw, length) in Crossings())
                 {
-                    Place("bridge", assets, library, pos, yaw, 0f, 0f, 1f, shared, true, keepHeight: true); placed++;
+                    Place("bridge", assets, library, pos, yaw, 0f, 0f, 1f, shared, true, keepHeight: true, stretch: length / 8f); placed++;
+                    report.AppendLine($"bridge at ({pos.x:0.0}, {pos.y:0.0}) length {length:0.0} m");
                 }
                 int scattered = 0;
                 var nature = new GameObject("Nature (scattered)").transform; nature.SetParent(world, false);
@@ -263,15 +279,22 @@ namespace Arena3Q.Editor.Chapter01
             go.GetComponent<MeshFilter>().sharedMesh = mesh; var r = go.GetComponent<MeshRenderer>(); r.sharedMaterial = m; r.shadowCastingMode = ShadowCastingMode.Off;
         }
 
-        /// <summary>Bridges where the main road crosses the river, laid along the road.</summary>
-        private static IEnumerable<(Vector2, float)> Crossings()
+        /// <summary>
+        /// Bridges where the main road crosses the river, laid along the road. A road meeting the river at a slant
+        /// needs a longer span: the deck must reach flat ground past the carved banks on both sides, otherwise its
+        /// ends hang over the slope and the walk path breaks (found by Codex's NavMesh test, 28/10).
+        /// </summary>
+        private static IEnumerable<(Vector2 pos, float yaw, float length)> Crossings()
         {
+            const float deck = 8f;  // CH01_WoodBridge length
+            float bank = _m.river.width / 2 + 2.4f;  // flat ground starts here (Height: bed fades out by width/2 + 1.8)
             for (int i = 0; i < _road.Count - 1; i++)
             for (int j = 0; j < _river.Count - 1; j++)
             {
                 if (!Intersect(_road[i], _road[i + 1], _river[j], _river[j + 1], out var p)) continue;
-                var d = _road[i + 1] - _road[i];
-                yield return (p, -Mathf.Atan2(d.y, d.x) * Mathf.Rad2Deg);
+                Vector2 d = (_road[i + 1] - _road[i]).normalized, r = (_river[j + 1] - _river[j]).normalized;
+                float across = Mathf.Max(.35f, Mathf.Abs(d.x * r.y - d.y * r.x));  // sine of the crossing angle
+                yield return (p, -Mathf.Atan2(d.y, d.x) * Mathf.Rad2Deg, Mathf.Max(deck, 2f * bank / across + 1f));
             }
         }
 
@@ -284,7 +307,7 @@ namespace Arena3Q.Editor.Chapter01
 
         // ------------------------------------------------------------------------------------------ placement
 
-        private static GameObject Place(string key, Dictionary<string, AssetDef> assets, BattlefieldAssetLibrary library, Vector2 pos, float yaw, float roll, float y, float scale, Transform parent, bool occupy, bool keepHeight = false)
+        private static GameObject Place(string key, Dictionary<string, AssetDef> assets, BattlefieldAssetLibrary library, Vector2 pos, float yaw, float roll, float y, float scale, Transform parent, bool occupy, bool keepHeight = false, float stretch = 1f)
         {
             Candidate c;
             if (key.StartsWith("lib:")) c = new Candidate("map", key, key, 0f);
@@ -294,6 +317,7 @@ namespace Arena3Q.Editor.Chapter01
             if (go == null) return null;
             go.name = key.Replace("lib:", "");
             go.transform.localScale *= scale;
+            if (stretch != 1f) go.transform.localScale = Vector3.Scale(go.transform.localScale, new Vector3(stretch, 1f, 1f));  // longer along its own X
             go.transform.rotation = Quaternion.Euler(0f, yaw, roll) * go.transform.rotation;
             // Re-ground after rotation and scale: the lowest point sits on the terrain (or at y above it).
             var b = Chapter01ColorReference.Bounds(Chapter01ColorReference.Visible(go));
