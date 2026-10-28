@@ -34,6 +34,13 @@ Gom các quy tắc người dùng đã nói rải rác qua các phiên, để **
   - mỗi chiêu: đà, thời điểm ra đòn khớp mốc sự kiện (event) và hiệu ứng, hướng nhìn, theo đà, thu về; chuyển clip mượt, chân không trượt khi đi / chạy (test chân chạm đất);
   - kiểm bằng test, ảnh / chuỗi khung trong trận theo pha, và trên máy thật; ghi mọi lỗi vào `NhatKyVanHanh_3D.md`.
 - **Mọi chỉnh sửa nhỏ về hình** đều có ảnh **trước – sau** cùng góc, cùng khung. Lưu ảnh vào `AgentComms/claude/NghiemThu/…` hoặc `NghiemThu/<Tướng>/XemTruoc_<Việc>_<NgàyThángNăm>/`, và **mở cho người dùng xem** trước khi làm phần tiếp theo (2026-10-20).
+- **UI làm và duyệt trên web trước** (người dùng 2026-10-28): mọi việc giao diện (HUD trận, Frontend, sảnh, map Chương 1) sửa và cho người dùng xem trên bản web trước; APK chỉ build khi cần nghiệm thu trên máy hoặc khi người dùng yêu cầu, để tránh build APK nhiều lần. Muốn vậy, **chế độ "Điện thoại" của web phải hiển thị sát điện thoại thật**:
+  - đúng độ phân giải và tỉ lệ của máy thử (Redmi Note 8 Pro 2340×1080, 19,5:9), có thêm các tỉ lệ ngang mục tiêu 16:9, 18:9, 20:9 để chọn;
+  - vùng an toàn (tai thỏ, thanh hệ thống) giống máy: `UiSafeArea` nhận đúng phần lề như trên Android;
+  - mật độ điểm ảnh và cỡ chữ, icon như trên máy (cùng `CanvasScaler`, cùng ngưỡng chạm theo dpi), không phóng to theo màn hình PC;
+  - thao tác chạm thật (chạm, vuốt, chụm hai ngón), không chỉ chuột;
+  - cùng cấu hình hiển thị (30 / 60 / 120 FPS) và cùng mức chất lượng hình như bản điện thoại.
+  Chỗ web chưa giống được máy (nén texture ASTC so với DXT, hiệu năng, nhiệt) phải ghi rõ khi báo cáo; FPS và nghiệm thu cuối vẫn đo trên máy thật.
 - **Ba cấu hình hiển thị: 30 FPS = thấp, 60 FPS = mặc định, 120 FPS = cao** (người dùng 2026-10-28, thay quy tắc "tối thiểu 60 FPS, không có 30" ngày 21/10; spec §1). Áp cho **mọi agent, mọi thiết kế và gameplay**:
   - Mọi thiết kế (trận, map, HUD, VFX, model, animation, Frontend, sảnh) phải chạy và nhìn đúng ở **cả ba** cấu hình, và ghi rõ chất lượng hình ảnh ở mỗi cấu hình (mật độ cây cỏ, bóng, hậu kỳ, số hạt VFX, LOD, độ phân giải render…). Cấu hình thấp được giảm chi tiết trang trí, không được làm hỏng hình (không vỡ, không nhấp nháy, không mất chuyển động hiện / tan).
   - **Hạ cấu hình không được ảnh hưởng gameplay:** luật, sát thương, tốc độ, tầm, thời gian hồi, mốc phát chiêu, đường đi, va chạm và kết quả trận phải giống hệt ở 30 / 60 / 120 (logic chạy theo đồng hồ trận, không theo số khung). Mọi thứ người chơi cần để chơi (vùng cảnh báo đỏ, vùng chiêu, cổng Bát Môn, thanh máu, tướng / lính / địch, nút HUD, chạm và kéo) phải hiện đủ và rõ ở cấu hình thấp; chỉ phần trang trí được bớt.

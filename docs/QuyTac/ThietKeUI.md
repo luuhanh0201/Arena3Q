@@ -4,6 +4,8 @@ Người dùng giao ngày 24/10/2026.
 
 **Phạm vi:** mọi chữ và icon hiển thị cho người chơi trong game: HUD trận đánh (`Scripts/UI`), các màn hình Frontend (`Scripts/Frontend`), chữ lấy từ asset nội dung (tên, mô tả kỹ năng, cốt truyện, thông báo...). Tài liệu trong `docs/`, comment trong code, công cụ Editor / dev và nội dung chat **không** thuộc phạm vi này.
 
+**Cách làm (28/10/2026):** UI làm và duyệt trên bản web trước, ở chế độ "Điện thoại" phải hiển thị sát máy thật; APK chỉ build khi nghiệm thu trên máy. Chi tiết: `QuyTacLamViec.md` §3.
+
 ## Định dạng và icon
 
 1. **Không sử dụng Em Dash (`—`) hoặc En Dash (`–`)** trong văn bản. Thay bằng dấu gạch ngang thông thường (`-`), dấu phẩy, dấu hai chấm hoặc dấu chấm tùy ngữ cảnh.
