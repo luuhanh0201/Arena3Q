@@ -1,0 +1,28 @@
+Use case: stylized-concept / ui-mockup. Produce ONE finished landscape 16:9 concept image for Arena3Q, a mobile Three Kingdoms chapter exploration map, at a high-resolution 3840x2160-like level of detail. This is a visual design preview of the entire chapter revealed for reviewing the layout, not a playable scene.
+
+INPUT IMAGE ROLE: The provided local reference is a STYLE AND WORLD reference only. Match its miniature Chinese diorama richness, readable 3/4 orthographic camera, painted materials, streams, small bridges, bamboo, rice fields, villages and camps. Redesign the map to the following SEVEN-area brief. Do NOT copy its twelve numbered nodes, 12/24/36 rewards, stage positions or excessive storm effects.
+
+WORLD AND ART: Eastern Han countryside in 184 CE during the Yellow Turban uprising. Stylized 2.5D hybrid of softly hand-painted textures and convincingly three-dimensional miniature buildings/trees/rocks, consistent scale and lighting. Elevated approximately 50-degree orthographic 3/4 view. Warm clear daytime, soft warm upper-left sunlight, restrained cool brown-blue shadows. Earth #B99B6B, pale dirt path #D3B786, muted grass #748358 and #A49B62, ripe rice #C8A44C, weathered wood #75553B, grey-tile roofs #56666A, stone #898379, yellow flags #C7A130, stream #66999A. Mature polished game art, detailed but readable from a phone, no thick outlines, no glossy PBR, no voxel/pixel art. Cohesive contiguous terrain with foliage extending to every edge; no black void, floating islands or disconnected miniature pedestals. A few shallow rocky rises and scenic waterfalls are fine.
+
+LAYOUT, EXACTLY SEVEN DISTINCT INTERACTION AREAS, connected in this numeric order by ONE physically continuous winding dirt road with small wooden bridges, no blocked route and no crossing confusing branches:
+1 at lower-left: modest Làng Bình An with 4-6 varied small Chinese villagers' houses, wooden village gate, central well, overturned cart, prisoner enclosure and some baskets. Elder and worried villagers stand naturally beside the well; a little group of yellow-headband bandits by the enclosure.
+2 at lower-middle: Đồng Lúa và Kho Lương with divided golden rice plots, wooden granary, EXACTLY two grain wagons, sacks, one small lookout and 3-5 militia grouped around their commander beside a wagon.
+3 at middle-left: Rừng Trúc with a readable winding forest path, dense but not obstructive bamboo, one SMALL outpost tent, one wooden lookout tower, small palisade and guards placed by the entrance.
+4 at center: Trại Lương và Thôn Trang with 2-3 civilian houses occupied by bandits, a grain store, EXACTLY three supply wagons, visible stolen sacks and captive villagers inside a temporary fence; a yellow-turban captain near the wagons.
+5 at upper-center: Tiền Doanh with a LARGE command tent, two wooden guard towers, war drum, spear racks, yellow commander banner. Mini-boss Trình Viễn Chí stands in an open forecourt with two bodyguards, clear walk-up space. This is only ONE stage.
+6 at right-middle: Đại Doanh Hoàng Cân, noticeably more formidable wooden main encampment, large closed wooden gate and palisades, archery towers, drill yard, several barracks and commander tent. Soldiers before gate, elites inside, exactly two guardians near the onward path. Gate, elites and guardians are ALL inside this ONE stage, never add separate numbers for them.
+7 at upper-right: Tế Đàn Hoàng Cân on a high rock terrace reached by broad stone steps; one ritual platform with EXACTLY THREE energy pillars, ritual yellow flags, incense burners and small torches; boss Trương Giác in yellow/gold Taoist robes at the center. Very restrained magical light and fine lightning, not a giant fire storm. No eight-gate Bagua ring.
+
+COMPOSITION: Beautiful coherent playable-feeling miniature landscape. Buildings get progressively bigger from village to camps to ritual altar. Small NPCs physically grounded at appropriate locations, not solitary oversized heroes in the road. Preserve roads clearly across all 7 areas, using the wide canvas efficiently. All seven areas fully visible for this layout review, soft atmospheric haze only at far outer mountains; do not hide an area under fog in this image.
+
+TEXT AND UI, Vietnamese verbatim, clean legible text:
+Small elegant chapter header across the top-left: "Chương 1: Loạn Khăn Vàng".
+Exactly ONE small gold/brass numbered round interaction marker at each area, with numbers 1, 2, 3, 4, 5, 6, 7, each appears ONCE. A discreet parchment nameplate associated with each marker using precisely:
+"Làng Bình An"
+"Đồng Lúa và Kho Lương"
+"Rừng Trúc"
+"Trại Lương và Thôn Trang"
+"Tiền Doanh"
+"Đại Doanh Hoàng Cân"
+"Tế Đàn Hoàng Cân".
+No other stage nodes or extra numbers, no 8-12. Keep NPCs and building silhouettes readable, nameplates don't cover essential routes. No combat HUD, hero-card row, army stance controls, reward counters, extra currency amounts, floating text boxes, watermarks or extra text. No decorative Unicode symbols. The central map is the focus.

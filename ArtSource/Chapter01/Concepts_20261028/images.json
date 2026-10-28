@@ -1,0 +1,30 @@
+﻿[
+    {
+        "file":  "01_chapter-overview-v1.png",
+        "bytes":  4162795,
+        "width":  1672,
+        "height":  940,
+        "sha256":  "54c5d5086421c9b2ecb1821fa03220bd801e1c5b53a1691cbb33fe81fa693db2"
+    },
+    {
+        "file":  "02_chapter-overview.png",
+        "bytes":  3710262,
+        "width":  1672,
+        "height":  940,
+        "sha256":  "cf76644293932a378c6e6782e04b53fc851dd07d1dd13a176e59a1e1468850b7"
+    },
+    {
+        "file":  "03_chapter-opening-fog-v1.png",
+        "bytes":  2519310,
+        "width":  1672,
+        "height":  940,
+        "sha256":  "b9c1d3cb24a61aaf55808b2cd1b19de10a111da442b1134ba5b2d819a8e16d11"
+    },
+    {
+        "file":  "04_chapter-opening-fog.png",
+        "bytes":  2423990,
+        "width":  1672,
+        "height":  940,
+        "sha256":  "b48d283a6514f4ebbef8680f8a6ce4975eac170e62a23e4400a46bbb7889a7d7"
+    }
+]
