@@ -1,0 +1,13 @@
+[
+{"group":"bamboo","label":"Nobiax Bamboo 01","file":"bamboo_Nobiax_Bamboo_01.png","triangles":1440,"notes":"texture Bamboo01_diffuse size 3.1x7.0x2.9 m, scale 0.034"},
+{"group":"bridge","label":"Kenney Bridge wood","file":"bridge_Kenney_Bridge_wood.png","triangles":220,"notes":"colour only woodBark, colour only wood, colour only stone size 4.0x1.5x4.0 m, scale 3.846"},
+{"group":"cliff","label":"Kenney Cliff large","file":"cliff_Kenney_Cliff_large.png","triangles":32,"notes":"colour only dirt size 4.0x4.0x1.7 m, scale 4"},
+{"group":"cliff","label":"Kenney Cliff steps","file":"cliff_Kenney_Cliff_steps.png","triangles":219,"notes":"colour only dirt, colour only grass size 2.0x2.0x2.1 m, scale 2"},
+{"group":"statue","label":"Kenney Statue block","file":"statue_Kenney_Statue_block.png","triangles":140,"notes":"colour only stone, colour only stoneDark size 2.5x2.5x2.5 m, scale 6.25"},
+{"group":"gate","label":"Farm Wooden gate","file":"gate_Farm_Wooden_gate.png","triangles":900,"notes":"colour only Wood _ Honey oak, colour only Wood _ Golden oak, colour only Wood _ Toasted oak, colour only Metal _ Dark forged iron, colour only Metal _ Iron edges size 3.3x2.0x0.4 m, scale 1.667"},
+{"group":"cage","label":"Quaternius Cage small","file":"cage_Quaternius_Cage_small.png","triangles":4588,"notes":" size 1.7x1.6x1.8 m, scale 1.987"},
+{"group":"props","label":"Quaternius Weapon stand","file":"props_Quaternius_Weapon_stand.png","triangles":2084,"notes":" size 2.0x1.6x1.4 m, scale 1.442"},
+{"group":"props","label":"Quaternius Cauldron","file":"props_Quaternius_Cauldron.png","triangles":2020,"notes":" size 1.2x1.0x1.2 m, scale 1.226"},
+{"group":"npc","label":"Quaternius Male peasant","file":"npc_Quaternius_Male_peasant.png","triangles":12894,"notes":"texture T_Peasant_BaseColor size 1.9x1.8x0.5 m, scale 1.057"},
+{"group":"npc","label":"KayKit Knight","file":"npc_KayKit_Knight.png","triangles":5800,"notes":"texture knight_texture size 1.3x1.8x0.9 m, scale 0.662"}
+]

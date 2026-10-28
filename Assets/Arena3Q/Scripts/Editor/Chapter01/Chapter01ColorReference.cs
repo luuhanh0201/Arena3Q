@@ -105,25 +105,48 @@ namespace Arena3Q.Editor.Chapter01
             }
         }
 
+        // Sources the catalog lists as downloaded but no render had checked yet (map resource check).
+        private static readonly Candidate[] GapChecks =
+        {
+            new("bamboo", "Nobiax Bamboo 01", "Gap/Bamboo01.fbx", 7f, "Gap/Bamboo01_diffuse.tga"),
+            new("bridge", "Kenney Bridge wood", "Gap/bridge_wood.fbx", -4f),
+            new("cliff", "Kenney Cliff large", "Gap/cliff_large_rock.fbx", 4f),
+            new("cliff", "Kenney Cliff steps", "Gap/cliff_steps_rock.fbx", 2f),
+            new("statue", "Kenney Statue block", "Gap/statue_block.fbx", 2.5f),
+            new("gate", "Farm Wooden gate", "Gap/Wooden Farm Gate.fbx", 2f),
+            new("cage", "Quaternius Cage small", "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Cage_Small.fbx", 1.6f),
+            new("props", "Quaternius Weapon stand", "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/WeaponStand.fbx", 1.6f),
+            new("props", "Quaternius Cauldron", "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Cauldron.fbx", 1f),
+            new("npc", "Quaternius Male peasant", "Gap/Male_Peasant.fbx", 1.8f, "Gap/T_Peasant_BaseColor.png"),
+            new("npc", "KayKit Knight", "Gap/Knight.fbx", 1.8f, "Gap/knight_texture.png"),
+        };
+
         [MenuItem("Arena3Q/Chapter 01/Render 3D Candidates")]
-        public static void RenderCandidates()
+        public static void RenderCandidates() => Render(Candidates, Out);
+
+        [MenuItem("Arena3Q/Chapter 01/Render Map Resource Check")]
+        public static void RenderGapChecks() => Render(GapChecks, "ArtSource/Chapter01/3D/Renders/GapCheck");
+
+        private static string ModelPath(string source) => source.StartsWith("Assets/") ? source : ThirdParty + "/" + source;
+
+        private static void Render(Candidate[] candidates, string outDir)
         {
             PrepareTextures();
             var library = AssetDatabase.LoadAssetAtPath<BattlefieldAssetLibrary>(LibraryPath);
             var config = AssetDatabase.LoadAssetAtPath<BattlefieldConfig>(ConfigPath);
-            Directory.CreateDirectory(Out);
+            Directory.CreateDirectory(outDir);
             EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             var camera = Stage(config, out _);
             var report = new StringBuilder("group\tlabel\tsource\ttriangles\tmaterials\tnotes\n");
             var index = new StringBuilder("[");
             var extent = new Dictionary<string, float>();
-            foreach (var c in Candidates)
+            foreach (var c in candidates)
             {
                 var probe = Spawn(c, library, out _, out _, out _); if (probe == null) continue;
                 extent.TryGetValue(c.group, out float e); extent[c.group] = Mathf.Max(e, Projected(camera, probe));
                 Object.DestroyImmediate(probe);
             }
-            foreach (var c in Candidates)
+            foreach (var c in candidates)
             {
                 var instance = Spawn(c, library, out string notes, out int triangles, out int materials);
                 string file = instance != null ? c.group + "_" + Slug(c.label) + ".png" : "";
@@ -131,15 +154,15 @@ namespace Arena3Q.Editor.Chapter01
                 {
                     // Same scale for every candidate of a group: frame the group's largest model, not each model.
                     Frame(camera, extent[c.group] * 1.12f);
-                    Capture(camera, Out + "/" + file, Tile, Tile);
+                    Capture(camera, outDir + "/" + file, Tile, Tile);
                     Object.DestroyImmediate(instance);
                 }
                 report.Append($"{c.group}\t{c.label}\t{c.source}\t{triangles}\t{materials}\t{notes}\n");
                 index.Append($"{(index.Length > 1 ? "," : "")}\n{{\"group\":\"{c.group}\",\"label\":\"{c.label}\",\"file\":\"{file}\",\"triangles\":{triangles},\"notes\":\"{notes.Replace("\"", "'")}\"}}");
             }
-            File.WriteAllText(Out + "/report.tsv", report.ToString());
-            File.WriteAllText(Out + "/index.json", index + "\n]\n");
-            Debug.Log("[Chapter01] Rendered " + Candidates.Length + " candidates to " + Out);
+            File.WriteAllText(outDir + "/report.tsv", report.ToString());
+            File.WriteAllText(outDir + "/index.json", index + "\n]\n");
+            Debug.Log("[Chapter01] Rendered " + candidates.Length + " candidates to " + outDir);
         }
 
         /// <summary>Release battlefield light, ambient, grading and camera (BattlefieldEnvironment.ApplyLighting / FitCamera).</summary>
@@ -199,7 +222,7 @@ namespace Arena3Q.Editor.Chapter01
             if (fromLibrary) source = library.Find(c.source.Substring(4));
             else
             {
-                string path = ThirdParty + "/" + c.source;
+                string path = ModelPath(c.source);
                 if (AssetImporter.GetAtPath(path) is ModelImporter importer && importer.materialImportMode != ModelImporterMaterialImportMode.ImportViaMaterialDescription)
                 { importer.materialImportMode = ModelImporterMaterialImportMode.ImportViaMaterialDescription; importer.SaveAndReimport(); }
                 source = AssetDatabase.LoadAssetAtPath<GameObject>(path);
@@ -257,7 +280,7 @@ namespace Arena3Q.Editor.Chapter01
         /// <summary>Albedo next to the model whose file name starts with the material name (Four-corner pavilion).</summary>
         private static Texture2D ByName(string source, string material)
         {
-            string folder = Path.GetDirectoryName(ThirdParty + "/" + source).Replace('\\', '/');
+            string folder = Path.GetDirectoryName(ModelPath(source)).Replace('\\', '/');
             string key = material.Split(' ', '.')[0];
             if (key.Length == 0) return null;
             foreach (var file in Directory.GetFiles(folder, "*.png"))

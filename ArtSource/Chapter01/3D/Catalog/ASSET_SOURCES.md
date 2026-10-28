@@ -126,3 +126,23 @@ Kết quả: **`Arena3Q_Chuong1_Nguon3D.xlsx`** (2 trang: "Nguồn 3D theo hạn
 - Giấy phép: CC0 cho hầu hết; **CS Studio** và **Farm & Market** là giấy phép riêng cho dùng thương mại, CS Studio **cấm phát tán lại file gốc** (giữ ngoài git); **SOI** chỉ có câu trả lời bình luận của tác giả, **rủi ro**, cần người dùng duyệt trước khi dùng. Bằng chứng lưu ở `LICENSE_NOTE.txt` cạnh từng gói.
 - Cần người dùng tải (phải đăng nhập): Holotna (Unity Asset Store), 3dforgex (CGTrader), Mixamo, Fab; Sketchfab vẫn tạm hoãn.
 - Không dùng: Grab3D Wooden Palisade (16.432 tam giác mỗi đoạn, quá nặng), Rice Pack Superhive (trả phí).
+
+## 9. Lượt 3 (28/10 15:30): kiểm tài nguyên dựng map đã đủ chưa
+
+Đối chiếu danh sách 3D của 7 ải (Chuong1.md §12–§18) với các mẫu đã render dưới ánh sáng trận (`Renders/index.html`, `Renders/GapCheck/sheet.jpg`). Kết luận: **chưa đủ**. Khu làng, đồng lúa, trại lương dựng được ngay; rừng trúc, đại doanh, tế đàn và toàn bộ nhân vật còn thiếu.
+
+Sửa danh mục ở trên: mục 23 `building_grain` là ô ruộng lúa chứ không phải kho, thay bằng CS Studio Horse room; mục 31 `building_barracks` (lâu đài đá kiểu Âu) và mục 33 `building_stage` (đống ván) lệch phong cách; mục 21 cổng trại nông trại không phải cổng làng; mục 3, 8, 9 (Kenney vách đá, cầu, bậc đá) và tượng `statue_block` màu phẳng, lệch phong cách; 7 file GLB của Poly Pizza (lều, xe đổ, rương, tre, giếng, hàng rào, xe) **chưa nhập được vào Unity** vì project chưa có gói glTFast.
+
+| Ải | Đủ | Tạm dùng (cần chỉnh) | Thiếu |
+|---|---|---|---|
+| 1 Làng Bình An | nhà CS Studio (4 mẫu x 3 bản màu), giếng, cũi `Cage_Small`, hòm, thùng | giỏ lương (Farm, màu phẳng) | cổng làng gỗ, xe hàng bị đổ (GLB) |
+| 2 Đồng lúa, kho lương | kho (Horse room), xe lương (MegaKit Wagon), bao, chòi gác, rào, ruộng (2D 04, 12) | xe thứ hai lặp cùng mẫu | |
+| 3 Rừng trúc | đá, tháp canh, rào, giá vũ khí, thùng | tre Nobiax (một cây mảnh, cần dựng cụm + thẻ lá 2D 09) | cầu gỗ hợp phong cách, lều lính nhỏ |
+| 4 Trại lương, thôn trang | kho, nhà, rào, chiến kỳ (cột cờ + cờ 22) | 3 xe lặp một mẫu, xe kéo | |
+| 5 Tiền doanh | khu chỉ huy, lều lớn, cột cờ, giá thương đao, 2 tháp, rào lớn | | trống trận đứng riêng |
+| 6 Đại doanh | tường gỗ, lều chỉ huy, giá vũ khí, sân luyện (nền 2D 28) | tháp cung (dùng lại tháp canh), bậc thang | cổng đại doanh, doanh trại lính, trống trận lớn |
+| 7 Tế đàn | cờ và cột nghi lễ, đuốc (2D 23) | nền tế đàn và 3 trụ (Bát Quái, phải bỏ hoạ tiết và đổi màu), lư hương (`Cauldron` là nồi) | địa hình cao / vách đá hợp phong cách, bậc đá, tượng đá |
+| Địa hình chung | mặt đất, đồi thấp tự dựng, nước và bờ sông (2D 05, 08) | | vách đá |
+| Nhân vật | tướng đại diện | | trưởng làng, dân, nghĩa binh, lính Khăn Vàng 3 loại, hộ pháp, Trình Viễn Chí, Trương Giác (Quaternius / KayKit là kiểu Âu, chibi) |
+
+Phần 2D của Codex (29 nhóm) phủ đủ texture, decal và sprite trang trí; chưa có hoa dại, mây / chim xa, toàn bộ hiệu ứng (sương khóa ải, tàn lửa, bụi lá bay, vòng sáng NPC, sét, hào quang boss) và UI bản đồ (§4), vì chưa nằm trong danh sách 2D của người dùng.

@@ -1,0 +1,12 @@
+group	label	source	triangles	materials	notes
+bamboo	Nobiax Bamboo 01	Gap/Bamboo01.fbx	1440	1	texture Bamboo01_diffuse size 3.1x7.0x2.9 m, scale 0.034
+bridge	Kenney Bridge wood	Gap/bridge_wood.fbx	220	3	colour only woodBark, colour only wood, colour only stone size 4.0x1.5x4.0 m, scale 3.846
+cliff	Kenney Cliff large	Gap/cliff_large_rock.fbx	32	1	colour only dirt size 4.0x4.0x1.7 m, scale 4
+cliff	Kenney Cliff steps	Gap/cliff_steps_rock.fbx	219	2	colour only dirt, colour only grass size 2.0x2.0x2.1 m, scale 2
+statue	Kenney Statue block	Gap/statue_block.fbx	140	2	colour only stone, colour only stoneDark size 2.5x2.5x2.5 m, scale 6.25
+gate	Farm Wooden gate	Gap/Wooden Farm Gate.fbx	900	5	colour only Wood _ Honey oak, colour only Wood _ Golden oak, colour only Wood _ Toasted oak, colour only Metal _ Dark forged iron, colour only Metal _ Iron edges size 3.3x2.0x0.4 m, scale 1.667
+cage	Quaternius Cage small	Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Cage_Small.fbx	4588	1	 size 1.7x1.6x1.8 m, scale 1.987
+props	Quaternius Weapon stand	Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/WeaponStand.fbx	2084	2	 size 2.0x1.6x1.4 m, scale 1.442
+props	Quaternius Cauldron	Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Cauldron.fbx	2020	1	 size 1.2x1.0x1.2 m, scale 1.226
+npc	Quaternius Male peasant	Gap/Male_Peasant.fbx	12894	2	texture T_Peasant_BaseColor size 1.9x1.8x0.5 m, scale 1.057
+npc	KayKit Knight	Gap/Knight.fbx	5800	1	texture knight_texture size 1.3x1.8x0.9 m, scale 0.662
