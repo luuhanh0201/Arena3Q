@@ -107,9 +107,11 @@ SF10 Pagoda (tháp Phật giáo, muộn hơn năm 184), SF14 Polygon World Vietn
 - "Low Bridge" by YanaBelaya (https://sketchfab.com/3d-models/low-bridge-015406b34db64859a6d17fb8c825bf52), licensed under CC BY 4.0 (http://creativecommons.org/licenses/by/4.0/).
 - Kenney (www.kenney.nl) và Quaternius (quaternius.com): CC0, không bắt buộc ghi công; vẫn ghi để minh bạch.
 
-## 6. Xung đột cần người dùng chốt
+## 6. Xung đột đã chốt
 
-- `docs/QuanDich/` đang xếp quân Khăn Vàng ở **Chương 2** (Chương 1 = Sơn Tặc), còn `docs/Ai/Chuong1.md` lấy **Chương 1 = Loạn Khăn Vàng**.
+- 28/10 (người dùng): **Chương 1 là Loạn Khăn Vàng** theo `docs/Ai/Chuong1.md`; thứ tự chương trong `docs/QuanDich/` chỉ là bản thử.
+
+**Tạm dừng tìm asset (28/10, người dùng):** người dùng sẽ gửi nguồn asset sau; chưa tải Sketchfab, chưa làm bước 7.
 
 ## 7. Bước kế (khi người dùng duyệt danh sách)
 

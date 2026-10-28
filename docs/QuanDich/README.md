@@ -2,6 +2,9 @@
 
 Phiên bản: v0.1 · 2026-10-17 · Trạng thái: **🟡 ý tưởng chờ duyệt**. Chỉ số là **gợi ý để chơi thử**, cân bằng để giai đoạn sắp phát hành (spec §13 ⏳). Cấp bậc, kỹ năng tinh anh / boss và đặc tính **đã có trong spec §8 và trong code** (2026-10-17; asset ở `Assets/Arena3Q/Content/Enemies/`, hình tạm).
 
+> **28/10/2026 (người dùng):** thứ tự chương bên dưới chỉ là bản **thử nghiệm**. Theo `docs/Ai/Chuong1.md`, **Chương 1 là Loạn Khăn Vàng**; khi làm nội dung chương, lấy tài liệu đó làm chuẩn.
+
+
 Đã chốt (người dùng, 2026-10-17): địch gồm **người + yêu quái**; ải **chia chương theo vùng**, mỗi chương một phe địch riêng (lính thường, tinh anh, boss cuối chương); làm trước **3 chương**.
 
 | Chương | Vùng | Phe địch | File |
