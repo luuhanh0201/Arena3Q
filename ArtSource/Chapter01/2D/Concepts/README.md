@@ -2,7 +2,7 @@
 
 Phạm vi người dùng giao: đọc docs mới và vẽ hình trước, chưa code. Đã vẽ hai bản thiết kế bằng built-in imagegen và mở ảnh trong cuộc trò chuyện. Không sửa Assets, scene, prefab, dữ liệu gameplay hoặc dùng Unity.
 
-Nguồn: `docs/Ai/Chuong1.md` và `docs/Ai/Bản đồ Chương 1 Loạn Khăn Vàng.png` do người dùng cung cấp. Ảnh mẫu có 12 điểm; bản mới dùng đúng 7 điểm ải theo tài liệu.
+Nguồn: `ArtSource/Chapter01/Docs/Chuong1.md` và `ArtSource/Chapter01/Docs/Bản đồ Chương 1 Loạn Khăn Vàng.png` do người dùng cung cấp. Ảnh mẫu có 12 điểm; bản mới dùng đúng 7 điểm ải theo tài liệu.
 
 ## Hai hình để xem
 

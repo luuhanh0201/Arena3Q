@@ -1,6 +1,6 @@
 # Chi tiết 2D Chương 1
 
-Bộ vẽ theo `docs/Ai/Arena3Q_Chuong1_Asset_2D_va_Nguon.xlsx`, `docs/Ai/Chuong1.md`, `docs/QuyTac/QuyTacLamViec.md` và `docs/QuyTac/ThietKeUI.md`. Chỉ vẽ trước theo yêu cầu người dùng, chưa sửa code game hoặc nhập Unity.
+Bộ vẽ theo `ArtSource/Chapter01/Docs/Arena3Q_Chuong1_Asset_2D_va_Nguon.xlsx`, `ArtSource/Chapter01/Docs/Chuong1.md`, `docs/QuyTac/QuyTacLamViec.md` và `docs/QuyTac/ThietKeUI.md`. Chỉ vẽ trước theo yêu cầu người dùng, chưa sửa code game hoặc nhập Unity.
 
 Workbook có 69 mục: 14 mục 2D, 14 hybrid, 41 giữ 3D. Bản đọc đầy đủ bốn sheet: [workbook-extract.json](workbook-extract.json). Dùng các cột P/Q để chọn phần vẽ, không thay công trình, nhân vật và vật cản cần hình khối bằng ảnh.
 
@@ -29,7 +29,7 @@ Mục 11 cây lá rộng: workbook yêu cầu impostor render từ chính model 
 
 Mục 36, 37, 50 và phần lửa của 51, khói nhà mục 20: dùng bộ particle có sẵn theo rule ưu tiên nguồn VFX. [Reuse-VFX.md](Reuse-VFX.md) chỉ rõ nguồn, giấy phép và phần chưa triển khai. Đây là chọn tài nguyên hình, chưa có flipbook/chuyển động hoặc hiệu ứng đã nghiệm thu.
 
-Tranh chọn ải dùng bản concept `../Concepts_20261028/05_chapter-navigation-view.png` để tham chiếu; chưa tách các nhãn khỏi tranh. Không dùng ảnh toàn cảnh làm mặt đất thay scene 3D. Bộ này bổ sung lá/cánh hoa, vết bánh xe/dấu chân/vũng nước và vòng phù chú. Thác xa có chuyển động, mây khóa và bóng blob được ghi trong danh sách dùng lại; chưa tạo animation bằng ảnh tĩnh.
+Tranh chọn ải dùng bản concept `../2D/Concepts/05_chapter-navigation-view.png` để tham chiếu; chưa tách các nhãn khỏi tranh. Không dùng ảnh toàn cảnh làm mặt đất thay scene 3D. Bộ này bổ sung lá/cánh hoa, vết bánh xe/dấu chân/vũng nước và vòng phù chú. Thác xa có chuyển động, mây khóa và bóng blob được ghi trong danh sách dùng lại; chưa tạo animation bằng ảnh tĩnh.
 
 ## Chất lượng 30 / 60 / 120 FPS
 

@@ -103,4 +103,4 @@ Thumbs.db
 /Assets/Arena3Q/Art/Battlefield/Meshes/GrassPatch_*
 
 # Chapter 1 raw third-party 3D downloads (licences recorded in ASSET_SOURCES.md; large, kept local)
-/ArtSource/Chapter01/Sources3D/
+/ArtSource/Chapter01/3D/Sources/

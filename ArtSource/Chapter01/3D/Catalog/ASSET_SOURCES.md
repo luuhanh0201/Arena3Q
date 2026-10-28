@@ -1,10 +1,10 @@
 # Chương 1 – Loạn Khăn Vàng: nguồn asset 3D (Claude, giai đoạn A bước 1–4)
 
-Ngày 28/10/2026. Theo `docs/Ai/Chuong1.md` §6–§7. Người dùng chốt: **chỉ asset miễn phí (CC0, CC BY)**, **Sketchfab do người dùng tự tải theo danh sách**, chỗ thiếu thì **ghép / sửa trong Blender và được dùng AI 3D** (người dùng cung cấp file). Giai đoạn này **chỉ tìm, kiểm giấy phép, tải, lập danh mục**; chưa import Unity, chưa dựng scene, chưa code.
+Ngày 28/10/2026. Theo `ArtSource/Chapter01/Docs/Chuong1.md` §6–§7. Người dùng chốt: **chỉ asset miễn phí (CC0, CC BY)**, **Sketchfab do người dùng tự tải theo danh sách**, chỗ thiếu thì **ghép / sửa trong Blender và được dùng AI 3D** (người dùng cung cấp file). Giai đoạn này **chỉ tìm, kiểm giấy phép, tải, lập danh mục**; chưa import Unity, chưa dựng scene, chưa code.
 
 - Bảng đầy đủ theo các cột của §7: `AssetManifest_3D.csv` (45 dòng: 3 nguồn đã có, 5 gói CC0, 27 ứng viên Sketchfab, 10 mục MISSING).
 - Ảnh duyệt: `packs.png` (gói đã tải), `sketchfab-shortlist.png` (ứng viên Sketchfab).
-- File gốc tải về: `ArtSource/Chapter01/Sources3D/` (**gitignore**, chỉ lưu trên máy; SHA256 ghi trong CSV).
+- File gốc tải về: `ArtSource/Chapter01/3D/Sources/` (**gitignore**, chỉ lưu trên máy; SHA256 ghi trong CSV).
 
 ## 1. Đã có trong dự án (dùng lại trước)
 
@@ -28,7 +28,7 @@ Không dùng: Poly Pizza (kết quả tìm cần JavaScript, phần lớn là qu
 
 ## 3. Sketchfab – nhờ người dùng tải (CC BY 4.0, đã kiểm "cho tải" qua API Sketchfab)
 
-Cách tải: đăng nhập Sketchfab → mở link → **Download 3D Model** → chọn **glTF** (nếu không có thì FBX) → lưu vào `ArtSource/Chapter01/Sources3D/Sketchfab/SFxx/` (xx = mã bên dưới, giải nén giữ nguyên). Claude sẽ kiểm mesh, texture, pivot, số mặt rồi mới chuẩn hoá.
+Cách tải: đăng nhập Sketchfab → mở link → **Download 3D Model** → chọn **glTF** (nếu không có thì FBX) → lưu vào `ArtSource/Chapter01/3D/Sources/Sketchfab/SFxx/` (xx = mã bên dưới, giải nén giữ nguyên). Claude sẽ kiểm mesh, texture, pivot, số mặt rồi mới chuẩn hoá.
 
 ### 3.1 Nên tải (19 model)
 
@@ -109,7 +109,7 @@ SF10 Pagoda (tháp Phật giáo, muộn hơn năm 184), SF14 Polygon World Vietn
 
 ## 6. Xung đột đã chốt
 
-- 28/10 (người dùng): **Chương 1 là Loạn Khăn Vàng** theo `docs/Ai/Chuong1.md`; thứ tự chương trong `docs/QuanDich/` chỉ là bản thử.
+- 28/10 (người dùng): **Chương 1 là Loạn Khăn Vàng** theo `ArtSource/Chapter01/Docs/Chuong1.md`; thứ tự chương trong `docs/QuanDich/` chỉ là bản thử.
 
 **Tạm dừng tìm asset (28/10, người dùng):** người dùng sẽ gửi nguồn asset sau; chưa tải Sketchfab, chưa làm bước 7.
 
@@ -117,12 +117,12 @@ SF10 Pagoda (tháp Phật giáo, muộn hơn năm 184), SF14 Polygon World Vietn
 
 Kiểm từng file (mesh, normal, UV, texture thiếu, pivot, số tam giác) → chỉnh / ghép trong Blender (mái cong, đổi màu theo bảng màu §2) → import URP, prefab, collider đơn giản, LOD → scene mẫu so màu (nhà + cây + đá + đất + nắng) → dựng khối 7 khu vực → ảnh tham chiếu cho Codex. Mọi asset phải ghi rõ chất lượng ở 3 cấu hình 30 / 60 / 120 FPS (quy tắc 28/10).
 
-## 8. Lượt 2 (28/10): nguồn 3D theo file `docs/Ai/Arena3Q_Chuong1_Asset_2D_va_Nguon.xlsx` của người dùng
+## 8. Lượt 2 (28/10): nguồn 3D theo file `ArtSource/Chapter01/Docs/Arena3Q_Chuong1_Asset_2D_va_Nguon.xlsx` của người dùng
 
 Kết quả: **`Arena3Q_Chuong1_Nguon3D.xlsx`** (2 trang: "Nguồn 3D theo hạng mục" cho đủ 69 hạng mục, "Gói nguồn 3D" có giấy phép, đường dẫn, số model, SHA256) và ảnh duyệt **`sources-new.png`**.
 
 - 55 hạng mục cần 3D: **19 dùng nguồn có sẵn** trong dự án, **32 đã có nguồn tải về máy**, **4 chưa có nguồn sẵn** (cổng Đại Doanh lớn, trống trận rời, Trình Viễn Chí, Trương Giác: ghép trong Blender hoặc AI 3D). 14 hạng mục "2D thay thế được" để Codex vẽ, có ghi dự phòng 3D gần camera.
-- Gói mới tải (file gốc trong `Sources3D/`, gitignore): Quaternius Ultimate Nature, Universal Base Characters, Modular Character Outfits Fantasy; Kenney Castle Kit; KayKit Medieval Hexagon, Forest, Adventurers; CS Studio Chinese Building Set 1; Chinese Four-corner Pavilion; Low Poly Farm & Market FREE; SOI Medieval Interior; 7 model Poly Pizza (Quaternius); OpenGameArt Yughues (tre, cây cỏ vẽ tay, bụi) và rubberduck.
+- Gói mới tải (file gốc trong `3D/Sources/`, gitignore): Quaternius Ultimate Nature, Universal Base Characters, Modular Character Outfits Fantasy; Kenney Castle Kit; KayKit Medieval Hexagon, Forest, Adventurers; CS Studio Chinese Building Set 1; Chinese Four-corner Pavilion; Low Poly Farm & Market FREE; SOI Medieval Interior; 7 model Poly Pizza (Quaternius); OpenGameArt Yughues (tre, cây cỏ vẽ tay, bụi) và rubberduck.
 - Giấy phép: CC0 cho hầu hết; **CS Studio** và **Farm & Market** là giấy phép riêng cho dùng thương mại, CS Studio **cấm phát tán lại file gốc** (giữ ngoài git); **SOI** chỉ có câu trả lời bình luận của tác giả, **rủi ro**, cần người dùng duyệt trước khi dùng. Bằng chứng lưu ở `LICENSE_NOTE.txt` cạnh từng gói.
 - Cần người dùng tải (phải đăng nhập): Holotna (Unity Asset Store), 3dforgex (CGTrader), Mixamo, Fab; Sketchfab vẫn tạm hoãn.
 - Không dùng: Grab3D Wooden Palisade (16.432 tam giác mỗi đoạn, quá nặng), Rice Pack Superhive (trả phí).

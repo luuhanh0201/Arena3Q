@@ -1,5 +1,5 @@
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-$book = [IO.Compression.ZipFile]::OpenRead((Join-Path $PSScriptRoot '../../../docs/Ai/Arena3Q_Chuong1_Asset_2D_va_Nguon.xlsx'))
+$book = [IO.Compression.ZipFile]::OpenRead((Join-Path $PSScriptRoot '../../../ArtSource/Chapter01/Docs/Arena3Q_Chuong1_Asset_2D_va_Nguon.xlsx'))
 function Read-Part($part) {
     $reader = [IO.StreamReader]::new($book.GetEntry($part).Open())
     try { [xml]$reader.ReadToEnd() } finally { $reader.Dispose() }
