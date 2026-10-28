@@ -76,6 +76,15 @@ namespace Arena3Q.Core
         public bool storySeen;
         public bool tutorialCleared;
         public List<OwnedHero> heroes = new List<OwnedHero>();
+        public List<ChapterProgress> chapters = new List<ChapterProgress>();
+
+        public ChapterProgress GetChapter(string chapterId)
+        {
+            chapters ??= new List<ChapterProgress>();
+            var chapter = chapters.Find(c => c != null && c.chapterId == chapterId);
+            if (chapter == null) { chapter = new ChapterProgress { chapterId = chapterId }; chapters.Add(chapter); }
+            return chapter;
+        }
 
         public bool HasLord => !string.IsNullOrEmpty(lordHeroId);
         public bool HasName => !string.IsNullOrEmpty(name);
