@@ -316,9 +316,65 @@ def stone_stairs():
     finish("CH01_StoneStairs", p)
 
 
+def wood_bridge():
+    """Cầu gỗ (Ải 1 to 4 river crossings): arched plank deck along X, stringers, posts and rails."""
+    reset(); p = []; length, width, n = 8.0, 3.0, 16
+    deck = lambda x: 0.12 + 0.55 * math.cos(math.pi * x / length)  # 0.12 m at the ends, 0.67 m mid-span
+    for i in range(n):
+        x = -length / 2 + (i + 0.5) * length / n
+        p.append(box("plank", (length / n - 0.04, width, 0.1), (x, 0, deck(x)), "M_Wood", rot=(0, -math.degrees(math.atan(-0.55 * math.pi / length * math.sin(math.pi * x / length))), 0), bevel=0.01))
+    for s in (-1, 1):
+        y = s * (width / 2 - 0.15)
+        for k in range(4):
+            x0 = -length / 2 + k * length / 4; x1 = x0 + length / 4
+            p.append(beam("stringer", (x0, y, deck(x0) - 0.14), (x1, y, deck(x1) - 0.14), 0.18, "M_WoodDark"))
+        y = s * (width / 2 + 0.05)
+        posts = [-length / 2 + 0.2, -length / 6, length / 6, length / 2 - 0.2]
+        for x in posts:
+            p.append(box("post", (0.16, 0.16, 1.05), (x, y, deck(x) + 0.47), "M_WoodDark", bevel=0.01))
+        for a, b in zip(posts, posts[1:]):
+            p.append(beam("rail", (a, y, deck(a) + 0.95), (b, y, deck(b) + 0.95), 0.1, "M_WoodDark"))
+    finish("CH01_WoodBridge", p)
+
+
+def barracks():
+    """Doanh trại lính (Ải 6): long plank hall on a stone base, dark tiled gable roof, slit windows."""
+    reset(); p = []; L, W, H = 10.0, 5.0, 2.8
+    p.append(box("base", (L + 0.4, W + 0.4, 0.35), (0, 0, 0.175), "M_Stone"))
+    for s in (-1, 1):
+        p.append(box("wallLong", (L, 0.15, H), (0, s * W / 2, 0.35 + H / 2), "M_Wood") if s > 0 else
+                 box("wallFrontL", (L / 2 - 0.8, 0.15, H), (-(L / 4 + 0.4), -W / 2, 0.35 + H / 2), "M_Wood"))
+        p.append(box("wallEnd", (0.15, W, H), (s * L / 2, 0, 0.35 + H / 2), "M_Wood"))
+        for x in (-L / 2, L / 2):
+            p.append(box("corner", (0.3, 0.3, H + 0.1), (x, s * W / 2, 0.35 + H / 2), "M_WoodDark"))
+        for k in range(4):
+            x = -L / 2 + 1.2 + k * (L - 2.4) / 3
+            if s < 0 and abs(x) < 1.2: continue
+            p.append(box("slit", (0.7, 0.05, 0.35), (x, s * (W / 2 + 0.08), 0.35 + H * 0.72), "M_Dark", bevel=0))
+    p.append(box("wallFrontR", (L / 2 - 0.8, 0.15, H), (L / 4 + 0.4, -W / 2, 0.35 + H / 2), "M_Wood"))
+    p.append(box("lintel", (1.8, 0.2, 0.5), (0, -W / 2, 0.35 + H - 0.25), "M_WoodDark"))
+    p.append(box("doorway", (1.5, 0.05, H - 0.5), (0, -W / 2 + 0.1, 0.35 + (H - 0.5) / 2), "M_Dark", bevel=0))
+    p += roof("roof", L + 1.2, W / 2 + 0.7, 0.35 + H + 1.7, 1.75, 0.3, "M_RoofDark")
+    for x in (-L / 2, L / 2):
+        p.append(gable("gable", W, 1.6, 0.35 + H, x, "M_Wood"))
+    finish("CH01_Barracks", p)
+
+
+def campfire():
+    """Đống lửa trại: ring of stones and crossed logs (the fire itself is VFX)."""
+    reset(); p = []
+    for k in range(9):
+        a = 2 * math.pi * k / 9
+        p.append(box("stone", (0.32, 0.26, 0.22), (math.cos(a) * 0.62, math.sin(a) * 0.62, 0.1), "M_Rock", rot=(0, 0, math.degrees(a) + 17 * k), bevel=0.04))
+    for k in range(4):
+        a = math.pi * k / 4
+        p.append(beam("log", (math.cos(a) * 0.5, math.sin(a) * 0.5, 0.06), (-math.cos(a) * 0.12, -math.sin(a) * 0.12, 0.42), 0.12, "M_WoodDark"))
+    finish("CH01_Campfire", p)
+
+
 os.makedirs(OUT, exist_ok=True)
 random.seed(1)
 village_gate(); camp_gate(); soldier_tent(); war_drum()
 cliff_wall("CH01_CliffWall_A", 1); cliff_wall("CH01_CliffWall_B", 2, (4.5, 1.6, 2.4)); cliff_outcrop("CH01_CliffOutcrop", 3)
-altar_plateau(); stone_stairs()
+altar_plateau(); stone_stairs(); wood_bridge(); barracks(); campfire()
 print("[Kitbash] done")

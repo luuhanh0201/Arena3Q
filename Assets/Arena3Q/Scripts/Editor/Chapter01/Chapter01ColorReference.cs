@@ -30,9 +30,11 @@ namespace Arena3Q.Editor.Chapter01
         private const int Tile = 720;
         private const string ScenePath = "Assets/Arena3Q/Chapters/Chapter01_YellowTurban/Scenes/CH01_ColorReference.unity";
         private const string SceneRenders = "ArtSource/Chapter01/3D/Renders/Reference";
-        private static string _materialFolder;
+        internal static string _materialFolder;
+        // Shared converted materials across spawns (map builder): source material + albedo -> one URP Lit asset.
+        internal static Dictionary<string, Material> SharedMaterials;
 
-        private sealed class Candidate
+        internal sealed class Candidate
         {
             public string group, label, source, texture;
             public float height;
@@ -199,7 +201,7 @@ namespace Arena3Q.Editor.Chapter01
         }
 
         /// <summary>Release battlefield light, ambient, grading and camera (BattlefieldEnvironment.ApplyLighting / FitCamera).</summary>
-        private static Camera Stage(BattlefieldConfig config, out GameObject ground)
+        internal static Camera Stage(BattlefieldConfig config, out GameObject ground)
         {
             var sun = new GameObject("Sun", typeof(Light)).GetComponent<Light>();
             sun.type = LightType.Directional; sun.shadows = LightShadows.Soft; sun.shadowBias = .025f; sun.shadowNormalBias = .25f;
@@ -247,7 +249,7 @@ namespace Arena3Q.Editor.Chapter01
         }
 
         /// <summary>Instantiates a candidate standing on the ground at the origin, scaled to the group height.</summary>
-        private static GameObject Spawn(Candidate c, BattlefieldAssetLibrary library, out string notes, out int triangles, out int materialCount)
+        internal static GameObject Spawn(Candidate c, BattlefieldAssetLibrary library, out string notes, out int triangles, out int materialCount)
         {
             notes = ""; triangles = 0; materialCount = 0;
             GameObject source;
@@ -279,7 +281,17 @@ namespace Arena3Q.Editor.Chapter01
                 {
                     var m = materials[i]; if (m == null) continue;
                     if (AssetDatabase.GetAssetPath(m).StartsWith(Chapter01Kitbash.Kit)) { converted[m] = m; continue; }  // shared kitbash material
-                    if (!converted.TryGetValue(m, out var lit)) { converted[m] = lit = Convert(m, fallback ?? ByName(c.source, m.name), out string note); if (note != null) shaders.Add(note); }
+                    if (!converted.TryGetValue(m, out var lit))
+                    {
+                        var albedo = fallback ?? ByName(c.source, m.name);
+                        string key = m.GetEntityId() + "|" + (albedo != null ? albedo.GetEntityId().ToString() : "-");
+                        if (SharedMaterials == null || !SharedMaterials.TryGetValue(key, out lit))
+                        {
+                            lit = Convert(m, albedo, out string note); if (note != null) shaders.Add(note);
+                            if (SharedMaterials != null) SharedMaterials[key] = lit;
+                        }
+                        converted[m] = lit;
+                    }
                     materials[i] = lit;
                 }
                 renderer.sharedMaterials = materials;
@@ -322,7 +334,7 @@ namespace Arena3Q.Editor.Chapter01
             return null;
         }
 
-        private static Material Lit(Texture2D texture, Color colour)
+        internal static Material Lit(Texture2D texture, Color colour)
         {
             var m = new Material(Shader.Find("Universal Render Pipeline/Lit"));
             if (texture != null) m.SetTexture("_BaseMap", texture);
@@ -330,27 +342,26 @@ namespace Arena3Q.Editor.Chapter01
             return m;
         }
 
-        private static T Load<T>(string path) where T : Object
+        internal static T Load<T>(string path) where T : Object
         {
             var asset = AssetDatabase.LoadAssetAtPath<T>(path);
             if (asset == null) Debug.LogWarning("[Chapter01] Missing " + path);
             return asset;
         }
 
-        /// <summary>Renderers the battle camera draws up close: enabled ones, LOD 0 only.</summary>
-        private static Renderer[] Visible(GameObject instance)
+        /// <summary>Renderers the battle camera draws up close: enabled ones, LOD 0 only (LOD groups stay as they are).</summary>
+        internal static Renderer[] Visible(GameObject instance)
         {
             var hidden = new HashSet<Renderer>();
             foreach (var group in instance.GetComponentsInChildren<LODGroup>(true))
             {
                 var lods = group.GetLODs();
-                for (int i = 1; i < lods.Length; i++) foreach (var r in lods[i].renderers) if (r != null) { hidden.Add(r); r.enabled = false; }
-                group.enabled = false;
+                for (int i = 1; i < lods.Length; i++) foreach (var r in lods[i].renderers) if (r != null) hidden.Add(r);
             }
             return instance.GetComponentsInChildren<Renderer>(false).Where(r => r.enabled && !hidden.Contains(r)).ToArray();
         }
 
-        private static Bounds Bounds(Renderer[] renderers)
+        internal static Bounds Bounds(Renderer[] renderers)
         {
             var b = new Bounds(); bool any = false;
             foreach (var r in renderers) { if (!any) { b = r.bounds; any = true; } else b.Encapsulate(r.bounds); }
@@ -359,7 +370,7 @@ namespace Arena3Q.Editor.Chapter01
 
         private static int Triangles(Mesh mesh) => mesh == null ? 0 : Enumerable.Range(0, mesh.subMeshCount).Sum(i => (int)mesh.GetIndexCount(i)) / 3;
 
-        private static string Slug(string label) => new string(label.Select(ch => char.IsLetterOrDigit(ch) ? ch : '_').ToArray());
+        internal static string Slug(string label) => new string(label.Select(ch => char.IsLetterOrDigit(ch) ? ch : '_').ToArray());
 
         /// <summary>Picked candidate of each group (Candidates/README.md), placed by the reference scene layout.</summary>
         private static readonly (Candidate model, Vector3 position, float yaw)[] Layout =

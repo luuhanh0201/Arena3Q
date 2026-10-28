@@ -147,7 +147,7 @@ namespace Arena3Q.Editor.Chapter01
             var m = AssetDatabase.LoadAssetAtPath<Material>(matPath);
             if (m == null) { m = new Material(Shader.Find("Universal Render Pipeline/Lit")); AssetDatabase.CreateAsset(m, matPath); }
             m.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/ThirdParty/Chapter01/Gap/Bamboo01_diffuse.tga"));
-            m.SetColor("_BaseColor", new Color(1.25f, 1.3f, 1.1f)); m.SetFloat("_Smoothness", .1f);
+            m.SetColor("_BaseColor", new Color(1.6f, 1.65f, 1.3f)); m.SetFloat("_Smoothness", .1f);
             m.SetFloat("_AlphaClip", 1f); m.SetFloat("_Cutoff", .5f); m.EnableKeyword("_ALPHATEST_ON"); m.SetFloat("_Cull", 0f);
             m.SetOverrideTag("RenderType", "TransparentCutout"); m.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest;
 

@@ -1,0 +1,3229 @@
+{
+ "size": [
+  140,
+  90
+ ],
+ "skirt": 55,
+ "resolution": 1,
+ "seed": 7,
+ "road": {
+  "width": 3.4,
+  "depth": 0,
+  "points": [
+   -72,
+   -30,
+   -63,
+   -29.5,
+   -52,
+   -28,
+   -40,
+   -28.5,
+   -33,
+   -30.5,
+   -26,
+   -33,
+   -16,
+   -34.5,
+   -6,
+   -33.5,
+   -2.5,
+   -29,
+   -2,
+   -22,
+   -4,
+   -15,
+   -12,
+   -11.5,
+   -20,
+   -10,
+   -30,
+   -9,
+   -40,
+   -5,
+   -47,
+   0,
+   -52,
+   4.5,
+   -54,
+   9,
+   -49,
+   13,
+   -40,
+   12,
+   -30,
+   9,
+   -21,
+   6.5,
+   -13,
+   5,
+   -4,
+   5.5,
+   3,
+   9,
+   5,
+   14,
+   2.5,
+   20,
+   0,
+   25,
+   0.5,
+   29,
+   7,
+   31.5,
+   14,
+   30,
+   17,
+   22,
+   14,
+   12,
+   14,
+   4,
+   18,
+   2,
+   22,
+   2,
+   30,
+   2,
+   37,
+   3,
+   41,
+   8,
+   44,
+   14,
+   47,
+   18.5,
+   52,
+   21,
+   56,
+   20.4
+  ]
+ },
+ "paths": [
+  {
+   "width": 2.2,
+   "depth": 0,
+   "points": [
+    -48,
+    -28,
+    -48,
+    -22,
+    -48,
+    -16
+   ]
+  },
+  {
+   "width": 2.2,
+   "depth": 0,
+   "points": [
+    -49.5,
+    -28.5,
+    -49.5,
+    -34,
+    -49.5,
+    -40
+   ]
+  },
+  {
+   "width": 2.4,
+   "depth": 0,
+   "points": [
+    -2.5,
+    -28.6,
+    0,
+    -28.2,
+    1.8,
+    -28
+   ]
+  },
+  {
+   "width": 2.2,
+   "depth": 0,
+   "points": [
+    30,
+    2,
+    30,
+    4.5,
+    30,
+    6.8
+   ]
+  },
+  {
+   "width": 2.2,
+   "depth": 0,
+   "points": [
+    37,
+    3,
+    39,
+    0,
+    41,
+    -2.8
+   ]
+  },
+  {
+   "width": 2.2,
+   "depth": 0,
+   "points": [
+    0.5,
+    29,
+    -2,
+    30.5,
+    -4.5,
+    31.5
+   ]
+  },
+  {
+   "width": 2,
+   "depth": 0,
+   "points": [
+    -52,
+    4.5,
+    -56,
+    5.5,
+    -59,
+    6
+   ]
+  }
+ ],
+ "river": {
+  "width": 4.6,
+  "depth": 1.2,
+  "points": [
+   -20,
+   105,
+   -24,
+   75,
+   -26,
+   47,
+   -31,
+   34,
+   -28,
+   22,
+   -31,
+   12,
+   -27,
+   2,
+   -31,
+   -9,
+   -29,
+   -20,
+   -28,
+   -32,
+   -24,
+   -47,
+   -20,
+   -75,
+   -16,
+   -105
+  ]
+ },
+ "paddies": [
+  {
+   "centre": [
+    -21,
+    -25
+   ],
+   "size": [
+    8,
+    6
+   ]
+  },
+  {
+   "centre": [
+    -12,
+    -25
+   ],
+   "size": [
+    8,
+    6
+   ]
+  },
+  {
+   "centre": [
+    -21,
+    -17
+   ],
+   "size": [
+    8,
+    6
+   ]
+  },
+  {
+   "centre": [
+    -12,
+    -17
+   ],
+   "size": [
+    8,
+    6
+   ]
+  }
+ ],
+ "yards": [
+  {
+   "centre": [
+    29,
+    -4
+   ],
+   "size": [
+    9,
+    7
+   ]
+  },
+  {
+   "centre": [
+    -4,
+    31
+   ],
+   "size": [
+    18,
+    18
+   ]
+  },
+  {
+   "centre": [
+    -14,
+    -4
+   ],
+   "size": [
+    16,
+    12
+   ]
+  },
+  {
+   "centre": [
+    4,
+    -28
+   ],
+   "size": [
+    5,
+    6
+   ]
+  }
+ ],
+ "meadows": [
+  {
+   "centre": [
+    -60,
+    -40
+   ],
+   "radius": 10
+  },
+  {
+   "centre": [
+    -36,
+    -16
+   ],
+   "radius": 8
+  },
+  {
+   "centre": [
+    -62,
+    -14
+   ],
+   "radius": 9
+  },
+  {
+   "centre": [
+    -52,
+    5
+   ],
+   "radius": 18
+  },
+  {
+   "centre": [
+    -24,
+    18
+   ],
+   "radius": 9
+  },
+  {
+   "centre": [
+    12,
+    -38
+   ],
+   "radius": 10
+  },
+  {
+   "centre": [
+    62,
+    -30
+   ],
+   "radius": 14
+  },
+  {
+   "centre": [
+    30,
+    32
+   ],
+   "radius": 10
+  }
+ ],
+ "assets": [
+  {
+   "key": "house_b1",
+   "source": "CSStudio/bookstore/Bookstore.fbx",
+   "height": 5,
+   "texture": "CSStudio/bookstore/V1.png"
+  },
+  {
+   "key": "house_b2",
+   "source": "CSStudio/bookstore/Bookstore.fbx",
+   "height": 5,
+   "texture": "CSStudio/bookstore/V2.png"
+  },
+  {
+   "key": "house_b3",
+   "source": "CSStudio/bookstore/Bookstore.fbx",
+   "height": 5,
+   "texture": "CSStudio/bookstore/V3.png"
+  },
+  {
+   "key": "house_k1",
+   "source": "CSStudio/butcher/Butcher.fbx",
+   "height": 4.5,
+   "texture": "CSStudio/butcher/V1.png"
+  },
+  {
+   "key": "house_k2",
+   "source": "CSStudio/butcher/Butcher.fbx",
+   "height": 4.5,
+   "texture": "CSStudio/butcher/V2.png"
+  },
+  {
+   "key": "house_k3",
+   "source": "CSStudio/butcher/Butcher.fbx",
+   "height": 4.5,
+   "texture": "CSStudio/butcher/V3.png"
+  },
+  {
+   "key": "granary_v1",
+   "source": "CSStudio/horse_room/Horse_room.fbx",
+   "height": 4.5,
+   "texture": "CSStudio/horse_room/V1.png"
+  },
+  {
+   "key": "granary_v3",
+   "source": "CSStudio/horse_room/Horse_room.fbx",
+   "height": 4.5,
+   "texture": "CSStudio/horse_room/V3.png"
+  },
+  {
+   "key": "wagon",
+   "source": "MegaKit/Prop_Wagon.fbx",
+   "height": 1.4,
+   "texture": "MegaKit/T_WoodTrim_BaseColor.png"
+  },
+  {
+   "key": "bags",
+   "source": "QuaterniusVillage/Bags.fbx",
+   "height": 0.7,
+   "texture": null
+  },
+  {
+   "key": "well",
+   "source": "QuaterniusVillage/Well.fbx",
+   "height": 2,
+   "texture": null
+  },
+  {
+   "key": "cage",
+   "source": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Cage_Small.fbx",
+   "height": 1.6,
+   "texture": null
+  },
+  {
+   "key": "cauldron",
+   "source": "Assets/ThirdParty/Quaternius/FantasyPropsStandard/Exports/FBX/Cauldron.fbx",
+   "height": 1,
+   "texture": null
+  },
+  {
+   "key": "village_gate",
+   "source": "kit:CH01_VillageGate",
+   "height": 0,
+   "texture": null
+  },
+  {
+   "key": "camp_gate",
+   "source": "kit:CH01_CampGate",
+   "height": 0,
+   "texture": null
+  },
+  {
+   "key": "tent",
+   "source": "kit:CH01_SoldierTent",
+   "height": 0,
+   "texture": null
+  },
+  {
+   "key": "drum",
+   "source": "kit:CH01_WarDrum",
+   "height": 0,
+   "texture": null
+  },
+  {
+   "key": "drum_large",
+   "source": "kit:CH01_WarDrumLarge",
+   "height": 0,
+   "texture": null
+  },
+  {
+   "key": "cliff_a",
+   "source": "kit:CH01_CliffWall_A",
+   "height": 0,
+   "texture": null
+  },
+  {
+   "key": "cliff_b",
+   "source": "kit:CH01_CliffWall_B",
+   "height": 0,
+   "texture": null
+  },
+  {
+   "key": "outcrop",
+   "source": "kit:CH01_CliffOutcrop",
+   "height": 0,
+   "texture": null
+  },
+  {
+   "key": "plateau",
+   "source": "kit:CH01_AltarPlateau",
+   "height": 0,
+   "texture": null
+  },
+  {
+   "key": "stairs",
+   "source": "kit:CH01_StoneStairs",
+   "height": 0,
+   "texture": null
+  },
+  {
+   "key": "bridge",
+   "source": "kit:CH01_WoodBridge",
+   "height": 0,
+   "texture": null
+  },
+  {
+   "key": "barracks",
+   "source": "kit:CH01_Barracks",
+   "height": 0,
+   "texture": null
+  },
+  {
+   "key": "campfire",
+   "source": "kit:CH01_Campfire",
+   "height": 0,
+   "texture": null
+  },
+  {
+   "key": "bamboo0",
+   "source": "kit:CH01_BambooClump_0",
+   "height": 0,
+   "texture": null
+  },
+  {
+   "key": "bamboo1",
+   "source": "kit:CH01_BambooClump_1",
+   "height": 0,
+   "texture": null
+  },
+  {
+   "key": "bamboo2",
+   "source": "kit:CH01_BambooClump_2",
+   "height": 0,
+   "texture": null
+  }
+ ],
+ "areas": [
+  {
+   "id": 1,
+   "name": "Lang Binh An",
+   "centre": [
+    -48,
+    -28
+   ],
+   "radius": 14
+  },
+  {
+   "id": 2,
+   "name": "Dong Lua va Kho Luong",
+   "centre": [
+    -10,
+    -27
+   ],
+   "radius": 15
+  },
+  {
+   "id": 3,
+   "name": "Rung Truc",
+   "centre": [
+    -54,
+    5
+   ],
+   "radius": 13
+  },
+  {
+   "id": 4,
+   "name": "Trai Luong va Thon Trang",
+   "centre": [
+    -8,
+    4
+   ],
+   "radius": 13
+  },
+  {
+   "id": 5,
+   "name": "Tien Doanh",
+   "centre": [
+    -4,
+    31
+   ],
+   "radius": 12
+  },
+  {
+   "id": 6,
+   "name": "Dai Doanh Hoang Can",
+   "centre": [
+    36,
+    2
+   ],
+   "radius": 16
+  },
+  {
+   "id": 7,
+   "name": "Te Dan Hoang Can",
+   "centre": [
+    56,
+    31
+   ],
+   "radius": 12
+  }
+ ],
+ "props": [
+  {
+   "asset": "village_gate",
+   "pos": [
+    -63,
+    -29.5
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "house_b2",
+   "pos": [
+    -63,
+    -19
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "house_b1",
+   "pos": [
+    -53,
+    -19
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "house_b3",
+   "pos": [
+    -42,
+    -19
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "house_k2",
+   "pos": [
+    -56,
+    -38.5
+   ],
+   "yaw": 180,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "house_k1",
+   "pos": [
+    -43,
+    -38.5
+   ],
+   "yaw": 180,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "well",
+   "pos": [
+    -46,
+    -32.5
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "wagon",
+   "pos": [
+    -37.5,
+    -24.6
+   ],
+   "yaw": 30,
+   "roll": 75,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "lib:Crate_Wooden",
+   "pos": [
+    -35.8,
+    -24.2
+   ],
+   "yaw": 20,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "lib:Bag",
+   "pos": [
+    -36.6,
+    -23.2
+   ],
+   "yaw": 50,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "lib:Barrel",
+   "pos": [
+    -39.6,
+    -23.6
+   ],
+   "yaw": 0,
+   "roll": 90,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "cage",
+   "pos": [
+    -59,
+    -32.8
+   ],
+   "yaw": 10,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "cage",
+   "pos": [
+    -57.2,
+    -33.3
+   ],
+   "yaw": -15,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "lib:Barrel",
+   "pos": [
+    -53,
+    -32
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "lib:Barrel",
+   "pos": [
+    -52.2,
+    -32.6
+   ],
+   "yaw": 40,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "lib:Crate_Wooden",
+   "pos": [
+    -41,
+    -32.5
+   ],
+   "yaw": 15,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "lib:FarmCrate_Empty",
+   "pos": [
+    -40,
+    -33.4
+   ],
+   "yaw": 60,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "lib:Bucket_Wooden_1",
+   "pos": [
+    -45,
+    -31.4
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "bags",
+   "pos": [
+    -38.5,
+    -32.6
+   ],
+   "yaw": 70,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "lib:Bench",
+   "pos": [
+    -48,
+    -33.8
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "lib:CommonTree_5",
+   "pos": [
+    -60.5,
+    -24.5
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "lib:CommonTree_2",
+   "pos": [
+    -36.5,
+    -14
+   ],
+   "yaw": 120,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "lib:CommonTree_1",
+   "pos": [
+    -66.5,
+    -36
+   ],
+   "yaw": 40,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "lib:CommonTree_3",
+   "pos": [
+    -34,
+    -36.5
+   ],
+   "yaw": 200,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 1
+  },
+  {
+   "asset": "granary_v3",
+   "pos": [
+    6,
+    -28
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 2
+  },
+  {
+   "asset": "wagon",
+   "pos": [
+    -8,
+    -37.2
+   ],
+   "yaw": 10,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 2
+  },
+  {
+   "asset": "wagon",
+   "pos": [
+    -18,
+    -37.4
+   ],
+   "yaw": -5,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 2
+  },
+  {
+   "asset": "bags",
+   "pos": [
+    -6.3,
+    -37.8
+   ],
+   "yaw": 20,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 2
+  },
+  {
+   "asset": "bags",
+   "pos": [
+    -16.3,
+    -38
+   ],
+   "yaw": 80,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 2
+  },
+  {
+   "asset": "lib:Bag",
+   "pos": [
+    -9.8,
+    -36.6
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 2
+  },
+  {
+   "asset": "lib:Crate_Wooden",
+   "pos": [
+    0.6,
+    -24.4
+   ],
+   "yaw": 10,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 2
+  },
+  {
+   "asset": "lib:Barrel",
+   "pos": [
+    0.7,
+    -32
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 2
+  },
+  {
+   "asset": "bags",
+   "pos": [
+    0.9,
+    -26.3
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 2
+  },
+  {
+   "asset": "lib:Bag",
+   "pos": [
+    1.1,
+    -31
+   ],
+   "yaw": 30,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 2
+  },
+  {
+   "asset": "lib:WoodenCampWatchtower",
+   "pos": [
+    -16.5,
+    -30.4
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 2
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    4,
+    -20.6
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 2
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    8.2,
+    -20.6
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 2
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    12.4,
+    -24.2
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 2
+  },
+  {
+   "asset": "tent",
+   "pos": [
+    -61,
+    9
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 3
+  },
+  {
+   "asset": "tent",
+   "pos": [
+    -61,
+    1.5
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 3
+  },
+  {
+   "asset": "lib:WoodenCampWatchtower",
+   "pos": [
+    -57,
+    -1.5
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 3
+  },
+  {
+   "asset": "lib:WeaponStand",
+   "pos": [
+    -58,
+    5.3
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 3
+  },
+  {
+   "asset": "campfire",
+   "pos": [
+    -57.4,
+    7.2
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 3
+  },
+  {
+   "asset": "lib:Crate_Wooden",
+   "pos": [
+    -63,
+    12.6
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 3
+  },
+  {
+   "asset": "lib:Barrel",
+   "pos": [
+    -62.4,
+    13.7
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 3
+  },
+  {
+   "asset": "lib:Barrel",
+   "pos": [
+    -59,
+    12.9
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 3
+  },
+  {
+   "asset": "lib:Rock_Medium_2",
+   "pos": [
+    -44,
+    8.5
+   ],
+   "yaw": 30,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 3
+  },
+  {
+   "asset": "lib:Rock_Medium_3",
+   "pos": [
+    -46,
+    -6.5
+   ],
+   "yaw": 80,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 3
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -65,
+    1
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 3
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -65,
+    5
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 3
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -65,
+    9
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 3
+  },
+  {
+   "asset": "granary_v1",
+   "pos": [
+    -14,
+    -5
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 4
+  },
+  {
+   "asset": "wagon",
+   "pos": [
+    -5,
+    -1.5
+   ],
+   "yaw": 80,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 4
+  },
+  {
+   "asset": "wagon",
+   "pos": [
+    -2,
+    -0.5
+   ],
+   "yaw": 95,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 4
+  },
+  {
+   "asset": "wagon",
+   "pos": [
+    1,
+    0.5
+   ],
+   "yaw": 70,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 4
+  },
+  {
+   "asset": "lib:Stall_Cart_Empty",
+   "pos": [
+    -6.8,
+    1.8
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 4
+  },
+  {
+   "asset": "bags",
+   "pos": [
+    -3.5,
+    1.2
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 4
+  },
+  {
+   "asset": "bags",
+   "pos": [
+    0,
+    1.9
+   ],
+   "yaw": 40,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 4
+  },
+  {
+   "asset": "bags",
+   "pos": [
+    -8,
+    0.4
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 4
+  },
+  {
+   "asset": "house_b2",
+   "pos": [
+    -15,
+    13.5
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 4
+  },
+  {
+   "asset": "house_k3",
+   "pos": [
+    -3,
+    15
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 4
+  },
+  {
+   "asset": "lib:MilitaryFlagpoleBanner",
+   "pos": [
+    -7,
+    -7.5
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 4
+  },
+  {
+   "asset": "lib:MilitaryFlagpoleBanner",
+   "pos": [
+    -23,
+    3.5
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 4
+  },
+  {
+   "asset": "lib:MilitaryFlagpoleBanner",
+   "pos": [
+    7.8,
+    6.5
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 4
+  },
+  {
+   "asset": "tent",
+   "pos": [
+    9,
+    1.5
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 4
+  },
+  {
+   "asset": "tent",
+   "pos": [
+    -24.5,
+    13
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 4
+  },
+  {
+   "asset": "cage",
+   "pos": [
+    -5.5,
+    -6.5
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 4
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -22.5,
+    -4
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 4
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -22.5,
+    0
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 4
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -18,
+    -10.8
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 4
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -14,
+    -10.8
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 4
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -10,
+    -10.8
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 4
+  },
+  {
+   "asset": "lib:WoodenCampWatchtower",
+   "pos": [
+    -2.8,
+    22.6
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenCampWatchtower",
+   "pos": [
+    5.2,
+    22.6
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 5
+  },
+  {
+   "asset": "lib:ThreeKingdomsCommand_1",
+   "pos": [
+    -7,
+    34
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 5
+  },
+  {
+   "asset": "drum",
+   "pos": [
+    -2,
+    33.6
+   ],
+   "yaw": 30,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 5
+  },
+  {
+   "asset": "lib:MilitaryFlagpoleBanner",
+   "pos": [
+    -9.5,
+    37.8
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 5
+  },
+  {
+   "asset": "lib:MilitaryFlagpoleBanner",
+   "pos": [
+    -4.5,
+    37.8
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 5
+  },
+  {
+   "asset": "lib:MilitaryFlagpoleBanner",
+   "pos": [
+    -11.5,
+    24
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WeaponStand",
+   "pos": [
+    -11.6,
+    30
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WeaponStand",
+   "pos": [
+    -11.6,
+    32.6
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 5
+  },
+  {
+   "asset": "tent",
+   "pos": [
+    -10,
+    26.8
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 5
+  },
+  {
+   "asset": "tent",
+   "pos": [
+    3,
+    37.2
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 5
+  },
+  {
+   "asset": "campfire",
+   "pos": [
+    -3.2,
+    27.6
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 5
+  },
+  {
+   "asset": "lib:Barrel",
+   "pos": [
+    -12.4,
+    38.6
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 5
+  },
+  {
+   "asset": "lib:Crate_Wooden",
+   "pos": [
+    -11.4,
+    39.4
+   ],
+   "yaw": 20,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -12,
+    21
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -8,
+    21
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -4.4,
+    21
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -14,
+    23
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -14,
+    27
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -14,
+    31
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -14,
+    35
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -14,
+    39
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -12,
+    41
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -8,
+    41
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    -4,
+    41
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    0,
+    41
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    4,
+    41
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    6,
+    27
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    6,
+    35.5
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 5
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    6,
+    39.5
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 5
+  },
+  {
+   "asset": "camp_gate",
+   "pos": [
+    22,
+    2
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenCampWatchtower",
+   "pos": [
+    48.5,
+    -8.5
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenCampWatchtower",
+   "pos": [
+    48.5,
+    12.5
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenCampWatchtower",
+   "pos": [
+    23.6,
+    -8.6
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenCampWatchtower",
+   "pos": [
+    23.6,
+    12.4
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:Dummy",
+   "pos": [
+    26.8,
+    -5.2
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:Dummy",
+   "pos": [
+    29,
+    -5.2
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:Dummy",
+   "pos": [
+    31.2,
+    -5.2
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:Dummy",
+   "pos": [
+    26.8,
+    -2.6
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WeaponStand",
+   "pos": [
+    33.6,
+    -6.6
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WeaponStand",
+   "pos": [
+    33.6,
+    -3.2
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "barracks",
+   "pos": [
+    41,
+    -6
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "barracks",
+   "pos": [
+    34.5,
+    10.2
+   ],
+   "yaw": 180,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:ThreeKingdomsCommand_2",
+   "pos": [
+    46,
+    3
+   ],
+   "yaw": -90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "drum_large",
+   "pos": [
+    46.5,
+    9.2
+   ],
+   "yaw": 20,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:MilitaryFlagpoleBanner",
+   "pos": [
+    20.4,
+    -6.8
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:MilitaryFlagpoleBanner",
+   "pos": [
+    20.4,
+    10.8
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:MilitaryFlagpoleBanner",
+   "pos": [
+    36,
+    -1.4
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:MilitaryFlagpoleBanner",
+   "pos": [
+    49,
+    3
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "campfire",
+   "pos": [
+    37.5,
+    5.5
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:Barrel",
+   "pos": [
+    47.5,
+    -2.6
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:Crate_Wooden",
+   "pos": [
+    48.6,
+    -1.8
+   ],
+   "yaw": 30,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    22,
+    -8
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    22,
+    11.6
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    24,
+    -10
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    28,
+    -10
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    32,
+    -10
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    36,
+    -10
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    40,
+    -10
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    44,
+    -10
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    48,
+    -10
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    24,
+    14
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    28,
+    14
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    32,
+    14
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    36,
+    14
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    40,
+    14
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    48,
+    14
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    50,
+    -8
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    50,
+    -4
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    50,
+    0
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    50,
+    4
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    50,
+    8
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "lib:WoodenPalisadeFence",
+   "pos": [
+    50,
+    12
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1.1,
+   "area": 6
+  },
+  {
+   "asset": "plateau",
+   "pos": [
+    56,
+    31
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "stairs",
+   "pos": [
+    56,
+    22.9
+   ],
+   "yaw": 180,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "lib:BaguaRoundStoneAltar",
+   "pos": [
+    56,
+    33
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 2.6,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "lib:BaguaStonePillar",
+   "pos": [
+    56,
+    37.5
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 2.6,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "lib:BaguaStonePillar",
+   "pos": [
+    52.1,
+    30.75
+   ],
+   "yaw": 120,
+   "roll": 0,
+   "y": 2.6,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "lib:BaguaStonePillar",
+   "pos": [
+    59.9,
+    30.75
+   ],
+   "yaw": 240,
+   "roll": 0,
+   "y": 2.6,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "lib:MilitaryFlagpoleBanner",
+   "pos": [
+    50.5,
+    37.5
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 2.6,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "lib:MilitaryFlagpoleBanner",
+   "pos": [
+    61.5,
+    37.5
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 2.6,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "cauldron",
+   "pos": [
+    56,
+    28.6
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 2.6,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "lib:Torch_Metal",
+   "pos": [
+    53.3,
+    20.6
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "lib:Torch_Metal",
+   "pos": [
+    58.7,
+    20.6
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "lib:Torch_Metal",
+   "pos": [
+    52.6,
+    26.3
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 2.6,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "lib:Torch_Metal",
+   "pos": [
+    59.4,
+    26.3
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 2.6,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "cliff_a",
+   "pos": [
+    64.8,
+    31
+   ],
+   "yaw": 90,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "cliff_a",
+   "pos": [
+    56,
+    40.6
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "cliff_b",
+   "pos": [
+    47.4,
+    36.5
+   ],
+   "yaw": 75,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "cliff_b",
+   "pos": [
+    65.2,
+    23.5
+   ],
+   "yaw": 100,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "outcrop",
+   "pos": [
+    64.2,
+    41.2
+   ],
+   "yaw": 0,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 7
+  },
+  {
+   "asset": "outcrop",
+   "pos": [
+    48,
+    42
+   ],
+   "yaw": 50,
+   "roll": 0,
+   "y": 0,
+   "scale": 1,
+   "area": 7
+  }
+ ],
+ "scatter": [
+  {
+   "name": "Forest beyond the map",
+   "zone": "skirt",
+   "assets": [
+    "lib:CommonTree_1",
+    "lib:CommonTree_2",
+    "lib:CommonTree_3",
+    "lib:Pine_1",
+    "lib:Pine_3",
+    "lib:Pine_5"
+   ],
+   "count": 320,
+   "spacing": 4.5,
+   "clearance": 0,
+   "scale": [
+    0.9,
+    1.3
+   ]
+  },
+  {
+   "name": "Bamboo forest",
+   "zone": "disc",
+   "centre": [
+    -51,
+    5
+   ],
+   "radius": 18,
+   "inner": 0,
+   "assets": [
+    "bamboo0",
+    "bamboo1",
+    "bamboo2"
+   ],
+   "count": 30,
+   "spacing": 3.6,
+   "clearance": 1.6,
+   "scale": [
+    0.9,
+    1.15
+   ]
+  },
+  {
+   "name": "Trees",
+   "zone": "wild",
+   "assets": [
+    "lib:CommonTree_1",
+    "lib:CommonTree_2",
+    "lib:CommonTree_3"
+   ],
+   "count": 55,
+   "spacing": 6,
+   "clearance": 2.5,
+   "scale": [
+    0.85,
+    1.2
+   ]
+  },
+  {
+   "name": "Rocks",
+   "zone": "wild",
+   "assets": [
+    "lib:Rock_Medium_1",
+    "lib:Rock_Medium_2",
+    "lib:Rock_Medium_3"
+   ],
+   "count": 30,
+   "spacing": 6,
+   "clearance": 1.5,
+   "scale": [
+    0.6,
+    1.3
+   ]
+  },
+  {
+   "name": "Bushes",
+   "zone": "wild",
+   "assets": [
+    "lib:Bush_Common",
+    "lib:Bush_Common_Flowers",
+    "lib:Fern_1",
+    "lib:Plant_1_Big"
+   ],
+   "count": 110,
+   "spacing": 2.5,
+   "clearance": 1.2,
+   "scale": [
+    0.8,
+    1.2
+   ]
+  },
+  {
+   "name": "Village greenery",
+   "zone": "disc",
+   "centre": [
+    -48,
+    -28
+   ],
+   "radius": 19,
+   "inner": 0,
+   "assets": [
+    "lib:Bush_Common_Flowers",
+    "lib:Flower_3_Group",
+    "lib:Flower_4_Group",
+    "lib:Bush_Common"
+   ],
+   "count": 30,
+   "spacing": 2.2,
+   "clearance": 1,
+   "scale": [
+    0.8,
+    1.1
+   ]
+  },
+  {
+   "name": "Grass",
+   "zone": "wild",
+   "assets": [
+    "lib:Grass_Common_Short",
+    "lib:Grass_Common_Tall",
+    "lib:Grass_Wispy_Short",
+    "lib:Grass_Wispy_Tall",
+    "lib:Clover_1"
+   ],
+   "count": 260,
+   "spacing": 1.6,
+   "clearance": 0.8,
+   "scale": [
+    0.8,
+    1.2
+   ]
+  },
+  {
+   "name": "Flowers",
+   "zone": "wild",
+   "assets": [
+    "lib:Flower_3_Group",
+    "lib:Flower_4_Group"
+   ],
+   "count": 50,
+   "spacing": 3,
+   "clearance": 0.8
+  },
+  {
+   "name": "Pebbles",
+   "zone": "wild",
+   "assets": [
+    "lib:Pebble_Round_1",
+    "lib:Pebble_Round_3",
+    "lib:Pebble_Square_1"
+   ],
+   "count": 60,
+   "spacing": 2,
+   "clearance": 0.6
+  }
+ ],
+ "npcs": [
+  {
+   "kind": "chief",
+   "pos": [
+    -47,
+    -31
+   ],
+   "y": 0,
+   "area": 1
+  },
+  {
+   "kind": "villager",
+   "pos": [
+    -59,
+    -32.8
+   ],
+   "y": 0,
+   "area": 1
+  },
+  {
+   "kind": "villager",
+   "pos": [
+    -57.2,
+    -33.3
+   ],
+   "y": 0,
+   "area": 1
+  },
+  {
+   "kind": "villager",
+   "pos": [
+    -36,
+    -33.6
+   ],
+   "y": 0,
+   "area": 1
+  },
+  {
+   "kind": "villager",
+   "pos": [
+    -62,
+    -26
+   ],
+   "y": 0,
+   "area": 1
+  },
+  {
+   "kind": "villager",
+   "pos": [
+    -50,
+    -22.5
+   ],
+   "y": 0,
+   "area": 1
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -55,
+    -31
+   ],
+   "y": 0,
+   "area": 1
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -52.4,
+    -31.4
+   ],
+   "y": 0,
+   "area": 1
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -54,
+    -33
+   ],
+   "y": 0,
+   "area": 1
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -44,
+    -31
+   ],
+   "y": 0,
+   "area": 1
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -41.2,
+    -30.8
+   ],
+   "y": 0,
+   "area": 1
+  },
+  {
+   "kind": "militia",
+   "pos": [
+    -0.6,
+    -25.6
+   ],
+   "y": 0,
+   "area": 2
+  },
+  {
+   "kind": "militia",
+   "pos": [
+    0.2,
+    -27.6
+   ],
+   "y": 0,
+   "area": 2
+  },
+  {
+   "kind": "militia",
+   "pos": [
+    0.4,
+    -29.8
+   ],
+   "y": 0,
+   "area": 2
+  },
+  {
+   "kind": "militia",
+   "pos": [
+    11.6,
+    -26.6
+   ],
+   "y": 0,
+   "area": 2
+  },
+  {
+   "kind": "militia",
+   "pos": [
+    11.8,
+    -29.2
+   ],
+   "y": 0,
+   "area": 2
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -57.5,
+    3.8
+   ],
+   "y": 0,
+   "area": 3
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -59.2,
+    3
+   ],
+   "y": 0,
+   "area": 3
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -55.4,
+    9.6
+   ],
+   "y": 0,
+   "area": 3
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -56,
+    -3.8
+   ],
+   "y": 0,
+   "area": 3
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -48,
+    11.2
+   ],
+   "y": 0,
+   "area": 3
+  },
+  {
+   "kind": "villager",
+   "pos": [
+    -5.5,
+    -6.5
+   ],
+   "y": 0,
+   "area": 4
+  },
+  {
+   "kind": "villager",
+   "pos": [
+    -4.9,
+    -7.2
+   ],
+   "y": 0,
+   "area": 4
+  },
+  {
+   "kind": "villager",
+   "pos": [
+    -3.6,
+    -7.4
+   ],
+   "y": 0,
+   "area": 4
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -9,
+    -1.2
+   ],
+   "y": 0,
+   "area": 4
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -4,
+    -4
+   ],
+   "y": 0,
+   "area": 4
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    4,
+    3
+   ],
+   "y": 0,
+   "area": 4
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -12,
+    2.3
+   ],
+   "y": 0,
+   "area": 4
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -7.5,
+    -5.2
+   ],
+   "y": 0,
+   "area": 4
+  },
+  {
+   "kind": "boss",
+   "pos": [
+    -4.5,
+    31
+   ],
+   "y": 0,
+   "area": 5
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -6.6,
+    30.2
+   ],
+   "y": 0,
+   "area": 5
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -2.4,
+    30.2
+   ],
+   "y": 0,
+   "area": 5
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -6,
+    28.6
+   ],
+   "y": 0,
+   "area": 5
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -3,
+    28.4
+   ],
+   "y": 0,
+   "area": 5
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    -2.8,
+    20.4
+   ],
+   "y": 0,
+   "area": 5
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    5.2,
+    20.4
+   ],
+   "y": 0,
+   "area": 5
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    25,
+    0
+   ],
+   "y": 0,
+   "area": 6
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    25,
+    4
+   ],
+   "y": 0,
+   "area": 6
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    26.6,
+    0
+   ],
+   "y": 0,
+   "area": 6
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    26.6,
+    4
+   ],
+   "y": 0,
+   "area": 6
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    28,
+    -3.4
+   ],
+   "y": 0,
+   "area": 6
+  },
+  {
+   "kind": "yellow",
+   "pos": [
+    30.2,
+    -3.4
+   ],
+   "y": 0,
+   "area": 6
+  },
+  {
+   "kind": "guardian",
+   "pos": [
+    43.4,
+    1
+   ],
+   "y": 0,
+   "area": 6
+  },
+  {
+   "kind": "guardian",
+   "pos": [
+    43.4,
+    5
+   ],
+   "y": 0,
+   "area": 6
+  },
+  {
+   "kind": "boss",
+   "pos": [
+    56,
+    35.6
+   ],
+   "y": 2.6,
+   "area": 7
+  },
+  {
+   "kind": "guardian",
+   "pos": [
+    53.4,
+    33.6
+   ],
+   "y": 2.6,
+   "area": 7
+  },
+  {
+   "kind": "guardian",
+   "pos": [
+    58.6,
+    33.6
+   ],
+   "y": 2.6,
+   "area": 7
+  }
+ ],
+ "views": [
+  {
+   "name": "00_map_topdown",
+   "focus": [
+    0,
+    0
+   ],
+   "size": 47,
+   "top": true
+  },
+  {
+   "name": "01_map_game_camera",
+   "focus": [
+    5,
+    4
+   ],
+   "size": 55,
+   "top": false
+  },
+  {
+   "name": "11_area1_lang_binh_an",
+   "focus": [
+    -49,
+    -28
+   ],
+   "size": 15
+  },
+  {
+   "name": "12_area2_dong_lua_kho_luong",
+   "focus": [
+    -8,
+    -28
+   ],
+   "size": 15
+  },
+  {
+   "name": "13_area3_rung_truc",
+   "focus": [
+    -53,
+    5
+   ],
+   "size": 14
+  },
+  {
+   "name": "14_area4_trai_luong",
+   "focus": [
+    -7,
+    4
+   ],
+   "size": 14
+  },
+  {
+   "name": "15_area5_tien_doanh",
+   "focus": [
+    -4,
+    31
+   ],
+   "size": 13
+  },
+  {
+   "name": "16_area6_dai_doanh",
+   "focus": [
+    36,
+    2
+   ],
+   "size": 17
+  },
+  {
+   "name": "17_area7_te_dan",
+   "focus": [
+    56,
+    30
+   ],
+   "size": 13
+  }
+ ]
+}
