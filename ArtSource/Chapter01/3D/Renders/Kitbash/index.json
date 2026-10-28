@@ -1,0 +1,20 @@
+[
+{"group":"gate","label":"Village gate (new)","file":"gate_Village_gate__new_.png","triangles":1972,"notes":" size 6.1x5.4x2.3 m, scale 1"},
+{"group":"gate","label":"CS Studio Bookstore V3","file":"gate_CS_Studio_Bookstore_V3.png","triangles":19688,"notes":"texture V3 size 9.0x5.0x11.9 m, scale 0.837"},
+{"group":"campgate","label":"Camp gate (new)","file":"campgate_Camp_gate__new_.png","triangles":5712,"notes":" size 14.4x9.0x4.0 m, scale 1"},
+{"group":"campgate","label":"Game Watchtower","file":"campgate_Game_Watchtower.png","triangles":5000,"notes":"Arena3Q/Battlefield/Stylized Environment size 1.6x4.0x1.6 m, scale 1"},
+{"group":"tent","label":"Soldier tent (new)","file":"tent_Soldier_tent__new_.png","triangles":580,"notes":" size 5.6x2.3x2.6 m, scale 1"},
+{"group":"tent","label":"Game Command tent","file":"tent_Game_Command_tent.png","triangles":8000,"notes":"Arena3Q/Battlefield/Stylized Environment size 3.5x2.6x2.8 m, scale 1"},
+{"group":"drum","label":"War drum (new)","file":"drum_War_drum__new_.png","triangles":840,"notes":" size 1.5x2.0x1.6 m, scale 1"},
+{"group":"drum","label":"War drum large (new)","file":"drum_War_drum_large__new_.png","triangles":840,"notes":" size 2.4x3.1x2.5 m, scale 1"},
+{"group":"cliff","label":"Cliff wall A (new)","file":"cliff_Cliff_wall_A__new_.png","triangles":768,"notes":" size 6.2x3.3x2.1 m, scale 1"},
+{"group":"cliff","label":"Cliff wall B (new)","file":"cliff_Cliff_wall_B__new_.png","triangles":768,"notes":" size 4.7x2.7x1.9 m, scale 1"},
+{"group":"cliff","label":"Cliff outcrop (new)","file":"cliff_Cliff_outcrop__new_.png","triangles":1292,"notes":" size 5.3x3.6x5.2 m, scale 1"},
+{"group":"cliff","label":"Game Rock Medium 1","file":"cliff_Game_Rock_Medium_1.png","triangles":342,"notes":"Arena3Q/Battlefield/Stylized Environment size 3.0x2.1x2.8 m, scale 1"},
+{"group":"altar","label":"Altar plateau (new)","file":"altar_Altar_plateau__new_.png","triangles":1728,"notes":" size 14.7x2.6x14.7 m, scale 1"},
+{"group":"altar","label":"Stone stairs (new)","file":"altar_Stone_stairs__new_.png","triangles":508,"notes":" size 4.5x3.0x4.7 m, scale 1"},
+{"group":"altar","label":"Game Round altar","file":"altar_Game_Round_altar.png","triangles":6000,"notes":"Arena3Q/Battlefield/Stylized Environment size 4.0x0.6x4.0 m, scale 1"},
+{"group":"bamboo","label":"Bamboo clump 0 (new)","file":"bamboo_Bamboo_clump_0__new_.png","triangles":8640,"notes":" size 5.9x7.4x6.4 m, scale 1"},
+{"group":"bamboo","label":"Bamboo clump 2 (new)","file":"bamboo_Bamboo_clump_2__new_.png","triangles":14400,"notes":" size 6.9x7.9x6.8 m, scale 1"},
+{"group":"bamboo","label":"Game CommonTree 1","file":"bamboo_Game_CommonTree_1.png","triangles":6265,"notes":"Arena3Q/Battlefield/Stylized Environment size 3.3x5.5x3.5 m, scale 1"}
+]

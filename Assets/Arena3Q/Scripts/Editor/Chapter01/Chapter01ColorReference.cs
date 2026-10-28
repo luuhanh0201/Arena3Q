@@ -93,7 +93,7 @@ namespace Arena3Q.Editor.Chapter01
         /// tiled ground then smears into stripes and model atlases shimmer. Model and ground textures here are plain
         /// repeating textures with mipmaps, at the mobile size.
         /// </summary>
-        private static void PrepareTextures()
+        internal static void PrepareTextures()
         {
             foreach (var guid in AssetDatabase.FindAssets("t:Texture2D", new[] { ThirdParty }))
             {
@@ -121,8 +121,41 @@ namespace Arena3Q.Editor.Chapter01
             new("npc", "KayKit Knight", "Gap/Knight.fbx", 1.8f, "Gap/knight_texture.png"),
         };
 
+        // Kitbash pieces (Chapter01Kitbash) next to the game's own assets of the same role, native scale (height 0).
+        private const string KitPrefabs = Chapter01Kitbash.Prefabs + "/";
+        private static readonly Candidate[] KitChecks =
+        {
+            new("gate", "Village gate (new)", KitPrefabs + "CH01_VillageGate.prefab", 0f),
+            new("gate", "CS Studio Bookstore V3", "CSStudio/bookstore/Bookstore.fbx", 5f, "CSStudio/bookstore/V3.png"),
+            new("campgate", "Camp gate (new)", KitPrefabs + "CH01_CampGate.prefab", 0f),
+            new("campgate", "Game Watchtower", "lib:WoodenCampWatchtower", 0f),
+            new("tent", "Soldier tent (new)", KitPrefabs + "CH01_SoldierTent.prefab", 0f),
+            new("tent", "Game Command tent", "lib:ThreeKingdomsCommand_1", 0f),
+            new("drum", "War drum (new)", KitPrefabs + "CH01_WarDrum.prefab", 0f),
+            new("drum", "War drum large (new)", KitPrefabs + "CH01_WarDrumLarge.prefab", 0f),
+            new("cliff", "Cliff wall A (new)", KitPrefabs + "CH01_CliffWall_A.prefab", 0f),
+            new("cliff", "Cliff wall B (new)", KitPrefabs + "CH01_CliffWall_B.prefab", 0f),
+            new("cliff", "Cliff outcrop (new)", KitPrefabs + "CH01_CliffOutcrop.prefab", 0f),
+            new("cliff", "Game Rock Medium 1", "lib:Rock_Medium_1", 0f),
+            new("altar", "Altar plateau (new)", KitPrefabs + "CH01_AltarPlateau.prefab", 0f),
+            new("altar", "Stone stairs (new)", KitPrefabs + "CH01_StoneStairs.prefab", 0f),
+            new("altar", "Game Round altar", "lib:BaguaRoundStoneAltar", 0f),
+            new("bamboo", "Bamboo clump 0 (new)", KitPrefabs + "CH01_BambooClump_0.prefab", 0f),
+            new("bamboo", "Bamboo clump 2 (new)", KitPrefabs + "CH01_BambooClump_2.prefab", 0f),
+            new("bamboo", "Game CommonTree 1", "lib:CommonTree_1", 0f),
+        };
+
         [MenuItem("Arena3Q/Chapter 01/Render 3D Candidates")]
         public static void RenderCandidates() => Render(Candidates, Out);
+
+        [MenuItem("Arena3Q/Chapter 01/Render Kitbash Check")]
+        public static void RenderKitChecks() => Render(KitChecks, "ArtSource/Chapter01/3D/Renders/Kitbash");
+
+        /// <summary>Batch entry: kitbash prefabs, their check renders, then the colour reference scene with them.</summary>
+        public static void BuildKitbashAndScene()
+        {
+            Chapter01Kitbash.Build(); RenderKitChecks(); BuildReferenceScene();
+        }
 
         [MenuItem("Arena3Q/Chapter 01/Render Map Resource Check")]
         public static void RenderGapChecks() => Render(GapChecks, "ArtSource/Chapter01/3D/Renders/GapCheck");
@@ -245,6 +278,7 @@ namespace Arena3Q.Editor.Chapter01
                 for (int i = 0; i < materials.Length; i++)
                 {
                     var m = materials[i]; if (m == null) continue;
+                    if (AssetDatabase.GetAssetPath(m).StartsWith(Chapter01Kitbash.Kit)) { converted[m] = m; continue; }  // shared kitbash material
                     if (!converted.TryGetValue(m, out var lit)) { converted[m] = lit = Convert(m, fallback ?? ByName(c.source, m.name), out string note); if (note != null) shaders.Add(note); }
                     materials[i] = lit;
                 }
@@ -254,7 +288,7 @@ namespace Arena3Q.Editor.Chapter01
             notes = string.Join(", ", shaders);
             var bounds = Bounds(renderers);
             if (bounds.size.y < 1e-4f) { notes += " empty bounds"; return instance; }
-            float scale = fromLibrary ? 1f : c.height > 0f ? c.height / bounds.size.y : -c.height / Mathf.Max(bounds.size.x, bounds.size.z);
+            float scale = fromLibrary || c.height == 0f ? 1f : c.height > 0f ? c.height / bounds.size.y : -c.height / Mathf.Max(bounds.size.x, bounds.size.z);
             instance.transform.localScale *= scale;
             bounds = Bounds(renderers);
             instance.transform.position -= new Vector3(bounds.center.x, bounds.min.y, bounds.center.z);
@@ -346,11 +380,28 @@ namespace Arena3Q.Editor.Chapter01
             (new("tree", "Tree 2", "lib:CommonTree_2", 0f), new(-2f, 0f, 12f), 70f),
             (new("tree", "Tree 3", "lib:CommonTree_3", 0f), new(15f, 0f, -4f), 140f),
             (new("tree", "Tree 4", "lib:CommonTree_1", 0f), new(-12.5f, 0f, 9f), 200f),
-            (new("rock", "Rock 1", "lib:Rock_Medium_1", 0f), new(-15f, 0f, -3f), 0f),
+            (new("rock", "Rock 1", "lib:Rock_Medium_1", 0f), new(-20f, 0f, -3.5f), 0f),
             (new("rock", "Rock 2", "lib:Rock_Medium_2", 0f), new(13.5f, 0f, -6f), 60f),
-            (new("altar", "Round altar", "lib:BaguaRoundStoneAltar", 0f), new(14f, 0f, 13f), 0f),
-            (new("altar", "Pillar 1", "lib:BaguaStonePillar", 0f), new(10.5f, 0f, 16.5f), 0f),
-            (new("altar", "Pillar 2", "lib:BaguaStonePillar", 0f), new(17.5f, 0f, 9.5f), 90f),
+            // Tế đàn on the kitbash plateau (top at 2.6 m), stairs climbing from the main road (+Z).
+            (new("plateau", "Altar plateau", KitPrefabs + "CH01_AltarPlateau.prefab", 0f), new(15f, 0f, 14f), 0f),
+            (new("plateau", "Stone stairs", KitPrefabs + "CH01_StoneStairs.prefab", 0f), new(16f, 0f, 4.9f), 180f),
+            (new("altar", "Round altar", "lib:BaguaRoundStoneAltar", 0f), new(15f, 2.6f, 14f), 0f),
+            (new("altar", "Pillar 1", "lib:BaguaStonePillar", 0f), new(11.5f, 2.6f, 17.5f), 0f),
+            (new("altar", "Pillar 2", "lib:BaguaStonePillar", 0f), new(18.5f, 2.6f, 10.5f), 90f),
+            (new("cliff", "Cliff wall A", KitPrefabs + "CH01_CliffWall_A.prefab", 0f), new(24.5f, 0f, 15f), 90f),
+            (new("cliff", "Cliff wall B", KitPrefabs + "CH01_CliffWall_B.prefab", 0f), new(23.5f, 0f, 8.5f), 75f),
+            (new("cliff", "Cliff outcrop", KitPrefabs + "CH01_CliffOutcrop.prefab", 0f), new(21f, 0f, 23.5f), 0f),
+            // Kitbash village gate on the road at the village entrance, tents and drums in the camp.
+            (new("gate", "Village gate", KitPrefabs + "CH01_VillageGate.prefab", 0f), new(-17f, 0f, 0f), 90f),
+            (new("soldiertent", "Soldier tent 1", KitPrefabs + "CH01_SoldierTent.prefab", 0f), new(-14.5f, 0f, -5f), 0f),
+            (new("soldiertent", "Soldier tent 2", KitPrefabs + "CH01_SoldierTent.prefab", 0f), new(-15f, 0f, -9.5f), 15f),
+            (new("soldiertent", "Soldier tent 3", KitPrefabs + "CH01_SoldierTent.prefab", 0f), new(-6.5f, 0f, -5.2f), -10f),
+            (new("drum", "War drum", KitPrefabs + "CH01_WarDrum.prefab", 0f), new(-0.8f, 0f, -8.5f), 30f),
+            (new("campgate", "Camp gate", KitPrefabs + "CH01_CampGate.prefab", 0f), new(-5f, 0f, -17.5f), 0f),
+            (new("campgate", "War drum large", KitPrefabs + "CH01_WarDrumLarge.prefab", 0f), new(4f, 0f, -16f), 20f),
+            (new("bamboo", "Bamboo 1", KitPrefabs + "CH01_BambooClump_0.prefab", 0f), new(-18f, 0f, 7f), 0f),
+            (new("bamboo", "Bamboo 2", KitPrefabs + "CH01_BambooClump_1.prefab", 0f), new(-16.3f, 0f, 10.8f), 40f),
+            (new("bamboo", "Bamboo 3", KitPrefabs + "CH01_BambooClump_2.prefab", 0f), new(-19.6f, 0f, 11.2f), 110f),
         };
 
         /// <summary>Ground of the reference scene: Codex's Chapter 1 earth, road and grass tiles.</summary>
@@ -367,11 +418,11 @@ namespace Arena3Q.Editor.Chapter01
                 AssetDatabase.CreateAsset(m, _materialFolder + "/Ground_" + Slug(name) + ".mat");
                 go.GetComponent<MeshRenderer>().sharedMaterial = m;
             }
-            Patch("Earth", "01_ground-earth.png", Vector3.zero, new Vector2(90f, 90f), 0f, 4f);
+            Patch("Earth", "01_ground-earth.png", Vector3.zero, new Vector2(160f, 160f), 0f, 4f);
             Patch("Grass west", "03_ground-grass.png", new Vector3(-11f, 0f, 5f), new Vector2(9f, 14f), .01f, 4f);
             Patch("Grass east", "03_ground-grass.png", new Vector3(14f, 0f, -4f), new Vector2(7f, 9f), .01f, 4f);
             Patch("Dirt road", "02_ground-path.png", Vector3.zero, new Vector2(40f, 3.2f), .02f, 3.2f);
-            Patch("Road to altar", "02_ground-path.png", new Vector3(11f, 0f, 7f), new Vector2(3f, 14f), .02f, 3f);
+            Patch("Road to altar", "02_ground-path.png", new Vector3(16f, 0f, 1.6f), new Vector2(3f, 3.4f), .02f, 3f);
         }
 
         [MenuItem("Arena3Q/Chapter 01/Build Colour Reference Scene")]
@@ -404,12 +455,17 @@ namespace Arena3Q.Editor.Chapter01
                 }
                 EditorSceneManager.SaveScene(scene, ScenePath);
                 // Chuong1.md section 2 step 1 overview and the section 8 pairs, at the battle camera and exposure.
-                Shot(camera, "00_overview", new Vector3(1f, 0f, 1f), 17f);
+                Shot(camera, "00_overview", new Vector3(2f, 0f, 3f), 22f);
                 Shot(camera, "01_house_tree", Between(placed["house"], placed["tree"]), 9f);
                 Shot(camera, "02_house_dirt_road", new Vector3(-4f, 0f, 3f), 8f);
                 Shot(camera, "03_granary_grain_cart", Between(placed["granary"], placed["cart"]), 7f);
                 Shot(camera, "04_camp_watchtower", Between(placed["tower"], placed["tent"]), 7.5f);
                 Shot(camera, "05_altar_main_light", placed["altar"].center, 7f);
+                // Kitbash pieces in place.
+                Shot(camera, "06_village_gate_bamboo", Between(placed["gate"], placed["bamboo"]), 7f);
+                Shot(camera, "07_camp_tents_drum", Between(placed["soldiertent"], placed["drum"]), 8f);
+                Shot(camera, "08_camp_gate", placed["campgate"].center, 9f);
+                Shot(camera, "09_altar_plateau_cliffs", Between(placed["plateau"], placed["cliff"]), 11f);
                 Debug.Log("[Chapter01] Colour reference scene saved to " + ScenePath + ", renders in " + SceneRenders);
             }
             finally { _materialFolder = null; }

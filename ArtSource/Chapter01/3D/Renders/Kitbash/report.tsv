@@ -1,0 +1,19 @@
+group	label	source	triangles	materials	notes
+gate	Village gate (new)	Assets/ThirdParty/Chapter01/_Kit/Prefabs/CH01_VillageGate.prefab	1972	6	 size 6.1x5.4x2.3 m, scale 1
+gate	CS Studio Bookstore V3	CSStudio/bookstore/Bookstore.fbx	19688	1	texture V3 size 9.0x5.0x11.9 m, scale 0.837
+campgate	Camp gate (new)	Assets/ThirdParty/Chapter01/_Kit/Prefabs/CH01_CampGate.prefab	5712	6	 size 14.4x9.0x4.0 m, scale 1
+campgate	Game Watchtower	lib:WoodenCampWatchtower	5000	1	Arena3Q/Battlefield/Stylized Environment size 1.6x4.0x1.6 m, scale 1
+tent	Soldier tent (new)	Assets/ThirdParty/Chapter01/_Kit/Prefabs/CH01_SoldierTent.prefab	580	4	 size 5.6x2.3x2.6 m, scale 1
+tent	Game Command tent	lib:ThreeKingdomsCommand_1	8000	1	Arena3Q/Battlefield/Stylized Environment size 3.5x2.6x2.8 m, scale 1
+drum	War drum (new)	Assets/ThirdParty/Chapter01/_Kit/Prefabs/CH01_WarDrum.prefab	840	4	 size 1.5x2.0x1.6 m, scale 1
+drum	War drum large (new)	Assets/ThirdParty/Chapter01/_Kit/Prefabs/CH01_WarDrumLarge.prefab	840	4	 size 2.4x3.1x2.5 m, scale 1
+cliff	Cliff wall A (new)	Assets/ThirdParty/Chapter01/_Kit/Prefabs/CH01_CliffWall_A.prefab	768	1	 size 6.2x3.3x2.1 m, scale 1
+cliff	Cliff wall B (new)	Assets/ThirdParty/Chapter01/_Kit/Prefabs/CH01_CliffWall_B.prefab	768	1	 size 4.7x2.7x1.9 m, scale 1
+cliff	Cliff outcrop (new)	Assets/ThirdParty/Chapter01/_Kit/Prefabs/CH01_CliffOutcrop.prefab	1292	1	 size 5.3x3.6x5.2 m, scale 1
+cliff	Game Rock Medium 1	lib:Rock_Medium_1	342	1	Arena3Q/Battlefield/Stylized Environment size 3.0x2.1x2.8 m, scale 1
+altar	Altar plateau (new)	Assets/ThirdParty/Chapter01/_Kit/Prefabs/CH01_AltarPlateau.prefab	1728	2	 size 14.7x2.6x14.7 m, scale 1
+altar	Stone stairs (new)	Assets/ThirdParty/Chapter01/_Kit/Prefabs/CH01_StoneStairs.prefab	508	2	 size 4.5x3.0x4.7 m, scale 1
+altar	Game Round altar	lib:BaguaRoundStoneAltar	6000	1	Arena3Q/Battlefield/Stylized Environment size 4.0x0.6x4.0 m, scale 1
+bamboo	Bamboo clump 0 (new)	Assets/ThirdParty/Chapter01/_Kit/Prefabs/CH01_BambooClump_0.prefab	8640	1	 size 5.9x7.4x6.4 m, scale 1
+bamboo	Bamboo clump 2 (new)	Assets/ThirdParty/Chapter01/_Kit/Prefabs/CH01_BambooClump_2.prefab	14400	1	 size 6.9x7.9x6.8 m, scale 1
+bamboo	Game CommonTree 1	lib:CommonTree_1	6265	2	Arena3Q/Battlefield/Stylized Environment size 3.3x5.5x3.5 m, scale 1

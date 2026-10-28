@@ -146,3 +146,9 @@ Sửa danh mục ở trên: mục 23 `building_grain` là ô ruộng lúa chứ 
 | Nhân vật | tướng đại diện | | trưởng làng, dân, nghĩa binh, lính Khăn Vàng 3 loại, hộ pháp, Trình Viễn Chí, Trương Giác (Quaternius / KayKit là kiểu Âu, chibi) |
 
 Phần 2D của Codex (29 nhóm) phủ đủ texture, decal và sprite trang trí; chưa có hoa dại, mây / chim xa, toàn bộ hiệu ứng (sương khóa ải, tàn lửa, bụi lá bay, vòng sáng NPC, sét, hào quang boss) và UI bản đồ (§4), vì chưa nằm trong danh sách 2D của người dùng.
+
+## 10. Lượt 4 (28/10 17:40): Claude tự dựng phần thiếu (kitbash)
+
+Theo bảng mục 9, phần tự làm được đã dựng xong (`Renders/index.html`, mục "Phần tự dựng"): cổng làng (Ải 1), cổng đại doanh (Ải 6), lều lính (Ải 3 đến 6), trống trận và trống lớn (Ải 5, 6), vách đá A, B và mỏm đá, nền cao tế đàn + bậc đá (Ải 7), 3 cụm tre (Ải 3). Hình khối là của dự án (`Assets/Arena3Q/Art/Chapter01/Kitbash/*.fbx`, script `3D/Kitbash/ch01_kitbash.py`); vật liệu và prefab trong `Assets/ThirdParty/Chapter01/_Kit` (gitignore, dựng lại bằng **Arena3Q > Chapter 01 > Build Kitbash Prefabs**). Texture: Quaternius MegaKit, Stylized Nature (CC0), Nobiax bamboo (CC0), ảnh 01, 06, 17 của Codex.
+
+Còn thiếu sau lượt này: doanh trại lính (Ải 6), cầu gỗ (Ải 3), xe hàng bị đổ (Ải 1), tượng đá (Ải 7), lư hương đúng kiểu, toàn bộ nhân vật. Cụm tre nặng (8,6k đến 14,4k tam giác mỗi cụm): rừng trúc phải có LOD hoặc dùng thẻ lá 2D cho cụm xa.
