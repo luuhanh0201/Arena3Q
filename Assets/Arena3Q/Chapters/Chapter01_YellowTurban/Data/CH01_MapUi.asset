@@ -1,0 +1,157 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c31cd0f5c6e9f6149a8b974501575dac, type: 3}
+  m_Name: CH01_MapUi
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.MapUiConfig
+  referenceSize: {x: 1672, y: 941}
+  back:
+    serializedVersion: 2
+    x: 16
+    y: 10
+    width: 84
+    height: 54
+  title:
+    serializedVersion: 2
+    x: 110
+    y: 8
+    width: 440
+    height: 54
+  info:
+    serializedVersion: 2
+    x: 550
+    y: 12
+    width: 48
+    height: 48
+  introduction:
+    serializedVersion: 2
+    x: 33
+    y: 78
+    width: 610
+    height: 82
+  rewards:
+    serializedVersion: 2
+    x: 25
+    y: 165
+    width: 420
+    height: 80
+  quest:
+    serializedVersion: 2
+    x: 25
+    y: 290
+    width: 340
+    height: 110
+  resource:
+    serializedVersion: 2
+    x: -510
+    y: 8
+    width: 240
+    height: 52
+  resourceStep: {x: 255, y: 0}
+  resourceIds:
+  - Stamina
+  - Silver
+  modalSize: {x: 570, y: 340}
+  titleFont: 30
+  bodyFont: 17
+  markerSize: 56
+  bossScale: 1.25
+  stageSize: 56
+  markerLift: 30
+  nameLift: 85
+  minimumTapDp: 56
+  nameWidth: 220
+  nameHeight: 36
+  occludedAlpha: 0.4
+  minimumNameScale: 0.85
+  maximumNameScale: 1.15
+  markerStartScale: 0.8
+  stagePulseScale: 0.04
+  messageSeconds: 4
+  textWeight: 400
+  questText:
+    serializedVersion: 2
+    x: 14
+    y: 12
+    width: 258
+    height: 86
+  questArrow:
+    serializedVersion: 2
+    x: 284
+    y: 35
+    width: 34
+    height: 34
+  gold: {r: 0.95, g: 0.81, b: 0.59, a: 1}
+  ink: {r: 0.22, g: 0.12, b: 0.06, a: 1}
+  boss: {r: 0.65, g: 0.19, b: 0.11, a: 1}
+  locked: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  question: {fileID: 21300000, guid: d23f2671ef5d0e8499148b1b352455ef, type: 3}
+  swords: {fileID: 21300000, guid: 7430ef5b33eafb27f0d714f6fcecbef1, type: 3}
+  backIcon: {fileID: 21300000, guid: 6d5b3d3b6663b034c98faeacff65b724, type: 3}
+  infoIcon: {fileID: 21300000, guid: 4eba0ac4ed757fc43bc5605b10da4adc, type: 3}
+  lockIcon: {fileID: 21300000, guid: 5327fd6ad9437c8498750ca2c29e9dbc, type: 3}
+  checkIcon: {fileID: 21300000, guid: e683df170b990594599cea29fef6557f, type: 3}
+  medallion: {fileID: 21300000, guid: 8de5a238f8e2bf547b441ad0591ffc04, type: 3}
+  bossMedallion: {fileID: 21300000, guid: e34be52ef8c5fdb419edfc85798752cd, type: 3}
+  nameplate: {fileID: 21300000, guid: 17d9e4e90bc18f14f855282b2f7f4b48, type: 3}
+  chests:
+  - {fileID: 21300000, guid: b2c1590ed4382d24589872ba8717302d, type: 3}
+  - {fileID: 21300000, guid: c917f4c1df1027f49bff403d1302465f, type: 3}
+  - {fileID: 21300000, guid: c272ea7f063c9e047a4515dd1bb0211d, type: 3}
+  rewardBadge:
+    serializedVersion: 2
+    x: -2
+    y: -1
+    width: 84
+    height: 84
+  rewardHeading:
+    serializedVersion: 2
+    x: 10
+    y: 20
+    width: 64
+    height: 44
+  rewardButton:
+    serializedVersion: 2
+    x: 94
+    y: 0
+    width: 94
+    height: 80
+  rewardArt:
+    serializedVersion: 2
+    x: 17
+    y: 4
+    width: 60
+    height: 48
+  rewardStar:
+    serializedVersion: 2
+    x: 7
+    y: 53
+    width: 20
+    height: 20
+  rewardCount:
+    serializedVersion: 2
+    x: 30
+    y: 50
+    width: 60
+    height: 26
+  rewardStep: 100
+  routeMaterial: {fileID: 2100000, guid: 4bef517a6be96dd4887a97433186568e, type: 2}
+  routeWidth: 0.34
+  routeLift: 0.06
+  routeDashLength: 1.35
+  routeDashFill: 0.62
+  routeRayHeight: 80
+  routeCurveSteps: 8
+  routeColor: {r: 1, g: 0.78, b: 0.32, a: 1}
+  routeOutline: {r: 0.17, g: 0.09, b: 0.035, a: 1}
+  unavailable: "Ch\u1EE9c n\u0103ng \u0111ang ph\xE1t tri\u1EC3n"
+  lockedMessage: "Ho\xE0n th\xE0nh \u1EA3i tr\u01B0\u1EDBc \u0111\u1EC3 m\u1EDF khu v\u1EF1c n\xE0y."
+  stuckMessage: "Ch\u01B0a t\xECm \u0111\u01B0\u1EE3c \u0111\u01B0\u1EDDng. H\xE3y ch\u1ECDn m\u1ED9t v\u1ECB tr\xED kh\xE1c."

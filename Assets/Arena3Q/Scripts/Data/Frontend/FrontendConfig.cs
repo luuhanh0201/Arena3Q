@@ -82,6 +82,8 @@ namespace Arena3Q.Data
         [SerializeField] private StageConfig defaultStage;
         [SerializeField] private string battleSceneName = "Battle";
         [SerializeField] private string frontendSceneName = "Frontend";
+        [Tooltip("Exploration scene opened by the lobby. Empty keeps the original direct battle flow.")]
+        [SerializeField] private string chapterMapSceneName = "";
         [Header("Development builds only")]
         [Tooltip("Lord level used in battle by Development players on a device, so every lord skill can be tested " +
                  "(skills unlock at levels 2/5/10/15). 0 = off. The Editor (use Play Combat Test) and release builds " +
@@ -117,6 +119,7 @@ namespace Arena3Q.Data
         public StageConfig DefaultStage => defaultStage != null ? defaultStage : tutorialStage;
         public string BattleSceneName => battleSceneName;
         public string FrontendSceneName => frontendSceneName;
+        public string ChapterMapSceneName => chapterMapSceneName;
 
         public AccountRules CreateAccountRules() => new AccountRules
         {

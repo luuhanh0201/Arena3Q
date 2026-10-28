@@ -1,4 +1,5 @@
 using UnityEngine;
+using Arena3Q.Data;
 
 namespace Arena3Q.UI
 {
@@ -12,12 +13,12 @@ namespace Arena3Q.UI
         private void OnEnable() => Apply();
         private void LateUpdate()
         {
-            if (_area != (OverrideArea ?? Screen.safeArea) || _screen != new Vector2Int(Screen.width, Screen.height)) Apply();
+            if (_area != (OverrideArea ?? DisplayMetrics.SafeArea) || _screen != new Vector2Int(Screen.width, Screen.height)) Apply();
         }
         public void Apply()
         {
             if (Screen.width <= 0 || Screen.height <= 0) return;
-            _area = OverrideArea ?? Screen.safeArea;
+            _area = OverrideArea ?? DisplayMetrics.SafeArea;
             _screen = new Vector2Int(Screen.width, Screen.height);
             var rect = (RectTransform)transform;
             rect.anchorMin = new Vector2(_area.xMin / Screen.width, _area.yMin / Screen.height);

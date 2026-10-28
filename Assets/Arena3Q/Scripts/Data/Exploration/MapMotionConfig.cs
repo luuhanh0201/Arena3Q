@@ -16,5 +16,6 @@ namespace Arena3Q.Data
         public int[] leavesPerArea = { 1, 3, 3 };
         public int[] fogLayers = { 2, 3, 3 };
         public int maxAudioSources = 4;
+        public float routeDashesPerSecond = .5f;
     }
 }

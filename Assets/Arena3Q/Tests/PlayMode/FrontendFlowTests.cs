@@ -3,6 +3,7 @@ using System.Linq;
 using Arena3Q.Core;
 using Arena3Q.Frontend;
 using Arena3Q.Gameplay;
+using Arena3Q.Exploration;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -175,7 +176,7 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator ReturningPlayer_SkipsLordNameAndStory_AndPlaysTheDefaultStage()
+        public IEnumerator ReturningPlayer_SkipsLordNameAndStory_AndOpensChapterMap()
         {
             var profile = new PlayerProfile
             {
@@ -203,15 +204,23 @@ namespace Arena3Q.Tests.PlayMode
             servers.Enter();
             Assert.That(_flow.Step, Is.EqualTo(FrontendStep.Lobby));
             Assert.That(_flow.Screen, Is.InstanceOf<LobbyScreen>());
+            var mapScene = _flow.Config.ChapterMapSceneName;
+            Assert.That(mapScene, Is.Not.Empty, "the release lobby must be connected to the chapter map");
             _flow.EnterBattleFromLobby();
-            Assert.That(_flow.Step, Is.EqualTo(FrontendStep.Battle));
-
-            BattleController battle = null;
-            yield return WaitForBattle(b => battle = b);
-            Assert.That(battle.Stage.StageId, Is.EqualTo("attack_01"), "the tutorial is done: the default stage");
-            Assert.That(battle.gameObject.scene.name, Is.EqualTo("Battlefield_HighQuality"), "returning players also use the newest map");
-            Assert.That(battle.Lineup[0].Hero.HeroId, Is.EqualTo("lord_archer"));
-            Assert.That(battle.Lineup[0].Level, Is.EqualTo(3));
+            ChapterMapController map = null;
+            var deadline = Time.realtimeSinceStartup + 30;
+            while ((map == null || !map.Ready) && Time.realtimeSinceStartup < deadline)
+            {
+                yield return null;
+                map = Object.FindAnyObjectByType<ChapterMapController>();
+            }
+            Assert.That(map, Is.Not.Null);
+            Assert.That(map.Ready, Is.True, map.LastMessage);
+            Assert.That(map.gameObject.scene.name, Is.EqualTo(mapScene));
+            Assert.That(map.Session.Character, Is.SameAs(character));
+            Assert.That(map.Session.Character.lordLevel, Is.EqualTo(3));
+            Assert.That(map.Session.Rules.UnlockedCount(map.Session.Progress), Is.EqualTo(1));
+            Assert.That(Object.FindAnyObjectByType<BattleController>(), Is.Null);
         }
 
         [UnityTest]

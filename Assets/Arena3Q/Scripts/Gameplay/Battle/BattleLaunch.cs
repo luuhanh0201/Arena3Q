@@ -19,6 +19,10 @@ namespace Arena3Q.Gameplay
 
         /// <summary>Called when a battle ends (also after replays); returns a note for the result screen (rewards), or null.</summary>
         public Func<StageConfig, OutcomeDecision, string> OnFinished;
+        /// <summary>Optional chapter callback with the same earned stars shown by the result HUD.</summary>
+        public Func<StageConfig, OutcomeDecision, int, string> OnFinishedWithStars;
+        /// <summary>Called for each new run, including a replay, after the battle has been initialized.</summary>
+        public Action<StageConfig> OnStarted;
 
         /// <summary>Called right before going back to <see cref="ReturnScene"/>.</summary>
         public Action OnReturn;

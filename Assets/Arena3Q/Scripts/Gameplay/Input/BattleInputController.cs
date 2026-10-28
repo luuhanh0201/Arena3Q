@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Arena3Q.Core;
+using Arena3Q.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -70,7 +71,7 @@ namespace Arena3Q.Gameplay
         }
 #endif
 
-        private float TapMaxPixels => Mathf.Max(10f, (Screen.dpi > 0f ? Screen.dpi : 160f) * tapMaxInches);
+        private float TapMaxPixels => Mathf.Max(10f, DisplayMetrics.Dpi * tapMaxInches);
 
         private void OnEnable() => EnhancedTouchSupport.Enable();
 

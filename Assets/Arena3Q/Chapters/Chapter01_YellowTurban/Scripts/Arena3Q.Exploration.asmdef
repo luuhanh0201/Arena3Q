@@ -1,0 +1,6 @@
+{
+  "name": "Arena3Q.Exploration",
+  "rootNamespace": "Arena3Q.Exploration",
+  "references": ["Arena3Q.Core", "Arena3Q.Data", "Arena3Q.Gameplay", "Arena3Q.UI", "Arena3Q.Frontend", "Unity.AI.Navigation", "Unity.InputSystem", "UnityEngine.UI", "Unity.TextMeshPro"],
+  "autoReferenced": true
+}

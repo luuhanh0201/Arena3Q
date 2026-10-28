@@ -1,0 +1,553 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fafa880239a62ee489b638ccc670d897, type: 3}
+  m_Name: CH01_MapConfig
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.ChapterMapConfig
+  chapterId: chapter01
+  title: "Ch\u01B0\u01A1ng 1"
+  subtitle: "Lo\u1EA1n Kh\u0103n V\xE0ng"
+  introduction: "N\u0103m 184, kh\u1EDFi ngh\u0129a Kh\u0103n V\xE0ng lan r\u1ED9ng.\nQu\xE2n tri\u1EC1u \u0111\xECnh v\xE0 c\xE1c ngh\u0129a binh c\xF9ng nhau d\u1EB9p lo\u1EA1n,\ngi\u1EA3i c\u1EE9u d\xE2n ch\xFAng, ng\u0103n ch\u1EB7n \xE2m m\u01B0u c\u1EE7a Tr\u01B0\u01A1ng Gi\xE1c."
+  sceneName: CH01_Exploration
+  frontend: {fileID: 11400000, guid: d318ce5184dda98438aabc5e9ba17f81, type: 2}
+  ui: {fileID: 11400000, guid: 82b730e86e1dfa34bafa31b3833fef0d, type: 2}
+  motion: {fileID: 11400000, guid: 6254b236854be5047b6fd16f0ffe6469, type: 2}
+  stages:
+  - id: ch01_01
+    areaName: "L\xE0ng B\xECnh An"
+    areaPath: CH01 Exploration/Area 01 Lang Binh An
+    markerPath: CH01 Exploration/Area 01 Lang Binh An/StageMarker_01
+    bossName: 
+    objective: "Gi\u1EA3i c\u1EE9u d\xE2n l\xE0ng b\u1ECB qu\xE2n Kh\u0103n V\xE0ng giam gi\u1EEF."
+    boss: 0
+    center: {x: -48, y: 0, z: -28}
+    regionRadius: 16
+    battle: {fileID: 0}
+    targets:
+    - id: ch01_01_0
+      name: "Tr\u01B0\u1EDFng l\xE0ng"
+      anchorPath: CH01 Exploration/Area 01 Lang Binh An/Always/NPC_chief [quest]/MarkerAnchor_quest
+      position: {x: -47, y: 2.4, z: -31}
+      dialogue: "Gi\u1EA3i c\u1EE9u d\xE2n l\xE0ng b\u1ECB qu\xE2n Kh\u0103n V\xE0ng giam gi\u1EEF. Xin h\xE3y gi\xFAp ch\xFAng t\xF4i."
+      kind: 0
+    - id: ch01_01_1
+      name: "Qu\xE2n Kh\u0103n V\xE0ng"
+      anchorPath: CH01 Exploration/Area 01 Lang Binh An/State_Before/NPC_yellow [battle]/MarkerAnchor_battle
+      position: {x: -52.4, y: 2.4, z: -31.4}
+      dialogue: "Gi\u1EA3i c\u1EE9u d\xE2n l\xE0ng b\u1ECB qu\xE2n Kh\u0103n V\xE0ng giam gi\u1EEF. Xin h\xE3y gi\xFAp ch\xFAng t\xF4i."
+      kind: 1
+  - id: ch01_02
+    areaName: "\u0110\u1ED3ng L\xFAa"
+    areaPath: CH01 Exploration/Area 02 Dong Lua va Kho Luong
+    markerPath: CH01 Exploration/Area 02 Dong Lua va Kho Luong/StageMarker_02
+    bossName: 
+    objective: "B\u1EA3o v\u1EC7 kho l\u01B0\u01A1ng v\xE0 trinh s\xE1t \u0111\u01B0\u1EDDng v\u1EADn chuy\u1EC3n."
+    boss: 0
+    center: {x: -10, y: 0, z: -27}
+    regionRadius: 16
+    battle: {fileID: 0}
+    targets:
+    - id: ch01_02_0
+      name: "Ch\u1EC9 huy ngh\u0129a binh"
+      anchorPath: CH01 Exploration/Area 02 Dong Lua va Kho Luong/Always/NPC_militia [quest]/MarkerAnchor_quest
+      position: {x: -0.6, y: 2.4, z: -25.6}
+      dialogue: "B\u1EA3o v\u1EC7 kho l\u01B0\u01A1ng v\xE0 trinh s\xE1t \u0111\u01B0\u1EDDng v\u1EADn chuy\u1EC3n. Xin h\xE3y gi\xFAp ch\xFAng t\xF4i."
+      kind: 0
+    - id: ch01_02_1
+      name: "Ch\u1EC9 huy ngh\u0129a binh"
+      anchorPath: CH01 Exploration/Area 02 Dong Lua va Kho Luong/Always/NPC_militia [quest]/MarkerAnchor_quest
+      position: {x: -7.5, y: 2.4, z: -20.5}
+      dialogue: "B\u1EA3o v\u1EC7 kho l\u01B0\u01A1ng v\xE0 trinh s\xE1t \u0111\u01B0\u1EDDng v\u1EADn chuy\u1EC3n. Xin h\xE3y gi\xFAp ch\xFAng t\xF4i."
+      kind: 0
+    - id: ch01_02_2
+      name: "Qu\xE2n Kh\u0103n V\xE0ng"
+      anchorPath: CH01 Exploration/Area 02 Dong Lua va Kho Luong/State_Before/NPC_yellow [battle]/MarkerAnchor_battle
+      position: {x: -22.5, y: 2.368059, z: -37.2}
+      dialogue: "B\u1EA3o v\u1EC7 kho l\u01B0\u01A1ng v\xE0 trinh s\xE1t \u0111\u01B0\u1EDDng v\u1EADn chuy\u1EC3n. Xin h\xE3y gi\xFAp ch\xFAng t\xF4i."
+      kind: 1
+  - id: ch01_03
+    areaName: "R\u1EEBng Tr\xFAc"
+    areaPath: CH01 Exploration/Area 03 Rung Truc
+    markerPath: CH01 Exploration/Area 03 Rung Truc/StageMarker_03
+    bossName: 
+    objective: "Ph\xE1 tr\u1EA1i ti\u1EC1n ti\xEAu trong r\u1EEBng tr\xFAc."
+    boss: 0
+    center: {x: -54, y: 0, z: 5}
+    regionRadius: 16
+    battle: {fileID: 0}
+    targets:
+    - id: ch01_03_0
+      name: "Qu\xE2n Kh\u0103n V\xE0ng"
+      anchorPath: CH01 Exploration/Area 03 Rung Truc/State_Before/NPC_yellow [battle]/MarkerAnchor_battle
+      position: {x: -48, y: 2.4, z: 11.2}
+      dialogue: "Ph\xE1 tr\u1EA1i ti\u1EC1n ti\xEAu trong r\u1EEBng tr\xFAc. Xin h\xE3y gi\xFAp ch\xFAng t\xF4i."
+      kind: 1
+  - id: ch01_04
+    areaName: "Tr\u1EA1i L\u01B0\u01A1ng"
+    areaPath: CH01 Exploration/Area 04 Trai Luong va Thon Trang
+    markerPath: CH01 Exploration/Area 04 Trai Luong va Thon Trang/StageMarker_04
+    bossName: 
+    objective: "Gi\u1EA3i c\u1EE9u d\xE2n v\xE0 chi\u1EBFm l\u1EA1i kho l\u01B0\u01A1ng."
+    boss: 0
+    center: {x: -8, y: 0, z: 4}
+    regionRadius: 16
+    battle: {fileID: 0}
+    targets:
+    - id: ch01_04_0
+      name: "D\xE2n b\u1ECB giam"
+      anchorPath: CH01 Exploration/Area 04 Trai Luong va Thon Trang/State_Before/NPC_villager [quest]/MarkerAnchor_quest
+      position: {x: -4.9, y: 2.4796152, z: -7.2}
+      dialogue: "Gi\u1EA3i c\u1EE9u d\xE2n v\xE0 chi\u1EBFm l\u1EA1i kho l\u01B0\u01A1ng. Xin h\xE3y gi\xFAp ch\xFAng t\xF4i."
+      kind: 0
+    - id: ch01_04_1
+      name: "Qu\xE2n Kh\u0103n V\xE0ng"
+      anchorPath: CH01 Exploration/Area 04 Trai Luong va Thon Trang/State_Before/NPC_guardian [battle]/MarkerAnchor_battle
+      position: {x: -9, y: 2.7999997, z: -1.2}
+      dialogue: "Gi\u1EA3i c\u1EE9u d\xE2n v\xE0 chi\u1EBFm l\u1EA1i kho l\u01B0\u01A1ng. Xin h\xE3y gi\xFAp ch\xFAng t\xF4i."
+      kind: 1
+  - id: ch01_05
+    areaName: "Ti\u1EC1n Doanh"
+    areaPath: CH01 Exploration/Area 05 Tien Doanh
+    markerPath: CH01 Exploration/Area 05 Tien Doanh/StageMarker_05
+    bossName: "Tr\xECnh Vi\u1EC5n Ch\xED"
+    objective: "\u0110\xE1nh b\u1EA1i Tr\xECnh Vi\u1EC5n Ch\xED."
+    boss: 1
+    center: {x: -4, y: 0, z: 31}
+    regionRadius: 16
+    battle: {fileID: 0}
+    targets:
+    - id: ch01_05_0
+      name: "Tr\xECnh Vi\u1EC5n Ch\xED"
+      anchorPath: CH01 Exploration/Area 05 Tien Doanh/State_Before/NPC_boss [battle]/MarkerAnchor_battle
+      position: {x: -4.5, y: 3.1, z: 31}
+      dialogue: "\u0110\xE1nh b\u1EA1i Tr\xECnh Vi\u1EC5n Ch\xED. Xin h\xE3y gi\xFAp ch\xFAng t\xF4i."
+      kind: 1
+  - id: ch01_06
+    areaName: "\u0110\u1EA1i Doanh Ho\xE0ng C\xE2n"
+    areaPath: CH01 Exploration/Area 06 Dai Doanh Hoang Can
+    markerPath: CH01 Exploration/Area 06 Dai Doanh Hoang Can/StageMarker_06
+    bossName: 
+    objective: "\u0110\u1ED9t ph\xE1 c\u1ED5ng, qu\xE2n tinh nhu\u1EC7 v\xE0 h\u1ED9 ph\xE1p."
+    boss: 0
+    center: {x: 36, y: 0, z: 2}
+    regionRadius: 16
+    battle: {fileID: 0}
+    targets:
+    - id: ch01_06_0
+      name: "Qu\xE2n Kh\u0103n V\xE0ng"
+      anchorPath: CH01 Exploration/Area 06 Dai Doanh Hoang Can/State_Before/NPC_guardian [battle]/MarkerAnchor_battle
+      position: {x: 19.4, y: 2.7966762, z: 5.6}
+      dialogue: "\u0110\u1ED9t ph\xE1 c\u1ED5ng, qu\xE2n tinh nhu\u1EC7 v\xE0 h\u1ED9 ph\xE1p. Xin h\xE3y gi\xFAp ch\xFAng t\xF4i."
+      kind: 1
+  - id: ch01_07
+    areaName: "T\u1EBF \u0110\xE0n Ho\xE0ng C\xE2n"
+    areaPath: CH01 Exploration/Area 07 Te Dan Hoang Can
+    markerPath: CH01 Exploration/Area 07 Te Dan Hoang Can/StageMarker_07
+    bossName: "Tr\u01B0\u01A1ng Gi\xE1c"
+    objective: "Ng\u0103n ch\u1EB7n nghi l\u1EC5 c\u1EE7a Tr\u01B0\u01A1ng Gi\xE1c."
+    boss: 1
+    center: {x: 56, y: 0, z: 31}
+    regionRadius: 16
+    battle: {fileID: 0}
+    targets:
+    - id: ch01_07_0
+      name: "Tr\u01B0\u01A1ng Gi\xE1c"
+      anchorPath: CH01 Exploration/Area 07 Te Dan Hoang Can/State_Before/NPC_boss [battle]/MarkerAnchor_battle
+      position: {x: 56, y: 5.7, z: 35.6}
+      dialogue: "Ng\u0103n ch\u1EB7n nghi l\u1EC5 c\u1EE7a Tr\u01B0\u01A1ng Gi\xE1c. Xin h\xE3y gi\xFAp ch\xFAng t\xF4i."
+      kind: 1
+  rewards:
+  - id: ch01_7
+    label: "R\u01B0\u01A1ng g\u1ED7"
+    stars: 7
+    contents: []
+  - id: ch01_14
+    label: "R\u01B0\u01A1ng b\u1EA1c"
+    stars: 14
+    contents: []
+  - id: ch01_21
+    label: "R\u01B0\u01A1ng v\xE0ng"
+    stars: 21
+    contents: []
+  roadRoute:
+  - {x: -72, y: 0.13773149, z: -30}
+  - {x: -71.319336, y: 0.06810916, z: -29.968262}
+  - {x: -70.42969, y: 0.015230534, z: -29.933594}
+  - {x: -69.37207, y: 0, z: -29.893066}
+  - {x: -68.1875, y: 0, z: -29.84375}
+  - {x: -66.91699, y: 0, z: -29.782715}
+  - {x: -65.60156, y: 0, z: -29.707031}
+  - {x: -64.28223, y: 0, z: -29.61377}
+  - {x: -63, y: 0, z: -29.5}
+  - {x: -61.72754, y: 0, z: -29.34668}
+  - {x: -60.414062, y: 0, z: -29.148438}
+  - {x: -59.06543, y: 0, z: -28.922852}
+  - {x: -57.6875, y: 0, z: -28.6875}
+  - {x: -56.286133, y: 0, z: -28.45996}
+  - {x: -54.867188, y: 0, z: -28.257812}
+  - {x: -53.436523, y: 0, z: -28.098633}
+  - {x: -52, y: 0, z: -28}
+  - {x: -50.51367, y: 0, z: -27.956543}
+  - {x: -48.953125, y: 0, z: -27.949219}
+  - {x: -47.353516, y: 0, z: -27.975098}
+  - {x: -45.75, y: 0, z: -28.03125}
+  - {x: -44.177734, y: 0, z: -28.114746}
+  - {x: -42.671875, y: 0, z: -28.222656}
+  - {x: -41.26758, y: 0, z: -28.35205}
+  - {x: -40, y: 0, z: -28.5}
+  - {x: -38.885742, y: 0, z: -28.674805}
+  - {x: -37.898438, y: 0, z: -28.882812}
+  - {x: -37.00879, y: 0, z: -29.118164}
+  - {x: -36.1875, y: 0.070913605, z: -29.375}
+  - {x: -35.405273, y: 0.14554742, z: -29.64746}
+  - {x: -34.632812, y: 0.2196074, z: -29.929688}
+  - {x: -33.84082, y: 0.2954524, z: -30.21582}
+  - {x: -33, y: 1.7017965, z: -30.5}
+  - {x: -32.145508, y: 1.7017965, z: -30.79541}
+  - {x: -31.320312, y: 1.7017965, z: -31.113281}
+  - {x: -30.506836, y: 1.7017965, z: -31.444824}
+  - {x: -29.6875, y: 1.7017965, z: -31.78125}
+  - {x: -28.844727, y: 1.7017965, z: -32.11377}
+  - {x: -27.960938, y: 1.7017965, z: -32.433594}
+  - {x: -27.018555, y: 1.7017965, z: -32.731934}
+  - {x: -26, y: 1.7017965, z: -33}
+  - {x: -24.893555, y: 1.7017965, z: -33.25244}
+  - {x: -23.710938, y: 1.7017965, z: -33.503906}
+  - {x: -22.469727, y: 1.7017965, z: -33.745605}
+  - {x: -21.1875, y: 0.24840829, z: -33.96875}
+  - {x: -19.881836, y: 0.13087836, z: -34.16455}
+  - {x: -18.570312, y: 0, z: -34.32422}
+  - {x: -17.270508, y: 0, z: -34.438965}
+  - {x: -16, y: 0, z: -34.5}
+  - {x: -14.705566, y: 0, z: -34.518555}
+  - {x: -13.347656, y: 0, z: -34.507812}
+  - {x: -11.964355, y: 0, z: -34.461914}
+  - {x: -10.59375, y: 0, z: -34.375}
+  - {x: -9.273926, y: 0, z: -34.24121}
+  - {x: -8.042969, y: 0, z: -34.054688}
+  - {x: -6.938965, y: 0, z: -33.80957}
+  - {x: -6, y: 0, z: -33.5}
+  - {x: -5.230957, y: 0, z: -33.12207}
+  - {x: -4.5976562, y: 0, z: -32.679688}
+  - {x: -4.07959, y: 0, z: -32.17871}
+  - {x: -3.65625, y: 0, z: -31.625}
+  - {x: -3.307129, y: 0, z: -31.024414}
+  - {x: -3.0117188, y: 0, z: -30.382812}
+  - {x: -2.7495117, y: 0, z: -29.706055}
+  - {x: -2.5, y: 0, z: -29}
+  - {x: -2.2768555, y: 0, z: -28.244629}
+  - {x: -2.1054688, y: 0, z: -27.425781}
+  - {x: -1.9829102, y: 0, z: -26.558105}
+  - {x: -1.90625, y: 0, z: -25.65625}
+  - {x: -1.8725586, y: 0, z: -24.734863}
+  - {x: -1.8789062, y: 0, z: -23.808594}
+  - {x: -1.9223633, y: 0, z: -22.89209}
+  - {x: -2, y: 0, z: -22}
+  - {x: -2.0893555, y: 0, z: -21.101074}
+  - {x: -2.1835938, y: 0, z: -20.167969}
+  - {x: -2.3032227, y: 0, z: -19.221191}
+  - {x: -2.46875, y: 0, z: -18.28125}
+  - {x: -2.7006836, y: 0, z: -17.368652}
+  - {x: -3.0195312, y: 0, z: -16.503906}
+  - {x: -3.4458008, y: 0, z: -15.70752}
+  - {x: -4, y: 0, z: -15}
+  - {x: -4.7128906, y: 0, z: -14.381348}
+  - {x: -5.578125, y: 0, z: -13.832031}
+  - {x: -6.560547, y: 0, z: -13.343262}
+  - {x: -7.625, y: 0, z: -12.90625}
+  - {x: -8.736328, y: 0, z: -12.512207}
+  - {x: -9.859375, y: 0, z: -12.152344}
+  - {x: -10.958984, y: 0, z: -11.817871}
+  - {x: -12, y: 0, z: -11.5}
+  - {x: -12.986328, y: 0, z: -11.213379}
+  - {x: -13.953125, y: 0, z: -10.972656}
+  - {x: -14.912109, y: 0, z: -10.769043}
+  - {x: -15.875, y: 0, z: -10.59375}
+  - {x: -16.853516, y: 0, z: -10.437988}
+  - {x: -17.859375, y: 0, z: -10.292969}
+  - {x: -18.904297, y: 0, z: -10.149902}
+  - {x: -20, y: 0, z: -10}
+  - {x: -21.154297, y: 0, z: -9.871582}
+  - {x: -22.359375, y: 0, z: -9.785156}
+  - {x: -23.603516, y: 0.115565866, z: -9.720215}
+  - {x: -24.875, y: 0.24269792, z: -9.65625}
+  - {x: -26.16211, y: 1.7017965, z: -9.572754}
+  - {x: -27.453125, y: 1.7017965, z: -9.449219}
+  - {x: -28.736328, y: 1.7017965, z: -9.265137}
+  - {x: -30, y: 1.7017965, z: -9}
+  - {x: -31.270508, y: 1.7017965, z: -8.650391}
+  - {x: -32.570312, y: 1.7017965, z: -8.234375}
+  - {x: -33.881836, y: 1.7017965, z: -7.763672}
+  - {x: -35.1875, y: 1.7017965, z: -7.25}
+  - {x: -36.469727, y: 0.26705337, z: -6.705078}
+  - {x: -37.710938, y: 0.12932488, z: -6.140625}
+  - {x: -38.893555, y: 0, z: -5.5683594}
+  - {x: -40, y: 0, z: -5}
+  - {x: -41.032227, y: 0, z: -4.4194336}
+  - {x: -42.007812, y: 0, z: -3.8085938}
+  - {x: -42.932617, y: 0, z: -3.1762695}
+  - {x: -43.8125, y: 0, z: -2.53125}
+  - {x: -44.65332, y: 0, z: -1.8823242}
+  - {x: -45.460938, y: 0, z: -1.2382812}
+  - {x: -46.24121, y: 0, z: -0.60791016}
+  - {x: -47, y: 0, z: 0}
+  - {x: -47.74121, y: 0, z: 0.5864258}
+  - {x: -48.460938, y: 0, z: 1.1601562}
+  - {x: -49.15332, y: 0, z: 1.7241211}
+  - {x: -49.8125, y: 0, z: 2.28125}
+  - {x: -50.432617, y: 0, z: 2.8344727}
+  - {x: -51.007812, y: 0, z: 3.3867188}
+  - {x: -51.532227, y: 0, z: 3.940918}
+  - {x: -52, y: 0, z: 4.5}
+  - {x: -52.441406, y: 0, z: 5.065918}
+  - {x: -52.875, y: 0, z: 5.6367188}
+  - {x: -53.277344, y: 0, z: 6.2094727}
+  - {x: -53.625, y: 0, z: 6.78125}
+  - {x: -53.89453, y: 0, z: 7.349121}
+  - {x: -54.0625, y: 0, z: 7.9101562}
+  - {x: -54.10547, y: 0, z: 8.461426}
+  - {x: -54, y: 0, z: 9}
+  - {x: -53.737305, y: 0, z: 9.558105}
+  - {x: -53.335938, y: 0, z: 10.152344}
+  - {x: -52.813477, y: 0, z: 10.756348}
+  - {x: -52.1875, y: 0, z: 11.34375}
+  - {x: -51.475586, y: 0, z: 11.888184}
+  - {x: -50.695312, y: 0, z: 12.363281}
+  - {x: -49.864258, y: 0, z: 12.742676}
+  - {x: -49, y: 0, z: 13}
+  - {x: -48.073242, y: 0, z: 13.12793}
+  - {x: -47.054688, y: 0, z: 13.1484375}
+  - {x: -45.961914, y: 0, z: 13.079102}
+  - {x: -44.8125, y: 0, z: 12.9375}
+  - {x: -43.624023, y: 0, z: 12.741211}
+  - {x: -42.414062, y: 0, z: 12.5078125}
+  - {x: -41.200195, y: 0, z: 12.254883}
+  - {x: -40, y: 0.083097965, z: 12}
+  - {x: -38.791016, y: 0.17643681, z: 11.717285}
+  - {x: -37.546875, y: 0.27352217, z: 11.378906}
+  - {x: -36.279297, y: 1.7017967, z: 10.999512}
+  - {x: -35, y: 1.7017967, z: 10.59375}
+  - {x: -33.720703, y: 1.7017967, z: 10.17627}
+  - {x: -32.453125, y: 1.7017967, z: 9.761719}
+  - {x: -31.208984, y: 1.7017967, z: 9.364746}
+  - {x: -30, y: 1.7017967, z: 9}
+  - {x: -28.820312, y: 1.7017967, z: 8.656738}
+  - {x: -27.65625, y: 1.7017967, z: 8.316406}
+  - {x: -26.507812, y: 1.7017967, z: 7.9819336}
+  - {x: -25.375, y: 1.7017967, z: 7.65625}
+  - {x: -24.257812, y: 1.7017967, z: 7.342285}
+  - {x: -23.15625, y: 0.3276702, z: 7.0429688}
+  - {x: -22.070312, y: 0.24322626, z: 6.7612305}
+  - {x: -21, y: 0.1603552, z: 6.5}
+  - {x: -19.958984, y: 0.07986271, z: 6.2509766}
+  - {x: -18.953125, y: 0, z: 6.0078125}
+  - {x: -17.970703, y: 0, z: 5.776367}
+  - {x: -17, y: 0, z: 5.5625}
+  - {x: -16.029297, y: 0, z: 5.3720703}
+  - {x: -15.046875, y: 0, z: 5.2109375}
+  - {x: -14.041016, y: 0, z: 5.084961}
+  - {x: -13, y: 0, z: 5}
+  - {x: -11.90918, y: 0, z: 4.946289}
+  - {x: -10.7734375, y: 0, z: 4.9140625}
+  - {x: -9.610352, y: 0, z: 4.9091797}
+  - {x: -8.4375, y: 0, z: 4.9375}
+  - {x: -7.272461, y: 0, z: 5.004883}
+  - {x: -6.1328125, y: 0, z: 5.1171875}
+  - {x: -5.036133, y: 0, z: 5.2802734}
+  - {x: -4, y: 0, z: 5.5}
+  - {x: -2.9951172, y: 0, z: 5.7836914}
+  - {x: -1.9921875, y: 0, z: 6.1289062}
+  - {x: -1.0087891, y: 0, z: 6.5268555}
+  - {x: -0.0625, y: 0, z: 6.96875}
+  - {x: 0.82910156, y: 0, z: 7.445801}
+  - {x: 1.6484375, y: 0, z: 7.9492188}
+  - {x: 2.3779297, y: 0, z: 8.470215}
+  - {x: 3, y: 0, z: 9}
+  - {x: 3.5200195, y: 0, z: 9.546387}
+  - {x: 3.9570312, y: 0, z: 10.121094}
+  - {x: 4.313965, y: 0, z: 10.721191}
+  - {x: 4.59375, y: 0, z: 11.34375}
+  - {x: 4.7993164, y: 0, z: 11.98584}
+  - {x: 4.9335938, y: 0, z: 12.644531}
+  - {x: 4.9995117, y: 0, z: 13.316895}
+  - {x: 5, y: 0, z: 14}
+  - {x: 4.902832, y: 0, z: 14.708984}
+  - {x: 4.6914062, y: 0, z: 15.453125}
+  - {x: 4.39209, y: 0, z: 16.220703}
+  - {x: 4.03125, y: 0, z: 17}
+  - {x: 3.635254, y: 0, z: 17.779297}
+  - {x: 3.2304688, y: 0, z: 18.546875}
+  - {x: 2.8432617, y: 0, z: 19.291016}
+  - {x: 2.5, y: 0, z: 20}
+  - {x: 2.1669922, y: 0, z: 20.679688}
+  - {x: 1.8046875, y: 0, z: 21.34375}
+  - {x: 1.4306641, y: 0, z: 21.992188}
+  - {x: 1.0625, y: 0, z: 22.625}
+  - {x: 0.71777344, y: 0, z: 23.242188}
+  - {x: 0.4140625, y: 0, z: 23.84375}
+  - {x: 0.16894531, y: 0, z: 24.429688}
+  - {x: 0, y: 0, z: 25}
+  - {x: -0.12207031, y: 0, z: 25.558105}
+  - {x: -0.2265625, y: 0, z: 26.105469}
+  - {x: -0.29589844, y: 0, z: 26.63916}
+  - {x: -0.3125, y: 0, z: 27.15625}
+  - {x: -0.25878906, y: 0, z: 27.653809}
+  - {x: -0.1171875, y: 0, z: 28.128906}
+  - {x: 0.12988281, y: 0, z: 28.578613}
+  - {x: 0.5, y: 0, z: 29}
+  - {x: 1.0219727, y: 0, z: 29.411621}
+  - {x: 1.6914062, y: 0, z: 29.824219}
+  - {x: 2.4760742, y: 0, z: 30.223145}
+  - {x: 3.34375, y: 0, z: 30.59375}
+  - {x: 4.262207, y: 0, z: 30.921387}
+  - {x: 5.1992188, y: 0, z: 31.191406}
+  - {x: 6.1225586, y: 0, z: 31.38916}
+  - {x: 7, y: 0, z: 31.5}
+  - {x: 7.878418, y: 0, z: 31.54834}
+  - {x: 8.808594, y: 0, z: 31.558594}
+  - {x: 9.76416, y: 0, z: 31.516113}
+  - {x: 10.71875, y: 0, z: 31.40625}
+  - {x: 11.645996, y: 0, z: 31.214355}
+  - {x: 12.519531, y: 0, z: 30.925781}
+  - {x: 13.312988, y: 0, z: 30.525879}
+  - {x: 14, y: 0, z: 30}
+  - {x: 14.607422, y: 0, z: 29.324707}
+  - {x: 15.171875, y: 0, z: 28.503906}
+  - {x: 15.681641, y: 0, z: 27.563965}
+  - {x: 16.125, y: 0, z: 26.53125}
+  - {x: 16.490234, y: 0, z: 25.432129}
+  - {x: 16.765625, y: 0, z: 24.292969}
+  - {x: 16.939453, y: 0, z: 23.140137}
+  - {x: 17, y: 0, z: 22}
+  - {x: 16.891602, y: 0, z: 20.832031}
+  - {x: 16.601562, y: 0, z: 19.59375}
+  - {x: 16.182617, y: 0, z: 18.308594}
+  - {x: 15.6875, y: 0, z: 17}
+  - {x: 15.168945, y: 0, z: 15.691406}
+  - {x: 14.6796875, y: 0, z: 14.40625}
+  - {x: 14.272461, y: 0, z: 13.167969}
+  - {x: 14, y: 0, z: 12}
+  - {x: 13.829102, y: 0, z: 10.863281}
+  - {x: 13.6953125, y: 0, z: 9.71875}
+  - {x: 13.604492, y: 0, z: 8.589844}
+  - {x: 13.5625, y: 0, z: 7.5}
+  - {x: 13.575195, y: 0, z: 6.4726562}
+  - {x: 13.6484375, y: 0, z: 5.53125}
+  - {x: 13.788086, y: 0, z: 4.6992188}
+  - {x: 14, y: 0, z: 4}
+  - {x: 14.308594, y: 0, z: 3.4492188}
+  - {x: 14.71875, y: 0, z: 3.03125}
+  - {x: 15.207031, y: 0, z: 2.7226562}
+  - {x: 15.75, y: 0, z: 2.5}
+  - {x: 16.324219, y: 0, z: 2.3398438}
+  - {x: 16.90625, y: 0, z: 2.21875}
+  - {x: 17.472656, y: 0, z: 2.1132812}
+  - {x: 18, y: 0, z: 2}
+  - {x: 18.472656, y: 0, z: 1.9042969}
+  - {x: 18.90625, y: 0, z: 1.859375}
+  - {x: 19.324219, y: 0, z: 1.8535156}
+  - {x: 19.75, y: 0, z: 1.875}
+  - {x: 20.207031, y: 0, z: 1.9121094}
+  - {x: 20.71875, y: 0, z: 1.953125}
+  - {x: 21.308594, y: 0, z: 1.9863281}
+  - {x: 22, y: 0, z: 2}
+  - {x: 22.81543, y: 0, z: 1.9931641}
+  - {x: 23.742188, y: 0, z: 1.9765625}
+  - {x: 24.750977, y: 0, z: 1.9560547}
+  - {x: 25.8125, y: 0, z: 1.9375}
+  - {x: 26.89746, y: 0, z: 1.9267578}
+  - {x: 27.976562, y: 0, z: 1.9296875}
+  - {x: 29.020508, y: 0, z: 1.9521484}
+  - {x: 30, y: 0, z: 2}
+  - {x: 30.94336, y: 0, z: 2.0498047}
+  - {x: 31.890625, y: 0, z: 2.0859375}
+  - {x: 32.83008, y: 0, z: 2.1259766}
+  - {x: 33.75, y: 0, z: 2.1875}
+  - {x: 34.63867, y: 0, z: 2.288086}
+  - {x: 35.484375, y: 0, z: 2.4453125}
+  - {x: 36.27539, y: 0, z: 2.6767578}
+  - {x: 37, y: 0, z: 3}
+  - {x: 37.65039, y: 0, z: 3.4267578}
+  - {x: 38.234375, y: 0, z: 3.9453125}
+  - {x: 38.76367, y: 0, z: 4.538086}
+  - {x: 39.25, y: 0, z: 5.1875}
+  - {x: 39.70508, y: 0, z: 5.8759766}
+  - {x: 40.140625, y: 0, z: 6.5859375}
+  - {x: 40.56836, y: 0, z: 7.2998047}
+  - {x: 41, y: 0, z: 8}
+  - {x: 41.42285, y: 0, z: 8.712402}
+  - {x: 41.820312, y: 0, z: 9.464844}
+  - {x: 42.198242, y: 0, z: 10.242676}
+  - {x: 42.5625, y: 0, z: 11.03125}
+  - {x: 42.918945, y: 0, z: 11.815918}
+  - {x: 43.273438, y: 0, z: 12.582031}
+  - {x: 43.631836, y: 0, z: 13.314941}
+  - {x: 44, y: 0, z: 14}
+  - {x: 44.36133, y: 0, z: 14.647949}
+  - {x: 44.703125, y: 0, z: 15.277344}
+  - {x: 45.03711, y: 0, z: 15.885254}
+  - {x: 45.375, y: 0, z: 16.46875}
+  - {x: 45.728516, y: 0, z: 17.024902}
+  - {x: 46.109375, y: 0, z: 17.550781}
+  - {x: 46.529297, y: 0, z: 18.043457}
+  - {x: 47, y: 0, z: 18.5}
+  - {x: 47.536133, y: 0, z: 18.929396}
+  - {x: 48.132812, y: 0, z: 19.33828}
+  - {x: 48.77246, y: 0, z: 19.720215}
+  - {x: 49.4375, y: 0, z: 20.06875}
+  - {x: 50.11035, y: 0, z: 20.377441}
+  - {x: 50.773438, y: 0, z: 20.639845}
+  - {x: 51.40918, y: 0, z: 20.84951}
+  - {x: 52, y: 0, z: 21}
+  - {x: 52.575195, y: 0, z: 21.069237}
+  - {x: 53.164062, y: 0, z: 21.053905}
+  - {x: 53.749023, y: 0, z: 20.975685}
+  - {x: 54.3125, y: 3, z: 20.85625}
+  - {x: 54.836914, y: 3, z: 20.717285}
+  - {x: 55.304688, y: 3, z: 20.58047}
+  - {x: 55.698242, y: 0, z: 20.467482}
+  - {x: 56, y: 0, z: 20.4}
+  groundBounds:
+    serializedVersion: 2
+    x: -70
+    y: -45
+    width: 140
+    height: 90
+  initialPosition: {x: -50, y: 0, z: -34}
+  interactionRadius: 1.8
+  walkSpeed: 4
+  agentRadius: 0.35
+  agentHeight: 1.8
+  stuckSeconds: 4
+  minimumProgress: 0.12
+  pathSampleDistance: 3
+  cameraTilt: 50
+  cameraYaw: 45
+  cameraMinSize: 12
+  cameraMaxSize: 38
+  cameraSize: 22
+  cameraFollowSpeed: 4
+  wheelZoomSpeed: 2
+  dragThresholdDp: 12
+  cameraGroundMargin: 55
+  navigationCellSize: 4
+  walkableNames:
+  - bridge
+  - plateau
+  - stairs
+  navigationByUnlockedStage:
+  - {fileID: 23800000, guid: 879fb3a94b18c064fa75edcc534ba4ea, type: 2}
+  - {fileID: 23800000, guid: 23c4865c702082d4b93d8e9a1b916cbc, type: 2}
+  - {fileID: 23800000, guid: ded80544992c8d24097826feed21665c, type: 2}
+  - {fileID: 23800000, guid: f953ab89250ece94aa6073ec0ab43cbe, type: 2}
+  - {fileID: 23800000, guid: 5a98672cdcf2cf54ebeb73528a391044, type: 2}
+  - {fileID: 23800000, guid: 8d12829a7b8e8f14aaf83f98bfc90b4e, type: 2}
+  - {fileID: 23800000, guid: 016cf4c5b2a444747a62e15a3b427825, type: 2}

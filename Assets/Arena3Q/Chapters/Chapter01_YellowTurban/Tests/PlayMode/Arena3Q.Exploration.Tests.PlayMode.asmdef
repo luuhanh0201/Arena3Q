@@ -1,0 +1,5 @@
+{
+ "name":"Arena3Q.Exploration.Tests.PlayMode",
+ "references":["Arena3Q.Core","Arena3Q.Data","Arena3Q.Gameplay","Arena3Q.UI","Arena3Q.Frontend","Arena3Q.Exploration","UnityEngine.UI","Unity.TextMeshPro","UnityEngine.TestRunner","UnityEditor.TestRunner"],
+ "overrideReferences":true,"precompiledReferences":["nunit.framework.dll"],"autoReferenced":false,"defineConstraints":["UNITY_INCLUDE_TESTS"]
+}

@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Arena3Q/Scenes/Battle.unity
     guid: df704845059e96444961628e1af12d76
+  - enabled: 1
+    path: Assets/Arena3Q/Chapters/Chapter01_YellowTurban/Scenes/CH01_Exploration.unity
+    guid: 7aedfa70c39e93f45b9cc7acf2520d40
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

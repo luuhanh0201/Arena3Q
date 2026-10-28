@@ -1,19 +1,108 @@
 {
-  "output": "Builds/WebGL/Arena3Q",
-  "startScene": "Assets/Arena3Q/Scenes/Frontend.unity",
-  "scenes": [
-    "Assets/Arena3Q/Scenes/Frontend.unity",
-    "Assets/Arena3Q/Scenes/Battlefield_HighQuality.unity",
-    "Assets/Arena3Q/Scenes/Battle.unity"
-  ],
-  "modes": [
-    { "id": "phone", "label": "Điện thoại", "width": 1280, "height": 576 },
-    { "id": "ipad", "label": "iPad", "width": 1024, "height": 768 },
-    { "id": "pc", "label": "PC", "width": 1600, "height": 900 }
-  ],
-  "renderQuality": { "maxPixelRatio": 2, "maxLongEdge": 3840, "maxPixels": 8294400 },
-  "port": 4322,
-  "androidDownload": "Builds/Android/Arena3Q-Latest-20261025.apk",
-  "introSource": "Assets/Arena3Q/Art/UI/Startup/Video/Arena3Q_Splash_loud.mp4",
-  "introFile": "Arena3Q_Splash_loud.mp4"
+    "output":  "Builds/WebGL/Arena3Q",
+    "startScene":  "Assets/Arena3Q/Scenes/Frontend.unity",
+    "scenes":  [
+                   "Assets/Arena3Q/Scenes/Frontend.unity",
+                   "Assets/Arena3Q/Scenes/Battlefield_HighQuality.unity",
+                   "Assets/Arena3Q/Scenes/Battle.unity",
+                   "Assets/Arena3Q/Chapters/Chapter01_YellowTurban/Scenes/CH01_Exploration.unity"
+               ],
+    "modes":  [
+                  {
+                      "id":  "phone",
+                      "label":  "Điện thoại",
+                      "width":  2340,
+                      "height":  1080
+                  },
+                  {
+                      "id":  "ipad",
+                      "label":  "iPad",
+                      "width":  1024,
+                      "height":  768
+                  },
+                  {
+                      "id":  "pc",
+                      "label":  "PC",
+                      "width":  1600,
+                      "height":  900
+                  }
+              ],
+    "phoneDevices":  [
+                         {
+                             "id":  "redmi",
+                             "label":  "Redmi 2340 × 1080",
+                             "width":  2340,
+                             "height":  1080,
+                             "dpi":  395,
+                             "safeInsets":  {
+                                                "left":  80,
+                                                "right":  48,
+                                                "top":  0,
+                                                "bottom":  0
+                                            }
+                         },
+                         {
+                             "id":  "wide16",
+                             "label":  "16:9",
+                             "width":  1920,
+                             "height":  1080,
+                             "dpi":  320,
+                             "safeInsets":  {
+                                                "left":  0,
+                                                "right":  48,
+                                                "top":  0,
+                                                "bottom":  0
+                                            }
+                         },
+                         {
+                             "id":  "wide18",
+                             "label":  "18:9",
+                             "width":  2160,
+                             "height":  1080,
+                             "dpi":  360,
+                             "safeInsets":  {
+                                                "left":  0,
+                                                "right":  48,
+                                                "top":  0,
+                                                "bottom":  0
+                                            }
+                         },
+                         {
+                             "id":  "wide20",
+                             "label":  "20:9",
+                             "width":  2400,
+                             "height":  1080,
+                             "dpi":  400,
+                             "safeInsets":  {
+                                                "left":  80,
+                                                "right":  48,
+                                                "top":  0,
+                                                "bottom":  0
+                                            }
+                         }
+                     ],
+    "displayPresets":  [
+                           {
+                               "label":  "Thấp (30 FPS)",
+                               "frameRate":  30
+                           },
+                           {
+                               "label":  "Mặc định (60 FPS)",
+                               "frameRate":  60,
+                               "default":  true
+                           },
+                           {
+                               "label":  "Cao (120 FPS)",
+                               "frameRate":  120
+                           }
+                       ],
+    "renderQuality":  {
+                          "maxPixelRatio":  2,
+                          "maxLongEdge":  3840,
+                          "maxPixels":  8294400
+                      },
+    "port":  4322,
+    "androidDownload":  "Builds/Android/Arena3Q-Latest-20261025.apk",
+    "introSource":  "Assets/Arena3Q/Art/UI/Startup/Video/Arena3Q_Splash_loud.mp4",
+    "introFile":  "Arena3Q_Splash_loud.mp4"
 }

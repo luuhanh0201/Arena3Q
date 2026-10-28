@@ -167,7 +167,12 @@ namespace Arena3Q.Frontend
         public void ReturnToLogin() => Show(FrontendStep.Login);
         public void EnterBattleFromLobby()
         {
-            if (Step == FrontendStep.Lobby) Show(FrontendStep.Battle);
+            if (Step != FrontendStep.Lobby) return;
+            if (!string.IsNullOrEmpty(config.ChapterMapSceneName))
+            {
+                Save(); ResumeAt = FrontendStep.Lobby; SceneTransition.Load(config.ChapterMapSceneName);
+            }
+            else Show(FrontendStep.Battle);
         }
 
         private void OnDestroy() { Screen?.Hide(); Screen = null; }

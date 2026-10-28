@@ -17,3 +17,8 @@ MonoBehaviour:
   attack: {fileID: 21300000, guid: 7430ef5b33eafb27f0d714f6fcecbef1, type: 3}
   defend: {fileID: 21300000, guid: edcbebd2c5989d644ccf595efad7019e, type: 3}
   expandUp: {fileID: 21300000, guid: 97a881b765d1f1b8d6d83d37aabe0069, type: 3}
+  mapBack: {fileID: 21300000, guid: 6d5b3d3b6663b034c98faeacff65b724, type: 3}
+  mapInfo: {fileID: 21300000, guid: 4eba0ac4ed757fc43bc5605b10da4adc, type: 3}
+  mapQuestion: {fileID: 21300000, guid: d23f2671ef5d0e8499148b1b352455ef, type: 3}
+  mapLock: {fileID: 21300000, guid: 5327fd6ad9437c8498750ca2c29e9dbc, type: 3}
+  mapCheck: {fileID: 21300000, guid: e683df170b990594599cea29fef6557f, type: 3}

@@ -1,0 +1,6 @@
+{
+  "name": "Arena3Q.Exploration.Editor",
+  "references": ["Arena3Q.Core", "Arena3Q.Data", "Arena3Q.Gameplay", "Arena3Q.UI", "Arena3Q.Frontend", "Arena3Q.Exploration", "Arena3Q.Editor", "Unity.AI.Navigation", "UnityEngine.UI", "Unity.TextMeshPro"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": false
+}

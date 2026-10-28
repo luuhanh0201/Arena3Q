@@ -1,7 +1,7 @@
 {
     "name": "Arena3Q.Tests.PlayMode",
     "rootNamespace": "Arena3Q.Tests.PlayMode",
-    "references": ["Arena3Q.Core", "Arena3Q.Data", "Arena3Q.Gameplay", "Arena3Q.UI", "Arena3Q.Frontend", "UnityEngine.UI", "Unity.TextMeshPro", "Unity.InputSystem", "Unity.RenderPipelines.Universal.Runtime", "Unity.RenderPipelines.Core.Runtime", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
+    "references": ["Arena3Q.Core", "Arena3Q.Data", "Arena3Q.Gameplay", "Arena3Q.UI", "Arena3Q.Frontend", "Arena3Q.Exploration", "UnityEngine.UI", "Unity.TextMeshPro", "Unity.InputSystem", "Unity.RenderPipelines.Universal.Runtime", "Unity.RenderPipelines.Core.Runtime", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

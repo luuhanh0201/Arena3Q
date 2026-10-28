@@ -36,8 +36,8 @@ MonoBehaviour:
   minUsernameLength: 6
   maxUsernameLength: 20
   minPasswordLength: 8
-  termsUrl:
-  privacyUrl:
+  termsUrl: 
+  privacyUrl: 
   lordRoster: {fileID: 11400000, guid: 976a4a025d1237c4d962e98dac178bff, type: 2}
   serverList: {fileID: 11400000, guid: 15e345ea16cd8084088ae0c0fd1c10f0, type: 2}
   names: {fileID: 11400000, guid: 5378f887ca57e1f418fff80af34df9d5, type: 2}
@@ -67,5 +67,6 @@ MonoBehaviour:
   defaultStage: {fileID: 11400000, guid: e7ddb4aebcaef9b459c07f198db9aea4, type: 2}
   battleSceneName: Battlefield_HighQuality
   frontendSceneName: Frontend
+  chapterMapSceneName: CH01_Exploration
   developmentLordLevel: 60
   developmentFullRage: 1

@@ -85,7 +85,7 @@ namespace Arena3Q.Editor
 
         private static void Package(string output, Settings settings)
         {
-            foreach (string file in new[] { "index.html", "style.css", "player.mjs", "web-settings.json" })
+            foreach (string file in new[] { "index.html", "style.css", "player.mjs", "device-preview.mjs", "web-settings.json" })
                 File.Copy(Path.Combine("WebGame", file), Path.Combine(output, file), true);
             string art = Path.Combine(output, "art");
             Directory.CreateDirectory(art);

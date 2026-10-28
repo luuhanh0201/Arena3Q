@@ -349,6 +349,7 @@ namespace Arena3Q.Gameplay
             _stageRunner = new StageRunner(this, stage);
             _stageRunner.Begin();
 
+            _launch?.OnStarted?.Invoke(Stage);
             BattleStarted?.Invoke();
             Changed?.Invoke();
         }
@@ -438,7 +439,9 @@ namespace Arena3Q.Gameplay
             if (decision.IsFinal)
             {
                 LastOutcome = decision;
-                LastResultNote = _launch?.OnFinished?.Invoke(Stage, decision) ?? "";
+                LastResultNote = _launch?.OnFinishedWithStars != null
+                    ? _launch.OnFinishedWithStars(Stage, decision, State.Stars)
+                    : _launch?.OnFinished?.Invoke(Stage, decision) ?? "";
                 SetSelectionVisual(UnitId.None);
                 Finished?.Invoke(decision);
                 Changed?.Invoke();

@@ -1,6 +1,8 @@
+import { deviceDisplay, devicePayload } from './device-preview.mjs';
 const $ = id => document.getElementById(id);
 const storageKey = 'arena3q.web.display';
 let settings, selected, instance, loading = false, densityQuery;
+let deviceId, frameRate;
 const area = $('play-area'), frame = $('game-frame'), canvas = $('unity-canvas');
 function pixelRatio() {
   const box = canvas.getBoundingClientRect(), quality = settings.renderQuality;
@@ -26,17 +28,24 @@ function fit() {
   const ratio = pixelRatio(), box = canvas.getBoundingClientRect();
   if (instance) instance.Module.devicePixelRatio = ratio;
   else { canvas.width = Math.round(box.width * ratio); canvas.height = Math.round(box.height * ratio); }
+  applyDevicePreview();
+}
+
+function applyDevicePreview() {
+  if (!instance || !selected) return;
+  instance.SendMessage('WebDisplayPreview', 'Apply', JSON.stringify(devicePayload(selected, frameRate)));
 }
 
 function selectMode(id) {
-  selected = settings.modes.find(mode => mode.id === id) || settings.modes.find(mode => mode.id === 'pc');
+  selected = deviceDisplay(settings, id, deviceId);
+  $('phone-control').hidden = selected.id !== 'phone';
   try { localStorage.setItem(storageKey, selected.id); } catch { /* Storage can be disabled. */ }
   for (const button of $('modes').querySelectorAll('button')) {
     button.setAttribute('aria-pressed', String(button.dataset.mode === selected.id));
   }
   // Modes choose aspect ratio; the backing buffer follows physical display pixels.
   frame.dataset.mode = selected.id;
-  $('mode-label').textContent = selected.label;
+  $('mode-label').textContent = selected.label + (selected.deviceLabel ? ' · ' + selected.deviceLabel : '');
   fit();
   window.dispatchEvent(new Event('resize'));
   if (instance) canvas.focus({ preventScroll: true });
@@ -134,6 +143,20 @@ try {
   const response = await fetch('web-settings.json', { cache: 'no-cache' });
   if (!response.ok) throw new Error(`Display settings: HTTP ${response.status}`);
   settings = await response.json();
+  frameRate = settings.displayPresets?.find(item => item.default)?.frameRate;
+  if (!frameRate) throw new Error('Missing default display preset');
+  deviceId = settings.phoneDevices?.[0]?.id;
+  for (const device of settings.phoneDevices || []) {
+    const option = document.createElement('option'); option.value = device.id; option.textContent = device.label;
+    $('phone-device').append(option);
+    devicePayload(device, frameRate);
+  }
+  for (const preset of settings.displayPresets) {
+    const option = document.createElement('option'); option.value = preset.frameRate; option.textContent = preset.label;
+    option.selected = preset.frameRate === frameRate; $('display-preset').append(option);
+  }
+  $('phone-device').addEventListener('change', () => { deviceId = $('phone-device').value; selectMode('phone'); });
+  $('display-preset').addEventListener('change', () => { frameRate = Number($('display-preset').value); applyDevicePreview(); });
   if (!settings.renderQuality || !['maxPixelRatio', 'maxLongEdge', 'maxPixels'].every(key =>
       Number.isFinite(settings.renderQuality[key]) && settings.renderQuality[key] > 0)) throw new Error('Invalid render quality settings');
   if (!Array.isArray(settings.modes) || !settings.modes.some(m => m.id === 'pc') ||

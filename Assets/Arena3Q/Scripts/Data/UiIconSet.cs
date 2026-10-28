@@ -23,12 +23,18 @@ namespace Arena3Q.Data
         [SerializeField] private Sprite defend;
         [Tooltip("Small hint on the stance button that it opens upwards (Lucide 'chevron-up', ISC).")]
         [SerializeField] private Sprite expandUp;
+        [SerializeField] private Sprite mapBack, mapInfo, mapQuestion, mapLock, mapCheck;
 
         public Sprite Star => star;
         public Sprite Hold => hold;
         public Sprite Attack => attack;
         public Sprite Defend => defend;
         public Sprite ExpandUp => expandUp;
+        public Sprite MapBack => mapBack;
+        public Sprite MapInfo => mapInfo;
+        public Sprite MapQuestion => mapQuestion;
+        public Sprite MapLock => mapLock;
+        public Sprite MapCheck => mapCheck;
 
         private static UiIconSet _loaded;
 

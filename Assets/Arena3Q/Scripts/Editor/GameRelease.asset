@@ -17,6 +17,7 @@ MonoBehaviour:
   - {fileID: 102900000, guid: a53c331cb21e0884198d596375c74928, type: 3}
   - {fileID: 102900000, guid: a532e0cc39b0f124aa772e41da4b2ea3, type: 3}
   - {fileID: 102900000, guid: df704845059e96444961628e1af12d76, type: 3}
+  - {fileID: 102900000, guid: 7aedfa70c39e93f45b9cc7acf2520d40, type: 3}
   tutorialSource: {fileID: 11400000, guid: 8312ed9470000604db64a1540d49dab5, type: 2}
   attackSource: {fileID: 11400000, guid: 8a7039988c475614984e3c7114bd74f8, type: 2}
   defenseSource: {fileID: 11400000, guid: 836ac76bc6f8044439003106bd7887b7, type: 2}

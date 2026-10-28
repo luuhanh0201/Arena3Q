@@ -81,9 +81,23 @@ namespace Arena3Q.Tests.PlayMode
             Assert.That(lobby.Root.GetComponentsInChildren<TMP_Text>().Any(text => text.text == _flow.Config.Lobby.missingModel), Is.True);
         }
         [UnityTest]
-        public IEnumerator BattleReturnsToSameLordAndServerWithoutLogin()
+        public IEnumerator DirectBattleFallbackReturnsToSameLordAndServerWithoutLogin()
         {
-            var character = _flow.Character; _flow.EnterBattleFromLobby();
+            // Keep coverage of the legacy direct-battle return and its model capture.
+            // The release lobby -> chapter route is covered by FrontendFlowTests.
+            var character = _flow.Character;
+            var config = new UnityEditor.SerializedObject(_flow.Config);
+            var chapterScene = config.FindProperty("chapterMapSceneName");
+            var originalScene = chapterScene.stringValue;
+            try
+            {
+                chapterScene.stringValue = ""; config.ApplyModifiedPropertiesWithoutUndo();
+                _flow.EnterBattleFromLobby();
+            }
+            finally
+            {
+                chapterScene.stringValue = originalScene; config.ApplyModifiedPropertiesWithoutUndo();
+            }
             BattleController battle = null;
             var deadline = Time.realtimeSinceStartup + 20;
             while (battle == null && Time.realtimeSinceStartup < deadline) { yield return null; battle = Object.FindAnyObjectByType<BattleController>(); }
