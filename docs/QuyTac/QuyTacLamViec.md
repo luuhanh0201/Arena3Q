@@ -7,6 +7,7 @@ Gom các quy tắc người dùng đã nói rải rác qua các phiên, để **
 - Người dùng nói tiếng Việt: trả lời và viết tài liệu tiếng Việt.
 - Làm theo **từng bước**, có kế hoạch trước khi tạo file. Mỗi bước một commit, **commit xong push ngay** lên `origin` (không cần hỏi). Không force-push. Không commit file không thuộc việc của mình.
 - **Không hỏi lại điều đã chốt** (2026-10-17): tra `docs/` trước. Ý mới mâu thuẫn với điều đã ghi (nhất là mục ✅) thì nói rõ mâu thuẫn và đề xuất cách giải quyết, không lặng lẽ chọn.
+- **Hỏi bằng lựa chọn** (người dùng 29/10/2026, áp dụng cho cả Claude và Codex): mọi câu hỏi gửi người dùng (làm rõ, xác nhận, chọn phương án) đều phải là lời nhắc có sẵn phương án để chọn hoặc tự gõ, không phải đoạn văn "vui lòng xác nhận". Có công cụ hỏi kiểu CLI (AskUserQuestion) thì dùng nó; nếu không (chạy qua trang tin nhắn: `claude -p`, `codex exec`) thì đặt một khối code ngôn ngữ `hoi` chứa JSON hợp lệ: `{"questions":[{"header":"Ngắn","question":"Câu hỏi?","multiSelect":false,"options":[{"label":"Phương án (Khuyên dùng)","description":"..."},{"label":"Phương án khác"}]}]}`. Trang hiện nó thành nút chọn + "Khác..." + ô gõ + "Gửi trả lời". 2 đến 4 phương án, phương án khuyên dùng đứng đầu, mỗi điểm cần xác nhận một câu hỏi.
 - Báo cáo trung thực: test nào thật sự đã chạy, cái gì chưa kiểm, cái gì còn hỏng.
 - Máy 16 GB RAM: build nặng (Android IL2CPP) có thể bị kill. Báo người dùng tự chạy hoặc đóng bớt ứng dụng.
 
