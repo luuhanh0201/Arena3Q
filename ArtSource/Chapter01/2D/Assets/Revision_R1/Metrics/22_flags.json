@@ -1,0 +1,98 @@
+{
+  "id": "22_flags",
+  "input": "Revision_R1/Generated/22_flags.png",
+  "before": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 261,
+    "opaqueRatio": 0.00016586825357887765,
+    "opaqueVisibleRatio": 0.00039991051810629345,
+    "softRatio": 0.4145975502339314,
+    "transparentPixels": 920892,
+    "blackTransparentPixels": 920292,
+    "meanRgb": [
+      65.59,
+      47.07,
+      20.46
+    ]
+  },
+  "generated": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 737,
+    "opaqueRatio": 0.00046837127543154344,
+    "opaqueVisibleRatio": 0.001037249501430616,
+    "softRatio": 0.4510828464263335,
+    "transparentPixels": 863005,
+    "blackTransparentPixels": 862043,
+    "meanRgb": [
+      78.82,
+      57.86,
+      22.93
+    ]
+  },
+  "after": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 680063,
+    "opaqueRatio": 0.4321872112398938,
+    "opaqueVisibleRatio": 0.957116699716973,
+    "softRatio": 0.019364006461871273,
+    "transparentPixels": 863005,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      115.19,
+      76.99,
+      34.65
+    ]
+  },
+  "bbox": {
+    "left": 192,
+    "top": 39,
+    "width": 1535,
+    "height": 821
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/22_flags.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 226425,
+      "opaqueRatio": 0.21593570709228516,
+      "opaqueVisibleRatio": 0.9539548522460123,
+      "softRatio": 0.010422706604003906,
+      "transparentPixels": 811222,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        99.19,
+        62.41,
+        33.26
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/22_flags.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 56188,
+      "opaqueRatio": 0.2143402099609375,
+      "opaqueVisibleRatio": 0.9316840220202958,
+      "softRatio": 0.015716552734375,
+      "transparentPixels": 201836,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        110.73,
+        71.1,
+        40.09
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/22_flags-before-after.png",
+  "sha256": "a5aefc96a58896721c7245ee10746226a6cd4dd8aa7e36427d9426f3d0293d9b"
+}

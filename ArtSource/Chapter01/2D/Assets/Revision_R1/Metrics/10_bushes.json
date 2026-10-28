@@ -1,0 +1,98 @@
+{
+  "id": "10_bushes",
+  "input": "Revision_R1/Before/10_bushes.png",
+  "before": {
+    "width": 2172,
+    "height": 724,
+    "alphaMax": 255,
+    "opaquePixels": 479,
+    "opaqueRatio": 0.00030460506903533675,
+    "opaqueVisibleRatio": 0.0006754774878442256,
+    "softRatio": 0.45064316819795897,
+    "transparentPixels": 863400,
+    "blackTransparentPixels": 863070,
+    "meanRgb": [
+      45.68,
+      44.59,
+      24.09
+    ]
+  },
+  "generated": {
+    "width": 2172,
+    "height": 724,
+    "alphaMax": 255,
+    "opaquePixels": 479,
+    "opaqueRatio": 0.00030460506903533675,
+    "opaqueVisibleRatio": 0.0006754774878442256,
+    "softRatio": 0.45064316819795897,
+    "transparentPixels": 863400,
+    "blackTransparentPixels": 863070,
+    "meanRgb": [
+      45.68,
+      44.59,
+      24.09
+    ]
+  },
+  "after": {
+    "width": 2172,
+    "height": 724,
+    "alphaMax": 255,
+    "opaquePixels": 621948,
+    "opaqueRatio": 0.39550837886511403,
+    "opaqueVisibleRatio": 0.8770602768470572,
+    "softRatio": 0.05543939440188028,
+    "transparentPixels": 863400,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      118.04,
+      113.76,
+      59.25
+    ]
+  },
+  "bbox": {
+    "left": 59,
+    "top": 34,
+    "width": 2077,
+    "height": 661
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/10_bushes.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 138216,
+      "opaqueRatio": 0.13181304931640625,
+      "opaqueVisibleRatio": 0.8821040404878453,
+      "softRatio": 0.017617225646972656,
+      "transparentPixels": 891887,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        119.6,
+        115.31,
+        58.56
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/10_bushes.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 33816,
+      "opaqueRatio": 0.128997802734375,
+      "opaqueVisibleRatio": 0.838337010684979,
+      "softRatio": 0.024875640869140625,
+      "transparentPixels": 221807,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        122.41,
+        118.43,
+        60.43
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/10_bushes-before-after.png",
+  "sha256": "19be62885f2d9e4aad8de545eabf75618c2a040261ba94b64982b4ee1a376f30"
+}

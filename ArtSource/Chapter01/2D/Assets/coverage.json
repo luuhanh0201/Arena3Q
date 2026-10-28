@@ -13,8 +13,9 @@
       "03_ground-grass.png",
       "28_ground-marks.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 3,
@@ -27,8 +28,9 @@
     "files": [
       "26_distant-mountains.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 5,
@@ -41,8 +43,9 @@
     "files": [
       "07_small-stones.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 6,
@@ -55,8 +58,9 @@
     "files": [
       "08_riverbank.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 7,
@@ -69,8 +73,9 @@
     "files": [
       "05_water.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 10,
@@ -83,8 +88,9 @@
     "files": [
       "06_wood-floor.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 11,
@@ -95,6 +101,7 @@
     "category": "Hybrid (3D thô + 2D)",
     "scope": "Cây gần đường đi/che tầm nhìn: 3D. Cây rìa map, hậu cảnh: impostor/billboard render từ chính model 3D.",
     "files": [],
+    "missing": [],
     "status": "pending-render-from-approved-3d-model",
     "note": "Chưa có model/render chuẩn; không thay impostor bằng ảnh AI."
   },
@@ -109,8 +116,9 @@
     "files": [
       "09_bamboo-leaves.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 13,
@@ -123,8 +131,9 @@
     "files": [
       "10_bushes.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 14,
@@ -137,8 +146,9 @@
     "files": [
       "11_grass-clumps.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 15,
@@ -152,8 +162,9 @@
       "04_paddy-ground.png",
       "12_rice-clumps.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 16,
@@ -166,8 +177,9 @@
     "files": [
       "13_dead-trees.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 17,
@@ -180,8 +192,9 @@
     "files": [
       "14_fallen-logs.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 18,
@@ -194,8 +207,9 @@
     "files": [
       "15_reeds.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 20,
@@ -208,8 +222,9 @@
     "files": [
       "16_damage-decals.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 25,
@@ -222,8 +237,9 @@
     "files": [
       "17_soldier-tent-cloth.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 26,
@@ -236,8 +252,9 @@
     "files": [
       "18_command-tent-cloth.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 28,
@@ -250,8 +267,9 @@
     "files": [
       "19_distant-palisade.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 32,
@@ -264,8 +282,9 @@
     "files": [
       "20_cage-bars.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 36,
@@ -279,6 +298,7 @@
       "Reuse/magic_01.png",
       "Reuse/spark_01.png"
     ],
+    "missing": [],
     "status": "existing-particle-source-only",
     "note": "Chưa có animation, prefab, fade hoặc nghiệm thu hiệu ứng."
   },
@@ -294,6 +314,7 @@
       "Reuse/smoke_01.png",
       "Reuse/fire_01.png"
     ],
+    "missing": [],
     "status": "existing-particle-source-only",
     "note": "Chưa có animation, prefab, fade hoặc nghiệm thu hiệu ứng."
   },
@@ -308,8 +329,9 @@
     "files": [
       "21_weapon-cards.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 47,
@@ -322,8 +344,9 @@
     "files": [
       "21_weapon-cards.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 48,
@@ -336,8 +359,9 @@
     "files": [
       "22_flags.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 50,
@@ -351,6 +375,7 @@
       "Reuse/fire_01.png",
       "Reuse/smoke_07.png"
     ],
+    "missing": [],
     "status": "existing-particle-source-only",
     "note": "Chưa có animation, prefab, fade hoặc nghiệm thu hiệu ứng."
   },
@@ -365,8 +390,9 @@
     "files": [
       "23_torches.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 54,
@@ -379,8 +405,9 @@
     "files": [
       "24_wood-piles.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   },
   {
     "id": 56,
@@ -393,7 +420,8 @@
     "files": [
       "25_ritual-props.png"
     ],
+    "missing": [],
     "status": "drawn-pending-scene-validation",
-    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+    "note": "Có bản xuất và sprite/atlas thử; chưa đối màu với render 3D hoặc nghiệm thu cảnh."
   }
 ]

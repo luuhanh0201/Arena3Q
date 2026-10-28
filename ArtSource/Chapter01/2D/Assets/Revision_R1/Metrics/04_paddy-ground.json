@@ -1,0 +1,116 @@
+{
+  "id": "04_paddy-ground",
+  "input": "Revision_R1/Generated/04_paddy-ground.png",
+  "before": {
+    "width": 1254,
+    "height": 1254,
+    "alphaMax": 255,
+    "opaquePixels": 1572516,
+    "opaqueRatio": 1,
+    "opaqueVisibleRatio": 1,
+    "softRatio": 0,
+    "transparentPixels": 0,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      123.46,
+      130.58,
+      104.86
+    ]
+  },
+  "generated": {
+    "width": 1254,
+    "height": 1254,
+    "alphaMax": 255,
+    "opaquePixels": 1572516,
+    "opaqueRatio": 1,
+    "opaqueVisibleRatio": 1,
+    "softRatio": 0,
+    "transparentPixels": 0,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      120.14,
+      119.8,
+      87.26
+    ]
+  },
+  "after": {
+    "width": 1254,
+    "height": 1254,
+    "alphaMax": 255,
+    "opaquePixels": 1572516,
+    "opaqueRatio": 1,
+    "opaqueVisibleRatio": 1,
+    "softRatio": 0,
+    "transparentPixels": 0,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      120.15,
+      119.8,
+      87.26
+    ]
+  },
+  "bbox": {
+    "left": 0,
+    "top": 0,
+    "width": 1254,
+    "height": 1254
+  },
+  "sourceSeam": {
+    "horizontal": 0,
+    "vertical": 0,
+    "interiorHorizontal": 4.380382775119617,
+    "interiorVertical": 2.2076023391812867
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/04_paddy-ground.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 1048576,
+      "opaqueRatio": 1,
+      "opaqueVisibleRatio": 1,
+      "softRatio": 0,
+      "transparentPixels": 0,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        120.09,
+        119.75,
+        87.23
+      ],
+      "seam": {
+        "horizontal": 0,
+        "vertical": 0,
+        "interiorHorizontal": 4.847330729166667,
+        "interiorVertical": 2.4300130208333335
+      }
+    },
+    {
+      "size": 512,
+      "file": "Export/512/04_paddy-ground.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 262144,
+      "opaqueRatio": 1,
+      "opaqueVisibleRatio": 1,
+      "softRatio": 0,
+      "transparentPixels": 0,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        120.02,
+        119.67,
+        87.17
+      ],
+      "seam": {
+        "horizontal": 0,
+        "vertical": 0,
+        "interiorHorizontal": 5.953776041666667,
+        "interiorVertical": 3.2265625
+      }
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/04_paddy-ground-before-after.png",
+  "sha256": "5cc781cf596bff2d42fb47c35909d4e00799591652707cff122725376f522329"
+}

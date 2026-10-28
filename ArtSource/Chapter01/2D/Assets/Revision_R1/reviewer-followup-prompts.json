@@ -1,0 +1,27 @@
+[
+  {
+    "id": "12_rice-clumps",
+    "transparent": true,
+    "prompt": "Use case: style-transfer. Edit the supplied two rice clump sprites for a small mobile Han-era strategy game. Keep two separated upright clumps, thin stems and the exact leaf silhouette and transparent background. Change ONLY seed heads: each hanging panicle must read as one simplified painted ochre mass with 2 or 3 broad matte color planes. Show only 3 to 5 small grain nicks along its outer edge. NO individually shaded shiny grains, no pill shapes, no bright specular rims. Muted harvest straw #C8A44C with olive foliage; lower contrast and saturation. Flat painterly game foliage, few deliberate brush strokes, no photo microtexture. Two clumps side by side, generous transparent margin, no text."
+  },
+  {
+    "id": "16_damage-decals",
+    "transparent": true,
+    "prompt": "Use case: precise-object-edit. Edit this game decal sheet. Keep four separate decals in a clear SQUARE 2x2 grid with wide transparent gutters. Top left dark scorch patch, top right irregular cream plaster crack, bottom right muted wood scratches: preserve these concepts, simplify brush detail. COMPLETELY REPLACE bottom left roof damage: an ORTHOGRAPHIC texture stamp viewed exactly perpendicular to the ROOF PLANE, no perspective. Many SMALL muted blue gray Chinese barrel tiles in ordered parallel vertical rows; each tile seen ONLY from its top surface, never open tube mouths or vertical side faces. An irregular broken hole interrupts those rows in the center, revealing three parallel thin wooden roof laths over a flat cool brown dark recess. Broken tile edges stay flat in the same roof plane. No piled tiles, no floating tile chunks, no cast shadows outside stamp. Painterly mobile strategy assets, matte and simple shapes, transparent outside all four decals, no lettering."
+  },
+  {
+    "id": "18_command-tent-cloth",
+    "transparent": false,
+    "prompt": "Use case: precise-object-edit. Keep this flat seamless yellow ochre tent fabric texture, the empty cloth center and the two thin border bands. Replace ONLY the current Greek meander band ornaments with recognizably ancient Chinese Han cloud-scroll embroidery: paired curling auspicious cloud heads joined by thin curved stems, soft round scroll shapes, alternating mirror pairs, muted brown threads. No Greek key, no Aztec triangles, no letters, no emblems. Base color muted #C7A130, matte painterly woven fabric with broad subtle variation and only barely visible weave. Flat perpendicular scan, seamless opposite edges, square opaque texture."
+  },
+  {
+    "id": "25_ritual-props",
+    "transparent": true,
+    "prompt": "Use case: precise-object-edit. Preserve left bronze ritual bowl and right rolled bamboo manuscript composition, two isolated objects with transparent background. Change ONLY the right manuscript from broad wooden planks to a Han bamboo-slip manuscript with 24 VERY NARROW closely spaced bamboo slips, about 3 times more slats than reference. Two thin dark cords run across the slips and bind them. Faint vertical ink strokes on each narrow slip, abstract and unreadable. A small tightly rolled end. Matte ochre bamboo, simplified painterly brushwork, no individually bevelled heavy boards, no shiny grain or thick planks. Keep bowl unchanged. No ground shadow, no background, no labels."
+  },
+  {
+    "id": "04_paddy-ground",
+    "transparent": false,
+    "prompt": "Use case: precise-object-edit. Repaint this seamless square top-down flooded paddy ground material for mobile Han strategy game. Preserve muted olive clay and desaturated blue green shallow muddy water palette, flat matte painted style. Replace diagonal repeated bands with 5 straight parallel narrow soil planting furrows running exactly vertically from top edge to bottom edge. Mostly broad soft muddy color patches, occasional irregular subtle silt patches, very few pebbles. Horizontal texture variation between the straight furrows, no uniform pebble necklace. No plants, no white caustics, no highlights, no slope, no horizon, no shadows; seamless tile, full opaque square image."
+  }
+]

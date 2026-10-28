@@ -1,0 +1,98 @@
+{
+  "id": "16_damage-decals",
+  "input": "Revision_R1/Generated/16_damage-decals.png",
+  "before": {
+    "width": 1536,
+    "height": 1024,
+    "alphaMax": 254,
+    "opaquePixels": 0,
+    "opaqueRatio": 0,
+    "opaqueVisibleRatio": 0,
+    "softRatio": 0.5651295979817709,
+    "transparentPixels": 683992,
+    "blackTransparentPixels": 1473,
+    "meanRgb": [
+      89.65,
+      70.73,
+      53.84
+    ]
+  },
+  "generated": {
+    "width": 1536,
+    "height": 1024,
+    "alphaMax": 254,
+    "opaquePixels": 0,
+    "opaqueRatio": 0,
+    "opaqueVisibleRatio": 0,
+    "softRatio": 0.653710683186849,
+    "transparentPixels": 544666,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      126.84,
+      102.52,
+      79.61
+    ]
+  },
+  "after": {
+    "width": 1536,
+    "height": 1024,
+    "alphaMax": 255,
+    "opaquePixels": 669291,
+    "opaqueRatio": 0.4255237579345703,
+    "opaqueVisibleRatio": 0.6509359092314905,
+    "softRatio": 0.22818692525227866,
+    "transparentPixels": 544666,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      146.38,
+      116.23,
+      88.56
+    ]
+  },
+  "bbox": {
+    "left": 75,
+    "top": 32,
+    "width": 1417,
+    "height": 956
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/16_damage-decals.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 299586,
+      "opaqueRatio": 0.2857074737548828,
+      "opaqueVisibleRatio": 0.6569393004453625,
+      "softRatio": 0.1491994857788086,
+      "transparentPixels": 592543,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        147.55,
+        115.83,
+        86.78
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/16_damage-decals.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 74285,
+      "opaqueRatio": 0.2833747863769531,
+      "opaqueVisibleRatio": 0.6667055581981852,
+      "softRatio": 0.14166259765625,
+      "transparentPixels": 150723,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        148.36,
+        116.62,
+        87.72
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/16_damage-decals-before-after.png",
+  "sha256": "0ae4aa9a6a6dde5af017d940195fe88c5767910e33e6d3fcf329261e7d9fc9fa"
+}

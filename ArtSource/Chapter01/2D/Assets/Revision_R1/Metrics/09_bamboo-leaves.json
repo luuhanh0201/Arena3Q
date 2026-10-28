@@ -1,0 +1,98 @@
+{
+  "id": "09_bamboo-leaves",
+  "input": "Revision_R1/Generated/09_bamboo-leaves.png",
+  "before": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 1221,
+    "opaqueRatio": 0.0007759583816850943,
+    "opaqueVisibleRatio": 0.0019434010313872795,
+    "softRatio": 0.3985026100418293,
+    "transparentPixels": 945258,
+    "blackTransparentPixels": 943751,
+    "meanRgb": [
+      38.45,
+      40.49,
+      14.83
+    ]
+  },
+  "generated": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 3639,
+    "opaqueRatio": 0.0023126228918526276,
+    "opaqueVisibleRatio": 0.005215716232931393,
+    "softRatio": 0.44108245240979244,
+    "transparentPixels": 875839,
+    "blackTransparentPixels": 874621,
+    "meanRgb": [
+      52.23,
+      53.82,
+      24.31
+    ]
+  },
+  "after": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 494293,
+    "opaqueRatio": 0.31412841634583977,
+    "opaqueVisibleRatio": 0.7084616718670945,
+    "softRatio": 0.12926665895580533,
+    "transparentPixels": 875839,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      122.31,
+      124.69,
+      58.18
+    ]
+  },
+  "bbox": {
+    "left": 22,
+    "top": 19,
+    "width": 1734,
+    "height": 845
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/09_bamboo-leaves.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 163461,
+      "opaqueRatio": 0.15588855743408203,
+      "opaqueVisibleRatio": 0.7114052190867468,
+      "softRatio": 0.06323909759521484,
+      "transparentPixels": 818804,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        121.22,
+        122.9,
+        54.78
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/09_bamboo-leaves.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 38749,
+      "opaqueRatio": 0.14781570434570312,
+      "opaqueVisibleRatio": 0.6653673781273074,
+      "softRatio": 0.0743408203125,
+      "transparentPixels": 203907,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        124.53,
+        126.42,
+        56.43
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/09_bamboo-leaves-before-after.png",
+  "sha256": "aa7c96fee65850867f176c0c8ac6a24f33cda9ff6320cd61138591b3e211f606"
+}

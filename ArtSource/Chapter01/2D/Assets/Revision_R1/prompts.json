@@ -1,0 +1,137 @@
+[
+  {
+    "id": "08_riverbank",
+    "transparent": true,
+    "prompt": "Use case: precise-object-edit. Correct this Arena3Q Chapter 1 source asset using the supplied review requirements. First reference is the edit target; second reference, if supplied, is STYLE ONLY: 24_wood-piles, broad matte hand-painted shapes, readable miniature forms, restrained surface detail. Keep the same asset category and number of variants. Eastern Han / Three Kingdoms rural setting. NO photoreal microtexture, shiny PBR, thick black contour, labels, text, watermark, baked drop shadow. Use clean painted 2-3 value groups, muted earth/olive. Completely redraw the two shoreline DECALS as a STRICT VERTICAL TOP-DOWN FLAT COLOR OVERLAY. Two rows: one perfectly straight shoreline transition, one gently curved shoreline transition. NOT an object or strip of raised land. No visible thickness, NO front wall, NO beveled lip, NO cliffs, NO cast shadow, NO grass tufts. Each row is a narrow softly feathered ochre damp-silt band with tiny sparse flat pebbles, one bank-facing edge dissolving outward to full alpha, one water-facing edge a subtle dark damp earth wash fading to alpha, almost no foam. Both ends of each strip have same cross-section, straight strip tileable along x. Colors brown #B99B6B to muted teal #66999A. Large empty transparent gutters. Think a transparent painted weathering mask that will blend into an existing ground texture, not a floating island. Genuine transparent RGBA; flat top-down is essential.",
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/Revision_R1/Before/08_riverbank.png",
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/24_wood-piles.png"
+    ]
+  },
+  {
+    "id": "21_weapon-cards",
+    "transparent": true,
+    "prompt": "Use case: precise-object-edit. Correct this Arena3Q Chapter 1 source asset using the supplied review requirements. First reference is the edit target; second reference, if supplied, is STYLE ONLY: 24_wood-piles, broad matte hand-painted shapes, readable miniature forms, restrained surface detail. Keep the same asset category and number of variants. Eastern Han / Three Kingdoms rural setting. NO photoreal microtexture, shiny PBR, thick black contour, labels, text, watermark, baked drop shadow. Use clean painted 2-3 value groups, muted earth/olive. Redraw all three weapon cards in equal separate columns, complete silhouettes, genuine transparent RGBA. Left: long plain wood spear with simple matte leaf iron tip, two broad paint values. CENTER: Han ring-pommel dao (huan shou dao): perfectly STRAIGHT single-edged blade, straight thick spine, slightly angled clipped tip, short cloth-wrapped handle, an OPEN CIRCULAR RING at butt of handle. Tiny straight guard or no guard. NO curved blade, no knuckle bow, no Western cutlass hilt. RIGHT: tall rectangular Han leather-faced wooden shield with rounded corners and slightly waisted sides, subdued dark red-brown lacquer and a very simple thin geometric border. NO round shield, NO central boss, NO perimeter ring of rivets. Matte metal, no tiny hammered details, no shiny spots. Broad clean hand-painted forms matching style reference.",
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/Revision_R1/Before/21_weapon-cards.png",
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/24_wood-piles.png"
+    ]
+  },
+  {
+    "id": "28_ground-marks",
+    "transparent": true,
+    "prompt": "Use case: precise-object-edit. Correct this Arena3Q Chapter 1 source asset using the supplied review requirements. First reference is the edit target; second reference, if supplied, is STYLE ONLY: 24_wood-piles, broad matte hand-painted shapes, readable miniature forms, restrained surface detail. Keep the same asset category and number of variants. Eastern Han / Three Kingdoms rural setting. NO photoreal microtexture, shiny PBR, thick black contour, labels, text, watermark, baked drop shadow. Use clean painted 2-3 value groups, muted earth/olive. Completely redraw as strictly vertical TOP-DOWN feathered terrain CHANGE-MASKS, not solid terrain islands. Three separated rows: top two thin parallel dark moist-earth wheel-rut strokes with subtle lighter disturbed soil immediately beside them, no dirt platform; middle a walking trail of SIX shallow sole-shaped stains alternating LEFT and RIGHT, same forward walking direction, each separated and isolated for individual cropping; bottom a flat shallow irregular muddy puddle in muted teal #66999A, surrounded ONLY by a narrow diffuse damp-earth stain. All surroundings genuinely transparent. Broad soft alpha transitions 24-48 pixels, fully transparent between marks. No stones, no grass, no raised edges, no cliff walls, no 3/4 perspective, no bottom bevel, no thick black outline. Do not fill a soil rectangle behind any decal. Low contrast #9B825E stains sit atop existing #B99B6B earth.",
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/Revision_R1/Before/28_ground-marks.png",
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/24_wood-piles.png"
+    ]
+  },
+  {
+    "id": "09_bamboo-leaves",
+    "transparent": true,
+    "prompt": "Use case: precise-object-edit. Correct this Arena3Q Chapter 1 source asset using the supplied review requirements. First reference is the edit target; second reference, if supplied, is STYLE ONLY: 24_wood-piles, broad matte hand-painted shapes, readable miniature forms, restrained surface detail. Keep the same asset category and number of variants. Eastern Han / Three Kingdoms rural setting. NO photoreal microtexture, shiny PBR, thick black contour, labels, text, watermark, baked drop shadow. Use clean painted 2-3 value groups, muted earth/olive. Keep exactly three separated leafy bamboo boughs in three columns. Make lance-shaped bamboo leaves have smooth clean curved margins, NOT serrated sawtooth edges. Simplify leaf veins and shading, broad matte olive leaves. Preserve narrow/fan/drooping variants; remove microscopic twig texture. Genuine transparent background, no halo.",
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/Revision_R1/Before/09_bamboo-leaves.png",
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/24_wood-piles.png"
+    ]
+  },
+  {
+    "id": "12_rice-clumps",
+    "transparent": true,
+    "prompt": "Use case: precise-object-edit. Correct this Arena3Q Chapter 1 source asset using the supplied review requirements. First reference is the edit target; second reference, if supplied, is STYLE ONLY: 24_wood-piles, broad matte hand-painted shapes, readable miniature forms, restrained surface detail. Keep the same asset category and number of variants. Eastern Han / Three Kingdoms rural setting. NO photoreal microtexture, shiny PBR, thick black contour, labels, text, watermark, baked drop shadow. Use clean painted 2-3 value groups, muted earth/olive. Exactly two separated rice clumps at equal scale, mature gold and green-gold. MUCH smaller grains grouped in loose gently drooping branching panicles, fewer broad painted clusters, not fat wheat spikes. Slim curved leaves. Match simplified brushwork and calm contrast of the style reference and grass sprites; no shiny individual grains or dense photographic seed detail. Front-facing alpha foliage cards, no ground. Genuine transparent background.",
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/Revision_R1/Before/12_rice-clumps.png",
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/24_wood-piles.png"
+    ]
+  },
+  {
+    "id": "14_fallen-logs",
+    "transparent": true,
+    "prompt": "Use case: precise-object-edit. Correct this Arena3Q Chapter 1 source asset using the supplied review requirements. First reference is the edit target; second reference, if supplied, is STYLE ONLY: 24_wood-piles, broad matte hand-painted shapes, readable miniature forms, restrained surface detail. Keep the same asset category and number of variants. Eastern Han / Three Kingdoms rural setting. NO photoreal microtexture, shiny PBR, thick black contour, labels, text, watermark, baked drop shadow. Use clean painted 2-3 value groups, muted earth/olive. Keep two separate fallen-log sprites, one short cut log and one longer broken curved log. Match broad painted shapes and wood end-grain of STYLE reference. Smooth simplified bark in 3-5 broad paint planes, few long grain strokes, eliminate all flaking bark scales and tiny sharp cracks. No ground or shadow, genuine transparent background.",
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/Revision_R1/Before/14_fallen-logs.png",
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/24_wood-piles.png"
+    ]
+  },
+  {
+    "id": "16_damage-decals",
+    "transparent": true,
+    "prompt": "Use case: precise-object-edit. Correct this Arena3Q Chapter 1 source asset using the supplied review requirements. First reference is the edit target; second reference, if supplied, is STYLE ONLY: 24_wood-piles, broad matte hand-painted shapes, readable miniature forms, restrained surface detail. Keep the same asset category and number of variants. Eastern Han / Three Kingdoms rural setting. NO photoreal microtexture, shiny PBR, thick black contour, labels, text, watermark, baked drop shadow. Use clean painted 2-3 value groups, muted earth/olive. Four separate flat surface decals in 2x2 grid. Top-left softly feathered simplified soot scorch in cool brown, not photographic ash; top-right a few broad plaster cracks. Bottom-left BROKEN GREY-BLUE CHINESE CLAY ROOF TILES (#56666A) revealing a little wooden roof lath, dark recess COOL BROWN #4C4038, never pure black. Bottom-right broad subtle wood scratches. Simplified matte painting matching style reference, no splinter forest, no raised terrain, no scene or shadows. All backgrounds transparent; stains blend outwards into transparent alpha.",
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/Revision_R1/Before/16_damage-decals.png",
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/24_wood-piles.png"
+    ]
+  },
+  {
+    "id": "17_soldier-tent-cloth",
+    "transparent": false,
+    "prompt": "Use case: precise-object-edit. Correct this Arena3Q Chapter 1 source asset using the supplied review requirements. First reference is the edit target; second reference, if supplied, is STYLE ONLY: 24_wood-piles, broad matte hand-painted shapes, readable miniature forms, restrained surface detail. Keep the same asset category and number of variants. Eastern Han / Three Kingdoms rural setting. NO photoreal microtexture, shiny PBR, thick black contour, labels, text, watermark, baked drop shadow. Use clean painted 2-3 value groups, muted earth/olive. Make a square seamless OPAQUE flat diffuse material tile of plain Yellow Turban military linen canvas. Average color very close to muted ochre #C7A130, not orange-brown. Only subtle broad soft painted yarn hints, low frequency and low contrast; NO visible grid of tiny woven threads, no photographic burlap. Uniform neutral lighting, no highlights, folds, seams, borders or vignette. Entire square filled with same calm hand-painted fabric.",
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/Revision_R1/Before/17_soldier-tent-cloth.png",
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/24_wood-piles.png"
+    ]
+  },
+  {
+    "id": "18_command-tent-cloth",
+    "transparent": false,
+    "prompt": "Use case: precise-object-edit. Correct this Arena3Q Chapter 1 source asset using the supplied review requirements. First reference is the edit target; second reference, if supplied, is STYLE ONLY: 24_wood-piles, broad matte hand-painted shapes, readable miniature forms, restrained surface detail. Keep the same asset category and number of variants. Eastern Han / Three Kingdoms rural setting. NO photoreal microtexture, shiny PBR, thick black contour, labels, text, watermark, baked drop shadow. Use clean painted 2-3 value groups, muted earth/olive. Make a square OPAQUE flat diffuse Yellow Turban command linen textile tile. Broad quiet ochre #C7A130 field, subtle painted weave, no tiny woven grid. Replace old stepped diamond pattern completely with a restrained thin dark-ochre single-line Chinese Han key-fret (huiwen) band near top and bottom, large simple right-angle continuous meander, generous spacing and low contrast. No diamond hooks, no Aztec/Navajo/Andean motif, no letters. Average brightness close to #C7A130, not orange. Seamless edges, straight-on, no folds, shadows or highlights.",
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/Revision_R1/Before/18_command-tent-cloth.png",
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/24_wood-piles.png"
+    ]
+  },
+  {
+    "id": "19_distant-palisade",
+    "transparent": true,
+    "prompt": "Use case: precise-object-edit. Correct this Arena3Q Chapter 1 source asset using the supplied review requirements. First reference is the edit target; second reference, if supplied, is STYLE ONLY: 24_wood-piles, broad matte hand-painted shapes, readable miniature forms, restrained surface detail. Keep the same asset category and number of variants. Eastern Han / Three Kingdoms rural setting. NO photoreal microtexture, shiny PBR, thick black contour, labels, text, watermark, baked drop shadow. Use clean painted 2-3 value groups, muted earth/olive. Three separate distant palisade modules, each four pointed stakes and two rope-bound crossbars. Simplify dramatically: broad desaturated grey-brown painted planes, very few long wood strokes, no flaky bark or tiny cracks; cut tips match warm pale endgrain of style reference but muted for distant scenery. All upright, same scale and baseline, no perspective. Transparent gaps and background. No black outlines, ground or shadows.",
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/Revision_R1/Before/19_distant-palisade.png",
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/24_wood-piles.png"
+    ]
+  },
+  {
+    "id": "20_cage-bars",
+    "transparent": true,
+    "prompt": "Use case: precise-object-edit. Correct this Arena3Q Chapter 1 source asset using the supplied review requirements. First reference is the edit target; second reference, if supplied, is STYLE ONLY: 24_wood-piles, broad matte hand-painted shapes, readable miniature forms, restrained surface detail. Keep the same asset category and number of variants. Eastern Han / Three Kingdoms rural setting. NO photoreal microtexture, shiny PBR, thick black contour, labels, text, watermark, baked drop shadow. Use clean painted 2-3 value groups, muted earth/olive. Single FRONT-ON flat panel of seven wooden prison bars with two horizontal rails and simple rope ties. Smooth hand-hewn warm wood, broad muted strokes matching style reference, remove all detailed bark cracks/knots and orange highlights. Transparent between all bars and outside panel, NO background glow or dark plate, no box cage, no ground, no shadows.",
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/Revision_R1/Before/20_cage-bars.png",
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/24_wood-piles.png"
+    ]
+  },
+  {
+    "id": "22_flags",
+    "transparent": true,
+    "prompt": "Use case: precise-object-edit. Correct this Arena3Q Chapter 1 source asset using the supplied review requirements. First reference is the edit target; second reference, if supplied, is STYLE ONLY: 24_wood-piles, broad matte hand-painted shapes, readable miniature forms, restrained surface detail. Keep the same asset category and number of variants. Eastern Han / Three Kingdoms rural setting. NO photoreal microtexture, shiny PBR, thick black contour, labels, text, watermark, baked drop shadow. Use clean painted 2-3 value groups, muted earth/olive. Keep the same two ochre sun-disc faction cloth designs, one rectangular vertical standard and one swallowtail flag, but flatten both absolutely straight-on. Horizontal top and bottom edges, vertical hoist edge, no perspective skew, no draping, folds or painted flutter. Plain broad matte cloth shading, minimally worn edges, no white spots. Keep simple sun motif and brown border; no words, no pole, genuine transparent background.",
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/Revision_R1/Before/22_flags.png",
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/24_wood-piles.png"
+    ]
+  },
+  {
+    "id": "23_torches",
+    "transparent": true,
+    "prompt": "Use case: precise-object-edit. Correct this Arena3Q Chapter 1 source asset using the supplied review requirements. First reference is the edit target; second reference, if supplied, is STYLE ONLY: 24_wood-piles, broad matte hand-painted shapes, readable miniature forms, restrained surface detail. Keep the same asset category and number of variants. Eastern Han / Three Kingdoms rural setting. NO photoreal microtexture, shiny PBR, thick black contour, labels, text, watermark, baked drop shadow. Use clean painted 2-3 value groups, muted earth/olive. Two complete upright unlit torches, broad painted forms matching style reference. Left: smooth wooden handle with a tidy bundle of DARK CLOTH wrapped in ordered overlapping bands as torch head, not a charred mud lump. Right: plain wooden shaft, simple matte dark iron cage with minimal pins around a bundled wood/cloth head. Few broad grain strokes, no tiny cracks or shiny rivets. No flame/smoke, genuine transparent background, no shadows.",
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/Revision_R1/Before/23_torches.png",
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/24_wood-piles.png"
+    ]
+  },
+  {
+    "id": "25_ritual-props",
+    "transparent": true,
+    "prompt": "Use case: precise-object-edit. Correct this Arena3Q Chapter 1 source asset using the supplied review requirements. First reference is the edit target; second reference, if supplied, is STYLE ONLY: 24_wood-piles, broad matte hand-painted shapes, readable miniature forms, restrained surface detail. Keep the same asset category and number of variants. Eastern Han / Three Kingdoms rural setting. NO photoreal microtexture, shiny PBR, thick black contour, labels, text, watermark, baked drop shadow. Use clean painted 2-3 value groups, muted earth/olive. Keep the modest aged bronze Han offering dish on left but simplify microtexture. Replace the entire ragged parchment scroll on RIGHT with a half-unrolled Eastern Han bamboo-slip document: a neat row of slender smooth tan bamboo tablets tied by two dark horizontal cords, part rolled at one end. Sparse tiny abstract ink marks, NOT readable writing. No animal-skin parchment, pirate map, torn edges or Western wax seal. Matte broad paint style, high 3/4 orthographic view, genuine transparent background, no cast shadow.",
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/Revision_R1/Before/25_ritual-props.png",
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/24_wood-piles.png"
+    ]
+  },
+  {
+    "id": "26_distant-mountains",
+    "transparent": true,
+    "prompt": "Use case: precise-object-edit. Correct this Arena3Q Chapter 1 source asset using the supplied review requirements. First reference is the edit target; second reference, if supplied, is STYLE ONLY: 24_wood-piles, broad matte hand-painted shapes, readable miniature forms, restrained surface detail. Keep the same asset category and number of variants. Eastern Han / Three Kingdoms rural setting. NO photoreal microtexture, shiny PBR, thick black contour, labels, text, watermark, baked drop shadow. Use clean painted 2-3 value groups, muted earth/olive. Keep three separate horizontal muted grey-olive distant mountain ridge strips and calm handpainted shapes. Change ONLY lower fade: remove the white mist/snow band entirely. Mountain/earth colors themselves gradually fade in opacity directly into transparent alpha; no white transition, no cream fog, no ground plate. Wide transparent gutters between strips, no text/sky/shadows.",
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/Revision_R1/Before/26_distant-mountains.png",
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/24_wood-piles.png"
+    ]
+  }
+]

@@ -1,0 +1,98 @@
+{
+  "id": "28_ground-marks",
+  "input": "Revision_R1/Generated/28_ground-marks.png",
+  "before": {
+    "width": 1536,
+    "height": 1024,
+    "alphaMax": 254,
+    "opaquePixels": 0,
+    "opaqueRatio": 0,
+    "opaqueVisibleRatio": 0,
+    "softRatio": 0.6506996154785156,
+    "transparentPixels": 549402,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      135.52,
+      109.97,
+      72.19
+    ]
+  },
+  "generated": {
+    "width": 1536,
+    "height": 1024,
+    "alphaMax": 253,
+    "opaquePixels": 0,
+    "opaqueRatio": 0,
+    "opaqueVisibleRatio": 0,
+    "softRatio": 0.489593505859375,
+    "transparentPixels": 802800,
+    "blackTransparentPixels": 6724,
+    "meanRgb": [
+      98.62,
+      84.37,
+      62.85
+    ]
+  },
+  "after": {
+    "width": 1536,
+    "height": 1024,
+    "alphaMax": 255,
+    "opaquePixels": 397220,
+    "opaqueRatio": 0.25254567464192706,
+    "opaqueVisibleRatio": 0.5158272559163913,
+    "softRatio": 0.2370478312174479,
+    "transparentPixels": 802800,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      150.84,
+      126.6,
+      93.59
+    ]
+  },
+  "bbox": {
+    "left": 46,
+    "top": 104,
+    "width": 1463,
+    "height": 863
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/28_ground-marks.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 178183,
+      "opaqueRatio": 0.16992855072021484,
+      "opaqueVisibleRatio": 0.5163617079235179,
+      "softRatio": 0.15915966033935547,
+      "transparentPixels": 703502,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        153.11,
+        126.3,
+        91.68
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/28_ground-marks.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 44547,
+      "opaqueRatio": 0.16993331909179688,
+      "opaqueVisibleRatio": 0.5248480135727414,
+      "softRatio": 0.15384292602539062,
+      "transparentPixels": 177268,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        151.6,
+        125.23,
+        91.03
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/28_ground-marks-before-after.png",
+  "sha256": "5bb5befdad4ddad3b56b0588ab32cb072f5a6bfe7bfb72d2e9d4b4ec62a77e93"
+}

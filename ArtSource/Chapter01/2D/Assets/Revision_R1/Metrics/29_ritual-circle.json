@@ -1,0 +1,98 @@
+{
+  "id": "29_ritual-circle",
+  "input": "Revision_R1/Before/29_ritual-circle.png",
+  "before": {
+    "width": 1264,
+    "height": 1244,
+    "alphaMax": 255,
+    "opaquePixels": 870,
+    "opaqueRatio": 0.0005532886971386707,
+    "opaqueVisibleRatio": 0.0011433783281180386,
+    "softRatio": 0.4833536417843624,
+    "transparentPixels": 811513,
+    "blackTransparentPixels": 809395,
+    "meanRgb": [
+      96.09,
+      76.43,
+      18.15
+    ]
+  },
+  "generated": {
+    "width": 1264,
+    "height": 1244,
+    "alphaMax": 255,
+    "opaquePixels": 870,
+    "opaqueRatio": 0.0005532886971386707,
+    "opaqueVisibleRatio": 0.0011433783281180386,
+    "softRatio": 0.4833536417843624,
+    "transparentPixels": 811513,
+    "blackTransparentPixels": 809395,
+    "meanRgb": [
+      96.09,
+      76.43,
+      18.15
+    ]
+  },
+  "after": {
+    "width": 1024,
+    "height": 1024,
+    "alphaMax": 255,
+    "opaquePixels": 175171,
+    "opaqueRatio": 0.16705608367919922,
+    "opaqueVisibleRatio": 0.3752624272701566,
+    "softRatio": 0.27811527252197266,
+    "transparentPixels": 581780,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      180.43,
+      131.19,
+      53.91
+    ]
+  },
+  "bbox": {
+    "left": 32,
+    "top": 32,
+    "width": 960,
+    "height": 960
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/29_ritual-circle.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 175171,
+      "opaqueRatio": 0.16705608367919922,
+      "opaqueVisibleRatio": 0.3752624272701566,
+      "softRatio": 0.27811527252197266,
+      "transparentPixels": 581780,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        180.43,
+        131.19,
+        53.91
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/29_ritual-circle.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 41143,
+      "opaqueRatio": 0.15694808959960938,
+      "opaqueVisibleRatio": 0.36242314265076375,
+      "softRatio": 0.2761039733886719,
+      "transparentPixels": 148622,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        186.09,
+        135.8,
+        56.31
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/29_ritual-circle-before-after.png",
+  "sha256": "2ffd18ba4ac6bd41fe90c8cc7d608835fda201343f3a55dd3ab351e38f22708b"
+}

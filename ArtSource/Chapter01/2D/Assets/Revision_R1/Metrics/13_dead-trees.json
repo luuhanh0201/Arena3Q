@@ -1,0 +1,98 @@
+{
+  "id": "13_dead-trees",
+  "input": "Revision_R1/Before/13_dead-trees.png",
+  "before": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 754,
+    "opaqueRatio": 0.0004791749547834244,
+    "opaqueVisibleRatio": 0.00290250061591525,
+    "softRatio": 0.16461121371075882,
+    "transparentPixels": 1313762,
+    "blackTransparentPixels": 1313040,
+    "meanRgb": [
+      16.21,
+      12.2,
+      8.15
+    ]
+  },
+  "generated": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 754,
+    "opaqueRatio": 0.0004791749547834244,
+    "opaqueVisibleRatio": 0.00290250061591525,
+    "softRatio": 0.16461121371075882,
+    "transparentPixels": 1313762,
+    "blackTransparentPixels": 1313040,
+    "meanRgb": [
+      16.21,
+      12.2,
+      8.15
+    ]
+  },
+  "after": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 176929,
+    "opaqueRatio": 0.11244024612052585,
+    "opaqueVisibleRatio": 0.6810829329884208,
+    "softRatio": 0.05265014254501639,
+    "transparentPixels": 1313762,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      112.66,
+      84.96,
+      58.7
+    ]
+  },
+  "bbox": {
+    "left": 277,
+    "top": 23,
+    "width": 1331,
+    "height": 842
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/13_dead-trees.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 58924,
+      "opaqueRatio": 0.056194305419921875,
+      "opaqueVisibleRatio": 0.6858486393370115,
+      "softRatio": 0.025739669799804688,
+      "transparentPixels": 962662,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        114.99,
+        85.88,
+        58.7
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/13_dead-trees.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 14007,
+      "opaqueRatio": 0.053432464599609375,
+      "opaqueVisibleRatio": 0.6255638426153365,
+      "softRatio": 0.031982421875,
+      "transparentPixels": 239753,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        117.4,
+        87.89,
+        59.68
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/13_dead-trees-before-after.png",
+  "sha256": "53b657b8119637145406ea587396c2d87db815f94045a2e558f688f8dbb65e7c"
+}

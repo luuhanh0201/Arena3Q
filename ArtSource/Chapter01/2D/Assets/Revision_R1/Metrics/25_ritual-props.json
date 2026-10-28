@@ -1,0 +1,98 @@
+{
+  "id": "25_ritual-props",
+  "input": "Revision_R1/Generated/25_ritual-props.png",
+  "before": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 486,
+    "opaqueRatio": 0.0003088581273537722,
+    "opaqueVisibleRatio": 0.0009734679897285106,
+    "softRatio": 0.316967241973184,
+    "transparentPixels": 1074292,
+    "blackTransparentPixels": 1074028,
+    "meanRgb": [
+      42.7,
+      33.91,
+      19.88
+    ]
+  },
+  "generated": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 793,
+    "opaqueRatio": 0.0005039598662377394,
+    "opaqueVisibleRatio": 0.0014705636913559413,
+    "softRatio": 0.34219446877037607,
+    "transparentPixels": 1034289,
+    "blackTransparentPixels": 1033978,
+    "meanRgb": [
+      47.08,
+      36.24,
+      20.43
+    ]
+  },
+  "after": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 515451,
+    "opaqueRatio": 0.3275745485650807,
+    "opaqueVisibleRatio": 0.9558682538122463,
+    "softRatio": 0.015123880071533067,
+    "transparentPixels": 1034289,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      122.43,
+      94.05,
+      52.33
+    ]
+  },
+  "bbox": {
+    "left": 52,
+    "top": 183,
+    "width": 1689,
+    "height": 601
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/25_ritual-props.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 171514,
+      "opaqueRatio": 0.16356849670410156,
+      "opaqueVisibleRatio": 0.9527920360864831,
+      "softRatio": 0.008104324340820312,
+      "transparentPixels": 868564,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        120.72,
+        92.24,
+        51.14
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/25_ritual-props.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 42578,
+      "opaqueRatio": 0.16242218017578125,
+      "opaqueVisibleRatio": 0.9320724152273374,
+      "softRatio": 0.011837005615234375,
+      "transparentPixels": 216463,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        126.83,
+        96.7,
+        53.32
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/25_ritual-props-before-after.png",
+  "sha256": "e87c1d39566405bfa86d65b16ec38bf3b20e22e9136356d07dd86fbc49c6dcf6"
+}

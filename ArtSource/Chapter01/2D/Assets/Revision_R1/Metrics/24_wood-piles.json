@@ -1,0 +1,98 @@
+{
+  "id": "24_wood-piles",
+  "input": "Revision_R1/Before/24_wood-piles.png",
+  "before": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 533,
+    "opaqueRatio": 0.0003387271232089724,
+    "opaqueVisibleRatio": 0.000987585695756902,
+    "softRatio": 0.3426463167715047,
+    "transparentPixels": 1033838,
+    "blackTransparentPixels": 1033501,
+    "meanRgb": [
+      46.88,
+      33.16,
+      20.8
+    ]
+  },
+  "generated": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 533,
+    "opaqueRatio": 0.0003387271232089724,
+    "opaqueVisibleRatio": 0.000987585695756902,
+    "softRatio": 0.3426463167715047,
+    "transparentPixels": 1033838,
+    "blackTransparentPixels": 1033501,
+    "meanRgb": [
+      46.88,
+      33.16,
+      20.8
+    ]
+  },
+  "after": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 510160,
+    "opaqueRatio": 0.3242120622444453,
+    "opaqueVisibleRatio": 0.9452658884565499,
+    "softRatio": 0.018772981650268375,
+    "transparentPixels": 1033838,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      131.43,
+      90.47,
+      53.72
+    ]
+  },
+  "bbox": {
+    "left": 89,
+    "top": 150,
+    "width": 1649,
+    "height": 604
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/24_wood-piles.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 169805,
+      "opaqueRatio": 0.16193866729736328,
+      "opaqueVisibleRatio": 0.9430886632750539,
+      "softRatio": 0.009772300720214844,
+      "transparentPixels": 868524,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        130.9,
+        89.08,
+        52.17
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/24_wood-piles.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 42167,
+      "opaqueRatio": 0.16085433959960938,
+      "opaqueVisibleRatio": 0.9282160781896628,
+      "softRatio": 0.012439727783203125,
+      "transparentPixels": 216716,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        134.91,
+        91.81,
+        54.03
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/24_wood-piles-before-after.png",
+  "sha256": "320b022f111c7e4c2634c20dce5db5417077c3e6c61abd87ddfdc7c056e38d21"
+}

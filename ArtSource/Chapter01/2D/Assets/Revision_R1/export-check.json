@@ -1,0 +1,398 @@
+{
+  "sourceCount": 29,
+  "exportCount": 58,
+  "sprites": 55,
+  "pages": [
+    {
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 172809,
+      "opaqueRatio": 0.16480350494384766,
+      "opaqueVisibleRatio": 0.8132494399789169,
+      "softRatio": 0.03784465789794922,
+      "transparentPixels": 836084,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        112.88,
+        109.87,
+        67.18
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 162403,
+      "opaqueRatio": 0.15487957000732422,
+      "opaqueVisibleRatio": 0.7259467529681018,
+      "softRatio": 0.05846881866455078,
+      "transparentPixels": 824864,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        130.49,
+        112.42,
+        55.58
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 199210,
+      "opaqueRatio": 0.18998146057128906,
+      "opaqueVisibleRatio": 0.7180239473475537,
+      "softRatio": 0.07460784912109375,
+      "transparentPixels": 771134,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        134.7,
+        103.41,
+        69
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 197243,
+      "opaqueRatio": 0.18810558319091797,
+      "opaqueVisibleRatio": 0.8930316160257891,
+      "softRatio": 0.022531509399414062,
+      "transparentPixels": 827707,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        87.83,
+        61.42,
+        38.43
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 144229,
+      "opaqueRatio": 0.13754749298095703,
+      "opaqueVisibleRatio": 0.8935401733441545,
+      "softRatio": 0.016387939453125,
+      "transparentPixels": 887163,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        112.45,
+        94.74,
+        63.57
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 206275,
+      "opaqueRatio": 0.19671916961669922,
+      "opaqueVisibleRatio": 0.765160395275684,
+      "softRatio": 0.06037616729736328,
+      "transparentPixels": 778992,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        166.55,
+        124.38,
+        87.12
+      ]
+    },
+    {
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 9732,
+      "opaqueRatio": 0.0371246337890625,
+      "opaqueVisibleRatio": 0.3072551619624929,
+      "softRatio": 0.08370208740234375,
+      "transparentPixels": 230470,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        172.91,
+        123.38,
+        47.7
+      ]
+    }
+  ],
+  "spriteComparisons": [
+    {
+      "name": "07_small-stones-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0017180746825588575
+    },
+    {
+      "name": "07_small-stones-1-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0015646281475478112
+    },
+    {
+      "name": "07_small-stones-1-3",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0017711391025402841
+    },
+    {
+      "name": "08_riverbank-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.011604868383809794
+    },
+    {
+      "name": "08_riverbank-2-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.010830004438526409
+    },
+    {
+      "name": "09_bamboo-leaves-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.01318929515043041
+    },
+    {
+      "name": "09_bamboo-leaves-1-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.009377132852606902
+    },
+    {
+      "name": "09_bamboo-leaves-1-3",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.009603307099133476
+    },
+    {
+      "name": "10_bushes-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0022094858376941607
+    },
+    {
+      "name": "10_bushes-1-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0027324644096510644
+    },
+    {
+      "name": "10_bushes-1-3",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.003742115812508045
+    },
+    {
+      "name": "11_grass-clumps-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.004983962496915865
+    },
+    {
+      "name": "11_grass-clumps-1-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.006403374955270542
+    },
+    {
+      "name": "11_grass-clumps-1-3",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.008916369827721397
+    },
+    {
+      "name": "12_rice-clumps-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.009248843894513185
+    },
+    {
+      "name": "12_rice-clumps-1-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.008546195939236442
+    },
+    {
+      "name": "13_dead-trees-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.007385487012165819
+    },
+    {
+      "name": "13_dead-trees-1-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.010038503850385039
+    },
+    {
+      "name": "14_fallen-logs-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0011445149785070734
+    },
+    {
+      "name": "14_fallen-logs-1-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.005884635281945163
+    },
+    {
+      "name": "15_reeds-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.013016824650949256
+    },
+    {
+      "name": "15_reeds-1-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.012484331912760091
+    },
+    {
+      "name": "16_damage-decals-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.006493598760958836
+    },
+    {
+      "name": "16_damage-decals-1-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.010619137838280354
+    },
+    {
+      "name": "16_damage-decals-2-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.001128055443925069
+    },
+    {
+      "name": "16_damage-decals-2-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.005141193815446263
+    },
+    {
+      "name": "19_distant-palisade-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0024474546471669463
+    },
+    {
+      "name": "19_distant-palisade-1-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0026504704340512097
+    },
+    {
+      "name": "19_distant-palisade-1-3",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0022270891667359742
+    },
+    {
+      "name": "20_cage-bars-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.006122240243136223
+    },
+    {
+      "name": "21_weapon-cards-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0068198133524766695
+    },
+    {
+      "name": "21_weapon-cards-1-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.004629629629629629
+    },
+    {
+      "name": "21_weapon-cards-1-3",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0008873855533631913
+    },
+    {
+      "name": "22_flags-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0018635177761415183
+    },
+    {
+      "name": "22_flags-1-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0012366788183802734
+    },
+    {
+      "name": "23_torches-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.002442391419772751
+    },
+    {
+      "name": "23_torches-1-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0029669495618574486
+    },
+    {
+      "name": "24_wood-piles-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0019613517250249186
+    },
+    {
+      "name": "24_wood-piles-1-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0011354420113544202
+    },
+    {
+      "name": "25_ritual-props-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0013217976447969237
+    },
+    {
+      "name": "25_ritual-props-1-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0014559142075920599
+    },
+    {
+      "name": "26_distant-mountains-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.015849881581344507
+    },
+    {
+      "name": "26_distant-mountains-2-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.01280946636797059
+    },
+    {
+      "name": "26_distant-mountains-3-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.010342488979315022
+    },
+    {
+      "name": "27_fallen-leaves-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0020875349396737783
+    },
+    {
+      "name": "27_fallen-leaves-1-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.005783734203016714
+    },
+    {
+      "name": "27_fallen-leaves-2-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0017364229686845098
+    },
+    {
+      "name": "27_fallen-leaves-2-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0012845676352785359
+    },
+    {
+      "name": "27_fallen-leaves-3-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.0011372953529582904
+    },
+    {
+      "name": "27_fallen-leaves-3-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.004968398283029709
+    },
+    {
+      "name": "28_ground-marks-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.01661664999444259
+    },
+    {
+      "name": "28_ground-marks-2-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.015622365156223651
+    },
+    {
+      "name": "28_ground-marks-2-2",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.01329629798278767
+    },
+    {
+      "name": "28_ground-marks-3-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.004508467121178799
+    },
+    {
+      "name": "29_ritual-circle-1-1",
+      "maxAlphaError": 0,
+      "meanVisibleRgbError": 0.019462909680193142
+    }
+  ],
+  "allPassed": true,
+  "scope": "Technical image/packing checks only; scene, mip/compression, device FPS not validated"
+}

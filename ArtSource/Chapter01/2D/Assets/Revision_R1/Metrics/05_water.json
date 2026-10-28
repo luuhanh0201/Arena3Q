@@ -1,0 +1,116 @@
+{
+  "id": "05_water",
+  "input": "Revision_R1/Before/05_water.png",
+  "before": {
+    "width": 1254,
+    "height": 1254,
+    "alphaMax": 255,
+    "opaquePixels": 1572516,
+    "opaqueRatio": 1,
+    "opaqueVisibleRatio": 1,
+    "softRatio": 0,
+    "transparentPixels": 0,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      82.81,
+      158.54,
+      156.75
+    ]
+  },
+  "generated": {
+    "width": 1254,
+    "height": 1254,
+    "alphaMax": 255,
+    "opaquePixels": 1572516,
+    "opaqueRatio": 1,
+    "opaqueVisibleRatio": 1,
+    "softRatio": 0,
+    "transparentPixels": 0,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      82.81,
+      158.54,
+      156.75
+    ]
+  },
+  "after": {
+    "width": 1254,
+    "height": 1254,
+    "alphaMax": 255,
+    "opaquePixels": 1572516,
+    "opaqueRatio": 1,
+    "opaqueVisibleRatio": 1,
+    "softRatio": 0,
+    "transparentPixels": 0,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      102,
+      153.09,
+      153.76
+    ]
+  },
+  "bbox": {
+    "left": 0,
+    "top": 0,
+    "width": 1254,
+    "height": 1254
+  },
+  "sourceSeam": {
+    "horizontal": 0,
+    "vertical": 0,
+    "interiorHorizontal": 1.8078149920255184,
+    "interiorVertical": 2.7546517809675706
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/05_water.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 1048576,
+      "opaqueRatio": 1,
+      "opaqueVisibleRatio": 1,
+      "softRatio": 0,
+      "transparentPixels": 0,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        101.96,
+        153.02,
+        153.7
+      ],
+      "seam": {
+        "horizontal": 0,
+        "vertical": 0,
+        "interiorHorizontal": 1.9225260416666667,
+        "interiorVertical": 3.0625
+      }
+    },
+    {
+      "size": 512,
+      "file": "Export/512/05_water.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 262144,
+      "opaqueRatio": 1,
+      "opaqueVisibleRatio": 1,
+      "softRatio": 0,
+      "transparentPixels": 0,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        101.89,
+        152.92,
+        153.6
+      ],
+      "seam": {
+        "horizontal": 0,
+        "vertical": 0,
+        "interiorHorizontal": 2.494140625,
+        "interiorVertical": 3.912109375
+      }
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/05_water-before-after.png",
+  "sha256": "8c1177dc5e123edf4697fd1c1b06d3f99c2de5523cba60f0d0520bc5cf798957"
+}

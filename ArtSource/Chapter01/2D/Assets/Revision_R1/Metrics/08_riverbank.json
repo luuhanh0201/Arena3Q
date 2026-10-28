@@ -1,0 +1,98 @@
+{
+  "id": "08_riverbank",
+  "input": "Revision_R1/Generated/08_riverbank.png",
+  "before": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 736,
+    "opaqueRatio": 0.0004677357648814328,
+    "opaqueVisibleRatio": 0.001182033096926714,
+    "softRatio": 0.3952367213248107,
+    "transparentPixels": 950882,
+    "blackTransparentPixels": 950553,
+    "meanRgb": [
+      46.92,
+      38.1,
+      23.16
+    ]
+  },
+  "generated": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 254,
+    "opaquePixels": 0,
+    "opaqueRatio": 0,
+    "opaqueVisibleRatio": 0,
+    "softRatio": 0.5126803420063576,
+    "transparentPixels": 766816,
+    "blackTransparentPixels": 766770,
+    "meanRgb": [
+      65.97,
+      58.71,
+      42.7
+    ]
+  },
+  "after": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 399083,
+    "opaqueRatio": 0.2536214568698055,
+    "opaqueVisibleRatio": 0.4946970579704037,
+    "softRatio": 0.2590588851365522,
+    "transparentPixels": 766816,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      143.67,
+      138.22,
+      105.39
+    ]
+  },
+  "bbox": {
+    "left": 71,
+    "top": 187,
+    "width": 1635,
+    "height": 602
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/08_riverbank.png",
+      "width": 1024,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 134214,
+      "opaqueRatio": 0.2559928894042969,
+      "opaqueVisibleRatio": 0.49923188799327484,
+      "softRatio": 0.25678062438964844,
+      "transparentPixels": 255447,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        143.22,
+        137.72,
+        104.92
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/08_riverbank.png",
+      "width": 512,
+      "height": 256,
+      "alphaMax": 255,
+      "opaquePixels": 33572,
+      "opaqueRatio": 0.256134033203125,
+      "opaqueVisibleRatio": 0.503811753406567,
+      "softRatio": 0.25225830078125,
+      "transparentPixels": 64436,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        143.25,
+        137.69,
+        105
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/08_riverbank-before-after.png",
+  "sha256": "0b868f44f1f56a6c0bb978d89e849b9d15fa504315802c1878ad59f4c3aa108d"
+}

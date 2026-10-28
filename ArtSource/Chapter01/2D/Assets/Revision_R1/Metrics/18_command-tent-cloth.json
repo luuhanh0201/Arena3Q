@@ -1,0 +1,116 @@
+{
+  "id": "18_command-tent-cloth",
+  "input": "Revision_R1/Generated/18_command-tent-cloth.png",
+  "before": {
+    "width": 1254,
+    "height": 1254,
+    "alphaMax": 255,
+    "opaquePixels": 1572516,
+    "opaqueRatio": 1,
+    "opaqueVisibleRatio": 1,
+    "softRatio": 0,
+    "transparentPixels": 0,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      173.85,
+      128.08,
+      45.26
+    ]
+  },
+  "generated": {
+    "width": 1254,
+    "height": 1254,
+    "alphaMax": 255,
+    "opaquePixels": 1572516,
+    "opaqueRatio": 1,
+    "opaqueVisibleRatio": 1,
+    "softRatio": 0,
+    "transparentPixels": 0,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      179.65,
+      130.05,
+      35.57
+    ]
+  },
+  "after": {
+    "width": 1254,
+    "height": 1254,
+    "alphaMax": 255,
+    "opaquePixels": 1572516,
+    "opaqueRatio": 1,
+    "opaqueVisibleRatio": 1,
+    "softRatio": 0,
+    "transparentPixels": 0,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      199,
+      161.06,
+      48.05
+    ]
+  },
+  "bbox": {
+    "left": 0,
+    "top": 0,
+    "width": 1254,
+    "height": 1254
+  },
+  "sourceSeam": {
+    "horizontal": 0,
+    "vertical": 0,
+    "interiorHorizontal": 1.7830940988835726,
+    "interiorVertical": 2.7352472089314195
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/18_command-tent-cloth.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 1048576,
+      "opaqueRatio": 1,
+      "opaqueVisibleRatio": 1,
+      "softRatio": 0,
+      "transparentPixels": 0,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        198.91,
+        160.98,
+        48.02
+      ],
+      "seam": {
+        "horizontal": 0,
+        "vertical": 0,
+        "interiorHorizontal": 1.83203125,
+        "interiorVertical": 2.7809244791666665
+      }
+    },
+    {
+      "size": 512,
+      "file": "Export/512/18_command-tent-cloth.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 262144,
+      "opaqueRatio": 1,
+      "opaqueVisibleRatio": 1,
+      "softRatio": 0,
+      "transparentPixels": 0,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        198.79,
+        160.89,
+        48
+      ],
+      "seam": {
+        "horizontal": 0,
+        "vertical": 0,
+        "interiorHorizontal": 1.7356770833333333,
+        "interiorVertical": 2.3834635416666665
+      }
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/18_command-tent-cloth-before-after.png",
+  "sha256": "37f30e522c87ab284c29ebcacbbb283a6153eccaf1384ccf27393bbb42016d5b"
+}

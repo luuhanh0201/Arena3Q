@@ -1,0 +1,98 @@
+{
+  "id": "19_distant-palisade",
+  "input": "Revision_R1/Generated/19_distant-palisade.png",
+  "before": {
+    "width": 1920,
+    "height": 819,
+    "alphaMax": 255,
+    "opaquePixels": 52,
+    "opaqueRatio": 0.00003306878306878307,
+    "opaqueVisibleRatio": 0.00006097239240424696,
+    "softRatio": 0.5423235907610907,
+    "transparentPixels": 719635,
+    "blackTransparentPixels": 719366,
+    "meanRgb": [
+      56.82,
+      42.87,
+      28.14
+    ]
+  },
+  "generated": {
+    "width": 1920,
+    "height": 819,
+    "alphaMax": 255,
+    "opaquePixels": 198,
+    "opaqueRatio": 0.00012591575091575093,
+    "opaqueVisibleRatio": 0.00022321604720455722,
+    "softRatio": 0.5639721967846968,
+    "transparentPixels": 685447,
+    "blackTransparentPixels": 685227,
+    "meanRgb": [
+      70.91,
+      54.7,
+      36.06
+    ]
+  },
+  "after": {
+    "width": 1920,
+    "height": 819,
+    "alphaMax": 255,
+    "opaquePixels": 787368,
+    "opaqueRatio": 0.5007173382173382,
+    "opaqueVisibleRatio": 0.8876422861381708,
+    "softRatio": 0.06338077431827432,
+    "transparentPixels": 685447,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      139.27,
+      107.92,
+      71.15
+    ]
+  },
+  "bbox": {
+    "left": 19,
+    "top": 33,
+    "width": 1890,
+    "height": 735
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/19_distant-palisade.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 223356,
+      "opaqueRatio": 0.21300888061523438,
+      "opaqueVisibleRatio": 0.8934704604639441,
+      "softRatio": 0.025397300720214844,
+      "transparentPixels": 798589,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        157.34,
+        120.46,
+        78.18
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/19_distant-palisade.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 54855,
+      "opaqueRatio": 0.20925521850585938,
+      "opaqueVisibleRatio": 0.8585985067852056,
+      "softRatio": 0.03446197509765625,
+      "transparentPixels": 198255,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        161.66,
+        123.89,
+        80.65
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/19_distant-palisade-before-after.png",
+  "sha256": "40092aa88ab2a390019742f77aa9f269e65e843d88730a01d87fbfc9ba4c5f08"
+}

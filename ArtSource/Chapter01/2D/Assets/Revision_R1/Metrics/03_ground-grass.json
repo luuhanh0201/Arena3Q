@@ -1,0 +1,116 @@
+{
+  "id": "03_ground-grass",
+  "input": "Revision_R1/Before/03_ground-grass.png",
+  "before": {
+    "width": 1254,
+    "height": 1254,
+    "alphaMax": 255,
+    "opaquePixels": 1572516,
+    "opaqueRatio": 1,
+    "opaqueVisibleRatio": 1,
+    "softRatio": 0,
+    "transparentPixels": 0,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      138.45,
+      124.88,
+      67.65
+    ]
+  },
+  "generated": {
+    "width": 1254,
+    "height": 1254,
+    "alphaMax": 255,
+    "opaquePixels": 1572516,
+    "opaqueRatio": 1,
+    "opaqueVisibleRatio": 1,
+    "softRatio": 0,
+    "transparentPixels": 0,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      138.45,
+      124.88,
+      67.65
+    ]
+  },
+  "after": {
+    "width": 1254,
+    "height": 1254,
+    "alphaMax": 255,
+    "opaquePixels": 1572516,
+    "opaqueRatio": 1,
+    "opaqueVisibleRatio": 1,
+    "softRatio": 0,
+    "transparentPixels": 0,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      138.45,
+      124.88,
+      67.65
+    ]
+  },
+  "bbox": {
+    "left": 0,
+    "top": 0,
+    "width": 1254,
+    "height": 1254
+  },
+  "sourceSeam": {
+    "horizontal": 0,
+    "vertical": 0,
+    "interiorHorizontal": 9.017809675704413,
+    "interiorVertical": 9.544922913343965
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/03_ground-grass.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 1048576,
+      "opaqueRatio": 1,
+      "opaqueVisibleRatio": 1,
+      "softRatio": 0,
+      "transparentPixels": 0,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        138.37,
+        124.81,
+        67.62
+      ],
+      "seam": {
+        "horizontal": 0,
+        "vertical": 0,
+        "interiorHorizontal": 9.490234375,
+        "interiorVertical": 10.099934895833334
+      }
+    },
+    {
+      "size": 512,
+      "file": "Export/512/03_ground-grass.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 262144,
+      "opaqueRatio": 1,
+      "opaqueVisibleRatio": 1,
+      "softRatio": 0,
+      "transparentPixels": 0,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        138.3,
+        124.75,
+        67.58
+      ],
+      "seam": {
+        "horizontal": 0,
+        "vertical": 0,
+        "interiorHorizontal": 9.154947916666666,
+        "interiorVertical": 9.40234375
+      }
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/03_ground-grass-before-after.png",
+  "sha256": "61ae6e920cb032dcafb6628a03f530f8f468526aaf0bc70715a301982c596e69"
+}

@@ -1,0 +1,98 @@
+{
+  "id": "21_weapon-cards",
+  "input": "Revision_R1/Generated/21_weapon-cards.png",
+  "before": {
+    "width": 1536,
+    "height": 1024,
+    "alphaMax": 254,
+    "opaquePixels": 0,
+    "opaqueRatio": 0,
+    "opaqueVisibleRatio": 0,
+    "softRatio": 0.24993006388346353,
+    "transparentPixels": 1179758,
+    "blackTransparentPixels": 145150,
+    "meanRgb": [
+      45.28,
+      36.18,
+      28.5
+    ]
+  },
+  "generated": {
+    "width": 1536,
+    "height": 1024,
+    "alphaMax": 254,
+    "opaquePixels": 0,
+    "opaqueRatio": 0,
+    "opaqueVisibleRatio": 0,
+    "softRatio": 0.2544841766357422,
+    "transparentPixels": 1172595,
+    "blackTransparentPixels": 90520,
+    "meanRgb": [
+      55.04,
+      36.51,
+      26.81
+    ]
+  },
+  "after": {
+    "width": 1536,
+    "height": 1024,
+    "alphaMax": 255,
+    "opaquePixels": 364145,
+    "opaqueRatio": 0.23151715596516928,
+    "opaqueVisibleRatio": 0.9097506926591867,
+    "softRatio": 0.022967020670572918,
+    "transparentPixels": 1172595,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      65.43,
+      45.96,
+      34.88
+    ]
+  },
+  "bbox": {
+    "left": 321,
+    "top": 23,
+    "width": 1074,
+    "height": 973
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/21_weapon-cards.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 161766,
+      "opaqueRatio": 0.15427207946777344,
+      "opaqueVisibleRatio": 0.913565744814227,
+      "softRatio": 0.014595985412597656,
+      "transparentPixels": 871505,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        74.66,
+        56.17,
+        44.86
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/21_weapon-cards.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 40046,
+      "opaqueRatio": 0.15276336669921875,
+      "opaqueVisibleRatio": 0.8927878720321034,
+      "softRatio": 0.018344879150390625,
+      "transparentPixels": 217289,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        92.98,
+        71.47,
+        57.92
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/21_weapon-cards-before-after.png",
+  "sha256": "28b4cc36c404ce649afd30f3571c124cefba6840babe2344bfcd9131c25ae5c4"
+}

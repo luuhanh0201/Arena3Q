@@ -1,0 +1,98 @@
+{
+  "id": "11_grass-clumps",
+  "input": "Revision_R1/Before/11_grass-clumps.png",
+  "before": {
+    "width": 2172,
+    "height": 724,
+    "alphaMax": 255,
+    "opaquePixels": 800,
+    "opaqueRatio": 0.0005087349795997273,
+    "opaqueVisibleRatio": 0.002283215795286872,
+    "softRatio": 0.22230637546676435,
+    "transparentPixels": 1222145,
+    "blackTransparentPixels": 1221499,
+    "meanRgb": [
+      29.72,
+      27.7,
+      11.68
+    ]
+  },
+  "generated": {
+    "width": 2172,
+    "height": 724,
+    "alphaMax": 255,
+    "opaquePixels": 800,
+    "opaqueRatio": 0.0005087349795997273,
+    "opaqueVisibleRatio": 0.002283215795286872,
+    "softRatio": 0.22230637546676435,
+    "transparentPixels": 1222145,
+    "blackTransparentPixels": 1221499,
+    "meanRgb": [
+      29.72,
+      27.7,
+      11.68
+    ]
+  },
+  "after": {
+    "width": 2172,
+    "height": 724,
+    "alphaMax": 255,
+    "opaquePixels": 250334,
+    "opaqueRatio": 0.15919207797889767,
+    "opaqueVisibleRatio": 0.7144581786216797,
+    "softRatio": 0.0636230324674664,
+    "transparentPixels": 1222145,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      142.73,
+      130.94,
+      61.68
+    ]
+  },
+  "bbox": {
+    "left": 112,
+    "top": 101,
+    "width": 1951,
+    "height": 500
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/11_grass-clumps.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 55224,
+      "opaqueRatio": 0.05266571044921875,
+      "opaqueVisibleRatio": 0.7186040156670874,
+      "softRatio": 0.020623207092285156,
+      "transparentPixels": 971727,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        142.83,
+        131.01,
+        61.41
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/11_grass-clumps.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 12984,
+      "opaqueRatio": 0.049530029296875,
+      "opaqueVisibleRatio": 0.6354426662751431,
+      "softRatio": 0.028415679931640625,
+      "transparentPixels": 241711,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        149.08,
+        137.03,
+        64.97
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/11_grass-clumps-before-after.png",
+  "sha256": "411da016b58f383ee1b0949b779d0530662f58e67bfa07d57d6764aacd540c4c"
+}

@@ -1,0 +1,116 @@
+{
+  "id": "01_ground-earth",
+  "input": "Revision_R1/Before/01_ground-earth.png",
+  "before": {
+    "width": 1254,
+    "height": 1254,
+    "alphaMax": 255,
+    "opaquePixels": 1572516,
+    "opaqueRatio": 1,
+    "opaqueVisibleRatio": 1,
+    "softRatio": 0,
+    "transparentPixels": 0,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      185.8,
+      146.64,
+      92.95
+    ]
+  },
+  "generated": {
+    "width": 1254,
+    "height": 1254,
+    "alphaMax": 255,
+    "opaquePixels": 1572516,
+    "opaqueRatio": 1,
+    "opaqueVisibleRatio": 1,
+    "softRatio": 0,
+    "transparentPixels": 0,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      185.8,
+      146.64,
+      92.95
+    ]
+  },
+  "after": {
+    "width": 1254,
+    "height": 1254,
+    "alphaMax": 255,
+    "opaquePixels": 1572516,
+    "opaqueRatio": 1,
+    "opaqueVisibleRatio": 1,
+    "softRatio": 0,
+    "transparentPixels": 0,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      185.8,
+      146.64,
+      92.95
+    ]
+  },
+  "bbox": {
+    "left": 0,
+    "top": 0,
+    "width": 1254,
+    "height": 1254
+  },
+  "sourceSeam": {
+    "horizontal": 0,
+    "vertical": 0,
+    "interiorHorizontal": 8.573099415204679,
+    "interiorVertical": 8.083732057416269
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/01_ground-earth.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 1048576,
+      "opaqueRatio": 1,
+      "opaqueVisibleRatio": 1,
+      "softRatio": 0,
+      "transparentPixels": 0,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        185.7,
+        146.56,
+        92.9
+      ],
+      "seam": {
+        "horizontal": 0,
+        "vertical": 0,
+        "interiorHorizontal": 9.125325520833334,
+        "interiorVertical": 8.504231770833334
+      }
+    },
+    {
+      "size": 512,
+      "file": "Export/512/01_ground-earth.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 262144,
+      "opaqueRatio": 1,
+      "opaqueVisibleRatio": 1,
+      "softRatio": 0,
+      "transparentPixels": 0,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        185.61,
+        146.48,
+        92.86
+      ],
+      "seam": {
+        "horizontal": 0,
+        "vertical": 0,
+        "interiorHorizontal": 9.893880208333334,
+        "interiorVertical": 8.55859375
+      }
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/01_ground-earth-before-after.png",
+  "sha256": "4f4d5647f7e1cc998816a67032f2d1ecf5cb65f99bfc4ae81f1e9d1bd9661e46"
+}

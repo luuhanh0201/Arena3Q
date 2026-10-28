@@ -6,12 +6,12 @@ foreach ($job in $jobs) {
     if (!(Test-Path -LiteralPath $path)) { throw "Missing: $path" }
     $img = [Drawing.Bitmap]::new($path)
     try {
-        $amin = 255; $amax = 0; $clear = 0; $partial = 0; $count = 0
+        $amin = 255; $amax = 0; $clear = 0; $partial = 0; $opaque = 0; $count = 0
         for ($y = 0; $y -lt $img.Height; $y += 13) {
             for ($x = 0; $x -lt $img.Width; $x += 13) {
                 $a = [int]$img.GetPixel($x, $y).A
                 $amin = [Math]::Min($amin, $a); $amax = [Math]::Max($amax, $a)
-                if ($a -eq 0) { $clear++ }; if ($a -gt 0 -and $a -lt 255) { $partial++ }; $count++
+                if ($a -eq 0) { $clear++ }; if ($a -eq 255) { $opaque++ }; if ($a -gt 0 -and $a -lt 255) { $partial++ }; $count++
             }
         }
         if ($job.transparent -and ($clear -eq 0 -or $amax -eq 0)) { throw "Invalid transparency: $path" }
@@ -22,6 +22,7 @@ foreach ($job in $jobs) {
             alphaMinSampled = $amin; alphaMaxSampled = $amax
             transparentSampleRatio = [Math]::Round($clear / $count, 4)
             partialAlphaSampleRatio = [Math]::Round($partial / $count, 4)
+            opaqueAlphaSampleRatio = [Math]::Round($opaque / $count, 4)
             status = 'drawn; pending 3D scene matching and runtime validation'
         }
     } finally { $img.Dispose() }

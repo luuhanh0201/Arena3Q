@@ -1,0 +1,98 @@
+{
+  "id": "07_small-stones",
+  "input": "Revision_R1/Before/07_small-stones.png",
+  "before": {
+    "width": 2172,
+    "height": 724,
+    "alphaMax": 255,
+    "opaquePixels": 484,
+    "opaqueRatio": 0.00030778466265783504,
+    "opaqueVisibleRatio": 0.0013619262815191668,
+    "softRatio": 0.22568437573130654,
+    "transparentPixels": 1217149,
+    "blackTransparentPixels": 1216935,
+    "meanRgb": [
+      30.74,
+      27.35,
+      22.93
+    ]
+  },
+  "generated": {
+    "width": 2172,
+    "height": 724,
+    "alphaMax": 255,
+    "opaquePixels": 484,
+    "opaqueRatio": 0.00030778466265783504,
+    "opaqueVisibleRatio": 0.0013619262815191668,
+    "softRatio": 0.22568437573130654,
+    "transparentPixels": 1217149,
+    "blackTransparentPixels": 1216935,
+    "meanRgb": [
+      30.74,
+      27.35,
+      22.93
+    ]
+  },
+  "after": {
+    "width": 2172,
+    "height": 724,
+    "alphaMax": 255,
+    "opaquePixels": 330110,
+    "opaqueRatio": 0.20992313014458247,
+    "opaqueVisibleRatio": 0.9288956297361408,
+    "softRatio": 0.016069030249381888,
+    "transparentPixels": 1217149,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      113.25,
+      98.47,
+      80.34
+    ]
+  },
+  "bbox": {
+    "left": 80,
+    "top": 139,
+    "width": 2012,
+    "height": 407
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/07_small-stones.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 73040,
+      "opaqueRatio": 0.0696563720703125,
+      "opaqueVisibleRatio": 0.9196560103750897,
+      "softRatio": 0.006085395812988281,
+      "transparentPixels": 969155,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        112.9,
+        97.29,
+        78.31
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/07_small-stones.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 17937,
+      "opaqueRatio": 0.06842422485351562,
+      "opaqueVisibleRatio": 0.8624386960284642,
+      "softRatio": 0.010913848876953125,
+      "transparentPixels": 241346,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        124.58,
+        108.98,
+        88.93
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/07_small-stones-before-after.png",
+  "sha256": "cd68905e40b9bcdb623e7bd7e5ab43814ce5bdb9a8326f2e59badce29d85d1eb"
+}

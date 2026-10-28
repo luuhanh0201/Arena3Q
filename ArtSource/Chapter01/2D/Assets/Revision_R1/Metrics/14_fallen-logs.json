@@ -1,0 +1,98 @@
+{
+  "id": "14_fallen-logs",
+  "input": "Revision_R1/Generated/14_fallen-logs.png",
+  "before": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 580,
+    "opaqueRatio": 0.0003685961190641726,
+    "opaqueVisibleRatio": 0.0018189230720983473,
+    "softRatio": 0.20227665299471637,
+    "transparentPixels": 1254668,
+    "blackTransparentPixels": 1254394,
+    "meanRgb": [
+      23.32,
+      17.17,
+      11.36
+    ]
+  },
+  "generated": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 614,
+    "opaqueRatio": 0.0003902034777679344,
+    "opaqueVisibleRatio": 0.0014580132550977036,
+    "softRatio": 0.2672366348953759,
+    "transparentPixels": 1152417,
+    "blackTransparentPixels": 1152002,
+    "meanRgb": [
+      36.12,
+      25.66,
+      15.7
+    ]
+  },
+  "after": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 397434,
+    "opaqueRatio": 0.25257349997267303,
+    "opaqueVisibleRatio": 0.9437525081864833,
+    "softRatio": 0.015053338400470786,
+    "transparentPixels": 1152417,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      98.86,
+      64.7,
+      35.49
+    ]
+  },
+  "bbox": {
+    "left": 69,
+    "top": 189,
+    "width": 1686,
+    "height": 571
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/14_fallen-logs.png",
+      "width": 1024,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 132275,
+      "opaqueRatio": 0.25229454040527344,
+      "opaqueVisibleRatio": 0.9401675989565934,
+      "softRatio": 0.016056060791015625,
+      "transparentPixels": 383595,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        99.51,
+        64.68,
+        35.21
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/14_fallen-logs.png",
+      "width": 512,
+      "height": 256,
+      "alphaMax": 255,
+      "opaquePixels": 32742,
+      "opaqueRatio": 0.2498016357421875,
+      "opaqueVisibleRatio": 0.9096768816158698,
+      "softRatio": 0.02480316162109375,
+      "transparentPixels": 95079,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        112.98,
+        75.13,
+        42.56
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/14_fallen-logs-before-after.png",
+  "sha256": "de24dd0988e422af026ab2967f82825fef0c0c61a1edf08a31b4743d484598fb"
+}

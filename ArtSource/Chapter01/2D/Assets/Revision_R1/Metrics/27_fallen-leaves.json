@@ -1,0 +1,98 @@
+{
+  "id": "27_fallen-leaves",
+  "input": "Revision_R1/Before/27_fallen-leaves.png",
+  "before": {
+    "width": 1024,
+    "height": 1536,
+    "alphaMax": 254,
+    "opaquePixels": 0,
+    "opaqueRatio": 0,
+    "opaqueVisibleRatio": 0,
+    "softRatio": 0.2958965301513672,
+    "transparentPixels": 1107459,
+    "blackTransparentPixels": 12514,
+    "meanRgb": [
+      112.75,
+      86.78,
+      54.85
+    ]
+  },
+  "generated": {
+    "width": 1024,
+    "height": 1536,
+    "alphaMax": 254,
+    "opaquePixels": 0,
+    "opaqueRatio": 0,
+    "opaqueVisibleRatio": 0,
+    "softRatio": 0.2958965301513672,
+    "transparentPixels": 1107459,
+    "blackTransparentPixels": 12514,
+    "meanRgb": [
+      112.75,
+      86.78,
+      54.85
+    ]
+  },
+  "after": {
+    "width": 1024,
+    "height": 1536,
+    "alphaMax": 255,
+    "opaquePixels": 421673,
+    "opaqueRatio": 0.26809247334798175,
+    "opaqueVisibleRatio": 0.9060345290660823,
+    "softRatio": 0.027804056803385418,
+    "transparentPixels": 1107459,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      162.7,
+      121.33,
+      75.33
+    ]
+  },
+  "bbox": {
+    "left": 71,
+    "top": 67,
+    "width": 913,
+    "height": 1365
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/27_fallen-leaves.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 187471,
+      "opaqueRatio": 0.1787862777709961,
+      "opaqueVisibleRatio": 0.9103318005020953,
+      "softRatio": 0.017610549926757812,
+      "transparentPixels": 842639,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        159.97,
+        116.13,
+        71.15
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/27_fallen-leaves.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 46356,
+      "opaqueRatio": 0.1768341064453125,
+      "opaqueVisibleRatio": 0.8901947228943426,
+      "softRatio": 0.02181243896484375,
+      "transparentPixels": 210070,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        173.57,
+        127.88,
+        79.3
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/27_fallen-leaves-before-after.png",
+  "sha256": "18dd3debff30aa198c4f9530f89935792292b98fca911567264933c73a945d06"
+}

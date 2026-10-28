@@ -1,0 +1,98 @@
+{
+  "id": "15_reeds",
+  "input": "Revision_R1/Before/15_reeds.png",
+  "before": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 190,
+    "opaqueRatio": 0.00012074700452102205,
+    "opaqueVisibleRatio": 0.00034125524455428475,
+    "softRatio": 0.3537111909594811,
+    "transparentPixels": 1016770,
+    "blackTransparentPixels": 1015529,
+    "meanRgb": [
+      55.14,
+      44.53,
+      24.6
+    ]
+  },
+  "generated": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 190,
+    "opaqueRatio": 0.00012074700452102205,
+    "opaqueVisibleRatio": 0.00034125524455428475,
+    "softRatio": 0.3537111909594811,
+    "transparentPixels": 1016770,
+    "blackTransparentPixels": 1015529,
+    "meanRgb": [
+      55.14,
+      44.53,
+      24.6
+    ]
+  },
+  "after": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 281674,
+    "opaqueRatio": 0.1790067986918651,
+    "opaqueVisibleRatio": 0.5059091039714926,
+    "softRatio": 0.17482513927213705,
+    "transparentPixels": 1016770,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      173.04,
+      145.59,
+      96.81
+    ]
+  },
+  "bbox": {
+    "left": 213,
+    "top": 27,
+    "width": 1437,
+    "height": 846
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/15_reeds.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 96269,
+      "opaqueRatio": 0.09180927276611328,
+      "opaqueVisibleRatio": 0.5283322265700032,
+      "softRatio": 0.08196258544921875,
+      "transparentPixels": 866363,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        171.84,
+        144.37,
+        96.52
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/15_reeds.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 23091,
+      "opaqueRatio": 0.08808517456054688,
+      "opaqueVisibleRatio": 0.5202784912802487,
+      "softRatio": 0.08121871948242188,
+      "transparentPixels": 217762,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        174.95,
+        147.67,
+        100.11
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/15_reeds-before-after.png",
+  "sha256": "f8666ecc4da126b35f297223dea53ea36e4dce521f2b79865b6f8ce61224c089"
+}

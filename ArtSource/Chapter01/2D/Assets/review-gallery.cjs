@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const {pathToFileURL} = require('node:url');
 const {createRequire} = require('node:module');
-const {chromium} = createRequire(path.resolve(__dirname, '../../../Admin/package.json'))('@playwright/test');
+const {chromium} = createRequire(path.resolve(__dirname, '../../../../Admin/package.json'))('@playwright/test');
 (async () => {
   const browser = await chromium.launch({channel:'msedge', headless:true, chromiumSandbox:true});
   try {

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "28_ground-marks",
+    "transparent": true,
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/28_ground-marks.png"
+    ],
+    "prompt": "Edit this terrain decal sheet precisely. Keep three separate rows and transparent background, strict vertical top-down. TOP ROW: replace two uniform dark parallel tubes with organically worn wagon wheel ruts: width varies by 25%, intermittent shallow and deeper sections, several small faded gaps, soft irregular edges, no raised 3D soil walls, no outline. MIDDLE ROW: DELETE ALL SIX existing same-shoe prints. Draw ONLY TWO isolated paired CLOTH-SHOE sole depressions: a distinct LEFT FOOT and its mirrored RIGHT FOOT, both pointing straight upward in the sheet. Each has asymmetric instep, rounded toe and narrower heel; left and right silhouettes are exact opposites. Depressions shallow and diffuse, heel visibly deeper/darker than toe. No raised light earth rim; melt edges broadly into alpha, don't include a separate patch of ground behind them. These two will be separately sliced and alternated along a path by the engine. BOTTOM ROW: preserve calm flat muted teal puddle, soften its muddy fringe, no rocks or white foam. Entire image genuinely transparent, no matte, no text, no glow, no grass. Matte broad stylized handpainted surfaces, no photographic microdetail."
+  },
+  {
+    "id": "04_paddy-ground",
+    "transparent": false,
+    "refs": [
+      "D:/UnityProjects/Arena3Q/ArtSource/Chapter01/2D/Assets/04_paddy-ground.png"
+    ],
+    "prompt": "Edit this square top-down rice paddy material. Remove ALL white bright caustic nets, sky reflection patterns, thin highlights and shimmering veins. Preserve muted ochre soil under grey teal shallow standing water, smooth muddy silt and a few extremely subtle tiny stones. Calm flat low-contrast diffuse handpainted albedo, no directional lighting, no shiny surface. Seamless tile intended, opaque square, edge-to-edge only material, no border or text. It must resemble flooded muddy rice soil, not a swimming pool."
+  }
+]

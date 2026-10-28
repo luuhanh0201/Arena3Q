@@ -1,0 +1,98 @@
+{
+  "id": "20_cage-bars",
+  "input": "Revision_R1/Generated/20_cage-bars.png",
+  "before": {
+    "width": 1536,
+    "height": 1024,
+    "alphaMax": 254,
+    "opaquePixels": 0,
+    "opaqueRatio": 0,
+    "opaqueVisibleRatio": 0,
+    "softRatio": 0.3650627136230469,
+    "transparentPixels": 998670,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      78.21,
+      56.56,
+      39.63
+    ]
+  },
+  "generated": {
+    "width": 1536,
+    "height": 1024,
+    "alphaMax": 254,
+    "opaquePixels": 0,
+    "opaqueRatio": 0,
+    "opaqueVisibleRatio": 0,
+    "softRatio": 0.44895680745442706,
+    "transparentPixels": 866716,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      109.22,
+      82.36,
+      55.48
+    ]
+  },
+  "after": {
+    "width": 1536,
+    "height": 1024,
+    "alphaMax": 255,
+    "opaquePixels": 594115,
+    "opaqueRatio": 0.3777281443277995,
+    "opaqueVisibleRatio": 0.8413462900128585,
+    "softRatio": 0.07122866312662761,
+    "transparentPixels": 866716,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      112.99,
+      84.78,
+      57.18
+    ]
+  },
+  "bbox": {
+    "left": 81,
+    "top": 31,
+    "width": 1372,
+    "height": 944
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/20_cage-bars.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 264256,
+      "opaqueRatio": 0.25201416015625,
+      "opaqueVisibleRatio": 0.8502089680933552,
+      "softRatio": 0.04440021514892578,
+      "transparentPixels": 737763,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        114.44,
+        85.33,
+        56.6
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/20_cage-bars.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 65075,
+      "opaqueRatio": 0.24824142456054688,
+      "opaqueVisibleRatio": 0.8385413310998002,
+      "softRatio": 0.04779815673828125,
+      "transparentPixels": 184539,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        117.07,
+        87.28,
+        58.21
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/20_cage-bars-before-after.png",
+  "sha256": "74a63627dc8798cbe26ab7ed1a8104fd88d266c2bf18ca948b91320894c3de79"
+}

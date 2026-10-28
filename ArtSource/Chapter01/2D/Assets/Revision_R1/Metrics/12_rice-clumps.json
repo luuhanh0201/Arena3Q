@@ -1,0 +1,98 @@
+{
+  "id": "12_rice-clumps",
+  "input": "Revision_R1/Generated/12_rice-clumps.png",
+  "before": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 332,
+    "opaqueRatio": 0.00021098950263673328,
+    "opaqueVisibleRatio": 0.0004110264022561883,
+    "softRatio": 0.5131124891804328,
+    "transparentPixels": 765804,
+    "blackTransparentPixels": 764716,
+    "meanRgb": [
+      88.93,
+      73.24,
+      24.83
+    ]
+  },
+  "generated": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 1426,
+    "opaqueRatio": 0.0009062380444577761,
+    "opaqueVisibleRatio": 0.001737147423637387,
+    "softRatio": 0.520775475393667,
+    "transparentPixels": 752652,
+    "blackTransparentPixels": 751019,
+    "meanRgb": [
+      83.8,
+      72.51,
+      26.44
+    ]
+  },
+  "after": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 528222,
+    "opaqueRatio": 0.33569065380054375,
+    "opaqueVisibleRatio": 0.6434779007072846,
+    "softRatio": 0.18599105963758103,
+    "transparentPixels": 752652,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      158.36,
+      134.23,
+      56.91
+    ]
+  },
+  "bbox": {
+    "left": 29,
+    "top": 31,
+    "width": 1728,
+    "height": 823
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/12_rice-clumps.png",
+      "width": 1024,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 180029,
+      "opaqueRatio": 0.34337806701660156,
+      "opaqueVisibleRatio": 0.6709488670244484,
+      "softRatio": 0.16840171813964844,
+      "transparentPixels": 255968,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        159.72,
+        135.16,
+        56.71
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/12_rice-clumps.png",
+      "width": 512,
+      "height": 256,
+      "alphaMax": 255,
+      "opaquePixels": 42962,
+      "opaqueRatio": 0.3277740478515625,
+      "opaqueVisibleRatio": 0.6461519950668532,
+      "softRatio": 0.17949676513671875,
+      "transparentPixels": 64583,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        163.91,
+        138.36,
+        58.18
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/12_rice-clumps-before-after.png",
+  "sha256": "6341fc95aa679817ee5246dfa368b22cc9146034f3d10b886c0a1514ff004fe4"
+}

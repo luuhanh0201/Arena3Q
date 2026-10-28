@@ -1,0 +1,98 @@
+{
+  "id": "23_torches",
+  "input": "Revision_R1/Generated/23_torches.png",
+  "before": {
+    "width": 1536,
+    "height": 1024,
+    "alphaMax": 254,
+    "opaquePixels": 0,
+    "opaqueRatio": 0,
+    "opaqueVisibleRatio": 0,
+    "softRatio": 0.1578667958577474,
+    "transparentPixels": 1324561,
+    "blackTransparentPixels": 319580,
+    "meanRgb": [
+      26.59,
+      20.73,
+      15.31
+    ]
+  },
+  "generated": {
+    "width": 1536,
+    "height": 1024,
+    "alphaMax": 254,
+    "opaquePixels": 0,
+    "opaqueRatio": 0,
+    "opaqueVisibleRatio": 0,
+    "softRatio": 0.17368507385253906,
+    "transparentPixels": 1299681,
+    "blackTransparentPixels": 434773,
+    "meanRgb": [
+      34.78,
+      25.94,
+      17.89
+    ]
+  },
+  "after": {
+    "width": 1536,
+    "height": 1024,
+    "alphaMax": 255,
+    "opaquePixels": 252359,
+    "opaqueRatio": 0.1604455312093099,
+    "opaqueVisibleRatio": 0.9237727091363664,
+    "softRatio": 0.013239542643229166,
+    "transparentPixels": 1299681,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      66.04,
+      46.74,
+      30.42
+    ]
+  },
+  "bbox": {
+    "left": 396,
+    "top": 34,
+    "width": 772,
+    "height": 958
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/23_torches.png",
+      "width": 1024,
+      "height": 1024,
+      "alphaMax": 255,
+      "opaquePixels": 112071,
+      "opaqueRatio": 0.10687923431396484,
+      "opaqueVisibleRatio": 0.9255487835092414,
+      "softRatio": 0.008597373962402344,
+      "transparentPixels": 927490,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        67.65,
+        47.42,
+        30.91
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/23_torches.png",
+      "width": 512,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 27671,
+      "opaqueRatio": 0.10555648803710938,
+      "opaqueVisibleRatio": 0.8893424182040239,
+      "softRatio": 0.013134002685546875,
+      "transparentPixels": 231030,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        81.17,
+        58.51,
+        39.21
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/23_torches-before-after.png",
+  "sha256": "4641b259319af08c6cc19637cdc8dcfc30a9e4f25c20e68f3bf8fb3afd194664"
+}

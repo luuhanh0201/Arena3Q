@@ -1,0 +1,98 @@
+{
+  "id": "26_distant-mountains",
+  "input": "Revision_R1/Generated/26_distant-mountains.png",
+  "before": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 7,
+    "opaqueRatio": 0.000004448573850774496,
+    "opaqueVisibleRatio": 0.000006696815090411787,
+    "softRatio": 0.6642775706719507,
+    "transparentPixels": 528265,
+    "blackTransparentPixels": 528016,
+    "meanRgb": [
+      101.79,
+      101.09,
+      92.83
+    ]
+  },
+  "generated": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 491,
+    "opaqueRatio": 0.0003120356801043254,
+    "opaqueVisibleRatio": 0.0005496178420951298,
+    "softRatio": 0.5674200432401378,
+    "transparentPixels": 680190,
+    "blackTransparentPixels": 679852,
+    "meanRgb": [
+      70.93,
+      69.04,
+      56.51
+    ]
+  },
+  "after": {
+    "width": 1774,
+    "height": 887,
+    "alphaMax": 255,
+    "opaquePixels": 559453,
+    "opaqueRatio": 0.35553828379104924,
+    "opaqueVisibleRatio": 0.6262430766062049,
+    "softRatio": 0.21219379512919295,
+    "transparentPixels": 680190,
+    "blackTransparentPixels": 0,
+    "meanRgb": [
+      121.69,
+      120.17,
+      103.74
+    ]
+  },
+  "bbox": {
+    "left": 32,
+    "top": 52,
+    "width": 1715,
+    "height": 781
+  },
+  "exports": [
+    {
+      "size": 1024,
+      "file": "Export/1024/26_distant-mountains.png",
+      "width": 1024,
+      "height": 512,
+      "alphaMax": 255,
+      "opaquePixels": 187706,
+      "opaqueRatio": 0.3580207824707031,
+      "opaqueVisibleRatio": 0.6313519986007776,
+      "softRatio": 0.20904922485351562,
+      "transparentPixels": 226980,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        115.84,
+        113.93,
+        98.06
+      ]
+    },
+    {
+      "size": 512,
+      "file": "Export/512/26_distant-mountains.png",
+      "width": 512,
+      "height": 256,
+      "alphaMax": 255,
+      "opaquePixels": 46713,
+      "opaqueRatio": 0.35639190673828125,
+      "opaqueVisibleRatio": 0.6283781057049462,
+      "softRatio": 0.2107696533203125,
+      "transparentPixels": 56733,
+      "blackTransparentPixels": 0,
+      "meanRgb": [
+        117.85,
+        116.19,
+        100.51
+      ]
+    }
+  ],
+  "comparison": "NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/26_distant-mountains-before-after.png",
+  "sha256": "7ff234a6f7d336a5db49fdd0a84483ad180941948493c48d30a591c1ecbf550a"
+}

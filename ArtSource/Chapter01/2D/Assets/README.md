@@ -10,7 +10,7 @@ Workbook có 69 mục: 14 mục 2D, 14 hybrid, 41 giữ 3D. Bản đọc đầy 
 
 Mở [gallery.html](gallery.html): mỗi tấm có tên, mã mục workbook và liên kết ảnh gốc. Nền sáng/tối giúp xem viền trong suốt. Đây là trang xem bộ hình, không phải giao diện game hay bằng chứng đã tích hợp.
 
-Các tấm nhiều biến thể là sheet nguồn, chưa phải atlas runtime hoặc các sprite đã cắt/pivot. PNG lớn giữ local, không Git/LFS. Prompt và danh mục nhỏ được commit. Không có PSD/layer vẽ tay; nguồn tái tạo là prompt và PNG sinh bằng built-in imagegen.
+Các tấm nhiều biến thể là sheet nguồn. Bản sửa theo Claude đã có sprite cắt/pivot và atlas thử trong `Export/`, xem [báo cáo sửa](Revision_R1/README.md) và [trước/sau](../../../../NghiemThu/Chapter01/XemTruoc_Sua2D_20261028/review.html). PNG lớn giữ local, không Git/LFS. Prompt và danh mục nhỏ được commit. Không có PSD/layer vẽ tay; nguồn tái tạo là prompt và PNG sinh bằng built-in imagegen.
 
 ## Quy tắc mỹ thuật áp dụng
 
@@ -29,7 +29,7 @@ Mục 11 cây lá rộng: workbook yêu cầu impostor render từ chính model 
 
 Mục 36, 37, 50 và phần lửa của 51, khói nhà mục 20: dùng bộ particle có sẵn theo rule ưu tiên nguồn VFX. [Reuse-VFX.md](Reuse-VFX.md) chỉ rõ nguồn, giấy phép và phần chưa triển khai. Đây là chọn tài nguyên hình, chưa có flipbook/chuyển động hoặc hiệu ứng đã nghiệm thu.
 
-Tranh chọn ải dùng bản concept `../2D/Concepts/05_chapter-navigation-view.png` để tham chiếu; chưa tách các nhãn khỏi tranh. Không dùng ảnh toàn cảnh làm mặt đất thay scene 3D. Bộ này bổ sung lá/cánh hoa, vết bánh xe/dấu chân/vũng nước và vòng phù chú. Thác xa có chuyển động, mây khóa và bóng blob được ghi trong danh sách dùng lại; chưa tạo animation bằng ảnh tĩnh.
+Tranh chọn ải dùng bản concept `../Concepts/05_chapter-navigation-view.png` để tham chiếu; chưa tách các nhãn khỏi tranh. Không dùng ảnh toàn cảnh làm mặt đất thay scene 3D. Bộ này bổ sung lá/cánh hoa, vết bánh xe/dấu chân/vũng nước và vòng phù chú. Thác xa có chuyển động, mây khóa và bóng blob được ghi trong danh sách dùng lại; chưa tạo animation bằng ảnh tĩnh.
 
 ## Chất lượng 30 / 60 / 120 FPS
 
@@ -37,9 +37,9 @@ Tranh chọn ải dùng bản concept `../2D/Concepts/05_chapter-navigation-view
 
 ## Kiểm tra và giới hạn
 
-Kết quả lượt vẽ: đủ 29/29 PNG, tổng 55.729.917 byte (khoảng 55,73 MB). 8 texture kín alpha 255; 21 tấm cutout đều có alpha 0 và nội dung nhìn thấy qua kiểm lấy mẫu. Kích thước nguồn thực tế trong images.json, không phóng ảnh để tuyên bố 2K/4K. Trình duyệt Edge tải 29/29 ảnh, kiểm lưu trong gallery-check.json; ảnh qa-reeds-light.png, qa-reeds-dark.png và qa-gallery.png đã mở xem. Không thấy viền đỏ/vàng từ cách hiển thị ảnh alpha trong chat trên ảnh ghép nền trình duyệt.
+Đủ 29/29 PNG. Lượt kiểm đầu chỉ lấy mẫu alpha và xem ảnh ở kích thước trang, đã bỏ sót thân bán trong suốt và RGB mép gây viền khi thu nhỏ. Review Claude phát hiện và bản sửa R1 xử lý thân alpha 255, màu mép/padding và seam; `Revision_R1/Metrics/` kiểm toàn ảnh, lưu hash và số đo từng tấm. Kích thước/hash mới ở `images.json`; không phóng ảnh để tuyên bố 2K/4K.
 
-Mở kiểm từng ảnh về silhouette, số cụm, khoảng trống, màu và nội dung. `inspect-images.ps1` đọc kích thước, hash và lấy mẫu alpha thật, không chỉ tin nền trong suốt hiển thị trong chat. Dữ liệu ghi ở `images.json`. Texture được yêu cầu lặp nhưng chưa bảo đảm seamless chỉ từ prompt; cần kiểm ghép 2x2 và mip/seam trước khi nhập game.
+Mở kiểm từng ảnh về silhouette, số cụm, khoảng trống, màu và nội dung. Texture kín đã xử lý và đo seam hai trục. Bộ xuất 512/1024, sprite riêng và atlas thử đã có kiểm đối chiếu alpha/RGB; cần kiểm mip và nén texture trong engine trước khi nhập bản production. Cụ thể xem `Revision_R1/export-check.json`.
 
 Chưa có Art Bible/render 3D Chương 1 làm chuẩn. Theo Chương 1 §2, chỉ đánh dấu hoàn thành tích hợp sau khi đặt 2D/3D trong cùng scene, kiểm trước/sau, che khuất, color grading, góc camera và texel density. Hiện là bộ vẽ nguồn chờ ghép, không phải map hoặc asset production đã nghiệm thu.
 
