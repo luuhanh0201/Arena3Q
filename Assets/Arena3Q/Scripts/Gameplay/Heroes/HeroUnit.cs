@@ -162,5 +162,19 @@ namespace Arena3Q.Gameplay
         UnitId IHeroSensor.EnemyCastle => Battle.EnemyCastleId;
         UnitId IHeroSensor.CloseAttacker => FindCloseAttacker();
         bool IHeroSensor.IsAlive(UnitId unit) => Battle.Registry.IsAlive(unit);
+
+        UnitId IHeroSensor.NearestEnemyIn(Rect area)
+        {
+            var team = Team;
+            var found = Battle.Registry.FindNearest(Position, Radius, float.PositiveInfinity,
+                u => u.Team != team && !u.IsCastle && area.Contains(u.Position));
+            return found != null ? found.Id : UnitId.None;
+        }
+
+        bool IHeroSensor.IsInArea(UnitId unit, Rect area)
+        {
+            var found = Battle.Registry.Get(unit);
+            return found != null && area.Contains(found.Position);
+        }
     }
 }

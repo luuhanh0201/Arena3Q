@@ -15,7 +15,20 @@ namespace Arena3Q.Data
         [Tooltip("Star: hero star rank, stars needed to unlock a skill, recommended server (Lucide 'star', ISC).")]
         [SerializeField] private Sprite star;
 
+        [Tooltip("Lệnh Giữ on the stance button (Lucide 'hand', ISC).")]
+        [SerializeField] private Sprite hold;
+        [Tooltip("Lệnh Tấn công on the stance button (Lucide 'swords', ISC).")]
+        [SerializeField] private Sprite attack;
+        [Tooltip("Lệnh Phòng thủ on the stance button (Lucide 'shield', ISC).")]
+        [SerializeField] private Sprite defend;
+        [Tooltip("Small hint on the stance button that it opens upwards (Lucide 'chevron-up', ISC).")]
+        [SerializeField] private Sprite expandUp;
+
         public Sprite Star => star;
+        public Sprite Hold => hold;
+        public Sprite Attack => attack;
+        public Sprite Defend => defend;
+        public Sprite ExpandUp => expandUp;
 
         private static UiIconSet _loaded;
 

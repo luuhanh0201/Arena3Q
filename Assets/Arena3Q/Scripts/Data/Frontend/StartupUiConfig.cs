@@ -60,10 +60,10 @@ namespace Arena3Q.Data
         public string[] tips =
         {
             "Thu thập và bồi dưỡng danh tướng, sắp xếp đội hình hợp lý để làm chủ chiến trường!",
-            "Chọn một tướng rồi chạm vào bản đồ để ra lệnh di chuyển!",
+            "Dùng nút lệnh góc phải dưới để chọn Giữ, Tấn công hoặc Phòng thủ cho toàn quân!",
             "Mỗi trận triệu hồi tối đa 5 tướng, mỗi tướng dẫn theo một đội quân!",
             "Phá hủy nhà chính của đối phương để giành chiến thắng trong ải Công!",
-            "Giữ thẻ của tướng đã ra sân 1,5 giây để chọn tướng đó!",
+            "Chạm thẻ của tướng đã ra sân khi đầy nộ để dùng tuyệt kỹ!",
             "Liên kết tài khoản để giữ tiến trình khi đổi máy hoặc cài lại game!",
             "Chọn máy chủ có trạng thái Tốt để bắt đầu hành trình!"
         };

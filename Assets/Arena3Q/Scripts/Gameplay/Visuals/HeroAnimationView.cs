@@ -52,7 +52,11 @@ namespace Arena3Q.Gameplay
         private void Face(Vector2 velocity)
         {
             if (velocity.sqrMagnitude > 0.0001f)
-                _desiredAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+            {
+                // The drawn directions are relative to the camera: undo its diagonal turn.
+                var onScreen = _hero.Battle.ToCameraGround(velocity);
+                _desiredAngle = Mathf.Atan2(onScreen.y, onScreen.x) * Mathf.Rad2Deg;
+            }
         }
 
         private void Turn(float deltaTime)

@@ -21,10 +21,10 @@ Ký hiệu: 🟡 đề xuất (chờ người dùng duyệt, sau khi duyệt đ�
 | Tầm đánh | cận chiến 0.6–0.7 · cung 4.5 (tính từ mép thân) | asset tướng/lính |
 | Tầm phát hiện (aggro) | 4.5–7 | asset |
 | Tốc độ | 1.6 (Lực sĩ) … 2.6 (đa số) … 3.6 (Kỵ binh) đơn vị/giây | asset |
-| Camera | orthographic, khởi đầu 7, zoom 3.5–11 (bị kẹp bởi bản đồ) | `BattleCameraController` |
+| Camera | orthographic chéo cố định (28/10/2026): nghiêng 40° từ trên xuống (cao 50°), xoay 45°; mặc định thấy cả bề ngang map, phóng to tới 0,7 lần mặc định, thu nhỏ tới khi khung còn nằm trong nền ngoài biên | `BattleCameraController`, `BattleViewConfig` |
 | Vùng nhìn thấy ở zoom 7 | cao 14; rộng 24.9 (màn 16:9) – 31.1 (màn 20:9) | tính |
-| HUD (tham chiếu 1920×1080) | thanh thẻ dưới ~226 px ≈ 21 % chiều cao ≈ **2.9 đơn vị** ở zoom 7; dải trên (tên ải, đồng hồ, thanh góc nhìn) ~150 px ≈ **1.9 đơn vị** | `BattleHud` |
-| Góc nghiêng 2.5D | hiện 0–45° chỉnh bằng thanh trượt, mặc định 0°; **sẽ khoá ở góc của art (tỉ lệ 0.75 ≈ 41.4°, mục 8.3)** khi có art thật | `BattleController.ViewTiltDegrees` |
+| HUD (tham chiếu 1920×1080) | thanh thẻ dưới ~226 px ≈ 21 % chiều cao ≈ **2.9 đơn vị** ở zoom 7; dải trên (tên ải, đồng hồ) ~150 px; nút lệnh Giữ / Tấn công / Phòng thủ ở góc phải dưới ≈ **1.9 đơn vị** | `BattleHud` |
+| Góc nhìn | **khoá** (người dùng 2026-10-28): nghiêng 40°, xoay 45°, không còn thanh trượt kể cả debug; nền và rừng trải ra ngoài biên để không lộ vùng trống | `BattleViewConfig`, `BattlefieldConfig` (Outer ground) |
 | Thời gian đi thành-tới-thành | 39 đơn vị ÷ 2.6 ≈ **15 giây** | tính |
 
 ---

@@ -10,18 +10,16 @@ namespace Arena3Q.UI
     /// <summary>
     /// A hero card (spec §3 "Kỹ năng trên thẻ", §4). UI only.
     /// Unused card: tap = quick summon, drag onto the summon zone = free summon.
-    /// Deployed card: tap = ultimate (auto-aim), drag onto the battlefield = ultimate aimed there (released over UI =
-    /// cancel), hold 1.5 s = select the hero. It shows the skill 2 / 3 icons with their cooldowns and the rage bar.
+    /// Deployed card: tap = ultimate (auto-aim); nothing else (spec §5 "Cơ chế mới": no aimed drag, no hold to select,
+    /// heroes follow the army stance). It shows the skill 2 / 3 icons with their cooldowns and the rage bar.
     /// Dead card: greyed out and inert.
     /// </summary>
-    public sealed class HeroCardView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler,
-        IBeginDragHandler, IDragHandler, IEndDragHandler
+    public sealed class HeroCardView : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         private enum DragMode
         {
             None,
-            Summon,
-            Ultimate
+            Summon
         }
 
         private sealed class SkillIcon
@@ -35,14 +33,10 @@ namespace Arena3Q.UI
 
         public static readonly Vector2 CardSize = new Vector2(160f, 210f);
 
-        /// <summary>Hold a deployed card this long to select its hero (spec §3 ✅).</summary>
-        public const float HoldToSelectSeconds = 1.5f;
-
         private BattleHud _hud;
         private LineupEntry _card;
         private Image _background;
         private Image _portrait;
-        private Image _selectedFrame;
         private Text _status;
         private RectTransform _ghost;
         private Image _ghostImage;
@@ -51,8 +45,6 @@ namespace Arena3Q.UI
         private SkillIcon[] _skillIcons;
         private RectTransform _rageBar;
         private Image _rageFill;
-        private float _pressTime = -1f;
-        private bool _holdUsed;
 
         public int CardIndex { get; private set; }
         public float RageShown => _rageFill != null && _rageBar.gameObject.activeSelf ? _rageFill.fillAmount : 0f;
@@ -66,8 +58,6 @@ namespace Arena3Q.UI
             _heroColor = hero.PlaceholderColor;
             var rect = (RectTransform)transform;
 
-            _selectedFrame = UiFactory.AddImage(UiFactory.CreateRect("Selected", rect, Vector2.zero, Vector2.one,
-                new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(14f, 14f)), new Color(1f, 0.92f, 0.3f), null, false);
             _background = UiFactory.AddImage(UiFactory.Stretch("Background", rect), new Color(0.12f, 0.14f, 0.2f, 0.95f));
 
             var portraitRect = UiFactory.CreateRect("Portrait", rect, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f),
@@ -138,12 +128,11 @@ namespace Arena3Q.UI
             _rageBar.gameObject.SetActive(false);
         }
 
-        internal void Refresh(CardState state, bool selected, bool isLord)
+        internal void Refresh(CardState state, bool isLord)
         {
             var dead = state == CardState.Dead;
             _background.color = dead ? new Color(0.2f, 0.2f, 0.2f, 0.9f) : new Color(0.12f, 0.14f, 0.2f, 0.95f);
             _portrait.color = dead ? new Color(0.35f, 0.35f, 0.35f) : _heroColor;
-            _selectedFrame.enabled = selected && state == CardState.Deployed;
             switch (state)
             {
                 case CardState.Deployed: _status.text = "Trên sân"; _status.color = new Color(0.5f, 1f, 0.6f); break;
@@ -160,9 +149,6 @@ namespace Arena3Q.UI
             if (_hud == null || _hud.Battle.State == null || CardIndex >= _hud.Battle.State.Cards.Count)
                 return;
             UpdateSkills();
-            if (_pressTime >= 0f && !_holdUsed && _dragMode == DragMode.None &&
-                Time.unscaledTime - _pressTime >= HoldToSelectSeconds)
-                SelectByHold();
         }
 
         private void UpdateSkills()
@@ -229,17 +215,9 @@ namespace Arena3Q.UI
 
         // ---- Input ----
 
-        public void OnPointerDown(PointerEventData eventData)
-        {
-            _pressTime = Time.unscaledTime;
-            _holdUsed = false;
-        }
-
-        public void OnPointerUp(PointerEventData eventData) => _pressTime = -1f;
-
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (_holdUsed || eventData.dragging)
+            if (eventData.dragging)
                 return;
             Tap();
         }
@@ -260,40 +238,14 @@ namespace Arena3Q.UI
             }
         }
 
-        /// <summary>Held 1.5 s: select the deployed hero (and look at it).</summary>
-        public void SelectByHold()
-        {
-            _holdUsed = true;
-            _pressTime = -1f;
-            if (Card.State == CardState.Deployed && _hud.Battle.TrySelectCard(CardIndex))
-                _hud.FocusSelectedHero();
-        }
-
         public void OnBeginDrag(PointerEventData eventData)
         {
             _dragMode = DragMode.None;
-            _pressTime = -1f;
-            if (_hud.Battle.IsOver || _holdUsed)
+            // Only an unused card can be dragged (free summon); a deployed card has no aimed drag any more.
+            if (_hud.Battle.IsOver || Card.State != CardState.Available)
                 return;
-            switch (Card.State)
-            {
-                case CardState.Available:
-                    _dragMode = DragMode.Summon;
-                    _hud.Battle.ShowSummonZone(true);
-                    break;
-                case CardState.Deployed:
-                    // 🟡 Aiming only starts with a full rage bar; otherwise the usual "not ready" message.
-                    var hero = Hero;
-                    if (hero == null || !hero.Skills.HasUltimate || !hero.Skills.Rage.IsFull)
-                    {
-                        _hud.Battle.TryUseUltimate(CardIndex);
-                        return;
-                    }
-                    _dragMode = DragMode.Ultimate;
-                    break;
-                default:
-                    return;
-            }
+            _dragMode = DragMode.Summon;
+            _hud.Battle.ShowSummonZone(true);
             ShowGhost(eventData.position);
         }
 
@@ -305,7 +257,7 @@ namespace Arena3Q.UI
 
         public void OnEndDrag(PointerEventData eventData) => ReleaseDrag(eventData.position);
 
-        /// <summary>End of a drag at a screen position: summon there, or aim the ultimate there; over UI = cancel.</summary>
+        /// <summary>End of a drag at a screen position: summon there; over UI = cancel.</summary>
         public void ReleaseDrag(Vector2 screenPosition)
         {
             var mode = _dragMode;
@@ -319,21 +271,7 @@ namespace Arena3Q.UI
             if (_hud.IsOverUi(screenPosition))
                 return;
 
-            var world = _hud.Camera.ScreenToWorld(screenPosition);
-            if (mode == DragMode.Summon)
-                _hud.Battle.TrySummon(SummonRequest.Free(CardIndex, world));
-            else
-                _hud.Battle.TryUseUltimate(CardIndex, world);
-        }
-
-        /// <summary>Starts aiming the ultimate from code (tests): the same check as a real drag.</summary>
-        public bool BeginUltimateDrag()
-        {
-            var hero = Hero;
-            if (Card.State != CardState.Deployed || hero == null || !hero.Skills.Rage.IsFull)
-                return false;
-            _dragMode = DragMode.Ultimate;
-            return true;
+            _hud.Battle.TrySummon(SummonRequest.Free(CardIndex, _hud.Camera.ScreenToWorld(screenPosition)));
         }
 
         private void ShowGhost(Vector2 screenPosition)
@@ -345,9 +283,7 @@ namespace Arena3Q.UI
                 _ghostImage = UiFactory.AddImage(_ghost, Color.white, PlaceholderArt.Circle, false);
             }
             _ghost.gameObject.SetActive(true);
-            _ghostImage.color = _dragMode == DragMode.Ultimate
-                ? new Color(1f, 0.75f, 0.2f, 0.8f)
-                : new Color(_heroColor.r, _heroColor.g, _heroColor.b, 0.75f);
+            _ghostImage.color = new Color(_heroColor.r, _heroColor.g, _heroColor.b, 0.75f);
             RectTransformUtility.ScreenPointToLocalPointInRectangle(_hud.OverlayRoot, screenPosition, null, out var local);
             _ghost.localPosition = local;
         }

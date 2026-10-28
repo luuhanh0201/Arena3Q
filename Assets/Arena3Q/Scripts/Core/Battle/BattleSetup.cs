@@ -48,5 +48,8 @@ namespace Arena3Q.Core
 
         public LossRules LossRules { get; set; } = new LossRules();
         public StarThresholds StarThresholds { get; set; } = new StarThresholds();
+
+        /// <summary>The army-wide stance the battle starts in (spec §5: Giữ).</summary>
+        public ArmyStance StartStance { get; set; } = ArmyStance.Hold;
     }
 }

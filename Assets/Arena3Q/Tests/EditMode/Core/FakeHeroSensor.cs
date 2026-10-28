@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace Arena3Q.Tests.EditMode
 {
-    /// <summary>Hand-driven <see cref="IHeroSensor"/>: tests set what the hero "sees" before each tick.</summary>
+    /// <summary>Hand-set perception for <see cref="HeroBrain"/> tests.</summary>
     internal sealed class FakeHeroSensor : IHeroSensor
     {
         private readonly HashSet<UnitId> _dead = new HashSet<UnitId>();
+        private readonly Dictionary<UnitId, Vector2> _enemyPositions = new Dictionary<UnitId, Vector2>();
 
         public Vector2 Position { get; set; }
         public UnitId EnemyInAttackRange { get; set; }
@@ -19,7 +20,30 @@ namespace Arena3Q.Tests.EditMode
 
         public bool IsAlive(UnitId unit) => unit.IsValid && !_dead.Contains(unit);
 
-        /// <summary>Marks a unit dead and removes it from every query, as the real world would.</summary>
+        /// <summary>Puts an enemy at a position for the area queries (Phòng thủ).</summary>
+        public void PlaceEnemy(UnitId unit, Vector2 position) => _enemyPositions[unit] = position;
+
+        public UnitId NearestEnemyIn(Rect area)
+        {
+            var best = UnitId.None;
+            var bestDistance = float.MaxValue;
+            foreach (var pair in _enemyPositions)
+            {
+                if (!IsAlive(pair.Key) || !area.Contains(pair.Value))
+                    continue;
+                var distance = (pair.Value - Position).sqrMagnitude;
+                if (distance < bestDistance)
+                {
+                    best = pair.Key;
+                    bestDistance = distance;
+                }
+            }
+            return best;
+        }
+
+        public bool IsInArea(UnitId unit, Rect area) =>
+            IsAlive(unit) && _enemyPositions.TryGetValue(unit, out var position) && area.Contains(position);
+
         public void Kill(UnitId unit)
         {
             _dead.Add(unit);

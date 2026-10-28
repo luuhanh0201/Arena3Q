@@ -27,9 +27,10 @@ namespace Arena3Q.Tests.PlayMode
         }
         [TearDown] public void Reset() { UiSafeArea.OverrideArea = null; }
 
+        // The view may show the outer ground around the map but never the empty background (user 2026-10-28).
         private void AssertViewportInsideMap()
         {
-            var bounds = _battle.Stage.MapBounds;
+            var bounds = _rig.GroundBounds;
             foreach (var corner in new[] { Vector2.zero, Vector2.right, Vector2.up, Vector2.one })
             {
                 var pixel = _rig.Camera.ViewportToScreenPoint(corner);
@@ -40,17 +41,17 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator StartupZoomOutPanAndTilt_NeverRevealOutsideTheGround()
+        public IEnumerator StartupZoomAndPan_NeverRevealOutsideTheGround()
         {
             AssertViewportInsideMap();
             foreach (float aspect in new[] { 2340f / 1080f, 20f / 9f, 16f / 9f, 4f / 3f })
-                foreach (float tilt in new[] { 0f, 40f, 45f })
+                foreach (float zoom in new[] { 1000f, 0.001f })
                 {
-                    _rig.Camera.aspect = aspect; _battle.ViewTiltDegrees = tilt;
+                    _rig.Camera.aspect = aspect;
                     yield return null; AssertViewportInsideMap();
-                    _rig.Zoom(1000f, new Vector2(Screen.width * .8f, Screen.height * .7f));
+                    _rig.Zoom(zoom, new Vector2(_rig.Camera.pixelWidth * .8f, _rig.Camera.pixelHeight * .7f));
                     AssertViewportInsideMap();
-                    foreach (var delta in new[] { Vector2.left, Vector2.right, Vector2.up, Vector2.down })
+                    foreach (var delta in new[] { Vector2.left, Vector2.right, Vector2.up, Vector2.down, Vector2.one, -Vector2.one })
                     { _rig.Pan(delta * 100000f); AssertViewportInsideMap(); }
                 }
         }
@@ -74,7 +75,7 @@ namespace Arena3Q.Tests.PlayMode
             var inset = new Rect(Screen.width * .04f, Screen.height * .02f, Screen.width * .90f, Screen.height * .96f);
             UiSafeArea.OverrideArea = inset; safe.Apply(); Canvas.ForceUpdateCanvases();
             var canvas = safe.GetComponentInParent<Canvas>();
-            foreach (var name in new[] { "Stage", "Timer", "Info", "CardBar" })
+            foreach (var name in new[] { "Stage", "Timer", "Info", "CardBar", "StanceButton" })
             {
                 var rect = (RectTransform)safe.transform.Find(name); Assert.That(rect, Is.Not.Null, name);
                 var corners = new Vector3[4]; rect.GetWorldCorners(corners);

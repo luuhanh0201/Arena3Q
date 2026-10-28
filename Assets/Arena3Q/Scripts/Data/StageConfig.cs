@@ -65,10 +65,11 @@ namespace Arena3Q.Data
         [Tooltip("Provisional: what a squad does after its hero dies.")]
         [SerializeField] private OnHeroDeathTroopBehavior onHeroDeathTroopBehavior = OnHeroDeathTroopBehavior.KeepFighting;
 
-        [Header("Hero overrides")]
-        [Tooltip("Provisional: override every hero's idleBeforeAdvanceSeconds in this stage.")]
-        [SerializeField] private bool overrideIdleBeforeAdvance;
-        [SerializeField, Min(0f)] private float idleBeforeAdvanceSeconds = HeroDefinition.DefaultIdleBeforeAdvanceSeconds;
+        [Header("Army stance (spec §5 \"Cơ chế mới\")")]
+        [Tooltip("The army-wide order the battle starts in (user 2026-10-28: Giữ).")]
+        [SerializeField] private ArmyStance startStance = ArmyStance.Hold;
+        [Tooltip("Provisional: Phòng thủ chases intruders this far beyond the defence area (the summon zone) before going back.")]
+        [SerializeField, Min(0f)] private float defendChaseMargin = 3f;
 
         [Header("Prototype")]
         [SerializeField] private TestLoadout testLoadout;
@@ -100,16 +101,15 @@ namespace Arena3Q.Data
         public StarThresholds StarThresholds => starThresholds;
         public OnHeroDeathTroopBehavior OnHeroDeathTroopBehavior => onHeroDeathTroopBehavior;
         public TestLoadout TestLoadout => testLoadout;
-
-        public float GetIdleBeforeAdvanceSeconds(HeroDefinition hero) =>
-            overrideIdleBeforeAdvance ? idleBeforeAdvanceSeconds : hero.IdleBeforeAdvanceSeconds;
+        public ArmyStance StartStance => startStance;
+        public float DefendChaseMargin => defendChaseMargin;
 
         public HeroBrainSettings CreateHeroBrainSettings(HeroDefinition hero) => new HeroBrainSettings
         {
             StageType = stageType,
-            IdleBeforeAdvanceSeconds = GetIdleBeforeAdvanceSeconds(hero),
-            IdleTimerResetsOnOutOfRangeDamage = hero.IdleTimerResetsOnOutOfRangeDamage,
-            SelfDefendWhileAttacking = hero.SelfDefendWhileAttacking
+            SelfDefendWhileAttacking = hero.SelfDefendWhileAttacking,
+            DefendArea = summonZone,
+            DefendChaseMargin = defendChaseMargin
         };
 
         /// <summary>
@@ -226,6 +226,7 @@ namespace Arena3Q.Data
                 AllowResummonDeadHero = allowResummonDeadHero,
                 PlayerCastleMaxHealth = playerCastle.MaxHealth,
                 EnemyCastleMaxHealth = enemyCastle.MaxHealth,
+                StartStance = startStance,
                 LossRules = lossRules,
                 StarThresholds = starThresholds
             };

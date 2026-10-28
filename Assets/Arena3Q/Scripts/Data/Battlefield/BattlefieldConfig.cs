@@ -15,6 +15,8 @@ namespace Arena3Q.Data
         public float rimHeight = 3.5f;
         public float rimWidth = 5f;
         [Range(35f, 70f)] public float cameraElevation = 50f;
+        [Tooltip("Diagonal camera turn about the vertical axis (user 2026-10-28; the battle uses BattleViewConfig.DefaultYawDegrees).")]
+        [Range(-90f, 90f)] public float cameraYaw = 45f;
         public Vector2 cameraOffset = new Vector2(0f, -1f);
         public float cameraPadding = 1.1f;
         [Min(.1f)] public float heroScaleMultiplier = 2f;
@@ -36,6 +38,23 @@ namespace Arena3Q.Data
         [Min(0)] public int grassPatchPairs = 45;
         [Min(0)] public int grassPerPatch = 8;
         public int targetFrameRate = 60;
+        [Header("Outer ground (user 2026-10-28: the camera never shows the empty background)")]
+        [Tooltip("How far the ground and forest reach beyond the map. Keep it above BattleViewConfig.cameraGroundMargin plus the forest edge gap.")]
+        [Min(0f)] public float outerGroundMargin = 30f;
+        [Min(.5f)] public float outerCellSize = 2f;
+        [Tooltip("Low hills outside the map; kept low so they do not hide units at the map edge from the diagonal camera.")]
+        [Min(0f)] public float outerHillHeight = 1.4f;
+        [Tooltip("Average distance between outer trees (a jittered grid).")]
+        [Min(1f)] public float outerTreeSpacing = 3.4f;
+        [Tooltip("Free strip between the map edge and the first outer trees.")]
+        [Min(0f)] public float outerTreeEdgeGap = 2.5f;
+        public float OuterHeight(Vector2 p)
+        {
+            float outside = Mathf.Max(Mathf.Abs(p.x) - size.x * .5f, Mathf.Abs(p.y) - size.y * .5f);
+            if (outside <= 0f) return 0f;
+            float rise = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((outside - 2f) / 10f));
+            return rise * outerHillHeight * (.55f + .45f * Mathf.PerlinNoise(p.x * .09f + 11f, p.y * .09f + 5f));
+        }
         public Rect Bounds => new Rect(-size * .5f, size);
         public Vector3 Point(Vector2 ground, float height = 0f) => new Vector3(ground.x, height, ground.y);
         public float TerrainHeight(Vector2 p)

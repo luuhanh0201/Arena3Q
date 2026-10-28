@@ -22,12 +22,20 @@ namespace Arena3Q.Data
 
         [Tooltip("3D presentation (tilted orthographic camera, models, billboards). Off = the old flat 2.5D squash.")]
         [SerializeField] private bool presentation3D = true;
-        [Tooltip("Camera tilt when the stage has no painted ground. 41.4° squashes the ground to 0.75 like the art.")]
-        [SerializeField, Range(0f, 80f)] private float defaultTiltDegrees = 41.41f;
+        [Tooltip("Camera tilt from looking straight down (user 2026-10-28: 40°, i.e. 50° above the ground). Fixed: nothing changes it at runtime.")]
+        [SerializeField, Range(0f, 80f)] private float defaultTiltDegrees = 40f;
+        [Tooltip("Camera turn about the vertical axis (user 2026-10-28: 45°, the diagonal view with the own camp bottom-left, the enemy top-right). Fixed.")]
+        [SerializeField, Range(-90f, 90f)] private float defaultYawDegrees = 45f;
         [Tooltip("Index in the URP asset's renderer list used by the battle camera in 3D (the Universal renderer).")]
         [SerializeField, Min(0)] private int rendererIndex = 1;
         [Tooltip("How far the camera sits from the ground point it looks at (orthographic: only clipping depends on it).")]
         [SerializeField, Min(5f)] private float cameraDistance = 60f;
+        [Tooltip("How far beyond the map bounds the camera may show (the outer ground and forest). Must stay inside the ground the map scene builds, so the empty background never shows.")]
+        [SerializeField, Min(0f)] private float cameraGroundMargin = 24f;
+        [Tooltip("Default zoom: the view spans this many map widths along the map's long (x) axis.")]
+        [SerializeField, Range(0.3f, 2f)] private float defaultViewMapWidths = 1f;
+        [Tooltip("Closest zoom as a fraction of the default view size, so model and texture flaws do not show (provisional 0.7).")]
+        [SerializeField, Range(0.2f, 1f)] private float zoomInLimit = 0.7f;
 
         [Header("Light (no realtime shadows: blob shadows only, spec budget)")]
         [Tooltip("Direction the sunlight travels in battle space (ground = XY, up = -Z): Euler angles of the light.")]
@@ -118,6 +126,10 @@ namespace Arena3Q.Data
         public float PlaceholderHeight => placeholderHeight;
         public float BlobShadowAlpha => blobShadowAlpha;
         public float DefaultTiltDegrees => defaultTiltDegrees;
+        public float DefaultYawDegrees => defaultYawDegrees;
+        public float CameraGroundMargin => cameraGroundMargin;
+        public float DefaultViewMapWidths => defaultViewMapWidths;
+        public float ZoomInLimit => zoomInLimit;
         public int RendererIndex => rendererIndex;
         public float CameraDistance => cameraDistance;
         public Vector3 LightEulerAngles => lightEulerAngles;

@@ -304,7 +304,7 @@ namespace Arena3Q.Tests.PlayMode
             card.transform.Find($"Skill {slot}/Label").GetComponent<Text>().text;
 
         [UnityTest]
-        public IEnumerator Card_ShowsLockedSkills_TapUsesTheUltimate_HoldSelects()
+        public IEnumerator Card_ShowsLockedSkills_TapUsesTheUltimate_NothingElse()
         {
             _battle.StartBattle(Stage(0));
             yield return null;
@@ -332,8 +332,6 @@ namespace Arena3Q.Tests.PlayMode
             var toast = _hud.GetComponentsInChildren<Text>().First(t => t.name == "Toast");
             Assert.That(toast.text, Is.EqualTo("Kỹ năng chưa thể sử dụng"));
 
-            lordCard.SelectByHold();
-            Assert.That(_battle.SelectedHero.CardIndex, Is.EqualTo(0), "holding the card selects its hero");
         }
 
         [UnityTest]
@@ -359,7 +357,7 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator Card_DragReleasedOverUi_DoesNotUseTheUltimate()
+        public IEnumerator DeployedCard_Drag_DoesNotAimTheUltimate()
         {
             _battle.StartBattle(EmptyStage(), WithLord(new LineupEntry(Hero("Heroes/Hero_Guardian"), 1, 4)));
             yield return null;
@@ -368,10 +366,13 @@ namespace Arena3Q.Tests.PlayMode
             hero.Skills.Rage.Add(1000f);
             var card = _hud.CardViews[1];
 
-            Assert.That(card.BeginUltimateDrag(), Is.True);
-            card.ReleaseDrag(RectTransformUtility.WorldToScreenPoint(null, card.transform.position));
+            // Spec §5 "Cơ chế mới": only a tap uses the ultimate; dragging a deployed card does nothing.
+            var data = new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current)
+                { position = RectTransformUtility.WorldToScreenPoint(null, card.transform.position) };
+            card.OnBeginDrag(data);
+            card.ReleaseDrag(_hud.Camera.WorldToScreen(hero.Position + new Vector2(1.5f, 0f)));
             Run(0.6f);
-            Assert.That(hero.Skills.Rage.IsFull, Is.True, "dropped back on the card bar = cancelled");
+            Assert.That(hero.Skills.Rage.IsFull, Is.True, "no aimed ultimate from a drag");
         }
     }
 }

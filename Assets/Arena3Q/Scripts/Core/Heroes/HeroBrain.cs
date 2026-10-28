@@ -4,9 +4,11 @@ using UnityEngine;
 namespace Arena3Q.Core
 {
     /// <summary>
-    /// Hero behaviour state machine (spec §6): Idle, Moving, Attacking, Advancing, Combat, Dead.
-    /// Pure logic: call <c>Issue</c> for player commands and <see cref="Tick"/> once per simulation step, then execute
-    /// the returned <see cref="HeroIntent"/>.
+    /// Hero behaviour state machine (spec §5 "Cơ chế mới", §6): Idle, Moving, Attacking, Advancing, Combat, Dead.
+    /// The player no longer orders single heroes: every hero follows the army-wide <see cref="ArmyStance"/>
+    /// (<see cref="SetStance"/>). Giữ = Idle in place, Tấn công = Advancing, Phòng thủ = Moving back to the defence area,
+    /// Idle there and Advancing on an intruder. Move / attack commands remain for scripted orders and tests.
+    /// Pure logic: call <see cref="Tick"/> once per simulation step, then execute the returned <see cref="HeroIntent"/>.
     /// </summary>
     public sealed class HeroBrain
     {
@@ -25,23 +27,55 @@ namespace Arena3Q.Core
         /// <summary>Raised as (previous, next) whenever the state changes.</summary>
         public event Action<HeroState, HeroState> StateChanged;
 
-        /// <summary>A freshly summoned hero starts Idle (spec §4).</summary>
+        /// <summary>A freshly summoned hero starts Idle (spec §4) and then follows the army stance.</summary>
         public HeroState State { get; private set; } = HeroState.Idle;
+
+        /// <summary>The army-wide order this hero follows (Giữ until told otherwise).</summary>
+        public ArmyStance Stance { get; private set; } = ArmyStance.Hold;
+
+        /// <summary>Phòng thủ: the point inside the defence area this hero guards.</summary>
+        public Vector2 DefendPoint { get; private set; }
 
         public HeroCommandKind CurrentCommand { get; private set; }
 
-        /// <summary>Saved MoveCommand destination; Combat resumes towards it.</summary>
+        /// <summary>Saved MoveCommand destination (or the defence point while falling back); Combat resumes towards it.</summary>
         public Vector2 Destination { get; private set; }
 
         /// <summary>AttackCommand target.</summary>
         public UnitId AttackTarget { get; private set; }
 
-        /// <summary>Seconds spent Idle without a target. Resets on any target, engagement or new command.</summary>
-        public float IdleTimer { get; private set; }
-
         public bool IsDead => State == HeroState.Dead;
 
-        /// <summary>A new command replaces the old one and cancels the idle timer (spec §5, §6).</summary>
+        /// <summary>
+        /// Follow a new army stance from <paramref name="position"/> (spec §5): Giữ stops here, Tấn công advances,
+        /// Phòng thủ walks back to the nearest point of the defence area. Replaces any scripted order.
+        /// </summary>
+        public void SetStance(ArmyStance stance, Vector2 position)
+        {
+            if (IsDead)
+                return;
+            Stance = stance;
+            ClearCommand();
+            ResetTransientState();
+            switch (stance)
+            {
+                case ArmyStance.Attack:
+                    SetState(HeroState.Advancing);
+                    break;
+                case ArmyStance.Defend:
+                    DefendPoint = ClampInto(_settings.DefendArea, position);
+                    if (IsAt(position, DefendPoint))
+                        SetState(HeroState.Idle);
+                    else
+                        BeginReturn();
+                    break;
+                default:
+                    SetState(HeroState.Idle);
+                    break;
+            }
+        }
+
+        /// <summary>A new command replaces the old one (scripted orders and tests; the player has no per-hero orders).</summary>
         public void Issue(in MoveCommand command)
         {
             if (IsDead)
@@ -77,12 +111,10 @@ namespace Arena3Q.Core
         {
             if (sensor == null)
                 throw new ArgumentNullException(nameof(sensor));
-            if (deltaTime < 0f)
-                deltaTime = 0f;
 
             switch (State)
             {
-                case HeroState.Idle: return TickIdle(deltaTime, sensor);
+                case HeroState.Idle: return TickIdle(sensor);
                 case HeroState.Moving: return TickMoving(sensor);
                 case HeroState.Attacking: return TickAttacking(sensor);
                 case HeroState.Combat: return TickCombat(sensor);
@@ -91,40 +123,52 @@ namespace Arena3Q.Core
             }
         }
 
-        // Idle: hit enemies that walk into attack range without chasing; after IdleBeforeAdvanceSeconds of
-        // continuous "no target", start Advancing.
-        private HeroIntent TickIdle(float deltaTime, IHeroSensor sensor)
+        // Idle: hit enemies that walk into attack range without chasing. What else happens depends on the stance:
+        // Giữ waits here (no 5-second rule any more), Tấn công advances, Phòng thủ goes for intruders in the area.
+        private HeroIntent TickIdle(IHeroSensor sensor)
         {
             var target = sensor.EnemyInAttackRange;
             if (target.IsValid)
-            {
-                IdleTimer = 0f;
                 return HeroIntent.Engage(target, mayChase: false);
+
+            switch (Stance)
+            {
+                case ArmyStance.Attack:
+                    SetState(HeroState.Advancing);
+                    return TickAdvancing(sensor);
+                case ArmyStance.Defend:
+                {
+                    var intruder = sensor.NearestEnemyIn(ChaseArea);
+                    if (intruder.IsValid)
+                    {
+                        _advanceTarget = intruder;
+                        SetState(HeroState.Advancing);
+                        return HeroIntent.Engage(intruder, mayChase: true);
+                    }
+                    if (!IsAt(sensor.Position, DefendPoint))
+                    {
+                        BeginReturn();
+                        return HeroIntent.MoveTo(Destination);
+                    }
+                    return HeroIntent.Hold;
+                }
+                default:
+                    return HeroIntent.Hold;
             }
-
-            if (sensor.TookDamageFromOutOfRange && _settings.IdleTimerResetsOnOutOfRangeDamage)
-                IdleTimer = 0f;
-            else
-                IdleTimer += deltaTime;
-
-            if (IdleTimer < _settings.IdleBeforeAdvanceSeconds)
-                return HeroIntent.Hold;
-
-            SetState(HeroState.Advancing);
-            return TickAdvancing(sensor);
         }
 
         // Moving (IgnoreUntilDestination): walk on regardless of enemies; only a close attacker triggers Combat.
+        // Used by scripted move orders and by Phòng thủ falling back to its defence point.
         private HeroIntent TickMoving(IHeroSensor sensor)
         {
             var attacker = sensor.CloseAttacker;
             if (attacker.IsValid)
                 return EnterCombat(HeroState.Moving, attacker);
 
-            if ((sensor.Position - Destination).sqrMagnitude <= _settings.ArrivalTolerance * _settings.ArrivalTolerance)
+            if (IsAt(sensor.Position, Destination))
             {
                 EnterIdle();
-                return TickIdle(0f, sensor);
+                return TickIdle(sensor);
             }
 
             return HeroIntent.MoveTo(Destination);
@@ -135,7 +179,7 @@ namespace Arena3Q.Core
             if (!AttackTarget.IsValid || !sensor.IsAlive(AttackTarget))
             {
                 EnterIdle();
-                return TickIdle(0f, sensor);
+                return TickIdle(sensor);
             }
 
             if (_settings.SelfDefendWhileAttacking)
@@ -163,10 +207,20 @@ namespace Arena3Q.Core
             return resume == HeroState.Attacking ? TickAttacking(sensor) : TickMoving(sensor);
         }
 
-        // Advancing: normal AI. Fight the locked target until it dies, else the nearest enemy in aggro range,
-        // else head for the stage objective (spec §6, provisional direction).
+        // Advancing. Tấn công: normal AI, fight the locked target until it dies, else the nearest enemy in aggro range,
+        // else head for the stage objective (spec §6). Phòng thủ: chase an intruder while it stays near the area.
         private HeroIntent TickAdvancing(IHeroSensor sensor)
         {
+            if (Stance == ArmyStance.Defend)
+            {
+                if (!_advanceTarget.IsValid || !sensor.IsAlive(_advanceTarget) || !sensor.IsInArea(_advanceTarget, ChaseArea))
+                    _advanceTarget = sensor.NearestEnemyIn(ChaseArea);
+                if (_advanceTarget.IsValid)
+                    return HeroIntent.Engage(_advanceTarget, mayChase: true);
+                BeginReturn();
+                return TickMoving(sensor);
+            }
+
             if (!_advanceTarget.IsValid || !sensor.IsAlive(_advanceTarget))
                 _advanceTarget = sensor.EnemyInAggroRange;
             if (_advanceTarget.IsValid)
@@ -176,11 +230,36 @@ namespace Arena3Q.Core
             if (objective.IsValid)
                 return HeroIntent.Engage(objective, mayChase: true);
 
-            // Nothing to advance towards (e.g. Defense stage with no enemies left): stand by in Idle.
-            // Return Hold rather than ticking Idle so a zero idle delay cannot bounce back here in the same tick.
-            EnterIdle();
+            // Nothing to advance towards (e.g. Defense stage with no enemies left): stand by, still Advancing so the
+            // hero sets off again as soon as an enemy appears.
             return HeroIntent.Hold;
         }
+
+        private Rect ChaseArea
+        {
+            get
+            {
+                var area = _settings.DefendArea;
+                var margin = Mathf.Max(0f, _settings.DefendChaseMargin);
+                return new Rect(area.xMin - margin, area.yMin - margin, area.width + margin * 2f, area.height + margin * 2f);
+            }
+        }
+
+        private void BeginReturn()
+        {
+            CurrentCommand = HeroCommandKind.None;
+            Destination = DefendPoint;
+            _advanceTarget = UnitId.None;
+            SetState(HeroState.Moving);
+        }
+
+        private bool IsAt(Vector2 position, Vector2 point) =>
+            (position - point).sqrMagnitude <= _settings.ArrivalTolerance * _settings.ArrivalTolerance;
+
+        private static Vector2 ClampInto(Rect area, Vector2 point) =>
+            area.width <= 0f || area.height <= 0f
+                ? point
+                : new Vector2(Mathf.Clamp(point.x, area.xMin, area.xMax), Mathf.Clamp(point.y, area.yMin, area.yMax));
 
         private HeroIntent EnterCombat(HeroState resumeState, UnitId attacker)
         {
@@ -204,7 +283,6 @@ namespace Arena3Q.Core
 
         private void ResetTransientState()
         {
-            IdleTimer = 0f;
             _resumeState = HeroState.Idle;
             _advanceTarget = UnitId.None;
         }

@@ -253,3 +253,10 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
 - Modelwide: neo chân vào bệ nền cover có thể đưa chân xuống sau thanhmenu khi cropgiữa. Căn nền theo mépdưới (pivot trong LobbyLayout) để giữ bệ trên vùngmenu; cỡ model vẫntheosafeheight. Cần xem ảnh cả4tỉlệ sau thay.
 
 - 28/10 review93%: táchmodelTintkhỏinềnđêmđểda/vảitrắngkhôngxanhxám; captureRTthíchứngkíchthướcpixelvàgiớihạn2048trongdata. Khôngsửanguồnrig/mesh/clip/material,khôngđoánđạtFPSthiếtbịtừsốbrowser. Kiểm ảnhcùngIdleframecủa5thờiđiểmsautest.
+
+## 28/10/2026 · Claude · camera chéo cố định, nền ngoài biên, lệnh toàn quân
+
+- Ảnh chụp trận thật (scene `Battlefield_HighQuality`) không có HUD dù canvas đổi sang Screen Space Camera của camera trận. Nguyên nhân: `BattlefieldLegacyBridge` xoay camera sang hệ Y-up ngay trong lúc render, nên canvas đặt theo camera cũ nằm ngoài khung. Phát hiện khi xem ảnh `ingame_*.png`. Quy tắc: trong scene có bridge, chụp HUD bằng một camera UI riêng rồi ghép lên ảnh trận; không dựa vào canvas gắn camera trận.
+- Camera UI với `clearFlags = Nothing` trên URP vẫn xóa nền (ảnh ra nền xanh, chỉ còn HUD). Quy tắc: render HUD vào RenderTexture riêng nền trong suốt (SolidColor alpha 0) rồi ghép bằng CPU; không chồng hai camera base lên cùng một target.
+- Chữ trên HUD trong ảnh chụp batch trông mềm hơn trên máy (font dynamic raster theo màn batch nhỏ, chữ in đậm giả lập càng mờ). Quy tắc: chữ HUD dùng nét thường (font không có bản đậm thật), độ nét chữ phải kiểm bằng ảnh chụp thiết bị thật, không kết luận từ ảnh batch.
+- Xoay camera 45° làm sai hướng vẽ của tướng sprite 8 hướng (khung vẽ theo camera không xoay). Phát hiện khi rà code trước khi đổi camera. Quy tắc: hướng sprite lấy theo `BattleController.ToCameraGround` (bỏ góc xoay), model 3D thật giữ góc logic.

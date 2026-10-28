@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: UiIcons
   m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.UiIconSet
   star: {fileID: 21300000, guid: 3e170e5647e3c8240bc9c8b7476b5a4c, type: 3}
+  hold: {fileID: 21300000, guid: 3ad4d1ac1d5538a5456de3cb744e253f, type: 3}
+  attack: {fileID: 21300000, guid: 7430ef5b33eafb27f0d714f6fcecbef1, type: 3}
+  defend: {fileID: 21300000, guid: edcbebd2c5989d644ccf595efad7019e, type: 3}
+  expandUp: {fileID: 21300000, guid: 97a881b765d1f1b8d6d83d37aabe0069, type: 3}

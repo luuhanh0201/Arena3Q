@@ -78,11 +78,12 @@ namespace Arena3Q.Gameplay
             volume.sharedProfile = _bloomProfile;
         }
 
-        /// <summary>Camera transform that looks at a ground point (logic plane) with the battle's tilt.</summary>
+        /// <summary>Camera transform that looks at a ground point (logic plane) with the battle's tilt and diagonal turn.</summary>
         public static void PlaceCamera(Transform camera, BattleController battle, Vector2 ground)
         {
-            camera.rotation = TiltedViewMath.CameraRotation(battle.ViewTiltDegrees);
-            camera.position = TiltedViewMath.CameraPosition(ground, battle.ViewTiltDegrees, battle.View.CameraDistance);
+            var rotation = battle.CameraRotation;
+            camera.rotation = rotation;
+            camera.position = TiltedViewMath.CameraPosition(ground, rotation, battle.View.CameraDistance);
         }
 
         public static Light CreateLight(Transform parent, BattleViewConfig view)

@@ -24,8 +24,6 @@ namespace Arena3Q.Tests.EditMode
         {
             var hero = Create<HeroDefinition>("Hero");
 
-            Assert.That(hero.IdleBeforeAdvanceSeconds, Is.EqualTo(5f));
-            Assert.That(hero.IdleTimerResetsOnOutOfRangeDamage, Is.False);
             Assert.That(hero.SummonCost, Is.Zero);
             Assert.That(hero.SummonCooldown, Is.Zero);
         }
@@ -156,18 +154,21 @@ namespace Arena3Q.Tests.EditMode
         }
 
         [Test]
-        public void IdleOverride_AppliesOnlyWhenEnabled()
+        public void ArmyStance_StartsInHold_AndDefendsTheSummonZone()
         {
             var stage = CreateValidStage();
             var hero = stage.TestLoadout.LordHero;
-            Assert.That(stage.GetIdleBeforeAdvanceSeconds(hero), Is.EqualTo(5f));
+
+            Assert.That(stage.StartStance, Is.EqualTo(ArmyStance.Hold), "user 2026-10-28: every battle starts in Giữ");
+            Assert.That(stage.CreateBattleSetup().StartStance, Is.EqualTo(ArmyStance.Hold));
+            var settings = stage.CreateHeroBrainSettings(hero);
+            Assert.That(settings.DefendArea, Is.EqualTo(stage.SummonZone));
+            Assert.That(settings.DefendChaseMargin, Is.EqualTo(stage.DefendChaseMargin));
 
             var so = new SerializedObject(stage);
-            so.FindProperty("overrideIdleBeforeAdvance").boolValue = true;
-            so.FindProperty("idleBeforeAdvanceSeconds").floatValue = 2f;
+            so.FindProperty("startStance").enumValueIndex = (int)ArmyStance.Attack;
             so.ApplyModifiedPropertiesWithoutUndo();
-
-            Assert.That(stage.GetIdleBeforeAdvanceSeconds(hero), Is.EqualTo(2f));
+            Assert.That(new BattleRuntimeState(stage.CreateBattleSetup()).Stance, Is.EqualTo(ArmyStance.Attack));
         }
 
         [Test]
@@ -225,8 +226,6 @@ namespace Arena3Q.Tests.EditMode
             var settings = stage.CreateHeroBrainSettings(hero);
 
             Assert.That(settings.StageType, Is.EqualTo(StageType.Defense));
-            Assert.That(settings.IdleBeforeAdvanceSeconds, Is.EqualTo(5f));
-            Assert.That(settings.IdleTimerResetsOnOutOfRangeDamage, Is.False);
             Assert.That(settings.SelfDefendWhileAttacking, Is.False, "attack orders take priority by default");
         }
 

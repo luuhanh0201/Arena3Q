@@ -103,10 +103,12 @@ namespace Arena3Q.Gameplay
                 _seconds += delta * (moving ? speed * _clip.duration / stride : 1f);
             }
             _angle = Mathf.MoveTowardsAngle(_angle, _targetAngle, 720f * delta);
+            // The drawn directions are relative to the camera: undo its diagonal turn (the realtime model keeps _angle).
+            var drawn = _angle + _hero.Battle.ViewYawDegrees;
             var centre = _direction * 45f;
-            if (Mathf.Abs(Mathf.DeltaAngle(centre, _angle)) > 28f)
+            if (Mathf.Abs(Mathf.DeltaAngle(centre, drawn)) > 28f)
             {
-                BeginBlend(); _direction = Mathf.RoundToInt(Mathf.Repeat(_angle, 360f) / 45f) % 8;
+                BeginBlend(); _direction = Mathf.RoundToInt(Mathf.Repeat(drawn, 360f) / 45f) % 8;
             }
             var target = _hero.transform.position;
             _display = (target - _display).sqrMagnitude > 1f || _set.VisualSmoothSeconds <= 0 ? target :

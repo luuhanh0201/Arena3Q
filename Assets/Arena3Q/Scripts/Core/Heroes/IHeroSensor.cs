@@ -36,5 +36,11 @@ namespace Arena3Q.Core
         bool TookDamageFromOutOfRange { get; }
 
         bool IsAlive(UnitId unit);
+
+        /// <summary>Nearest living enemy unit (not a castle) standing inside <paramref name="area"/> (Phòng thủ).</summary>
+        UnitId NearestEnemyIn(Rect area);
+
+        /// <summary>Whether a living unit stands inside <paramref name="area"/>.</summary>
+        bool IsInArea(UnitId unit, Rect area);
     }
 }

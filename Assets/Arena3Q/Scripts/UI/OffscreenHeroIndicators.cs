@@ -108,11 +108,7 @@ namespace Arena3Q.UI
             var button = rect.gameObject.AddComponent<Button>();
             button.targetGraphic = frame;
             var heroId = hero.Id;
-            button.onClick.AddListener(() =>
-            {
-                if (_hud.Battle.TrySelectHero(heroId))
-                    _hud.FocusSelectedHero();
-            });
+            button.onClick.AddListener(() => _hud.FocusHero(heroId));
 
             var indicator = new Indicator { Rect = rect, Icon = icon, Frame = frame };
             _indicators[hero.Id] = indicator;

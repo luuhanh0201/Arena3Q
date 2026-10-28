@@ -12,7 +12,6 @@ namespace Arena3Q.Data
     [CreateAssetMenu(menuName = "Arena3Q/Hero Definition", fileName = "Hero")]
     public sealed class HeroDefinition : ScriptableObject
     {
-        public const float DefaultIdleBeforeAdvanceSeconds = 5f;
 
         [Header("Identity")]
         [SerializeField] private string heroId = "hero";
@@ -60,11 +59,6 @@ namespace Arena3Q.Data
         [Tooltip("Basic hits (at the hero's own Công) that fill the rage bar (spec 🟡: about 15–20).")]
         [SerializeField, Min(1f)] private float rageHitsToFill = 18f;
 
-        [Header("Idle rule (spec §6)")]
-        [Tooltip("Seconds with no target and no new command before an Idle hero starts Advancing.")]
-        [SerializeField, Min(0f)] private float idleBeforeAdvanceSeconds = DefaultIdleBeforeAdvanceSeconds;
-        [Tooltip("Provisional: if true, damage from an attacker outside attack range also resets the idle timer.")]
-        [SerializeField] private bool idleTimerResetsOnOutOfRangeDamage;
         [Tooltip("Provisional: while carrying out an AttackCommand, defend against close attackers like when Moving. Off by default: the order takes priority.")]
         [SerializeField] private bool selfDefendWhileAttacking;
 
@@ -108,8 +102,6 @@ namespace Arena3Q.Data
         /// <summary>The skill in a slot, or null when the hero has none there.</summary>
         public SkillDefinition GetSkill(SkillSlot slot) =>
             skills != null && (int)slot < skills.Length ? skills[(int)slot] : null;
-        public float IdleBeforeAdvanceSeconds => idleBeforeAdvanceSeconds;
-        public bool IdleTimerResetsOnOutOfRangeDamage => idleTimerResetsOnOutOfRangeDamage;
         public bool SelfDefendWhileAttacking => selfDefendWhileAttacking;
         public TroopDefinition Troop => troop;
         public int BaseSquadSize => baseSquadSize;
@@ -126,7 +118,6 @@ namespace Arena3Q.Data
             if (string.IsNullOrWhiteSpace(heroId)) errors.Add($"{owner}: heroId is empty.");
             if (stats == null) errors.Add($"{owner}: stats are missing.");
             else stats.Validate(owner, errors);
-            if (idleBeforeAdvanceSeconds < 0f) errors.Add($"{owner}: idleBeforeAdvanceSeconds must be >= 0.");
             if (baseSquadSize < 0) errors.Add($"{owner}: baseSquadSize must be >= 0.");
             if (maxSquadSize < baseSquadSize) errors.Add($"{owner}: maxSquadSize must be >= baseSquadSize.");
             if (baseSquadSize > 0 && troop == null) errors.Add($"{owner}: has a squad but no troop definition.");

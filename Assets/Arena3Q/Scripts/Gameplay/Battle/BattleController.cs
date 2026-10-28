@@ -59,20 +59,17 @@ namespace Arena3Q.Gameplay
         /// <summary>The 2.5D view tilt changed.</summary>
         public event Action ViewChanged;
 
-        /// <summary>View tilt in degrees (0–45). Setting it re-projects every unit and the map at once.</summary>
-        public float ViewTiltDegrees
-        {
-            get => viewTiltDegrees;
-            set
-            {
-                var clamped = Mathf.Clamp(value, 0f, MaxViewTiltDegrees);
-                if (Mathf.Approximately(clamped, viewTiltDegrees))
-                    return;
-                viewTiltDegrees = clamped;
-                RefreshView();
-                ViewChanged?.Invoke();
-            }
-        }
+        /// <summary>
+        /// View tilt in degrees from looking straight down. Fixed for the whole battle (user 2026-10-28: no slider, no
+        /// runtime change, debug included); it comes from the stage art or <see cref="BattleViewConfig"/>.
+        /// </summary>
+        public float ViewTiltDegrees => viewTiltDegrees;
+
+        /// <summary>Camera turn about the vertical axis (the diagonal view, <see cref="BattleViewConfig.DefaultYawDegrees"/>; 0 in the flat view).</summary>
+        public float ViewYawDegrees => Presentation3D ? View.DefaultYawDegrees : 0f;
+
+        /// <summary>Rotation of the battle camera: tilt, then the diagonal turn.</summary>
+        public Quaternion CameraRotation => TiltedViewMath.CameraRotation(viewTiltDegrees, ViewYawDegrees);
 
         private BattleViewConfig _view;
 
@@ -106,7 +103,7 @@ namespace Arena3Q.Gameplay
 
         /// <summary>Rotation that makes an upright picture face the camera (billboard); identity in the flat view.</summary>
         public Quaternion UprightRotation =>
-            Presentation3D ? TiltedViewMath.CameraRotation(viewTiltDegrees) : Quaternion.identity;
+            Presentation3D ? CameraRotation : Quaternion.identity;
 
         /// <summary>World direction that shows as "up" on screen (offsets above a unit, rising smoke).</summary>
         public Vector3 ScreenUp => UprightRotation * Vector3.up;
@@ -122,8 +119,19 @@ namespace Arena3Q.Gameplay
         /// <summary>Logic-plane point → world position shown on screen.</summary>
         public Vector3 ToView(Vector2 logic) => new Vector3(logic.x, logic.y * ViewYScale, 0f);
 
-        /// <summary>Logic-plane point → the 2D screen plane (x, y · cos(tilt)) in world units, in both presentations.</summary>
-        public Vector2 ToScreenPlane(Vector2 logic) => TiltedViewMath.GroundToPlane(logic, GroundProjection);
+        /// <summary>
+        /// Logic-plane vector in the camera's ground axes (x = screen right, y = screen up on the ground): the diagonal
+        /// turn undone. Sprite heroes pick their drawn direction from this.
+        /// </summary>
+        public Vector2 ToCameraGround(Vector2 logic)
+        {
+            var yaw = ViewYawDegrees * Mathf.Deg2Rad;
+            float c = Mathf.Cos(yaw), s = Mathf.Sin(yaw);
+            return new Vector2(logic.x * c - logic.y * s, logic.x * s + logic.y * c);
+        }
+
+        /// <summary>Logic-plane point → the 2D screen plane (camera ground axes, y · cos(tilt)) in world units.</summary>
+        public Vector2 ToScreenPlane(Vector2 logic) => TiltedViewMath.GroundToPlane(ToCameraGround(logic), GroundProjection);
 
         /// <summary>World position on screen (e.g. under a pointer) → logic-plane point.</summary>
         public Vector2 ToLogic(Vector2 view) => new Vector2(view.x, view.y / ViewYScale);
@@ -308,12 +316,11 @@ namespace Arena3Q.Gameplay
             LastOutcome = OutcomeDecision.InProgress;
             LastResultNote = "";
 
-            // Painted art is drawn at one fixed 3/4 angle: start at that angle so logic and picture line up
-            // (the HUD slider can still change it for debugging).
-            // In 3D the same angle tilts the camera (without painted ground: the configured default).
+            // 3D: the fixed camera angle of BattleViewConfig (the painted ground lies on a mesh, any angle fits it).
+            // Flat view: painted art is drawn at one fixed 3/4 angle, use that angle so logic and picture line up.
             if (stage.BackgroundArt != null || Presentation3D)
             {
-                var tilt = stage.BackgroundArt != null ? stage.BackgroundArtTiltDegrees : View.DefaultTiltDegrees;
+                var tilt = Presentation3D ? View.DefaultTiltDegrees : stage.BackgroundArtTiltDegrees;
                 viewTiltDegrees = Mathf.Clamp(tilt, 0f, MaxViewTiltDegrees);
                 ViewChanged?.Invoke();
             }
@@ -494,6 +501,8 @@ namespace Arena3Q.Gameplay
             var runtime = State.RegisterSummon(request.CardIndex, numbers.MaxHealth);
             var hero = CreateUnit<HeroUnit>("Hero");
             hero.Init(this, runtime, card, numbers, Stage.CreateHeroBrainSettings(definition), decision.Position);
+            hero.Brain.SetStance(State.Stance, hero.Position);
+            hero.Runtime.SyncFrom(hero.Brain);
             Register(hero);
             _heroes[hero.Id] = hero;
             RaiseArmyHealth(1f + hero.Skills.ArmyMaxHealthBonus);
@@ -506,14 +515,39 @@ namespace Arena3Q.Gameplay
             for (var i = 0; i < squadSize; i++)
                 SpawnSoldier(hero, card, i);
 
-            // Provisional: a freshly summoned hero becomes the selected one.
+            // The newest hero stays the internal "selected" one for scripted orders; the player has no per-hero control.
             TrySelectHero(hero.Id);
             HeroSummoned?.Invoke(hero);
             Changed?.Invoke();
             return decision;
         }
 
-        /// <summary>Selects a living hero (spec §5: one selected hero at a time).</summary>
+        /// <summary>The army-wide order every player hero follows (spec §5 "Cơ chế mới").</summary>
+        public ArmyStance Stance => State?.Stance ?? ArmyStance.Hold;
+
+        public event Action<ArmyStance> StanceChanged;
+
+        /// <summary>
+        /// The stance button (spec §5): every living hero (and later summons) follows <paramref name="stance"/> from where it
+        /// stands. Choosing the active stance again does nothing. Like any player order it wins over a taunt (spec §8).
+        /// </summary>
+        public bool SetStance(ArmyStance stance)
+        {
+            if (State == null || State.IsOver || State.Stance == stance)
+                return false;
+            State.Stance = stance;
+            foreach (var hero in LivingHeroes)
+            {
+                hero.Brain.SetStance(stance, hero.Position);
+                hero.Runtime.SyncFrom(hero.Brain);
+                ClearTaunts(hero);
+            }
+            StanceChanged?.Invoke(stance);
+            Changed?.Invoke();
+            return true;
+        }
+
+        /// <summary>Internal "selected" hero for scripted orders and tests; no ring, the player cannot select (spec §5).</summary>
         public bool TrySelectHero(UnitId heroId)
         {
             if (State == null || !State.TrySelectHero(heroId))
@@ -531,35 +565,6 @@ namespace Arena3Q.Gameplay
                 return false;
             var card = State.Cards[cardIndex];
             return card.State == CardState.Deployed && TrySelectHero(card.Hero);
-        }
-
-        public enum TapResult
-        {
-            Nothing,
-            Selected,
-            Attack,
-            Move,
-            Rejected
-        }
-
-        /// <summary>
-        /// A tap on the battlefield (spec §5): on a hero = select it; with a hero selected, on an enemy unit or castle =
-        /// AttackCommand (provisional), on ground = MoveCommand.
-        /// </summary>
-        public TapResult TapAt(Vector2 worldPoint)
-        {
-            var hero = FindHeroAt(worldPoint);
-            if (hero != null)
-                return TrySelectHero(hero.Id) ? TapResult.Selected : TapResult.Rejected;
-
-            var selected = SelectedHero;
-            if (selected == null)
-                return TapResult.Nothing;
-
-            var enemy = FindEnemyAt(worldPoint);
-            if (enemy != null)
-                return AttackWithHero(selected.Id, enemy).Accepted ? TapResult.Attack : TapResult.Rejected;
-            return MoveSelectedHero(worldPoint).Accepted ? TapResult.Move : TapResult.Rejected;
         }
 
         public CommandResult MoveSelectedHero(Vector2 destination)
@@ -954,12 +959,13 @@ namespace Arena3Q.Gameplay
         private bool IsQuickPointOccupied(Vector2 point) =>
             Registry.FindNearest(point, 0f, QuickPointOccupiedRadius - HeroUnit.BodyRadius, u => u is HeroUnit) != null;
 
+        // No per-hero control any more (spec §5 "Cơ chế mới"): no hero shows a selection ring.
         private void SetSelectionVisual(UnitId selected)
         {
             foreach (var hero in _heroes.Values)
             {
                 if (hero != null)
-                    hero.SetSelected(hero.Id == selected);
+                    hero.SetSelected(false);
             }
         }
 
@@ -1064,16 +1070,6 @@ namespace Arena3Q.Gameplay
         {
             if (_groundRoot != null)
                 _groundRoot.localScale = new Vector3(1f, ViewYScale, 1f);
-        }
-
-        private void RefreshView()
-        {
-            ApplyGroundTilt();
-            foreach (var unit in Registry.Units)
-            {
-                if (unit != null)
-                    unit.RefreshView();
-            }
         }
 
         private void SpawnMarker(Vector2 position, Color color)

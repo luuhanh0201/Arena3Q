@@ -57,7 +57,7 @@ Thiết kế và bảng chỉ số (🟡): `docs/KeHoach/HeroProgression.md`.
   - ✅ Dùng tuyệt kỹ xong thanh nộ **về 0**; tướng chết thì **mất nộ**; **không** mang sang trận sau.
 - ✅ **Thẻ của tướng đã ra sân hiển thị**: icon của **kỹ năng 2 và 3** kèm **đếm ngược hồi chiêu**, và **thanh nộ** của tuyệt kỹ (sáng lên khi đầy).
   - 🟡 Kỹ năng **chưa học** (chủ tướng chưa đủ cấp, tướng chưa đủ sao): icon hiện **ổ khoá**; chưa có tuyệt kỹ thì **không hiện thanh nộ** và không tích nộ; chạm thẻ hiện cùng thông báo "kỹ năng chưa thể sử dụng".
-- ✅ **Thao tác trên thẻ của tướng đã ra sân** (28/10: thay bởi mục 5 "Cơ chế mới", chỉ còn chạm = tuyệt kỹ; chưa có trong code):
+- ✅ **Thao tác trên thẻ của tướng đã ra sân** (28/10: thay bởi mục 5 "Cơ chế mới", chỉ còn chạm = tuyệt kỹ; đã có trong code):
   - **Chạm** thẻ = dùng **tuyệt kỹ**, tự nhắm (khi thanh nộ đầy). ✅ **Chưa đầy nộ** thì hiển thị thông báo **"kỹ năng chưa thể sử dụng"** (không chọn tướng, không làm gì khác).
   - **Kéo** thẻ ra chiến trường = dùng tuyệt kỹ và **tự chọn điểm / hướng** (thả trên UI = huỷ; 🟡 chỉ khi nộ đầy).
   - **Giữ** thẻ **1.5 giây** = **chọn** tướng đó (đổi chọn tướng nhanh).
@@ -83,12 +83,12 @@ Thiết kế và bảng chỉ số (🟡): `docs/KeHoach/HeroProgression.md`.
   - **Triệu hồi nhanh**: chạm thẻ chưa dùng → tướng xuất hiện tại **điểm triệu hồi đặt sẵn** của ải (`quickSummonPoints`). Nếu có nhiều điểm, 🟡 chọn điểm còn trống gần thành ta nhất.
   - **Triệu hồi tự do**: kéo thẻ thả vào chiến trường → tướng xuất hiện ở vị trí đó, chỉ hợp lệ trong **vùng triệu hồi trước thành ta** (`summonZone` của ải). Hiển thị vùng hợp lệ khi đang kéo; thả ngoài vùng thì hủy, không mất thẻ.
 - 🟡 Triệu hồi không tốn tài nguyên và không có thời gian hồi (giữ tham số `summonCost`, `summonCooldown` = 0 để thêm sau).
-- 🟡 Sau khi xuất hiện, tướng ở trạng thái **Idle** và áp dụng luật chờ 5 giây ở mục 6: không có mục tiêu và không có lệnh trong 5 giây thì tự tiến lên. → **28/10: tướng mới theo lệnh toàn quân đang bật, bỏ luật 5 giây** (mục 5 "Cơ chế mới", chưa có trong code).
+- 🟡 Sau khi xuất hiện, tướng ở trạng thái **Idle** và áp dụng luật chờ 5 giây ở mục 6: không có mục tiêu và không có lệnh trong 5 giây thì tự tiến lên. → **28/10: tướng mới theo lệnh toàn quân đang bật, bỏ luật 5 giây** (mục 5 "Cơ chế mới", đã có trong code).
 
 ## 5. Điều khiển ✅
 
-### Cơ chế mới: tướng tự đánh + 3 lệnh toàn quân (người dùng chốt 2026-10-28 · **chưa có trong code**)
-Thay phần điều khiển từng tướng bên dưới (giữ làm lịch sử cho tới khi code xong), cùng các chỗ liên quan ở mục 3, 4, 6, 9.
+### Cơ chế mới: tướng tự đánh + 3 lệnh toàn quân (người dùng chốt 2026-10-28 · **đã có trong code 2026-10-28**)
+Thay phần điều khiển từng tướng bên dưới (giữ làm lịch sử), cùng các chỗ liên quan ở mục 3, 4, 6, 9.
 - ✅ **Bỏ điều khiển từng tướng:** không chọn tướng (bỏ vòng sáng, chạm vào tướng, giữ thẻ 1,5 giây), không ra lệnh di chuyển / tấn công mục tiêu cho từng tướng (bỏ chạm mặt đất, chạm địch, vuốt từ tướng). Tướng và đội lính **tự đánh**.
 - ✅ **Thẻ tướng đã ra sân:** **chạm** = dùng **tuyệt kỹ** tự nhắm khi đầy nộ; chưa đầy thì vẫn báo "kỹ năng chưa thể sử dụng". **Bỏ kéo thẻ để nhắm tuyệt kỹ.** Kỹ năng 2 và 3 vẫn tự dùng như mục 3.
 - ✅ **Triệu hồi giữ nguyên** mục 4: chạm thẻ chưa dùng = ra ở điểm đặt sẵn, kéo thả vào vùng triệu hồi = ra ở chỗ thả.
@@ -97,7 +97,7 @@ Thay phần điều khiển từng tướng bên dưới (giữ làm lịch sử
   - **Tấn công:** mọi tướng tự tiến lên đánh như Advancing ở mục 6 (ải Công về phía thành địch, ải Thủ về phía đơn vị địch gần nhất).
   - **Phòng thủ:** mọi tướng lui về vùng trước thành ta, đánh địch đi vào vùng đó rồi quay về chỗ.
 - ✅ **Vào trận lệnh đang bật là Giữ** (cả ải Công và ải Thủ); tướng triệu hồi theo lệnh đang bật. **Bỏ luật chờ 5 giây** (Idle không còn tự chuyển Advancing).
-- 🟡 (chưa hỏi, mặc định khi code) Vùng phòng thủ = `summonZone` của ải; bán kính lao ra đánh lấy từ dữ liệu (như `guardRadius`). Vẫn kéo camera / zoom như mục 9; chạm icon tướng ở mép màn hình chỉ đưa camera tới tướng; camera không còn tự bám tướng được chọn. Lính theo lệnh của tướng như mục 7 (Giữ như Idle, Tấn công như Advancing, Phòng thủ như quân giữ vị trí). Khiêu khích của địch tác dụng lên mọi tướng (không còn tướng đang thi hành lệnh riêng). Kỹ năng làm tướng dịch chuyển vẫn không tự dùng khi tướng đang đi (lúc tiến lên hoặc lui về).
+- 🟡 (chưa hỏi, mặc định đã code) Vùng phòng thủ = `summonZone` của ải; bán kính lao ra đánh lấy từ dữ liệu (như `guardRadius`). Vẫn kéo camera / zoom như mục 9; chạm icon tướng ở mép màn hình chỉ đưa camera tới tướng; camera không còn tự bám tướng được chọn. Lính theo lệnh của tướng như mục 7 (Giữ như Idle, Tấn công như Advancing, Phòng thủ như quân giữ vị trí). Khiêu khích của địch tác dụng lên tướng đang Giữ, Tấn công hoặc đang đánh trong vùng phòng thủ; tướng đang lui về vùng phòng thủ bỏ qua (như lệnh di chuyển cũ, `EnemyRules.HeroFollowsTaunt`). Lệnh phòng thủ, lệnh giữ và bán kính đuổi (`startStance`, `defendChaseMargin`) nằm trong `StageConfig`. Kỹ năng làm tướng dịch chuyển vẫn không tự dùng khi tướng đang đi (lúc tiến lên hoặc lui về).
 - ✅ (người dùng 2026-10-28) **Tên lệnh tiếng Việt: Giữ · Tấn công · Phòng thủ**; thiết kế và vị trí phải tinh tế, không cản trải nghiệm. Bản mô phỏng: `NghiemThu/UI/NutLenhToanQuan_20261028/` (`motnut_thu_mo.png`, `thu.html`, `mo.html`; bản nhóm 3 nút `truoc_sau.png` đã bỏ).
   - ✅ **Vị trí:** **góc phải dưới**, trong vùng an toàn, ngang đáy hàng thẻ tướng (vùng trống, dưới ngón cái phải, không che giữa sân, không chạm hàng thẻ và thông tin góc trên).
   - ✅ **Một nút trạng thái** hiện lệnh đang bật (icon trên, chữ dưới); vào trận nút hiện **Giữ**. **Chạm hoặc vuốt lên** trên nút thì mở ra **2 lựa chọn còn lại** xếp dọc phía trên nút; chạm một lựa chọn (hoặc vuốt tới rồi thả tay) = đổi lệnh, nút chính đổi sang lệnh mới và danh sách tự thu gọn.
@@ -106,7 +106,7 @@ Thay phần điều khiển từng tướng bên dưới (giữ làm lịch sử
   - 🟡 **Phản hồi khi đổi lệnh:** một dòng nhỏ "Toàn quân: <lệnh>" dưới đồng hồ, hiện khoảng 1,2 giây rồi mờ dần.
   - Kích thước, vị trí, màu, thời gian thu gọn và thông báo nằm trong dữ liệu HUD, không viết cứng. Màn rộng / iPad / PC giữ cùng góc, chỉ đổi tỉ lệ theo HUD.
 
-### Điều khiển từng tướng (cũ, bị thay bởi mục trên khi code xong)
+### Điều khiển từng tướng (cũ, đã thay bởi mục trên ngày 2026-10-28)
 - Chỉ **một tướng được chọn** tại một thời điểm; tướng được chọn có vòng sáng.
 - **Chọn tướng**: chạm trực tiếp vào tướng, **giữ thẻ** của tướng đã ra sân **1.5 giây** (mục 3 "Kỹ năng trên thẻ"), hoặc chạm icon tướng ở mép màn hình (mục 9).
 - **Lệnh di chuyển (`MoveCommand`)**: khi đã chọn tướng, chạm vào mặt đất hợp lệ.
@@ -140,7 +140,7 @@ Thay phần điều khiển từng tướng bên dưới (giữ làm lịch sử
 6. Tới đích → chuyển sang **Idle** và áp dụng luật chờ 5 giây bên dưới.
 
 ### Idle và luật chờ 5 giây ✅
-- **28/10: bỏ luật chờ 5 giây**; tướng theo lệnh toàn quân Hold / Tấn công / Phòng thủ ở mục 5 "Cơ chế mới" (chưa có trong code).
+- **28/10: bỏ luật chờ 5 giây**; tướng theo lệnh toàn quân Hold / Tấn công / Phòng thủ ở mục 5 "Cơ chế mới" (đã có trong code).
 - Tướng đứng tại chỗ, **đánh địch đi vào tầm đánh** nhưng **không đuổi theo**.
 - 🟡 "Địch trong tầm" gồm cả **thành địch**, nhưng **quân địch được ưu tiên**: chỉ đánh thành khi trong tầm không còn quân nào. Áp dụng cho cả lính khi giữ đội hình / giao chiến tự do.
 - Nếu **trong 5 giây liên tục không có mục tiêu** (không có địch trong tầm) và không có lệnh mới → chuyển sang **Advancing**.
@@ -232,8 +232,8 @@ Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng
 - ✅ (người dùng chốt 2026-10-18) **Bản đồ hiện hành của mọi ải: Bát Quái Trận** (thay sông + 2 cầu; sau này chỉnh từng ải bằng admin panel). Thêm hai loại vùng cấm: **vật cản tròn** (8 cụm cột, không bao giờ mất) và **phiến đá bật / tắt** (cửa Đỗ đóng khe); 8 cửa Bát Môn đổi loại mỗi 20 s, đài tâm là vùng chiếm (không chặn). Luật đầy đủ: `docs/BanDo/BatQuaiTran.md`.
 - ✅ Góc nhìn kiểu Clash of Clans; bản đồ **rộng hơn màn hình**.
 - ✅ (21/10/2026, thay cách nén 2.5D cũ) Camera orthographic thật nghiêng theo art, hiện khoảng 41,4°. Camera tạo phép chiếu; `ToView` không nén thêm Y trong đường 3D. Chạm/kéo dùng tia chiếu xuống mặt đất z=0. Góc nhìn chỉ điều chỉnh trong debug; luật trận không đổi.
-- ✅ (người dùng 2026-10-28, thay quyết định "khoá 50° nhìn thẳng" cùng ngày) **Góc nhìn chéo, cố định:** camera orthographic **xoay 45° quanh trục đứng, cao 50°**: thành ta ở góc trái dưới, thành địch ở góc phải trên, trận chạy theo đường chéo màn hình. **Bỏ mọi cách đổi góc** (thanh "Góc nhìn" trên HUD, setter lúc chạy), kể cả trong debug. Đường `Battle.unity` cũ (41,41° từ `BattleView.asset`) theo cùng góc hoặc chỉ còn làm nguồn test; chạm / kéo vẫn chiếu tia xuống mặt đất nên luật trận không đổi. Ảnh xem trước: `NghiemThu/UI/GocNhinCheo_20261028/` (`SoSanh_GocNhin.png`, `SoSanh_KhongVungDen.png`). **Chưa có trong code** (việc của phiên sau).
-- ✅ (người dùng 2026-10-28) **Không bao giờ lộ vùng trống (màu nền camera) quanh map.** Cách đã chọn: **trải nền và rừng ra ngoài biên map** (bản xem trước `G1_nenngoai_nhutruoc.png`), độ zoom mặc định như hiện tại (`orthographicSize` ≈ 16,85 ở màn 2340×1080). Phần ngoài biên chỉ để nhìn: không đi vào, không triệu hồi, vùng chiến đấu và luật giữ nguyên 80×44. Quyết định này **thay "bỏ nền ngoài biên" ngày 25/10** (`docs/BanDo/BattlefieldFeedback_20261025.md`); làm thật phải dựng lại phần rừng cho gọn (instancing / LOD, không nhân bản hàng nghìn object như bản xem trước) và đo lại FPS trên máy.
+- ✅ (người dùng 2026-10-28, thay quyết định "khoá 50° nhìn thẳng" cùng ngày) **Góc nhìn chéo, cố định:** camera orthographic **xoay 45° quanh trục đứng, cao 50°**: thành ta ở góc trái dưới, thành địch ở góc phải trên, trận chạy theo đường chéo màn hình. **Bỏ mọi cách đổi góc** (thanh "Góc nhìn" trên HUD, setter lúc chạy), kể cả trong debug. Đường `Battle.unity` cũ (41,41° từ `BattleView.asset`) theo cùng góc hoặc chỉ còn làm nguồn test; chạm / kéo vẫn chiếu tia xuống mặt đất nên luật trận không đổi. Ảnh xem trước: `NghiemThu/UI/GocNhinCheo_20261028/` (`SoSanh_GocNhin.png`, `SoSanh_KhongVungDen.png`). **Đã có trong code 2026-10-28** (`BattleViewConfig`: `defaultTiltDegrees` 40, `defaultYawDegrees` 45; `BattleCameraController`).
+- ✅ (người dùng 2026-10-28) **Không bao giờ lộ vùng trống (màu nền camera) quanh map.** Cách đã chọn: **trải nền và rừng ra ngoài biên map** (bản xem trước `G1_nenngoai_nhutruoc.png`), độ zoom mặc định như hiện tại (`orthographicSize` ≈ 16,85 ở màn 2340×1080). Phần ngoài biên chỉ để nhìn: không đi vào, không triệu hồi, vùng chiến đấu và luật giữ nguyên 80×44. Quyết định này **thay "bỏ nền ngoài biên" ngày 25/10** (`docs/BanDo/BattlefieldFeedback_20261025.md`); làm thật phải dựng lại phần rừng cho gọn (instancing / LOD, không nhân bản hàng nghìn object như bản xem trước) và đo lại FPS trên máy. **Đã dựng 2026-10-28:** **Arena3Q > Battlefield > 5 Build Outer Ground** (một mesh nền thô có đồi thấp + 972 cây, bụi, đá đã duyệt trên lưới ngẫu nhiên, vẽ qua `BattlefieldInstancing`, không collider; số trong `BattlefieldConfig` mục Outer ground). FPS máy thật chưa đo.
 - ✅ (người dùng 2026-10-28) **Giới hạn zoom và kéo camera:**
   - **Thu nhỏ** tối đa tới mức khung hình vẫn nằm trọn trong phần nền đã dựng (kể cả nền ngoài biên); kéo camera cũng bị chặn theo cùng biên đó, nên không bao giờ thấy mép nền hay vùng trống.
   - **Phóng to** không được quá sát, để không lộ chi tiết lỗi của model / texture. 🟡 Mặc định: phóng to nhất ≈ 0,7 lần kích thước mặc định (bản xem trước `G2_nenngoai_gan.png`), chỉnh sau khi xem trên máy thật.
@@ -243,7 +243,7 @@ Thông số chi tiết để vẽ bản đồ (kích thước, bố cục, vùng
 - 🟡 Người chơi kéo màn hình để di chuyển camera, hai ngón (hoặc con lăn chuột) để zoom; giới hạn camera trong biên bản đồ.
 - ✅ Tướng nằm ngoài màn hình → hiện **icon tướng ở mép màn hình** theo hướng của tướng đó. Chạm icon → chọn tướng và 🟡 đưa camera tới tướng.
 - ✅ Ngoài chạm trực tiếp vào tướng, có thể chọn tướng bằng **thẻ**.
-- **28/10:** không còn chọn tướng (mục 5 "Cơ chế mới", chưa có trong code): bỏ camera bám tướng được chọn; chạm icon mép màn hình chỉ đưa camera tới tướng.
+- **28/10:** không còn chọn tướng (mục 5 "Cơ chế mới", đã có trong code): bỏ camera bám tướng được chọn; chạm icon mép màn hình chỉ đưa camera tới tướng.
 
 ## 10. Dữ liệu
 - `FactionDefinition` ⏳ (tối thiểu): id, tên, màu; dùng cho phe danh tướng (Thục, Ngụy, Ngô, Quần) và bảng cộng hưởng.

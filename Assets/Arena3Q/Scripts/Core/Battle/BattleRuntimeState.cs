@@ -25,6 +25,7 @@ namespace Arena3Q.Core
 
             PlayerCastle = new CastleRuntime(AllocateUnitId(), Team.Player, setup.PlayerCastleMaxHealth);
             EnemyCastle = new CastleRuntime(AllocateUnitId(), Team.Enemy, setup.EnemyCastleMaxHealth);
+            Stance = setup.StartStance;
         }
 
         public BattleSetup Setup { get; }
@@ -48,6 +49,9 @@ namespace Arena3Q.Core
         public int AliveHeroCount => SummonedCount - HeroesLost;
 
         public UnitId SelectedHero { get; private set; }
+
+        /// <summary>The army-wide order every player hero follows (spec §5 "Cơ chế mới").</summary>
+        public ArmyStance Stance { get; set; }
 
         public CastleRuntime PlayerCastle { get; }
         public CastleRuntime EnemyCastle { get; }

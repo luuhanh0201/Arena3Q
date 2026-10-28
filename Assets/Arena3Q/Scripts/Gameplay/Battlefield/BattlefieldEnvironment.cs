@@ -65,8 +65,9 @@ namespace Arena3Q.Gameplay
             Vector3 focus = new Vector3(config.cameraOffset.x, 0f, config.cameraOffset.y);
             var centre = CameraMath.ClampCenter(projected, new Vector2(focus.x, focus.z * Mathf.Sin(elevation)), battleCamera.orthographicSize, battleCamera.aspect);
             focus = new Vector3(centre.x, 0f, centre.y / Mathf.Max(.01f, Mathf.Sin(elevation)));
-            battleCamera.transform.position = focus + new Vector3(0f, Mathf.Sin(elevation), -Mathf.Cos(elevation)) * 100f;
-            battleCamera.transform.rotation = Quaternion.LookRotation(focus - battleCamera.transform.position, Vector3.up);
+            // Diagonal view (user 2026-10-28): the editor preview turns like the battle camera (BattleCameraController).
+            var rotation = Quaternion.Euler(config.cameraElevation, config.cameraYaw, 0f);
+            battleCamera.transform.SetPositionAndRotation(focus - rotation * Vector3.forward * 100f, rotation);
             battleCamera.nearClipPlane = .3f; battleCamera.farClipPlane = 240f;
             battleCamera.GetUniversalAdditionalCameraData().SetRenderer(1);
         }

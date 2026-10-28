@@ -12,6 +12,8 @@ namespace Arena3Q.Tests.EditMode
         private static readonly UnitId EnemyB = new UnitId(11);
         private static readonly UnitId Castle = new UnitId(20);
         private static readonly Vector2 Destination = new Vector2(10f, 0f);
+        // Phòng thủ area in front of the own castle (the summon zone), chase margin 3.
+        private static readonly Rect DefendArea = new Rect(-14f, -8f, 8f, 16f);
 
         private FakeHeroSensor _sensor;
 
@@ -21,15 +23,21 @@ namespace Arena3Q.Tests.EditMode
             _sensor = new FakeHeroSensor { EnemyCastle = Castle };
         }
 
-        private static HeroBrain Brain(StageType stageType = StageType.Attack, float idleSeconds = 5f,
-            bool resetOnOutOfRangeDamage = false, bool selfDefendWhileAttacking = false) =>
+        private static HeroBrain Brain(StageType stageType = StageType.Attack, bool selfDefendWhileAttacking = false) =>
             new HeroBrain(new HeroBrainSettings
             {
                 StageType = stageType,
-                IdleBeforeAdvanceSeconds = idleSeconds,
-                IdleTimerResetsOnOutOfRangeDamage = resetOnOutOfRangeDamage,
-                SelfDefendWhileAttacking = selfDefendWhileAttacking
+                SelfDefendWhileAttacking = selfDefendWhileAttacking,
+                DefendArea = DefendArea,
+                DefendChaseMargin = 3f
             });
+
+        private HeroBrain Brain(ArmyStance stance, StageType stageType = StageType.Attack)
+        {
+            var brain = Brain(stageType);
+            brain.SetStance(stance, _sensor.Position);
+            return brain;
+        }
 
         private HeroIntent Tick(HeroBrain brain, float seconds, float step = 0.1f)
         {
@@ -40,30 +48,29 @@ namespace Arena3Q.Tests.EditMode
             return intent;
         }
 
-        // ---- Idle and the 5-second rule ----
+        // ---- Giữ (Hold): the stance every battle starts in; no 5-second rule any more ----
 
         [Test]
-        public void NewHero_StartsIdle()
+        public void NewHero_StartsIdle_InHold()
         {
-            Assert.That(Brain().State, Is.EqualTo(HeroState.Idle));
+            var brain = Brain();
+            Assert.That(brain.State, Is.EqualTo(HeroState.Idle));
+            Assert.That(brain.Stance, Is.EqualTo(ArmyStance.Hold));
         }
 
         [Test]
-        public void Idle_NoTargetFor5Seconds_StartsAdvancing()
+        public void Hold_NoTarget_StaysIdleForever()
         {
             var brain = Brain();
 
-            Tick(brain, 4.9f);
-            Assert.That(brain.State, Is.EqualTo(HeroState.Idle));
+            var intent = Tick(brain, 30f);
 
-            var intent = Tick(brain, 0.2f);
-            Assert.That(brain.State, Is.EqualTo(HeroState.Advancing));
-            Assert.That(intent.Kind, Is.EqualTo(HeroIntentKind.Engage));
-            Assert.That(intent.Target, Is.EqualTo(Castle), "Attack stage advances towards the enemy castle");
+            Assert.That(brain.State, Is.EqualTo(HeroState.Idle), "the old 5-second advance is gone (spec §5, 2026-10-28)");
+            Assert.That(intent.Kind, Is.EqualTo(HeroIntentKind.Hold));
         }
 
         [Test]
-        public void Idle_AttacksEnemyInRangeWithoutChasing()
+        public void Hold_AttacksEnemyInRangeWithoutChasing()
         {
             var brain = Brain();
             _sensor.EnemyInAttackRange = EnemyA;
@@ -77,80 +84,162 @@ namespace Arena3Q.Tests.EditMode
         }
 
         [Test]
-        public void Idle_DoesNotChaseEnemyOnlyInAggroRange()
+        public void Hold_DoesNotChaseEnemyOnlyInAggroRange()
         {
             var brain = Brain();
             _sensor.EnemyInAggroRange = EnemyA;
+            _sensor.NearestEnemy = EnemyA;
 
-            var intent = brain.Tick(0.1f, _sensor);
+            var intent = Tick(brain, 10f);
 
             Assert.That(intent.Kind, Is.EqualTo(HeroIntentKind.Hold));
         }
 
         [Test]
-        public void Idle_EngagementResetsTimer_ThenNeedsFull5SecondsAgain()
+        public void Hold_StopsAnAdvancingHeroWhereItStands()
         {
-            var brain = Brain();
-            Tick(brain, 4f);
+            var brain = Brain(ArmyStance.Attack);
+            brain.Tick(0.1f, _sensor);
+            Assert.That(brain.State, Is.EqualTo(HeroState.Advancing));
 
-            _sensor.EnemyInAttackRange = EnemyA;
-            Tick(brain, 2f);
-            Assert.That(brain.IdleTimer, Is.Zero, "timer stays at zero while a target is present");
+            brain.SetStance(ArmyStance.Hold, new Vector2(3f, 2f));
+            var intent = brain.Tick(0.1f, _sensor);
+
+            Assert.That(brain.State, Is.EqualTo(HeroState.Idle));
+            Assert.That(intent.Kind, Is.EqualTo(HeroIntentKind.Hold));
+        }
+
+        // ---- Tấn công (Attack) ----
+
+        [Test]
+        public void Attack_AdvancesOnTheEnemyCastle()
+        {
+            var brain = Brain(ArmyStance.Attack);
+
+            var intent = brain.Tick(0.1f, _sensor);
+
+            Assert.That(brain.State, Is.EqualTo(HeroState.Advancing));
+            Assert.That(intent.Kind, Is.EqualTo(HeroIntentKind.Engage));
+            Assert.That(intent.Target, Is.EqualTo(Castle), "Attack stage advances towards the enemy castle");
+            Assert.That(intent.MayChase, Is.True);
+        }
+
+        [Test]
+        public void Attack_FightsEnemyInAggroUntilItDies_ThenContinues()
+        {
+            var brain = Brain(ArmyStance.Attack);
+            _sensor.EnemyInAggroRange = EnemyA;
+            Assert.That(brain.Tick(0.1f, _sensor).Target, Is.EqualTo(EnemyA));
+
+            _sensor.EnemyInAggroRange = EnemyB;
+            Assert.That(brain.Tick(0.1f, _sensor).Target, Is.EqualTo(EnemyA), "keeps its target until it dies");
 
             _sensor.Kill(EnemyA);
-            Tick(brain, 4.9f);
-            Assert.That(brain.State, Is.EqualTo(HeroState.Idle));
+            Assert.That(brain.Tick(0.1f, _sensor).Target, Is.EqualTo(EnemyB));
 
-            Tick(brain, 0.2f);
+            _sensor.Kill(EnemyB);
+            Assert.That(brain.Tick(0.1f, _sensor).Target, Is.EqualTo(Castle));
             Assert.That(brain.State, Is.EqualTo(HeroState.Advancing));
         }
 
         [Test]
-        public void Idle_OutOfRangeDamage_DoesNotResetTimer_ByDefault()
+        public void Attack_DefenseStage_HeadsForNearestEnemy()
         {
-            var brain = Brain();
-            _sensor.TookDamageFromOutOfRange = true;
+            var brain = Brain(ArmyStance.Attack, StageType.Defense);
+            _sensor.NearestEnemy = EnemyB;
 
-            Tick(brain, 5.1f);
+            var intent = brain.Tick(0.1f, _sensor);
 
             Assert.That(brain.State, Is.EqualTo(HeroState.Advancing));
+            Assert.That(intent.Target, Is.EqualTo(EnemyB));
+            Assert.That(intent.Target, Is.Not.EqualTo(Castle), "Defense stages do not march on the enemy castle");
         }
 
         [Test]
-        public void Idle_OutOfRangeDamage_ResetsTimer_WhenOptionEnabled()
+        public void Attack_DefenseStage_NoEnemies_WaitsAndSetsOffWhenOneAppears()
         {
-            var brain = Brain(resetOnOutOfRangeDamage: true);
-            _sensor.TookDamageFromOutOfRange = true;
+            var brain = Brain(ArmyStance.Attack, StageType.Defense);
 
-            Tick(brain, 10f);
+            Assert.That(Tick(brain, 1f).Kind, Is.EqualTo(HeroIntentKind.Hold));
 
-            Assert.That(brain.State, Is.EqualTo(HeroState.Idle));
-            Assert.That(brain.IdleTimer, Is.Zero);
+            _sensor.NearestEnemy = EnemyA;
+            var intent = brain.Tick(0.1f, _sensor);
+            Assert.That(intent.Target, Is.EqualTo(EnemyA));
         }
 
-        [Test]
-        public void Idle_NewCommand_CancelsTimer()
-        {
-            var brain = Brain();
-            Tick(brain, 4f);
+        // ---- Phòng thủ (Defend) ----
 
-            brain.Issue(new MoveCommand(Hero, Destination));
+        [Test]
+        public void Defend_FallsBackToTheNearestPointOfTheDefenceArea()
+        {
+            _sensor.Position = new Vector2(10f, 20f);
+            var brain = Brain(ArmyStance.Defend);
+
+            var intent = brain.Tick(0.1f, _sensor);
 
             Assert.That(brain.State, Is.EqualTo(HeroState.Moving));
-            Assert.That(brain.IdleTimer, Is.Zero);
+            Assert.That(intent.Kind, Is.EqualTo(HeroIntentKind.MoveTo));
+            Assert.That(intent.Destination, Is.EqualTo(new Vector2(-6f, 8f)), "clamped into the area (xMax, yMax)");
+
+            _sensor.Position = intent.Destination;
+            Assert.That(brain.Tick(0.1f, _sensor).Kind, Is.EqualTo(HeroIntentKind.Hold));
+            Assert.That(brain.State, Is.EqualTo(HeroState.Idle));
         }
 
         [Test]
-        public void IdleDelay_IsConfigurable()
+        public void Defend_InsideTheArea_StaysWhereItIs()
         {
-            var brain = Brain(idleSeconds: 2f);
+            _sensor.Position = new Vector2(-10f, 0f);
+            var brain = Brain(ArmyStance.Defend);
 
-            Tick(brain, 2.1f);
-
-            Assert.That(brain.State, Is.EqualTo(HeroState.Advancing));
+            Assert.That(brain.State, Is.EqualTo(HeroState.Idle));
+            Assert.That(brain.DefendPoint, Is.EqualTo(new Vector2(-10f, 0f)));
+            Assert.That(Tick(brain, 5f).Kind, Is.EqualTo(HeroIntentKind.Hold));
         }
 
-        // ---- Moving: IgnoreUntilDestination ----
+        [Test]
+        public void Defend_ChasesAnIntruder_ThenGoesBack()
+        {
+            _sensor.Position = new Vector2(-10f, 0f);
+            var brain = Brain(ArmyStance.Defend);
+            _sensor.PlaceEnemy(EnemyA, new Vector2(-4f, 0f)); // 2 beyond the area, within the chase margin
+
+            var chase = brain.Tick(0.1f, _sensor);
+            Assert.That(brain.State, Is.EqualTo(HeroState.Advancing));
+            Assert.That(chase.Target, Is.EqualTo(EnemyA));
+            Assert.That(chase.MayChase, Is.True);
+
+            _sensor.Position = new Vector2(-5f, 0f);
+            _sensor.PlaceEnemy(EnemyA, new Vector2(5f, 0f)); // ran off beyond the margin
+            var back = brain.Tick(0.1f, _sensor);
+            Assert.That(brain.State, Is.EqualTo(HeroState.Moving));
+            Assert.That(back.Destination, Is.EqualTo(new Vector2(-10f, 0f)), "back to its defence point");
+        }
+
+        [Test]
+        public void Defend_IgnoresEnemiesFarFromTheArea()
+        {
+            _sensor.Position = new Vector2(-10f, 0f);
+            var brain = Brain(ArmyStance.Defend);
+            _sensor.PlaceEnemy(EnemyA, new Vector2(20f, 0f));
+            _sensor.EnemyInAggroRange = EnemyA;
+
+            Assert.That(Tick(brain, 5f).Kind, Is.EqualTo(HeroIntentKind.Hold));
+        }
+
+        [Test]
+        public void Stance_ReplacesAScriptedOrder()
+        {
+            var brain = Brain();
+            brain.Issue(new MoveCommand(Hero, Destination));
+
+            brain.SetStance(ArmyStance.Attack, Vector2.zero);
+
+            Assert.That(brain.State, Is.EqualTo(HeroState.Advancing));
+            Assert.That(brain.CurrentCommand, Is.EqualTo(HeroCommandKind.None));
+        }
+
+        // ---- Moving: IgnoreUntilDestination (scripted orders and the Phòng thủ fall-back) ----
 
         [Test]
         public void Moving_IgnoresEnemiesInRange()
@@ -215,7 +304,7 @@ namespace Arena3Q.Tests.EditMode
         }
 
         [Test]
-        public void Moving_ArrivesAtDestination_GoesIdle_ThenAdvancesAfter5Seconds()
+        public void Moving_ArrivesAtDestination_GoesIdle_AndHolds()
         {
             var brain = Brain();
             brain.Issue(new MoveCommand(Hero, Destination));
@@ -226,8 +315,8 @@ namespace Arena3Q.Tests.EditMode
             Assert.That(intent.Kind, Is.EqualTo(HeroIntentKind.Hold));
             Assert.That(brain.CurrentCommand, Is.EqualTo(HeroCommandKind.None));
 
-            Tick(brain, 5.1f);
-            Assert.That(brain.State, Is.EqualTo(HeroState.Advancing));
+            Tick(brain, 10f);
+            Assert.That(brain.State, Is.EqualTo(HeroState.Idle), "Giữ: no automatic advance");
         }
 
         [Test]
@@ -259,7 +348,7 @@ namespace Arena3Q.Tests.EditMode
             Assert.That(intent.Target, Is.EqualTo(Castle));
         }
 
-        // ---- Attacking ----
+        // ---- Attacking (scripted attack orders) ----
 
         [Test]
         public void Attacking_ChasesTargetIgnoringOtherEnemies()
@@ -330,56 +419,10 @@ namespace Arena3Q.Tests.EditMode
             Assert.That(intent.Target, Is.EqualTo(Castle));
         }
 
-        // ---- Advancing ----
-
-        [Test]
-        public void Advancing_FightsEnemyInAggroUntilItDies_ThenContinues()
-        {
-            var brain = Brain(idleSeconds: 0f);
-            _sensor.EnemyInAggroRange = EnemyA;
-            Assert.That(brain.Tick(0.1f, _sensor).Target, Is.EqualTo(EnemyA));
-
-            _sensor.EnemyInAggroRange = EnemyB;
-            Assert.That(brain.Tick(0.1f, _sensor).Target, Is.EqualTo(EnemyA), "keeps its target until it dies");
-
-            _sensor.Kill(EnemyA);
-            Assert.That(brain.Tick(0.1f, _sensor).Target, Is.EqualTo(EnemyB));
-
-            _sensor.Kill(EnemyB);
-            Assert.That(brain.Tick(0.1f, _sensor).Target, Is.EqualTo(Castle));
-            Assert.That(brain.State, Is.EqualTo(HeroState.Advancing));
-        }
-
-        [Test]
-        public void Advancing_DefenseStage_HeadsForNearestEnemy()
-        {
-            var brain = Brain(StageType.Defense, idleSeconds: 0f);
-            _sensor.NearestEnemy = EnemyB;
-
-            var intent = brain.Tick(0.1f, _sensor);
-
-            Assert.That(brain.State, Is.EqualTo(HeroState.Advancing));
-            Assert.That(intent.Target, Is.EqualTo(EnemyB));
-            Assert.That(intent.Target, Is.Not.EqualTo(Castle), "Defense stages do not march on the enemy castle");
-        }
-
-        [Test]
-        public void Advancing_DefenseStage_NoEnemies_StandsIdle()
-        {
-            var brain = Brain(StageType.Defense, idleSeconds: 0f);
-
-            var intent = brain.Tick(0.1f, _sensor);
-            Assert.That(intent.Kind, Is.EqualTo(HeroIntentKind.Hold));
-            Assert.That(brain.State, Is.EqualTo(HeroState.Idle));
-
-            // A zero idle delay must not loop Idle <-> Advancing forever.
-            Assert.DoesNotThrow(() => Tick(brain, 1f));
-        }
-
         [Test]
         public void Advancing_NewCommandTakesOver()
         {
-            var brain = Brain(idleSeconds: 0f);
+            var brain = Brain(ArmyStance.Attack);
             brain.Tick(0.1f, _sensor);
 
             brain.Issue(new MoveCommand(Hero, Destination));
@@ -390,13 +433,14 @@ namespace Arena3Q.Tests.EditMode
         // ---- Dead ----
 
         [Test]
-        public void Dead_IgnoresCommandsAndHolds()
+        public void Dead_IgnoresCommandsAndStancesAndHolds()
         {
             var brain = Brain();
             brain.Issue(new AttackCommand(Hero, EnemyA));
 
             brain.Kill();
             brain.Issue(new MoveCommand(Hero, Destination));
+            brain.SetStance(ArmyStance.Attack, Vector2.zero);
             _sensor.EnemyInAttackRange = EnemyB;
             var intent = brain.Tick(0.1f, _sensor);
 

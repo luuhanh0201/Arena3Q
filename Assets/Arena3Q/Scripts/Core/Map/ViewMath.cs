@@ -121,6 +121,68 @@ namespace Arena3Q.Core
 
         /// <summary>Camera position that looks at a ground point from <paramref name="distance"/> away.</summary>
         public static Vector3 CameraPosition(Vector2 ground, float tiltDegrees, float distance) =>
-            new Vector3(ground.x, ground.y, 0f) - CameraRotation(tiltDegrees) * Vector3.forward * distance;
+            CameraPosition(ground, CameraRotation(tiltDegrees), distance);
+
+        /// <summary>
+        /// Rotation of the diagonal camera (user 2026-10-28): tilted by <paramref name="tiltDegrees"/> from looking straight
+        /// down, then turned by <paramref name="yawDegrees"/> about the vertical axis. A positive yaw shows the map's +x
+        /// axis towards the top right of the screen (own camp bottom left, enemy top right).
+        /// </summary>
+        public static Quaternion CameraRotation(float tiltDegrees, float yawDegrees) =>
+            Quaternion.AngleAxis(-yawDegrees, Vector3.forward) * CameraRotation(tiltDegrees);
+
+        public static Vector3 CameraPosition(Vector2 ground, Quaternion rotation, float distance) =>
+            new Vector3(ground.x, ground.y, 0f) - rotation * Vector3.forward * distance;
+
+        /// <summary>
+        /// Ground offset (from the point the view centre looks at) of the viewport point <paramref name="viewport"/>
+        /// (-1..1 on both axes) for an orthographic camera with this rotation, size and aspect.
+        /// </summary>
+        public static Vector2 GroundOffset(Quaternion rotation, float orthographicSize, float aspect, Vector2 viewport)
+        {
+            var lateral = rotation * new Vector3(viewport.x * orthographicSize * aspect, viewport.y * orthographicSize, 0f);
+            var forward = rotation * Vector3.forward;
+            var t = Mathf.Abs(forward.z) < 1e-6f ? 0f : -lateral.z / forward.z;
+            var hit = lateral + forward * t;
+            return new Vector2(hit.x, hit.y);
+        }
+
+        /// <summary>
+        /// Smallest axis-aligned box (relative to the view centre's ground point) holding the whole ground footprint of
+        /// the view: for an orthographic camera the footprint is a parallelogram, so its four corners decide.
+        /// </summary>
+        public static Rect FootprintBox(Quaternion rotation, float orthographicSize, float aspect)
+        {
+            var min = new Vector2(float.MaxValue, float.MaxValue);
+            var max = new Vector2(float.MinValue, float.MinValue);
+            for (var i = 0; i < 4; i++)
+            {
+                var corner = GroundOffset(rotation, orthographicSize, aspect, new Vector2(i % 2 == 0 ? -1f : 1f, i < 2 ? -1f : 1f));
+                min = Vector2.Min(min, corner);
+                max = Vector2.Max(max, corner);
+            }
+            return Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+        }
+
+        /// <summary>Largest orthographic size whose whole ground footprint still fits inside <paramref name="ground"/>.</summary>
+        public static float MaxOrthographicSize(Rect ground, Quaternion rotation, float aspect)
+        {
+            var box = FootprintBox(rotation, 1f, aspect);
+            return Mathf.Max(0.01f, Mathf.Min(ground.width / Mathf.Max(1e-4f, box.width), ground.height / Mathf.Max(1e-4f, box.height)));
+        }
+
+        /// <summary>
+        /// Clamps the ground point the view centre looks at so the whole footprint stays inside <paramref name="ground"/>;
+        /// an axis the footprint is wider than is centred.
+        /// </summary>
+        public static Vector2 ClampFocus(Rect ground, Vector2 focus, Quaternion rotation, float orthographicSize, float aspect)
+        {
+            var box = FootprintBox(rotation, orthographicSize, aspect);
+            return new Vector2(ClampAxis(focus.x, ground.xMin - box.xMin, ground.xMax - box.xMax),
+                ClampAxis(focus.y, ground.yMin - box.yMin, ground.yMax - box.yMax));
+        }
+
+        private static float ClampAxis(float value, float min, float max) =>
+            min > max ? (min + max) * 0.5f : Mathf.Clamp(value, min, max);
     }
 }

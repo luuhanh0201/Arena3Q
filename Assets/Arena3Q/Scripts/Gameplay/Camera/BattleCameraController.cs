@@ -4,52 +4,66 @@ using UnityEngine;
 namespace Arena3Q.Gameplay
 {
     /// <summary>
-    /// Battle camera (spec §9): drag to pan, pinch/scroll to zoom, always inside the map bounds, and follows the
-    /// selected hero while it moves. Manual panning pauses following until a hero is selected again.
-    /// Panning, zoom and limits work in the screen plane (x, y · cos(tilt)); in 3D the camera itself is tilted and
-    /// orthographic and looks at the ground point under that plane point, and picking casts a ray down to the ground.
+    /// Battle camera (spec §9, user 2026-10-28): a fixed diagonal orthographic view (tilt and turn from
+    /// <see cref="Arena3Q.Data.BattleViewConfig"/>), drag to pan, pinch/scroll to zoom. The whole view always stays on the
+    /// ground the map builds (map bounds plus <c>CameraGroundMargin</c> of outer ground), so the empty background never
+    /// shows; zooming in stops at <c>ZoomInLimit</c> of the default view so asset flaws do not show. It no longer follows
+    /// a hero (no per-hero control); edge icons bring a hero into view with <see cref="FocusOn"/>.
+    /// The camera looks at a ground point of the logic plane; picking casts a ray down to the ground.
     /// </summary>
     [RequireComponent(typeof(Camera))]
     public sealed class BattleCameraController : MonoBehaviour
     {
         [SerializeField] private BattleController battle;
-        [SerializeField, Min(1f)] private float minOrthographicSize = 3.5f;
-        [SerializeField, Min(1f)] private float maxOrthographicSize = 11f;
-        [SerializeField, Min(0.1f)] private float startOrthographicSize = 7f;
-        [Tooltip("How quickly the camera catches up with the followed hero.")]
+        [Tooltip("How quickly the camera glides to a point brought into view (edge icon tap).")]
         [SerializeField, Min(0.1f)] private float followSharpness = 4f;
 
         private Camera _camera;
-        private bool _followPaused;
-        private Vector2? _focusTarget; // in the screen plane
-        private Vector2 _center;       // in the screen plane
-        private float _lastYScale = 1f;
+        private Vector2 _focus;          // ground point under the view centre (logic plane)
+        private Vector2? _focusTarget;   // ground point the view glides to
+        private float _defaultSize = 1f;
 
         public Camera Camera => _camera != null ? _camera : _camera = GetComponent<Camera>();
-        public bool IsFollowPaused => _followPaused;
+
+        /// <summary>Ground point under the centre of the view (logic plane).</summary>
+        public Vector2 Focus => _focus;
+
+        /// <summary>Orthographic size of the default view (the zoom the battle starts at).</summary>
+        public float DefaultOrthographicSize => _defaultSize;
+
+        public float MinOrthographicSize => _defaultSize * (battle != null ? battle.View.ZoomInLimit : 1f);
+
+        /// <summary>Largest size whose view stays inside the built ground (map plus outer ground).</summary>
+        public float MaxOrthographicSize =>
+            battle != null && battle.Stage != null
+                ? TiltedViewMath.MaxOrthographicSize(GroundBounds, battle.CameraRotation, Camera.aspect)
+                : Camera.orthographicSize;
+
+        /// <summary>The ground the view may show: the map bounds plus the outer ground around them.</summary>
+        public Rect GroundBounds
+        {
+            get
+            {
+                var map = battle.Stage.MapBounds;
+                var margin = battle.Presentation3D ? battle.View.CameraGroundMargin : 0f;
+                return new Rect(map.xMin - margin, map.yMin - margin, map.width + margin * 2f, map.height + margin * 2f);
+            }
+        }
 
         public void Bind(BattleController controller)
         {
             if (battle != null)
-            {
-                battle.SelectionChanged -= OnSelectionChanged;
                 battle.BattleStarted -= OnBattleStarted;
-            }
             battle = controller;
             if (battle != null && isActiveAndEnabled)
-            {
-                battle.SelectionChanged += OnSelectionChanged;
                 battle.BattleStarted += OnBattleStarted;
-            }
         }
 
         private void OnEnable()
         {
             Camera.orthographic = true;
-            _center = transform.position;
             if (battle != null)
             {
-                battle.SelectionChanged += OnSelectionChanged;
                 battle.BattleStarted += OnBattleStarted;
                 if (battle.Stage != null)
                     OnBattleStarted();
@@ -58,61 +72,60 @@ namespace Arena3Q.Gameplay
 
         private void OnDisable()
         {
-            if (battle == null)
-                return;
-            battle.SelectionChanged -= OnSelectionChanged;
-            battle.BattleStarted -= OnBattleStarted;
+            if (battle != null)
+                battle.BattleStarted -= OnBattleStarted;
         }
 
         private void OnBattleStarted()
         {
-            _followPaused = false;
             _focusTarget = null;
             BattleView3D.ConfigureCamera(Camera, battle);
-            Camera.orthographicSize = startOrthographicSize;
-            // Start looking at the player's side of the map.
-            var stage = battle.Stage;
-            var start = Vector2.Lerp(stage.PlayerCastle.Position, stage.MapBounds.center, 0.35f);
-            _lastYScale = battle.GroundProjection;
-            SetCenter(battle.ToScreenPlane(start));
+            _focus = battle.Stage.MapBounds.center;
+            _defaultSize = ComputeDefaultSize();
+            Camera.orthographicSize = _defaultSize;
+            Apply();
         }
 
-        private void OnSelectionChanged(UnitId heroId)
+        // Default zoom: the view spans DefaultViewMapWidths map widths along the map's x axis, never more than fits.
+        private float ComputeDefaultSize()
         {
-            // Selecting a hero (again) resumes following.
-            if (heroId.IsValid)
-                _followPaused = false;
+            var box = TiltedViewMath.FootprintBox(battle.CameraRotation, 1f, Camera.aspect);
+            var wanted = battle.Stage.MapBounds.width * battle.View.DefaultViewMapWidths / Mathf.Max(1e-4f, box.width);
+            return Mathf.Min(wanted, MaxOrthographicSize);
         }
 
-        /// <summary>Drag the view by a screen-space delta in pixels.</summary>
+        /// <summary>Drag the view so the ground point under <paramref name="fromScreen"/> moves under <paramref name="toScreen"/>.</summary>
+        public void Pan(Vector2 fromScreen, Vector2 toScreen)
+        {
+            _focus += ScreenToWorld(fromScreen) - ScreenToWorld(toScreen);
+            _focusTarget = null;
+            Apply();
+        }
+
+        /// <summary>Drag the view by a screen-space delta in pixels (from the screen centre).</summary>
         public void Pan(Vector2 screenDelta)
         {
-            var worldPerPixel = Camera.orthographicSize * 2f / Mathf.Max(1, Screen.height);
-            SetCenter(_center - screenDelta * worldPerPixel);
-            _followPaused = true;
-            _focusTarget = null;
+            var centre = new Vector2(Camera.pixelWidth, Camera.pixelHeight) * 0.5f;
+            Pan(centre, centre + screenDelta);
         }
 
-        /// <summary>Zoom by a factor (&gt;1 zooms out) keeping the world point under <paramref name="screenFocus"/> fixed.</summary>
+        /// <summary>Zoom by a factor (&gt;1 zooms out) keeping the ground point under <paramref name="screenFocus"/> fixed.</summary>
         public void Zoom(float factor, Vector2 screenFocus)
         {
             if (factor <= 0f || battle == null || battle.Stage == null)
                 return;
-            var before = ScreenToPlane(screenFocus);
-            var maxSize = Mathf.Min(maxOrthographicSize, CameraMath.MaxOrthographicSize(battle.ViewBounds, Camera.aspect));
-            Camera.orthographicSize = Mathf.Clamp(Camera.orthographicSize * factor, Mathf.Min(minOrthographicSize, maxSize), maxSize);
-            var after = ScreenToPlane(screenFocus);
-            SetCenter(_center + (before - after));
+            var before = ScreenToWorld(screenFocus);
+            Camera.orthographicSize = ClampSize(Camera.orthographicSize * factor);
+            Apply();
+            var after = ScreenToWorld(screenFocus);
+            _focus += before - after;
+            Apply();
         }
 
         /// <summary>Smoothly bring a logic-plane point into the centre of the view (edge icon tap).</summary>
-        public void FocusOn(Vector2 worldPoint)
-        {
-            _focusTarget = battle != null ? battle.ToScreenPlane(worldPoint) : worldPoint;
-            _followPaused = false;
-        }
+        public void FocusOn(Vector2 worldPoint) => _focusTarget = worldPoint;
 
-        /// <summary>Screen pixel → logic-plane point (undoes the tilt). Use this for all gameplay picking.</summary>
+        /// <summary>Screen pixel → logic-plane point (a ray down to the ground). Use this for all gameplay picking.</summary>
         public Vector2 ScreenToWorld(Vector2 screenPoint)
         {
             if (battle != null && battle.Presentation3D)
@@ -133,68 +146,40 @@ namespace Arena3Q.Gameplay
         public Vector2 WorldToScreen(Vector2 worldPoint) =>
             Camera.WorldToScreenPoint(battle != null ? battle.ToView(worldPoint) : (Vector3)worldPoint);
 
-        private Vector2 ScreenToPlane(Vector2 screenPoint)
-        {
-            var logic = ScreenToWorld(screenPoint);
-            return battle != null ? battle.ToScreenPlane(logic) : logic;
-        }
-
         private void LateUpdate()
         {
             if (battle == null || battle.Stage == null)
                 return;
-
-            // Tilt changed: keep looking at the same logic point.
-            var yScale = battle.GroundProjection;
-            if (!Mathf.Approximately(yScale, _lastYScale))
-            {
-                _center = new Vector2(_center.x, _center.y / _lastYScale * yScale);
-                if (_focusTarget.HasValue)
-                    _focusTarget = new Vector2(_focusTarget.Value.x, _focusTarget.Value.y / _lastYScale * yScale);
-                _lastYScale = yScale;
-            }
-
-            Vector2? goal = null;
             if (_focusTarget.HasValue)
             {
-                goal = _focusTarget.Value;
-                if ((_center - goal.Value).sqrMagnitude < 0.01f)
+                var t = 1f - Mathf.Exp(-followSharpness * Time.unscaledDeltaTime);
+                _focus = Vector2.Lerp(_focus, _focusTarget.Value, t);
+                if ((_focus - _focusTarget.Value).sqrMagnitude < 0.01f)
                     _focusTarget = null;
             }
-            else if (!_followPaused)
-            {
-                var hero = battle.SelectedHero;
-                if (hero != null && hero.State != HeroState.Idle)
-                    goal = battle.ToScreenPlane(hero.Position);
-            }
-
-            if (goal.HasValue)
-            {
-                var t = 1f - Mathf.Exp(-followSharpness * Time.unscaledDeltaTime);
-                SetCenter(Vector2.Lerp(_center, goal.Value, t));
-            }
-            else
-            {
-                // Re-clamp in case the screen aspect or the tilt changed.
-                SetCenter(_center);
-            }
+            // Re-clamp every frame: the screen aspect can change (rotation, web window resize).
+            Apply();
         }
 
-        private void SetCenter(Vector2 center)
+        private float ClampSize(float size)
         {
-            if (battle != null && battle.Stage != null)
+            var max = MaxOrthographicSize;
+            return Mathf.Clamp(size, Mathf.Min(MinOrthographicSize, max), max);
+        }
+
+        private void Apply()
+        {
+            if (battle == null || battle.Stage == null)
+                return;
+            if (!battle.Presentation3D)
             {
-                // Clamp the size too: startup, aspect/tilt changes and external FitCamera calls can all
-                // leave a viewport larger than the ground even without a pinch/scroll event.
-                float maxSize = Mathf.Min(maxOrthographicSize, CameraMath.MaxOrthographicSize(battle.ViewBounds, Camera.aspect));
-                Camera.orthographicSize = Mathf.Clamp(Camera.orthographicSize, Mathf.Min(minOrthographicSize, maxSize), maxSize);
-                center = CameraMath.ClampCenter(battle.ViewBounds, center, Camera.orthographicSize, Camera.aspect);
+                transform.position = new Vector3(_focus.x, _focus.y * battle.ViewYScale, transform.position.z);
+                return;
             }
-            _center = center;
-            if (battle != null && battle.Presentation3D)
-                BattleView3D.PlaceCamera(transform, battle, TiltedViewMath.PlaneToGround(center, battle.GroundProjection));
-            else
-                transform.position = new Vector3(center.x, center.y, transform.position.z);
+            var rotation = battle.CameraRotation;
+            Camera.orthographicSize = ClampSize(Camera.orthographicSize);
+            _focus = TiltedViewMath.ClampFocus(GroundBounds, _focus, rotation, Camera.orthographicSize, Camera.aspect);
+            BattleView3D.PlaceCamera(transform, battle, _focus);
         }
     }
 }

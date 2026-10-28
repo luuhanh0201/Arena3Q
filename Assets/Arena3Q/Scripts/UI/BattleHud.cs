@@ -34,8 +34,7 @@ namespace Arena3Q.UI
         private Text _resultReason;
         private Image[] _resultStars;
         private RectTransform _resultButtons;
-        private Slider _tiltSlider;
-        private Text _tiltLabel;
+        private StanceButtonView _stance;
         private RectTransform _bossBar;
         private Image _bossFill;
         private Text _bossLabel;
@@ -47,7 +46,8 @@ namespace Arena3Q.UI
         public RectTransform OverlayRoot { get; private set; }
         public bool IsResultVisible => _resultPanel != null && _resultPanel.activeSelf;
         public IReadOnlyList<HeroCardView> CardViews => _cards;
-        public Slider TiltSlider => _tiltSlider;
+        /// <summary>The army stance button (spec §5 "Cơ chế mới").</summary>
+        public StanceButtonView Stance => _stance;
 
         /// <summary>The boss health bar (spec §8 ✅): shown while a boss is alive.</summary>
         public bool IsBossBarVisible => _bossBar != null && _bossBar.gameObject.activeSelf;
@@ -86,7 +86,7 @@ namespace Arena3Q.UI
             battle.Changed += Refresh;
             battle.ActionRejected += OnActionRejected;
             battle.Finished += OnFinished;
-            battle.ViewChanged += SyncTiltSlider;
+            _stance?.Bind(battle);
         }
 
         private void Unsubscribe()
@@ -97,70 +97,13 @@ namespace Arena3Q.UI
             battle.Changed -= Refresh;
             battle.ActionRejected -= OnActionRejected;
             battle.Finished -= OnFinished;
-            battle.ViewChanged -= SyncTiltSlider;
+            _stance?.Bind(null);
         }
 
-        private void SyncTiltSlider()
+        /// <summary>Edge icon tap: bring that hero into view (no selection: the player has no per-hero control).</summary>
+        public void FocusHero(UnitId heroId)
         {
-            if (_tiltSlider == null || battle == null)
-                return;
-            _tiltSlider.SetValueWithoutNotify(battle.ViewTiltDegrees);
-            _tiltLabel.text = $"Góc nhìn: {Mathf.RoundToInt(battle.ViewTiltDegrees)}°";
-        }
-
-        // 2.5D view tilt, 0° (top-down) to 45°, for debugging only (map spec §8.3): shown in the Editor and in
-        // Development builds, hidden in release builds where the angle stays at the art's angle. Session only.
-        private void BuildTiltSlider(RectTransform root)
-        {
-            if (!Application.isEditor && !Debug.isDebugBuild)
-                return;
-
-            var topLeft = new Vector2(0f, 1f);
-            _tiltLabel = UiFactory.CreateLabel("TiltLabel", root, topLeft, topLeft, new Vector2(30f, -74f),
-                new Vector2(320f, 40f), "Góc nhìn: 0°", 28, TextAnchor.MiddleLeft, Color.white);
-
-            var sliderRect = UiFactory.CreateRect("TiltSlider", root, topLeft, topLeft, topLeft, new Vector2(30f, -116f),
-                new Vector2(320f, 34f));
-            var background = UiFactory.CreateRect("Background", sliderRect, new Vector2(0f, 0.35f), new Vector2(1f, 0.65f),
-                new Vector2(0.5f, 0.5f), Vector2.zero, Vector2.zero);
-            UiFactory.AddImage(background, new Color(0f, 0f, 0f, 0.55f));
-
-            var fillArea = UiFactory.CreateRect("Fill Area", sliderRect, new Vector2(0f, 0.35f), new Vector2(1f, 0.65f),
-                new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(-34f, 0f));
-            var fill = UiFactory.CreateRect("Fill", fillArea, Vector2.zero, new Vector2(0f, 1f), new Vector2(0.5f, 0.5f),
-                Vector2.zero, Vector2.zero);
-            UiFactory.AddImage(fill, new Color(1f, 0.85f, 0.35f, 0.9f), null, false);
-
-            var handleArea = UiFactory.CreateRect("Handle Slide Area", sliderRect, Vector2.zero, Vector2.one,
-                new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(-34f, 0f));
-            var handle = UiFactory.CreateRect("Handle", handleArea, Vector2.zero, new Vector2(0f, 1f), new Vector2(0.5f, 0.5f),
-                Vector2.zero, new Vector2(34f, 0f));
-            var handleImage = UiFactory.AddImage(handle, Color.white, PlaceholderArt.Circle);
-
-            _tiltSlider = sliderRect.gameObject.AddComponent<Slider>();
-            _tiltSlider.fillRect = fill;
-            _tiltSlider.handleRect = handle;
-            _tiltSlider.targetGraphic = handleImage;
-            _tiltSlider.direction = Slider.Direction.LeftToRight;
-            _tiltSlider.minValue = 0f;
-            _tiltSlider.maxValue = BattleController.MaxViewTiltDegrees;
-            _tiltSlider.wholeNumbers = true;
-            _tiltSlider.onValueChanged.AddListener(value =>
-            {
-                if (battle != null)
-                    battle.ViewTiltDegrees = value;
-                _tiltLabel.text = $"Góc nhìn: {Mathf.RoundToInt(value)}°";
-            });
-            // Spec §9 / MapSpecification 8.3: the view angle is a debugging aid (Editor and Development builds);
-            // release builds keep the art's angle and do not show the slider.
-            var debugTools = Application.isEditor || Debug.isDebugBuild;
-            sliderRect.gameObject.SetActive(debugTools);
-            _tiltLabel.gameObject.SetActive(debugTools);
-        }
-
-        public void FocusSelectedHero()
-        {
-            var hero = battle.SelectedHero;
+            var hero = battle != null ? battle.GetHero(heroId) : null;
             if (hero != null && cameraController != null)
                 cameraController.FocusOn(hero.Position);
         }
@@ -241,7 +184,7 @@ namespace Arena3Q.UI
             layout.childForceExpandWidth = false;
             layout.childForceExpandHeight = false;
 
-            BuildTiltSlider(root);
+            _stance = StanceButtonView.Create(root, root);
             BuildResultPanel(root);
 
             OverlayRoot = UiFactory.Stretch("DragOverlay", root);
@@ -299,7 +242,7 @@ namespace Arena3Q.UI
 
             var stage = battle.Stage;
             _stageLabel.text = $"{(stage.StageType == StageType.Attack ? "Ải Công" : "Ải Thủ")} · {stage.StageId}";
-            SyncTiltSlider();
+            _stance.ResetForBattle();
             Refresh();
         }
 
@@ -314,7 +257,7 @@ namespace Arena3Q.UI
             for (var i = 0; i < _cards.Count && i < state.Cards.Count; i++)
             {
                 var card = state.Cards[i];
-                _cards[i].Refresh(card.State, card.Hero == state.SelectedHero && card.Hero.IsValid, IsLord(i));
+                _cards[i].Refresh(card.State, IsLord(i));
             }
             UpdateInfo();
         }

@@ -57,6 +57,107 @@ namespace Arena3Q.Editor
             BuildEnvironment();
         }
 
+        /// <summary>
+        /// Ground and forest beyond the map (user 2026-10-28): the diagonal battle camera must never show the empty
+        /// background. Adds (or replaces) Environment/OuterGround in the battlefield scene without rebuilding the rest:
+        /// one coarse ground mesh under and around the map with low hills outside, and the approved trees, bushes and
+        /// rocks on a jittered grid, drawn through <see cref="BattlefieldInstancing"/> (GPU instancing and LOD). No
+        /// colliders: it is scenery outside the play area.
+        /// </summary>
+        [MenuItem("Arena3Q/Battlefield/5 Build Outer Ground")]
+        public static void BuildOuterGround()
+        {
+            if(EditorApplication.isPlayingOrWillChangePlaymode)throw new InvalidOperationException("Stop Play Mode before building.");
+            if (SceneManager.GetActiveScene().path != ScenePath) EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
+            _config = AssetDatabase.LoadAssetAtPath<BattlefieldConfig>(Content + "/BattlefieldConfig.asset");
+            _library = AssetDatabase.LoadAssetAtPath<BattlefieldAssetLibrary>(Content + "/BattlefieldAssetLibrary.asset");
+            if (_config == null || _library == null) throw new InvalidOperationException("Generate config/library first.");
+            var marker = Object.FindAnyObjectByType<BattlefieldGenerated>();
+            if (marker == null) throw new InvalidOperationException("No generated battlefield in " + ScenePath);
+            var count = OuterGround(marker.transform, marker.GetComponent<BattlefieldInstancing>());
+            EditorSceneManager.SaveScene(SceneManager.GetActiveScene(), ScenePath);
+            AssetDatabase.SaveAssets();
+            Debug.Log($"[Battlefield] Outer ground built: margin {_config.outerGroundMargin}, {count} trees/bushes/rocks.");
+        }
+
+        private static int OuterGround(Transform root, BattlefieldInstancing instancing)
+        {
+            var environment = root.Find("Environment");
+            var old = environment.Find("OuterGround");
+            if (old != null) Object.DestroyImmediate(old.gameObject);
+            var outer = Group("OuterGround", environment);
+            float hx = _config.size.x * .5f, hz = _config.size.y * .5f;
+            // A little beyond what the camera may show (BattleViewConfig.cameraGroundMargin), so no edge is ever seen.
+            float reach = _config.outerGroundMargin + 4f, cell = _config.outerCellSize;
+            int nx = Mathf.CeilToInt((hx + reach) * 2f / cell), nz = Mathf.CeilToInt((hz + reach) * 2f / cell);
+            var vertices = new Vector3[(nx + 1) * (nz + 1)]; var colors = new Color[vertices.Length];
+            var uv = new Vector2[vertices.Length]; var uv2 = new Vector2[vertices.Length]; var normals = new Vector3[vertices.Length];
+            for (int z = 0; z <= nz; z++) for (int x = 0; x <= nx; x++)
+            {
+                int i = z * (nx + 1) + x;
+                var p = new Vector2(Mathf.Lerp(-hx - reach, hx + reach, x / (float)nx), Mathf.Lerp(-hz - reach, hz + reach, z / (float)nz));
+                float noise = Mathf.PerlinNoise(Mathf.Abs(p.x) * .2f + 3f, Mathf.Abs(p.y) * .2f + 7f);
+                // Under the map it stays just below the map's own terrain; outside it is grass with low hills.
+                vertices[i] = _config.Point(p, _config.OuterHeight(p) - .04f); uv[i] = p / 4f;
+                colors[i] = new Color(0f, noise * .5f, 0f, .8f + noise * .2f);
+                uv2[i] = new Vector2(SmoothRange(.5f, .9f, noise), 0f);
+                const float e = .05f;
+                normals[i] = new Vector3(_config.OuterHeight(p - Vector2.right * e) - _config.OuterHeight(p + Vector2.right * e), 2f * e,
+                    _config.OuterHeight(p - Vector2.up * e) - _config.OuterHeight(p + Vector2.up * e)).normalized;
+            }
+            var triangles = new int[nx * nz * 6]; int t = 0;
+            for (int z = 0; z < nz; z++) for (int x = 0; x < nx; x++)
+            {
+                int a = z * (nx + 1) + x, b = a + 1, c = a + nx + 1, d = c + 1;
+                triangles[t++] = a; triangles[t++] = c; triangles[t++] = b; triangles[t++] = b; triangles[t++] = c; triangles[t++] = d;
+            }
+            string meshPath = Art + "/Meshes/OuterGround.asset"; var mesh = AssetDatabase.LoadAssetAtPath<Mesh>(meshPath);
+            bool created = mesh == null; if (created) mesh = new Mesh { name = "BattlefieldOuterGround" }; else mesh.Clear();
+            mesh.vertices = vertices; mesh.normals = normals; mesh.colors = colors; mesh.uv = uv; mesh.uv2 = uv2; mesh.triangles = triangles;
+            mesh.RecalculateBounds(); mesh.UploadMeshData(false);
+            if (created) AssetDatabase.CreateAsset(mesh, meshPath); else EditorUtility.SetDirty(mesh);
+            var ground = new GameObject("OuterGround_Mesh", typeof(MeshFilter), typeof(MeshRenderer)); ground.transform.SetParent(outer, false); ground.isStatic = true;
+            ground.GetComponent<MeshFilter>().sharedMesh = mesh;
+            var groundRenderer = ground.GetComponent<MeshRenderer>(); groundRenderer.sharedMaterial = _library.groundMaterial;
+            groundRenderer.shadowCastingMode = ShadowCastingMode.Off;
+
+            // Forest: the approved prefabs on a jittered grid, from a free strip at the map edge to the camera's reach.
+            var forest = Group("OuterForest", outer);
+            var rng = new System.Random(_config.seed + 2810);
+            float Rand(float lo, float hi) => Mathf.Lerp(lo, hi, (float)rng.NextDouble());
+            string[] treeIds = { "CommonTree_1", "CommonTree_2", "CommonTree_5", "Pine_1", "Pine_3", "TwistedTree_1" };
+            string[] bushIds = { "Bush_Common", "Bush_Common_Flowers", "Fern_1" };
+            string[] rockIds = { "Rock_Medium_1", "Rock_Medium_2", "Rock_Medium_3" };
+            float spacing = _config.outerTreeSpacing, limit = _config.outerGroundMargin + 2f; int count = 0;
+            for (float z = -hz - limit; z <= hz + limit; z += spacing)
+            for (float x = -hx - limit; x <= hx + limit; x += spacing)
+            {
+                var p = new Vector2(x + Rand(-.4f, .4f) * spacing, z + Rand(-.4f, .4f) * spacing);
+                float outside = Mathf.Max(Mathf.Abs(p.x) - hx, Mathf.Abs(p.y) - hz);
+                if (outside < _config.outerTreeEdgeGap || outside > limit) continue;
+                float roll = Rand(0f, 1f);
+                string id; float scale;
+                if (roll < .7f) { id = treeIds[rng.Next(treeIds.Length)]; scale = Rand(.75f, 1.25f); }
+                else if (roll < .88f) { id = bushIds[rng.Next(bushIds.Length)]; scale = Rand(.6f, 1.1f); }
+                else { id = rockIds[rng.Next(rockIds.Length)]; scale = Rand(.6f, 1.5f); }
+                var prefab = _library.Find(id); if (prefab == null) throw new InvalidOperationException("Missing approved prefab: " + id);
+                var go = (GameObject)PrefabUtility.InstantiatePrefab(prefab); go.transform.SetParent(forest, false);
+                go.transform.localPosition = _config.Point(p, _config.OuterHeight(p)); go.transform.localRotation = Quaternion.Euler(0f, Rand(0f, 360f), 0f);
+                go.transform.localScale = Vector3.one * scale; go.isStatic = true;
+                count++;
+            }
+            if (instancing != null)
+            {
+                var roots = new List<Transform>(instancing.roots ?? Array.Empty<Transform>());
+                roots.RemoveAll(r => r == null);
+                if (!roots.Contains(forest)) roots.Add(forest);
+                instancing.roots = roots.ToArray(); EditorUtility.SetDirty(instancing);
+            }
+            Ensure(Art + "/Prefabs/Sections");
+            PrefabUtility.SaveAsPrefabAssetAndConnect(outer.gameObject, Art + "/Prefabs/Sections/Environment_OuterGround.prefab", InteractionMode.AutomatedAction);
+            return count;
+        }
+
         private static void BuildLibrary()
         {
             var entries = new List<BattlefieldAssetLibrary.Entry>();
@@ -230,6 +331,7 @@ namespace Arena3Q.Editor
             var instancing=root.AddComponent<BattlefieldInstancing>();instancing.environment=environment;
             instancing.battle=Object.FindAnyObjectByType<BattleController>();
             instancing.roots=new[]{world.Find("Vegetation"),world.Find("Rocks"),world.Find("Cliffs"),world.Find("Roads"),world.Find("Decorations"),camps};
+            OuterGround(root.transform,instancing);
             var controls=root.AddComponent<Arena3Q.UI.BattlefieldTestControls>();controls.environment=environment;controls.battle=instancing.battle;
             EditorSceneManager.SaveScene(SceneManager.GetActiveScene(), ScenePath);
             AssetDatabase.SaveAssets();

@@ -101,7 +101,7 @@ namespace Arena3Q.Tests.PlayMode
         // ---- Summon ----
 
         [UnityTest]
-        public IEnumerator QuickSummon_SpawnsIdleHeroWithSquad_ThenAdvancesAfterFiveSeconds()
+        public IEnumerator QuickSummon_SpawnsIdleHeroWithSquad_ThatHoldsUntilTheStanceChanges()
         {
             _battle.StartBattle(0);
             var hero = SummonQuick(0);
@@ -112,9 +112,10 @@ namespace Arena3Q.Tests.PlayMode
             Assert.That(_battle.Layout.IsWalkable(hero.Position), Is.True);
             Assert.That(_battle.SelectedHero, Is.EqualTo(hero));
 
-            Run(4.8f);
-            Assert.That(hero.State, Is.EqualTo(HeroState.Idle), "no target nearby, still waiting");
-            Run(0.4f);
+            Run(8f);
+            Assert.That(hero.State, Is.EqualTo(HeroState.Idle), "Giữ: no automatic advance after 5 seconds any more");
+            _battle.SetStance(ArmyStance.Attack);
+            Run(0.2f);
             Assert.That(hero.State, Is.EqualTo(HeroState.Advancing));
         }
 
@@ -325,28 +326,33 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator Tap_SelectsHero_AttacksTappedEnemyOrCastle_MovesOnGround()
+        public IEnumerator Stance_StartsInHold_SwitchesEveryHero_AndLaterSummonsFollowIt()
         {
             _battle.StartBattle(0);
             var first = SummonQuick(0);
-            var second = SummonQuick(1);
             yield return null;
-            var castle = _battle.Registry.Get(_battle.EnemyCastleId);
-            var defender = _battle.Registry.Units.OfType<EnemyUnit>().First();
+            Assert.That(_battle.Stance, Is.EqualTo(ArmyStance.Hold), "spec §5: every battle starts in Giữ");
+            Assert.That(first.Brain.Stance, Is.EqualTo(ArmyStance.Hold));
+            Run(8f);
+            Assert.That(first.State, Is.EqualTo(HeroState.Idle), "Giữ: no automatic advance after 5 seconds any more");
 
-            Assert.That(_battle.TapAt(first.Position), Is.EqualTo(BattleController.TapResult.Selected));
-            Assert.That(_battle.SelectedHero, Is.EqualTo(first));
+            var changes = new List<ArmyStance>();
+            _battle.StanceChanged += changes.Add;
+            Assert.That(_battle.SetStance(ArmyStance.Attack), Is.True);
+            Assert.That(_battle.SetStance(ArmyStance.Attack), Is.False, "choosing the active stance again does nothing");
+            Assert.That(first.State, Is.EqualTo(HeroState.Advancing));
+            var second = SummonQuick(1);
+            Assert.That(second.Brain.Stance, Is.EqualTo(ArmyStance.Attack), "a later summon follows the active stance");
+            Assert.That(second.State, Is.EqualTo(HeroState.Advancing));
 
-            Assert.That(_battle.TapAt(defender.Position), Is.EqualTo(BattleController.TapResult.Attack));
-            Assert.That(first.Brain.AttackTarget, Is.EqualTo(defender.Id));
-
-            Assert.That(_battle.TapAt(castle.Position + new Vector2(0.5f, 0.5f)), Is.EqualTo(BattleController.TapResult.Attack),
-                "anywhere on the castle counts");
-            Assert.That(first.Brain.AttackTarget, Is.EqualTo(castle.Id));
-
-            Assert.That(_battle.TapAt(new Vector2(-8f, -6f)), Is.EqualTo(BattleController.TapResult.Move));
-            Assert.That(first.State, Is.EqualTo(HeroState.Moving));
-            Assert.That(second.State, Is.EqualTo(HeroState.Idle), "only the selected hero gets the order");
+            Assert.That(_battle.SetStance(ArmyStance.Defend), Is.True);
+            var zone = Stage(0).SummonZone;
+            foreach (var hero in new[] { first, second })
+            {
+                Assert.That(hero.Brain.Stance, Is.EqualTo(ArmyStance.Defend));
+                Assert.That(zone.Contains(hero.Brain.DefendPoint), Is.True, "falls back into the area in front of the own castle");
+            }
+            Assert.That(changes, Is.EqualTo(new[] { ArmyStance.Attack, ArmyStance.Defend }));
         }
 
         [UnityTest]
@@ -626,12 +632,13 @@ namespace Arena3Q.Tests.PlayMode
         [UnityTest]
         public IEnumerator Balance_AttackStage_FiveHeroesAdvancing_Win()
         {
-            // No orders: heroes wait 5 s, then advance and fight their way to the castle. (Ordering a straight
-            // attack on the castle ignores the defenders by design, so it is not the winning strategy.)
+            // The player summons five heroes and picks Tấn công (spec §5 "Cơ chế mới"): they advance and fight their way
+            // to the castle, as the old 5-second rule did.
             _battle.StartBattle(0);
             yield return null;
             for (var i = 0; i < SummonRules.MaxHeroesPerBattle; i++)
                 SummonQuick(i);
+            _battle.SetStance(ArmyStance.Attack);
 
             Run(Stage(0).TimeLimit + 1f);
 
@@ -647,6 +654,8 @@ namespace Arena3Q.Tests.PlayMode
             yield return null;
             for (var i = 0; i < SummonRules.MaxHeroesPerBattle; i++)
                 SummonQuick(i);
+            // Tấn công meets the waves like the old automatic advance did (balance numbers stay comparable).
+            _battle.SetStance(ArmyStance.Attack);
 
             Run(Stage(1).TimeLimit + 1f);
 
@@ -679,28 +688,56 @@ namespace Arena3Q.Tests.PlayMode
             Assert.That(_battle.Registry.Count(u => u is EnemyUnit), Is.EqualTo(Stage(0).Defenders.Count));
         }
 
+        // The whole view lies on the ground the map builds (map plus outer ground): no empty background (user 2026-10-28).
+        private void AssertViewOnTheGround()
+        {
+            var cam = _camera.Camera;
+            var ground = _camera.GroundBounds;
+            foreach (var corner in new[] { Vector2.zero, new Vector2(cam.pixelWidth, 0f), new Vector2(0f, cam.pixelHeight),
+                         new Vector2(cam.pixelWidth, cam.pixelHeight) })
+            {
+                var point = _camera.ScreenToWorld(corner);
+                Assert.That(point.x, Is.InRange(ground.xMin - 0.05f, ground.xMax + 0.05f), $"corner {corner} at {point}");
+                Assert.That(point.y, Is.InRange(ground.yMin - 0.05f, ground.yMax + 0.05f), $"corner {corner} at {point}");
+            }
+        }
+
         [UnityTest]
-        public IEnumerator Camera_StaysInsideMapBounds_AndOffscreenHeroGetsEdgeIcon()
+        public IEnumerator Camera_ZoomAndPanStayOnTheGround_EdgeIconBringsTheHeroIntoView()
         {
             _battle.StartBattle(0);
             var hero = SummonQuick(0);
             yield return null;
+            var cam = _camera.Camera;
+            var centre = new Vector2(cam.pixelWidth, cam.pixelHeight) * 0.5f;
+            Assert.That(cam.orthographicSize, Is.EqualTo(_camera.DefaultOrthographicSize).Within(1e-3f));
+            AssertViewOnTheGround();
 
-            _camera.Pan(new Vector2(-100000f, 0f));
+            // Zoom in to the limit (asset flaws must not show up close), then drag far away from the hero.
+            _camera.Zoom(0.01f, centre);
+            Assert.That(cam.orthographicSize, Is.EqualTo(_camera.MinOrthographicSize).Within(1e-3f));
+            Assert.That(_camera.MinOrthographicSize, Is.EqualTo(_camera.DefaultOrthographicSize * _battle.View.ZoomInLimit).Within(1e-3f));
+            _camera.Pan(new Vector2(100000f, 100000f));
             yield return null;
             yield return null;
-
-            var cam = Camera.main;
-            var bounds = Stage(0).MapBounds;
-            Assert.That(cam.transform.position.x + cam.orthographicSize * cam.aspect, Is.LessThanOrEqualTo(bounds.xMax + 0.01f));
-            Assert.That(_camera.IsFollowPaused, Is.True);
+            AssertViewOnTheGround();
 
             var indicators = Object.FindAnyObjectByType<OffscreenHeroIndicators>();
-            Assert.That(indicators.TryGetIndicatorViewport(hero.Id, out var edge), Is.True);
-            Assert.That(edge.x, Is.LessThan(0.1f), "icon on the left edge, towards the hero");
+            Assert.That(EdgeIndicatorMath.IsOnScreen(_camera.WorldToViewport(hero.Position)), Is.False, "test setup: hero off screen");
+            Assert.That(indicators.TryGetIndicatorViewport(hero.Id, out _), Is.True);
 
-            _battle.TrySelectHero(hero.Id);
-            Assert.That(_camera.IsFollowPaused, Is.False, "selecting again resumes following");
+            // Tapping the edge icon only brings the hero into view (no selection any more).
+            _hud.FocusHero(hero.Id);
+            for (var t = 0f; t < 2f; t += Time.unscaledDeltaTime)
+                yield return null;
+            var viewport = _camera.WorldToViewport(hero.Position);
+            Assert.That(EdgeIndicatorMath.IsOnScreen(viewport), Is.True, $"hero back in view at {viewport}");
+
+            // Zoom out to the limit: still no empty background.
+            _camera.Zoom(1000f, centre);
+            Assert.That(cam.orthographicSize, Is.EqualTo(_camera.MaxOrthographicSize).Within(1e-3f));
+            yield return null;
+            AssertViewOnTheGround();
         }
 
         [UnityTest]
@@ -711,7 +748,9 @@ namespace Arena3Q.Tests.PlayMode
             var hero = _battle.SelectedHero;
             yield return null;
 
-            _camera.Pan(new Vector2(0f, -100000f)); // view moves up as far as the map allows
+            var cam = _camera.Camera;
+            _camera.Zoom(0.01f, new Vector2(cam.pixelWidth, cam.pixelHeight) * 0.5f); // closest zoom
+            _camera.Pan(new Vector2(0f, -100000f)); // view moves up as far as the ground allows
             yield return null;
             yield return null;
 
@@ -755,56 +794,39 @@ namespace Arena3Q.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator ViewTilt_SquashesTheGround_PickingStillHitsLogicPositions()
+        public IEnumerator View_IsAFixedDiagonal_NoAngleControl_PickingStillHitsLogicPositions()
         {
+            Assume.That(_battle.Presentation3D, Is.True, "3D presentation is the shipped default");
             _battle.StartBattle(0);
             var hero = SummonQuick(0);
             yield return null;
-            // A stage with painted map art starts at the art's fixed 3/4 angle; without art it starts top-down.
-            var expectedStart = Stage(0).BackgroundArt != null ? Stage(0).BackgroundArtTiltDegrees : 0f;
-            Assert.That(_battle.ViewTiltDegrees, Is.EqualTo(expectedStart).Within(0.01f));
-            Assert.That(_hud.TiltSlider.value, Is.EqualTo(Mathf.Round(expectedStart)).Within(1f), "slider shows the angle");
+            // User 2026-10-28: tilt 40° from straight down (50° above the ground), turned 45°, nothing changes it.
+            Assert.That(_battle.ViewTiltDegrees, Is.EqualTo(_battle.View.DefaultTiltDegrees).Within(0.01f));
+            Assert.That(_battle.View.DefaultTiltDegrees, Is.EqualTo(40f).Within(0.01f));
+            Assert.That(_battle.ViewYawDegrees, Is.EqualTo(45f).Within(0.01f));
+            Assert.That(_hud.GetComponentsInChildren<Slider>(true), Is.Empty, "no view angle slider any more");
 
-            _hud.TiltSlider.value = 45f; // as if the player dragged the HUD slider
-            yield return null;
-            yield return null;
-
-            var scale = Mathf.Cos(45f * Mathf.Deg2Rad);
-            Assert.That(_battle.ViewTiltDegrees, Is.EqualTo(45f));
-            Assert.That(_battle.GroundProjection, Is.EqualTo(scale).Within(1e-4f));
             Assert.That(hero.transform.position, Is.EqualTo(_battle.ToView(hero.Position)), "drawn at its logic position");
-            Assert.That(hero.transform.position.x, Is.EqualTo(hero.Position.x).Within(1e-3f));
-            if (_battle.Presentation3D)
-            {
-                // 3D: the ground keeps its size, the tilted camera squashes it, and the unit faces the camera.
-                Assert.That(hero.transform.position.y, Is.EqualTo(hero.Position.y).Within(1e-3f));
-                Assert.That(Quaternion.Angle(hero.transform.rotation, Camera.main.transform.rotation), Is.LessThan(0.01f));
-            }
-            else
-                Assert.That(hero.transform.position.y, Is.EqualTo(hero.Position.y * scale).Within(1e-3f), "drawn on the tilted ground");
-            // On screen one metre north is cos(tilt) as long as one metre east, in both presentations.
+            Assert.That(Quaternion.Angle(hero.transform.rotation, Camera.main.transform.rotation), Is.LessThan(0.01f),
+                "upright pictures face the turned camera");
+
+            // Diagonal: the map's +x (towards the enemy) runs to the top right of the screen, +y to the top left.
             var east = _camera.WorldToScreen(hero.Position + Vector2.right) - _camera.WorldToScreen(hero.Position);
             var north = _camera.WorldToScreen(hero.Position + Vector2.up) - _camera.WorldToScreen(hero.Position);
-            Assert.That(north.y / east.x, Is.EqualTo(scale).Within(1e-3f), "ground squashed by the tilt on screen");
-            Assert.That(Mathf.Abs(north.x), Is.LessThan(0.01f));
+            Assert.That(east.x, Is.GreaterThan(0f));
+            Assert.That(east.y, Is.GreaterThan(0f));
+            Assert.That(north.x, Is.LessThan(0f));
+            Assert.That(north.y, Is.GreaterThan(0f));
+            var own = _camera.WorldToScreen(Stage(0).PlayerCastle.Position);
+            var enemy = _camera.WorldToScreen(Stage(0).EnemyCastle.Position);
+            Assert.That(own.x < enemy.x && own.y < enemy.y, Is.True, "own camp bottom left, enemy top right");
 
-            // Screen → logic round trip, and a tap on an on-screen enemy still finds it.
+            // Screen → logic round trip (a ray down to the ground), so taps and drags still land on logic positions.
             var screen = _camera.WorldToScreen(hero.Position);
             Assert.That(Vector2.Distance(_camera.ScreenToWorld(screen), hero.Position), Is.LessThan(0.01f));
             var defender = _battle.Registry.Units.OfType<EnemyUnit>().First();
-            _battle.TrySelectHero(hero.Id);
-            Assert.That(_battle.TapAt(_camera.ScreenToWorld(_camera.WorldToScreen(defender.Position))),
-                Is.EqualTo(BattleController.TapResult.Attack));
-
-            // Gameplay is unchanged by the tilt: logic positions, not the drawing, drive the rules.
-            var bounds = Stage(0).MapBounds;
-            Assert.That(_camera.WorldToViewport(new Vector2(bounds.center.x, bounds.yMax)).y, Is.GreaterThanOrEqualTo(0.999f),
-                "camera limits follow the squashed map");
-            Assert.That(_camera.WorldToViewport(new Vector2(bounds.center.x, bounds.yMin)).y, Is.LessThanOrEqualTo(0.001f));
-
-            _hud.TiltSlider.value = 0f;
-            yield return null;
-            Assert.That(hero.transform.position.y, Is.EqualTo(hero.Position.y).Within(1e-3f));
+            Assert.That(Vector2.Distance(_camera.ScreenToWorld(_camera.WorldToScreen(defender.Position)), defender.Position),
+                Is.LessThan(0.01f));
         }
 
         [UnityTest]
@@ -1129,8 +1151,11 @@ namespace Arena3Q.Tests.PlayMode
             var scale = _battle.ViewYScale;
             Assert.That(art.bounds.size.x, Is.EqualTo(bounds.width).Within(0.01f), "art spans the map width");
             Assert.That(art.bounds.size.y, Is.EqualTo(bounds.height * scale).Within(0.01f), "and the tilted map height");
-            // 3D: the ground keeps its true size and the tilted camera squashes it on screen.
-            Assert.That(_battle.GroundProjection, Is.EqualTo(Stage(0).BackgroundArtVerticalScale).Within(1e-3f), "at the art's own angle");
+            // 3D: the painting lies flat on the ground mesh, so the fixed camera angle (user 2026-10-28) need not match it.
+            if (_battle.Presentation3D)
+                Assert.That(_battle.ViewTiltDegrees, Is.EqualTo(_battle.View.DefaultTiltDegrees).Within(1e-3f), "the fixed camera angle");
+            else
+                Assert.That(_battle.GroundProjection, Is.EqualTo(Stage(0).BackgroundArtVerticalScale).Within(1e-3f), "at the art's own angle");
             Assert.That(_battle.GetComponentsInChildren<SpriteRenderer>().Any(r => r.name == "Water" || r.name == "Ground"),
                 Is.False, "no placeholder water/ground over the painting");
         }
@@ -1159,7 +1184,7 @@ namespace Arena3Q.Tests.PlayMode
             new PointerEventData(EventSystem.current) { position = screen, button = PointerEventData.InputButton.Left };
 
         [UnityTest]
-        public IEnumerator CardTap_QuickSummons_ThenTapUsesTheUltimate_HoldSelects()
+        public IEnumerator CardTap_QuickSummons_ThenTapUsesTheUltimate_NothingElse()
         {
             _battle.StartBattle(0);
             yield return null;
@@ -1171,18 +1196,15 @@ namespace Arena3Q.Tests.PlayMode
             Assert.That(_battle.State.Cards[0].State, Is.EqualTo(CardState.Deployed));
             Assert.That(_battle.SelectedHero.CardIndex, Is.EqualTo(1));
 
-            // Spec §3: tapping a deployed card uses its ultimate (none learned yet here), holding it selects the hero.
+            // Spec §5 "Cơ chế mới": tapping a deployed card uses its ultimate (none learned yet here) and nothing else;
+            // there is no hold-to-select and no aimed drag any more.
             var rejected = new List<RejectReason>();
             _battle.ActionRejected += rejected.Add;
             ExecuteEvents.Execute(first.gameObject, Pointer(ScreenPositionOf(first)), ExecuteEvents.pointerClickHandler);
             Assert.That(rejected, Is.EqualTo(new[] { RejectReason.SkillNotReady }));
-            Assert.That(_battle.SelectedHero.CardIndex, Is.EqualTo(1), "a tap does not select any more");
-
-            ExecuteEvents.Execute(first.gameObject, Pointer(ScreenPositionOf(first)), ExecuteEvents.pointerDownHandler);
-            first.SelectByHold();
-            ExecuteEvents.Execute(first.gameObject, Pointer(ScreenPositionOf(first)), ExecuteEvents.pointerClickHandler);
-            Assert.That(_battle.SelectedHero.CardIndex, Is.EqualTo(0), "holding a deployed card selects its hero");
-            Assert.That(rejected, Has.Count.EqualTo(1), "the click that ends a hold does nothing");
+            Assert.That(_battle.SelectedHero.CardIndex, Is.EqualTo(1), "a tap does not select");
+            Assert.That(typeof(HeroCardView).GetMethod("SelectByHold"), Is.Null, "no hold-to-select");
+            Assert.That(first.GetComponent<IPointerDownHandler>(), Is.Null, "a card does not track how long it is held");
             Assert.That(_battle.State.SummonedCount, Is.EqualTo(2));
         }
 
@@ -1272,27 +1294,22 @@ namespace Arena3Q.Tests.PlayMode
             SummonQuick(0);
             Run(2f);
             yield return null;
-            var overview = Camera.main;
-            var savedSize = overview.orthographicSize;
-            var savedPosition = overview.transform.position;
-            var view = _battle.ViewBounds;
-            overview.orthographicSize = Mathf.Max(view.height * 0.5f, view.width * 0.5f / overview.aspect) + 0.2f;
-            if (_battle.Presentation3D)
-                BattleView3D.PlaceCamera(overview.transform, _battle, TiltedViewMath.PlaneToGround(view.center, _battle.GroundProjection));
-            else
-                overview.transform.position = new Vector3(view.center.x, view.center.y, savedPosition.z);
+            var overview = _camera.Camera;
+            _camera.Zoom(1000f, new Vector2(overview.pixelWidth, overview.pixelHeight) * 0.5f); // the in-game zoom-out limit
+            yield return null;
             Capture("map_overview.png");
-            overview.orthographicSize = savedSize;
-            overview.transform.position = savedPosition;
 
+            // Closest zoom (the in-game limit) on the fight.
             _battle.StartBattle(0);
             SummonQuick(0);
             SummonQuick(1);
+            _battle.SetStance(ArmyStance.Attack);
             Run(3f);
-            _battle.ViewTiltDegrees = 45f;
+            _camera.Zoom(0.01f, new Vector2(overview.pixelWidth, overview.pixelHeight) * 0.5f);
+            _camera.FocusOn(_battle.SelectedHero.Position);
             for (var i = 0; i < 30; i++)
                 yield return null;
-            Capture("attack_tilt45.png");
+            Capture("attack_closest_zoom.png");
 
             // Skills on the cards: a level-15 lord (all skills, rage bar) and starters at 1–3 stars, then a fight.
             var loadout = Stage(1).TestLoadout;
@@ -1302,7 +1319,6 @@ namespace Arena3Q.Tests.PlayMode
                 new LineupEntry(loadout.LordHero, 15), new LineupEntry(heroes[0], 1, 3), new LineupEntry(heroes[1], 1, 2),
                 new LineupEntry(heroes[2]), new LineupEntry(heroes[3], 1, 3)
             });
-            _battle.ViewTiltDegrees = 41f;
             SummonQuick(0);
             SummonQuick(1);
             SummonQuick(4);
