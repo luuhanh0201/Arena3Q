@@ -1,0 +1,265 @@
+[
+  {
+    "id": "01_ground-earth",
+    "rows": [
+      1
+    ],
+    "name": "Đất nền",
+    "transparent": false,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Opaque square texture fills canvas edge to edge. Perfect straight-down orthographic material swatch, zero perspective, neutral diffuse albedo, no directional highlights or baked lighting. Seamless repeating edges intended. No swatch border, no scene, no text. Warm ochre compacted fine earth, subtle dry cracks, sparse tiny gravel. Uniform detail distribution, low contrast, no grass, no large rocks."
+  },
+  {
+    "id": "02_ground-path",
+    "rows": [
+      1
+    ],
+    "name": "Đường đất",
+    "transparent": false,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Opaque square texture fills canvas edge to edge. Perfect straight-down orthographic material swatch, zero perspective, neutral diffuse albedo, no directional highlights or baked lighting. Seamless repeating edges intended. No swatch border, no scene, no text. Light tan worn dirt road surface only, gently mottled dust, tiny subdued stones. Broad quiet areas for walking and readable units; no roadside, no objects."
+  },
+  {
+    "id": "03_ground-grass",
+    "rows": [
+      1
+    ],
+    "name": "Cỏ nền",
+    "transparent": false,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Opaque square texture fills canvas edge to edge. Perfect straight-down orthographic material swatch, zero perspective, neutral diffuse albedo, no directional highlights or baked lighting. Seamless repeating edges intended. No swatch border, no scene, no text. Low clipped olive meadow ground with short flattened grass and patches of dry yellow green grass. No long blades, bushes, flowers or scenery."
+  },
+  {
+    "id": "04_paddy-ground",
+    "rows": [
+      15
+    ],
+    "name": "Nền ruộng lúa",
+    "transparent": false,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Opaque square texture fills canvas edge to edge. Perfect straight-down orthographic material swatch, zero perspective, neutral diffuse albedo, no directional highlights or baked lighting. Seamless repeating edges intended. No swatch border, no scene, no text. Flooded rice paddy soil seen vertically from above, subdued teal shallow water over ochre muddy soil with fine submerged silt, restrained irregular sparse soft ripples. No rice stems or banks, no reflections of sky."
+  },
+  {
+    "id": "05_water",
+    "rows": [
+      7
+    ],
+    "name": "Mặt nước",
+    "transparent": false,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Opaque square texture fills canvas edge to edge. Perfect straight-down orthographic material swatch, zero perspective, neutral diffuse albedo, no directional highlights or baked lighting. Seamless repeating edges intended. No swatch border, no scene, no text. Muted teal shallow stream surface with broad softly painted turquoise ripples and sparse understated pale foam. Minimal contrast, no shore, no objects, no sky reflections."
+  },
+  {
+    "id": "06_wood-floor",
+    "rows": [
+      10
+    ],
+    "name": "Ván sàn",
+    "transparent": false,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Opaque square texture fills canvas edge to edge. Perfect straight-down orthographic material swatch, zero perspective, neutral diffuse albedo, no directional highlights or baked lighting. Seamless repeating edges intended. No swatch border, no scene, no text. Old warm brown timber planks in two repeating width variations, fine worn wood grain, quiet brown gaps, short cross joins, subtly scratched matte surface. No nails sticking up, no metallic parts."
+  },
+  {
+    "id": "07_small-stones",
+    "rows": [
+      5
+    ],
+    "name": "Sỏi đá nhỏ",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. One sprite sheet containing exactly three separate small ground pebble clusters in three equal horizontal cells, generous gutters. Each cluster 4-7 small rounded grey beige stones, varying arrangement, high angle orthographic 65 degrees above ground, no surrounding dirt."
+  },
+  {
+    "id": "08_riverbank",
+    "rows": [
+      6
+    ],
+    "name": "Viền bờ suối",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. One decal sheet with exactly two isolated low flat bank strips: a straight horizontal muddy shoreline and a gently curved shoreline. Straight-down view. Warm earth inward edge, scattered tiny pebbles, restrained moss; outer water-facing lip dark damp ochre. No water painted, no tall cliff, generous separation."
+  },
+  {
+    "id": "09_bamboo-leaves",
+    "rows": [
+      12
+    ],
+    "name": "Tán lá trúc",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. One foliage alpha-card sheet with exactly three separated bamboo leafy bough clusters arranged in three equal columns: narrow upright, fan shaped, gently drooping. Slender lance-shaped olive leaves and fine warm green twig stems, recognizable bamboo, no thick trunks. Consistent flat front view for foliage cards, clean tapered leaf tips."
+  },
+  {
+    "id": "10_bushes",
+    "rows": [
+      13
+    ],
+    "name": "Bụi cây",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. One sheet of exactly three isolated compact leafy bush silhouettes in equal columns. One round olive bush, one flatter yellow-olive bush, one irregular taller green bush. Orthographic high 3/4 view, distinct leaf clusters with simplified readable leaves. No flowers, no ground, no separate shadows."
+  },
+  {
+    "id": "11_grass-clumps",
+    "rows": [
+      14
+    ],
+    "name": "Bụi cỏ",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. One sheet of exactly three small isolated grass tuft alpha cards, front view, equal columns and consistent base line. Short olive blades, mixed olive ochre blades, a sparse dry yellow-green tuft. Sparse tidy silhouettes, no ground clods, no glow."
+  },
+  {
+    "id": "12_rice-clumps",
+    "rows": [
+      15
+    ],
+    "name": "Cụm lúa nước",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. One sheet of exactly two separate rooted rice clumps at equal scale, front-facing for cross-quad foliage, generous margins. Left mature golden rice, right mixed green/gold ripening rice. Botanically recognizable RICE: slender long narrow green leaves and graceful branching panicles sagging under many small grains. No wheat spikes, no barley, no tied bundles. Fine stems converge at base, no mud or water painted."
+  },
+  {
+    "id": "13_dead-trees",
+    "rows": [
+      16
+    ],
+    "name": "Cây khô trang trí",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. Exactly two isolated leafless small dead tree sprites, equal cells. One crooked forked trunk, one slender branched trunk, worn brown wood with cool recessed grain. Full tree roots to branches, high 3/4 orthographic view. Decoration only, no foliage, no terrain or cast shadow."
+  },
+  {
+    "id": "14_fallen-logs",
+    "rows": [
+      17
+    ],
+    "name": "Gỗ đổ",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. Exactly two separate fallen log decorative sprites in equal horizontal cells, high orthographic 3/4 view. One short diagonal bark-covered log with pale cut end, one longer slightly curved broken log with a small snapped branch. Muted warm brown, minimal moss, no ground, no shadows."
+  },
+  {
+    "id": "15_reeds",
+    "rows": [
+      18
+    ],
+    "name": "Lau sậy",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. Exactly two separated front-facing river reed clumps for alpha cards in equal columns. Slender olive and ochre stalks with long narrow blades, soft beige feathery reed panicles; one tall and one short compact clump. No cattail sausages, no wheat, no ground or water."
+  },
+  {
+    "id": "16_damage-decals",
+    "rows": [
+      20
+    ],
+    "name": "Vết hư hại nhà",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. One straight-on decal sheet with four nonoverlapping isolated stains arranged in a neat 2x2 grid: irregular soot scorch, fine branching plaster crack, charred splintered roof-hole illusion with dark center, worn scratched wood stain. Soft alpha edges for stains, crisp cracks, muted charcoal and brown, no smoke, no flame, no house."
+  },
+  {
+    "id": "17_soldier-tent-cloth",
+    "rows": [
+      25
+    ],
+    "name": "Vải lều lính",
+    "transparent": false,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Opaque square texture fills canvas edge to edge. Perfect straight-down orthographic material swatch, zero perspective, neutral diffuse albedo, no directional highlights or baked lighting. Seamless repeating edges intended. No swatch border, no scene, no text. Weathered ochre military tent cloth material, coarse but restrained linen weave, subtle hand-sewn seam and subdued brown wear. Simple undecorated rank-and-file Yellow Turban camp canvas. No actual tent, poles, text, insignia or shadows."
+  },
+  {
+    "id": "18_command-tent-cloth",
+    "rows": [
+      26
+    ],
+    "name": "Vải lều chỉ huy",
+    "transparent": false,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Opaque square texture fills canvas edge to edge. Perfect straight-down orthographic material swatch, zero perspective, neutral diffuse albedo, no directional highlights or baked lighting. Seamless repeating edges intended. No swatch border, no scene, no text. Command tent cloth material: warm ochre woven linen with restrained darker brown geometric border bands running horizontally top and bottom, plain broad center, subtle fabric wear. Ancient Chinese military simplicity, no imperial dragons, letters, insignia, actual tent or perspective."
+  },
+  {
+    "id": "19_distant-palisade",
+    "rows": [
+      28
+    ],
+    "name": "Hàng rào xa",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. One sheet with exactly three spaced front-facing wooden palisade alpha-card modules, common scale and ground baseline, each four weathered sharpened timber stakes bound by two horizontal wooden rails and rope. Variants intact, uneven tops, slightly worn. For distant scenery only. Gaps between stakes truly transparent. No land, buildings, terrain, shadow or people."
+  },
+  {
+    "id": "20_cage-bars",
+    "rows": [
+      32
+    ],
+    "name": "Song cũi giam",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. One straight-on rectangular panel of exactly seven slender vertical weathered wooden prison bars connected by two horizontal rails with discreet rope ties. A flat alpha card ONLY, no cage box, roof, floor, posts, depth perspective or prisoner. Gaps genuinely transparent, warm dark wood, clean readable construction."
+  },
+  {
+    "id": "21_weapon-cards",
+    "rows": [
+      46,
+      47
+    ],
+    "name": "Vũ khí trang trí",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. One sheet of three isolated decorative weapon cards in equal columns at matched scale, front view: long Eastern Han spear with leaf-shaped iron head and plain wooden shaft, single-edged Chinese dao sabre with modest bronze guard, simple round dark wooden shield with iron boss. No rack, no hands, no ornate fantasy blades, no text. Full silhouettes."
+  },
+  {
+    "id": "22_flags",
+    "rows": [
+      48
+    ],
+    "name": "Vải cờ quân đội",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. One sheet containing exactly two isolated flat Yellow Turban military cloth flags, equal cells, FRONT-ON unfurled not folded: tall ochre rectangular standard with modest brown border and a small original abstract sun-disc brush motif, and ochre swallowtail pennant with the same motif. No words, no invented Chinese characters, no pole, no ropes or rigid frame; moderate worn fabric edges, minimal shading, no baked flutter perspective."
+  },
+  {
+    "id": "23_torches",
+    "rows": [
+      51
+    ],
+    "name": "Thân đuốc",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. Exactly two isolated upright unlit ancient wooden hand torch sprites in equal columns. Left plain wood handle with tightly wrapped dark linen head, right slender handle with restrained iron cage holding bundled tinder. No fire, no smoke, no sparks, no pedestal. Entire silhouette, simple readable shapes, 3/4 view."
+  },
+  {
+    "id": "24_wood-piles",
+    "rows": [
+      54
+    ],
+    "name": "Đống vật liệu",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. Exactly two separate small decorative wood supply piles, high 3/4 orthographic view, generous margins. Left three stacked cut logs; right modest pile of short planks and a bundled pair of sticks. Warm brown, readable pale cut ends, no crates, buildings, ground or cast shadow."
+  },
+  {
+    "id": "25_ritual-props",
+    "rows": [
+      56
+    ],
+    "name": "Đồ tế lễ",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. Exactly two isolated small ritual prop sprites in equal columns, high orthographic 3/4 view: a modest shallow aged bronze offering dish containing a few grains; an opened ochre parchment scroll with two small wooden rollers and a simple abstract reddish geometric seal, no readable text or lettering. Restrained ancient Eastern Han folk ritual, no skulls, no stand, no floating glow."
+  },
+  {
+    "id": "26_distant-mountains",
+    "rows": [
+      3
+    ],
+    "name": "Núi ngoài biên",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. One wide layered backdrop asset containing three separate distant low rounded rocky ridge strips stacked in three nonoverlapping rows with transparent gutters. Muted grey olive mountain shapes, painterly soft distant detail, sparse quiet vegetation; each row is a different silhouette, full lower edge softly fading into alpha. NO sky, NO towering cliffs, NO waterfalls, NO playable terrain or labels. Background only, quiet contrast."
+  },
+  {
+    "id": "27_fallen-leaves",
+    "rows": [
+      "extra-leaves"
+    ],
+    "name": "Lá và cánh hoa",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. One 2x3 sheet of six separate particle sprites, each centered with generous empty gutter: one olive bamboo leaf, one ochre broadleaf, one small dried curled brown leaf, one pale pink blossom petal, one cream petal, one muted gold leaf. Soft painted material but sharply readable silhouette, front view, no branches, no motion trails."
+  },
+  {
+    "id": "28_ground-marks",
+    "rows": [
+      "extra-marks",
+      1
+    ],
+    "name": "Vết bánh xe và chân",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. One straight-down terrain decal sheet with exactly three separated horizontal strips in three rows: a pair of parallel wooden wagon wheel rut grooves in dry tan soil; a short alternating trail of five subtle worn ancient cloth-shoe footprints; an irregular shallow muddy puddle with dull muted teal water and soft brown bank. All isolated with feathered alpha edges. No vehicle, shoe, human, terrain plate, reflection or shadow."
+  },
+  {
+    "id": "29_ritual-circle",
+    "rows": [
+      "extra-circle"
+    ],
+    "name": "Vòng phù chú",
+    "transparent": true,
+    "prompt": "Use case: stylized-concept. Asset for Arena3Q Chapter 1, rural Eastern Han Yellow Turban campaign. Hand-painted stylized 2.5D miniature environment, refined tactile matte surfaces, clean readable silhouette, medium detail that reads on a phone. Restrained warm earth and muted olive palette: dirt #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, rice #C8A44C, wood #75553B, stone #898379, cloth #C7A130, water #66999A. Avoid neon, thick black outlines, photorealism, shiny PBR, pixel art, voxel, UI, labels, letters, numbers, watermark. This is a separate game asset, never a screenshot or scenic map. Soft neutral material illumination with extremely subtle warm upper-left form shading only, NO baked cast shadow, no ground pedestal. Leave clear separated negative space around cutouts. Entire objects visible, no cropped tips. Genuine transparent RGBA background; do not paint a checkerboard or matte. One perfectly circular flat ground ritual decal viewed exactly from above, transparent center and outside. Muted ochre-gold pigment lines, concentric rings, eight evenly spaced simple geometric sigils, a small abstract balanced central knot. Thin but clearly readable lines, no words, numbers, Chinese text, UI icons or thick halo. Uniform restrained line intensity; runtime emission will be separate. No flame, rays or 3D pedestal."
+  }
+]

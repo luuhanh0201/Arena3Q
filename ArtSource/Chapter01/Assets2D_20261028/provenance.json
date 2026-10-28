@@ -1,0 +1,147 @@
+[
+  {
+    "id": "01_ground-earth",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-30fd80e7-286a-4d6e-a82c-080cd95379bd.png"
+  },
+  {
+    "id": "02_ground-path",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-fcbfc40d-3f78-4e54-8009-963b8fc9d516.png"
+  },
+  {
+    "id": "03_ground-grass",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-b6d33d8d-2f08-4913-9ec9-9439bac8969d.png"
+  },
+  {
+    "id": "04_paddy-ground",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-52978df6-c5a3-4146-b053-b6afad538372.png"
+  },
+  {
+    "id": "05_water",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-76024700-be74-4aeb-8ea1-5704ebe520ec.png"
+  },
+  {
+    "id": "06_wood-floor",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-c5faab2c-474a-408f-8057-9dc88f2ac8df.png"
+  },
+  {
+    "id": "07_small-stones",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-d9d018d3-c51d-4f28-abb1-b378a21cdfb0.png"
+  },
+  {
+    "id": "08_riverbank",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-bd7d4a3f-d827-4d40-9954-5f4fe1beaf5e.png"
+  },
+  {
+    "id": "09_bamboo-leaves",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-ccb3c4db-4219-4760-ad9c-aa0a039b58c5.png"
+  },
+  {
+    "id": "10_bushes",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-8971b5d1-6947-4d84-adcd-221832d2fd38.png"
+  },
+  {
+    "id": "11_grass-clumps",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-967d3905-44d2-4abc-af0f-44857aab1803.png"
+  },
+  {
+    "id": "12_rice-clumps",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-7e0b1dc6-9e76-454a-8239-f7265ff8ddda.png"
+  },
+  {
+    "id": "13_dead-trees",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-6ddaccd8-cb4f-49da-84b7-5429c2b7f663.png"
+  },
+  {
+    "id": "14_fallen-logs",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-70c18202-642c-4bbb-9f36-bcc506d17f2f.png"
+  },
+  {
+    "id": "15_reeds",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-db8a98a2-1561-422e-90dc-e0973b88fd95.png"
+  },
+  {
+    "id": "16_damage-decals",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-b6182cf3-0c9e-4694-a776-88f5f8583dbb.png"
+  },
+  {
+    "id": "17_soldier-tent-cloth",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-22f48d2f-bf43-45b7-9655-ae324398be30.png"
+  },
+  {
+    "id": "18_command-tent-cloth",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-0c07da3b-4553-4d41-9ac5-14b52afcfae2.png"
+  },
+  {
+    "id": "19_distant-palisade",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-369b9d2b-2f44-41ec-94df-599ea4770c2f.png"
+  },
+  {
+    "id": "20_cage-bars",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-1076a4d3-8052-4d12-83fc-7d77206646b2.png"
+  },
+  {
+    "id": "21_weapon-cards",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-16ab98f4-5931-4489-897c-444af6a477fa.png"
+  },
+  {
+    "id": "22_flags",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-19a4cbd0-5510-4e11-b96d-771c78ca6249.png"
+  },
+  {
+    "id": "23_torches",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-584c87a4-f7d2-4aee-a132-149fbf196d40.png"
+  },
+  {
+    "id": "24_wood-piles",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-c9f1b436-5566-4010-bbf2-7510bbe6a223.png"
+  },
+  {
+    "id": "25_ritual-props",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-e1377dd1-a368-499e-9d1e-aa455f1f590d.png"
+  },
+  {
+    "id": "26_distant-mountains",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-18cf8062-1bd5-4f87-a6ee-cdba3ba60fcc.png"
+  },
+  {
+    "id": "27_fallen-leaves",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-4d766ade-eaf1-41af-b9a4-ebc9b4352a72.png"
+  },
+  {
+    "id": "28_ground-marks",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-9250552e-5637-4fbc-8667-b120fdaa57db.png"
+  },
+  {
+    "id": "29_ritual-circle",
+    "mode": "built-in imagegen",
+    "source": "C:\\Users\\luuha\\.codex\\generated_images\\01a17ed4-7a01-7971-affe-9f6ce90bf207\\exec-1160303a-3a53-4a7b-bcfe-30d65c16512e.png"
+  }
+]

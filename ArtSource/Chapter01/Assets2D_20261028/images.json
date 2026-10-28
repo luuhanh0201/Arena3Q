@@ -1,0 +1,468 @@
+﻿[
+    {
+        "file":  "01_ground-earth.png",
+        "name":  "Đất nền",
+        "workbookIds":  [
+                            1
+                        ],
+        "width":  1254,
+        "height":  1254,
+        "bytes":  3366307,
+        "sha256":  "67b40b533579e1b90a8e9e11cee5b791cb6298104cdcfcbcfc3919ccb0e9691f",
+        "alphaMinSampled":  255,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0,
+        "partialAlphaSampleRatio":  0,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "02_ground-path.png",
+        "name":  "Đường đất",
+        "workbookIds":  [
+                            1
+                        ],
+        "width":  1254,
+        "height":  1254,
+        "bytes":  2523590,
+        "sha256":  "06b9d75ccd46010276997a0a2e63207fa55765cf26fb6b016cd67172fd921811",
+        "alphaMinSampled":  255,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0,
+        "partialAlphaSampleRatio":  0,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "03_ground-grass.png",
+        "name":  "Cỏ nền",
+        "workbookIds":  [
+                            1
+                        ],
+        "width":  1254,
+        "height":  1254,
+        "bytes":  3447692,
+        "sha256":  "3f8b76b929d89b601eafd59d240a07637c3ac6ab77dbcf11cfa7a7cf4589b7ed",
+        "alphaMinSampled":  255,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0,
+        "partialAlphaSampleRatio":  0,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "04_paddy-ground.png",
+        "name":  "Nền ruộng lúa",
+        "workbookIds":  [
+                            15
+                        ],
+        "width":  1254,
+        "height":  1254,
+        "bytes":  2252418,
+        "sha256":  "606350639093e2b991cad9b156b07d2c7e9a5f9afe5af55ae2bc3a0fff691815",
+        "alphaMinSampled":  255,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0,
+        "partialAlphaSampleRatio":  0,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "05_water.png",
+        "name":  "Mặt nước",
+        "workbookIds":  [
+                            7
+                        ],
+        "width":  1254,
+        "height":  1254,
+        "bytes":  1941483,
+        "sha256":  "7e7246e96c38db047c1f2034af7ef17fd0941955b83af8ab84fedba552274094",
+        "alphaMinSampled":  255,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0,
+        "partialAlphaSampleRatio":  0,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "06_wood-floor.png",
+        "name":  "Ván sàn",
+        "workbookIds":  [
+                            10
+                        ],
+        "width":  1254,
+        "height":  1254,
+        "bytes":  2097559,
+        "sha256":  "49ab1e642b45c7ee1bfa28c5c7bc7833cf72215e4caeb83909fff9daa19f6de7",
+        "alphaMinSampled":  255,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0,
+        "partialAlphaSampleRatio":  0,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "07_small-stones.png",
+        "name":  "Sỏi đá nhỏ",
+        "workbookIds":  [
+                            5
+                        ],
+        "width":  2172,
+        "height":  724,
+        "bytes":  747543,
+        "sha256":  "5d490271e5988f01cbc3066966407fecfef086b4f2eddbb52c468d9a4fa7ff50",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  254,
+        "transparentSampleRatio":  0.7771,
+        "partialAlphaSampleRatio":  0.2229,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "08_riverbank.png",
+        "name":  "Viền bờ suối",
+        "workbookIds":  [
+                            6
+                        ],
+        "width":  1774,
+        "height":  887,
+        "bytes":  1410361,
+        "sha256":  "9b6a7b0d0bbff88d391a0dbde1032e7f24d9c364adebd8763cc0b32d6b69ed63",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0.6112,
+        "partialAlphaSampleRatio":  0.3882,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "09_bamboo-leaves.png",
+        "name":  "Tán lá trúc",
+        "workbookIds":  [
+                            12
+                        ],
+        "width":  1774,
+        "height":  887,
+        "bytes":  1480544,
+        "sha256":  "4fbc064e763dc51591969e3e354ff79da3fb53b9371cb1efafd648b42e940bd1",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0.6081,
+        "partialAlphaSampleRatio":  0.3915,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "10_bushes.png",
+        "name":  "Bụi cây",
+        "workbookIds":  [
+                            13
+                        ],
+        "width":  2172,
+        "height":  724,
+        "bytes":  1394927,
+        "sha256":  "83b1b758d3048ba0dd5fda023a1228cfe063cebcd143d4ac183ad65ba3996d50",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0.5521,
+        "partialAlphaSampleRatio":  0.4477,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "11_grass-clumps.png",
+        "name":  "Bụi cỏ",
+        "workbookIds":  [
+                            14
+                        ],
+        "width":  2172,
+        "height":  724,
+        "bytes":  803013,
+        "sha256":  "bc8172635ed4f51b11d81b54252ad39832243a3fc469a723c7169c8ef9e42bc3",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0.7806,
+        "partialAlphaSampleRatio":  0.2186,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "12_rice-clumps.png",
+        "name":  "Cụm lúa nước",
+        "workbookIds":  [
+                            15
+                        ],
+        "width":  1774,
+        "height":  887,
+        "bytes":  2089826,
+        "sha256":  "30071403aefba2b69b34835db4726238b86edefb81e5820778ff67f81b02e6d8",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0.4955,
+        "partialAlphaSampleRatio":  0.5043,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "13_dead-trees.png",
+        "name":  "Cây khô trang trí",
+        "workbookIds":  [
+                            16
+                        ],
+        "width":  1774,
+        "height":  887,
+        "bytes":  758569,
+        "sha256":  "2ce960aa3d371a490cba176c63b73f27185e9cc3e16ca660ee3a55ce8fd70079",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0.8387,
+        "partialAlphaSampleRatio":  0.161,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "14_fallen-logs.png",
+        "name":  "Gỗ đổ",
+        "workbookIds":  [
+                            17
+                        ],
+        "width":  1774,
+        "height":  887,
+        "bytes":  815444,
+        "sha256":  "e2c061100206374ec0be23e58943ddef60ec635199a3375bcdf2400ea920d8c5",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0.8011,
+        "partialAlphaSampleRatio":  0.1983,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "15_reeds.png",
+        "name":  "Lau sậy",
+        "workbookIds":  [
+                            18
+                        ],
+        "width":  1774,
+        "height":  887,
+        "bytes":  1482397,
+        "sha256":  "3131ccffe8ac99ba757e56c6ea205bff943cb2c1f88d5ac5e02b96ce592f8103",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0.6523,
+        "partialAlphaSampleRatio":  0.3476,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "16_damage-decals.png",
+        "name":  "Vết hư hại nhà",
+        "workbookIds":  [
+                            20
+                        ],
+        "width":  1536,
+        "height":  1024,
+        "bytes":  2604776,
+        "sha256":  "9e4a387a6a5901ac9ad0452dc1069a6d59ae8aaf09cffbb1e29701e4023f5c35",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  253,
+        "transparentSampleRatio":  0.4398,
+        "partialAlphaSampleRatio":  0.5602,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "17_soldier-tent-cloth.png",
+        "name":  "Vải lều lính",
+        "workbookIds":  [
+                            25
+                        ],
+        "width":  1254,
+        "height":  1254,
+        "bytes":  3928168,
+        "sha256":  "455d347784e55b4f983f4d26b1b2c408a58ac09f0d16ca569e07095b560de91e",
+        "alphaMinSampled":  255,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0,
+        "partialAlphaSampleRatio":  0,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "18_command-tent-cloth.png",
+        "name":  "Vải lều chỉ huy",
+        "workbookIds":  [
+                            26
+                        ],
+        "width":  1254,
+        "height":  1254,
+        "bytes":  3531262,
+        "sha256":  "66dc41a6858507a8bfe73ce19ab7c2db4268f583576b0e1bdc15bf769a259cbb",
+        "alphaMinSampled":  255,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0,
+        "partialAlphaSampleRatio":  0,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "19_distant-palisade.png",
+        "name":  "Hàng rào xa",
+        "workbookIds":  [
+                            28
+                        ],
+        "width":  1920,
+        "height":  819,
+        "bytes":  1867438,
+        "sha256":  "b53b86314621a1c2988b8cdb0ee5fc11a1c261c4b486c622d6b3268260d60d45",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0.4552,
+        "partialAlphaSampleRatio":  0.5446,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "20_cage-bars.png",
+        "name":  "Song cũi giam",
+        "workbookIds":  [
+                            32
+                        ],
+        "width":  1536,
+        "height":  1024,
+        "bytes":  2036015,
+        "sha256":  "e82066ec1bc2ce21db242a3153d39f7e9eaa3e318e5996246b2fd34a86b08a79",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  254,
+        "transparentSampleRatio":  0.6412,
+        "partialAlphaSampleRatio":  0.3588,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "21_weapon-cards.png",
+        "name":  "Vũ khí trang trí",
+        "workbookIds":  [
+                            46,
+                            47
+                        ],
+        "width":  1536,
+        "height":  1024,
+        "bytes":  1755243,
+        "sha256":  "c47f63232dd724ff67b861e6f0c13ca1027937c38b2bd6ebe6a581d18ef3babe",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  253,
+        "transparentSampleRatio":  0.7569,
+        "partialAlphaSampleRatio":  0.2431,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "22_flags.png",
+        "name":  "Vải cờ quân đội",
+        "workbookIds":  [
+                            48
+                        ],
+        "width":  1774,
+        "height":  887,
+        "bytes":  1486303,
+        "sha256":  "f72f7d7971cea7f89169e7b95eba951ebe650fdecbc2ff3d4682c1524356437d",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0.5927,
+        "partialAlphaSampleRatio":  0.4071,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "23_torches.png",
+        "name":  "Thân đuốc",
+        "workbookIds":  [
+                            51
+                        ],
+        "width":  1536,
+        "height":  1024,
+        "bytes":  1493674,
+        "sha256":  "ec1b3867dd1fe51a6e6b1747136aced939b7f963e649823a810192e730bf921b",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  253,
+        "transparentSampleRatio":  0.8449,
+        "partialAlphaSampleRatio":  0.1551,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "24_wood-piles.png",
+        "name":  "Đống vật liệu",
+        "workbookIds":  [
+                            54
+                        ],
+        "width":  1774,
+        "height":  887,
+        "bytes":  1181543,
+        "sha256":  "f75a453dfb1373db5e5692edfe937bee84f675d24886e09615d8400042e0ef62",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0.6611,
+        "partialAlphaSampleRatio":  0.3386,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "25_ritual-props.png",
+        "name":  "Đồ tế lễ",
+        "workbookIds":  [
+                            56
+                        ],
+        "width":  1774,
+        "height":  887,
+        "bytes":  1158407,
+        "sha256":  "45061e6f970a0d3d15e9f77aab6e99fb3c7d7d9d0448be457d2babb0e4b5afda",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0.6873,
+        "partialAlphaSampleRatio":  0.3124,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "26_distant-mountains.png",
+        "name":  "Núi ngoài biên",
+        "workbookIds":  [
+                            3
+                        ],
+        "width":  1774,
+        "height":  887,
+        "bytes":  1793048,
+        "sha256":  "8d7133f56978f3bff33f108ab4d966126c1794bc6a9b436fbc1e88a001bc497a",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  253,
+        "transparentSampleRatio":  0.3443,
+        "partialAlphaSampleRatio":  0.6557,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "27_fallen-leaves.png",
+        "name":  "Lá và cánh hoa",
+        "workbookIds":  [
+                            "extra-leaves"
+                        ],
+        "width":  1024,
+        "height":  1536,
+        "bytes":  1920239,
+        "sha256":  "7f3e2e32b758bed0f0971587e2a0988de503c203f63831e7728581bca2a7efcd",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  254,
+        "transparentSampleRatio":  0.7076,
+        "partialAlphaSampleRatio":  0.2924,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "28_ground-marks.png",
+        "name":  "Vết bánh xe và chân",
+        "workbookIds":  [
+                            "extra-marks",
+                            1
+                        ],
+        "width":  1536,
+        "height":  1024,
+        "bytes":  2682763,
+        "sha256":  "ebed70229c659ae31d863b15862c98fc10e0b6e0024ae2b91616288c425ac17f",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  253,
+        "transparentSampleRatio":  0.3506,
+        "partialAlphaSampleRatio":  0.6494,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    },
+    {
+        "file":  "29_ritual-circle.png",
+        "name":  "Vòng phù chú",
+        "workbookIds":  [
+                            "extra-circle"
+                        ],
+        "width":  1264,
+        "height":  1244,
+        "bytes":  1679365,
+        "sha256":  "dc589c81735bddcb9ccb5d9266bfe5f897a0359e65ca88584db47d2017031f33",
+        "alphaMinSampled":  0,
+        "alphaMaxSampled":  255,
+        "transparentSampleRatio":  0.5197,
+        "partialAlphaSampleRatio":  0.4796,
+        "status":  "drawn; pending 3D scene matching and runtime validation"
+    }
+]

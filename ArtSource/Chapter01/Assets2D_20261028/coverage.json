@@ -1,0 +1,399 @@
+[
+  {
+    "id": 1,
+    "name": "Ground Mesh – mặt đất",
+    "variantsRequested": "Phẳng, dốc",
+    "stage": "1–7",
+    "priority": "P0",
+    "category": "Hybrid (3D thô + 2D)",
+    "scope": "Giữ mesh phẳng thấp poly; toàn bộ chi tiết (đường đất, vệt bánh xe, cỏ nền, nứt) làm bằng texture splat + decal.",
+    "files": [
+      "01_ground-earth.png",
+      "02_ground-path.png",
+      "03_ground-grass.png",
+      "28_ground-marks.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 3,
+    "name": "Vách đá / Cliff",
+    "variantsRequested": "3–4 module",
+    "stage": "3,5,7",
+    "priority": "P0",
+    "category": "Hybrid (3D thô + 2D)",
+    "scope": "Vách sát sa bàn giữ 3D; vách/núi ngoài biên map vẽ thành backdrop 2D (matte painting) như ảnh bản đồ.",
+    "files": [
+      "26_distant-mountains.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 5,
+    "name": "Đá nhỏ rải cảnh",
+    "variantsRequested": "3 mẫu",
+    "stage": "1–7",
+    "priority": "P1",
+    "category": "2D thay thế được",
+    "scope": "Decal/sprite đá trên mặt đất hoặc nướng thẳng vào texture nền.",
+    "files": [
+      "07_small-stones.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 6,
+    "name": "Bờ sông / bờ suối",
+    "variantsRequested": "Thẳng, cong",
+    "stage": "1,2,3",
+    "priority": "P1",
+    "category": "2D thay thế được",
+    "scope": "Vẽ viền bờ vào texture/decal mặt đất, nối vào shader nước; chỉ thêm dải mesh dốc thấp nếu cần độ cao.",
+    "files": [
+      "08_riverbank.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 7,
+    "name": "Mặt nước",
+    "variantsRequested": "Mặt phẳng, cong",
+    "stage": "1,2,3",
+    "priority": "P1",
+    "category": "2D thay thế được",
+    "scope": "Vốn đã là 2D: plane + Shader Graph (flow map, foam viền). Không cần model.",
+    "files": [
+      "05_water.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 10,
+    "name": "Sàn gỗ / đường gỗ",
+    "variantsRequested": "2 module",
+    "stage": "3–6",
+    "priority": "P2",
+    "category": "2D thay thế được",
+    "scope": "Sàn phẳng → decal/texture ván gỗ trên mặt đất; chỉ giữ 3D nếu là sàn nâng.",
+    "files": [
+      "06_wood-floor.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 11,
+    "name": "Cây lá rộng",
+    "variantsRequested": "3–4 mẫu",
+    "stage": "1–7",
+    "priority": "P0",
+    "category": "Hybrid (3D thô + 2D)",
+    "scope": "Cây gần đường đi/che tầm nhìn: 3D. Cây rìa map, hậu cảnh: impostor/billboard render từ chính model 3D.",
+    "files": [],
+    "status": "pending-render-from-approved-3d-model",
+    "note": "Chưa có model/render chuẩn; không thay impostor bằng ảnh AI."
+  },
+  {
+    "id": 12,
+    "name": "Cây trúc",
+    "variantsRequested": "3 mẫu",
+    "stage": "3",
+    "priority": "P0",
+    "category": "Hybrid (3D thô + 2D)",
+    "scope": "Thân trúc = cylinder thấp poly; tán lá = card alpha; cụm xa = billboard. Trúc vốn hợp làm bằng card.",
+    "files": [
+      "09_bamboo-leaves.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 13,
+    "name": "Bụi cây lớn",
+    "variantsRequested": "3 mẫu",
+    "stage": "1–7",
+    "priority": "P1",
+    "category": "2D thay thế được",
+    "scope": "Cụm card/billboard; không cần collider.",
+    "files": [
+      "10_bushes.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 14,
+    "name": "Cụm cỏ 3D",
+    "variantsRequested": "2–3 mẫu",
+    "stage": "1–7",
+    "priority": "P1",
+    "category": "2D thay thế được",
+    "scope": "Card cỏ + shader gió, hoặc chỉ vẽ vào texture nền.",
+    "files": [
+      "11_grass-clumps.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 15,
+    "name": "Cụm lúa",
+    "variantsRequested": "2 mẫu",
+    "stage": "2,4",
+    "priority": "P0",
+    "category": "2D thay thế được",
+    "scope": "Card/cross-quad bông lúa + texture ruộng (nước + đất). Không có model lúa 3D miễn phí chất lượng.",
+    "files": [
+      "04_paddy-ground.png",
+      "12_rice-clumps.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 16,
+    "name": "Cây khô",
+    "variantsRequested": "2 mẫu",
+    "stage": "3,6",
+    "priority": "P2",
+    "category": "2D thay thế được",
+    "scope": "Cây khô trang trí → billboard (silhouette đọc rõ ở 2D). Giữ 3D nếu là vật cản.",
+    "files": [
+      "13_dead-trees.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 17,
+    "name": "Khúc gỗ đổ",
+    "variantsRequested": "2 mẫu",
+    "stage": "3,5",
+    "priority": "P2",
+    "category": "2D thay thế được",
+    "scope": "Chỉ trang trí → sprite/decal; giữ 3D nếu chặn đường.",
+    "files": [
+      "14_fallen-logs.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 18,
+    "name": "Lau sậy ven sông",
+    "variantsRequested": "2 mẫu",
+    "stage": "1,2,3",
+    "priority": "P2",
+    "category": "2D thay thế được",
+    "scope": "Card alpha ven nước.",
+    "files": [
+      "15_reeds.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 20,
+    "name": "Nhà dân hư hỏng",
+    "variantsRequested": "1–2 mẫu",
+    "stage": "1,4",
+    "priority": "P1",
+    "category": "Hybrid (3D thô + 2D)",
+    "scope": "Giữ nhà gốc 3D; hư hại (cháy sém, thủng mái, nứt) = decal 2D + VFX khói.",
+    "files": [
+      "16_damage-decals.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 25,
+    "name": "Lều lính",
+    "variantsRequested": "2 mẫu",
+    "stage": "3,4,5,6",
+    "priority": "P0",
+    "category": "Hybrid (3D thô + 2D)",
+    "scope": "Khung lều 3D; hoạ tiết, biểu tượng Khăn Vàng, cờ = texture/decal; vải có thể dùng vertex wave.",
+    "files": [
+      "17_soldier-tent-cloth.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 26,
+    "name": "Lều tướng / chỉ huy",
+    "variantsRequested": "1–2 mẫu",
+    "stage": "5,6",
+    "priority": "P0",
+    "category": "Hybrid (3D thô + 2D)",
+    "scope": "Như lều lính; cột cờ + hoạ tiết chỉ huy bằng decal để nhận diện Mini Boss.",
+    "files": [
+      "18_command-tent-cloth.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 28,
+    "name": "Hàng rào gỗ quân sự",
+    "variantsRequested": "3 module",
+    "stage": "3–6",
+    "priority": "P0",
+    "category": "Hybrid (3D thô + 2D)",
+    "scope": "Đoạn rào làm vật cản: 3D nhưng cắt còn ~1–2k tris/đoạn (16.432 tris quá nặng để lặp trên mobile). Rào xa/ngoài biên: card alpha.",
+    "files": [
+      "19_distant-palisade.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 32,
+    "name": "Cũi giam / nhà giam",
+    "variantsRequested": "1 mẫu",
+    "stage": "1,4",
+    "priority": "P0",
+    "category": "Hybrid (3D thô + 2D)",
+    "scope": "Khung + mái 3D; song gỗ = card alpha cutout (nhẹ, nhìn tốt từ camera cố định).",
+    "files": [
+      "20_cage-bars.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 36,
+    "name": "Bệ trụ năng lượng",
+    "variantsRequested": "1 mẫu x3",
+    "stage": "7",
+    "priority": "P0",
+    "category": "Hybrid (3D thô + 2D)",
+    "scope": "Bệ 3D đơn giản; năng lượng = VFX 2D (flipbook/particle).",
+    "files": [
+      "Reuse/magic_01.png",
+      "Reuse/spark_01.png"
+    ],
+    "status": "existing-particle-source-only",
+    "note": "Chưa có animation, prefab, fade hoặc nghiệm thu hiệu ứng."
+  },
+  {
+    "id": 37,
+    "name": "Lư hương / đài lửa",
+    "variantsRequested": "2 mẫu",
+    "stage": "7",
+    "priority": "P1",
+    "category": "Hybrid (3D thô + 2D)",
+    "scope": "Thân 3D; khói hương/lửa = flipbook 2D.",
+    "files": [
+      "Reuse/smoke_01.png",
+      "Reuse/fire_01.png"
+    ],
+    "status": "existing-particle-source-only",
+    "note": "Chưa có animation, prefab, fade hoặc nghiệm thu hiệu ứng."
+  },
+  {
+    "id": 46,
+    "name": "Giá đặt vũ khí",
+    "variantsRequested": "2 mẫu",
+    "stage": "3,5,6",
+    "priority": "P1",
+    "category": "Hybrid (3D thô + 2D)",
+    "scope": "Giá gỗ 3D; vũ khí cắm trên giá = card alpha.",
+    "files": [
+      "21_weapon-cards.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 47,
+    "name": "Thương, đao, khiên trang trí",
+    "variantsRequested": "3 mẫu",
+    "stage": "3,5,6",
+    "priority": "P1",
+    "category": "2D thay thế được",
+    "scope": "Vật mỏng → card alpha 2D, nhìn tốt từ camera cố định.",
+    "files": [
+      "21_weapon-cards.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 48,
+    "name": "Cột cờ quân đội",
+    "variantsRequested": "2 mẫu",
+    "stage": "3–7",
+    "priority": "P0",
+    "category": "Hybrid (3D thô + 2D)",
+    "scope": "Cán 3D; cờ = quad 2D + shader lay gió.",
+    "files": [
+      "22_flags.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 50,
+    "name": "Đống lửa trại (củi, đá)",
+    "variantsRequested": "1 mẫu",
+    "stage": "3–6",
+    "priority": "P1",
+    "category": "Hybrid (3D thô + 2D)",
+    "scope": "Củi/đá 3D; lửa + khói = flipbook 2D.",
+    "files": [
+      "Reuse/fire_01.png",
+      "Reuse/smoke_07.png"
+    ],
+    "status": "existing-particle-source-only",
+    "note": "Chưa có animation, prefab, fade hoặc nghiệm thu hiệu ứng."
+  },
+  {
+    "id": 51,
+    "name": "Đuốc và giá đuốc",
+    "variantsRequested": "2 mẫu",
+    "stage": "3–7",
+    "priority": "P1",
+    "category": "2D thay thế được",
+    "scope": "Đuốc mỏng → sprite + flipbook lửa; giá đuốc 3D chỉ khi đứng riêng.",
+    "files": [
+      "23_torches.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 54,
+    "name": "Đống gỗ và vật liệu",
+    "variantsRequested": "2 mẫu",
+    "stage": "1–6",
+    "priority": "P2",
+    "category": "2D thay thế được",
+    "scope": "Trang trí → sprite/decal, hoặc gộp mesh.",
+    "files": [
+      "24_wood-piles.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  },
+  {
+    "id": 56,
+    "name": "Vật thể nghi lễ nhỏ",
+    "variantsRequested": "2 mẫu",
+    "stage": "7",
+    "priority": "P1",
+    "category": "2D thay thế được",
+    "scope": "Đĩa tế, cuộn giấy, bùa = decal/sprite; trụ đá nhỏ giữ 3D.",
+    "files": [
+      "25_ritual-props.png"
+    ],
+    "status": "drawn-pending-scene-validation",
+    "note": "Sheet nguồn, chưa cắt sprite/atlas hoặc đối màu với render 3D."
+  }
+]

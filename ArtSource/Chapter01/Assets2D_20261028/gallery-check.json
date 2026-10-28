@@ -1,0 +1,121 @@
+{
+  "files": [
+    {
+      "src": "28_ground-marks.png",
+      "loaded": true
+    },
+    {
+      "src": "29_ritual-circle.png",
+      "loaded": true
+    },
+    {
+      "src": "27_fallen-leaves.png",
+      "loaded": true
+    },
+    {
+      "src": "24_wood-piles.png",
+      "loaded": true
+    },
+    {
+      "src": "26_distant-mountains.png",
+      "loaded": true
+    },
+    {
+      "src": "25_ritual-props.png",
+      "loaded": true
+    },
+    {
+      "src": "23_torches.png",
+      "loaded": true
+    },
+    {
+      "src": "22_flags.png",
+      "loaded": true
+    },
+    {
+      "src": "21_weapon-cards.png",
+      "loaded": true
+    },
+    {
+      "src": "20_cage-bars.png",
+      "loaded": true
+    },
+    {
+      "src": "19_distant-palisade.png",
+      "loaded": true
+    },
+    {
+      "src": "18_command-tent-cloth.png",
+      "loaded": true
+    },
+    {
+      "src": "17_soldier-tent-cloth.png",
+      "loaded": true
+    },
+    {
+      "src": "16_damage-decals.png",
+      "loaded": true
+    },
+    {
+      "src": "15_reeds.png",
+      "loaded": true
+    },
+    {
+      "src": "13_dead-trees.png",
+      "loaded": true
+    },
+    {
+      "src": "14_fallen-logs.png",
+      "loaded": true
+    },
+    {
+      "src": "12_rice-clumps.png",
+      "loaded": true
+    },
+    {
+      "src": "10_bushes.png",
+      "loaded": true
+    },
+    {
+      "src": "11_grass-clumps.png",
+      "loaded": true
+    },
+    {
+      "src": "09_bamboo-leaves.png",
+      "loaded": true
+    },
+    {
+      "src": "08_riverbank.png",
+      "loaded": true
+    },
+    {
+      "src": "07_small-stones.png",
+      "loaded": true
+    },
+    {
+      "src": "03_ground-grass.png",
+      "loaded": true
+    },
+    {
+      "src": "06_wood-floor.png",
+      "loaded": true
+    },
+    {
+      "src": "05_water.png",
+      "loaded": true
+    },
+    {
+      "src": "04_paddy-ground.png",
+      "loaded": true
+    },
+    {
+      "src": "02_ground-path.png",
+      "loaded": true
+    },
+    {
+      "src": "01_ground-earth.png",
+      "loaded": true
+    }
+  ],
+  "allLoaded": true
+}
