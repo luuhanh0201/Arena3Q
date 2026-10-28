@@ -1,6 +1,7 @@
 <!doctype html><html lang="vi"><meta charset="utf-8"><title>Sửa chi tiết 2D Chương 1</title>
 <style>body{background:#242b26;color:#ede5d0;font:17px Segoe UI;margin:24px}header{position:sticky;top:0;background:#242b26;padding:12px;z-index:2}h1{font-size:22px}figure{margin:24px 0;border:1px solid #686b59;padding:12px}img{width:100%;display:block}a{color:#e6c577}.cols{display:flex;justify-content:space-around;padding:12px;font-weight:bold}</style>
 <header><h1>Chương 1: ảnh trước / sau sửa</h1><p>Trái: bản gốc. Phải: bản sửa mới nhất. Cùng kích thước, cùng nền. Các hàng: đất, đường, cỏ; bờ suối thêm nền nước.</p><span id="count"></span> · <button onclick="check()">Cập nhật ảnh</button> · Tự cập nhật mỗi 15 giây</header><main id="list"></main>
+<nav><p>Claude: đạt phần hình 2D và atlas, khoảng 84%. Chờ kiểm ghép cảnh 3D. <a href="sprite-contact-sheet.png" target="_blank">55 sprite</a> · <a href="atlas-before-after.png" target="_blank">Trước/sau đóng atlas</a> · <a href="14-export-edge-proof.png" target="_blank">Kiểm mép gỗ</a></p></nav>
 <script>
 const ids=['16_damage-decals','26_distant-mountains','12_rice-clumps','18_command-tent-cloth','25_ritual-props','04_paddy-ground','08_riverbank','21_weapon-cards','28_ground-marks','09_bamboo-leaves','14_fallen-logs','17_soldier-tent-cloth','19_distant-palisade','20_cage-bars','22_flags','23_torches','01_ground-earth','02_ground-path','03_ground-grass','05_water','06_wood-floor','07_small-stones','10_bushes','11_grass-clumps','13_dead-trees','15_reeds','24_wood-piles','27_fallen-leaves','29_ritual-circle'];
 const figures=new Map();let checking=false;
@@ -8,5 +9,5 @@ async function check(){if(checking)return;checking=true;await Promise.all(ids.ma
  const url=id+'-before-after.png?t='+Date.now(),i=new Image();i.onerror=resolve;i.onload=()=>{
   let f=figures.get(id);if(!f){f=document.createElement('figure');f.id=id;f.innerHTML='<h2>'+id+'</h2><div class="cols"><span>TRƯỚC</span><span>SAU</span></div><a target="_blank"><img></a>';figures.set(id,f);document.getElementById('list').append(f);}
   f.querySelector('img').src=url;f.querySelector('a').href=url;document.getElementById('count').textContent=figures.size+' tấm so sánh';resolve();};i.src=url;
-})));checking=false;}check();setInterval(check,15000);
+})));ids.forEach(id=>{const f=figures.get(id);if(f)document.getElementById('list').append(f)});checking=false;}check();setInterval(check,15000);
 </script></html>

@@ -1,10 +1,12 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
+const crypto=require('node:crypto');
 const sharp=require('../../../../../Admin/node_modules/sharp');
 const {raw,stats,base,review}=require('./process-assets.cjs');
 const rgba=im=>sharp(im.data,{raw:{width:im.w,height:im.h,channels:4}});
 async function main(){
  const manifest=JSON.parse(fs.readFileSync(path.join(base,'Export/atlas.json'))),pages=await Promise.all(manifest.pages.map(p=>raw(path.join(base,p))));
+ for(const [file,hash] of Object.entries(manifest.sourceHashes)){if(crypto.createHash('sha256').update(fs.readFileSync(path.join(base,file))).digest('hex')!==hash)throw Error('Stale atlas; source changed: '+file);}
  const results=[],panels=[];
  for(const [i,s] of manifest.sprites.entries()){
   const card=await raw(path.join(base,'Export/Sprites',s.name+'.png')),a=pages[s.page-1],r=s.rect;

@@ -1,5 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
+const crypto=require('node:crypto');
 const sharp=require('../../../../../Admin/node_modules/sharp');
 const {raw,cleanAlpha,bounds,save,resizeRaw,base}=require('./process-assets.cjs');
 const {separate}=require('./component-regions.cjs');
@@ -24,7 +25,8 @@ async function main(){
    }
   }
  }
- const manifest={pageSize:1024,pageSizes:[],spriteCell:256,gutterBetweenRects:64,paddingMethod:'body RGB expanded through alpha-zero in each 288px slot; no rotation',coordinates:'pixels from top-left; pivots normalized x,y from bottom-left',sprites:[],pages:[]};
+ const sourceHashes=Object.fromEntries(jobs.filter(j=>j.transparent).map(j=>[j.id+'.png',crypto.createHash('sha256').update(fs.readFileSync(path.join(base,j.id+'.png'))).digest('hex')]));
+ const manifest={sourceHashes,pageSize:1024,pageSizes:[],spriteCell:256,gutterBetweenRects:64,paddingMethod:'body RGB expanded through alpha-zero in each 288px slot; no rotation',coordinates:'pixels from top-left; pivots normalized x,y from bottom-left',sprites:[],pages:[]};
  for(let page=0;page<Math.ceil(entries.length/9);page++){
   const items=entries.slice(page*9,page*9+9),layers=[],pageSize=items.length===1?512:1024;
   for(let i=0;i<items.length;i++){const e=items[i],x=(i%3)*320+16,y=Math.floor(i/3)*320+16;

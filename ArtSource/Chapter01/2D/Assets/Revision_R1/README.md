@@ -23,6 +23,7 @@ Chạy từ gốc repo:
 node ArtSource/Chapter01/2D/Assets/Revision_R1/process-assets.cjs
 node ArtSource/Chapter01/2D/Assets/Revision_R1/export-atlas.cjs
 node ArtSource/Chapter01/2D/Assets/Revision_R1/verify-exports.cjs
+node ArtSource/Chapter01/2D/Assets/Revision_R1/verify-mips.cjs
 ```
 
 `process-assets.cjs`: alpha thân >=240 đưa về 255, giữ alpha mép mềm, làm sạch RGB mép và giãn màu thân qua vùng trống. Núi dùng nhánh giữ RGB bán trong suốt hợp lệ để không phá sương. Texture kín cân seam hai trục. `Metrics/` ghi hash, alpha, kích thước, seam và đường dẫn so sánh từng tấm.
@@ -43,6 +44,8 @@ Kiểm đóng gói đối chiếu alpha và RGB nhìn thấy giữa sprite riên
 
 ## Review và giới hạn
 
-Claude đã xem trước/sau trong cùng workspace và phản hồi các vòng 1340–1410: lỗi chính của bờ suối/vũ khí/vết đất đã đạt; núi hết sọc ~85%; ngói đã hết góc 3/4 sai. Bông lúa và màu vải vòng cuối đều được xác nhận đạt ~82%. Hết các mục lệch nhiều và mục chính vòng 1–3; atlas đã gửi kiểm lượt cuối. Các tỉ lệ này là đánh giá hình của Claude, không phải kết quả trong game.
+Claude chốt vòng sửa tại thư 1425: **ĐẠT bộ 2D và atlas, trung bình khoảng 84%, không còn tấm LỆCH NHIỀU**. Các điểm chính: 08 ~87, 12 ~82, 16 ~78, 18 ~82, 21 ~87, 22 ~82, 25 ~85, 26 ~85, 28 ~82, 04 ~80; còn lại ~80–90. Đây là đánh giá hình của Claude, không phải kết quả trong game. Mép gỗ 14 được xác nhận là nâu gỗ hợp lệ, không phải quầng xanh; ảnh kiểm `14-export-edge-proof.png`.
+
+Atlas cuối chứa cờ vàng trơn, 55 sprite/6 trang 1024 + 1 trang 512, khoảng cách rect 64px. Manifest lưu SHA256 nguồn; kiểm xuất báo lỗi nếu nguồn đã đổi sau khi đóng gói. `mip-check.json`: 220 đối chiếu qua 4 mức thu nhỏ 1/2 đến 1/16, không trộn màu sprite kế bên trong phép giảm Lanczos offline. Không thay thế kiểm mip/ASTC thật trong Unity. Trang trước/sau tải đủ 29/29 ảnh, cập nhật ảnh hoạt động, không lỗi JavaScript (`review-check.json`).
 
 Còn cần kiểm khi ghép model thật: màu núi và rêu, mép bờ nước trên material nước, viền mảng ngói, độ rộng luống, kích thước/vị trí sprite, ánh sáng, che khuất, compression/mipmap và 30/60/120 FPS. Chưa có Art Bible/render 3D chuẩn; không coi bộ này đã nghiệm thu tích hợp. Impostor cây lá rộng vẫn chờ render model 3D đúng workbook.

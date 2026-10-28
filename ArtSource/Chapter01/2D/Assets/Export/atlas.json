@@ -1,4 +1,27 @@
 {
+  "sourceHashes": {
+    "07_small-stones.png": "cd68905e40b9bcdb623e7bd7e5ab43814ce5bdb9a8326f2e59badce29d85d1eb",
+    "08_riverbank.png": "0b868f44f1f56a6c0bb978d89e849b9d15fa504315802c1878ad59f4c3aa108d",
+    "09_bamboo-leaves.png": "aa7c96fee65850867f176c0c8ac6a24f33cda9ff6320cd61138591b3e211f606",
+    "10_bushes.png": "19be62885f2d9e4aad8de545eabf75618c2a040261ba94b64982b4ee1a376f30",
+    "11_grass-clumps.png": "411da016b58f383ee1b0949b779d0530662f58e67bfa07d57d6764aacd540c4c",
+    "12_rice-clumps.png": "6341fc95aa679817ee5246dfa368b22cc9146034f3d10b886c0a1514ff004fe4",
+    "13_dead-trees.png": "53b657b8119637145406ea587396c2d87db815f94045a2e558f688f8dbb65e7c",
+    "14_fallen-logs.png": "de24dd0988e422af026ab2967f82825fef0c0c61a1edf08a31b4743d484598fb",
+    "15_reeds.png": "f8666ecc4da126b35f297223dea53ea36e4dce521f2b79865b6f8ce61224c089",
+    "16_damage-decals.png": "0ae4aa9a6a6dde5af017d940195fe88c5767910e33e6d3fcf329261e7d9fc9fa",
+    "19_distant-palisade.png": "40092aa88ab2a390019742f77aa9f269e65e843d88730a01d87fbfc9ba4c5f08",
+    "20_cage-bars.png": "74a63627dc8798cbe26ab7ed1a8104fd88d266c2bf18ca948b91320894c3de79",
+    "21_weapon-cards.png": "28b4cc36c404ce649afd30f3571c124cefba6840babe2344bfcd9131c25ae5c4",
+    "22_flags.png": "a5aefc96a58896721c7245ee10746226a6cd4dd8aa7e36427d9426f3d0293d9b",
+    "23_torches.png": "4641b259319af08c6cc19637cdc8dcfc30a9e4f25c20e68f3bf8fb3afd194664",
+    "24_wood-piles.png": "320b022f111c7e4c2634c20dce5db5417077c3e6c61abd87ddfdc7c056e38d21",
+    "25_ritual-props.png": "e87c1d39566405bfa86d65b16ec38bf3b20e22e9136356d07dd86fbc49c6dcf6",
+    "26_distant-mountains.png": "7ff234a6f7d336a5db49fdd0a84483ad180941948493c48d30a591c1ecbf550a",
+    "27_fallen-leaves.png": "18dd3debff30aa198c4f9530f89935792292b98fca911567264933c73a945d06",
+    "28_ground-marks.png": "5bb5befdad4ddad3b56b0588ab32cb072f5a6bfe7bfb72d2e9d4b4ec62a77e93",
+    "29_ritual-circle.png": "2ffd18ba4ac6bd41fe90c8cc7d608835fda201343f3a55dd3ab351e38f22708b"
+  },
   "pageSize": 1024,
   "pageSizes": [
     1024,

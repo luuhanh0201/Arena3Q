@@ -365,13 +365,13 @@
                         ],
         "width":  1774,
         "height":  887,
-        "bytes":  1525843,
-        "sha256":  "cc62563914589b7e5ab779b5977ba26b79c1bfaac74652385fe44f2a5b51f313",
+        "bytes":  1413407,
+        "sha256":  "a5aefc96a58896721c7245ee10746226a6cd4dd8aa7e36427d9426f3d0293d9b",
         "alphaMinSampled":  0,
         "alphaMaxSampled":  255,
-        "transparentSampleRatio":  0.5621,
-        "partialAlphaSampleRatio":  0.0175,
-        "opaqueAlphaSampleRatio":  0.4204,
+        "transparentSampleRatio":  0.556,
+        "partialAlphaSampleRatio":  0.0178,
+        "opaqueAlphaSampleRatio":  0.4262,
         "status":  "drawn; pending 3D scene matching and runtime validation"
     },
     {

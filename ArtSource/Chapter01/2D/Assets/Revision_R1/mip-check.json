@@ -1,0 +1,1125 @@
+{
+  "allPassed": true,
+  "comparisonCount": 220,
+  "levels": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "scope": "Offline Lanczos reduction only. Engine mip filter, compression and lower mips require Unity validation.",
+  "logEdges": [
+    {
+      "size": 1024,
+      "softPixels": 8418,
+      "vividGreenEdgePixels": 0
+    },
+    {
+      "size": 512,
+      "softPixels": 3251,
+      "vividGreenEdgePixels": 0
+    }
+  ],
+  "results": [
+    {
+      "name": "07_small-stones-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "07_small-stones-1-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "07_small-stones-1-3",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "08_riverbank-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "08_riverbank-2-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "09_bamboo-leaves-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "09_bamboo-leaves-1-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "09_bamboo-leaves-1-3",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "10_bushes-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "07_small-stones-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "07_small-stones-1-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "07_small-stones-1-3",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "08_riverbank-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "08_riverbank-2-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "09_bamboo-leaves-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "09_bamboo-leaves-1-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "09_bamboo-leaves-1-3",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "10_bushes-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "07_small-stones-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "07_small-stones-1-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "07_small-stones-1-3",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "08_riverbank-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "08_riverbank-2-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "09_bamboo-leaves-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "09_bamboo-leaves-1-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "09_bamboo-leaves-1-3",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "10_bushes-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "07_small-stones-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "07_small-stones-1-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "07_small-stones-1-3",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "08_riverbank-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "08_riverbank-2-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "09_bamboo-leaves-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "09_bamboo-leaves-1-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "09_bamboo-leaves-1-3",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "10_bushes-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "10_bushes-1-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "10_bushes-1-3",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "11_grass-clumps-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "11_grass-clumps-1-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "11_grass-clumps-1-3",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "12_rice-clumps-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "12_rice-clumps-1-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "13_dead-trees-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "13_dead-trees-1-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "10_bushes-1-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "10_bushes-1-3",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "11_grass-clumps-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "11_grass-clumps-1-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "11_grass-clumps-1-3",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "12_rice-clumps-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "12_rice-clumps-1-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "13_dead-trees-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "13_dead-trees-1-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "10_bushes-1-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "10_bushes-1-3",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "11_grass-clumps-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "11_grass-clumps-1-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "11_grass-clumps-1-3",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "12_rice-clumps-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "12_rice-clumps-1-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "13_dead-trees-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "13_dead-trees-1-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "10_bushes-1-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "10_bushes-1-3",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "11_grass-clumps-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "11_grass-clumps-1-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "11_grass-clumps-1-3",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "12_rice-clumps-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "12_rice-clumps-1-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "13_dead-trees-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "13_dead-trees-1-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "14_fallen-logs-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "14_fallen-logs-1-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "15_reeds-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "15_reeds-1-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "16_damage-decals-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "16_damage-decals-1-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "16_damage-decals-2-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "16_damage-decals-2-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "19_distant-palisade-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "14_fallen-logs-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "14_fallen-logs-1-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "15_reeds-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "15_reeds-1-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "16_damage-decals-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "16_damage-decals-1-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "16_damage-decals-2-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "16_damage-decals-2-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "19_distant-palisade-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "14_fallen-logs-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "14_fallen-logs-1-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "15_reeds-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "15_reeds-1-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "16_damage-decals-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "16_damage-decals-1-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "16_damage-decals-2-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "16_damage-decals-2-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "19_distant-palisade-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "14_fallen-logs-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "14_fallen-logs-1-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "15_reeds-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "15_reeds-1-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "16_damage-decals-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "16_damage-decals-1-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "16_damage-decals-2-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "16_damage-decals-2-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "19_distant-palisade-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "19_distant-palisade-1-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "19_distant-palisade-1-3",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "20_cage-bars-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "21_weapon-cards-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "21_weapon-cards-1-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "21_weapon-cards-1-3",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "22_flags-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "22_flags-1-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "23_torches-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "19_distant-palisade-1-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "19_distant-palisade-1-3",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "20_cage-bars-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "21_weapon-cards-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "21_weapon-cards-1-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "21_weapon-cards-1-3",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "22_flags-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "22_flags-1-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "23_torches-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "19_distant-palisade-1-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "19_distant-palisade-1-3",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "20_cage-bars-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "21_weapon-cards-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "21_weapon-cards-1-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "21_weapon-cards-1-3",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "22_flags-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "22_flags-1-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "23_torches-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "19_distant-palisade-1-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "19_distant-palisade-1-3",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "20_cage-bars-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "21_weapon-cards-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "21_weapon-cards-1-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "21_weapon-cards-1-3",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "22_flags-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "22_flags-1-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "23_torches-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "23_torches-1-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "24_wood-piles-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "24_wood-piles-1-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "25_ritual-props-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "25_ritual-props-1-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "26_distant-mountains-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "26_distant-mountains-2-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "26_distant-mountains-3-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "23_torches-1-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "24_wood-piles-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "24_wood-piles-1-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "25_ritual-props-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "25_ritual-props-1-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "26_distant-mountains-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "26_distant-mountains-2-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "26_distant-mountains-3-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "23_torches-1-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "24_wood-piles-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "24_wood-piles-1-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "25_ritual-props-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "25_ritual-props-1-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "26_distant-mountains-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "26_distant-mountains-2-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "26_distant-mountains-3-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "23_torches-1-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "24_wood-piles-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "24_wood-piles-1-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "25_ritual-props-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "25_ritual-props-1-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "26_distant-mountains-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "26_distant-mountains-2-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "26_distant-mountains-3-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-1-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-2-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-2-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-3-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-3-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "28_ground-marks-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "28_ground-marks-2-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "28_ground-marks-2-2",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "28_ground-marks-3-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-1-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-2-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-2-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-3-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-3-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "28_ground-marks-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "28_ground-marks-2-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "28_ground-marks-2-2",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "28_ground-marks-3-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-1-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-2-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-2-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-3-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-3-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "28_ground-marks-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "28_ground-marks-2-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "28_ground-marks-2-2",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "28_ground-marks-3-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-1-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-2-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-2-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-3-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "27_fallen-leaves-3-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "28_ground-marks-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "28_ground-marks-2-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "28_ground-marks-2-2",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "28_ground-marks-3-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "29_ritual-circle-1-1",
+      "level": 1,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "29_ritual-circle-1-1",
+      "level": 2,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "29_ritual-circle-1-1",
+      "level": 3,
+      "maxChannelDifferenceFromIsolated": 0
+    },
+    {
+      "name": "29_ritual-circle-1-1",
+      "level": 4,
+      "maxChannelDifferenceFromIsolated": 0
+    }
+  ]
+}
