@@ -260,3 +260,9 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
 - Camera UI với `clearFlags = Nothing` trên URP vẫn xóa nền (ảnh ra nền xanh, chỉ còn HUD). Quy tắc: render HUD vào RenderTexture riêng nền trong suốt (SolidColor alpha 0) rồi ghép bằng CPU; không chồng hai camera base lên cùng một target.
 - Chữ trên HUD trong ảnh chụp batch trông mềm hơn trên máy (font dynamic raster theo màn batch nhỏ, chữ in đậm giả lập càng mờ). Quy tắc: chữ HUD dùng nét thường (font không có bản đậm thật), độ nét chữ phải kiểm bằng ảnh chụp thiết bị thật, không kết luận từ ảnh batch.
 - Xoay camera 45° làm sai hướng vẽ của tướng sprite 8 hướng (khung vẽ theo camera không xoay). Phát hiện khi rà code trước khi đổi camera. Quy tắc: hướng sprite lấy theo `BattleController.ToCameraGround` (bỏ góc xoay), model 3D thật giữ góc logic.
+
+## 28/10/2026 · Claude · scene đối màu 3D Chương 1
+
+- Lượt render đầu: nền đất ra một mảng cam phẳng, ô đường và ô cỏ thành các sọc kéo dài, đình bốn góc thủng mái. Nguyên nhân: project dựng từ mẫu 2D nên PNG mới nhập mặc định là Sprite (`textureType` 8: clamp, không mipmap, `alphaIsTransparency` bật), nên texture lặp bị kéo mép và kênh alpha bị coi là trong suốt. Phát hiện khi so ảnh render với ảnh gốc của Codex (ảnh gốc có hạt và vết nứt). Quy tắc: texture của model 3D và nền lặp phải đặt Default + Repeat + mipmap + tắt alpha-is-transparency trước khi render (`Chapter01ColorReference.PrepareTextures`); không kết luận màu của ảnh 2D khi chưa kiểm import.
+- Model FBX từ Blender (Quaternius, MegaKit, Farm) nằm nghiêng vì script đặt lại `rotation` gốc về 0, xóa phép xoay Z-up sang Y-up của importer. Quy tắc: chỉ đặt vị trí của instance, giữ rotation gốc của prefab FBX.
+- Bounds của cây trong thư viện tính cả LOD xa, nên khung hình và tỉ lệ sai. Quy tắc: đo kích thước bằng renderer đang bật của LOD 0.

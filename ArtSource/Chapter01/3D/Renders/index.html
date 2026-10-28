@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chương 1 - Lọc asset 3D và scene đối màu</title>
+<style>
+  :root { --bg:#17181a; --panel:#222427; --text:#e8e6e1; --muted:#9a978f; --ok:#7fbf7f; --no:#d98b7a; --line:#33363a; }
+  body { margin:0; background:var(--bg); color:var(--text); font:15px/1.5 "Segoe UI", system-ui, sans-serif; }
+  main { max-width:1600px; margin:0 auto; padding:16px; }
+  h1 { font-size:22px; margin:8px 0 4px; } h2 { font-size:18px; margin:28px 0 8px; border-bottom:1px solid var(--line); padding-bottom:4px; }
+  p.note { color:var(--muted); margin:4px 0 12px; }
+  table { border-collapse:collapse; width:100%; background:var(--panel); }
+  th, td { text-align:left; padding:6px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { color:var(--muted); font-weight:600; }
+  .ok { color:var(--ok); font-weight:600; } .no { color:var(--no); }
+  img { max-width:100%; display:block; border-radius:4px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 760px), 1fr)); gap:10px; }
+  figure { margin:0; background:var(--panel); padding:6px; border-radius:6px; } figcaption { padding:6px 4px 2px; color:var(--muted); }
+  ul { margin:4px 0 0 18px; padding:0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Chương 1 Loạn Khăn Vàng: lọc asset 3D và scene đối màu</h1>
+<p class="note">Render trong Unity bằng đúng ánh sáng, ambient, grading (EveningVolume), URP High và camera trực giao 50° / xoay 45° của bản phát hành. Mỗi nhóm cùng tỉ lệ khung; asset có sẵn trong game giữ tỉ lệ gốc, asset mới được đưa về cùng chiều cao. Nền dùng ô đất / đường / cỏ của Codex (01, 02, 03).</p>
+
+<h2>Kết quả lọc (mẫu được chọn cho scene)</h2>
+<table>
+<tr><th>Nhóm</th><th>Chọn</th><th>Loại</th><th>Lý do</th></tr>
+<tr><td>Nhà dân</td><td class="ok">CS Studio Bookstore (V3 mái nâu, V2 mái xám xanh) + Butcher</td><td class="no">KayKit Home (đỏ phẳng, kiểu Âu), Clothing (37k tam giác)</td><td>Mái cong, đầu đao, tường gỗ đúng kiểu Hán; texture vẽ tay cùng họ với asset trận hiện có. 3 bản màu V1/V2/V3 cho làng đỡ lặp.</td></tr>
+<tr><td>Đình / chòi</td><td class="ok">CS Studio Gazebo</td><td class="no">Đình bốn góc (77k tam giác, ảnh đi kèm chỉ là ảnh trải UV nên ra đen), Quaternius Gazebo (kiểu Âu)</td><td>Cùng bộ với nhà, 11k tam giác.</td></tr>
+<tr><td>Kho lương</td><td class="ok">CS Studio Horse room (V3)</td><td class="no">KayKit Market (màu phẳng), Farm Tool Shed (kho kiểu Âu)</td><td>Nhà dài mái ngói, hợp kho lương; cùng bộ màu với nhà.</td></tr>
+<tr><td>Xe lương</td><td class="ok">MegaKit Wagon</td><td class="no">Quaternius Cart (mái sọc kiểu chợ Âu), Wheelbarrow (thùng kim loại)</td><td>Xe gỗ hai bánh, có texture gỗ, 1,7k tam giác.</td></tr>
+<tr><td>Bao lương</td><td class="ok">Quaternius Bags</td><td class="no">Hay Bale / Burlap (màu vàng gắt)</td><td>Màu bao gai trung tính, ít tam giác.</td></tr>
+<tr><td>Tháp canh</td><td class="ok">Watchtower đang có trong game</td><td class="no">KayKit Tower (đá kiểu Âu), Kenney (chỉ là mái)</td><td>Đã đúng phong cách Tam Quốc.</td></tr>
+<tr><td>Lều</td><td class="ok">Command tent đang có trong game</td><td class="no">Kenney tent (màu phẳng hồng)</td><td>Lều lính thường vẫn thiếu, dùng vải 17 của Codex khi dựng.</td></tr>
+<tr><td>Cây / đá / rào / đàn tế</td><td class="ok">CommonTree, Rock_Medium, Palisade, Bagua altar + pillar đang có</td><td class="no">KayKit, Kenney, Ultimate Nature (màu phẳng, low poly gắt)</td><td>Bộ đang có texture vẽ tay, đồng bộ với nhà CS Studio.</td></tr>
+<tr><td>Giếng</td><td class="ok">Quaternius Well</td><td class="no">KayKit Well (mái đỏ gắt)</td><td>Giếng đá, màu trung tính; tạm dùng.</td></tr>
+</table>
+
+<h2>Scene đối màu (Chuong1.md §2 bước 1 và §8)</h2>
+<p class="note">Scene: Assets/Arena3Q/Chapters/Chapter01_YellowTurban/Scenes/CH01_ColorReference.unity (dựng lại bằng Arena3Q &gt; Chapter 01 &gt; Build Colour Reference Scene). Mép cứng giữa ô đất, đường và cỏ là do scene mẫu đặt các ô chồng lên nhau, không phải lỗi ảnh của Codex.</p>
+<div class="grid">
+<figure><img src="Reference/00_overview.jpg" alt="Toàn cảnh"><figcaption>00 Toàn cảnh, đúng camera trận</figcaption></figure>
+<figure><img src="Reference/01_house_tree.jpg" alt="Nhà và cây"><figcaption>01 Nhà + cây</figcaption></figure>
+<figure><img src="Reference/02_house_dirt_road.jpg" alt="Nhà và đường đất"><figcaption>02 Nhà + đường đất</figcaption></figure>
+<figure><img src="Reference/03_granary_grain_cart.jpg" alt="Kho lương và xe lương"><figcaption>03 Kho lương + xe lương</figcaption></figure>
+<figure><img src="Reference/04_camp_watchtower.jpg" alt="Trại và tháp canh"><figcaption>04 Trại + tháp canh</figcaption></figure>
+<figure><img src="Reference/05_altar_main_light.jpg" alt="Đàn tế và ánh sáng chính"><figcaption>05 Đàn tế + ánh sáng chính</figcaption></figure>
+</div>
+
+<h2>Nhận xét đối màu (gửi Codex)</h2>
+<ul>
+<li>Ô đường 02 gần như cùng màu và độ sáng với ô đất 01: dưới ánh sáng trận, đường làng gần như không đọc được. Cần tách độ sáng (đường sáng hơn hoặc nén chặt, có vệt bánh xe) khoảng 10 đến 15%.</li>
+<li>Ô đất 01 hạt nhỏ, nhìn từ camera trận thành nhiễu như giấy nhám, và hơi cam so với mái ngói xám / gỗ nâu. Nên giảm độ bão hòa một chút và gom hạt thành mảng lớn hơn.</li>
+<li>Ô cỏ 03 ra màu vàng ô liu, hợp với cây trong game; giữ.</li>
+</ul>
+
+<h2>Bảng so sánh từng nhóm</h2>
+<div class="grid">
+<figure><img src="Candidates/sheet_house.jpg" alt="Nhà"><figcaption>Nhà dân</figcaption></figure>
+<figure><img src="Candidates/sheet_pavilion.jpg" alt="Đình"><figcaption>Đình / chòi</figcaption></figure>
+<figure><img src="Candidates/sheet_granary.jpg" alt="Kho lương"><figcaption>Kho lương</figcaption></figure>
+<figure><img src="Candidates/sheet_cart.jpg" alt="Xe"><figcaption>Xe lương</figcaption></figure>
+<figure><img src="Candidates/sheet_sacks.jpg" alt="Bao"><figcaption>Bao lương</figcaption></figure>
+<figure><img src="Candidates/sheet_tower.jpg" alt="Tháp"><figcaption>Tháp canh</figcaption></figure>
+<figure><img src="Candidates/sheet_tent.jpg" alt="Lều"><figcaption>Lều</figcaption></figure>
+<figure><img src="Candidates/sheet_tree.jpg" alt="Cây"><figcaption>Cây</figcaption></figure>
+<figure><img src="Candidates/sheet_rock.jpg" alt="Đá"><figcaption>Đá</figcaption></figure>
+<figure><img src="Candidates/sheet_altar.jpg" alt="Đàn tế"><figcaption>Đàn tế</figcaption></figure>
+<figure><img src="Candidates/sheet_well.jpg" alt="Giếng"><figcaption>Giếng</figcaption></figure>
+<figure><img src="Candidates/sheet_fence.jpg" alt="Rào"><figcaption>Rào</figcaption></figure>
+</div>
+</main>
+</body>
+</html>
