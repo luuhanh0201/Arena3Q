@@ -1,0 +1,22 @@
+Edit the supplied Arena3Q Chapter 1 map into a MUCH MORE NAVIGABLE GAME MAP concept. The user finds the previous viewpoint difficult for movement. Preserve its polished hand-painted Eastern Han Three Kingdoms miniature style, warm daylight, palette, seven stage identities, appropriate props/NPCs and Vietnamese title, but REBUILD the camera and terrain for navigation clarity.
+
+CRITICAL CAMERA CHANGE: genuinely high oblique ORTHOGRAPHIC view, approximately 65 degrees elevation above the ground (25 degrees away from straight down). Show much more ground and roof tops, less building facade. NO horizon, NO skyline, NO distant mountain panorama, NO perspective vanishing point. The entire 16:9 canvas is usable map terrain seen from above. Buildings and NPCs maintain the same scale at top and bottom. This is not a cinematic landscape illustration.
+
+CRITICAL TERRAIN CHANGE: one broad continuous low, gently rolling valley floor, no isolated cliff-top islands. Remove deep ravines, tall vertical escarpments and waterfalls between stages. Only low grassy banks and a narrow shallow decorative stream, crossed by at most two broad low wooden bridges where needed. No frightening drops alongside the walking route. Altar7 may have a low raised platform with a broad short stairway, not a towering mesa.
+
+MOVEMENT READABILITY: a clearly visible, pale packed-earth MAIN ROAD, comfortably 5-6 NPC widths wide, with open turning areas and forecourts. Every stage's NPC interaction clearing opens DIRECTLY onto the main road. No road disappearing behind roofs, bamboo walls, palisades or nameplates. Buildings and large trees sit away from the route, with breathing room; vegetation is grouped behind structures and at map edges. Leave generous visible ground around each destination. Avoid confusing junctions, maze paths or meaningless bridges.
+
+ROAD ORDER: exactly one gently serpentine continuous route joining 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7, without self-crossings. Suggested route coordinates on canvas: 1(lower-left) to 2(lower-middle), then sweep northwest to 3(middle-left), then east to 4(center), then north to 5(upper-center), curve southeast to 6(right-middle), then northeast to 7(upper-right). Make connecting segments visibly continuous and at grade, even if regional footprint positions must adjust slightly. No dotted UI route, arrows or node graph: show the actual walkable dirt road. Labels should sit in quiet pockets beside destinations, not across the road.
+
+KEEP EXACTLY SEVEN areas:
+1 Làng Bình An: 4-6 modest grey-tile houses, wooden gate, well with elder/villagers, overturned cart, prisoner enclosure and yellow-headband guards. Small player representative on clear ground near the well.
+2 Đồng Lúa và Kho Lương: divided golden rice fields, granary, EXACTLY two grain wagons and militia.
+3 Rừng Trúc: bamboo grove with visibly clear walking corridor, one small outpost tent and one wooden tower.
+4 Trại Lương và Thôn Trang: 2-3 occupied civilian houses, grain store, EXACTLY THREE grain wagons, prisoners and captain.
+5 Tiền Doanh: command tent, exactly two wooden towers, drum, Trình Viễn Chí with guards, spacious forecourt.
+6 Đại Doanh Hoàng Cân: timber palisade main camp with wooden gate, barracks and training yard; wide visible entrance path; elites and two guardians belong to this ONE stage.
+7 Tế Đàn Hoàng Cân: low stone terrace, broad short stairs, Trương Giác with EXACTLY THREE ritual energy pillars, restrained magical effects.
+
+Keep labels verbatim, one brass numbered marker per region, each digit 1 through 7 exactly once, modest size. Chapter title at top-left: "Chương 1: Loạn Khăn Vàng". Region labels exactly:
+"Làng Bình An", "Đồng Lúa và Kho Lương", "Rừng Trúc", "Trại Lương và Thôn Trang", "Tiền Doanh", "Đại Doanh Hoàng Cân", "Tế Đàn Hoàng Cân".
+All seven regions revealed for reviewing layout. No fog locking, no combat HUD, no extra stages, no extra text, no watermarks. Keep 16:9 landscape. Deliver one beautiful high-angle gameplay-oriented map concept, not a before/after montage.

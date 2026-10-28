@@ -6,6 +6,8 @@ Nguồn: `docs/Ai/Chuong1.md` và `docs/Ai/Bản đồ Chương 1 Loạn Khăn V
 
 ## Hai hình để xem
 
+Cập nhật theo góp ý khó di chuyển: [bản view mới, nền thấp và đường rộng](05_chapter-navigation-view.png). [Ghi chú chỉnh góc nhìn](ViewNavigation.md).
+
 - [Tổng thể mở đủ 7 ải](02_chapter-overview.png): xem bố cục toàn chương, không phải trạng thái vào game lần đầu.
 - [Đầu chương có mây khóa](04_chapter-opening-fog.png): chỉ mở Làng Bình An, giữ dân bị bắt và địch; không hiện tên/số ải hoặc NPC chính của Ải 2-7. Các công trình về sau chỉ còn bóng mờ dưới sương.
 
