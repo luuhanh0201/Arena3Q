@@ -1,8 +1,10 @@
 // Generates Assets/Arena3Q/Chapters/Chapter01_YellowTurban/Data/CH01_MapLayout.json (Chuong1.md §9-§18).
 const fs = require('fs');
 const out = require('path').join(__dirname, '../../../../Assets/Arena3Q/Chapters/Chapter01_YellowTurban/Data/CH01_MapLayout.json');
-const P = (asset, x, z, yaw = 0, area = 0, extra = {}) => ({ asset, pos: [x, z], yaw, roll: extra.roll || 0, y: extra.y || 0, scale: extra.scale || 1, area });
+// extra.state: 'before' (until the stage is won) or 'after' (once won), Chuong1.md §22.
+const P = (asset, x, z, yaw = 0, area = 0, extra = {}) => ({ asset, state: extra.state || '', pos: [x, z], yaw, roll: extra.roll || 0, y: extra.y || 0, scale: extra.scale || 1, area });
 const props = [];
+const B = { state: 'before' };
 const add = (area, list) => list.forEach(([a, x, z, yaw, extra]) => props.push(P(a, x, z, yaw || 0, area, extra || {})));
 const wall = (area, pts, yaw) => pts.forEach(([x, z]) => props.push(P('lib:WoodenPalisadeFence', x, z, yaw, area, { scale: 1.1 })));  // 1.1: neighbouring 4 m pieces overlap, no gaps
 
@@ -41,7 +43,7 @@ add(4, [
   ['wagon', -5, -1.5, 80], ['wagon', -2, -0.5, 95], ['wagon', 1, 0.5, 70], ['lib:Stall_Cart_Empty', -6.8, 1.8, 0],
   ['bags', -3.5, 1.2, 0], ['bags', 0, 1.9, 40], ['bags', -8, 0.4, 90],
   ['house_b2', -15, 13.5, 90], ['house_k3', -3, 15, 0],
-  ['lib:MilitaryFlagpoleBanner', -7, -7.5, 0], ['lib:MilitaryFlagpoleBanner', -23, 3.5, 0], ['lib:MilitaryFlagpoleBanner', 7.8, 6.5, 0],
+  ['lib:MilitaryFlagpoleBanner', -7, -7.5, 0, B], ['lib:MilitaryFlagpoleBanner', -23, 3.5, 0, B], ['lib:MilitaryFlagpoleBanner', 7.8, 6.5, 0, B],
   ['tent', 9, 1.5, 0], ['tent', -24.5, 13, 90],
   ['cage', -5.5, -6.5, 0],
 ]);
@@ -50,7 +52,7 @@ wall(4, [[-22.5, -4], [-22.5, 0]], 90); wall(4, [[-18, -10.8], [-14, -10.8], [-1
 add(5, [
   ['lib:WoodenCampWatchtower', -2.8, 22.6, 0], ['lib:WoodenCampWatchtower', 5.2, 22.6, 0],
   ['lib:ThreeKingdomsCommand_1', -7, 34, 0], ['drum', -2, 33.6, 30],
-  ['lib:MilitaryFlagpoleBanner', -9.5, 37.8, 0], ['lib:MilitaryFlagpoleBanner', -4.5, 37.8, 0], ['lib:MilitaryFlagpoleBanner', -11.5, 24, 0],
+  ['lib:MilitaryFlagpoleBanner', -9.5, 37.8, 0, B], ['lib:MilitaryFlagpoleBanner', -4.5, 37.8, 0, B], ['lib:MilitaryFlagpoleBanner', -11.5, 24, 0, B],
   ['lib:WeaponStand', -11.6, 30, 90], ['lib:WeaponStand', -11.6, 32.6, 90],
   ['tent', -10, 26.8, 0], ['tent', 3, 37.2, 0], ['campfire', -3.2, 27.6, 0],
   ['lib:Barrel', -12.4, 38.6, 0], ['lib:Crate_Wooden', -11.4, 39.4, 20],
@@ -65,7 +67,7 @@ add(6, [
   ['lib:WeaponStand', 33.6, -6.6, 90], ['lib:WeaponStand', 33.6, -3.2, 90],
   ['barracks', 41, -6, 0], ['barracks', 34.5, 10.2, 180],
   ['lib:ThreeKingdomsCommand_2', 46, 3, -90], ['drum_large', 46.5, 9.2, 20],
-  ['lib:MilitaryFlagpoleBanner', 20.4, -6.8, 0], ['lib:MilitaryFlagpoleBanner', 20.4, 10.8, 0], ['lib:MilitaryFlagpoleBanner', 36, -1.4, 0], ['lib:MilitaryFlagpoleBanner', 49, 3, 0],
+  ['lib:MilitaryFlagpoleBanner', 20.4, -6.8, 0, B], ['lib:MilitaryFlagpoleBanner', 20.4, 10.8, 0, B], ['lib:MilitaryFlagpoleBanner', 36, -1.4, 0, B], ['lib:MilitaryFlagpoleBanner', 49, 3, 0, B],
   ['campfire', 37.5, 5.5, 0], ['lib:Barrel', 47.5, -2.6, 0], ['lib:Crate_Wooden', 48.6, -1.8, 30],
 ]);
 wall(6, [[22, -8], [22, 11.6]], 90); wall(6, [[24, -10], [28, -10], [32, -10], [36, -10], [40, -10], [44, -10], [48, -10]], 0);
@@ -82,16 +84,30 @@ add(7, [
   ['outcrop', 64.2, 41.2, 0], ['outcrop', 48, 42, 50],
 ]);
 
-const npc = (kind, area, list, y = 0) => list.map(([x, z]) => ({ kind, pos: [x, z], y, area }));
+// state as for props; marker: 'quest' (dấu hỏi trên dân làng / người giao việc) or 'battle' (hai kiếm chéo trên điểm giao chiến).
+const npc = (kind, area, list, y = 0, state = '', marker = '') => list.map(([x, z]) => ({ kind, state, marker, pos: [x, z], y, area }));
 const npcs = [
-  ...npc('chief', 1, [[-47, -31]]), ...npc('villager', 1, [[-59, -32.8], [-57.2, -33.3], [-36, -33.6], [-62, -26], [-50, -22.5]]),
-  ...npc('yellow', 1, [[-55, -31], [-52.4, -31.4], [-54, -33], [-44, -31], [-41.2, -30.8]]),
-  ...npc('militia', 2, [[-0.6, -25.6], [0.2, -27.6], [0.4, -29.8], [11.6, -26.6], [11.8, -29.2]]),
-  ...npc('yellow', 3, [[-57.5, 3.8], [-59.2, 3], [-55.4, 9.6], [-56, -3.8], [-48, 11.2]]),
-  ...npc('villager', 4, [[-5.5, -6.5], [-4.9, -7.2], [-3.6, -7.4]]), ...npc('yellow', 4, [[-9, -1.2], [-4, -4], [4, 3], [-12, 2.3], [-7.5, -5.2]]),
-  ...npc('boss', 5, [[-4.5, 31]]), ...npc('yellow', 5, [[-6.6, 30.2], [-2.4, 30.2], [-6, 28.6], [-3, 28.4], [-2.8, 20.4], [5.2, 20.4]]),
-  ...npc('yellow', 6, [[25, 0], [25, 4], [26.6, 0], [26.6, 4], [28, -3.4], [30.2, -3.4]]), ...npc('guardian', 6, [[43.4, 1], [43.4, 5]]),
-  ...npc('boss', 7, [[56, 35.6]], 2.6), ...npc('guardian', 7, [[53.4, 33.6], [58.6, 33.6]], 2.6),
+  // Ải 1: trưởng làng giao việc giải cứu; quân Khăn Vàng canh cũi là điểm giao chiến.
+  ...npc('chief', 1, [[-47, -31]], 0, '', 'quest'),
+  ...npc('villager', 1, [[-59, -32.8], [-57.2, -33.3]], 0, 'before'), ...npc('villager', 1, [[-36, -33.6], [-62, -26], [-50, -22.5]]),
+  ...npc('yellow', 1, [[-52.4, -31.4]], 0, 'before', 'battle'), ...npc('yellow', 1, [[-55, -31], [-54, -33], [-44, -31], [-41.2, -30.8]], 0, 'before'),
+  ...npc('villager', 1, [[-58, -30.9], [-56, -31.4], [-40, -31.8]], 0, 'after'),
+  // Ải 2: chỉ huy quân lương (bảo vệ kho) và trinh sát ở lối vào ruộng giao việc; toán cướp lương bên suối là điểm giao chiến.
+  ...npc('militia', 2, [[-0.6, -25.6], [-7.5, -20.5]], 0, '', 'quest'), ...npc('militia', 2, [[0.2, -27.6], [0.4, -29.8], [11.6, -26.6], [11.8, -29.2]]),
+  ...npc('yellow', 2, [[-22.5, -37.2]], 0, 'before', 'battle'), ...npc('yellow', 2, [[-23.6, -38.4], [-21.4, -38.6]], 0, 'before'),
+  // Ải 3: lính gác ở lối vào trại tiền tiêu.
+  ...npc('yellow', 3, [[-48, 11.2]], 0, 'before', 'battle'), ...npc('yellow', 3, [[-57.5, 3.8], [-59.2, 3], [-55.4, 9.6], [-56, -3.8]], 0, 'before'),
+  // Ải 4: dân bị giam nhờ giải cứu; đội trưởng Khăn Vàng cạnh xe lương là điểm giao chiến.
+  ...npc('villager', 4, [[-4.9, -7.2]], 0, 'before', 'quest'), ...npc('villager', 4, [[-5.5, -6.5], [-3.6, -7.4]], 0, 'before'),
+  ...npc('guardian', 4, [[-9, -1.2]], 0, 'before', 'battle'), ...npc('yellow', 4, [[-4, -4], [4, 3], [-12, 2.3], [-7.5, -5.2]], 0, 'before'),
+  ...npc('villager', 4, [[-5, -3], [-3, -3.5]], 0, 'after'), ...npc('militia', 4, [[-4, 1.2], [0.6, 2.8]], 0, 'after'),
+  // Ải 5: Trình Viễn Chí trước lều chỉ huy, hộ vệ hai bên.
+  ...npc('boss', 5, [[-4.5, 31]], 0, 'before', 'battle'), ...npc('yellow', 5, [[-6.6, 30.2], [-2.4, 30.2], [-6, 28.6], [-3, 28.4], [-2.8, 20.4], [5.2, 20.4]], 0, 'before'),
+  // Ải 6: một marker trên tướng giữ cổng; tinh nhuệ trong sân, hai hộ pháp giáp lối lên tế đàn.
+  ...npc('guardian', 6, [[19.4, 5.6]], 0, 'before', 'battle'), ...npc('yellow', 6, [[19.4, -1.6], [19.4, 0.4], [25, 0], [25, 4], [26.6, 0], [26.6, 4], [28, -3.4], [30.2, -3.4]], 0, 'before'),
+  ...npc('guardian', 6, [[43.4, 12.2], [45.6, 12.6]], 0, 'before'),
+  // Ải 7: Trương Giác giữa tế đàn.
+  ...npc('boss', 7, [[56, 35.6]], 2.6, 'before', 'battle'), ...npc('guardian', 7, [[53.4, 33.6], [58.6, 33.6]], 2.6, 'before'),
 ];
 
 const layout = {

@@ -44,9 +44,11 @@ namespace Arena3Q.Editor.Chapter01
         [Serializable] private class Disc { public float[] centre; public float radius; }
         [Serializable] private class AssetDef { public string key, source, texture; public float height; }
         [Serializable] private class Area { public int id; public string name; public float[] centre; public float radius; }
-        [Serializable] private class Prop { public string asset; public float[] pos; public float yaw, roll, y, scale; public int area; }
+        // state: "" always shown, "before" until the stage is won, "after" once it is won (Chuong1.md §22).
+        [Serializable] private class Prop { public string asset, state; public float[] pos; public float yaw, roll, y, scale; public int area; }
         [Serializable] private class Scatter { public string name, zone; public string[] assets; public int count; public float spacing, radius, inner, clearance; public float[] centre, scale; }
-        [Serializable] private class Npc { public string kind; public float[] pos; public float y; public int area; }
+        // marker: "quest" (dấu hỏi, nhiệm vụ dân làng) or "battle" (hai kiếm chéo, điểm giao chiến); an anchor sits above the head.
+        [Serializable] private class Npc { public string kind, state, marker; public float[] pos; public float y; public int area; }
         [Serializable] private class View { public string name; public float[] focus; public float size; public bool top; }
 #pragma warning restore 0649
 
@@ -92,7 +94,7 @@ namespace Arena3Q.Editor.Chapter01
                 int placed = 0;
                 foreach (var p in _m.props)
                 {
-                    var parent = p.area > 0 && groups.TryGetValue(p.area, out var g) ? g : shared;
+                    var parent = p.area > 0 && groups.TryGetValue(p.area, out var g) ? StateGroup(g, p.state) : shared;
                     if (Place(p.asset, assets, library, new Vector2(p.pos[0], p.pos[1]), p.yaw, p.roll, p.y, p.scale > 0 ? p.scale : 1f, parent, true) != null) placed++;
                     else report.AppendLine("missing asset " + p.asset);
                 }
@@ -104,6 +106,10 @@ namespace Arena3Q.Editor.Chapter01
                 var nature = new GameObject("Nature (scattered)").transform; nature.SetParent(world, false);
                 foreach (var s in _m.scatter) scattered += ScatterRule(s, assets, library, nature);
                 Npcs(world, groups);
+                ShowFirstVisit(world);
+                // Codex's runtime systems (UI, fog, interaction) live in a prefab so rebuilding the map keeps them.
+                var systems = AssetDatabase.LoadAssetAtPath<GameObject>(Root + "/Prefabs/CH01_MapSystems.prefab");
+                if (systems != null) PrefabUtility.InstantiatePrefab(systems, scene);
                 report.Insert(0, $"props {placed}, scattered {scattered}, npc placeholders {_m.npcs.Length}\n");
                 EditorSceneManager.SaveScene(scene, ScenePath);
                 Directory.CreateDirectory(Renders);
@@ -359,8 +365,29 @@ namespace Arena3Q.Editor.Chapter01
                 go.name = "NPC_" + n.kind; go.transform.localScale = new Vector3(height * .27f, height / 2, height * .27f);
                 go.transform.position = Ground(n.pos[0], n.pos[1]) + Vector3.up * (n.y + height / 2);
                 go.GetComponent<MeshRenderer>().sharedMaterial = mat;
-                go.transform.SetParent(n.area > 0 && groups.TryGetValue(n.area, out var g) ? g : root, true);
+                go.transform.SetParent(n.area > 0 && groups.TryGetValue(n.area, out var g) ? StateGroup(g, n.state) : root, true);
+                if (!string.IsNullOrEmpty(n.marker))
+                {
+                    go.name += " [" + n.marker + "]";
+                    var anchor = new GameObject("MarkerAnchor_" + n.marker).transform; anchor.SetParent(go.transform, false);
+                    anchor.position = go.transform.position + Vector3.up * (height / 2 + .7f);
+                }
             }
+        }
+
+/// <summary>Area children by world state: Always, State_Before (until won), State_After (once won, hidden at build).</summary>
+        private static Transform StateGroup(Transform area, string state)
+        {
+            string name = state == "before" ? "State_Before" : state == "after" ? "State_After" : "Always";
+            var t = area.Find(name);
+            if (t == null) { t = new GameObject(name).transform; t.SetParent(area, false); }
+            return t;
+        }
+
+        /// <summary>Hides every State_After group: the scene is saved and rendered as first seen (stage not won).</summary>
+        private static void ShowFirstVisit(Transform world)
+        {
+            foreach (var t in world.GetComponentsInChildren<Transform>(true)) if (t.name == "State_After") t.gameObject.SetActive(false);
         }
 
         private static void Shot(Camera camera, View v)

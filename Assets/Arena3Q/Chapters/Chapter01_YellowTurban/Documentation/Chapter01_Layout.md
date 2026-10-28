@@ -17,6 +17,8 @@ Tọa độ: mặt đất XZ của Unity, Y lên, 1 đơn vị = 1 m. Vùng chơ
 - Đường chính (rộng 3,4 m) đi liền 1 → 7, quanh co, vòng qua rừng trúc. Suối chảy từ bắc xuống nam ở x ≈ −30; 3 cầu gỗ đặt tự động ở chỗ đường chính cắt suối.
 - `StageMarker_01..07` (rỗng) ở tâm từng ải: chỗ Codex gắn điểm tương tác, sương mù và logic mở khóa.
 - `NPC placeholders`: khối viên nang theo vai (vàng = lính Khăn Vàng, xanh = nghĩa binh, be = dân, đỏ = boss, cam = hộ pháp). Không phải hình cuối; thay bằng nhân vật thật khi có.
+- Mỗi khu có nhóm `Always`, `State_Before` (đến khi thắng), `State_After` (sau khi thắng, đang tắt) theo §22. NPC có dấu tương tác mang tên `[quest]` (dấu hỏi) hoặc `[battle]` (hai kiếm chéo) và con `MarkerAnchor_*` trên đầu; 11 điểm, xem `GiaoViec_Codex_GiaiDoanB.md` mục 3.
+- Prefab `Prefabs/CH01_MapSystems.prefab` (của Codex, nếu có) được bộ dựng đặt vào scene mỗi lần dựng.
 - Địa hình có `MeshCollider` và cờ Navigation Static cho NavMesh; công trình kitbash có collider hộp.
 
 Chưa có (báo rõ, không giả vờ đã làm): nhân vật thật, sương mù, NavMesh, tương tác, chuyển cảnh, trạng thái sau thắng (phần Codex theo §28), decal và sprite 2D trên map, VFX nước chảy / lửa / khói, âm thanh. Đàn tế vẫn dùng mẫu Bát Quái của trận (Chuong1.md §18 yêu cầu bỏ họa tiết này), tượng đá còn thiếu. Hiệu năng chưa đo trên máy thật; cụm tre nặng (8,6k đến 14,4k tam giác mỗi cụm).
