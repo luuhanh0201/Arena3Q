@@ -4,7 +4,7 @@ Mọi quy tắc và nhật ký rút kinh nghiệm của dự án nằm ở thư 
 
 | File | Nội dung | Khi nào đọc / ghi | Ai giữ |
 |---|---|---|---|
-| `QuyTacLamViec.md` | Quy tắc làm việc người dùng đã giao: giao tiếp, commit/push, dữ liệu dễ sửa, asset nhỏ / không LFS, lưu trữ thay vì xoá, ảnh trước–sau, 60 FPS, VFX "khí", phối hợp hai agent, review và nghiệm thu | Đầu mỗi phiên; thêm quy tắc mới khi người dùng giao | chung |
+| `QuyTacLamViec.md` | Quy tắc làm việc người dùng đã giao: giao tiếp, commit/push, dữ liệu dễ sửa, asset nhỏ / không LFS, lưu trữ thay vì xoá, ảnh trước–sau, ba cấu hình 30 / 60 / 120 FPS (hạ cấu hình không đổi gameplay), VFX "khí", phối hợp hai agent, review và nghiệm thu | Đầu mỗi phiên; thêm quy tắc mới khi người dùng giao | chung |
 | `ThietKeUI.md` | Quy tắc thiết kế UI hiển thị trong game: không em dash / en dash, không emoji Unicode, icon lấy từ thư viện chuyên dụng (vector / monochrome), định dạng tối giản, nhất quán. Không áp dụng cho docs | Trước khi làm HUD, màn hình Frontend hoặc chữ trong asset nội dung | chung |
 | `Model3D_Rules.md` | **Luật bắt buộc** cho model 3D, skinning, animation, VFX: điều kiện bàn giao, lỗi đã gặp và luật hồi quy, checklist | Trước mọi việc 3D / animation / VFX | Codex (đang làm Mặc Ảnh); bài học chung ai cũng đề xuất thêm |
 | `NhatKyVanHanh_3D.md` | **Nhật ký vận hành** 3D / animation / VFX: mọi hướng sai, lỗi, bug gặp khi làm – nguyên nhân, cách phát hiện, cách phòng tránh | Đọc trước khi làm; **ghi ngay** khi gặp | chung (chỉ thêm dòng) |

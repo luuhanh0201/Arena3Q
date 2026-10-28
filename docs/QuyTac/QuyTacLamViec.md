@@ -34,13 +34,18 @@ Gom các quy tắc người dùng đã nói rải rác qua các phiên, để **
   - mỗi chiêu: đà, thời điểm ra đòn khớp mốc sự kiện (event) và hiệu ứng, hướng nhìn, theo đà, thu về; chuyển clip mượt, chân không trượt khi đi / chạy (test chân chạm đất);
   - kiểm bằng test, ảnh / chuỗi khung trong trận theo pha, và trên máy thật; ghi mọi lỗi vào `NhatKyVanHanh_3D.md`.
 - **Mọi chỉnh sửa nhỏ về hình** đều có ảnh **trước – sau** cùng góc, cùng khung. Lưu ảnh vào `AgentComms/claude/NghiemThu/…` hoặc `NghiemThu/<Tướng>/XemTruoc_<Việc>_<NgàyThángNăm>/`, và **mở cho người dùng xem** trước khi làm phần tiếp theo (2026-10-20).
-- **Tối thiểu 60 FPS** mọi nền tảng (spec §1, 2026-10-21). Đo trên máy thật mới tính; FPS Editor hoặc con số target không phải bằng chứng. Hiện người dùng **chỉ test trong Unity**, chưa build điện thoại.
+- **Ba cấu hình hiển thị: 30 FPS = thấp, 60 FPS = mặc định, 120 FPS = cao** (người dùng 2026-10-28, thay quy tắc "tối thiểu 60 FPS, không có 30" ngày 21/10; spec §1). Áp cho **mọi agent, mọi thiết kế và gameplay**:
+  - Mọi thiết kế (trận, map, HUD, VFX, model, animation, Frontend, sảnh) phải chạy và nhìn đúng ở **cả ba** cấu hình, và ghi rõ chất lượng hình ảnh ở mỗi cấu hình (mật độ cây cỏ, bóng, hậu kỳ, số hạt VFX, LOD, độ phân giải render…). Cấu hình thấp được giảm chi tiết trang trí, không được làm hỏng hình (không vỡ, không nhấp nháy, không mất chuyển động hiện / tan).
+  - **Hạ cấu hình không được ảnh hưởng gameplay:** luật, sát thương, tốc độ, tầm, thời gian hồi, mốc phát chiêu, đường đi, va chạm và kết quả trận phải giống hệt ở 30 / 60 / 120 (logic chạy theo đồng hồ trận, không theo số khung). Mọi thứ người chơi cần để chơi (vùng cảnh báo đỏ, vùng chiêu, cổng Bát Môn, thanh máu, tướng / lính / địch, nút HUD, chạm và kéo) phải hiện đủ và rõ ở cấu hình thấp; chỉ phần trang trí được bớt.
+  - 120 FPS chỉ bật khi màn hình hỗ trợ tần số đó (Redmi Note 8 Pro chỉ 60 Hz); các con số và mức chất lượng nằm trong dữ liệu cấu hình, không viết cứng.
+  - Đo trên máy thật mới tính (FPS trung bình / p95, cùng workload trận); FPS Editor hoặc con số target không phải bằng chứng. Mỗi thay đổi đồ hoạ / VFX phải kiểm ở cả ba cấu hình, kèm ảnh so sánh, và test chứng minh kết quả trận không đổi khi đổi cấu hình.
+  - Code hiện còn chặn target dưới 60 (`RuntimePerformanceConfig.MinimumFrameRate`, `BattlefieldQuality`): phải đổi theo quy tắc này khi làm phần cấu hình, không coi là lỗi của quy tắc.
 - Flipbook hiệu ứng hoà khung theo đồng hồ hiệu ứng; sprite nhân vật không hoà khung.
 - **VFX phép của Mưu Sĩ là "khí"**: đậm nhạt, xuất hiện / trúng / tan tự nhiên, không phải nét vẽ. Gió / khói **không bao giờ** là xoắn tuần hoàn hay các đường đều nhau; chỉ hình học trận pháp được đều (`Model3D_Rules.md`).
 - **Luồng khí đi lên không làm thành tia / đường line** (2026-10-21): không có lõi sáng sắc, không có mép cứng, không thẳng tắp. Làm thành dòng khí mờ: bề rộng thay đổi theo chiều cao, mép tan bằng noise, đậm ở chân rồi loãng và tan dần khi lên cao, cuộn nhẹ theo gió. Nhìn ở zoom trận phải đọc ra "khí bốc lên", không phải "tia sáng".
 - Mọi việc model / rig / animation / VFX theo `Model3D_Rules.md`. Bắt buộc đo bề mặt sau skinning và xem ảnh thật. Test transform pass không đủ để bàn giao.
 - **Gặp hướng sai, lỗi, bug khi làm 3D / animation / VFX: ghi ngay vào `NhatKyVanHanh_3D.md`** (2026-10-21, cả hai agent).
-- Hiển thị 3D (2026-10-21): camera orthographic nghiêng 41,4°, mặt đất mesh + texture. Model các tướng khác do người dùng tự làm (agent chỉ làm khi được giao trực tiếp).
+- Hiển thị 3D (2026-10-21, góc cập nhật 28/10): camera orthographic chéo cố định, nghiêng 40° (cao 50°) và xoay 45°, nền và rừng trải ra ngoài biên; mặt đất mesh + texture. Model các tướng khác do người dùng tự làm (agent chỉ làm khi được giao trực tiếp).
 
 ## 4. Hai agent (AgentComms)
 - **Chỉ đạo trực tiếp ngày 24/10/2026:** Codex tự kiểm UI và báo cáo người dùng, không dùng Claude trong ngày 24/10; hủy luồng chờ review UI cũ. Người dùng yêu cầu build dự án sau khi tự kiểm, cho phép build Android Dev APK trong việc này (thay mốc chỉ test Unity trước đó).

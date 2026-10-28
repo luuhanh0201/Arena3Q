@@ -54,7 +54,7 @@
 | Bóng ảnh sprite sạch nhưng bóng realtime còn vòng trắng | Hai đường snapshot không tắt cùng lớp mesh prefab | Dùng chung bước chuẩn bị snapshot; kiểm sprite và captured3D, rồi tái thuê để lớp mesh thông thường vẫn bật đúng. |
 | Snapshot đúng bounds/index nhưng thủng thành tam giác rời | Material bóng sprite lấy alpha atlas qua UV của model3D, hai hệ UV không khớp | Material model3D riêng không dùng atlas sprite làm mask. Kiểm silhouette pixel qua sáu góc và ảnh trong trận ngoài số đo geometry; fade mọi phần cứng và skin theo cùng clock. |
 | Flipbook giật giữa các frame nguồn | Chọn floor(frame) mà không hòa frame kế | Theo yêu cầu21/10, shader hòa hai frame VFX theo phần lẻ thời gian effect; kiểm atlas khác trang/rect, loop cuối→đầu, nonloop giữ frame cuối, pause và pool. Không áp hòa này lên sprite nhân vật. |
-| Android chạy30FPS dù hiệu ứng đã sửa | Không đặt targetFrameRate khi vào game; PC có thể bị vSync khóa | Target lấy từ ScriptableObject, tối thiểu60 cho Frontend/Battle/standalone scene; kiểm khôi phục sau preview/benchmark. Đo FPS/p95/khung tụt/nhiệt trên đúng APK với5tướng+lính+địch+VFX; đặt cap60 không phải chứng minh đạt60. |
+| Android chạy30FPS dù hiệu ứng đã sửa | Không đặt targetFrameRate khi vào game; PC có thể bị vSync khóa | Target lấy từ ScriptableObject theo cấu hình (28/10: 30 thấp / 60 mặc định / 120 cao, thay "tối thiểu60") cho Frontend/Battle/standalone scene; kiểm khôi phục sau preview/benchmark. Đo FPS/p95/khung tụt/nhiệt trên đúng APK với5tướng+lính+địch+VFX; đặt cap60 không phải chứng minh đạt60. |
 
 ## Checklist thực thi
 
