@@ -1,4 +1,4 @@
-﻿[
+[
     {
         "file":  "01_ground-earth.png",
         "name":  "Đất nền",
@@ -7,14 +7,14 @@
                         ],
         "width":  1254,
         "height":  1254,
-        "bytes":  3821451,
-        "sha256":  "4f4d5647f7e1cc998816a67032f2d1ecf5cb65f99bfc4ae81f1e9d1bd9661e46",
+        "bytes":  2933989,
+        "sha256":  "3481825db28794b59ff4404e4732ae8a1cefe5d04e7152054773d49112cf274c",
         "alphaMinSampled":  255,
         "alphaMaxSampled":  255,
         "transparentSampleRatio":  0,
         "partialAlphaSampleRatio":  0,
         "opaqueAlphaSampleRatio":  1,
-        "status":  "drawn; pending 3D scene matching and runtime validation"
+        "status":  "R2 scene-reference colour revision; pending integrated Unity review"
     },
     {
         "file":  "02_ground-path.png",
@@ -24,14 +24,14 @@
                         ],
         "width":  1254,
         "height":  1254,
-        "bytes":  3267075,
-        "sha256":  "3e4ba25e667b7c5b0af3bf74c641f79343503b4e7f9f1a463d388253c86d230d",
+        "bytes":  3175887,
+        "sha256":  "62875e057bae975de70987267e87f068920faccf9d7ef1a1a26569db66eb9729",
         "alphaMinSampled":  255,
         "alphaMaxSampled":  255,
         "transparentSampleRatio":  0,
         "partialAlphaSampleRatio":  0,
         "opaqueAlphaSampleRatio":  1,
-        "status":  "drawn; pending 3D scene matching and runtime validation"
+        "status":  "R2 scene-reference colour revision; pending integrated Unity review"
     },
     {
         "file":  "03_ground-grass.png",
@@ -58,14 +58,14 @@
                         ],
         "width":  1254,
         "height":  1254,
-        "bytes":  3446008,
-        "sha256":  "5cc781cf596bff2d42fb47c35909d4e00799591652707cff122725376f522329",
+        "bytes":  3039851,
+        "sha256":  "48c619d43014771e2510aa4b692a9c7901a1922edbb7c0fd1c6c37eae4c90ba4",
         "alphaMinSampled":  255,
         "alphaMaxSampled":  255,
         "transparentSampleRatio":  0,
         "partialAlphaSampleRatio":  0,
         "opaqueAlphaSampleRatio":  1,
-        "status":  "drawn; pending 3D scene matching and runtime validation"
+        "status":  "R2 scene-reference colour revision; pending integrated Unity review"
     },
     {
         "file":  "05_water.png",

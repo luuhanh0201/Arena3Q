@@ -1,0 +1,31 @@
+{
+  "id": "04_paddy-ground",
+  "before": {
+    "width": 1254,
+    "height": 1254,
+    "meanRgb": [
+      120.146,
+      119.802,
+      87.262
+    ],
+    "encodedLuma": 117.526,
+    "horizontalDetail": 2.245,
+    "seamX": 0,
+    "seamY": 0
+  },
+  "after": {
+    "width": 1254,
+    "height": 1254,
+    "meanRgb": [
+      133.554,
+      110.752,
+      64.682
+    ],
+    "encodedLuma": 112.273,
+    "horizontalDetail": 1.771,
+    "seamX": 0,
+    "seamY": 0
+  },
+  "sha256": "48c619d43014771e2510aa4b692a9c7901a1922edbb7c0fd1c6c37eae4c90ba4",
+  "generatedSha256": "cf3e9441ef77ae038850daa33b675559537835d7982306b51462710bf926ad96"
+}

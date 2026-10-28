@@ -1,0 +1,46 @@
+{
+  "checks": [
+    {
+      "id": "01_ground-earth",
+      "size": 512,
+      "opaque": true,
+      "maxEdgeDelta": 0
+    },
+    {
+      "id": "01_ground-earth",
+      "size": 1024,
+      "opaque": true,
+      "maxEdgeDelta": 0
+    },
+    {
+      "id": "02_ground-path",
+      "size": 512,
+      "opaque": true,
+      "maxEdgeDelta": 0
+    },
+    {
+      "id": "02_ground-path",
+      "size": 1024,
+      "opaque": true,
+      "maxEdgeDelta": 0
+    },
+    {
+      "id": "04_paddy-ground",
+      "size": 512,
+      "opaque": true,
+      "maxEdgeDelta": 0
+    },
+    {
+      "id": "04_paddy-ground",
+      "size": 1024,
+      "opaque": true,
+      "maxEdgeDelta": 0
+    }
+  ],
+  "atlasSourceHashesValid": true,
+  "browser": {
+    "images": 3,
+    "errors": []
+  },
+  "scope": "Offline export/browser only; no Unity lighting, compressed mip or device FPS verification"
+}

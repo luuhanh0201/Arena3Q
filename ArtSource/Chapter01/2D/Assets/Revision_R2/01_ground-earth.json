@@ -1,0 +1,31 @@
+{
+  "id": "01_ground-earth",
+  "before": {
+    "width": 1254,
+    "height": 1254,
+    "meanRgb": [
+      185.803,
+      146.637,
+      92.953
+    ],
+    "encodedLuma": 151.088,
+    "horizontalDetail": 7.744,
+    "seamX": 0,
+    "seamY": 0
+  },
+  "after": {
+    "width": 1254,
+    "height": 1254,
+    "meanRgb": [
+      178.189,
+      142.699,
+      98.89
+    ],
+    "encodedLuma": 147.081,
+    "horizontalDetail": 3.115,
+    "seamX": 0,
+    "seamY": 0
+  },
+  "sha256": "3481825db28794b59ff4404e4732ae8a1cefe5d04e7152054773d49112cf274c",
+  "generatedSha256": "f0fca9cdd89b0dce1b7f6c2f8ccaebc155780f3df65a6a861562fd19f0d71b4b"
+}

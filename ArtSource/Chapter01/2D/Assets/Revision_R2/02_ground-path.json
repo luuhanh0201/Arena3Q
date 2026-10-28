@@ -1,0 +1,31 @@
+{
+  "id": "02_ground-path",
+  "before": {
+    "width": 1254,
+    "height": 1254,
+    "meanRgb": [
+      192.42,
+      153.368,
+      94.938
+    ],
+    "encodedLuma": 157.452,
+    "horizontalDetail": 3.489,
+    "seamX": 0,
+    "seamY": 0
+  },
+  "after": {
+    "width": 1254,
+    "height": 1254,
+    "meanRgb": [
+      206.192,
+      162.913,
+      104.387
+    ],
+    "encodedLuma": 167.889,
+    "horizontalDetail": 3.134,
+    "seamX": 0,
+    "seamY": 0
+  },
+  "sha256": "62875e057bae975de70987267e87f068920faccf9d7ef1a1a26569db66eb9729",
+  "generatedSha256": "f77d0e420689b71e904a18e4fd7b265ba02380cc900823b3cf62bf8f910ecab9"
+}
