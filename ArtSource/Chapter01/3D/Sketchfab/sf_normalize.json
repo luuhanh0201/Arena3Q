@@ -13,7 +13,7 @@
     "SF01": {"group": "house", "scale": {"height": 5.0}, "pieces": [{"name": "AncientHouse"}]},
     "SF02": {"group": "compound", "scale": {"footprint": 20.0}, "pieces": [{"name": "WalledCompound", "exclude": "^Object_(4|6)\\|"}]},
     "SF03": {"group": "house", "scale": {"height": 7.0}, "pieces": [{"name": "ChineseHouse"}]},
-    "SF04": {"group": "house", "scale": {"height": 5.5}, "drop_ground": true, "pieces": [{"name": "AsianHouse"}]},
+    "SF04": {"group": "house", "scale": {"height": 5.5}, "drop_ground": {"height_fraction": 0.02, "outer_fraction": 0.95, "expected_faces": 10}, "pieces": [{"name": "AsianHouse"}]},
     "SF05": {"group": "house", "scale": {"height": 6.5, "ref": "HouseB"}, "pieces": [
       {"name": "HouseA", "include": "\\|(lambert1\\.001|Concrete|Wood)$"},
       {"name": "HouseB", "include": "\\|lambert1$"},

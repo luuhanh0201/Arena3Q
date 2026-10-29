@@ -38,8 +38,9 @@ namespace Arena3Q.Editor.Chapter01
         {
             public string group, label, source, texture;
             public float height;
-            public Candidate(string group, string label, string source, float height, string texture = null)
-            { this.group = group; this.label = label; this.source = source; this.height = height; this.texture = texture; }
+            public bool cutout;
+            public Candidate(string group, string label, string source, float height, string texture = null, bool cutout = false)
+            { this.group = group; this.label = label; this.source = source; this.height = height; this.texture = texture; this.cutout = cutout; }
         }
 
         // source: "lib:<id>" = BattlefieldAssetLibrary entry already in the game, otherwise a path under ThirdParty.
@@ -99,6 +100,8 @@ namespace Arena3Q.Editor.Chapter01
         {
             foreach (var guid in AssetDatabase.FindAssets("t:Texture2D", new[] { ThirdParty }))
             {
+                // Sketchfab has typed normal and metallic/smoothness maps prepared by its importer.
+                if (AssetDatabase.GUIDToAssetPath(guid).StartsWith(ThirdParty + "/Sketchfab/")) continue;
                 if (AssetImporter.GetAtPath(AssetDatabase.GUIDToAssetPath(guid)) is not TextureImporter ti) continue;
                 if (ti.textureType == TextureImporterType.Default && ti.wrapMode == TextureWrapMode.Repeat && ti.mipmapEnabled && !ti.alphaIsTransparency && ti.maxTextureSize == 1024) continue;
                 ti.textureType = TextureImporterType.Default; ti.wrapMode = TextureWrapMode.Repeat; ti.mipmapEnabled = true;
@@ -161,6 +164,26 @@ namespace Arena3Q.Editor.Chapter01
 
         [MenuItem("Arena3Q/Chapter 01/Render Map Resource Check")]
         public static void RenderGapChecks() => Render(GapChecks, "ArtSource/Chapter01/3D/Renders/GapCheck");
+
+        [MenuItem("Arena3Q/Chapter 01/Import and Render Sketchfab")]
+        public static void RenderSketchfabChecks()
+        {
+            Chapter01SketchfabImport.Build();
+            RenderSketchfabOnly();
+        }
+
+        public static void RenderSketchfabOnly()
+        {
+            var models = File.ReadAllLines(ThirdParty + "/Sketchfab/pieces.tsv").Skip(1)
+                .Where(line => !string.IsNullOrWhiteSpace(line)).Select(line => line.Split('\t'))
+                .Select(row => new Candidate(row[0], row[1], Path.ChangeExtension(row[2], ".prefab"), 0f, cutout: bool.Parse(row[3]))).ToList();
+            models.Add(new Candidate("house", "Game Bookstore 5m", "CSStudio/bookstore/Bookstore.fbx", 5f, "CSStudio/bookstore/V3.png"));
+            models.Add(new Candidate("tower", "Game Watchtower", "lib:WoodenCampWatchtower", 0f));
+            models.Add(new Candidate("tree", "Game CommonTree", "lib:CommonTree_1", 0f));
+            models.Add(new Candidate("bamboo", "Game CommonTree", "lib:CommonTree_1", 0f));
+            Render(models.ToArray(), "ArtSource/Chapter01/3D/Renders/Sketchfab/Unity");
+            Chapter01SketchfabImport.ValidateRenders();
+        }
 
         private static string ModelPath(string source) => source.StartsWith("Assets/") ? source : ThirdParty + "/" + source;
 
@@ -280,14 +303,15 @@ namespace Arena3Q.Editor.Chapter01
                 for (int i = 0; i < materials.Length; i++)
                 {
                     var m = materials[i]; if (m == null) continue;
-                    if (AssetDatabase.GetAssetPath(m).StartsWith(Chapter01Kitbash.Kit)) { converted[m] = m; continue; }  // shared kitbash material
+                    if (AssetDatabase.GetAssetPath(m).StartsWith(Chapter01Kitbash.Kit) ||
+                        AssetDatabase.GetAssetPath(m).StartsWith(ThirdParty + "/Sketchfab/")) { converted[m] = m; continue; }
                     if (!converted.TryGetValue(m, out var lit))
                     {
                         var albedo = fallback ?? ByName(c.source, m.name);
-                        string key = m.GetEntityId() + "|" + (albedo != null ? albedo.GetEntityId().ToString() : "-");
+                        string key = m.GetEntityId() + "|" + (albedo != null ? albedo.GetEntityId().ToString() : "-") + "|" + c.cutout;
                         if (SharedMaterials == null || !SharedMaterials.TryGetValue(key, out lit))
                         {
-                            lit = Convert(m, albedo, out string note); if (note != null) shaders.Add(note);
+                            lit = Convert(m, albedo, out string note, c.cutout); if (note != null) shaders.Add(note);
                             if (SharedMaterials != null) SharedMaterials[key] = lit;
                         }
                         converted[m] = lit;
@@ -309,7 +333,7 @@ namespace Arena3Q.Editor.Chapter01
         }
 
         /// <summary>URP Lit copy of an imported material: keeps its colour and albedo, matte like the battlefield props.</summary>
-        private static Material Convert(Material source, Texture2D fallback, out string note)
+        private static Material Convert(Material source, Texture2D fallback, out string note, bool cutout = false)
         {
             note = null;
             Texture texture = null; Color colour = Color.white;
@@ -319,6 +343,12 @@ namespace Arena3Q.Editor.Chapter01
             if (fallback != null) { texture = fallback; colour = Color.white; note = "texture " + fallback.name; }
             if (texture == null) note = "colour only " + source.name;
             var lit = Lit(texture as Texture2D, colour); lit.name = source.name;
+            if (cutout && texture != null && source.HasProperty("_AlphaClip") && source.GetFloat("_AlphaClip") > .5f)
+            {
+                lit.SetFloat("_AlphaClip", 1f); lit.SetFloat("_Cutoff", .5f); lit.EnableKeyword("_ALPHATEST_ON");
+                lit.SetOverrideTag("RenderType", "TransparentCutout"); lit.renderQueue = (int)RenderQueue.AlphaTest;
+                lit.SetFloat("_Cull", (float)CullMode.Off);
+            }
             if (_materialFolder != null) AssetDatabase.CreateAsset(lit, AssetDatabase.GenerateUniqueAssetPath(_materialFolder + "/" + Slug(source.name) + ".mat"));
             return lit;
         }
