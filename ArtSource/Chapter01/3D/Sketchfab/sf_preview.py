@@ -2,6 +2,7 @@ import bpy, sys, os, glob, math
 import numpy as np
 from mathutils import Vector, Matrix
 a = sys.argv[sys.argv.index("--")+1:]; root, outdir = a[0], a[1]; only = a[2].split(",") if len(a) > 2 else None
+root, outdir = os.path.abspath(root), os.path.abspath(outdir)
 os.makedirs(outdir, exist_ok=True)
 VIEWS = [(45, 50), (0, 12), (90, 12), (225, 30)]
 S = 420

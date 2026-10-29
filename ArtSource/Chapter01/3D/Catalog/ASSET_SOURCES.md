@@ -152,3 +152,13 @@ Phần 2D của Codex (29 nhóm) phủ đủ texture, decal và sprite trang tr�
 Theo bảng mục 9, phần tự làm được đã dựng xong (`Renders/index.html`, mục "Phần tự dựng"): cổng làng (Ải 1), cổng đại doanh (Ải 6), lều lính (Ải 3 đến 6), trống trận và trống lớn (Ải 5, 6), vách đá A, B và mỏm đá, nền cao tế đàn + bậc đá (Ải 7), 3 cụm tre (Ải 3). Hình khối là của dự án (`Assets/Arena3Q/Art/Chapter01/Kitbash/*.fbx`, script `3D/Kitbash/ch01_kitbash.py`); vật liệu và prefab trong `Assets/ThirdParty/Chapter01/_Kit` (gitignore, dựng lại bằng **Arena3Q > Chapter 01 > Build Kitbash Prefabs**). Texture: Quaternius MegaKit, Stylized Nature (CC0), Nobiax bamboo (CC0), ảnh 01, 06, 17 của Codex.
 
 Còn thiếu sau lượt này: doanh trại lính (Ải 6), cầu gỗ (Ải 3), xe hàng bị đổ (Ải 1), tượng đá (Ải 7), lư hương đúng kiểu, toàn bộ nhân vật. Cụm tre nặng (8,6k đến 14,4k tam giác mỗi cụm): rừng trúc phải có LOD hoặc dùng thẻ lá 2D cho cụm xa.
+
+## 11. Chuẩn hóa 22 nguồn Sketchfab (29/10, Codex tiếp bàn giao Claude)
+
+Đã xuất47mảnh FBX theo mét và prefab URP local ở `Assets/ThirdParty/Chapter01/Sketchfab`; kiểm Unity đúng kích thước, pivot, UV và số tam giác, không đỉnh NaN. Texture dẫn xuất tối đa1024; nguồn tải giữ nguyên. Cấu hình và cách dựng lại: `../Sketchfab/README.md`; giấy phép và ghi công từng nguồn: `SKETCHFAB_CREDITS.md`. Cả22file license tải kèm ghi CC BY4.0. Riêng SF13 tiêu đề có CC0 nhưng license.txt ghi CC BY4.0, khác ghi chú bàn giao; vẫn ghi công theo file giấy phép.
+
+- **SF20 Rice Field** thực tế là đảo đồi ruộng bậc thang, tên mảnh `TerraceIsland`; chưa phù hợp thay ruộng phẳng ở Ải2.
+- **SF26 Low Bridge** thực tế là hành lang có mái, tên `CoveredCorridor`; không dùng thay cầu vượt suối. Cầu gỗ kitbash hiện có là hạng mục khác.
+- SF04 bỏ cả10mặt nền cỏ; SF02 bỏ hai đế trùng; SF07/SF08 bỏ phần cảnh ngoài đình. SF05 tách4nhà, SF13 tách8món, SF15 lấy9cây cao/4cụm/3thân theo giới hạn cấu hình.
+- SF08:13.584→7.760tam giác; SF21:11.545→5.003. Ba nhà SF13 còn10–29k mỗi mảnh; chưa có LOD, chưa đo FPS thiết bị.
+- Ảnh đối chiếu Blender/Unity tại `NghiemThu/Chapter01/Sketchfab_20261029`, trang local `http://127.0.0.1:4322/sketchfab-review/`. Chiều cao và màu vẫn là ứng viên để duyệt; **chưa thay model vào map**. Các vật liệu truyền sáng/alpha blend được đơn giản hóa sang opaque/cutout cho preview URP.
