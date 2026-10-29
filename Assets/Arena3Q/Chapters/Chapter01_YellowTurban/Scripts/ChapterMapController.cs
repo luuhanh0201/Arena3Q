@@ -19,6 +19,7 @@ namespace Arena3Q.Exploration
         public ChapterMapCamera View { get; private set; }
         public ChapterMapMotor Motor { get; private set; }
         public ChapterMapHud Hud { get; private set; }
+        public ChapterMapWorld World { get; private set; }
         public Transform[][] Anchors { get; private set; }
         public Transform[] Areas { get; private set; }
         public bool Ready { get; private set; }
@@ -67,6 +68,7 @@ namespace Arena3Q.Exploration
             BuildPlayer(actor.transform);
             gameObject.AddComponent<ChapterMapInput>().Configure(this);
             Ready = true; Hud.Refresh();
+            World = gameObject.AddComponent<ChapterMapWorld>(); World.Configure(this);
         }
         private void BindScene()
         {

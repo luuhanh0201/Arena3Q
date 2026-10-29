@@ -555,3 +555,7 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 - TestDPRbịsailabel: PlaywrightscreenshotkhôiphụcdeviceMetricsvềDPRcontext1,sauảnhphoneDPR1,25cácmodekếtiếpthựctếtrởvềDPR1. CodewebđãfollowDPRđúng;fixturephảisetDPRtrướcmỗicasevàassertDPRthực. Hủykếtluận65ảnhbaselineđầu làđủ3DPR;chụplạibaselinequa routewrapper4b23c57riêngtrongcontextQA,khônglùisitelive.
 - DPRquaCDPtiếptụcbịPlaywrightkhôiphụctrongtươngtáckhác. DừngcáchđổiDPRtrêncontextcốđịnh1; mỗimứcDPRdùngbrowser.newContext(deviceScaleFactor=...)riêng,lấysốđothựcvàasserttrướcmọiảnh. Giữlogcáclượtfixturelỗivàkhôngdùnglàmbằngchứngđạt.
 - ClarityUI31/33: capturetestphóngquad4xtrongGameViewnhỏchỉđạt1664pixel,nênexpect2048khônghợplệ. Testcapdùngquadlớnrõràng,giữassertgiớihạnvàthuhồiRT. LegacysmokeđãloadFrontendtronglognhưngquádeadline20sởlầnnạpartRGBA/đangchụpweb; tăngdeadline60schoIOfirstload,khôngđổiassertscene/controller. Chạylại2bàithấtbại,khôngbỏtest.
+
+## 29/10 - P3 sương/mở vùng
+- Capture đầu cho thấy fog sai vùng do dựa vào depth texture ở transparent và quad chưa cập nhật aspect RenderTexture. Dùng ray chiếu mặt đất theo vùng NavMesh, cập nhật kích thước theo camera thực ngay trước render. Kiểm hình cùng góc và WebGL sau sửa; test trạng thái không thay kiểm hình.
+- Bài kiểm thế giới đầu bị NullReference ở State_After: scene có nhóm này chỉ tại các khu đã có model sau thắng (1 và 4), các khu khác chưa có art. Kiểm State_Before tắt ở cả7 và State_After bật khi có, ghi thiếu art rõ ràng; không dựng nhóm rỗng để giả hoàn thành hình.

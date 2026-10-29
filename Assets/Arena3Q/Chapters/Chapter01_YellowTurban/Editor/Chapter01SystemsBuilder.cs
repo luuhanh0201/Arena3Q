@@ -21,6 +21,21 @@ namespace Arena3Q.Exploration.Editor
         public const string ScenePath = Root + "/Scenes/CH01_Exploration.unity";
         public const string PrefabPath = Root + "/Prefabs/CH01_MapSystems.prefab";
         private const string NavigationRoot = "Assets/ThirdParty/Chapter01/_Navigation";
+        [MenuItem("Arena3Q/Chapter 01/Update World Presentation")]
+        public static void UpdateWorldPresentation()
+        {
+            var config=AssetDatabase.LoadAssetAtPath<ChapterMapConfig>(ConfigPath);
+            const string texture="Assets/ThirdParty/Kenney/ParticlePack/PNG (Transparent)/smoke_08.png";
+            config.motion.fogTexture=AssetDatabase.LoadAssetAtPath<Texture2D>(texture);
+            if(config.motion.fogTexture==null)throw new InvalidDataException("Missing local Kenney CC0 cloud source.");
+            string path=Root+"/Data/CH01_Fog.mat";
+            var material=AssetDatabase.LoadAssetAtPath<Material>(path);
+            if(material==null){material=new Material(Shader.Find("Arena3Q/Chapter Fog"));AssetDatabase.CreateAsset(material,path);}
+            material.SetTexture("_CloudTex",config.motion.fogTexture);
+            config.motion.fogMaterial=material;
+            EditorUtility.SetDirty(material); EditorUtility.SetDirty(config.motion); AssetDatabase.SaveAssets();
+            Debug.Log("[ChapterMap] World presentation bound; source scene/model/materials unchanged.");
+        }
         [Serializable] private sealed class RoadLayout { public RoadLine road; }
         [Serializable] private sealed class RoadLine { public float[] points; }
         [MenuItem("Arena3Q/Chapter 01/Update Map Presentation")]

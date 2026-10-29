@@ -33,7 +33,9 @@ namespace Arena3Q.Data
         {
             if (string.IsNullOrWhiteSpace(chapterId) || string.IsNullOrWhiteSpace(sceneName)) errors.Add("Chapter identifiers are required.");
             if (frontend == null || ui == null || motion == null) errors.Add("Chapter requires frontend, UI and motion configs.");
+            if (motion != null) motion.Validate(errors);
             if (stages == null || stages.Length == 0) { errors.Add("Chapter requires stages."); return; }
+            if (stages.Length > 16) errors.Add("Chapter fog supports at most 16 regions.");
             var ids = new HashSet<string>();
             foreach (var stage in stages)
             {

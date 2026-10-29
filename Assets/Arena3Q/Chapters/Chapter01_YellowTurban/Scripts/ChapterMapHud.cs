@@ -42,10 +42,11 @@ namespace Arena3Q.Exploration
         public bool ModalVisible => _modal != null;
         [Serializable] private sealed class UiReading
         {
-            public int width, height, frameRate, previewFrameRate, unlocked;
+            public int width, height, frameRate, previewFrameRate, unlocked, revealed;
             public float dpi;
             public Rect safeArea;
-            public bool modal;
+            public bool modal, revealing;
+            public float[] fogVisibility;
             public string message;
             public ElementReading[] buttons, markers, labels;
         }
@@ -75,6 +76,8 @@ namespace Arena3Q.Exploration
                 previewFrameRate = DisplayMetrics.PreviewFrameRate, dpi = DisplayMetrics.Dpi,
                 safeArea = DisplayMetrics.SafeArea, modal = ModalVisible, message = _map.LastMessage,
                 unlocked = _map.Session.Rules.UnlockedCount(_map.Session.Progress),
+                revealed = _map.Session.Progress.revealedStages, revealing = _map.World != null && _map.World.Revealing,
+                fogVisibility = _map.World == null ? Array.Empty<float>() : Enumerable.Range(0, Config.stages.Length).Select(_map.World.Visibility).ToArray(),
                 buttons = _safe.GetComponentsInChildren<Button>().Select(button => new ElementReading
                 { name = button.name, rect = Bounds((RectTransform)button.transform), active = button.interactable }).ToArray(),
                 markers = _markers.Select(marker => new ElementReading { name = marker.rect.name,
@@ -219,6 +222,8 @@ namespace Arena3Q.Exploration
             {
                 var data=Config.stages[marker.stage]; var state=rules.State(progress,marker.stage); bool locked=state==ChapterStageState.Locked;
                 bool visible=marker.target<0 || rules.MarkerVisible(progress,marker.stage,data.targets[marker.target].kind);
+                bool presented = _map.World == null || _map.World.MarkersVisible(marker.stage);
+                if (!locked && !presented) visible = false;
                 var anchor=marker.target>=0?_map.Anchors[marker.stage][marker.target]:null;
                 if(marker.target>=0&&anchor==null) visible=false;
                 var world=anchor!=null?anchor.position:data.center;

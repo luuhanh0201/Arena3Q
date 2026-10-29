@@ -1,6 +1,20 @@
 # Giai đoạn B: báo cáo triển khai
 
-## Mốc hiện tại: P2 web đã kiểm, 29/10
+## P3: sương và trạng thái thế giới, 29/10
+
+`ChapterMapWorld` đọc tiến độ đã xác thực; không sinh kết quả trận, sao hoặc thưởng. Khu chưa mở ẩn NPC. Khi trở về sau thắng: chuyển nhóm trước/sau, đưa camera tới khu kế, tan sương, hiện NPC rồi mới hiện marker và lưu `revealedStages`. Tải lại giữ khu đã mở và trạng thái hoàn thành. Nhóm `State_After` chỉ có mô hình tại khu 1 và 4 trong scene bàn giao; những mô hình còn thiếu vẫn thuộc phần art chưa hoàn tất.
+
+Sương dùng `smoke_08.png` Kenney Particle Pack CC0 local, shader chiếu màn hình xuống mặt đất XZ theo cùng vùng gần nhất của navigation. Khu khóa khử bão hòa và tối theo cấu hình; HUD giữ ở trên. Preset 30 dùng hai lớp mẫu mây, 60/120 ba lớp; thời gian chuyển tiếp và thông tin chơi giữ nguyên. Shader đọc opaque color của camera, cần đo chi phí render trên thiết bị sau này.
+
+Unity PlayMode **12/12 qua**, không bỏ qua: `Logs/Chapter01-P3-flow-fixed.xml`; kiểm mở tuần tự bảy khu, không lặp reveal sau tải lại, cùng hồi quy đường đi/quest/trận. Ảnh từng khu tại `NghiemThu/Chapter01/P1_Runtime_20261028/run_20261029_025056_922`. Lượt đầu 11/12 và ảnh sương sai giữ lại để đối chiếu; không tính đạt. EditMode luật tiến độ và DisplayMetrics **7/7 qua** (`Logs/Chapter01-P3-core.xml`, 29/10 10:04).
+
+WebGL P3 đã qua 12 tổ hợp màn hình/preset, thao tác chạm và ba hồ sơ QA đã thắng 1/4/7 ải: `NghiemThu/Chapter01/P3_Web_2026-10-29T03-03-25-545Z/result.json`; không pageerror/console error. Lượt bị ngắt quota lúc 03:02 không tính đạt. Build `b855906df042b06bd36988328711dcc126176a1029ed7c6f8cfddff75fc35355`, 0 lỗi/11 cảnh báo, 557,4 giây. Thư mục web khi build **460,9 MB**, tăng khoảng 0,1 MB so với trước lượt P3; đã gồm trang ảnh P2 51,3 MB. Không lấy số 409,5 MB trước khi thêm ảnh P2 để quy chênh lệch đó cho sương.
+
+Phần còn lại: P4 môi trường/decal/điểm âm thanh; battle và phần thưởng chương chưa được soạn; NPC thật và các mô hình trạng thái còn thiếu; chưa nghiệm thu FPS/ASTC/nhiệt trên điện thoại.
+
+Lượt web cuối có kiểm marker đã bấm được sau fade: **đạt**, `NghiemThu/Chapter01/P3_Web_2026-10-29T03-07-34-178Z/result.json` (25 ảnh, 12 tổ hợp, 3 hồ sơ, 0 lỗi browser). Bộ so sánh: `NghiemThu/Chapter01/P3_Review_20261029/index.html`; tự kiểm của Codex, chưa phải review độc lập của Claude.
+
+## P2 web đã kiểm, 29/10
 
 WebGL thật qua **12/12** tổ hợp Redmi, 16:9, 18:9, 20:9 × preset 30/60/120; safe area, DPI, vùng chạm tối thiểu 56 dp, không cắt chữ. Thao tác touch qua thông tin chương, đi tới NPC, nhận nhiệm vụ, mở bảng ải, chặn Xuất Chiến khi thiếu battle và trở về Sảnh. Không có pageerror/console error. Kết quả: `NghiemThu/Chapter01/P2_Web_2026-10-28T19-39-43-217Z/result.json` (20 ảnh). Ảnh so sánh và mẫu: `NghiemThu/Chapter01/P2_Review_20261029/index.html`.
 
@@ -8,7 +22,7 @@ WebGL thật qua **12/12** tổ hợp Redmi, 16:9, 18:9, 20:9 × preset 30/60/12
 
 Unity của bản P2 trước khi tiếp tục: `Chapter01-P2-final.xml` 11/11, `Chapter01-P2-frontend.xml` 11/11, `Chapter01-P2-labels.xml` 1/1. Lượt tiếp tục này chạy browser, không ghi các số Unity đó thành lượt test mới. Build hash `121d81fcf036a953b43ced9c20b002323bff1437fd878dee307a9367a3ff382c`.
 
-P3/P4 còn làm tiếp. Đây chưa phải nghiệm thu trọn chương: NPC vẫn tạm, bảy battle/phần thưởng chưa có nội dung, chưa đo FPS hoặc ASTC/nhiệt trên thiết bị. Chọn preset 120 trên web không chứng minh máy chạy 120 FPS.
+Ở mốc P2, P3/P4 còn làm tiếp (xem cập nhật P3 phía trên). Đây chưa phải nghiệm thu trọn chương: NPC vẫn tạm, bảy battle/phần thưởng chưa có nội dung, chưa đo FPS hoặc ASTC/nhiệt trên thiết bị. Chọn preset 120 trên web không chứng minh máy chạy 120 FPS.
 
 ## P1a: dữ liệu và luật tiến độ
 

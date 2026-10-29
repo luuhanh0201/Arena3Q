@@ -22,9 +22,11 @@ namespace Arena3Q.Exploration.Tests
         private const string Root="Assets/Arena3Q/Chapters/Chapter01_YellowTurban";
         private InMemoryProfileStore _store;
         private ChapterMapController _map;
+        private float _previousVolume;
         private static readonly string CaptureDirectory = "NghiemThu/Chapter01/P1_Runtime_20261028/run_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss_fff");
         [UnitySetUp] public IEnumerator Open()
         {
+            _previousVolume=AudioListener.volume; AudioListener.volume=0;
             var config=AssetDatabase.LoadAssetAtPath<ChapterMapConfig>(Root+"/Data/CH01_MapConfig.asset");
             Assert.NotNull(config);
             var profile=new PlayerProfile{accountId="chapter-test",accountKind=AccountKind.Guest,lastServerId="test"};
@@ -43,6 +45,56 @@ namespace Arena3Q.Exploration.Tests
             yield return SceneManager.LoadSceneAsync("Frontend");
             yield return null;
             FrontendServiceLocator.Reset();
+            AudioListener.volume=_previousVolume;
+        }
+        [UnityTest] public IEnumerator SavedWorldRevealsEachRegionOnceAndKeepsCompletedStatesOnReplay()
+        {
+            Assert.NotNull(_map.Config.motion.fogMaterial);
+            Assert.True(_map.Config.motion.fogMaterial.shader.isSupported);
+            Assert.AreEqual(1,_map.World.VisibleCount);
+            for(int stage=1;stage<7;stage++)
+            {
+                Assert.False(_map.World.MarkersVisible(stage));
+                foreach(var anchor in _map.Anchors[stage])Assert.False(anchor.gameObject.activeInHierarchy,"Locked NPC must be hidden.");
+            }
+            for(int completed=0;completed<7;completed++)
+            {
+                // Only this isolated profile supplies verified results; release data remains unbound.
+                _map.Session.AcceptQuest(completed);
+                string attempt="world-test-"+completed;
+                Assert.True(_map.Session.Rules.BeginBattle(_map.Session.Progress,completed,attempt));
+                Assert.True(_map.Session.Rules.ApplyResult(_map.Session.Progress,_map.Config.stages[completed].id,attempt,true,3));
+                _map.Session.Save();
+                string scene=_map.Config.sceneName;
+                yield return SceneManager.LoadSceneAsync(scene);yield return null;yield return null;
+                _map=Object.FindFirstObjectByType<ChapterMapController>();
+                if(completed<6)
+                {
+                    Assert.True(_map.World.Revealing);Assert.True(_map.Busy);
+                    Assert.False(_map.World.MarkersVisible(completed+1));
+                    Assert.AreEqual(0,_map.World.Visibility(completed+1));
+                    var previousFocus=_map.View.Focus;
+                    _map.View.FocusOn(_map.Config.stages[completed+1].center);
+                    Capture("world-"+(completed+2)+"-before");
+                    _map.View.FocusOn(previousFocus);
+                    float deadline=Time.realtimeSinceStartup+12;
+                    while(_map.World.Revealing&&Time.realtimeSinceStartup<deadline)yield return null;
+                    Assert.False(_map.World.Revealing);Assert.False(_map.Busy);
+                    Assert.AreEqual(completed+2,_map.Session.Progress.revealedStages);
+                    Assert.AreEqual(1,_map.World.Visibility(completed+1));
+                    Assert.True(_map.World.MarkersVisible(completed+1));
+                    Capture("world-"+(completed+2)+"-after");
+                }
+                var area=_map.Areas[completed];
+                Assert.NotNull(area);
+                Assert.False(area.Find("State_Before").gameObject.activeSelf);
+                var after=area.Find("State_After");
+                if(after!=null)Assert.True(after.gameObject.activeSelf);
+                yield return SceneManager.LoadSceneAsync(scene);yield return null;yield return null;
+                _map=Object.FindFirstObjectByType<ChapterMapController>();
+                Assert.False(_map.World.Revealing,"Reload must not cover an opened region again.");
+                Assert.AreEqual(Mathf.Min(7,completed+2),_map.World.VisibleCount);
+            }
         }
         [UnityTest] public IEnumerator FirstVisitNavigationAndMissingBattleDoNotUnlock()
         {

@@ -24,7 +24,12 @@ MonoBehaviour:
   fogOpacity: 0.9
   fogDrift: 0.25
   fogEdge: 0.28
-  fogTexture: {fileID: 0}
+  fogTexture: {fileID: 2800000, guid: dde20c36b65b25648a5eb5ce75e25a52, type: 3}
+  fogMaterial: {fileID: 2100000, guid: e876e8d8acdc3a0498de71cac33932c3, type: 2}
+  fogColor: {r: 0.75, g: 0.79, b: 0.78, a: 1}
+  fogTextureScale: 0.025
+  fogBoundaryWidth: 6
+  fogDarkening: 0.2
   windStrength: 0.35
   gustSeconds: 8
   waterSpeed: 0.06
@@ -42,3 +47,4 @@ MonoBehaviour:
   leavesPerArea: 010000000300000003000000i
   fogLayers: 020000000300000003000000i
   maxAudioSources: 4
+  routeDashesPerSecond: 0.5

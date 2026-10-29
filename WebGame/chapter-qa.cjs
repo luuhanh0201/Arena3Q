@@ -4,7 +4,8 @@ const { chromium } = require('../Admin/node_modules/playwright');
 const { seed, lobbyProfile } = require('./qa-profile.cjs');
 const settings = require('./web-settings.json');
 const baseline = process.argv.includes('--baseline');
-const out = path.resolve('NghiemThu/Chapter01/P2_Web_' + (baseline ? 'before_' : '') + new Date().toISOString().replace(/[:.]/g, '-'));
+const worldQa = process.argv.includes('--world');
+const out = path.resolve('NghiemThu/Chapter01/' + (worldQa ? 'P3_Web_' : 'P2_Web_') + (baseline ? 'before_' : '') + new Date().toISOString().replace(/[:.]/g, '-'));
 const base = `http://127.0.0.1:${settings.port}`;
 fs.mkdirSync(out, { recursive: true });
 const report = { passed: false, mutedBrowser: true, isolatedProfile: true, errors: [], cases: [], screenshots: [] };
@@ -106,7 +107,34 @@ save();
     await capture('08-missing-battle-does-not-unlock');
     await tapRect(state.buttons.find(x => x.name === 'Close').rect, state); await waitState(s => !s.modal);
     state = await inspect(); await tapRect(state.buttons.find(x => x.name === 'Back').rect, state); await page.waitForTimeout(4000);
-    await capture('09-return-lobby'); assert.deepEqual(report.errors, []);
+    await capture('09-return-lobby');
+    if (worldQa) {
+      report.world = [];
+      for (const cleared of [1, 4, 7]) {
+        const profile = lobbyProfile();
+        profile.characters[0].chapters = [{ chapterId: 'chapter01', revealedStages: cleared,
+          stages: Array.from({length:cleared},(_,i)=>({stageId:`ch01_${String(i+1).padStart(2,'0')}`,questAccepted:true,stars:3})),
+          claimedRewards:[],pendingBattleId:'',pendingStageId:'' }];
+        await seed(page, profile); await start();
+        await clickDesign(640,550); await clickDesign(640,638); await page.waitForTimeout(3500);
+        await clickDesign(1080,630);
+        state = await waitState(s => s.unlocked === Math.min(7,cleared+1));
+        if(cleared<7) {
+          assert.ok(state.revealing,'A newly unlocked region must play its reveal.');
+          assert.ok(!state.markers.some(m=>m.stage===cleared&&m.active),'New markers wait for the reveal.');
+          await capture(`10-world-${cleared+1}-during`);
+          state=await waitState(s=>!s.revealing);
+          assert.equal(state.revealed,cleared+1);
+        } else assert.ok(!state.revealing,'Fully revealed progress must restore directly.');
+        assert.deepEqual(state.fogVisibility,Array.from({length:7},(_,i)=>i<Math.min(7,cleared+1)?1:0));
+        // Reveal completion starts the marker fade; inspect its final visible state before taking the after image.
+        await page.waitForTimeout(600); state=await inspect();
+        if(cleared<7)assert.ok(state.markers.some(m=>m.stage===cleared&&m.target===-1&&m.active),'The newly revealed stage marker must become interactive.');
+        await capture(`11-world-${cleared}-cleared`);report.world.push({cleared,state});save();
+        await tapRect(state.buttons.find(x=>x.name==='Back').rect,state);await page.waitForTimeout(4000);
+      }
+    }
+    assert.deepEqual(report.errors, []);
     report.passed = true; save(); console.log('PASS: real WebGL chapter, 12 phone/preset cases, touch quest/battle/back; audio muted. ' + out);
   } catch (error) { report.failure = error.stack; save(); await capture('FAILED'); throw error; }
   finally { await browser.close(); }
