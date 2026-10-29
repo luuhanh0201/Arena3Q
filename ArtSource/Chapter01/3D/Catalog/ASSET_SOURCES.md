@@ -42,7 +42,7 @@ Cách tải: đăng nhập Sketchfab → mở link → **Download 3D Model** →
 | SF06 | [Chinese roof. Low poly model.](https://sketchfab.com/3d-models/chinese-roof-low-poly-model-783448e879ac4f3c84beb6c836a1b241) | KSmodels | 754 | Mái ngói để ghép lên tường MegaKit |
 | SF09 | [Ancient Chinese Arena](https://sketchfab.com/3d-models/ancient-chinese-arena-1bb1d60f152f4c9795ec8a411404efdf) | zhuoyi0904 | 3.832 | Ải 7 Tế Đàn: nền đài, bậc đá |
 | SF11 | [Chinese drum tower](https://sketchfab.com/3d-models/chinese-drum-tower-879fef3c206e471bac0818ae29a458a0) | Murilo Rocha | 6.700 | Ải 6 Đại Doanh: lầu trống |
-| SF12 | [Low Poly Watchtower (Isometric)](https://sketchfab.com/3d-models/low-poly-watchtower-isometric-239b874ebfb1474a8de0e0adb7c681e1) | Pippa | 550 | Ải 2, 3, 5, 6: tháp canh gỗ |
+| SF12 | [Low Poly Watchtower (Isometric)](https://sketchfab.com/3d-models/low-poly-watchtower-isometric-239b874ebfb1474a8de0e0adb7c681e1) | Peter Primini | 550 | Ải 2, 3, 5, 6: tháp canh gỗ |
 | SF15 | [Free Bamboo Set](https://sketchfab.com/3d-models/free-bamboo-set-e9f9fa5397814f81bf85ad06acf5bf30) | JonhGillessen | 37.834 | Ải 3 Rừng Trúc: thân tre |
 | SF16 | [Bamboo Bush](https://sketchfab.com/3d-models/bamboo-bush-d0d5eb345ff7420bb7f5c5239fcec637) | sujirour | 1.098 | Ải 3: bụi tre |
 | SF17 | [bamboo](https://sketchfab.com/3d-models/bamboo-a02bf0e3ffe44617ad49daf3cd94fe59) | evolveduk | 2.180 | Ải 3: cây tre lẻ |
@@ -59,7 +59,7 @@ Cách tải: đăng nhập Sketchfab → mở link → **Download 3D Model** →
 | Mã | Model | Tác giả | Số mặt | Dùng ở |
 |---|---|---|---|---|
 | SF07 | [Chinese style tea  pavilion](https://sketchfab.com/3d-models/chinese-style-tea-pavilion-7625f6818cab4fe58a4e1a09f186d7b1) | AlvinBi | 4.942 | Ải 2 chòi quan sát / Ải 1 đình làng |
-| SF08 | [Chinese Pavilion Memoriam](https://sketchfab.com/3d-models/chinese-pavilion-memoriam-87f4931714d7481baa54e5050f679be2) | HaraKiri | 14.716 | Ải 7 Tế Đàn: đình nghi lễ |
+| SF08 | [Chinese Pavilion Memoriam](https://sketchfab.com/3d-models/chinese-pavilion-memoriam-87f4931714d7481baa54e5050f679be2) | TenatiousV | 14.716 | Ải 7 Tế Đàn: đình nghi lễ |
 | SF13 | [LOWP - Lunar Year - CC0 Asset Pack](https://sketchfab.com/3d-models/lowp-lunar-year-cc0-asset-pack-db132fddf6804657a213ef3dabe16902) | Polygonal Mind | 78.837 | Đèn lồng, cổng, trang trí Tết; lấy từng món |
 
 ### 3.3 Loại (đã xem, không hợp)
