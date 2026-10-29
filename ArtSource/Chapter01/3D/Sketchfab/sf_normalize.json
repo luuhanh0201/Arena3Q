@@ -1,0 +1,51 @@
+{
+  "_doc": [
+    "Normalisation of the Chapter 1 Sketchfab downloads (ArtSource/Chapter01/3D/Sources/Sketchfab/SFxx/scene.gltf) into FBX for Unity.",
+    "Read by sf_normalize.py. Units are metres. One scale per source, so pieces split from one pack keep their relative sizes.",
+    "scale: height = metres of the ref piece's height, footprint = metres of its longer ground side, factor = plain multiplier.",
+    "Piece include / exclude are regexes searched in 'object name|material names'. cluster = split the leftovers by touching ground boxes.",
+    "decimate: {regex: ratio} collapse on matching objects before join. pivot: bottom (ground centre, default) or top (hanging point).",
+    "drop_ground: delete faces lying on the lowest level of the model (a baked-in ground plane)."
+  ],
+  "max_texture": 1024,
+  "tris_warning": 10000,
+  "sources": {
+    "SF01": {"group": "house", "scale": {"height": 5.0}, "pieces": [{"name": "AncientHouse"}]},
+    "SF02": {"group": "compound", "scale": {"footprint": 20.0}, "pieces": [{"name": "WalledCompound", "exclude": "^Object_(4|6)\\|"}]},
+    "SF03": {"group": "house", "scale": {"height": 7.0}, "pieces": [{"name": "ChineseHouse"}]},
+    "SF04": {"group": "house", "scale": {"height": 5.5}, "drop_ground": true, "pieces": [{"name": "AsianHouse"}]},
+    "SF05": {"group": "house", "scale": {"height": 6.5, "ref": "HouseB"}, "pieces": [
+      {"name": "HouseA", "include": "\\|(lambert1\\.001|Concrete|Wood)$"},
+      {"name": "HouseB", "include": "\\|lambert1$"},
+      {"name": "HouseC", "include": "\\|lambert1\\.002$"},
+      {"name": "HouseD", "include": "\\|lambert1\\.003$"}]},
+    "SF06": {"group": "roof", "scale": {"factor": 1.0}, "pieces": [{"name": "RoofPanel"}]},
+    "SF07": {"group": "pavilion", "scale": {"height": 4.5}, "pieces": [
+      {"name": "TeaPavilion", "include": "^(roof|wall_space1|sign|pillar|base|chair|table|step1|step2)_"}]},
+    "SF08": {"group": "pavilion", "scale": {"height": 6.0}, "pieces": [
+      {"name": "MemorialPavilion", "exclude": "^(Landscape_|Rock_LP)", "decimate": {"PavilionTubes": 0.35}}]},
+    "SF09": {"group": "altar", "scale": {"factor": 1.0}, "pieces": [{"name": "ArenaPlatform"}]},
+    "SF11": {"group": "tower", "scale": {"height": 9.0}, "pieces": [{"name": "DrumTower"}]},
+    "SF12": {"group": "tower", "scale": {"height": 7.0}, "pieces": [{"name": "Watchtower"}]},
+    "SF13": {"group": "lunar", "scale": {"height": 9.0, "ref": "Building01"}, "pieces": [
+      {"name": "Building01", "include": "\\|(Building01|Buildin01|Lamps01|StructuresBuilding01)"},
+      {"name": "Building02", "include": "\\|(Building02|Lamps02|Dragon)"},
+      {"name": "Building03", "include": "\\|(Building03|Lamps03)"},
+      {"name": "BellFrame", "include": "\\|BellStructure"},
+      {"name": "LanternString01", "include": "\\|OuterLamps01"},
+      {"name": "LanternString02", "include": "\\|OuterLamps02"},
+      {"name": "LanternString03", "include": "\\|OuterLamps03"},
+      {"name": "BannerColumns", "include": "\\|ColumnBanner"}]},
+    "SF15": {"group": "bamboo", "scale": {"factor": 0.25}, "cluster": {"leaves": "bambooalpha", "tall": 15.0, "max_per_kind": {"Tall": 9, "Clump": 4, "Stem": 3}}, "pieces": []},
+    "SF16": {"group": "bamboo", "scale": {"height": 2.5}, "pieces": [{"name": "BambooBush"}]},
+    "SF17": {"group": "bamboo", "scale": {"height": 6.0}, "pieces": [{"name": "BambooClump"}]},
+    "SF18": {"group": "tree", "scale": {"height": 6.0}, "pieces": [{"name": "SakuraTree"}]},
+    "SF19": {"group": "tree", "scale": {"height": 6.5}, "pieces": [{"name": "CherryTree"}]},
+    "SF20": {"group": "terrace", "scale": {"footprint": 30.0}, "pieces": [{"name": "TerraceIsland"}]},
+    "SF21": {"group": "burner", "scale": {"height": 1.8}, "pieces": [
+      {"name": "IncenseBurner", "decimate": {"^jiao_": 0.35, "^guo_": 0.6, "^bashou_": 0.5}}]},
+    "SF23": {"group": "lantern", "scale": {"height": 0.6}, "pieces": [{"name": "OldLantern", "pivot": "top"}]},
+    "SF24": {"group": "lantern", "scale": {"height": 1.6}, "pieces": [{"name": "HangingLantern", "pivot": "top"}]},
+    "SF26": {"group": "corridor", "scale": {"height": 4.5}, "pieces": [{"name": "CoveredCorridor"}]}
+  }
+}
