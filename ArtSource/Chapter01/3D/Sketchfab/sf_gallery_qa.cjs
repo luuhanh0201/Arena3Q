@@ -13,7 +13,8 @@ const out=path.resolve(__dirname,'../../../../NghiemThu/Chapter01/Sketchfab_2026
    await Promise.all(images.map(i=>{i.loading='eager';return i.decode().catch(()=>{});}));
    return {count:images.length,broken:images.filter(i=>!i.complete||!i.naturalWidth).map(i=>i.src)};
   });
-  if(imageCheck.count!==120||imageCheck.broken.length||errors.length)throw Error(JSON.stringify({imageCheck,errors}));
+  const expected=JSON.parse(fs.readFileSync(path.join(out,'checks.json'))).htmlImages||120;
+  if(imageCheck.count!==expected||imageCheck.broken.length||errors.length)throw Error(JSON.stringify({imageCheck,errors}));
   await page.locator('#SF04').scrollIntoViewIfNeeded();
   await page.locator('#SF04 article').first().screenshot({path:path.join(out,'browser-SF04.png')});
   await page.setViewportSize({width:390,height:844});

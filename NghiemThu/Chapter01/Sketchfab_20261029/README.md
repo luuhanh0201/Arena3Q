@@ -30,3 +30,13 @@ Xem ảnh: [trang local](http://127.0.0.1:4322/sketchfab-review/), hoặc `index
 Gallery đã kiểm bằng Edge/Playwright: HTTP200,120ảnh tải đủ,0ảnh hỏng,0pageerror, không tràn ngang ở390px. Bằng chứng `checks.json`, `browser-checks.json`, `browser-SF04.png`, `browser-mobile-SF21.png`. Cả22nguồn đã render lại EEVEE (`Logs/Sketchfab-source-eevee-fixed.log`, `PREVIEW_DONE`);47ảnh so trước/sau đầy đủ. Lượt browser trong sandbox thoát mà không có marker/kết quả, không tính đạt; lượt ngoài sandbox hoàn tất `GALLERY_QA_PASS`.
 
 Commit công cụ đã push: `746eab1`; bản bàn giao ảnh/catalog được commit riêng tiếp theo. Browser mở tương tác bị Windows chặn trong sandbox; trang local vẫn truy cập được và ảnh đã được xem bằng công cụ.
+
+## Sửa review vòng 1, ngày 29/10 10:47
+
+- Đã chạy lại toàn bộ 22 nguồn và 47 mảnh. SF05 `lambert1*` và thân giấy SF24 `Material.001` dùng metallic = 0; SF21 đồng giữ nguyên. Tường SF05 trở lại sáng, thân SF24 hiện màu đỏ giấy trong Unity. 8 cặp ảnh Unity trước/sau cùng camera nằm trong gallery; Blender SF05/SF24 cũng đã render lại.
+- Hệ số glTF đã được nhân ở bản 746eab1. Lượt này bổ sung đọc lại 28 PNG MetalSmooth để kiểm R = metallic × factor (hoặc override), A = 1 − roughness × factor: sai số lớn nhất 0,001507, dưới 1,1/255. SF05 smoothness 0,4; SF24 0,647059; SF21 metallic trung bình 0,762148 giữ nguyên.
+- Unity kiểm 47/47 mảnh, 51 ảnh theo nhóm và thêm 16 ảnh cận cho mọi mảnh cao dưới 3 m, đặt cạnh thùng gỗ game ở kích thước gốc. Gallery mới kiểm đủ **152 ảnh**, desktop/mobile, không lỗi trang hoặc ảnh hỏng.
+- Ba nhà SF13 mang cờ `REFERENCE_ONLY_NEEDS_LOD` trong `pieces.tsv`: chỉ tham khảo, phải giảm mặt hoặc tạo LOD trước khi dùng. SF06 mái xanh là màu nguồn; nếu chọn dùng cần chuyển xám trước rồi nhuộm lại.
+- Bằng chứng: `Logs/Sketchfab-v2-normalize.log`, `Logs/Sketchfab-v2-unity.log`, `Logs/Sketchfab-v2-comparison.log`, `UnityDetails/report.tsv`, `checks.json`, `browser-checks.json`. Ảnh cũ giữ trong `BeforeMaterialFix`.
+
+Đây là bản gửi Claude review vòng 2; chưa coi asset đã được duyệt đưa vào map và chưa đo hiệu năng thiết bị.

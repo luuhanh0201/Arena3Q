@@ -99,7 +99,8 @@ def save_textures(code, materials):
         color = pbr.get('baseColorFactor', specgloss.get('diffuseFactor', [1,1,1,1]))
         metal = image_for(p.inputs['Metallic']); rough = image_for(p.inputs['Roughness'])
         alpha = p.inputs['Alpha'].is_linked or p.inputs['Alpha'].default_value < .999
-        packed_path = ''
+        packed_path = ''; packed_audit = None
+        metal_override = next((value for regex,value in CONFIG['sources'][code].get('metallic_override',{}).items() if re.search(regex,m.name)),None)
         if metal or rough:
             sample = metal or rough; w, h = sample.size
             px = np.ones((h*w, 4), dtype=np.float32)
@@ -110,16 +111,27 @@ def save_textures(code, materials):
             if rough:
                 if list(rough.size) != [w,h]: raise ValueError('PBR map dimensions differ')
                 px[:, 3] = 1-np.asarray(rough.pixels[:]).reshape(-1, 4)[:, 1] * pbr.get('roughnessFactor',1)
+            if metal_override is not None: px[:,0] = metal_override
             packed = bpy.data.images.new('Unity_' + m.name, w, h, alpha=True)
             packed.colorspace_settings.name = 'Non-Color'; packed.pixels = px.ravel()
             dest = folder / (re.sub(r'[^\w.-]', '_', m.name) + '_MetalSmooth.png')
             packed.filepath_raw = str(dest); packed.file_format = 'PNG'; packed.save()
             packed_path = dest.relative_to(ROOT).as_posix(); bpy.data.images.remove(packed)
+            readback = bpy.data.images.load(str(dest),check_existing=False);readback.colorspace_settings.name='Non-Color'
+            actual=np.asarray(readback.pixels[:]).reshape(-1,4)
+            error=float(np.max(np.abs(actual[:,[0,3]]-px[:,[0,3]])))
+            if error>1.1/255: raise ValueError('Packed material channels differ from glTF factors: '+m.name)
+            packed_audit={'metallicMean':float(actual[:,0].mean()),'smoothnessMean':float(actual[:,3].mean()),'maxQuantizationError':error,
+                          'sourceMetallicFactor':pbr.get('metallicFactor',1),'sourceRoughnessFactor':pbr.get('roughnessFactor',1),'metallicOverride':metal_override}
+            bpy.data.images.remove(readback)
+        if metal_override is not None:
+            for link in list(p.inputs['Metallic'].links): m.node_tree.links.remove(link)
+            p.inputs['Metallic'].default_value=metal_override
         result.append({'name': m.name, 'baseMap': paths.get(base, ''), 'normalMap': paths.get(normal, ''), 'metalMap': packed_path,
                        'color': color, 'metallic': float(p.inputs['Metallic'].default_value),
                        'emissionMap': paths.get(emission,''), 'emission': authored.get('emissiveFactor',[0,0,0]),
                        'smoothness': 1-float(p.inputs['Roughness'].default_value), 'cutout': alpha,
-                       'cutoff': authored.get('alphaCutoff',.5), 'doubleSided': not m.use_backface_culling})
+                       'cutoff': authored.get('alphaCutoff',.5), 'doubleSided': not m.use_backface_culling, 'packedAudit': packed_audit})
     return result, report
 
 def normalize(code, config):
@@ -203,7 +215,7 @@ def normalize(code, config):
         area = np.linalg.norm(np.cross(coords[faces[:,1]]-coords[faces[:,0]], coords[faces[:,2]]-coords[faces[:,0]]),axis=1)
         degenerate = int(np.count_nonzero(area < 1e-12))
         if not np.isfinite(coords).all(): raise ValueError('Nonfinite vertices')
-        row = {'code': code, 'group': config['group'], 'name': mesh.name, 'piece': spec['name'], 'scale': scale,
+        row = {'code': code, 'group': config['group'], 'name': mesh.name, 'piece': spec['name'], 'scale': scale, 'usage': spec.get('usage','CANDIDATE_REQUIRES_APPROVAL'),
                'pivot': spec.get('pivot','bottom'), 'trianglesBefore': n_before, 'triangles': tris([mesh]),
                'boundsMin': list(lo), 'boundsMax': list(hi), 'size': list(hi-lo), 'degenerate': degenerate,
                'finite': True, 'removedDegenerate': removed_degenerate, 'uvLayers': len(mesh.data.uv_layers), 'materials': [m.name for m in mesh.data.materials if m]}
@@ -236,7 +248,7 @@ def main():
     for code in only: normalize(code, CONFIG['sources'][code])
     manifests = [json.loads((OUT/code/'manifest.json').read_text(encoding='utf-8')) for code in CONFIG['sources'] if (OUT/code/'manifest.json').exists()]
     rows = [p for m in manifests for p in m['pieces']]
-    (OUT/'pieces.tsv').write_text('group\tname\tpath\tcutout\n' + ''.join(f"{p['group']}\t{p['name']}\t{p['path']}\t{str(p['cutout']).lower()}\n" for p in rows), encoding='utf-8')
+    (OUT/'pieces.tsv').write_text('group\tname\tpath\tcutout\tusage\n' + ''.join(f"{p['group']}\t{p['name']}\t{p['path']}\t{str(p['cutout']).lower()}\t{p.get('usage','CANDIDATE_REQUIRES_APPROVAL')}\n" for p in rows), encoding='utf-8')
     (QA/'normalization.json').write_text(json.dumps(manifests,ensure_ascii=False,indent=2),encoding='utf-8')
     print('NORMALIZE_DONE', len(manifests), len(rows), flush=True)
 

@@ -11,7 +11,7 @@ async function main(){
  if(manifests.length!==22)throw Error('Expected 22 sources');
  fs.mkdirSync(out,{recursive:true});
  let credits='# Ghi công 22 nguồn Sketchfab Chương 1\n\nBản dẫn xuất: đổi đơn vị sang mét, tách mảnh, bỏ nền/đạo cụ ngoài phạm vi, chỉnh pivot, giảm mesh SF08/SF21, texture tối đa1024, chuyển vật liệu URP. Nguồn gốc giữ nguyên trên máy. Ghi công cả22nguồn theo license.txt CC BY4.0 đi kèm bản tải. Riêng SF13 tiêu đề có CC0 nhưng file giấy phép ghi CC BY4.0; giữ ghi công theo file này.\n\n';
- let sections='',pieces=0,triangles=0,degenerateRemoved=0,unityFiles=[];
+ let sections='',pieces=0,triangles=0,degenerateRemoved=0,unityFiles=[],details=0,materialPairs=0,packedMaps=0;
  const unity=JSON.parse(fs.readFileSync(path.join(qa,'Unity/index.json')));
  for(const m of manifests){
   const source=path.join(root,'ArtSource/Chapter01/3D/Sources/Sketchfab',m.code);
@@ -19,6 +19,7 @@ async function main(){
   credits+='## '+m.code+'\n\n'+license.trim()+'\n\n';
   if(crypto.createHash('sha256').update(fs.readFileSync(path.join(source,'scene.gltf'))).digest('hex')!==m.sourceSha256)throw Error('Source changed '+m.code);
   for(const t of m.textures){const metadata=await sharp(path.join(root,t.path)).metadata();if(Math.max(metadata.width,metadata.height)>1024)throw Error('Oversize '+t.path);}
+  for(const s of m.materials)if(s.packedAudit){packedMaps++;if(s.packedAudit.maxQuantizationError>1.1/255)throw Error('PBR packing error '+s.name);if(s.packedAudit.metallicOverride===0&&s.packedAudit.metallicMean!==0)throw Error('Metal override failed '+s.name);}
   const sourceName=m.code+'_source.png'; fs.copyFileSync(path.join(qa,'Source',m.code+'.png'),path.join(out,sourceName));
   const note=m.code==='SF20'?'Đảo ruộng bậc thang, không phù hợp thay ruộng phẳng Ải 2.':m.code==='SF26'?'Hành lang có mái, không phải cầu vượt suối.':m.code==='SF13'?'Ba tòa nhà lớn còn 10–29 nghìn tam giác; chưa có LOD, chưa duyệt đưa vào map.':'';
   sections+=`<section id="${m.code}"><h2>${m.code} · ${m.pieces.length} mảnh</h2><p>${esc(note)}</p><details><summary>Nguồn nguyên bản, EEVEE bốn góc</summary><img loading="lazy" src="${sourceName}"></details>`;
@@ -28,7 +29,15 @@ async function main(){
    const name=p.name+'.png';fs.copyFileSync(path.join(qa,'Comparison',name),path.join(out,name));
    const imported=unity.find(u=>u.label===p.name);if(!imported||!imported.file)throw Error('Missing Unity '+p.name);
    const unityName='unity_'+imported.file;fs.copyFileSync(path.join(qa,'Unity',imported.file),path.join(out,unityName));unityFiles.push({file:unityName,label:p.name});
-   sections+=`<article><h3>${esc(p.name)}</h3><p>${p.trianglesBefore.toLocaleString()} → ${p.triangles.toLocaleString()} tam giác; ${p.size.map(v=>v.toFixed(2)).join(' × ')} m (X/Y/Z Blender); pivot ${p.pivot}; ${p.cutout?'có lá/chi tiết alpha clip':'opaque'}.</p><p>Mỗi cặp: trái trước, phải sau; bốn góc cùng camera. Hình người xanh cao1,8m. Before đã tách mảnh, chưa giảm lưới/texture; riêng SF04 Before còn nền.</p><a href="${name}"><img loading="lazy" src="${name}"></a><details open><summary>Unity URP dưới ánh sáng trận</summary><a href="${unityName}"><img class="unity" loading="lazy" src="${unityName}"></a></details></article>`;
+   sections+=`<article><h3>${esc(p.name)}</h3><p>${p.trianglesBefore.toLocaleString()} → ${p.triangles.toLocaleString()} tam giác; ${p.size.map(v=>v.toFixed(2)).join(' × ')} m (X/Y/Z Blender); pivot ${p.pivot}; ${p.cutout?'có lá/chi tiết alpha clip':'opaque'}. ${p.usage==='REFERENCE_ONLY_NEEDS_LOD'?'CHỈ THAM KHẢO, cần giảm mặt/LOD trước khi dùng.':''}</p><p>Mỗi cặp: trái trước, phải sau; bốn góc cùng camera. Hình người xanh cao1,8m. Before đã tách mảnh, chưa giảm lưới/texture; riêng SF04 Before còn nền. SF05/SF24 After có sửa kim loại giả; SF06 còn màu xanh nguồn, nếu chọn phải chuyển xám rồi nhuộm.</p><a href="${name}"><img loading="lazy" src="${name}"></a><details open><summary>Unity URP dưới ánh sáng trận</summary><a href="${unityName}"><img class="unity" loading="lazy" src="${unityName}"></a></details>`;
+   const detail=path.join(qa,'UnityDetails',p.name+'.png');
+   if(fs.existsSync(detail)){const filename='detail_'+p.name+'.png';fs.copyFileSync(detail,path.join(out,filename));details++;sections+=`<details open><summary>Cận từng mảnh cạnh thùng gỗ trong game, giữ tỉ lệ mét</summary><img loading="lazy" src="${filename}"></details>`;}
+   const before=path.join(out,'BeforeMaterialFix',imported.file);
+   if(fs.existsSync(before)&&m.materials.some(s=>s.packedAudit)){
+    const filename='material-before_'+imported.file;fs.copyFileSync(before,path.join(out,filename));materialPairs++;
+    sections+=`<details open><summary>Unity cùng góc: trái vòng1, phải sửa vật liệu vòng2</summary><div style="display:grid;grid-template-columns:1fr 1fr"><img loading="lazy" src="${filename}"><img loading="lazy" src="${unityName}"></div></details>`;
+   }
+   sections+='</article>';
   }sections+='</section>';
  }
  const comparators=unity.filter(u=>u.label.startsWith('Game '));let comparisons='';
@@ -36,7 +45,7 @@ async function main(){
  const html=`<!doctype html><html lang="vi"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>22 nguồn Sketchfab Chương1</title><style>body{background:#17202a;color:#e4e8eb;font:16px system-ui;margin:24px auto;max-width:1440px;padding:0 16px}a{color:#f0c87b}nav{display:flex;gap:12px;flex-wrap:wrap}p{line-height:1.6}article{background:#202d3a;padding:16px;margin-bottom:24px}img{max-width:100%;height:auto}.unity{max-width:720px;width:100%}.refs{display:flex;flex-wrap:wrap}.refs figure{width:320px;margin:8px}summary{cursor:pointer;padding:12px}h2{margin-top:40px}</style><h1>22 nguồn Sketchfab → ${pieces} mảnh chuẩn hóa</h1><p>Bộ ứng viên để duyệt; chưa thay model trong map. Hình dưới là render Blender EEVEE và Unity thật. ${triangles.toLocaleString()} tam giác nếu đặt mỗi mảnh một lần, không phải ngân sách một cảnh. Tỉ lệ chiều cao là đề xuất. Chưa đo FPS thiết bị, chưa có LOD cho nhà lớn SF13.</p><p>SF20 không phải ruộng phẳng; SF26 không phải cầu suối. Các vật liệu truyền sáng hoặc alpha blend được đơn giản hóa sang URP opaque/cutout; kiểm hình trước khi chọn vào map.</p><nav>${manifests.map(m=>`<a href="#${m.code}">${m.code}</a>`).join('')}</nav><h2>Mẫu trong game để đối chiếu</h2><p>Unity dùng cùng cỡ khung cho các ứng viên trong một nhóm.</p><div class="refs">${comparisons}</div>${sections}</html>`;
  fs.writeFileSync(path.join(out,'index.html'),html);
  fs.writeFileSync(path.join(root,'ArtSource/Chapter01/3D/Catalog/SKETCHFAB_CREDITS.md'),credits.trimEnd()+'\n');
- const report={sources:22,pieces,triangles,degenerateRemoved,texturesAtMost1024:true,sourceGltfHashesUnchanged:true,unityImages:unity.length};
+ const report={sources:22,pieces,triangles,degenerateRemoved,texturesAtMost1024:true,sourceGltfHashesUnchanged:true,unityImages:unity.length,detailImages:details,materialPairs,packedMaps,htmlImages:120+details+materialPairs*2};
  fs.writeFileSync(path.join(out,'checks.json'),JSON.stringify(report,null,2));
  // Contact sheets are only a browsing aid; full images above are the visual acceptance evidence.
  for(let start=0;start<unityFiles.length;start+=12){

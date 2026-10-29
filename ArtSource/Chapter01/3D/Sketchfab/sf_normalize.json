@@ -14,7 +14,7 @@
     "SF02": {"group": "compound", "scale": {"footprint": 20.0}, "pieces": [{"name": "WalledCompound", "exclude": "^Object_(4|6)\\|"}]},
     "SF03": {"group": "house", "scale": {"height": 7.0}, "pieces": [{"name": "ChineseHouse"}]},
     "SF04": {"group": "house", "scale": {"height": 5.5}, "drop_ground": {"height_fraction": 0.02, "outer_fraction": 0.95, "expected_faces": 10}, "pieces": [{"name": "AsianHouse"}]},
-    "SF05": {"group": "house", "scale": {"height": 6.5, "ref": "HouseB"}, "pieces": [
+    "SF05": {"group": "house", "metallic_override": {"^lambert1": 0}, "scale": {"height": 6.5, "ref": "HouseB"}, "pieces": [
       {"name": "HouseA", "include": "\\|(lambert1\\.001|Concrete|Wood)$"},
       {"name": "HouseB", "include": "\\|lambert1$"},
       {"name": "HouseC", "include": "\\|lambert1\\.002$"},
@@ -28,9 +28,9 @@
     "SF11": {"group": "tower", "scale": {"height": 9.0}, "pieces": [{"name": "DrumTower"}]},
     "SF12": {"group": "tower", "scale": {"height": 7.0}, "pieces": [{"name": "Watchtower"}]},
     "SF13": {"group": "lunar", "scale": {"height": 9.0, "ref": "Building01"}, "pieces": [
-      {"name": "Building01", "include": "\\|(Building01|Buildin01|Lamps01|StructuresBuilding01)"},
-      {"name": "Building02", "include": "\\|(Building02|Lamps02|Dragon)"},
-      {"name": "Building03", "include": "\\|(Building03|Lamps03)"},
+      {"name": "Building01", "include": "\\|(Building01|Buildin01|Lamps01|StructuresBuilding01)", "usage": "REFERENCE_ONLY_NEEDS_LOD"},
+      {"name": "Building02", "include": "\\|(Building02|Lamps02|Dragon)", "usage": "REFERENCE_ONLY_NEEDS_LOD"},
+      {"name": "Building03", "include": "\\|(Building03|Lamps03)", "usage": "REFERENCE_ONLY_NEEDS_LOD"},
       {"name": "BellFrame", "include": "\\|BellStructure"},
       {"name": "LanternString01", "include": "\\|OuterLamps01"},
       {"name": "LanternString02", "include": "\\|OuterLamps02"},
@@ -45,7 +45,7 @@
     "SF21": {"group": "burner", "scale": {"height": 1.8}, "pieces": [
       {"name": "IncenseBurner", "decimate": {"^jiao_": 0.35, "^guo_": 0.6, "^bashou_": 0.5}}]},
     "SF23": {"group": "lantern", "scale": {"height": 0.6}, "pieces": [{"name": "OldLantern", "pivot": "top"}]},
-    "SF24": {"group": "lantern", "scale": {"height": 1.6}, "pieces": [{"name": "HangingLantern", "pivot": "top"}]},
+    "SF24": {"group": "lantern", "metallic_override": {"^Material\\.001$": 0}, "scale": {"height": 1.6}, "pieces": [{"name": "HangingLantern", "pivot": "top"}]},
     "SF26": {"group": "corridor", "scale": {"height": 4.5}, "pieces": [{"name": "CoveredCorridor"}]}
   }
 }
