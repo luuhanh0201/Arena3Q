@@ -22,6 +22,7 @@ Shader "Arena3Q/Chapter Fog"
             float4 _Regions[16]; // xz centre, visibility, reserved
             float4 _FogColor;
             float _Count, _Boundary, _Clock, _Drift, _Scale, _Opacity, _Darkening, _Layers;
+            float _RegionRadius, _RevealEdge;
             struct Attributes { float4 positionOS : POSITION; };
             struct Varyings { float4 positionCS : SV_POSITION; };
             Varyings Vert(Attributes v) { Varyings o; o.positionCS=TransformObjectToHClip(v.positionOS.xyz); return o; }
@@ -37,21 +38,29 @@ Shader "Arena3Q/Chapter Fog"
                 #endif
                 float3 direction=bWorld-aWorld;
                 float3 world=aWorld-direction*(aWorld.y/direction.y);
-                float nearest=1e8, total=0, fog=0;
-                for(int i=0;i<(int)_Count;i++) nearest=min(nearest,distance(world.xz,_Regions[i].xy));
-                // A soft Voronoi boundary follows the same stage regions used by navigation.
+                float dOpen=1e8, dLocked=1e8, reveal=0;
+                float2 centre=0;
                 for(int j=0;j<(int)_Count;j++)
                 {
-                    float weight=exp2(-(distance(world.xz,_Regions[j].xy)-nearest)/max(.01,_Boundary)*4);
-                    total+=weight; fog+=weight*(1-_Regions[j].z);
+                    float d=distance(world.xz,_Regions[j].xy);
+                    if(_Regions[j].z>=1) dOpen=min(dOpen,d);
+                    else if(d<dLocked){dLocked=d;reveal=_Regions[j].z;centre=_Regions[j].xy;}
                 }
-                fog=smoothstep(.05,.95,fog/max(.001,total));
-                float2 drift=float2(_Clock*_Drift,-_Clock*_Drift*.37);
-                float2 p=(world.xz+drift)*_Scale;
-                float a=SAMPLE_TEXTURE2D(_CloudTex,sampler_CloudTex,frac(p)).a;
-                float b=SAMPLE_TEXTURE2D(_CloudTex,sampler_CloudTex,frac(p*1.73+float2(.37,.61)-drift*_Scale*.5)).a;
+                // The whole blend lies on the locked side: open ground and the border have zero fog.
+                float fog=smoothstep(0,max(.01,_Boundary),dOpen-dLocked);
+                float2 p=world.xz*_Scale;
+                float revealNoise=SAMPLE_TEXTURE2D(_CloudTex,sampler_CloudTex,p*1.31+float2(.17,.43)).r;
+                float field=revealNoise*.6+saturate(distance(world.xz,centre)/_RegionRadius)*.4;
+                float remaining=reveal<=0?1:reveal>=1?0:smoothstep(reveal-_RevealEdge,reveal+_RevealEdge,field);
+                fog*=remaining;
+                // Seamless texture; sampler Repeat handles derivatives across tile edges.
+                // Different rotations, scales and velocities keep layers from repeating together.
+                float time=_Clock*_Drift*_Scale;
+                float a=SAMPLE_TEXTURE2D(_CloudTex,sampler_CloudTex,p+float2(time,-time*.37)).r;
+                float2 rotated=float2(p.x*.8-p.y*.6,p.x*.6+p.y*.8);
+                float b=SAMPLE_TEXTURE2D(_CloudTex,sampler_CloudTex,rotated*1.73+float2(.37-time*.41,.61+time*.53)).r;
                 float cloud=(a+b)*.5;
-                if(_Layers>2.5) cloud=(a+b+SAMPLE_TEXTURE2D(_CloudTex,sampler_CloudTex,frac(p*.67+float2(.71,.23))).a)/3;
+                if(_Layers>2.5) cloud=(a+b+SAMPLE_TEXTURE2D(_CloudTex,sampler_CloudTex,float2(-p.y,p.x)*.67+float2(.71+time*.19,.23+time*.31)).r)/3;
                 half3 scene=SampleSceneColor(uv);
                 half gray=dot(scene,half3(.2126,.7152,.0722))*(1-_Darkening);
                 half3 color=lerp(gray.xxx,_FogColor.rgb,saturate(.4+cloud*.7)*_Opacity);

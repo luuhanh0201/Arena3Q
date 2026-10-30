@@ -120,6 +120,7 @@ namespace Arena3Q.Exploration
             _fog.SetColor("_FogColor",motion.fogColor); _fog.SetFloat("_Boundary",motion.fogBoundaryWidth);
             _fog.SetFloat("_Clock",_clock); _fog.SetFloat("_Drift",motion.fogDrift); _fog.SetFloat("_Scale",motion.fogTextureScale);
             _fog.SetFloat("_Opacity",motion.fogOpacity); _fog.SetFloat("_Darkening",motion.fogDarkening); _fog.SetFloat("_Layers",motion.fogLayers[tier]);
+            _fog.SetFloat("_RegionRadius",motion.fogRegionRadius); _fog.SetFloat("_RevealEdge",motion.fogRevealEdge);
         }
         private static int DisplayRate() => Arena3Q.Data.DisplayMetrics.PreviewFrameRate>0 ? Arena3Q.Data.DisplayMetrics.PreviewFrameRate : Application.targetFrameRate;
         private void OnDestroy()

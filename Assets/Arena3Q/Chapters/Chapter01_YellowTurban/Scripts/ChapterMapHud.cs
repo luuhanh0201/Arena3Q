@@ -37,6 +37,8 @@ namespace Arena3Q.Exploration
         private Image _questArrow;
         private float _messageSeconds;
         private readonly List<Marker> _markers = new List<Marker>();
+        private readonly List<RectTransform> _markerOccluders = new List<RectTransform>();
+        private readonly Vector3[] _corners = new Vector3[4];
         private readonly List<TMP_Text> _rewardLabels = new List<TMP_Text>();
         private readonly List<(string id, TMP_Text label)> _resourceLabels = new List<(string, TMP_Text)>();
         public bool ModalVisible => _modal != null;
@@ -48,7 +50,7 @@ namespace Arena3Q.Exploration
             public bool modal, revealing;
             public float[] fogVisibility;
             public string message;
-            public ElementReading[] buttons, markers, labels;
+            public ElementReading[] buttons, markers, labels, occluders, directions;
         }
         [Serializable] private sealed class ElementReading
         {
@@ -58,6 +60,8 @@ namespace Arena3Q.Exploration
             public bool active;
             public string text;
             public bool overflow;
+            public Rect visualRect;
+            public float alpha;
         }
         // Read-only telemetry for browser acceptance: all interaction still goes through real pointer input.
         public string InspectUi()
@@ -82,7 +86,9 @@ namespace Arena3Q.Exploration
                 { name = button.name, rect = Bounds((RectTransform)button.transform), active = button.interactable }).ToArray(),
                 markers = _markers.Select(marker => new ElementReading { name = marker.rect.name,
                     rect = Bounds(marker.hit), stage = marker.stage, target = marker.target,
-                    active = marker.group.blocksRaycasts }).ToArray(),
+                    visualRect = MarkerBounds(marker), alpha = marker.group.alpha, active = marker.group.blocksRaycasts }).ToArray(),
+                occluders = _markerOccluders.Select(rect => new ElementReading { name = rect.name, rect = GraphicBounds(rect), active = rect.gameObject.activeInHierarchy }).ToArray(),
+                directions = new[]{new ElementReading {name="QuestDirection",rect=ScreenBounds(_questArrow.rectTransform),active=_questArrow.enabled}},
                 labels = _safe.GetComponentsInChildren<TMP_Text>().Select(label => new ElementReading
                 { name = label.name, rect = Bounds(label.rectTransform), text = label.text, overflow = label.isTextOverflowing, active = label.enabled }).ToArray()
             });
@@ -97,6 +103,8 @@ namespace Arena3Q.Exploration
             var audio = gameObject.AddComponent<UIAudio>(); audio.Configure(Config.frontend.StartupUi);
             _kit = new StartupUi(Config.frontend.StartupUi, audio); SceneTransition.Configure(Config.frontend.StartupUi.screenSeconds);
             BuildChrome(); BuildMarkers(); _safe.SetAsLastSibling(); Refresh();
+            foreach (string name in Ui.markerOccluders ?? Array.Empty<string>())
+                if (_safe.Find(name) is RectTransform rect) _markerOccluders.Add(rect);
         }
         private RectTransform Frame(Transform parent, string name, Rect rect, Color? fill = null)
         {
@@ -139,8 +147,15 @@ namespace Arena3Q.Exploration
                 _kit.Image(plus.transform, "Plus", lobby.plus, new Rect(12, 11, 20, 20), Ui.ink);
             }
             var quest = Frame(_safe, "CurrentQuest", Ui.quest);
-            _quest = _kit.Text(quest, "Text", "", Ui.questText, Ui.bodyFont, Ui.gold, weight: Ui.textWeight);
+            var questText = Ui.questText;
+            float arrowRadius = Ui.questArrow.size.magnitude * .5f;
+            questText.width = Mathf.Min(questText.width, Ui.questArrow.center.x - arrowRadius - Ui.questArrowGap - questText.x);
+            _quest = _kit.Text(quest, "Text", "", questText, Ui.bodyFont, Ui.gold, weight: Ui.textWeight);
+            _quest.enableAutoSizing = true; _quest.fontSizeMin = Ui.questMinimumFont; _quest.fontSizeMax = Ui.bodyFont;
+            _quest.overflowMode = TextOverflowModes.Ellipsis;
             _questArrow = _kit.Image(quest, "Direction", Ui.backIcon, Ui.questArrow, Ui.gold);
+            _questArrow.rectTransform.pivot = Vector2.one * .5f;
+            _questArrow.rectTransform.anchoredPosition = new Vector2(Ui.questArrow.center.x,-Ui.questArrow.center.y);
             _questArrow.preserveAspect = true;
             var questHit = quest.GetComponent<LobbyFrameGraphic>(); questHit.raycastTarget = true;
             var questButton = quest.gameObject.AddComponent<Button>(); questButton.targetGraphic = questHit;
@@ -235,6 +250,19 @@ namespace Arena3Q.Exploration
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(_root,screen,uiCamera,out var local);
                 float bob=marker.target>=0 ? Mathf.Sin((Time.unscaledTime+marker.stage*.71f+marker.target)*Mathf.PI*2/Config.motion.markerBobSeconds)*Config.motion.markerBobPixels : 0;
                 marker.rect.anchoredPosition=local+new Vector2(0,(marker.target>=0?Ui.markerLift:0)+bob);
+                if(marker.name!=null){marker.name.gameObject.SetActive(!locked);marker.name.localScale=Vector3.one*Mathf.Clamp(Config.cameraSize/_map.View.Camera.orthographicSize,Ui.minimumNameScale,Ui.maximumNameScale);}
+                if(marker.stars!=null)marker.stars.gameObject.SetActive(!locked);
+                var markerBounds = MarkerBounds(marker);
+                bool overlapsHud = false, nearHud = false;
+                foreach (var chrome in _markerOccluders)
+                {
+                    if (!chrome.gameObject.activeInHierarchy) continue;
+                    var bounds = GraphicBounds(chrome); overlapsHud |= bounds.Overlaps(markerBounds);
+                    float padding = Ui.markerHudPadding * _canvas.scaleFactor;
+                    bounds.xMin -= padding; bounds.xMax += padding; bounds.yMin -= padding; bounds.yMax += padding;
+                    nearHud |= bounds.Overlaps(markerBounds);
+                }
+                visible &= !nearHud;
                 if (marker.locked && !locked) marker.alpha = 0;
                 marker.locked = locked;
                 marker.alpha=Mathf.MoveTowards(marker.alpha,visible?1:0,Time.unscaledDeltaTime/(visible?Config.motion.markerFadeIn:Config.motion.markerFadeOut));
@@ -243,9 +271,13 @@ namespace Arena3Q.Exploration
                 float dpi = DisplayMetrics.Dpi;
                 float tapSize = Mathf.Max(marker.rect.sizeDelta.x, Ui.minimumTapDp * dpi / 160f / _canvas.scaleFactor / Mathf.Max(.01f, marker.rect.localScale.x));
                 marker.hit.sizeDelta = Vector2.one * tapSize;
+                // Scale/pulse and the dpi hit target have just changed; use the final footprint for clipping.
+                markerBounds = MarkerBounds(marker);
+                overlapsHud = _markerOccluders.Any(chrome => chrome.gameObject.activeInHierarchy && GraphicBounds(chrome).Overlaps(markerBounds));
                 float obscured=1;
                 if(anchor!=null){var ray=_map.View.Camera.ViewportPointToRay(viewport); if(Physics.Raycast(ray,out var hit,Vector3.Distance(ray.origin,world),~0,QueryTriggerInteraction.Ignore)&&!hit.transform.IsChildOf(anchor.parent))obscured=Ui.occludedAlpha;}
-                marker.group.alpha=marker.alpha*obscured; marker.group.blocksRaycasts=visible&&marker.alpha>.5f;
+                // Fade starts in the padded margin. A fast camera jump must never flash through HUD text.
+                marker.group.alpha=overlapsHud?0:marker.alpha*obscured; marker.group.blocksRaycasts=visible&&!overlapsHud&&marker.alpha>.5f;
                 marker.icon.sprite=locked?Ui.lockIcon:marker.target>=0?(data.targets[marker.target].kind==MapInteractionKind.Quest?Ui.question:Ui.swords):null;
                 marker.icon.enabled=marker.icon.sprite!=null;
                 marker.backing.color=locked?new Color(.6f,.6f,.6f):Color.white;
@@ -264,6 +296,26 @@ namespace Arena3Q.Exploration
             }
             if(_messageSeconds>0){_messageSeconds-=Time.unscaledDeltaTime;if(_messageSeconds<=0)_message.text="";}
         }
+        private Rect ScreenBounds(RectTransform rect)
+        {
+            rect.GetWorldCorners(_corners);
+            var camera = _canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : _canvas.worldCamera;
+            var min = new Vector2(float.MaxValue,float.MaxValue); var max = new Vector2(float.MinValue,float.MinValue);
+            foreach(var corner in _corners){var p=RectTransformUtility.WorldToScreenPoint(camera,corner);min=Vector2.Min(min,p);max=Vector2.Max(max,p);}
+            return new Rect(min,max-min);
+        }
+        private Rect GraphicBounds(RectTransform root)
+        {
+            var rect = ScreenBounds(root);
+            foreach(var graphic in root.GetComponentsInChildren<Graphic>())
+            {
+                if(!graphic.enabled)continue;
+                var child = ScreenBounds(graphic.rectTransform);
+                rect = Rect.MinMaxRect(Mathf.Min(rect.xMin,child.xMin),Mathf.Min(rect.yMin,child.yMin),Mathf.Max(rect.xMax,child.xMax),Mathf.Max(rect.yMax,child.yMax));
+            }
+            return rect;
+        }
+        private Rect MarkerBounds(Marker marker) => GraphicBounds(marker.rect);
         private RectTransform OpenModal(string title)
         {
             CloseModal(); _modal=_kit.Dim(_safe,"ChapterModal",.65f);

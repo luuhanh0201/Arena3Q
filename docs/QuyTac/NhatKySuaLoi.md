@@ -559,3 +559,8 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 ## 29/10 - P3 sương/mở vùng
 - Capture đầu cho thấy fog sai vùng do dựa vào depth texture ở transparent và quad chưa cập nhật aspect RenderTexture. Dùng ray chiếu mặt đất theo vùng NavMesh, cập nhật kích thước theo camera thực ngay trước render. Kiểm hình cùng góc và WebGL sau sửa; test trạng thái không thay kiểm hình.
 - Bài kiểm thế giới đầu bị NullReference ở State_After: scene có nhóm này chỉ tại các khu đã có model sau thắng (1 và 4), các khu khác chưa có art. Kiểm State_Before tắt ở cả7 và State_After bật khi có, ghi thiếu art rõ ràng; không dựng nhóm rỗng để giả hoàn thành hình.
+
+## 29/10 - Review P3: dấu ải, mũi tên và mép sương
+- HUD bán trong suốt không che được dấu ải bên dưới. Lấy vùng che từ MapUiConfig, bắt đầu fade ở lề và chặn alpha/tương tác khi dấu thật sự giao HUD, tính lại sau scale/pulse. Kiểm 4 tỉ lệ qua 7 vị trí camera, không chỉ kiểm thứ tự sibling.
+- Khung chữ nhiệm vụ giao mũi tên; thu chiều rộng theo bán kính khi xoay và lề, bật tự co font. Ảnh WebGL phát hiện thêm pivot góc trái dù test công thức đã qua: đổi về tâm và kiểm 8 góc xoay bằng GetWorldCorners. Kiểm hình cuối và hình học thực, không chỉ lặp lại công thức bố trí trong test.
+- Sương dùng ảnh khói đơn lặp bằng frac và blend ranh ở cả hai phía nên lộ ô, lấn vùng mở và tan đều. Dùng noise tuần hoàn nhiều lớp khác hướng, ngưỡng noise/radial theo tiến độ, dải blend chỉ bên khóa. Lưu 30 khung tan, 3 ảnh cận và ranh Trại Lương; hiệu năng thiết bị còn phải đo.

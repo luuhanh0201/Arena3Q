@@ -12,6 +12,8 @@ namespace Arena3Q.Data
         public Material fogMaterial;
         public Color fogColor = new Color(.75f, .79f, .78f, 1);
         public float fogTextureScale = .025f, fogBoundaryWidth = 6, fogDarkening = .2f;
+        public float fogRegionRadius = 40, fogRevealEdge = .08f;
+        public int fogNoiseSize = 128, fogNoiseCells = 4, fogNoiseOctaves = 4, fogNoiseSeed = 731;
         public float windStrength = .35f, gustSeconds = 8, waterSpeed = .06f, waterSecondSpeed = .03f;
         public float leafLifetime = 5, dustInterval = 8, dustAlpha = .15f, birdInterval = 35, cloudShadowAlpha = .07f;
         public float flagAmplitude = .04f, flagSeconds = 2, bambooAmplitude = .1f, bambooSeconds = 4.2f;
@@ -23,7 +25,8 @@ namespace Arena3Q.Data
         public void Validate(System.Collections.Generic.List<string> errors)
         {
             if (cameraRevealSeconds <= 0 || fogRevealSeconds <= 0 || environmentFadeSeconds <= 0
-                || fogBoundaryWidth <= 0 || fogTextureScale <= 0 || markerFadeIn <= 0 || markerFadeOut <= 0)
+                || fogBoundaryWidth <= 0 || fogTextureScale <= 0 || markerFadeIn <= 0 || markerFadeOut <= 0
+                || fogRegionRadius <= 0 || fogRevealEdge <= 0 || fogNoiseSize < 16 || fogNoiseCells < 1 || fogNoiseOctaves < 1)
                 errors.Add("Map presentation durations and fog dimensions must be positive.");
             if (frameRates == null || frameRates.Length != 3 || fogLayers == null || fogLayers.Length != 3
                 || leavesPerArea == null || leavesPerArea.Length != 3)

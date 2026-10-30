@@ -16,6 +16,8 @@ namespace Arena3Q.Data
         public float minimumTapDp = 56, nameWidth = 220, nameHeight = 36, occludedAlpha = .4f;
         public float minimumNameScale = .85f, maximumNameScale = 1.15f, markerStartScale = .8f;
         public float stagePulseScale = .04f, messageSeconds = 4;
+        public string[] markerOccluders = { "Back", "Title", "Information", "Introduction", "ChapterRewards", "CurrentQuest", "Resources" };
+        public float markerHudPadding = 18, questArrowGap = 12, questMinimumFont = 14;
         public int textWeight = 400;
         public Rect questText = new Rect(14, 12, 258, 86), questArrow = new Rect(284, 35, 34, 34);
         public Color gold = new Color(.95f, .81f, .59f), ink = new Color(.22f, .12f, .06f), boss = new Color(.65f, .19f, .11f), locked = Color.gray;

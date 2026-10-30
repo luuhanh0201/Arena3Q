@@ -25,9 +25,34 @@ namespace Arena3Q.Exploration.Editor
         public static void UpdateWorldPresentation()
         {
             var config=AssetDatabase.LoadAssetAtPath<ChapterMapConfig>(ConfigPath);
-            const string texture="Assets/ThirdParty/Kenney/ParticlePack/PNG (Transparent)/smoke_08.png";
+            string texture=Root+"/Data/CH01_FogNoise.png";
+            var motion=config.motion;
+            var image=new Texture2D(motion.fogNoiseSize,motion.fogNoiseSize,TextureFormat.RGB24,false,true);
+            float Hash(int x,int y,int cells,int octave)
+            {
+                unchecked { uint n=(uint)((x%cells+cells)%cells)*374761393u+(uint)((y%cells+cells)%cells)*668265263u+(uint)(motion.fogNoiseSeed+octave)*2246822519u;
+                    n=(n^(n>>13))*1274126177u;return (n^(n>>16))/(float)uint.MaxValue; }
+            }
+            for(int y=0;y<image.height;y++)for(int x=0;x<image.width;x++)
+            {
+                float value=0,total=0,weight=1;
+                for(int octave=0;octave<motion.fogNoiseOctaves;octave++)
+                {
+                    int cells=motion.fogNoiseCells<<octave;
+                    float px=(x+.5f)/image.width*cells,py=(y+.5f)/image.height*cells;
+                    int ix=Mathf.FloorToInt(px),iy=Mathf.FloorToInt(py);
+                    float u=Mathf.SmoothStep(0,1,px-ix),v=Mathf.SmoothStep(0,1,py-iy);
+                    value+=weight*Mathf.Lerp(Mathf.Lerp(Hash(ix,iy,cells,octave),Hash(ix+1,iy,cells,octave),u),Mathf.Lerp(Hash(ix,iy+1,cells,octave),Hash(ix+1,iy+1,cells,octave),u),v);
+                    total+=weight;weight*=.5f;
+                }
+                float n=value/total;image.SetPixel(x,y,new Color(n,n,n,1));
+            }
+            image.Apply();File.WriteAllBytes(texture,image.EncodeToPNG());Object.DestroyImmediate(image);
+            AssetDatabase.ImportAsset(texture,ImportAssetOptions.ForceSynchronousImport);
+            var importer=(TextureImporter)AssetImporter.GetAtPath(texture);
+            importer.textureType=TextureImporterType.Default;importer.sRGBTexture=false;importer.mipmapEnabled=true;
+            importer.wrapMode=TextureWrapMode.Repeat;importer.filterMode=FilterMode.Trilinear;importer.textureCompression=TextureImporterCompression.Uncompressed;importer.SaveAndReimport();
             config.motion.fogTexture=AssetDatabase.LoadAssetAtPath<Texture2D>(texture);
-            if(config.motion.fogTexture==null)throw new InvalidDataException("Missing local Kenney CC0 cloud source.");
             string path=Root+"/Data/CH01_Fog.mat";
             var material=AssetDatabase.LoadAssetAtPath<Material>(path);
             if(material==null){material=new Material(Shader.Find("Arena3Q/Chapter Fog"));AssetDatabase.CreateAsset(material,path);}

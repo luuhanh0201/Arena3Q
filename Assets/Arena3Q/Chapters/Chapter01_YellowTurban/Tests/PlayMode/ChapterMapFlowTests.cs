@@ -23,6 +23,8 @@ namespace Arena3Q.Exploration.Tests
         private InMemoryProfileStore _store;
         private ChapterMapController _map;
         private float _previousVolume;
+        [System.Serializable] private sealed class Reading { public Element[] markers, occluders; }
+        [System.Serializable] private sealed class Element { public string name; public Rect rect, visualRect; public bool active; public float alpha; }
         private static readonly string CaptureDirectory = "NghiemThu/Chapter01/P1_Runtime_20261028/run_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss_fff");
         [UnitySetUp] public IEnumerator Open()
         {
@@ -46,6 +48,121 @@ namespace Arena3Q.Exploration.Tests
             yield return null;
             FrontendServiceLocator.Reset();
             AudioListener.volume=_previousVolume;
+        }
+        [UnityTest] public IEnumerator MarkersAvoidHudAtFourAspectRatiosAndAllQuestTextsFitBesideArrow()
+        {
+            var canvas=_map.Hud.GetComponentInChildren<Canvas>(); var camera=_map.View.Camera;
+            var mode=canvas.renderMode;var previousCamera=canvas.worldCamera;var previousTarget=camera.targetTexture;
+            var quest=canvas.transform.Find("SafeArea/CurrentQuest/Text").GetComponent<TMPro.TMP_Text>();
+            var arrow=(RectTransform)canvas.transform.Find("SafeArea/CurrentQuest/Direction");
+            var focus=_map.View.Focus;int visible=0;
+            try
+            {
+                for(int stage=0;stage<7;stage++)
+                {
+                    for(int i=0;i<stage;i++)_map.Session.Progress.Get(_map.Config.stages[i].id).stars=3;
+                    _map.Hud.Refresh();quest.ForceMeshUpdate();
+                    Assert.False(quest.isTextOverflowing,"Quest "+stage+": "+quest.text);
+                    Assert.Less(quest.rectTransform.anchoredPosition.x+quest.rectTransform.rect.width,
+                        arrow.anchoredPosition.x+arrow.rect.center.x-arrow.rect.size.magnitude*.5f,"Quest must leave space for the rotated direction arrow.");
+                    var textCorners=new Vector3[4];var arrowCorners=new Vector3[4];quest.rectTransform.GetWorldCorners(textCorners);
+                    for(int angle=0;angle<360;angle+=45)
+                    {
+                        arrow.localRotation=Quaternion.Euler(0,0,angle);arrow.GetWorldCorners(arrowCorners);
+                        Assert.Less(textCorners.Max(c=>c.x),arrowCorners.Min(c=>c.x),"Rotated arrow intersects quest at "+angle+" degrees");
+                    }
+                }
+                foreach(var size in new[]{new Vector2Int(1600,900),new Vector2Int(1800,900),new Vector2Int(2000,900),new Vector2Int(2340,1080)})
+                {
+                    var rt=new RenderTexture(size.x,size.y,24);rt.Create();camera.targetTexture=rt;
+                    canvas.renderMode=RenderMode.ScreenSpaceCamera;canvas.worldCamera=camera;canvas.planeDistance=1;
+                    Assert.True(DisplayMetrics.TrySetPreview(new DevicePreviewSettings{width=size.x,height=size.y,dpi=395,frameRate=60,left=.034f,right=.02f}));
+                    foreach(var stage in _map.Config.stages)
+                    {
+                        _map.View.FocusOn(stage.center);Canvas.ForceUpdateCanvases();
+                        yield return new WaitForSecondsRealtime(.4f);
+                        var reading=JsonUtility.FromJson<Reading>(_map.Hud.InspectUi());
+                        Assert.AreEqual(_map.Config.ui.markerOccluders.Length,reading.occluders.Length);
+                        foreach(var marker in reading.markers)
+                        {
+                            if(marker.alpha>.001f)visible++;
+                            foreach(var hud in reading.occluders.Where(x=>x.active))
+                                if(marker.visualRect.Overlaps(hud.rect))
+                                {Assert.LessOrEqual(marker.alpha,.001f,size+" "+marker.name+" / "+hud.name);Assert.False(marker.active);}
+                        }
+                    }
+                    camera.targetTexture=previousTarget;rt.Release();Object.Destroy(rt);
+                }
+                Assert.Greater(visible,0,"Occlusion must not hide every marker.");
+            }
+            finally{camera.targetTexture=previousTarget;canvas.renderMode=mode;canvas.worldCamera=previousCamera;_map.View.FocusOn(focus);DisplayMetrics.Reset();}
+        }
+        [UnityTest] public IEnumerator FogDissolveHasTenFramesPerPresetAndNeverCoversOpenRegion()
+        {
+            var field=typeof(ChapterMapWorld).GetField("_visibility",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic);
+            var visibility=(float[])field.GetValue(_map.World);var saved=(float[])visibility.Clone();var focus=_map.View.Focus;
+            var camera=_map.View.Camera;float cameraSize=camera.orthographicSize;
+            bool batching=UnityEngine.Rendering.GraphicsSettings.useScriptableRenderPipelineBatching;
+            try
+            {
+                UnityEngine.Rendering.GraphicsSettings.useScriptableRenderPipelineBatching=false;
+                _map.View.FocusOn((_map.Config.stages[0].center+_map.Config.stages[1].center)*.5f);
+                foreach(int rate in new[]{30,60,120})
+                {
+                    Assert.True(DisplayMetrics.TrySetPreview(new DevicePreviewSettings{width=1672,height=941,dpi=160,frameRate=rate}));
+                    for(int frame=0;frame<10;frame++)
+                    {
+                        // Isolated render fixture: sample exact reveal progress; no profile or gameplay mutation.
+                        visibility[1]=frame/9f;yield return null;
+                        Capture("fog-"+rate+"-"+frame.ToString("00"));
+                    }
+                    visibility[1]=0;_map.View.FocusOn(_map.Config.stages[1].center);camera.orthographicSize=cameraSize*.55f;
+                    yield return null;Capture("fog-close-"+rate);
+                    camera.orthographicSize=cameraSize;_map.View.FocusOn((_map.Config.stages[0].center+_map.Config.stages[1].center)*.5f);
+                }
+                for(int i=0;i<4;i++)visibility[i]=1;visibility[4]=.5f;
+                _map.View.FocusOn((_map.Config.stages[3].center+_map.Config.stages[4].center)*.5f);yield return null;
+                Capture("fog-granary-open-border");
+            }
+            finally{saved.CopyTo(visibility,0);_map.View.FocusOn(focus);camera.orthographicSize=cameraSize;DisplayMetrics.Reset();UnityEngine.Rendering.GraphicsSettings.useScriptableRenderPipelineBatching=batching;}
+        }
+        [UnityTest] public IEnumerator CaptureAuthoredBuildingStateAtHalfFade()
+        {
+            var visibility=(float[])typeof(ChapterMapWorld).GetField("_visibility",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).GetValue(_map.World);
+            var saved=(float[])visibility.Clone();var focus=_map.View.Focus;
+            var groups=(System.Collections.IEnumerable)typeof(ChapterMapWorld).GetField("_groups",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).GetValue(_map.World);
+            bool batching=UnityEngine.Rendering.GraphicsSettings.useScriptableRenderPipelineBatching;
+            var restored=new System.Collections.Generic.List<(object group,float alpha)>();
+            try
+            {
+                UnityEngine.Rendering.GraphicsSettings.useScriptableRenderPipelineBatching=false;
+                for(int i=0;i<visibility.Length;i++)visibility[i]=1;
+                foreach(int stage in new[]{0,3})
+                {
+                    _map.View.FocusOn(_map.Config.stages[stage].center);
+                    var selected=new System.Collections.Generic.List<object>();
+                    foreach(var group in groups)
+                    {
+                        var type=group.GetType();var root=(GameObject)type.GetField("Root").GetValue(group);
+                        if((int)type.GetField("Stage").GetValue(group)!=stage || !root.name.StartsWith("State_"))continue;
+                        restored.Add((group,(float)type.GetField("Alpha").GetValue(group)));selected.Add(group);
+                    }
+                    foreach(float alpha in new[]{0f,.5f,1f})
+                    {
+                        foreach(var group in selected)
+                        {
+                            var type=group.GetType();var root=(GameObject)type.GetField("Root").GetValue(group);
+                            type.GetMethod("Set").Invoke(group,new object[]{root.name=="State_After"?alpha:1-alpha});
+                        }
+                        yield return null;Capture("building-state-"+(stage+1)+"-"+(int)(alpha*100));
+                    }
+                }
+            }
+            finally
+            {
+                foreach(var pair in restored)pair.group.GetType().GetMethod("Set").Invoke(pair.group,new object[]{pair.alpha});
+                saved.CopyTo(visibility,0);_map.View.FocusOn(focus);UnityEngine.Rendering.GraphicsSettings.useScriptableRenderPipelineBatching=batching;
+            }
         }
         [UnityTest] public IEnumerator SavedWorldRevealsEachRegionOnceAndKeepsCompletedStatesOnReplay()
         {
@@ -78,7 +195,13 @@ namespace Arena3Q.Exploration.Tests
                     Capture("world-"+(completed+2)+"-before");
                     _map.View.FocusOn(previousFocus);
                     float deadline=Time.realtimeSinceStartup+12;
-                    while(_map.World.Revealing&&Time.realtimeSinceStartup<deadline)yield return null;
+                    bool fadeCaptured=false;
+                    while(_map.World.Revealing&&Time.realtimeSinceStartup<deadline)
+                    {
+                        if(!fadeCaptured && _map.World.Visibility(completed+1)>=1 && !_map.World.MarkersVisible(completed+1))
+                        {yield return new WaitForSecondsRealtime(.25f);Capture("environment-"+(completed+2)+"-mid");fadeCaptured=true;}
+                        yield return null;
+                    }
                     Assert.False(_map.World.Revealing);Assert.False(_map.Busy);
                     Assert.AreEqual(completed+2,_map.Session.Progress.revealedStages);
                     Assert.AreEqual(1,_map.World.Visibility(completed+1));

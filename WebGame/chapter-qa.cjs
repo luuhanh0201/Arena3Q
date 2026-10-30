@@ -52,6 +52,18 @@ save();
     const end = Date.now() + 10000;
     while (readingId === previous && Date.now() < end) await page.waitForTimeout(100);
     assert.ok(readingId > previous, 'The real chapter runtime must answer the read-only inspection.');
+    if(!baseline){
+      assert.ok(Array.isArray(reading.occluders),'HUD exclusion telemetry must be present.');
+      const overlap=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.height>b.y;
+      const quest=reading.labels.find(x=>x.name==='Text');
+      for(const arrow of reading.directions||[])if(arrow.active&&quest)
+        assert.ok(!overlap(quest.rect,arrow.rect),'Quest text intersects the rotated direction arrow.');
+      for(const marker of reading.markers)for(const hud of reading.occluders.filter(x=>x.active))
+        if(overlap(marker.visualRect,hud.rect)){
+          assert.ok(marker.alpha<=.001,marker.name+' visible over '+hud.name);
+          assert.ok(!marker.active,marker.name+' clickable over '+hud.name);
+        }
+    }
     return reading;
   }
   async function tapRect(rect, state) {

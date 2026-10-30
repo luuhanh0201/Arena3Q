@@ -77,6 +77,17 @@ MonoBehaviour:
   stagePulseScale: 0.04
   messageSeconds: 4
   textWeight: 400
+  markerOccluders:
+  - Back
+  - Title
+  - Information
+  - Introduction
+  - ChapterRewards
+  - CurrentQuest
+  - Resources
+  markerHudPadding: 18
+  questArrowGap: 12
+  questMinimumFont: 14
   questText:
     serializedVersion: 2
     x: 14
