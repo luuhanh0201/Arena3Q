@@ -567,3 +567,6 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 
 ## 30/10 - Sương nhảy ở ranh khu đang mở
 - Xếp khu đang tan vào tập khóa cho tới visibility=1 và lấy remaining theo tâm khóa gần nhất gây đường cắt giữa hai khu, rồi pop cả dải ở cuối. Trộn trường ranh trước/sau mở bằng cùng tiến độ/noise của khu đang tan, mở rộng ngưỡng để đầu/cuối đạt chính xác. Kiểm shader trực tiếp trên nền trắng ở cùng độ phân giải, đo chênh khung/pixel và chụp lại cảnh thật; test trạng thái qua không chứng minh ranh liên tục.
+
+## 30/10 - Review P2 theo ảnh mẫu
+- Thiếu biển đỏ tế đàn, đếm sao rương vượt mốc, chữ không có bóng/viền trên nền sáng, bảng ải thiếu thưởng và nút Đóng kiểu Plain. Ảnh panel được chụp ngay khi modal xuất hiện nên còn fade. Sửa bằng cấu hình stage/UI, giới hạn bộ đếm, outline TMP, trạng thái thưởng chưa biên soạn, nút cùng GameButton có vùng chạm đủ và telemetry alpha để đợi kết thúc fade. Không đổi nút quay lại đang chờ người dùng quyết định.

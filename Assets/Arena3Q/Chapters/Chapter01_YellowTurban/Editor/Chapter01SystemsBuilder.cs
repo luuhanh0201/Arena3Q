@@ -21,6 +21,27 @@ namespace Arena3Q.Exploration.Editor
         public const string ScenePath = Root + "/Scenes/CH01_Exploration.unity";
         public const string PrefabPath = Root + "/Prefabs/CH01_MapSystems.prefab";
         private const string NavigationRoot = "Assets/ThirdParty/Chapter01/_Navigation";
+        [MenuItem("Arena3Q/Chapter 01/Update Map UI Review")]
+        public static void UpdateMapUiReview()
+        {
+            var config=AssetDatabase.LoadAssetAtPath<ChapterMapConfig>(ConfigPath);var ui=config.ui;
+            ui.altarBanner=AssetDatabase.LoadAssetAtPath<Sprite>(Root+"/Textures/UI/altar-banner.png");
+            if(ui.altarBanner==null)throw new InvalidDataException("Missing altar banner sprite");
+            Material Preset(string name,TMPro.TMP_FontAsset font)
+            {
+                string path=Root+"/Data/"+name+".mat";var material=AssetDatabase.LoadAssetAtPath<Material>(path);
+                if(material==null){material=new Material(font.material);AssetDatabase.CreateAsset(material,path);}
+                material.EnableKeyword("OUTLINE_ON");material.EnableKeyword("UNDERLAY_ON");
+                material.SetColor(TMPro.ShaderUtilities.ID_OutlineColor,ui.mapTextOutline);material.SetFloat(TMPro.ShaderUtilities.ID_OutlineWidth,ui.mapTextOutlineWidth);
+                material.SetColor(TMPro.ShaderUtilities.ID_UnderlayColor,ui.mapTextOutline);
+                material.SetFloat(TMPro.ShaderUtilities.ID_UnderlayOffsetX,ui.mapTextShadowOffset.x);material.SetFloat(TMPro.ShaderUtilities.ID_UnderlayOffsetY,ui.mapTextShadowOffset.y);
+                material.SetFloat(TMPro.ShaderUtilities.ID_UnderlaySoftness,ui.mapTextShadowSoftness);EditorUtility.SetDirty(material);return material;
+            }
+            // Referenced presets retain the outline/underlay shader variants in the WebGL build.
+            ui.mapTextMaterial=Preset("CH01_MapText",config.frontend.StartupUi.regular);
+            ui.mapBossTextMaterial=Preset("CH01_MapBossText",config.frontend.StartupUi.extraBold);
+            EditorUtility.SetDirty(ui);EditorUtility.SetDirty(config);AssetDatabase.SaveAssets();
+        }
         [MenuItem("Arena3Q/Chapter 01/Update World Presentation")]
         public static void UpdateWorldPresentation()
         {
@@ -157,6 +178,7 @@ namespace Arena3Q.Exploration.Editor
                 var anchors=area.GetComponentsInChildren<Transform>(true).Where(t=>t.name.StartsWith("MarkerAnchor_",StringComparison.Ordinal)).ToArray();
                 stages.Add(new ChapterMapStage { id=id,areaName=names[i],areaPath=ChapterMapController.Path(area),markerPath=ChapterMapController.Path(marker),
                     center=marker.position,regionRadius=16,boss=i==4||i==6,bossName=i==4?"Trình Viễn Chí":i==6?"Trương Giác":"",objective=objectives[i],battle=old?.battle,
+                    useAltarBanner=old?.useAltarBanner??false,rewardPreview=old?.rewardPreview??"Phần thưởng sẽ được công bố sau.",
                     targets=anchors.Select((a,index)=>new ChapterMapTarget {id=id+"_"+index,anchorPath=ChapterMapController.Path(a),position=a.position,
                         kind=a.name.EndsWith("quest",StringComparison.Ordinal)?MapInteractionKind.Quest:MapInteractionKind.Battle,
                         name=a.name.EndsWith("quest",StringComparison.Ordinal)?i==0?"Trưởng làng":i==3?"Dân bị giam":"Chỉ huy nghĩa binh":i==4?"Trình Viễn Chí":i==6?"Trương Giác":"Quân Khăn Vàng",
@@ -210,7 +232,7 @@ namespace Arena3Q.Exploration.Editor
                 importer.mipmapEnabled=false;importer.textureCompression=TextureImporterCompression.Uncompressed;importer.SaveAndReimport();
                 return AssetDatabase.LoadAssetAtPath<Sprite>(path);
             }
-            ui.medallion=Art("medallion");ui.bossMedallion=Art("boss-medallion");ui.nameplate=Art("nameplate");
+            ui.medallion=Art("medallion");ui.bossMedallion=Art("boss-medallion");ui.nameplate=Art("nameplate");ui.altarBanner=Art("altar-banner");
             ui.chests=new[]{Art("chest-wood"),Art("chest-silver"),Art("chest-gold")};
             ui.introduction=new Rect(33,78,610,82);ui.bodyFont=17;
         }

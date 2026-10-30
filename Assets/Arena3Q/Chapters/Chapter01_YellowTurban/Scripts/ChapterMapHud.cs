@@ -40,12 +40,14 @@ namespace Arena3Q.Exploration
         private readonly List<RectTransform> _markerOccluders = new List<RectTransform>();
         private readonly Vector3[] _corners = new Vector3[4];
         private readonly List<TMP_Text> _rewardLabels = new List<TMP_Text>();
+        private readonly List<Material> _mapTextMaterials = new List<Material>();
         private readonly List<(string id, TMP_Text label)> _resourceLabels = new List<(string, TMP_Text)>();
         public bool ModalVisible => _modal != null;
         [Serializable] private sealed class UiReading
         {
             public int width, height, frameRate, previewFrameRate, unlocked, revealed;
-            public float dpi;
+            public float dpi, modalAlpha;
+            public bool modalReady;
             public Rect safeArea;
             public bool modal, revealing;
             public float[] fogVisibility;
@@ -79,11 +81,13 @@ namespace Arena3Q.Exploration
                 width = Screen.width, height = Screen.height, frameRate = Application.targetFrameRate,
                 previewFrameRate = DisplayMetrics.PreviewFrameRate, dpi = DisplayMetrics.Dpi,
                 safeArea = DisplayMetrics.SafeArea, modal = ModalVisible, message = _map.LastMessage,
+                modalAlpha = _modal!=null?_modal.GetComponent<CanvasGroup>().alpha:0,
+                modalReady = _modal!=null&&_modal.GetComponent<CanvasGroup>().alpha>=.999f&&_modal.GetComponent<CanvasGroup>().interactable,
                 unlocked = _map.Session.Rules.UnlockedCount(_map.Session.Progress),
                 revealed = _map.Session.Progress.revealedStages, revealing = _map.World != null && _map.World.Revealing,
                 fogVisibility = _map.World == null ? Array.Empty<float>() : Enumerable.Range(0, Config.stages.Length).Select(_map.World.Visibility).ToArray(),
                 buttons = _safe.GetComponentsInChildren<Button>().Select(button => new ElementReading
-                { name = button.name, rect = Bounds((RectTransform)button.transform), active = button.interactable }).ToArray(),
+                { name = button.name, rect = Bounds((RectTransform)button.transform), active = button.IsInteractable() }).ToArray(),
                 markers = _markers.Select(marker => new ElementReading { name = marker.rect.name,
                     rect = Bounds(marker.hit), stage = marker.stage, target = marker.target,
                     visualRect = MarkerBounds(marker), alpha = marker.group.alpha, active = marker.group.blocksRaycasts }).ToArray(),
@@ -118,7 +122,7 @@ namespace Arena3Q.Exploration
             Frame(_safe, "Title", Ui.title);
             _kit.Text(_safe, "ChapterTitle", Config.title + "  |  " + Config.subtitle, Ui.title, Ui.titleFont, Ui.gold, TextAlignmentOptions.Center, Ui.textWeight);
             _kit.IconButton(_safe, "Information", Ui.infoIcon, Ui.info, () => ShowInfo()).image.color = Ui.gold;
-            _kit.Text(_safe, "Introduction", Config.introduction, Ui.introduction, Ui.bodyFont, Color.white, weight: Ui.textWeight);
+            MapText(_kit.Text(_safe, "Introduction", Config.introduction, Ui.introduction, Ui.bodyFont, Color.white, weight: Ui.textWeight));
             var rewards = Frame(_safe, "ChapterRewards", Ui.rewards);
             var badge = _kit.Image(rewards, "RewardBadge", Ui.medallion, Ui.rewardBadge).rectTransform;
             _kit.Text(badge, "Heading", "Thưởng\nChương", Ui.rewardHeading, Ui.rewardHeadingFont, Ui.gold, TextAlignmentOptions.Center, Ui.textWeight);
@@ -195,9 +199,9 @@ namespace Arena3Q.Exploration
             if(target<0)
             {
                 marker.stars = UiFactory.AddStars("Stars",rect,new Vector2(.5f,0),new Vector2(-25,-18),3,16,Ui.gold);
-                marker.name=_kit.Image(rect,"RegionName",Ui.nameplate,new Rect((size-Ui.nameWidth)/2,-Ui.nameLift,Ui.nameWidth,Ui.nameHeight)).rectTransform;
+                marker.name=_kit.Image(rect,"RegionName",Config.stages[stage].useAltarBanner?Ui.altarBanner:Ui.nameplate,new Rect((size-Ui.nameWidth)/2,-Ui.nameLift,Ui.nameWidth,Ui.nameHeight)).rectTransform;
                 _kit.Text(marker.name,"Label",Config.stages[stage].areaName,new Rect(16,0,Ui.nameWidth-32,Ui.nameHeight),Ui.bodyFont,Ui.gold,TextAlignmentOptions.Center,Ui.textWeight);
-                if(Config.stages[stage].boss)_kit.Text(marker.name,"Boss",Config.stages[stage].bossName,new Rect(0,Ui.nameLift+size+25,Ui.nameWidth,30),Ui.bodyFont,Ui.gold,TextAlignmentOptions.Center,800);
+                if(Config.stages[stage].boss)MapText(_kit.Text(marker.name,"Boss",Config.stages[stage].bossName,new Rect(0,Ui.nameLift+size+25,Ui.nameWidth,30),Ui.bodyFont,Ui.gold,TextAlignmentOptions.Center,800),true);
             }
             _markers.Add(marker);
         }
@@ -221,7 +225,7 @@ namespace Arena3Q.Exploration
         {
             if (_map.Session == null) return;
             int total = _map.Session.Rules.TotalStars(_map.Session.Progress);
-            for(int i=0;i<_rewardLabels.Count;i++) _rewardLabels[i].text = total+"/"+Config.rewards[i].stars;
+            for(int i=0;i<_rewardLabels.Count;i++) _rewardLabels[i].text = Mathf.Min(total,Config.rewards[i].stars)+"/"+Config.rewards[i].stars;
             int current = Mathf.Max(0,_map.Session.Rules.UnlockedCount(_map.Session.Progress)-1);
             _quest.text = Config.stages[current].areaName+"\n"+Config.stages[current].objective;
             var lobby = Config.frontend.Lobby;
@@ -316,28 +320,45 @@ namespace Arena3Q.Exploration
             return rect;
         }
         private Rect MarkerBounds(Marker marker) => GraphicBounds(marker.rect);
+        private void MapText(TMP_Text label,bool boss=false)
+        {
+            var preset=boss?Ui.mapBossTextMaterial:Ui.mapTextMaterial;
+            var material=new Material(preset!=null?preset:label.fontSharedMaterial);
+            material.EnableKeyword("OUTLINE_ON");material.EnableKeyword("UNDERLAY_ON");
+            material.SetColor(ShaderUtilities.ID_OutlineColor,Ui.mapTextOutline);
+            material.SetFloat(ShaderUtilities.ID_OutlineWidth,Ui.mapTextOutlineWidth);
+            material.SetColor(ShaderUtilities.ID_UnderlayColor,Ui.mapTextOutline);
+            material.SetFloat(ShaderUtilities.ID_UnderlayOffsetX,Ui.mapTextShadowOffset.x);material.SetFloat(ShaderUtilities.ID_UnderlayOffsetY,Ui.mapTextShadowOffset.y);
+            material.SetFloat(ShaderUtilities.ID_UnderlaySoftness,Ui.mapTextShadowSoftness);
+            label.fontSharedMaterial=material;label.UpdateMeshPadding();_mapTextMaterials.Add(material);
+        }
+        private void OnDestroy(){foreach(var material in _mapTextMaterials)Destroy(material);}
+        private float ModalButtonHeight => Mathf.Max(Ui.modalButtonHeight,Ui.minimumTapDp*DisplayMetrics.Dpi/160f/_canvas.scaleFactor);
+        private Vector2 ModalSize => new Vector2(Ui.modalSize.x,Ui.modalSize.y+Mathf.Max(0,ModalButtonHeight-Ui.modalButtonHeight));
+        private Rect ModalActionRect => new Rect(30,ModalSize.y-Ui.modalButtonPadding-ModalButtonHeight,Ui.modalDeployWidth,ModalButtonHeight);
         private RectTransform OpenModal(string title)
         {
             CloseModal(); _modal=_kit.Dim(_safe,"ChapterModal",.65f);
-            var size=Ui.modalSize;var panel=Frame(_modal,"Panel",new Rect(0,0,size.x,size.y));
+            var size=ModalSize;var panel=Frame(_modal,"Panel",new Rect(0,0,size.x,size.y),Ui.modalFill);
             panel.GetComponent<LobbyFrameGraphic>().raycastTarget=true;
             panel.anchorMin=panel.anchorMax=panel.pivot=Vector2.one*.5f;panel.anchoredPosition=Vector2.zero;
             _kit.Text(panel,"Title",title,new Rect(25,20,size.x-50,44),28,Ui.gold,TextAlignmentOptions.Center,800);
-            _kit.Button(panel,"Close","Đóng",new Rect(size.x-150,size.y-68,125,44),CloseModal,GameButtonStyle.Plain);
+            _kit.Button(panel,"Close","Đóng",new Rect(size.x-Ui.modalButtonPadding-Ui.modalCloseWidth,size.y-Ui.modalButtonPadding-ModalButtonHeight,Ui.modalCloseWidth,ModalButtonHeight),CloseModal,GameButtonStyle.Blue);
             _kit.DismissOutside(_modal,CloseModal); return panel;
         }
         public void ShowQuest(int stage,int target)
         {
             var npc=Config.stages[stage].targets[target]; var panel=OpenModal(npc.name);
             _kit.Text(panel,"Dialogue",npc.dialogue,new Rect(30,80,Ui.modalSize.x-60,145),21,Color.white);
-            _kit.Button(panel,"AcceptQuest","Nhận nhiệm vụ",new Rect(30,Ui.modalSize.y-74,270,52),()=>_map.AcceptQuest(stage),GameButtonStyle.Gold);
+            _kit.Button(panel,"AcceptQuest","Nhận nhiệm vụ",ModalActionRect,()=>_map.AcceptQuest(stage),GameButtonStyle.Gold);
         }
         public void ShowStage(int stage)
         {
             var data=Config.stages[stage];var panel=OpenModal(data.areaName);
-            _kit.Text(panel,"Objective",data.objective,new Rect(30,80,Ui.modalSize.x-60,110),22,Color.white);
-            _kit.Text(panel,"Stars","Sao tốt nhất: "+(_map.Session.Progress.Find(data.id)?.stars??0)+"/3",new Rect(30,190,Ui.modalSize.x-60,35),20,Ui.gold);
-            _kit.Button(panel,"Deploy","Xuất Chiến",new Rect(30,Ui.modalSize.y-74,270,52),()=>_map.LaunchBattle(stage),GameButtonStyle.Red);
+            _kit.Text(panel,"Objective",data.objective,Ui.modalObjective,22,Color.white);
+            _kit.Text(panel,"Stars","Sao tốt nhất: "+(_map.Session.Progress.Find(data.id)?.stars??0)+"/3",Ui.modalStars,20,Ui.gold);
+            _kit.Text(panel,"Rewards",Ui.stageRewardsHeading+"\n"+data.rewardPreview,Ui.modalRewards,20,Color.white);
+            _kit.Button(panel,"Deploy","Xuất Chiến",ModalActionRect,()=>_map.LaunchBattle(stage),GameButtonStyle.Red);
         }
         private void ShowInfo(){var panel=OpenModal(Config.title+" "+Config.subtitle);_kit.Text(panel,"Introduction",Config.introduction,new Rect(30,90,Ui.modalSize.x-60,150),22,Color.white);}
         private void Claim(int index){ShowMessage(_map.Session.Claim(index)?"Đã nhận thưởng chương.":"Chưa thể nhận phần thưởng này.");Refresh();}

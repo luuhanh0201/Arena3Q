@@ -59,7 +59,35 @@ MonoBehaviour:
   resourceIds:
   - Stamina
   - Silver
-  modalSize: {x: 570, y: 340}
+  modalSize: {x: 570, y: 400}
+  modalFill: {r: 0.12, g: 0.08, b: 0.06, a: 0.98}
+  mapTextOutline: {r: 0.06, g: 0.035, b: 0.02, a: 1}
+  mapTextOutlineWidth: 0.2
+  modalButtonHeight: 60
+  modalButtonPadding: 24
+  mapTextShadowOffset: {x: 0.7, y: -0.7}
+  mapTextShadowSoftness: 0.15
+  modalObjective:
+    serializedVersion: 2
+    x: 30
+    y: 80
+    width: 510
+    height: 90
+  modalStars:
+    serializedVersion: 2
+    x: 30
+    y: 175
+    width: 510
+    height: 35
+  modalRewards:
+    serializedVersion: 2
+    x: 30
+    y: 218
+    width: 510
+    height: 65
+  modalCloseWidth: 145
+  modalDeployWidth: 270
+  stageRewardsHeading: "Ph\u1EA7n th\u01B0\u1EDFng"
   titleFont: 30
   bodyFont: 17
   markerSize: 56
@@ -76,7 +104,6 @@ MonoBehaviour:
   markerStartScale: 0.8
   stagePulseScale: 0.04
   messageSeconds: 4
-  textWeight: 400
   markerOccluders:
   - Back
   - Title
@@ -88,6 +115,7 @@ MonoBehaviour:
   markerHudPadding: 18
   questArrowGap: 12
   questMinimumFont: 14
+  textWeight: 400
   questText:
     serializedVersion: 2
     x: 14
@@ -113,6 +141,9 @@ MonoBehaviour:
   medallion: {fileID: 21300000, guid: 8de5a238f8e2bf547b441ad0591ffc04, type: 3}
   bossMedallion: {fileID: 21300000, guid: e34be52ef8c5fdb419edfc85798752cd, type: 3}
   nameplate: {fileID: 21300000, guid: 17d9e4e90bc18f14f855282b2f7f4b48, type: 3}
+  altarBanner: {fileID: 21300000, guid: a673fb3ec75d1397d77d710e1f6f408e, type: 3}
+  mapTextMaterial: {fileID: 2100000, guid: 45f4d0f5cfaf1c847a889b873e413136, type: 2}
+  mapBossTextMaterial: {fileID: 2100000, guid: af09b5c82fb54194d99f2d88723dc774, type: 2}
   chests:
   - {fileID: 21300000, guid: b2c1590ed4382d24589872ba8717302d, type: 3}
   - {fileID: 21300000, guid: c917f4c1df1027f49bff403d1302465f, type: 3}
@@ -154,6 +185,7 @@ MonoBehaviour:
     width: 60
     height: 26
   rewardStep: 100
+  rewardHeadingFont: 15
   routeMaterial: {fileID: 2100000, guid: 4bef517a6be96dd4887a97433186568e, type: 2}
   routeWidth: 0.34
   routeLift: 0.06

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "medallion",
+    "sourceWidth": 1266,
+    "sourceHeight": 1242,
+    "bytes": 120060
+  },
+  {
+    "name": "boss-medallion",
+    "sourceWidth": 1266,
+    "sourceHeight": 1243,
+    "bytes": 114061
+  },
+  {
+    "name": "nameplate",
+    "sourceWidth": 2172,
+    "sourceHeight": 724,
+    "bytes": 96717
+  },
+  {
+    "name": "altar-banner",
+    "sourceWidth": 2172,
+    "sourceHeight": 724,
+    "bytes": 89764
+  },
+  {
+    "name": "chest-wood",
+    "sourceWidth": 1402,
+    "sourceHeight": 1122,
+    "bytes": 136124
+  },
+  {
+    "name": "chest-silver",
+    "sourceWidth": 1399,
+    "sourceHeight": 1124,
+    "bytes": 131024
+  },
+  {
+    "name": "chest-gold",
+    "sourceWidth": 1359,
+    "sourceHeight": 1158,
+    "bytes": 134466
+  }
+]

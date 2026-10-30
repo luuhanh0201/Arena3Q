@@ -58,6 +58,8 @@ namespace Arena3Q.Data
     {
         public string id, areaName, areaPath, markerPath, bossName, objective;
         public bool boss;
+        public bool useAltarBanner;
+        [TextArea] public string rewardPreview = "Phần thưởng sẽ được công bố sau.";
         public Vector3 center;
         public float regionRadius = 16;
         public StageConfig battle;

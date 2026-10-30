@@ -5,6 +5,7 @@ const { seed, lobbyProfile } = require('./qa-profile.cjs');
 const settings = require('./web-settings.json');
 const baseline = process.argv.includes('--baseline');
 const worldQa = process.argv.includes('--world');
+const uiReview = process.argv.includes('--ui-review');
 const out = path.resolve('NghiemThu/Chapter01/' + (worldQa ? 'P3_Web_' : 'P2_Web_') + (baseline ? 'before_' : '') + new Date().toISOString().replace(/[:.]/g, '-'));
 const base = `http://127.0.0.1:${settings.port}`;
 fs.mkdirSync(out, { recursive: true });
@@ -35,6 +36,13 @@ save();
     await route.fulfill({ response, body: await response.text() + hook });
   });
   async function capture(name) {
+    if(!baseline&&name!=='FAILED'&&reading?.modal){
+      const ready=await waitState(s=>s.modalReady&&s.modalAlpha>=.999);
+      const close=ready.buttons.find(b=>b.name==='Close');
+      assert.ok(close?.active,'Close must be interactable after modal fade.');
+      assert.ok(close.rect.height*160/ready.dpi>=48-.5,'Close target must be at least 48 dp.');
+      await page.waitForTimeout(100); // Let GameButton leave the disabled visual state after UiReveal.
+    }
     await page.screenshot({ path: path.join(out, name + '.png') }); report.screenshots.push(name + '.png'); save();
   }
   async function clickDesign(x, y) {
@@ -53,6 +61,7 @@ save();
     while (readingId === previous && Date.now() < end) await page.waitForTimeout(100);
     assert.ok(readingId > previous, 'The real chapter runtime must answer the read-only inspection.');
     if(!baseline){
+      for(const label of reading.labels.filter(x=>x.name==='Stars'&&/^\d+\/\d+$/.test(x.text))){const [current,limit]=label.text.split('/').map(Number);assert.ok(current<=limit,'Chest count must stop at its milestone.');}
       assert.ok(Array.isArray(reading.occluders),'HUD exclusion telemetry must be present.');
       const overlap=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.height>b.y;
       const quest=reading.labels.find(x=>x.name==='Text');
@@ -113,7 +122,9 @@ save();
     state = await waitState(s => !s.modal && s.markers.some(x => x.stage === 0 && x.target === 1 && x.active));
     await capture('06-quest-accepted');
     await tapRect(state.markers.find(x => x.stage === 0 && x.target === 1 && x.active).rect, state);
-    state = await waitState(s => s.buttons.some(x => x.name === 'Deploy')); await capture('07-stage-panel');
+    state = await waitState(s => s.modalReady&&s.buttons.some(x => x.name === 'Deploy'&&x.active));
+    assert.ok(state.labels.some(x=>x.name==='Rewards'&&x.text.includes('Phần thưởng')),'Stage panel must show reward information.');
+    await capture('07-stage-panel');
     await tapRect(state.buttons.find(x => x.name === 'Deploy').rect, state);
     state = await waitState(s => s.message === 'Chức năng đang phát triển'); assert.equal(state.unlocked, 1);
     await capture('08-missing-battle-does-not-unlock');
@@ -122,11 +133,17 @@ save();
     await capture('09-return-lobby');
     if (worldQa) {
       report.world = [];
-      for (const cleared of [1, 4, 7]) {
+      for (const checkpoint of (uiReview?[1,4,7,'altar']:[1,4,7])) {
+        const cleared=checkpoint==='altar'?7:checkpoint;
         const profile = lobbyProfile();
         profile.characters[0].chapters = [{ chapterId: 'chapter01', revealedStages: cleared,
           stages: Array.from({length:cleared},(_,i)=>({stageId:`ch01_${String(i+1).padStart(2,'0')}`,questAccepted:true,stars:3})),
           claimedRewards:[],pendingBattleId:'',pendingStageId:'' }];
+        if(checkpoint==='altar'){
+          const config=fs.readFileSync('Assets/Arena3Q/Chapters/Chapter01_YellowTurban/Data/CH01_MapConfig.asset','utf8');
+          const altar=config.split('  - id: ch01_07')[1].match(/center: \{x: ([^,]+), y: ([^,]+), z: ([^}]+)\}/);
+          Object.assign(profile.characters[0].chapters[0],{hasReturnPose:true,playerX:-50,playerY:0,playerZ:-34,cameraX:Number(altar[1]),cameraY:Number(altar[2]),cameraZ:Number(altar[3]),cameraSize:22});
+        }
         await seed(page, profile); await start();
         await clickDesign(640,550); await clickDesign(640,638); await page.waitForTimeout(3500);
         await clickDesign(1080,630);
@@ -142,7 +159,13 @@ save();
         // Reveal completion starts the marker fade; inspect its final visible state before taking the after image.
         await page.waitForTimeout(600); state=await inspect();
         if(cleared<7)assert.ok(state.markers.some(m=>m.stage===cleared&&m.target===-1&&m.active),'The newly revealed stage marker must become interactive.');
-        await capture(`11-world-${cleared}-cleared`);report.world.push({cleared,state});save();
+        await capture(checkpoint==='altar'?'12-altar-unlocked':`11-world-${cleared}-cleared`);report.world.push({cleared,checkpoint,state});save();
+        if(checkpoint==='altar'){
+          assert.ok(state.markers.some(m=>m.stage===6&&m.target===-1&&m.active),'Unlocked altar marker must be visible and clickable.');
+          await tapRect(state.markers.find(m=>m.stage===6&&m.target===-1).rect,state);
+          state=await waitState(s=>s.modalReady);await capture('13-altar-stage-panel');
+          await tapRect(state.buttons.find(x=>x.name==='Close').rect,state);state=await waitState(s=>!s.modal);
+        }
         await tapRect(state.buttons.find(x=>x.name==='Back').rect,state);await page.waitForTimeout(4000);
       }
     }
