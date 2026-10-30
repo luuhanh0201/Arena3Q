@@ -297,3 +297,11 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
 
 ## 30/10 - Đồng bộ ảnh tổng Sketchfab sau review
 - Claude phát hiện contact-1..4 vẫn là ảnh trước sửa vật liệu dù ảnh lẻ và gallery đã mới. Đã dựng lại bốn ảnh tổng, so khớp byte với unity-sheet trong gallery và xem ảnh SF05. sf_delivery.cjs nay luôn đồng bộ cả hai vị trí; không để người xem nhầm ảnh cũ với kết quả mới.
+
+## 30/10 - P3 vòng 2: ranh sương nhảy ở cuối
+- Claude chỉ ra ảnh fog-60-07/08 có đường cắt cứng giữa khu đang tan và khu khóa; tới khung 09 cả dải ranh nhảy. Shader chỉ đưa khu vào tập mở khi visibility bằng 1 và lấy tiến độ từ khu khóa gần nhất, nên hai phía biên dùng remaining khác nhau. Sửa blend trường sương trước/sau mở theo cùng tiến độ/noise của khu đang tan, đưa ngưỡng ra ngoài miền noise ở đầu/cuối. Bổ sung đo pixel theo thời gian và qua ranh, không chỉ kiểm trạng thái hoặc nhìn khung cuối.
+- Test pixel mới cần tắt post-processing qua UniversalAdditionalCameraData nhưng asmdef test chưa tham chiếu URP Runtime, gây CS0234 ở lượt biên dịch đầu. Bổ sung đúng assembly reference trước khi chạy lại; chưa coi lượt này là kết quả tái hiện lỗi shader.
+- Ảnh mask thử đầu hoàn toàn nhị phân kể cả ranh đã mở: clone Material không giữ đủ uniform ngoài Properties. Kết quả 255/255 của lượt đó không hợp lệ để quy cho shader. Fixture nay gán rõ Boundary/Scale/Radius/RevealEdge và noise từ config sản phẩm; phải xem mask đầu có gradient trước khi dùng số đo.
+- Bản sửa qua 15/16 test; test pixel ở 320×160 đo temporal 24/255, endpoint 0 nhưng gradient nhiễu nhỏ 76/255 vượt ngưỡng cạnh 32. Ảnh cho thấy viền liên tục, ảnh đo quá thô (0,25 m/pixel). Đổi fixture sang 960×480 và chạy lại cả shader trước/sau ở cùng camera, giữ ngưỡng 64/4/32 để tránh thay ngưỡng theo kết quả.
+- Lượt WebGL đầu vòng 3 bị ECONNREFUSED vì server local4322 của ngày trước đã dừng. Đây là lỗi môi trường kiểm, chưa chạy được game; khởi động lại đúng server repo rồi chạy lại, không coi build thành công là browser đã đạt.
+- Kết quả cuối cùng 960×480 cùng camera: shader b187778 đo temporal/adjacent/endpoint đều 255; bản sửa 24/26/0, giữ nguyên ngưỡng 64/32/4. PlayMode16/16, EditMode7/7 và WebGL12 tổ hợp+3 hồ sơ/25 ảnh đạt. Gallery kiểm đủ 30 vị trí slider, không ảnh hỏng hoặc lỗi trang; đã xem cặp khung8/9, mép cầu và hàng rào chuyển mềm.

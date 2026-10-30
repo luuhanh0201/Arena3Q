@@ -564,3 +564,6 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 - HUD bán trong suốt không che được dấu ải bên dưới. Lấy vùng che từ MapUiConfig, bắt đầu fade ở lề và chặn alpha/tương tác khi dấu thật sự giao HUD, tính lại sau scale/pulse. Kiểm 4 tỉ lệ qua 7 vị trí camera, không chỉ kiểm thứ tự sibling.
 - Khung chữ nhiệm vụ giao mũi tên; thu chiều rộng theo bán kính khi xoay và lề, bật tự co font. Ảnh WebGL phát hiện thêm pivot góc trái dù test công thức đã qua: đổi về tâm và kiểm 8 góc xoay bằng GetWorldCorners. Kiểm hình cuối và hình học thực, không chỉ lặp lại công thức bố trí trong test.
 - Sương dùng ảnh khói đơn lặp bằng frac và blend ranh ở cả hai phía nên lộ ô, lấn vùng mở và tan đều. Dùng noise tuần hoàn nhiều lớp khác hướng, ngưỡng noise/radial theo tiến độ, dải blend chỉ bên khóa. Lưu 30 khung tan, 3 ảnh cận và ranh Trại Lương; hiệu năng thiết bị còn phải đo.
+
+## 30/10 - Sương nhảy ở ranh khu đang mở
+- Xếp khu đang tan vào tập khóa cho tới visibility=1 và lấy remaining theo tâm khóa gần nhất gây đường cắt giữa hai khu, rồi pop cả dải ở cuối. Trộn trường ranh trước/sau mở bằng cùng tiến độ/noise của khu đang tan, mở rộng ngưỡng để đầu/cuối đạt chính xác. Kiểm shader trực tiếp trên nền trắng ở cùng độ phân giải, đo chênh khung/pixel và chụp lại cảnh thật; test trạng thái qua không chứng minh ranh liên tục.

@@ -17,7 +17,7 @@ using UnityEngine.UI;
 
 namespace Arena3Q.Exploration.Tests
 {
-    public sealed class ChapterMapFlowTests
+    public sealed partial class ChapterMapFlowTests
     {
         private const string Root="Assets/Arena3Q/Chapters/Chapter01_YellowTurban";
         private InMemoryProfileStore _store;

@@ -38,21 +38,28 @@ Shader "Arena3Q/Chapter Fog"
                 #endif
                 float3 direction=bWorld-aWorld;
                 float3 world=aWorld-direction*(aWorld.y/direction.y);
-                float dOpen=1e8, dLocked=1e8, reveal=0;
+                float dOpen=1e8, dLocked=1e8, dOpenNext=1e8, dLockedNext=1e8, reveal=0;
                 float2 centre=0;
                 for(int j=0;j<(int)_Count;j++)
                 {
                     float d=distance(world.xz,_Regions[j].xy);
-                    if(_Regions[j].z>=1) dOpen=min(dOpen,d);
-                    else if(d<dLocked){dLocked=d;reveal=_Regions[j].z;centre=_Regions[j].xy;}
+                    float visibility=_Regions[j].z;
+                    if(visibility>=1) dOpen=min(dOpen,d); else dLocked=min(dLocked,d);
+                    if(visibility>0) dOpenNext=min(dOpenNext,d); else dLockedNext=min(dLockedNext,d);
+                    // Reveals are sequential. Use the same transition on both sides of its border,
+                    // rather than switching progress when a different locked centre is nearest.
+                    if(visibility>0 && visibility<1){reveal=visibility;centre=_Regions[j].xy;}
                 }
                 // The whole blend lies on the locked side: open ground and the border have zero fog.
-                float fog=smoothstep(0,max(.01,_Boundary),dOpen-dLocked);
+                float fogNow=smoothstep(0,max(.01,_Boundary),dOpen-dLocked);
+                float fogNext=smoothstep(0,max(.01,_Boundary),dOpenNext-dLockedNext);
                 float2 p=world.xz*_Scale;
                 float revealNoise=SAMPLE_TEXTURE2D(_CloudTex,sampler_CloudTex,p*1.31+float2(.17,.43)).r;
                 float field=revealNoise*.6+saturate(distance(world.xz,centre)/_RegionRadius)*.4;
-                float remaining=reveal<=0?1:reveal>=1?0:smoothstep(reveal-_RevealEdge,reveal+_RevealEdge,field);
-                fog*=remaining;
+                // Move the threshold beyond the complete [0,1] field at each endpoint.
+                float threshold=reveal*(1+2*_RevealEdge)-_RevealEdge;
+                float remaining=smoothstep(threshold-_RevealEdge,threshold+_RevealEdge,field);
+                float fog=lerp(fogNext,fogNow,remaining);
                 // Seamless texture; sampler Repeat handles derivatives across tile edges.
                 // Different rotations, scales and velocities keep layers from repeating together.
                 float time=_Clock*_Drift*_Scale;
