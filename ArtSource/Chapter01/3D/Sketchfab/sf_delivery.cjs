@@ -57,6 +57,7 @@ async function main(){
    panels.push({input:label,left:(i%4)*300,top:Math.floor(i/4)*330+300});
   }
   await sharp({create:{width:1200,height:Math.ceil(batch.length/4)*330,channels:4,background:'#17202a'}}).composite(panels).png().toFile(path.join(out,'unity-sheet-'+(start/12+1)+'.png'));
+  fs.copyFileSync(path.join(out,'unity-sheet-'+(start/12+1)+'.png'),path.join(qa,'Unity','contact-'+(start/12+1)+'.png'));
  }
  const publish=path.join(root,'Builds/WebGL/Arena3Q/sketchfab-review');fs.mkdirSync(publish,{recursive:true});
  for(const n of fs.readdirSync(out))if(/\.(html|png|json)$/.test(n))fs.copyFileSync(path.join(out,n),path.join(publish,n));

@@ -39,4 +39,4 @@ Commit công cụ đã push: `746eab1`; bản bàn giao ảnh/catalog được c
 - Ba nhà SF13 mang cờ `REFERENCE_ONLY_NEEDS_LOD` trong `pieces.tsv`: chỉ tham khảo, phải giảm mặt hoặc tạo LOD trước khi dùng. SF06 mái xanh là màu nguồn; nếu chọn dùng cần chuyển xám trước rồi nhuộm lại.
 - Bằng chứng: `Logs/Sketchfab-v2-normalize.log`, `Logs/Sketchfab-v2-unity.log`, `Logs/Sketchfab-v2-comparison.log`, `UnityDetails/report.tsv`, `checks.json`, `browser-checks.json`. Ảnh cũ giữ trong `BeforeMaterialFix`.
 
-Đây là bản gửi Claude review vòng 2; chưa coi asset đã được duyệt đưa vào map và chưa đo hiệu năng thiết bị.
+Claude đã review độc lập vòng 2 lúc 15:08: **ĐẠT, khoảng 95%** (commit fcbd04b). Bốn contact sheet cũ trong `Renders/Sketchfab/Unity` đã được tạo lại từ ảnh mới; `sf_delivery.cjs` đồng bộ chúng mỗi lần xuất để tránh người xem nhầm vật liệu cũ. Bước người dùng kiểm lần cuối vẫn để người dùng quyết định; chưa đưa asset vào map và chưa đo hiệu năng thiết bị.

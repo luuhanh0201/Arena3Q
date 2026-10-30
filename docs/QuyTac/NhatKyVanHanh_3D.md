@@ -288,3 +288,6 @@ Dùng chung cho **mọi agent** (Claude, Codex) khi làm model 3D, rig / weight 
 
 ## 29/10 - Sketchfab review vòng1 vật liệu tối
 - Claude chỉ ra tường SF05 và giấy SF24 tối trong Unity dù Blender đẹp: dữ liệu lambert/phong nguồn gán kim loại cao, môi trường phản xạ khác nhau. Bản 746eab1 đã nhân factor trực tiếp từ glTF; Claude đính chính lúc 10:59 và rút lại nguyên nhân bỏ qua factor. Bổ sung đọc lại PNG (R = metalB × factor, A = 1 − roughG × factor) và override kim loại 0 cho SF05 lambert1*/SF24 Material.001; giữ SF21 đồng. 28 map đạt sai số tối đa 0,001507. Phải đối chiếu Unity với Blender, không coi ảnh Blender đẹp là đạt. Giữ ảnh Unity trước/sau cùng góc; kiểm lại 47 mảnh và 16 ảnh cận.
+
+## 30/10 - Đồng bộ ảnh tổng Sketchfab sau review
+- Claude phát hiện contact-1..4 vẫn là ảnh trước sửa vật liệu dù ảnh lẻ và gallery đã mới. Đã dựng lại bốn ảnh tổng, so khớp byte với unity-sheet trong gallery và xem ảnh SF05. sf_delivery.cjs nay luôn đồng bộ cả hai vị trí; không để người xem nhầm ảnh cũ với kết quả mới.
