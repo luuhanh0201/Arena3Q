@@ -40,6 +40,16 @@ MonoBehaviour:
   gustSeconds: 8
   waterSpeed: 0.06
   waterSecondSpeed: 0.03
+  environmentMotion: 1
+  battlefieldWind: {fileID: 11400000, guid: 78483c0501fac0d4faa5c01d70425c72, type: 2}
+  lowWindMultiplier: 0.45
+  lowBambooMultiplier: 0.5
+  waterSecondBlend: 0.18
+  waterSecondDirection: {x: 0.3, y: -1}
+  waterSource: {fileID: 2100000, guid: d8f2d92f0e94f5548bf07b3f63dd47a7, type: 2}
+  waterMotionMaterial: {fileID: 2100000, guid: e96a5a709f4d05541bde8346678aaada, type: 2}
+  bambooSource: {fileID: 2100000, guid: 06d8e3183b42ef64aa49297e2357641f, type: 2}
+  bambooMotionMaterial: {fileID: 2100000, guid: 6540c3139e4824244a96d37d1c193518, type: 2}
   leafLifetime: 5
   dustInterval: 8
   dustAlpha: 0.15

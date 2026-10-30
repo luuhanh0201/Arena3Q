@@ -68,6 +68,7 @@ namespace Arena3Q.Exploration
             BuildPlayer(actor.transform);
             gameObject.AddComponent<ChapterMapInput>().Configure(this);
             Ready = true; Hud.Refresh();
+            gameObject.AddComponent<ChapterMapEnvironment>().Configure(this);
             World = gameObject.AddComponent<ChapterMapWorld>(); World.Configure(this);
         }
         private void BindScene()

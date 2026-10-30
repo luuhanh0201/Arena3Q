@@ -15,6 +15,11 @@ namespace Arena3Q.Data
         public float fogRegionRadius = 40, fogRevealEdge = .08f;
         public int fogNoiseSize = 128, fogNoiseCells = 4, fogNoiseOctaves = 4, fogNoiseSeed = 731;
         public float windStrength = .35f, gustSeconds = 8, waterSpeed = .06f, waterSecondSpeed = .03f;
+        public bool environmentMotion;
+        public BattlefieldConfig battlefieldWind;
+        public float lowWindMultiplier = .45f, lowBambooMultiplier = .5f, waterSecondBlend = .18f;
+        public Vector2 waterSecondDirection = new Vector2(.3f,-1);
+        public Material waterSource, waterMotionMaterial, bambooSource, bambooMotionMaterial;
         public float leafLifetime = 5, dustInterval = 8, dustAlpha = .15f, birdInterval = 35, cloudShadowAlpha = .07f;
         public float flagAmplitude = .04f, flagSeconds = 2, bambooAmplitude = .1f, bambooSeconds = 4.2f;
         public int[] frameRates = { 30, 60, 120 };
@@ -31,6 +36,10 @@ namespace Arena3Q.Data
             if (frameRates == null || frameRates.Length != 3 || fogLayers == null || fogLayers.Length != 3
                 || leavesPerArea == null || leavesPerArea.Length != 3)
                 errors.Add("Map requires three display tiers.");
+            if(environmentMotion&&(battlefieldWind==null||waterSource==null||waterMotionMaterial==null||bambooSource==null||bambooMotionMaterial==null))
+                errors.Add("Environment motion requires wind configuration and source/replacement materials.");
+            if(gustSeconds<=0||bambooSeconds<=0||bambooAmplitude<0||lowWindMultiplier<0||lowBambooMultiplier<0||waterSecondBlend<0||waterSecondBlend>1)
+                errors.Add("Environment motion periods and strengths are invalid.");
         }
     }
 }

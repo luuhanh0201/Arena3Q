@@ -6,6 +6,7 @@ const settings = require('./web-settings.json');
 const baseline = process.argv.includes('--baseline');
 const worldQa = process.argv.includes('--world');
 const uiReview = process.argv.includes('--ui-review');
+const motionReview = process.argv.includes('--motion-review');
 const out = path.resolve('NghiemThu/Chapter01/' + (worldQa ? 'P3_Web_' : 'P2_Web_') + (baseline ? 'before_' : '') + new Date().toISOString().replace(/[:.]/g, '-'));
 const base = `http://127.0.0.1:${settings.port}`;
 fs.mkdirSync(out, { recursive: true });
@@ -133,15 +134,15 @@ save();
     await capture('09-return-lobby');
     if (worldQa) {
       report.world = [];
-      for (const checkpoint of (uiReview?[1,4,7,'altar']:[1,4,7])) {
-        const cleared=checkpoint==='altar'?7:checkpoint;
+      for (const checkpoint of (motionReview?[1,4,7,'bamboo']:uiReview?[1,4,7,'altar']:[1,4,7])) {
+        const cleared=typeof checkpoint==='string'?7:checkpoint;
         const profile = lobbyProfile();
         profile.characters[0].chapters = [{ chapterId: 'chapter01', revealedStages: cleared,
           stages: Array.from({length:cleared},(_,i)=>({stageId:`ch01_${String(i+1).padStart(2,'0')}`,questAccepted:true,stars:3})),
           claimedRewards:[],pendingBattleId:'',pendingStageId:'' }];
-        if(checkpoint==='altar'){
+        if(typeof checkpoint==='string'){
           const config=fs.readFileSync('Assets/Arena3Q/Chapters/Chapter01_YellowTurban/Data/CH01_MapConfig.asset','utf8');
-          const altar=config.split('  - id: ch01_07')[1].match(/center: \{x: ([^,]+), y: ([^,]+), z: ([^}]+)\}/);
+          const altar=config.split(checkpoint==='altar'?'  - id: ch01_07':'  - id: ch01_03')[1].match(/center: \{x: ([^,]+), y: ([^,]+), z: ([^}]+)\}/);
           Object.assign(profile.characters[0].chapters[0],{hasReturnPose:true,playerX:-50,playerY:0,playerZ:-34,cameraX:Number(altar[1]),cameraY:Number(altar[2]),cameraZ:Number(altar[3]),cameraSize:22});
         }
         await seed(page, profile); await start();
@@ -159,7 +160,14 @@ save();
         // Reveal completion starts the marker fade; inspect its final visible state before taking the after image.
         await page.waitForTimeout(600); state=await inspect();
         if(cleared<7)assert.ok(state.markers.some(m=>m.stage===cleared&&m.target===-1&&m.active),'The newly revealed stage marker must become interactive.');
-        await capture(checkpoint==='altar'?'12-altar-unlocked':`11-world-${cleared}-cleared`);report.world.push({cleared,checkpoint,state});save();
+        await capture(typeof checkpoint==='string'?`12-${checkpoint}-unlocked`:`11-world-${cleared}-cleared`);report.world.push({cleared,checkpoint,state});save();
+        if(checkpoint==='bamboo'){
+          for(const preset of settings.displayPresets){
+            await page.selectOption('#display-preset',String(preset.frameRate));await page.waitForTimeout(900);
+            state=await inspect();assert.equal(state.previewFrameRate,preset.frameRate);assert.equal(state.unlocked,7);
+            for(let frame=0;frame<5;frame++){await capture(`14-environment-${preset.frameRate}-${frame}`);await page.waitForTimeout(250);}
+          }
+        }
         if(checkpoint==='altar'){
           assert.ok(state.markers.some(m=>m.stage===6&&m.target===-1&&m.active),'Unlocked altar marker must be visible and clickable.');
           await tapRect(state.markers.find(m=>m.stage===6&&m.target===-1).rect,state);
