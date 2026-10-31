@@ -30,7 +30,8 @@ Shader "Arena3Q/Chapter Bamboo"
             float4 bounds=UNITY_ACCESS_INSTANCED_PROP(ChapterPlants,_ChapterPlantBounds);
             float3 world=TransformObjectToWorld(i.vertex.xyz);
             float height=saturate((world.y-bounds.x)/max(.1,bounds.y));
-            float phase=dot(bounds.zw,float2(.73,1.17));
+            // Smooth, low-frequency variation across the clump: nearby vertices remain coherent.
+            float phase=dot(bounds.zw,float2(.73,1.17))+dot(world.xz-bounds.zw,float2(.19,.23));
             float sway=(sin(_Motion.x*_Motion.z+phase)+.25*sin(_Motion.x*_Motion.z*1.73+phase*.61))/1.25;
             world.xz+=_ArenaWind.xy*sway*_Motion.y*height*height;
             o.world=world;o.position=TransformWorldToHClip(world);o.normal=TransformObjectToWorldNormal(i.normal);o.uv=TRANSFORM_TEX(i.uv,_BaseMap);return o;

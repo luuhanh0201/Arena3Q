@@ -20,6 +20,7 @@ namespace Arena3Q.Exploration
         public ChapterMapMotor Motor { get; private set; }
         public ChapterMapHud Hud { get; private set; }
         public ChapterMapWorld World { get; private set; }
+        public ChapterMapAudio Audio { get; private set; }
         public Transform[][] Anchors { get; private set; }
         public Transform[] Areas { get; private set; }
         public bool Ready { get; private set; }
@@ -69,7 +70,9 @@ namespace Arena3Q.Exploration
             gameObject.AddComponent<ChapterMapInput>().Configure(this);
             Ready = true; Hud.Refresh();
             gameObject.AddComponent<ChapterMapEnvironment>().Configure(this);
+            Audio = gameObject.AddComponent<ChapterMapAudio>(); Audio.Configure(this, config.audio);
             World = gameObject.AddComponent<ChapterMapWorld>(); World.Configure(this);
+            gameObject.AddComponent<ChapterMapDetails>().Configure(this);
         }
         private void BindScene()
         {
@@ -127,7 +130,8 @@ namespace Arena3Q.Exploration
             if (!Ready || Busy || stage < 0 || stage >= config.stages.Length
                 || target < 0 || target >= config.stages[stage].targets.Length) return;
             Hud.CloseModal();
-            if (Motor.RequestTarget(stage, target, Anchors[stage][target])) View.Follow(Motor.transform);
+            if (Motor.RequestTarget(stage, target, Anchors[stage][target]))
+            { View.Follow(Motor.transform); Audio?.Play(MapSound.SelectNpc, Anchors[stage][target].position); }
         }
         public void SelectStage(int stage)
         {
@@ -143,7 +147,12 @@ namespace Arena3Q.Exploration
             if (!Session.Rules.MarkerVisible(Session.Progress, stage, config.stages[stage].targets[target].kind)) return;
             if (config.stages[stage].targets[target].kind == MapInteractionKind.Quest) Hud.ShowQuest(stage, target); else Hud.ShowStage(stage);
         }
-        public void AcceptQuest(int stage) { if (Session.AcceptQuest(stage)) { Hud.CloseModal(); Hud.Refresh(); } }
+        public void AcceptQuest(int stage) { if (Session.AcceptQuest(stage)) { Audio?.Play(MapSound.AcceptQuest, config.stages[stage].center); Hud.CloseModal(); Hud.Refresh(); } }
+        public bool ClaimReward(int index)
+        {
+            if (!Session.Claim(index)) return false;
+            Audio?.Play(MapSound.OpenChest, View.Focus); return true;
+        }
         public void GroundTap(Vector2 screen)
         {
             if (!Ready || Busy) return;

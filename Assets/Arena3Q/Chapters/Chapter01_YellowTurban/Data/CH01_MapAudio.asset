@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb2010003b32df4fa24de00d142dd4c, type: 3}
+  m_Name: CH01_MapAudio
+  m_EditorClassIdentifier: Arena3Q.Data::Arena3Q.Data.MapAudioConfig
+  cues:
+  - sound: 0
+    clip: {fileID: 0}
+    volume: 0.3
+    cooldown: 0.1
+  - sound: 1
+    clip: {fileID: 0}
+    volume: 0.3
+    cooldown: 0.1
+  - sound: 2
+    clip: {fileID: 0}
+    volume: 0.3
+    cooldown: 0.1
+  - sound: 3
+    clip: {fileID: 0}
+    volume: 0.3
+    cooldown: 0.1
+  - sound: 4
+    clip: {fileID: 0}
+    volume: 0.3
+    cooldown: 0.1
+  - sound: 5
+    clip: {fileID: 0}
+    volume: 0.3
+    cooldown: 0.1
+  - sound: 6
+    clip: {fileID: 0}
+    volume: 0.3
+    cooldown: 0.1
+  - sound: 7
+    clip: {fileID: 0}
+    volume: 0.3
+    cooldown: 0.1
+  - sound: 8
+    clip: {fileID: 0}
+    volume: 0.3
+    cooldown: 0.1
+  - sound: 9
+    clip: {fileID: 0}
+    volume: 0.3
+    cooldown: 0.1
+  - sound: 10
+    clip: {fileID: 0}
+    volume: 0.3
+    cooldown: 0.1
+  anchors:
+  - id: area-1
+    stage: 0
+    sound: 0
+    position: {x: -48, y: 0, z: -28}
+    radius: 28
+  - id: area-2
+    stage: 1
+    sound: 1
+    position: {x: -10, y: 0, z: -27}
+    radius: 28
+  - id: area-3
+    stage: 2
+    sound: 1
+    position: {x: -54, y: 0, z: 5}
+    radius: 28
+  - id: area-4
+    stage: 3
+    sound: 4
+    position: {x: -8, y: 0, z: 4}
+    radius: 28
+  - id: area-5
+    stage: 4
+    sound: 4
+    position: {x: -4, y: 0, z: 31}
+    radius: 28
+  - id: area-6
+    stage: 5
+    sound: 4
+    position: {x: 36, y: 0, z: 2}
+    radius: 28
+  - id: area-7
+    stage: 6
+    sound: 4
+    position: {x: 56, y: 0, z: 31}
+    radius: 28
+  - id: fire-3
+    stage: 2
+    sound: 3
+    position: {x: -57.4, y: 0, z: 7.2}
+    radius: 12
+  - id: fire-5
+    stage: 4
+    sound: 3
+    position: {x: -3.2, y: 0, z: 27.6}
+    radius: 12
+  - id: fire-6
+    stage: 5
+    sound: 3
+    position: {x: 37.5, y: 0, z: 5.5}
+    radius: 12
+  - id: river-6
+    stage: 4
+    sound: 2
+    position: {x: -31, y: 0, z: 34}
+    radius: 18
+  - id: river-8
+    stage: 4
+    sound: 2
+    position: {x: -28, y: 0, z: 22}
+    radius: 18
+  - id: river-10
+    stage: 2
+    sound: 2
+    position: {x: -31, y: 0, z: 12}
+    radius: 18
+  - id: river-12
+    stage: 3
+    sound: 2
+    position: {x: -27, y: 0, z: 2}
+    radius: 18
+  - id: river-14
+    stage: 0
+    sound: 2
+    position: {x: -31, y: 0, z: -9}
+    radius: 18
+  - id: river-16
+    stage: 1
+    sound: 2
+    position: {x: -29, y: 0, z: -20}
+    radius: 18
+  - id: river-18
+    stage: 1
+    sound: 2
+    position: {x: -28, y: 0, z: -32}
+    radius: 18
+  ambienceSlots: 2
+  fadeSeconds: 0.6
+  footstepDistance: 0.85
+  panDistance: 22
+  muteInEditor: 1

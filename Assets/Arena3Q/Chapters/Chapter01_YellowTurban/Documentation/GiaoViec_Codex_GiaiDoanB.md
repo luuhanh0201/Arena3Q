@@ -35,7 +35,7 @@ Dựng bằng uGUI từ code như HUD hiện có, dùng thành phần chung củ
 
 | # | Thành phần | Vị trí, kích thước | Mô tả và hành vi |
 |---|---|---|---|
-| 1 | Nút quay lại | trái trên, x 1 đến 6 %, cao 6 % | khung gỗ sơn có viền vàng, icon mũi tên trái; về sảnh, có âm `UIAudio` |
+| 1 | Nút quay lại | trái trên, x 1 đến 6 %, cao 6 % | giữ nút đỏ của game (`GameButtonStyle.Red`), icon mũi tên trái; về sảnh, có âm `UIAudio`. Người dùng chốt31/10, thay khung gỗ viền vàng trong mẫu; không thêm ảnh/kiểu nút mới. |
 | 2 | Băng tiêu đề | x 6 đến 33 %, cao 6,5 % | nền tối trong mờ (khoảng #403134, alpha 0,85) chuyển trong suốt về phải, viền vàng mảnh; chữ "Chương 1" và "Loạn Khăn Vàng" màu vàng kem (#F3D098 → #E8C26A, có bóng), giữa có vạch ngăn |
 | 3 | Nút thông tin | cuối băng tiêu đề, đường kính 4 % chiều cao | vòng tròn viền vàng, icon chấm than trong vòng; mở bảng giới thiệu chương |
 | 4 | Lời dẫn | dưới tiêu đề, x 2 %, 3 dòng | chữ trắng kem có bóng tối, cỡ khoảng 2 % chiều cao: "Năm 184, khởi nghĩa Khăn Vàng lan rộng. / Quân triều đình và các nghĩa binh cùng nhau dẹp loạn, / giải cứu dân chúng, ngăn chặn âm mưu của Trương Giác." (lấy từ dữ liệu chương) |

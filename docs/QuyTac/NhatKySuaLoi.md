@@ -570,3 +570,9 @@ Không phải lỗi đã phát hành; ghi lại các chỗ sai khi làm và số
 
 ## 30/10 - Review P2 theo ảnh mẫu
 - Thiếu biển đỏ tế đàn, đếm sao rương vượt mốc, chữ không có bóng/viền trên nền sáng, bảng ải thiếu thưởng và nút Đóng kiểu Plain. Ảnh panel được chụp ngay khi modal xuất hiện nên còn fade. Sửa bằng cấu hình stage/UI, giới hạn bộ đếm, outline TMP, trạng thái thưởng chưa biên soạn, nút cùng GameButton có vùng chạm đủ và telemetry alpha để đợi kết thúc fade. Không đổi nút quay lại đang chờ người dùng quyết định.
+
+## 31/10 - P4b nền và kiểm chuyển động
+- Texture nền đã đối màu nhưng scene vẫn tham chiếu cache cũ. Material dẫn xuất riêng trỏ đúng bản R2; giữ nguồn/layout và có ảnh cùng camera trước/sau.
+- JsonUtility không nhập Rect từ JSON x/y/width/height như dự kiến, khiến toàn bộ UV0 bằng0 và decal vô hình dù mesh/count đúng. Dùng DTO field, kiểm miền UV trước bake và kiểm UV trải đủ hai chiều trong test; xem ảnh lúa/decal sau sửa.
+- Native MaterialPropertyBlock không được tạo trong initializer MonoBehaviour. Tạo trong Configure; không giấu lỗi SetUp bằng LogAssert.
+- Tre trong một renderer cùng pha: thêm pha không gian thấp tần, giữ biến dạng liên tục và chân đứng yên. Nước dùng pass depth riêng cùng CBUFFER với forward, không mượn layout Lit khác. Bật/tắt SRP phải có ảnh và counter từ camera thật; counter0 khi chưa render không phải số đo hợp lệ.

@@ -15,6 +15,8 @@ namespace Arena3Q.Data
         public FrontendConfig frontend;
         public MapUiConfig ui;
         public MapMotionConfig motion;
+        public MapAudioConfig audio;
+        public MapDetailsConfig details;
         public ChapterMapStage[] stages = Array.Empty<ChapterMapStage>();
         public ChapterMapReward[] rewards = Array.Empty<ChapterMapReward>();
         public Vector3[] roadRoute = Array.Empty<Vector3>();
@@ -36,6 +38,8 @@ namespace Arena3Q.Data
             if (motion != null) motion.Validate(errors);
             if (stages == null || stages.Length == 0) { errors.Add("Chapter requires stages."); return; }
             if (stages.Length > 16) errors.Add("Chapter fog supports at most 16 regions.");
+            if (audio != null && motion != null) audio.Validate(errors, stages.Length, motion.maxAudioSources);
+            if (details != null) details.Validate(errors, stages.Length);
             var ids = new HashSet<string>();
             foreach (var stage in stages)
             {

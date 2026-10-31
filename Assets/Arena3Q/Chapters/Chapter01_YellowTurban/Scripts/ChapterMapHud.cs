@@ -361,7 +361,7 @@ namespace Arena3Q.Exploration
             _kit.Button(panel,"Deploy","Xuất Chiến",ModalActionRect,()=>_map.LaunchBattle(stage),GameButtonStyle.Red);
         }
         private void ShowInfo(){var panel=OpenModal(Config.title+" "+Config.subtitle);_kit.Text(panel,"Introduction",Config.introduction,new Rect(30,90,Ui.modalSize.x-60,150),22,Color.white);}
-        private void Claim(int index){ShowMessage(_map.Session.Claim(index)?"Đã nhận thưởng chương.":"Chưa thể nhận phần thưởng này.");Refresh();}
+        private void Claim(int index){ShowMessage(_map.ClaimReward(index)?"Đã nhận thưởng chương.":"Chưa thể nhận phần thưởng này.");Refresh();}
         public void CloseModal(){if(_modal!=null)_kit.Close(_modal);_modal=null;}
         public void ShowMessage(string text){if(_message!=null){_message.text=text;_messageSeconds=Ui.messageSeconds;}}
     }

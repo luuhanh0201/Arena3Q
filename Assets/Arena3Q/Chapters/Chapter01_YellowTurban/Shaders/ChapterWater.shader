@@ -9,6 +9,17 @@ Shader "Arena3Q/Chapter Water"
     SubShader
     {
         Tags {"RenderPipeline"="UniversalPipeline" "RenderType"="Opaque"}
+        HLSLINCLUDE
+        #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+        #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+        TEXTURE2D(_BaseMap);SAMPLER(sampler_BaseMap);
+        CBUFFER_START(UnityPerMaterial)
+        float4 _BaseMap_ST,_BaseColor,_Flow,_SecondDirection;float _Smoothness,_Metallic;
+        CBUFFER_END
+        struct A{float4 vertex:POSITION;float3 normal:NORMAL;float2 uv:TEXCOORD0;};
+        struct V{float4 position:SV_POSITION;float3 world:TEXCOORD0;float3 normal:TEXCOORD1;float2 uv:TEXCOORD2;};
+        V Vert(A i){V o;o.world=TransformObjectToWorld(i.vertex.xyz);o.position=TransformWorldToHClip(o.world);o.normal=TransformObjectToWorldNormal(i.normal);o.uv=TRANSFORM_TEX(i.uv,_BaseMap);return o;}
+        ENDHLSL
         Pass
         {
             Tags {"LightMode"="UniversalForward"}
@@ -17,15 +28,6 @@ Shader "Arena3Q/Chapter Water"
             #pragma fragment Frag
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
             #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
-            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-            TEXTURE2D(_BaseMap);SAMPLER(sampler_BaseMap);
-            CBUFFER_START(UnityPerMaterial)
-            float4 _BaseMap_ST,_BaseColor,_Flow,_SecondDirection;float _Smoothness,_Metallic;
-            CBUFFER_END
-            struct A{float4 vertex:POSITION;float3 normal:NORMAL;float2 uv:TEXCOORD0;};
-            struct V{float4 position:SV_POSITION;float3 world:TEXCOORD0;float3 normal:TEXCOORD1;float2 uv:TEXCOORD2;};
-            V Vert(A i){V o;o.world=TransformObjectToWorld(i.vertex.xyz);o.position=TransformWorldToHClip(o.world);o.normal=TransformObjectToWorldNormal(i.normal);o.uv=TRANSFORM_TEX(i.uv,_BaseMap);return o;}
             half4 Frag(V i):SV_Target
             {
                 half3 primary=SAMPLE_TEXTURE2D(_BaseMap,sampler_BaseMap,i.uv-float2(0,_Flow.x)).rgb;
@@ -36,6 +38,14 @@ Shader "Arena3Q/Chapter Water"
             }
             ENDHLSL
         }
-        UsePass "Universal Render Pipeline/Lit/DepthOnly"
+        Pass
+        {
+            Tags {"LightMode"="DepthOnly"} ZWrite On ColorMask R
+            HLSLPROGRAM
+            #pragma vertex Vert
+            #pragma fragment DepthFrag
+            half4 DepthFrag(V i):SV_Target{return i.position.z;}
+            ENDHLSL
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace Arena3Q.Data
         public string[] resourceIds = { "Stamina", "Silver" };
         public Vector2 modalSize = new Vector2(570, 400);
         public Color modalFill = new Color(.12f,.08f,.06f,.98f), mapTextOutline = new Color(.06f,.035f,.02f,1);
-        public float mapTextOutlineWidth = .2f, modalButtonHeight = 60, modalButtonPadding = 24;
+        public float mapTextOutlineWidth = .12f, modalButtonHeight = 60, modalButtonPadding = 24;
         public Vector2 mapTextShadowOffset = new Vector2(.7f,-.7f);
         public float mapTextShadowSoftness = .15f;
         public Rect modalObjective = new Rect(30,80,510,90), modalStars = new Rect(30,175,510,35), modalRewards = new Rect(30,218,510,65);

@@ -87,11 +87,13 @@ namespace Arena3Q.Exploration
                 for(float elapsed=0;elapsed<motion.cameraRevealSeconds;elapsed+=Time.unscaledDeltaTime)
                 { _map.View.FocusOn(Vector3.Lerp(from,to,Mathf.SmoothStep(0,1,elapsed/motion.cameraRevealSeconds))); yield return null; }
                 _map.View.FocusOn(to);
+                _map.Audio?.Play(Arena3Q.Data.MapSound.FogReveal,to);
                 for(float elapsed=0;elapsed<motion.fogRevealSeconds;elapsed+=Time.unscaledDeltaTime)
                 { _visibility[stage]=Mathf.SmoothStep(0,1,elapsed/motion.fogRevealSeconds); yield return null; }
                 _visibility[stage]=1;
                 yield return BlendGroups(stage,motion.environmentFadeSeconds);
                 _markers[stage]=true;
+                if(_map.Config.stages[stage].boss) _map.Audio?.Play(Arena3Q.Data.MapSound.Boss,to);
                 _map.Session.Progress.revealedStages=stage+1; _map.Session.Save();
             }
             Revealing=false; _map.Busy=false; _map.Hud.Refresh();

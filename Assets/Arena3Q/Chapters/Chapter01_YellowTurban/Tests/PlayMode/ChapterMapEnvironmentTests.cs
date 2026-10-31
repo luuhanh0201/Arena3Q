@@ -10,6 +10,39 @@ namespace Arena3Q.Exploration.Tests
 {
     public sealed partial class ChapterMapFlowTests
     {
+        [System.Serializable] private sealed class EnvironmentCounters { public string mode;public bool srp;public long drawCalls,batches,setPass; }
+        [System.Serializable] private sealed class EnvironmentCounterReport { public EnvironmentCounters[] samples; }
+        [UnityTest] public IEnumerator CaptureEnvironmentBatching()
+        {
+            var rows=new System.Collections.Generic.List<EnvironmentCounters>();
+            bool batching=UnityEngine.Rendering.GraphicsSettings.useScriptableRenderPipelineBatching;
+            var canvas=_map.Hud.GetComponentInChildren<Canvas>();canvas.enabled=false;
+            var details=_map.GetComponent<ChapterMapDetails>();if(details!=null)Object.Destroy(details);
+            var env=_map.GetComponent<ChapterMapEnvironment>();Object.Destroy(env);yield return null;
+            var visibility=(float[])typeof(ChapterMapWorld).GetField("_visibility",System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance).GetValue(_map.World);
+            for(int i=0;i<visibility.Length;i++)visibility[i]=1;
+            _map.View.FocusOn(_map.Config.stages[2].center);_map.World.SendMessage("LateUpdate");_map.World.enabled=false;
+            var camera=_map.View.Camera;var previousTarget=camera.targetTexture;var target=new RenderTexture(1672,941,24);target.Create();camera.targetTexture=target;
+            try
+            {
+                foreach(string mode in new[]{"source","motion"})
+                {
+                    if(mode=="motion"){env=_map.gameObject.AddComponent<ChapterMapEnvironment>();env.Configure(_map);env.enabled=false;env.Evaluate(.6f);}
+                    foreach(bool srp in new[]{false,true})
+                    {
+                        UnityEngine.Rendering.GraphicsSettings.useScriptableRenderPipelineBatching=srp;
+                        using var draw=Unity.Profiling.ProfilerRecorder.StartNew(Unity.Profiling.ProfilerCategory.Render,"Draw Calls Count");
+                        using var batch=Unity.Profiling.ProfilerRecorder.StartNew(Unity.Profiling.ProfilerCategory.Render,"Batches Count");
+                        using var pass=Unity.Profiling.ProfilerRecorder.StartNew(Unity.Profiling.ProfilerCategory.Render,"SetPass Calls Count");
+                        for(int i=0;i<5;i++){camera.Render();yield return null;}
+                        var row=new EnvironmentCounters{mode=mode,srp=srp,drawCalls=draw.Valid&&draw.Count>0?draw.LastValue:-1,batches=batch.Valid&&batch.Count>0?batch.LastValue:-1,setPass=pass.Valid&&pass.Count>0?pass.LastValue:-1};rows.Add(row);
+                        Capture("batching-"+mode+"-"+(srp?"on":"off"));
+                    }
+                }
+                System.IO.File.WriteAllText(CaptureDirectory+"/batching.json",JsonUtility.ToJson(new EnvironmentCounterReport{samples=rows.ToArray()},true));
+            }
+            finally{camera.targetTexture=previousTarget;target.Release();Object.Destroy(target);UnityEngine.Rendering.GraphicsSettings.useScriptableRenderPipelineBatching=batching;canvas.enabled=true;_map.World.enabled=true;}
+        }
         [UnityTest] public IEnumerator CaptureEnvironmentMotionPresets()
         {
             var environment=_map.GetComponent<ChapterMapEnvironment>();environment.enabled=false;

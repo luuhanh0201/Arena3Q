@@ -62,7 +62,7 @@ MonoBehaviour:
   modalSize: {x: 570, y: 400}
   modalFill: {r: 0.12, g: 0.08, b: 0.06, a: 0.98}
   mapTextOutline: {r: 0.06, g: 0.035, b: 0.02, a: 1}
-  mapTextOutlineWidth: 0.2
+  mapTextOutlineWidth: 0.12
   modalButtonHeight: 60
   modalButtonPadding: 24
   mapTextShadowOffset: {x: 0.7, y: -0.7}

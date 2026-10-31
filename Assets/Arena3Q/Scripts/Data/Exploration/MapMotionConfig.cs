@@ -29,6 +29,7 @@ namespace Arena3Q.Data
         public float routeDashesPerSecond = .5f;
         public void Validate(System.Collections.Generic.List<string> errors)
         {
+            if(maxAudioSources<1) errors.Add("Map audio requires a positive source limit.");
             if (cameraRevealSeconds <= 0 || fogRevealSeconds <= 0 || environmentFadeSeconds <= 0
                 || fogBoundaryWidth <= 0 || fogTextureScale <= 0 || markerFadeIn <= 0 || markerFadeOut <= 0
                 || fogRegionRadius <= 0 || fogRevealEdge <= 0 || fogNoiseSize < 16 || fogNoiseCells < 1 || fogNoiseOctaves < 1)

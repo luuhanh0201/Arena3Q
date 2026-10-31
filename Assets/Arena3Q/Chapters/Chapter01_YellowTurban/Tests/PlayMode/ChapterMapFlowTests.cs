@@ -206,6 +206,8 @@ namespace Arena3Q.Exploration.Tests
                     Assert.AreEqual(completed+2,_map.Session.Progress.revealedStages);
                     Assert.AreEqual(1,_map.World.Visibility(completed+1));
                     Assert.True(_map.World.MarkersVisible(completed+1));
+                    Assert.AreEqual(1,_map.Audio.Requested(MapSound.FogReveal),"Fog sound hook fires once for an actual reveal.");
+                    Assert.AreEqual(_map.Config.stages[completed+1].boss?1:0,_map.Audio.Requested(MapSound.Boss));
                     Capture("world-"+(completed+2)+"-after");
                 }
                 var area=_map.Areas[completed];
@@ -216,6 +218,7 @@ namespace Arena3Q.Exploration.Tests
                 yield return SceneManager.LoadSceneAsync(scene);yield return null;yield return null;
                 _map=Object.FindFirstObjectByType<ChapterMapController>();
                 Assert.False(_map.World.Revealing,"Reload must not cover an opened region again.");
+                Assert.AreEqual(0,_map.Audio.Requested(MapSound.FogReveal));Assert.AreEqual(0,_map.Audio.Requested(MapSound.Boss));
                 Assert.AreEqual(Mathf.Min(7,completed+2),_map.World.VisibleCount);
             }
         }

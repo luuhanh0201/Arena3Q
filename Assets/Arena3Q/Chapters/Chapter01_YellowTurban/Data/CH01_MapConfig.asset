@@ -20,12 +20,14 @@ MonoBehaviour:
   frontend: {fileID: 11400000, guid: d318ce5184dda98438aabc5e9ba17f81, type: 2}
   ui: {fileID: 11400000, guid: 82b730e86e1dfa34bafa31b3833fef0d, type: 2}
   motion: {fileID: 11400000, guid: 6254b236854be5047b6fd16f0ffe6469, type: 2}
+  audio: {fileID: 11400000, guid: 7575ee8653f7b1e4db08aad8f348d0b7, type: 2}
+  details: {fileID: 11400000, guid: 9d8c87f312c7f8347a852f4cfef4eaa7, type: 2}
   stages:
   - id: ch01_01
     areaName: "L\xE0ng B\xECnh An"
     areaPath: CH01 Exploration/Area 01 Lang Binh An
     markerPath: CH01 Exploration/Area 01 Lang Binh An/StageMarker_01
-    bossName: 
+    bossName:
     objective: "Gi\u1EA3i c\u1EE9u d\xE2n l\xE0ng b\u1ECB qu\xE2n Kh\u0103n V\xE0ng giam gi\u1EEF."
     boss: 0
     useAltarBanner: 0
@@ -50,7 +52,7 @@ MonoBehaviour:
     areaName: "\u0110\u1ED3ng L\xFAa"
     areaPath: CH01 Exploration/Area 02 Dong Lua va Kho Luong
     markerPath: CH01 Exploration/Area 02 Dong Lua va Kho Luong/StageMarker_02
-    bossName: 
+    bossName:
     objective: "B\u1EA3o v\u1EC7 kho l\u01B0\u01A1ng v\xE0 trinh s\xE1t \u0111\u01B0\u1EDDng v\u1EADn chuy\u1EC3n."
     boss: 0
     useAltarBanner: 0
@@ -81,7 +83,7 @@ MonoBehaviour:
     areaName: "R\u1EEBng Tr\xFAc"
     areaPath: CH01 Exploration/Area 03 Rung Truc
     markerPath: CH01 Exploration/Area 03 Rung Truc/StageMarker_03
-    bossName: 
+    bossName:
     objective: "Ph\xE1 tr\u1EA1i ti\u1EC1n ti\xEAu trong r\u1EEBng tr\xFAc."
     boss: 0
     useAltarBanner: 0
@@ -100,7 +102,7 @@ MonoBehaviour:
     areaName: "Tr\u1EA1i L\u01B0\u01A1ng"
     areaPath: CH01 Exploration/Area 04 Trai Luong va Thon Trang
     markerPath: CH01 Exploration/Area 04 Trai Luong va Thon Trang/StageMarker_04
-    bossName: 
+    bossName:
     objective: "Gi\u1EA3i c\u1EE9u d\xE2n v\xE0 chi\u1EBFm l\u1EA1i kho l\u01B0\u01A1ng."
     boss: 0
     useAltarBanner: 0
@@ -144,7 +146,7 @@ MonoBehaviour:
     areaName: "\u0110\u1EA1i Doanh Ho\xE0ng C\xE2n"
     areaPath: CH01 Exploration/Area 06 Dai Doanh Hoang Can
     markerPath: CH01 Exploration/Area 06 Dai Doanh Hoang Can/StageMarker_06
-    bossName: 
+    bossName:
     objective: "\u0110\u1ED9t ph\xE1 c\u1ED5ng, qu\xE2n tinh nhu\u1EC7 v\xE0 h\u1ED9 ph\xE1p."
     boss: 0
     useAltarBanner: 0
