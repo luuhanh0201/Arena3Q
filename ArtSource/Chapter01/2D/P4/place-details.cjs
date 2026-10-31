@@ -39,5 +39,15 @@ for(let i=2;i<p.length;i+=2){const dx=p[i]-p[i-2],dz=p[i+1]-p[i-1],length=Math.h
   add('11_grass-clumps-1-'+(random()<.5?1:2),x-dz/length*side,z+dx/length*side,.9,.65,0,true);
  }
 }
+// Append only: the accepted 270 original placements retain their positions and sizes.
+const supplements=[];
+for(const yard of layout.yards){
+ const x=yard.centre[0],z=yard.centre[1],dx=yard.size[0]*.36,dz=yard.size[1]*.36;
+ for(const [sprite,ox,oz,w,h,upright] of [['fallen-cloth',dx,dz,.38,.3,false],['village-litter',-dx,dz,.48,.38,false],['wildflowers',dx,-dz,.42,.4,true],['wildflowers',-dx,-dz,.36,.34,true]]){
+  const start=patches.length;add(sprite,x+ox,z+oz,w,h,upright?0:random()*360,upright);
+  if(patches.length>start)supplements.push(patches[patches.length-1]);
+ }
+}
+fs.writeFileSync(path.join(__dirname,'Export/supplement-placements.json'),JSON.stringify({patches:supplements},null,2)+'\n');
 const output={layout:'CH01_MapLayout.json',seed:731,patches};fs.writeFileSync(path.join(__dirname,'Export/placements.json'),JSON.stringify(output,null,2)+'\n');
 console.log(JSON.stringify({total:patches.length,byStage:layout.areas.map(a=>patches.filter(p=>p.stage===a.id-1).length),upright:patches.filter(p=>p.upright).length}));

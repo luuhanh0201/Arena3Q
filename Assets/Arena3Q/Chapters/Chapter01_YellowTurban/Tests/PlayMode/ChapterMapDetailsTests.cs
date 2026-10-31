@@ -12,6 +12,32 @@ namespace Arena3Q.Exploration.Tests
 {
     public sealed partial class ChapterMapFlowTests
     {
+        [System.Serializable] private sealed class SupplementCaptureFile { public SupplementCapturePatch[] patches; }
+        [System.Serializable] private sealed class SupplementCapturePatch { public string id,sprite; public Vector3 position; }
+        [UnityTest] public IEnumerator CaptureSupplementDetails()
+        {
+            var input=JsonUtility.FromJson<SupplementCaptureFile>(System.IO.File.ReadAllText("ArtSource/Chapter01/2D/P4/Export/supplement-placements.json"));
+            var env=_map.GetComponent<ChapterMapEnvironment>();env.enabled=false;env.Evaluate(0);
+            var visibility=(float[])typeof(ChapterMapWorld).GetField("_visibility",BindingFlags.NonPublic|BindingFlags.Instance).GetValue(_map.World);
+            var saved=(float[])visibility.Clone();for(int i=0;i<visibility.Length;i++)visibility[i]=1;
+            _map.World.SendMessage("LateUpdate");_map.World.enabled=false;_map.GetComponent<ChapterMapDetails>().RefreshVisibility();
+            var canvas=_map.Hud.GetComponentInChildren<Canvas>();canvas.enabled=false;
+            float size=_map.View.Camera.orthographicSize;
+            try
+            {
+                foreach(int rate in new[]{30,60,120})
+                {
+                    DisplayMetrics.TrySetPreview(new DevicePreviewSettings{width=1672,height=941,dpi=160,frameRate=rate});env.Evaluate(0);
+                    for(int i=0;i<input.patches.Length;i++)
+                    {
+                        _map.View.Camera.orthographicSize=3;_map.View.FocusOn(input.patches[i].position);
+                        yield return null;Capture("supplement-"+i+"-"+rate);
+                    }
+                }
+                System.IO.File.Copy("ArtSource/Chapter01/2D/P4/Export/supplement-placements.json",CaptureDirectory+"/supplement-placements.json",true);
+            }
+            finally{saved.CopyTo(visibility,0);_map.View.Camera.orthographicSize=size;canvas.enabled=true;_map.World.enabled=true;env.enabled=true;DisplayMetrics.Reset();}
+        }
         [UnityTest] public IEnumerator CaptureGroundDetailPresets()
         {
             var env=_map.GetComponent<ChapterMapEnvironment>();env.enabled=false;env.Evaluate(0);

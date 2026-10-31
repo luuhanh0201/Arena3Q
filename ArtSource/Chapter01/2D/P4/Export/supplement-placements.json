@@ -1,0 +1,372 @@
+{
+  "patches": [
+    {
+      "id": "fallen-cloth-270",
+      "stage": 5,
+      "sprite": "fallen-cloth",
+      "position": {
+        "x": 32.24,
+        "y": 0,
+        "z": -1.48
+      },
+      "size": {
+        "x": 0.38,
+        "y": 0.3
+      },
+      "yaw": 132.26874662563205,
+      "upright": false,
+      "opacity": 1,
+      "uv": {
+        "x": 0.412109375,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "id": "village-litter-271",
+      "stage": 5,
+      "sprite": "village-litter",
+      "position": {
+        "x": 25.76,
+        "y": 0,
+        "z": -1.48
+      },
+      "size": {
+        "x": 0.48,
+        "y": 0.38
+      },
+      "yaw": 240.4615004081279,
+      "upright": false,
+      "opacity": 1,
+      "uv": {
+        "x": 0.611328125,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "id": "wildflowers-272",
+      "stage": 5,
+      "sprite": "wildflowers",
+      "position": {
+        "x": 32.24,
+        "y": 0,
+        "z": -6.52
+      },
+      "size": {
+        "x": 0.42,
+        "y": 0.4
+      },
+      "yaw": 0,
+      "upright": true,
+      "opacity": 1,
+      "uv": {
+        "x": 0.212890625,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "id": "wildflowers-273",
+      "stage": 5,
+      "sprite": "wildflowers",
+      "position": {
+        "x": 25.76,
+        "y": 0,
+        "z": -6.52
+      },
+      "size": {
+        "x": 0.36,
+        "y": 0.34
+      },
+      "yaw": 0,
+      "upright": true,
+      "opacity": 1,
+      "uv": {
+        "x": 0.212890625,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "id": "fallen-cloth-274",
+      "stage": 4,
+      "sprite": "fallen-cloth",
+      "position": {
+        "x": 2.4799999999999995,
+        "y": 0,
+        "z": 37.48
+      },
+      "size": {
+        "x": 0.38,
+        "y": 0.3
+      },
+      "yaw": 143.95130932331085,
+      "upright": false,
+      "opacity": 1,
+      "uv": {
+        "x": 0.412109375,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "id": "village-litter-275",
+      "stage": 4,
+      "sprite": "village-litter",
+      "position": {
+        "x": -10.48,
+        "y": 0,
+        "z": 37.48
+      },
+      "size": {
+        "x": 0.48,
+        "y": 0.38
+      },
+      "yaw": 38.13585422001779,
+      "upright": false,
+      "opacity": 1,
+      "uv": {
+        "x": 0.611328125,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "id": "wildflowers-276",
+      "stage": 4,
+      "sprite": "wildflowers",
+      "position": {
+        "x": 2.4799999999999995,
+        "y": 0,
+        "z": 24.52
+      },
+      "size": {
+        "x": 0.42,
+        "y": 0.4
+      },
+      "yaw": 0,
+      "upright": true,
+      "opacity": 1,
+      "uv": {
+        "x": 0.212890625,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "id": "wildflowers-277",
+      "stage": 4,
+      "sprite": "wildflowers",
+      "position": {
+        "x": -10.48,
+        "y": 0,
+        "z": 24.52
+      },
+      "size": {
+        "x": 0.36,
+        "y": 0.34
+      },
+      "yaw": 0,
+      "upright": true,
+      "opacity": 1,
+      "uv": {
+        "x": 0.212890625,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "id": "fallen-cloth-278",
+      "stage": 3,
+      "sprite": "fallen-cloth",
+      "position": {
+        "x": -8.24,
+        "y": 0,
+        "z": 0.3200000000000003
+      },
+      "size": {
+        "x": 0.38,
+        "y": 0.3
+      },
+      "yaw": 87.73004533722997,
+      "upright": false,
+      "opacity": 1,
+      "uv": {
+        "x": 0.412109375,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "id": "village-litter-279",
+      "stage": 3,
+      "sprite": "village-litter",
+      "position": {
+        "x": -19.759999999999998,
+        "y": 0,
+        "z": 0.3200000000000003
+      },
+      "size": {
+        "x": 0.48,
+        "y": 0.38
+      },
+      "yaw": 338.6994229350239,
+      "upright": false,
+      "opacity": 1,
+      "uv": {
+        "x": 0.611328125,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "id": "wildflowers-280",
+      "stage": 3,
+      "sprite": "wildflowers",
+      "position": {
+        "x": -8.24,
+        "y": 0,
+        "z": -8.32
+      },
+      "size": {
+        "x": 0.42,
+        "y": 0.4
+      },
+      "yaw": 0,
+      "upright": true,
+      "opacity": 1,
+      "uv": {
+        "x": 0.212890625,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "id": "wildflowers-281",
+      "stage": 3,
+      "sprite": "wildflowers",
+      "position": {
+        "x": -19.759999999999998,
+        "y": 0,
+        "z": -8.32
+      },
+      "size": {
+        "x": 0.36,
+        "y": 0.34
+      },
+      "yaw": 0,
+      "upright": true,
+      "opacity": 1,
+      "uv": {
+        "x": 0.212890625,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "id": "fallen-cloth-282",
+      "stage": 1,
+      "sprite": "fallen-cloth",
+      "position": {
+        "x": 5.8,
+        "y": 0,
+        "z": -25.84
+      },
+      "size": {
+        "x": 0.38,
+        "y": 0.3
+      },
+      "yaw": 61.94539088755846,
+      "upright": false,
+      "opacity": 1,
+      "uv": {
+        "x": 0.412109375,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "id": "village-litter-283",
+      "stage": 1,
+      "sprite": "village-litter",
+      "position": {
+        "x": 2.2,
+        "y": 0,
+        "z": -25.84
+      },
+      "size": {
+        "x": 0.48,
+        "y": 0.38
+      },
+      "yaw": 336.7515834700316,
+      "upright": false,
+      "opacity": 1,
+      "uv": {
+        "x": 0.611328125,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "id": "wildflowers-284",
+      "stage": 1,
+      "sprite": "wildflowers",
+      "position": {
+        "x": 5.8,
+        "y": 0,
+        "z": -30.16
+      },
+      "size": {
+        "x": 0.42,
+        "y": 0.4
+      },
+      "yaw": 0,
+      "upright": true,
+      "opacity": 1,
+      "uv": {
+        "x": 0.212890625,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "id": "wildflowers-285",
+      "stage": 1,
+      "sprite": "wildflowers",
+      "position": {
+        "x": 2.2,
+        "y": 0,
+        "z": -30.16
+      },
+      "size": {
+        "x": 0.36,
+        "y": 0.34
+      },
+      "yaw": 0,
+      "upright": true,
+      "opacity": 1,
+      "uv": {
+        "x": 0.212890625,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    }
+  ]
+}

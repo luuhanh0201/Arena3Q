@@ -1,166 +1,196 @@
 {
   "width": 1024,
   "height": 1024,
-  "bytes": 969064,
+  "bytes": 715689,
   "sprites": [
     {
       "name": "08_riverbank-1-1",
       "sourceHash": "f90dc270939816c74951db4ea460fdda4f862b0ddd8388c85a254de72b70f38d",
       "uv": {
-        "x": 0.015625,
-        "y": 0.765625,
-        "width": 0.21875,
-        "height": 0.21875
+        "x": 0.013671875,
+        "y": 0.814453125,
+        "width": 0.171875,
+        "height": 0.171875
       }
     },
     {
       "name": "09_bamboo-leaves-1-1",
       "sourceHash": "807d9796a6e01f5d885561141a7cd9247132ffd63c07944d4a970c7dba36ca91",
       "uv": {
-        "x": 0.265625,
-        "y": 0.765625,
-        "width": 0.21875,
-        "height": 0.21875
+        "x": 0.212890625,
+        "y": 0.814453125,
+        "width": 0.171875,
+        "height": 0.171875
       }
     },
     {
       "name": "11_grass-clumps-1-1",
       "sourceHash": "61c1830f7d688bdf7e06d4cc2fb18ad5b7cf17b2eda7e51fa6c57f5b280a481e",
       "uv": {
-        "x": 0.515625,
-        "y": 0.765625,
-        "width": 0.21875,
-        "height": 0.21875
+        "x": 0.412109375,
+        "y": 0.814453125,
+        "width": 0.171875,
+        "height": 0.171875
       }
     },
     {
       "name": "11_grass-clumps-1-2",
       "sourceHash": "ce822aad7f79c30306ec0dc2a8a58e82604f8520b996a4a32cd70f450e14715b",
       "uv": {
-        "x": 0.765625,
-        "y": 0.765625,
-        "width": 0.21875,
-        "height": 0.21875
+        "x": 0.611328125,
+        "y": 0.814453125,
+        "width": 0.171875,
+        "height": 0.171875
       }
     },
     {
       "name": "12_rice-clumps-1-1",
       "sourceHash": "662c452c34f0f34dfa3daf588cb0a0b027491ca3e31ddcc0a7fd4d8898108238",
       "uv": {
-        "x": 0.015625,
-        "y": 0.515625,
-        "width": 0.21875,
-        "height": 0.21875
+        "x": 0.810546875,
+        "y": 0.814453125,
+        "width": 0.171875,
+        "height": 0.171875
       }
     },
     {
       "name": "12_rice-clumps-1-2",
       "sourceHash": "f031f96679e40f6eb7d1a015379e4a5099921702a099793d18fbfb3e5ae1de5b",
       "uv": {
-        "x": 0.265625,
-        "y": 0.515625,
-        "width": 0.21875,
-        "height": 0.21875
+        "x": 0.013671875,
+        "y": 0.615234375,
+        "width": 0.171875,
+        "height": 0.171875
       }
     },
     {
       "name": "15_reeds-1-1",
       "sourceHash": "7af6dcc38eb85b9add7e67f7c1b7e660b73aa625584ac7fa81f7f562417226dc",
       "uv": {
-        "x": 0.515625,
-        "y": 0.515625,
-        "width": 0.21875,
-        "height": 0.21875
+        "x": 0.212890625,
+        "y": 0.615234375,
+        "width": 0.171875,
+        "height": 0.171875
       }
     },
     {
       "name": "15_reeds-1-2",
       "sourceHash": "403df55f3260dca999d8a6a427240a8845a4303908f6aef4f0e7ebddfc37314b",
       "uv": {
-        "x": 0.765625,
-        "y": 0.515625,
-        "width": 0.21875,
-        "height": 0.21875
+        "x": 0.412109375,
+        "y": 0.615234375,
+        "width": 0.171875,
+        "height": 0.171875
       }
     },
     {
       "name": "16_damage-decals-1-1",
       "sourceHash": "0b607584c3c2f6a039bef0cad694ef636e6040a1463f891bc00bd05ca52ba078",
       "uv": {
-        "x": 0.015625,
-        "y": 0.265625,
-        "width": 0.21875,
-        "height": 0.21875
+        "x": 0.611328125,
+        "y": 0.615234375,
+        "width": 0.171875,
+        "height": 0.171875
       }
     },
     {
       "name": "16_damage-decals-1-2",
       "sourceHash": "342a7d390ad20483ac8fd0ea0a63912c5eb272be13d55a0055a5ef1c1be01c7b",
       "uv": {
-        "x": 0.265625,
-        "y": 0.265625,
-        "width": 0.21875,
-        "height": 0.21875
+        "x": 0.810546875,
+        "y": 0.615234375,
+        "width": 0.171875,
+        "height": 0.171875
       }
     },
     {
       "name": "27_fallen-leaves-1-1",
       "sourceHash": "7589fbc2717799c350dc5a9e3b3df7413c6599d853f375b69f7fa0d04fe760fb",
       "uv": {
-        "x": 0.515625,
-        "y": 0.265625,
-        "width": 0.21875,
-        "height": 0.21875
+        "x": 0.013671875,
+        "y": 0.416015625,
+        "width": 0.171875,
+        "height": 0.171875
       }
     },
     {
       "name": "27_fallen-leaves-1-2",
       "sourceHash": "6d495932232accb8556f02b29e1145dc35ada17da1f179c8ddf2226a5368da22",
       "uv": {
-        "x": 0.765625,
-        "y": 0.265625,
-        "width": 0.21875,
-        "height": 0.21875
+        "x": 0.212890625,
+        "y": 0.416015625,
+        "width": 0.171875,
+        "height": 0.171875
       }
     },
     {
       "name": "28_ground-marks-1-1",
       "sourceHash": "28b52d3fd111e71705d8a214fba891331de5b6193fdd42a7ce95957ffb52cf06",
       "uv": {
-        "x": 0.015625,
-        "y": 0.015625,
-        "width": 0.21875,
-        "height": 0.21875
+        "x": 0.412109375,
+        "y": 0.416015625,
+        "width": 0.171875,
+        "height": 0.171875
       }
     },
     {
       "name": "28_ground-marks-2-1",
       "sourceHash": "c8a6aac28b5d566579c76e6121473b0d645c66f1121f591c499dc0b18b9a5bfe",
       "uv": {
-        "x": 0.265625,
-        "y": 0.015625,
-        "width": 0.21875,
-        "height": 0.21875
+        "x": 0.611328125,
+        "y": 0.416015625,
+        "width": 0.171875,
+        "height": 0.171875
       }
     },
     {
       "name": "28_ground-marks-2-2",
       "sourceHash": "53ea80fe55c7b4cafc8f1e8ba7f6a0c60795ce3818b7d03415979195a5fd4492",
       "uv": {
-        "x": 0.515625,
-        "y": 0.015625,
-        "width": 0.21875,
-        "height": 0.21875
+        "x": 0.810546875,
+        "y": 0.416015625,
+        "width": 0.171875,
+        "height": 0.171875
       }
     },
     {
       "name": "28_ground-marks-3-1",
       "sourceHash": "6b4e222cf5ec59bef413ff9bd40bce776a3a1ebb87460e6301542f3ff707b4cd",
       "uv": {
-        "x": 0.765625,
-        "y": 0.015625,
-        "width": 0.21875,
-        "height": 0.21875
+        "x": 0.013671875,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "name": "wildflowers",
+      "sourceHash": "85211961e6497b7f8add5cbc2aba6af232ef757840e53513488d6c02c22bd824",
+      "uv": {
+        "x": 0.212890625,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "name": "fallen-cloth",
+      "sourceHash": "cac9e92b9053bf1527058aa6f310508f30e3b7ebc3ce5409acaaa60c39878b53",
+      "uv": {
+        "x": 0.412109375,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
+      }
+    },
+    {
+      "name": "village-litter",
+      "sourceHash": "fbe608d8b3df87fc2482a5fb57ab2930bd160c31ec533ff03d68e28a8dde1f8d",
+      "uv": {
+        "x": 0.611328125,
+        "y": 0.216796875,
+        "width": 0.171875,
+        "height": 0.171875
       }
     }
   ]

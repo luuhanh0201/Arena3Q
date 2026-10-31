@@ -1,0 +1,23 @@
+[
+  {
+    "id": "wildflowers",
+    "prompt": "Create one production-ready transparent PNG game sprite for Arena3Q Chapter 1, a hand-painted stylized Eastern Han Chinese countryside miniature map. A single small sparse tuft of countryside wildflowers: five tiny ivory cream five-petal blossoms with muted ochre centers, two unopened buds, thin muted olive-green stems and a few narrow leaves. Entire cluster viewed front-on for an upright camera-facing vegetation sprite, around 30 cm tall in-world. Irregular organic silhouette, sparse foliage and very small flowers, no vase, no flowerbed soil. Warm restrained palette matching existing assets: earth #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, old wood #75553B, yellow cloth #C7A130. Painterly soft brushwork with readable shape and sparse detail at small screen size. Neutral diffuse illumination, mild painted form shading only, NO cast shadow, no ground patch, no background or frame, no outline, no border, no text, no glow, no photorealism, no pixel art. Single isolated centered object occupying about 65 percent of the square with clear transparent padding on every side. Preserve crisp naturally antialiased alpha silhouette, opaque object interiors, zero background alpha. Do not add unrelated props.",
+    "source": "Generated/wildflowers.png",
+    "generator": "built-in imagegen",
+    "date": "2026-10-31"
+  },
+  {
+    "id": "fallen-cloth",
+    "prompt": "Create one production-ready transparent PNG game sprite for Arena3Q Chapter 1, a hand-painted stylized Eastern Han Chinese countryside miniature map. A single small torn scrap of old coarse woven ochre linen lying crumpled flat on ground, irregular frayed edges, one soft fold, faded mustard yellow and muted warm brown. Viewed orthographically straight down. Around 30 by 22 cm in-world, no lettering, no emblem, no long trailing ribbon. Warm restrained palette matching existing assets: earth #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, old wood #75553B, yellow cloth #C7A130. Painterly soft brushwork with readable shape and sparse detail at small screen size. Neutral diffuse illumination, mild painted form shading only, NO cast shadow, no ground patch, no background or frame, no outline, no border, no text, no glow, no photorealism, no pixel art. Single isolated centered object occupying about 65 percent of the square with clear transparent padding on every side. Preserve crisp naturally antialiased alpha silhouette, opaque object interiors, zero background alpha. Do not add unrelated props.",
+    "source": "Generated/fallen-cloth.png",
+    "generator": "built-in imagegen",
+    "date": "2026-10-31"
+  },
+  {
+    "id": "village-litter",
+    "prompt": "Create one production-ready transparent PNG game sprite for Arena3Q Chapter 1, a hand-painted stylized Eastern Han Chinese countryside miniature map. One tiny sparse ground-debris cluster consisting of three short broken straw pieces, one splinter of weathered wood and a small crumpled beige paper scrap from an ancient rural village. Each element distinct but close together in a compact irregular cluster around 35 cm across in-world. Viewed orthographically straight down. No modern packaging, metal, plastic, text or symbols. Warm restrained palette matching existing assets: earth #B99B6B, path #D3B786, grass #748358, dry grass #A49B62, old wood #75553B, yellow cloth #C7A130. Painterly soft brushwork with readable shape and sparse detail at small screen size. Neutral diffuse illumination, mild painted form shading only, NO cast shadow, no ground patch, no background or frame, no outline, no border, no text, no glow, no photorealism, no pixel art. Single isolated centered object occupying about 65 percent of the square with clear transparent padding on every side. Preserve crisp naturally antialiased alpha silhouette, opaque object interiors, zero background alpha. Do not add unrelated props.",
+    "source": "Generated/village-litter.png",
+    "generator": "built-in imagegen",
+    "date": "2026-10-31"
+  }
+]

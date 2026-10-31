@@ -20,7 +20,7 @@ namespace Arena3Q.Exploration.Editor
         [Serializable] private sealed class Area { public int id; public float[] centre; }
         [Serializable] private sealed class Prop { public string asset; public int area; public float[] pos; }
         [Serializable] private sealed class River { public float[] points; }
-        [Serializable] private sealed class Audit { public int planned,placed,vertices; public string[] skipped; public int[] perStage; public float maxGroundGap; }
+        [Serializable] private sealed class Audit { public int planned,placed,vertices; public string[] skipped,placedIds; public int[] perStage; public float maxGroundGap; }
         private static T Asset<T>(string name) where T:ScriptableObject
         {
             string path=Root+"/Data/"+name+".asset";var a=AssetDatabase.LoadAssetAtPath<T>(path);
@@ -64,7 +64,7 @@ namespace Arena3Q.Exploration.Editor
             var terrain=UnityEngine.Object.FindObjectsByType<MeshCollider>(FindObjectsSortMode.None).Single(c=>c.name=="Terrain");
             var buildings=UnityEngine.Object.FindObjectsByType<BoxCollider>(FindObjectsSortMode.None).Where(c=>!c.isTrigger).ToArray();
             var input=JsonUtility.FromJson<PlacementFile>(File.ReadAllText("ArtSource/Chapter01/2D/P4/Export/placements.json"));
-            var skipped=new List<string>();var audit=new Audit{planned=input.patches.Length};
+            var skipped=new List<string>();var placedIds=new List<string>();var audit=new Audit{planned=input.patches.Length};
             config.stageMeshes=new Mesh[map.stages.Length];config.patchCounts=new int[map.stages.Length];
             bool Ground(Vector3 p,out RaycastHit hit)=>terrain.Raycast(new Ray(new Vector3(p.x,40,p.z),Vector3.down),out hit,100);
             for(int stage=0;stage<map.stages.Length;stage++)
@@ -99,13 +99,17 @@ namespace Arena3Q.Exploration.Editor
                     for(int y=0;y<grid-1;y++)for(int x=0;x<grid-1;x++)
                     {int a=start+y*grid+x,b=a+1,c=a+grid,d=c+1;triangles.AddRange(new[]{a,c,b,b,c,d});}
                     config.patchCounts[stage]++;
+                    placedIds.Add(patch.id);
                 }
                 string path=Root+"/Data/CH01_Details_"+(stage+1)+".asset";var mesh=AssetDatabase.LoadAssetAtPath<Mesh>(path);
                 if(mesh==null){mesh=new Mesh();AssetDatabase.CreateAsset(mesh,path);}else mesh.Clear();
                 mesh.name="CH01 details "+(stage+1);mesh.SetVertices(vertices);mesh.SetNormals(normals);mesh.SetUVs(0,uv);mesh.SetColors(colors);mesh.SetTriangles(triangles,0);mesh.RecalculateBounds();
                 EditorUtility.SetDirty(mesh);config.stageMeshes[stage]=mesh;audit.vertices+=vertices.Count;
             }
-            audit.perStage=config.patchCounts;audit.placed=config.patchCounts.Sum();audit.skipped=skipped.ToArray();
+            audit.perStage=config.patchCounts;audit.placed=config.patchCounts.Sum();audit.skipped=skipped.ToArray();audit.placedIds=placedIds.ToArray();
+            foreach(string required in new[]{"wildflowers","fallen-cloth","village-litter"})
+                if(input.patches.Any(p=>p.sprite==required)&&!input.patches.Any(p=>p.sprite==required&&placedIds.Contains(p.id)))
+                    throw new InvalidDataException("All placements rejected for required detail: "+required);
             Directory.CreateDirectory("Logs");File.WriteAllText("Logs/P4b-details-placement.json",JsonUtility.ToJson(audit,true));
             config.enabled=true;map.details=config;ConfigureAudio(map);
             foreach(var a in new UnityEngine.Object[]{config,config.groundReplacement,config.detailsMaterial,map})EditorUtility.SetDirty(a);
